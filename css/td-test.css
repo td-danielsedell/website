@@ -97,7 +97,9 @@
     display: block;
     border: 1px solid #555;
     border-radius: 12px;
-    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+    /* Same framing as .service-card and img.showcase-image; kept in step with
+       them rather than wearing .feature-card's hover shadow at rest. */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Feature grid (5 icons) — centering is inherited from the section's

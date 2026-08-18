@@ -24,7 +24,7 @@
 
 #9c9c9cff
 
-/* CSS HEX 
+/* CSS HEX
 --charcoal: #3e4c5eff;
 --asparagus: #678D58ff;
 --air-superiority-blue: #6d9dc5ff;
@@ -155,7 +155,6 @@ a {
 
 /* Border Color */
 
-#home .section-heading:before,
 .testimonial.classic footer:before {
     background: var(--primary);
     /*#d2b356;*/
@@ -166,9 +165,9 @@ a {
         1px 1px var(--primary), -1px -1px var(--primary), 1px -1px var(--primary), -1px 1px var(--primary);
 }
 
-#product-heading.section-title {
-    color: var(--normal-text);
-}
+/* Produkter used to sit on a lighter band and needed a white title to stay
+   legible on it. The band is gone, so the section title matches every other
+   one. */
 
 .backgroundimage-overlay {
     position: absolute;
@@ -300,14 +299,14 @@ body {
 
 #logo h1 {
     font-family:;
-    font-size:; 
+    font-size:;
     font-weight:;
     color:;
 }
 
 #logo h2 {
     font-family:;
-    font-size:; 
+    font-size:;
     font-weight:;
     color:;
 }
@@ -324,6 +323,16 @@ body {
     font-weight: 800;
     color: var(--banner-text);
     /* color: var(--header-text) */
+}
+
+/* Hero expertise line. The label is held back so the area name sliding beside
+   it is what the eye lands on. */
+#home .expertise-line {
+    color: var(--banner-text);
+}
+
+#home .expertise-label {
+    opacity: 0.7;
 }
 
 /* Banner intro. Body copy rather than a heading, but it keeps the look the
@@ -518,6 +527,12 @@ input[type="submit"]:hover {
 /*------------------------------------------------------------------------------------------*/
 /* 7. Footer */
 /*------------------------------------------------------------------------------------------*/
+
+/* A rule off the last section, so the footer closes the page instead of running
+   into it. */
+#landing-footer {
+    border-top: 1px solid #555;
+}
 
 #landing-footer,
 #landing-footer p,

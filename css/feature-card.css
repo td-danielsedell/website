@@ -3,6 +3,7 @@
     display: flex;
     /* width: 500px; */
     /* height: 180px; */
+    /* Same as the page, so the border is what makes it read as a card. */
     background-color: #333;
     border-radius: 10px;
     /* Rounded corners */
@@ -14,14 +15,14 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
-    border: 1px solid #555;
+    border: 2px solid #555;
 }
 
 /* Updated hover state for a perfectly uniform, rounded shadow glow */
 .feature-card:hover {
-    /* 
+    /*
        The 4 values mean: X-offset (0), Y-offset (15px), Blur (30px), and Spread (-3px).
-       The negative spread pulls the shadow inward slightly, forcing it to round out 
+       The negative spread pulls the shadow inward slightly, forcing it to round out
        perfectly even on the sides with dark images.
     */
     /* box-shadow: 0 15px 30px -3px rgba(68, 68, 68, 0.6); */
@@ -134,6 +135,43 @@
     min-height: 200px;
 }
 
+/* .card-title carries 400 from colors.css, which reads thin against the card
+   copy. 700 matches .section-title.
+
+   Scoped to .showcase rather than set on .card-title, because that class is
+   shared three ways and the showcase cards were the only ones still on 400: the
+   Affärsområden icon blocks get bold from .icon-block .card-title in style.css
+   and the service cards from .overlay .card-title in service-card.css. Widening
+   this selector would just duplicate what those two already do. */
+.showcase .card-title {
+    font-weight: 700;
+}
+
+/* On a phone the 30% image column is a ~110px strip that crops the photo to
+   nothing and squeezes the copy into a ribbon. Stack instead: full-width image
+   on top, text underneath. */
+@media (max-width: 767px) {
+    .feature-card.showcase {
+        flex-direction: column;
+        min-height: 0;
+        /* the column grid's 20px would inset the image from the card edge;
+           .card-content carries the text inset instead */
+        padding: 0;
+    }
+
+    .showcase .card-image-wrapper {
+        position: static;
+        width: 100%;
+        height: 180px;
+    }
+
+    .showcase .card-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 20px 20px 30px;
+    }
+}
+
 .product {
     padding: 10px;
     width: 350px;
@@ -142,9 +180,171 @@
 }
 
 /* Product name. It is an h3 so the page keeps a single h1, but it is sized
-   like the h1 it replaced. */
+   like the h1 it replaced. 700 rather than the 300 it carried: at 40px the
+   light weight read as thin, and 700 is what .section-title uses. */
 .product h3 {
     font-size: 40px;
-    font-weight: 300;
+    font-weight: 700;
     padding: 20px 0;
+}
+
+/* Below the tablet breakpoint the two product columns are 100% wide, so the
+   section becomes a ~1600px stack that has to be scrolled past. The sitewide
+   image carousel (css/image-carousel.css + js/image-carousel.js) supplies the
+   track, the arrows and the dots; these rules only size the product slides and
+   hand the floated two-column layout back on desktop. */
+@media (max-width: 767px) {
+    /* The side padding is what lets a slide sit centred: it is the gutter the
+       neighbouring card peeks through, at both ends of the track too. */
+    .product-track.image-carousel-track {
+        gap: 16px;
+        padding: 8px 11% 16px;
+    }
+
+    /* Cancel the float and the 50% width the column grid hands these. */
+    .product-track>.image-carousel-slide {
+        float: none;
+        width: auto;
+        padding: 0;
+    }
+
+    /* The fixed width and the height that equalises the desktop pair both
+       fight the track; the flex row already stretches both cards to the
+       tallest one. */
+    .product-track .product {
+        width: auto;
+        margin: 0;
+        min-height: 0;
+        height: 100%;
+    }
+
+    /* 40px survived here while the title was 300, but bold is wider: at 390px
+       the slide gives the title 257px and "TD Asset Care" measures 250px at 300
+       against 273px at 700, so it started wrapping to two lines. 34px brings it
+       to 232px, which fits, and is the size .section-title already uses.
+       Desktop keeps 40px — the 350px card has room for the bold one-liner. */
+    .product h3 {
+        font-size: 34px;
+    }
+
+    /* The cards are ~750px tall, so an arrow centred on the track would land
+       halfway down a body of text. Put them on the dot row instead, where they
+       sit at a fixed spot no matter how the card copy reflows. */
+    .product-carousel .image-carousel-dots {
+        align-items: center;
+        min-height: 36px;
+        margin-top: 8px;
+    }
+
+    .product-carousel .image-carousel-arrow {
+        top: auto;
+        bottom: 0;
+        transform: none;
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        line-height: 36px;
+    }
+
+    .product-carousel .image-carousel-arrow--prev {
+        left: 15px;
+    }
+
+    .product-carousel .image-carousel-arrow--next {
+        right: 15px;
+    }
+}
+
+/* Desktop keeps the plain floated columns: no track, and the affordances the
+   script injected have nothing to scroll. */
+@media (min-width: 768px) {
+    .product-track.image-carousel-track {
+        display: block;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .product-carousel .image-carousel-arrow,
+    .product-carousel .image-carousel-dots {
+        display: none;
+    }
+}
+
+/* Showcases. Four cards at ~585px each is a 2,600px stack on a phone, so below
+   the tablet breakpoint they ride the same sitewide carousel the products use.
+   The slides are the existing .row wrappers, which keeps the desktop stack
+   exactly as it was. */
+@media (max-width: 767px) {
+
+    /* Side padding is the gutter the next card peeks through — that peek is
+       the only thing telling a reader there is more to swipe to. */
+    .showcase-track.image-carousel-track {
+        gap: 16px;
+        padding: 8px 11% 16px;
+    }
+
+    /* .row hands these 15px of padding and a full width; the track sizes them
+       instead.
+
+       display: flex is what equalises the card heights. The track already
+       stretches every slide to the tallest, but the card inside is a float, and
+       its height: 100% below would not resolve against the slide's stretched
+       height — cards came out 577px or 651.5px depending on how much copy they
+       carry, and the gutter peek of the next card made the difference obvious.
+       As a flex parent the slide stretches the card itself, so the copy no
+       longer sets the height. It has to stay row direction: in a column the
+       stretch would apply to the width instead and the heights would drift
+       apart again. */
+    .showcase-track > .image-carousel-slide {
+        display: flex;
+        float: none;
+        width: auto;
+        padding: 0 !important;
+    }
+
+    .showcase-track .feature-card.showcase {
+        height: 100%;
+        margin: 0;
+    }
+
+    /* Same reasoning as the products track: the cards are tall enough that an
+       arrow centred on the track lands in the middle of a paragraph, so the
+       arrows sit on the dot row. */
+    .showcase-carousel .image-carousel-dots {
+        align-items: center;
+        min-height: 36px;
+        margin-top: 8px;
+    }
+
+    .showcase-carousel .image-carousel-arrow {
+        top: auto;
+        bottom: 0;
+        transform: none;
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        line-height: 36px;
+    }
+
+    .showcase-carousel .image-carousel-arrow--prev {
+        left: 15px;
+    }
+
+    .showcase-carousel .image-carousel-arrow--next {
+        right: 15px;
+    }
+}
+
+/* Desktop keeps the plain stacked rows. */
+@media (min-width: 768px) {
+    .showcase-track.image-carousel-track {
+        display: block;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .showcase-carousel .image-carousel-arrow,
+    .showcase-carousel .image-carousel-dots {
+        display: none;
+    }
 }

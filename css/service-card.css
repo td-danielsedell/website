@@ -6,8 +6,12 @@
     /* Set to your desired height */
     border: 1px solid #555;
     border-radius: 12px;
-    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
-    /* Keeps your design consistent */
+    /* This used to be 0 15px 30px -9px rgba(0, 0, 0, 0.6), which is exactly the
+       *hover* shadow of .feature-card — so the service cards sat permanently
+       lifted next to the resting product and showcase cards. Same resting
+       shadow as .feature-card now. They have no hover state of their own, so
+       this is the only shadow they wear. */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     position: relative;
     /* Crucial for anchoring the overlay */
@@ -40,6 +44,8 @@
 
     /* Transparent background color using rgba (Red, Green, Blue, Opacity) */
     /* 0, 0, 0 is black. 0.5 means 50% transparent */
+    /* The service cards keep white type over the photo, so the veil stays dark
+       — a light veil would leave the text at ~1.6:1. */
     background-color: rgba(51, 51, 51, 0.6);
 
     /* 3. The magic centering code */
@@ -96,6 +102,19 @@ text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     font-weight: bold;
 }
 
+/* Showcase hero image, same framing as .service-card but without the text overlay */
+/* img.* to win over .row img { height: auto } in style.css */
+img.showcase-image {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border: 1px solid #555;
+    border-radius: 12px;
+    /* Kept in step with .service-card above — the framing is meant to match. */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
 .railway-safety {
     background-image: url("../images/showcase-images/crm3000.webp");
 }
@@ -103,5 +122,46 @@ text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 @media (max-width: 480px) {
     .overlay-showcase h3 {
         font-size: 20px;
+    }
+}
+
+/* Tjänster. Eight cards at 320px each is a 2,700px stack on a phone, so below
+   the tablet breakpoint they ride the sitewide carousel (css/image-carousel.css
+   + js/image-carousel.js) the products and showcases already use. The slides
+   are the existing .col-2 wrappers, so desktop keeps its floated grid. */
+@media (max-width: 767px) {
+
+    /* Side padding is the gutter the next card peeks through. With eight
+       slides that peek is doing most of the work of saying "there is more". */
+    .service-track.image-carousel-track {
+        gap: 16px;
+        padding: 8px 11% 16px;
+    }
+
+    /* Cancel the float and the width the column grid hands these. */
+    .service-track > .image-carousel-slide {
+        float: none;
+        width: auto;
+        padding: 0;
+    }
+
+    /* .service-card is a fixed 280px tall, so the arrows can sit centred on
+       the track without landing in the middle of a paragraph. */
+    .service-carousel .image-carousel-dots {
+        margin-top: 12px;
+    }
+}
+
+/* Desktop keeps the plain floated two-column grid. */
+@media (min-width: 768px) {
+    .service-track.image-carousel-track {
+        display: block;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .service-carousel .image-carousel-arrow,
+    .service-carousel .image-carousel-dots {
+        display: none;
     }
 }

@@ -389,6 +389,22 @@ section {
     background: var(--header);
 }
 
+/* Keeps a jumped-to section's heading clear of the fixed header.
+
+   stickyNavbar animates to `offsetTop - headerHeight + 2`, which is right, and
+   then calls .focus() on the section from the animation's complete callback.
+   That focus is a scroll-into-view: Blink (Chrome, Brave) realigns the section's
+   top flush to the viewport top and throws the header compensation away, so the
+   kicker and half the title end up behind the header. Gecko reads the section as
+   already visible and doesn't re-scroll, which is why Firefox looked fine.
+
+   scroll-margin-top is honoured by scroll-into-view, so it puts the focus scroll
+   back where the animation aimed. 71px is the header height above; the animation
+   rests 2px below that, so the correction is invisible. */
+.scrollto {
+    scroll-margin-top: 71px;
+}
+
 #header .row {
     padding: 0;
 }
@@ -994,6 +1010,116 @@ h2 {
     line-height: normal;
 }
 
+/* Hero expertise line: "Vi kan" with the business areas cycling vertically
+   beside it.
+
+   Sized in vw rather than px so the label and the longest area name stay on one
+   line at every phone width. "Vi kan" + icon + "Fleet Management" measures
+   ~15.9× the font size. */
+.expertise-line {
+    /* The reset zeroes margin on h1-h6 but not on p. */
+    margin: 0;
+    padding: 20px 0 4px;
+    display: flex;
+    /* centred, not baseline: the window is taller than its text because of the
+       icon, and overflow:hidden gives it a bottom-edge baseline that would drop
+       the area name well below the label */
+    align-items: center;
+    gap: 0.3em;
+    /* 4.4vw leaves room for a bigger icon and still keeps label + icon + the
+       longest name ("Fleet Management") on one line: ~272px of 358px usable at
+       390px. The short label leaves headroom up to ~5.7vw before it collides. */
+    font-size: clamp(14px, 4.4vw, 34px);
+    font-weight: 800;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
+/* --expertise-step is the height of one reel item, sized off the icon since the
+   icon is taller than the text. The window shows exactly one item, and the
+   keyframes below step the reel by this much. */
+.expertise-rotator {
+    --expertise-icon: 1.5em;
+    --expertise-step: calc(var(--expertise-icon) + 0.3em);
+    display: block;
+    height: var(--expertise-step);
+    overflow: hidden;
+}
+
+.expertise-reel {
+    display: block;
+    /* 15s across 6 areas: 2.5s each, of which 0.5s is the slide */
+    animation: expertise-cycle 15s infinite;
+}
+
+.expertise-reel > span {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    height: var(--expertise-step);
+}
+
+.expertise-reel img {
+    height: var(--expertise-icon);
+    width: auto;
+    flex: 0 0 auto;
+}
+
+/* On a phone the icon needs to be relatively larger to read at all: 1.5em is
+   ~51px against 34px text on desktop, which is balanced, but only ~26px on a
+   390px screen. 2.4em puts it at ~41px there. */
+@media (max-width: 767px) {
+    .expertise-rotator {
+        --expertise-icon: 2.4em;
+    }
+}
+
+/* Stepped in em, NOT in percent: a percentage translateY resolves against the
+   reel's own height — all seven items — so -100% would move it seven rows, not
+   one. The 7th item repeats the 1st, so the wrap back to 0 is invisible. */
+@keyframes expertise-cycle {
+
+    0%,
+    13.33% {
+        transform: translateY(0);
+    }
+
+    16.67%,
+    30% {
+        transform: translateY(calc(-1 * var(--expertise-step)));
+    }
+
+    33.33%,
+    46.67% {
+        transform: translateY(calc(-2 * var(--expertise-step)));
+    }
+
+    50%,
+    63.33% {
+        transform: translateY(calc(-3 * var(--expertise-step)));
+    }
+
+    66.67%,
+    80% {
+        transform: translateY(calc(-4 * var(--expertise-step)));
+    }
+
+    83.33%,
+    96.67% {
+        transform: translateY(calc(-5 * var(--expertise-step)));
+    }
+
+    100% {
+        transform: translateY(calc(-6 * var(--expertise-step)));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .expertise-reel {
+        animation: none;
+    }
+}
+
 h3 {
     padding: 10px 0;
 }
@@ -1046,6 +1172,16 @@ h6 {
 
 .section-heading {
     padding: 0 0 15px 0;
+}
+
+/* Affärsområden and Tillit sit their heading inside a col-, so the title starts
+   at the 20px gutter and lines up with the cards below it. The headings that sit
+   straight in the row have no column to get that from, so they take the gutter
+   here instead. Under 481px the columns drop their gutter, and so does this —
+   see the col- padding reset in the (max-width: 480px) block. */
+.row > .section-heading {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* h1 section titles keep the tighter h2 padding, and sit closer to the body text
@@ -1122,13 +1258,9 @@ h1.section-title {
     padding-top: 5%;
 }
 
-#home .section-heading:before {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 5px;
-    margin-top: 30px;
-}
+/* The orange dash that used to sit above the banner headline is gone: it cost
+   35px above the fold and the headline reads better hard against the nav. The
+   rule under the intro paragraph (.banner-intro:after) is unaffected. */
 
 
 
@@ -2010,7 +2142,11 @@ blockquote {
     .col-3-4,
     .col-9-10,
     .col-61,
-    .col-38 {
+    .col-38,
+    /* Stays in this list: the headings that sit straight in a row borrow the
+       col- gutter to line up with the cards, so they have to lose it wherever
+       the columns do. */
+    .row > .section-heading {
         padding-right: 0;
         padding-left: 0;
     }
@@ -2039,8 +2175,24 @@ blockquote {
         margin-top: 0;
     }
 
+    /* Pulls the headline up towards the nav so the expertise line and the CTA
+       both fit in the first viewport on a phone. */
     #banner-content.row {
-        padding-top: 85px !important;
+        padding-top: 40px !important;
+    }
+
+    /* Replaces the breathing room the removed :before dash used to provide.
+       Needs #home to outspecify "#home h1 { padding-top: 5% }", whose
+       percentage resolves against the container width, not its height. */
+    #home #main-heading {
+        padding-top: 40px;
+    }
+
+    /* The intro's own orange rule already separates the paragraph from the
+       button, so the button's default 35px top margin just pushes it towards
+       the fold. Scoped to the banner so the product buttons keep theirs. */
+    #banner-content .button {
+        margin: 12px 0 0;
     }
 
     /*-----------------Sections-----------------*/
@@ -2096,8 +2248,10 @@ blockquote {
     } */
 
 
+    /* Same side gutter as the band below 480px, so a card is inset from the
+       screen edge at every phone width instead of going full-bleed here. */
     .row {
-        padding: 15px 0 !important;
+        padding: 15px !important;
     }
 
     .col-1,
@@ -2162,8 +2316,24 @@ blockquote {
         padding-top: 6px;
     }
 
+    /* Pulls the headline up towards the nav so the expertise line and the CTA
+       both fit in the first viewport on a phone. */
     #banner-content.row {
-        padding-top: 85px !important;
+        padding-top: 40px !important;
+    }
+
+    /* Replaces the breathing room the removed :before dash used to provide.
+       Needs #home to outspecify "#home h1 { padding-top: 5% }", whose
+       percentage resolves against the container width, not its height. */
+    #home #main-heading {
+        padding-top: 40px;
+    }
+
+    /* The intro's own orange rule already separates the paragraph from the
+       button, so the button's default 35px top margin just pushes it towards
+       the fold. Scoped to the banner so the product buttons keep theirs. */
+    #banner-content .button {
+        margin: 12px 0 0;
     }
 
     /*Navigation*/
@@ -2192,6 +2362,71 @@ blockquote {
     #landing-footer .social-icons {
         float: right;
         width: 50%;
+    }
+
+}
+
+/* Affärsområden: two columns on every phone width, not just above 480px.
+   Grid rather than the floated .col-6, because the six blocks have unequal
+   bullet counts and floats snag on the taller ones. */
+@media (max-width: 767px) {
+
+    #businessareas .area-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 15px;
+        row-gap: 30px;
+    }
+
+    #businessareas .area-grid > .col-6 {
+        width: auto;
+        float: none;
+        padding: 0;
+    }
+
+    /* Icon sits above the text; shrink it so the label and bullets get the
+       room in a ~170px column. */
+    #businessareas .area-grid .icon img {
+        max-width: 44px;
+        height: auto;
+    }
+
+    #businessareas .area-grid .icon-block-description {
+        padding-top: 12px;
+    }
+
+    #businessareas .area-grid .card-title {
+        font-size: 16px;
+        line-height: 1.25;
+    }
+
+    #businessareas .area-grid p {
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    /* Affärsområden and Tillit put the section subtitle in its own column so it
+       can stand beside the heading from 768px up. Stacked, everything that was
+       meant to separate the two columns lands between the title and the
+       subtitle instead: the heading column's 20px bottom padding, the subtitle
+       column's 20px top padding and the heading's own 15px. That put the
+       subtitle 87px below the orange rule. Collapsing the three puts it at 32px,
+       which is what td_asset_care measures — the page with the same h2 heading
+       block, but with the subtitle nested inside .section-heading. (The other
+       two subtitle pages sit elsewhere for their own reasons: about.html at
+       18px because its title is an h1, td_test.html at 57px. Neither is touched
+       by the rules below.)
+
+       Matched on the relationship rather than on .section-heading, so the pages
+       that nest the subtitle inside the heading are left alone: there the
+       subtitle is a grandchild of the column, not a direct child. */
+    .row > [class*='col-']:has(+ [class*='col-'] > .section-subtitle),
+    .row > [class*='col-']:has(+ [class*='col-'] > .section-subtitle) > .section-heading {
+        padding-bottom: 0;
+    }
+
+    .row > [class*='col-']:has(> .section-subtitle) {
+        padding-top: 0;
     }
 
 }
