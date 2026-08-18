@@ -13,6 +13,22 @@
         right: 'M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'
     };
 
+    /* The English mirror at /en/ loads this same file, so the strings the
+       screen reader hears follow <html lang> rather than being fixed in
+       Swedish. Anything that is not English falls back to Swedish, which is
+       what the root of the site is. */
+    var SPEECH = {
+        sv: { prev: 'Föregående ', next: 'Nästa ', goto: function (noun, i, n) {
+            return 'Gå till ' + noun + ' ' + i + ' av ' + n;
+        }, group: 'Bildspel', noun: 'bild' },
+        en: { prev: 'Previous ', next: 'Next ', goto: function (noun, i, n) {
+            return 'Go to ' + noun + ' ' + i + ' of ' + n;
+        }, group: 'Image carousel', noun: 'image' }
+    };
+    var speech = (document.documentElement.lang || '').slice(0, 2) === 'en'
+        ? SPEECH.en
+        : SPEECH.sv;
+
     var carousels = document.querySelectorAll('[data-image-carousel]');
     if (!carousels.length) {
         return;
@@ -33,8 +49,8 @@
 
         /* Defaults describe an image carousel; a carousel of something else
            renames itself with data-carousel-label / data-carousel-noun. */
-        var groupLabel = carousel.getAttribute('data-carousel-label') || 'Bildspel';
-        var noun = carousel.getAttribute('data-carousel-noun') || 'bild';
+        var groupLabel = carousel.getAttribute('data-carousel-label') || speech.group;
+        var noun = carousel.getAttribute('data-carousel-noun') || speech.noun;
 
         function arrow(direction, label, glyph) {
             var button = document.createElement('button');
@@ -62,8 +78,8 @@
             });
         }
 
-        arrow('prev', 'Föregående ' + noun, 'left');
-        arrow('next', 'Nästa ' + noun, 'right');
+        arrow('prev', speech.prev + noun, 'left');
+        arrow('next', speech.next + noun, 'right');
 
         var dots = document.createElement('div');
         dots.className = 'image-carousel-dots';
@@ -72,7 +88,7 @@
             var dot = document.createElement('button');
             dot.type = 'button';
             dot.className = 'image-carousel-dot';
-            dot.setAttribute('aria-label', 'Gå till ' + noun + ' ' + (index + 1) + ' av ' + slides.length);
+            dot.setAttribute('aria-label', speech.goto(noun, index + 1, slides.length));
             dot.addEventListener('click', function () {
                 go(index);
             });
