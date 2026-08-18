@@ -65,21 +65,6 @@
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!--TEMP: etiketter över de tre Affärsområden-varianterna. Tas bort
-        tillsammans med de två bortvalda varianterna.-->
-    <style>
-        .variant-flag {
-            margin: 40px 0 0 0;
-            padding: 18px 20px 0 20px;
-            border-top: 1px dashed #666;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #ff4b00;
-        }
-    </style>
-
     <!--Structured Data-->
     <script type="application/ld+json">
     {
@@ -259,13 +244,6 @@
         <main id="content">
 
             <!--Introduction-->
-            <!--TEMP: de tre varianterna av Affärsområden ligger här samtidigt för
-                jämförelse. När en är vald: behåll den, ge den id="businessareas", och ta
-                bort de andra två, .variant-flag-blocket i <head> och de regler i
-                style.css som bara den bortvalda varianten använder.-->
-
-            <p class="variant-flag">Variant A – segmenten som en rad i underrubriken</p>
-
             <section id="businessareas" class="introduction scrollto">
 
                 <div class="row clearfix">
@@ -278,8 +256,10 @@
                     </div>
 
                     <div class="col-14">
-                        <p class="section-subtitle">Det är här vår kompetens sitter. Lösningarna används inom infrastruktur,
-                            industri, fastighet och fleet management.</p>
+                        <p class="section-subtitle">Styrkan ligger inte i områdena var för sig, utan
+                            i att vi sammanför dem. Vi är unika i vår förmåga att koppla ihop IBM
+                            Maximo och Esri ArcGIS – anläggningens skick och dess läge i samma bild –
+                            och ovanpå det lägger vi fjärranalys och AI.</p>
                     </div>
 
                     <div class="col-1 area-grid">
@@ -294,9 +274,9 @@
                             <div class="icon-block-description">
                                 <h3 class="card-title">Tillgångsförvaltning</h3>
                                 <p>
-                                    - Underhåll och anläggningsinformation<br />
-                                    - IBM Maximo, från införande till drift<br />
-                                    - Integration mot verksamhetens system
+                                    - Underhåll, driftplanering och livscykel<br />
+                                    - Anläggningsinformation<br />
+                                    - Systemstöd i IBM Maximo
                                 </p>
                             </div>
                         </div>
@@ -312,9 +292,9 @@
                             <div class="icon-block-description">
                                 <h3 class="card-title">GIS</h3>
                                 <p>
-                                    - Esri ArcGIS, från utveckling till drift<br />
-                                    - Geodataanalys och kartlösningar<br />
-                                    - Indoor GIS
+                                    - Geodata, kartlösningar och analys<br />
+                                    - Indoor GIS<br />
+                                    - Systemstöd i Esri ArcGIS
                                 </p>
                             </div>
                         </div>
@@ -347,224 +327,8 @@
                             <div class="icon-block-description">
                                 <h3 class="card-title">AI</h3>
                                 <p>
-                                    - Prediktivt underhåll<br />
-                                    - Beslutsstöd i drift och planering
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                    </div>
-
-                </div>
-
-            </section>
-
-            <p class="variant-flag">Variant B – egen branschrad under korten</p>
-
-            <section id="businessareas-b" class="introduction scrollto">
-
-                <div class="row clearfix">
-
-                    <div class="col-14">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">AFFÄRSOMRÅDEN</h2>
-                            <p class="section-title">Fyra områden – en samlad lösning</p>
-                        </div>
-                    </div>
-
-                    <div class="col-14">
-                        <p class="section-subtitle">Fyra områden vi kan på djupet – och som vi sätter ihop till en
-                            lösning.</p>
-                    </div>
-
-                    <div class="col-1 area-grid">
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Tillgångsförvaltning</h3>
-                                <p>
-                                    - Underhåll och anläggningsinformation<br />
-                                    - IBM Maximo, från införande till drift<br />
-                                    - Integration mot verksamhetens system
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">GIS</h3>
-                                <p>
-                                    - Esri ArcGIS, från utveckling till drift<br />
-                                    - Geodataanalys och kartlösningar<br />
-                                    - Indoor GIS
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Fjärranalys</h3>
-                                <p>
-                                    - Satellit-, drönar- och sensordata<br />
-                                    - Miljöövervakning och förändringsanalys
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">AI</h3>
-                                <p>
-                                    - Prediktivt underhåll<br />
-                                    - Beslutsstöd i drift och planering
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                    </div>
-
-                    <!--Branscher: en lättare rad under korten. Samma sektion, så ingen egen
-                        rubriknivå – etiketten är en p, inte en h3.-->
-                    <div class="col-1 segment-strip">
-                        <p class="segment-strip-label">VÅRA LÖSNINGAR ANVÄNDS INOM</p>
-                        <ul class="segment-list">
-                            <li>
-                                <img src="images/icons/infrastructure_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                                Infrastruktur
-                            </li>
-                            <li>
-                                <img src="images/icons/industry_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                                Industri
-                            </li>
-                            <li>
-                                <img src="images/icons/realestate_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                                Fastighet
-                            </li>
-                            <li>
-                                <img src="images/icons/fleetmanagement_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                                Fleet Management
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <p class="variant-flag">Variant C – segmenten borta helt</p>
-
-            <section id="businessareas-c" class="introduction scrollto">
-
-                <div class="row clearfix">
-
-                    <div class="col-14">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">AFFÄRSOMRÅDEN</h2>
-                            <p class="section-title">Fyra områden – en samlad lösning</p>
-                        </div>
-                    </div>
-
-                    <div class="col-14">
-                        <p class="section-subtitle">Fyra områden vi kan på djupet – och som vi sätter ihop till en
-                            lösning.</p>
-                    </div>
-
-                    <div class="col-1 area-grid">
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Tillgångsförvaltning</h3>
-                                <p>
-                                    - Underhåll och anläggningsinformation<br />
-                                    - IBM Maximo, från införande till drift<br />
-                                    - Integration mot verksamhetens system
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">GIS</h3>
-                                <p>
-                                    - Esri ArcGIS, från utveckling till drift<br />
-                                    - Geodataanalys och kartlösningar<br />
-                                    - Indoor GIS
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Fjärranalys</h3>
-                                <p>
-                                    - Satellit-, drönar- och sensordata<br />
-                                    - Miljöövervakning och förändringsanalys
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">AI</h3>
-                                <p>
-                                    - Prediktivt underhåll<br />
-                                    - Beslutsstöd i drift och planering
+                                    - Tillämpad AI på fjärranalys- och sensordata<br />
+                                    - Prediktivt underhåll och beslutsstöd
                                 </p>
                             </div>
                         </div>

@@ -1350,44 +1350,6 @@ h1.section-title {
     float: none;
 }
 
-/* Branscher-raden under korten: samma sektion, men lättare än korten. Etiketten
-   är dämpad och ikonerna hälften så stora, så raden läses som sammanhang och
-   inte som ett femte affärsområde. */
-.segment-strip {
-    padding-top: 40px;
-}
-
-.segment-strip-label {
-    margin: 0;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: var(--footer-text);
-}
-
-.segment-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px 45px;
-    margin: 20px 0 0 0;
-    padding: 0;
-    list-style: none;
-}
-
-.segment-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-}
-
-/* Wins over .row img { max-width: 100% } by sitting later in the file. */
-.segment-list img {
-    width: 30px;
-    height: auto;
-    flex: 0 0 auto;
-}
-
 /* --------- 5.2 Parallax Elements ---------- */
 
 .banner-parallax-1,
