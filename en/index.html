@@ -9,7 +9,8 @@
 
     <!--Meta Description-->
     <meta name="description"
-        content="Total Digital delivers solutions across asset management, GIS, remote sensing, environment and AI – with specialists averaging more than 20 years of experience.">
+        content="Total Digital delivers solutions across asset management, GIS, remote sensing, environment and AI – with
+            specialists averaging more than 20 years of experience.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--Canonical URL and Link Previews-->
@@ -24,7 +25,8 @@
     <meta property="og:url" content="https://www.totaldigital.se/en/" />
     <meta property="og:title" content="Total Digital – Experts in IBM Maximo and ArcGIS" />
     <meta property="og:description"
-        content="Total Digital delivers solutions across asset management, GIS, remote sensing, environment and AI – with specialists averaging more than 20 years of experience." />
+        content="Total Digital delivers solutions across asset management, GIS, remote sensing, environment and AI – with
+            specialists averaging more than 20 years of experience." />
     <meta property="og:image" content="https://www.totaldigital.se/images/og/index.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -58,6 +60,9 @@
 
     <!-- Service Card CSS -->
     <link href="../css/service-card.css" rel="stylesheet" type="text/css">
+
+    <!-- Image Carousel CSS -->
+    <link href="../css/image-carousel.css" rel="stylesheet" type="text/css">
 
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="../fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -133,6 +138,12 @@
                                 <li>
                                     <a href="#businessareas">Business Areas</a>
                                 </li>
+                                <li>
+                                    <a href="#services">Services</a>
+                                </li>
+                                <li>
+                                    <a href="#testimonials">Testimonials</a>
+                                </li>
                                 <li class="nav-group">
                                     <details>
                                         <summary><a href="#showcases">Showcases</a></summary>
@@ -144,15 +155,6 @@
                                         </div>
                                     </details>
                                 </li>
-                                <li>
-                                    <a href="#services">Services</a>
-                                </li>
-                                <li>
-                                    <a href="#testimonials">Feedback</a>
-                                </li>
-                                <li>
-                                    <a href="#partners">Partners</a>
-                                </li>
                                 <li class="nav-group">
                                     <details>
                                         <summary><a href="#products">Products</a></summary>
@@ -163,7 +165,10 @@
                                     </details>
                                 </li>
                                 <li>
-                                    <a href="#about">About</a>
+                                    <a href="#partners">Partners</a>
+                                </li>
+                                <li onclick="location.href='about.html';">
+                                    <a href="about.html">About</a>
                                 </li>
                                 <!--Language dropdown. The option links are root-relative on purpose:
                                     stickyNavbar cancels the click on every nav link whose href does
@@ -209,14 +214,37 @@
 
                     <div class="section-heading">
                         <h1 id="main-heading">NOTHING<br />BEATS<br />EXPERIENCE</h1>
-                        <p class="banner-intro">At Total Digital we hold broad expertise in
-                            asset management, GIS, remote sensing,
-                            environment and AI. Our teams are made up
-                            of specialists with deep knowledge in these fields. With an average of more than 20 years of
-                            experience in IBM
-                            Maximo and ArcGIS among other systems, our people are experts at delivering solutions
-                            tailored to specific needs and
-                            built to create measurable impact in operations, maintenance and planning.</p>
+
+                        <!--Expertise line. All six areas sit in the markup and CSS slides the
+                            reel; the seventh repeats the first so the loop does not jump. -->
+                        <p class="expertise-line">
+                            <span class="expertise-label">We know</span>
+                            <span class="expertise-rotator">
+                                <span class="expertise-reel">
+                                    <span><img src="../images/icons/infrastructure_logo.webp" alt="" width="256"
+                                            height="256" />Infrastructure</span>
+                                    <span><img src="../images/icons/industry_logo.webp" alt="" width="256"
+                                            height="256" />Industry</span>
+                                    <span><img src="../images/icons/realestate_logo.webp" alt="" width="256"
+                                            height="256" />Real Estate</span>
+                                    <span><img src="../images/icons/fleetmanagement_logo.webp" alt="" width="256"
+                                            height="256" />Fleet Management</span>
+                                    <span><img src="../images/icons/remotesensing_logo.webp" alt="" width="256"
+                                            height="256" />Remote Sensing</span>
+                                    <span><img src="../images/icons/ai_logo.webp" alt="" width="256"
+                                            height="256" />AI</span>
+                                    <span aria-hidden="true"><img src="../images/icons/infrastructure_logo.webp" alt=""
+                                            width="256" height="256" />Infrastructure</span>
+                                </span>
+                            </span>
+                        </p>
+                        <!--End of Expertise line-->
+
+                        <p class="banner-intro">At Total Digital we hold broad expertise in asset management, GIS, remote sensing, environment and AI. Our
+                            teams are made up of specialists with deep knowledge in these fields. With an
+                            average of more than 20 years of experience in IBM Maximo and ArcGIS among other
+                            systems, our people are experts at delivering solutions tailored to specific needs
+                            and built to create measurable impact in operations, maintenance and planning.</p>
                     </div>
 
                     <!--Call to Action-->
@@ -236,34 +264,34 @@
 
                 <div class="row clearfix">
 
-                    <div class="col-1">
-                        <!-- <div class="col-38"> -->
+                    <div class="col-14">
                         <div class="section-heading">
                             <h2 class="section-kicker">BUSINESS AREAS</h2>
-                            <p class="section-title">Comprehensive, innovative and modern solutions</p>
-                            <p class="section-subtitle">We work across several sectors, with core expertise in
-                                infrastructure, industry and real estate</p>
+                            <p class="section-title">Four areas – one joined-up solution</p>
                         </div>
-
                     </div>
 
-                    <!-- <div class="col-61"> -->
-                    <div class="col-1">
+                    <div class="col-14">
+                        <p class="section-subtitle">The strength lies not in the areas on their own, but in the way we bring them together. We are unique in our
+                            ability to connect IBM Maximo and Esri ArcGIS – the condition of an asset and its
+                            location in the same picture – and on top of that we add remote sensing and AI.</p>
+                    </div>
+
+                    <div class="col-1 area-grid">
 
                         <!--Icon Block-->
                         <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa fa-train fa-4x"></i> -->
-                                <img src="../images/icons/infrastructure_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                <img src="../images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
                             <div class="icon-block-description">
-                                <h3 class="card-title">Infrastructure</h3>
+                                <h3 class="card-title">Asset Management</h3>
                                 <p>
-                                    - Road and rail<br />
-                                    - Power<br />
-                                    - Water and wastewater
+                                    - Maintenance, operational planning and life cycle<br />
+                                    - Asset information<br />
+                                    - System support in IBM Maximo
                                 </p>
                             </div>
                         </div>
@@ -273,16 +301,15 @@
                         <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa fa-industry fa-4x"></i> -->
-                                <img src="../images/icons/industry_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                <img src="../images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
                             <div class="icon-block-description">
-                                <h3 class="card-title">Industry</h3>
+                                <h3 class="card-title">GIS</h3>
                                 <p>
-                                    - Pulp industry<br />
-                                    - Paper mills<br />
-                                    - Mining
+                                    - Geodata, mapping solutions and analysis<br />
+                                    - Indoor GIS<br />
+                                    - System support in Esri ArcGIS
                                 </p>
                             </div>
                         </div>
@@ -292,43 +319,6 @@
                         <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa fa-building fa-4x"></i> -->
-                                <img src="../images/icons/realestate_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Real Estate</h3>
-                                <p>
-                                    - Facility Management<br />
-                                    - Indoor GIS
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <!-- <i class="fa fa-truck fa-4x"></i> -->
-                                <img src="../images/icons/fleetmanagement_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Fleet Management</h3>
-                                <p>
-                                    - Vehicle maintenance<br />
-                                    - Monitoring and optimisation
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <!-- <i class="fa-solid fa-satellite fa-4x"></i> -->
                                 <img src="../images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
@@ -343,18 +333,17 @@
                         <!--End of Icon Block-->
 
                         <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa-solid fa-brain fa-4x"></i> -->
                                 <img src="../images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
                             <div class="icon-block-description">
                                 <h3 class="card-title">AI</h3>
                                 <p>
-                                    - Predictive maintenance<br />
-                                    - Decision support in operations and planning
+                                    - Applied AI on remote sensing and sensor data<br />
+                                    - Predictive maintenance and decision support
                                 </p>
                             </div>
                         </div>
@@ -364,131 +353,11 @@
 
                 </div>
 
-
             </section>
             <!--End of Introduction-->
 
-            <section id="showcases" class="row scrollto text-center clearfix" data-featherlight-content
-                data-featherlight-filter="a">
 
-                <div class="section-heading">
-                    <h2 class="section-kicker">SHOWCASES</h2>
-                    <p class="section-title">We create value for our customers</p>
-                </div>
-
-                <div class="row no-padding-bottom clearfix">
-                    <div class="col-1 feature-card showcase text-left wow fadeInUp" data-wow-delay="0.1s">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="../images/showcase-images/crm3000.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="railway-safety.html" class="card-link card-link-stretch">
-                                    Predictive railway safety with satellite data and AI</a></h3>
-                            <p>
-                                A satellite- and AI-based decision support system that forecasts rail
-                                temperature
-                                and
-                                the risk of track buckling
-                                24–48 hours in advance. Combining multi-sensor satellite data, weather forecasts
-                                and
-                                infrastructure information
-                                makes proactive maintenance and safer railway operations possible.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-                <div class="row no-padding-bottom clearfix">
-                    <div class="col-1 feature-card showcase text-left wow fadeInUp" data-wow-delay="0.1s">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="../images/showcase-images/interferogram.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="sar-processing.html" class="card-link card-link-stretch">
-                                    High- and medium-resolution SAR processing for scalable monitoring</a></h3>
-                            <p>
-                                We process both high- and medium-resolution SAR data to produce
-                                detailed
-                                information about ground movement
-                                at local as well as regional scale. Applying data fusion techniques to
-                                medium-resolution
-                                SAR also allows
-                                consistent monitoring of large areas, supporting infrastructure analysis and
-                                decision-making.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-                <div class="row no-padding-bottom clearfix">
-                    <div class="col-1 feature-card showcase text-left wow fadeInUp" data-wow-delay="0.1s">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="../images/showcase-images/waterleak.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="leak-detection.html" class="card-link card-link-stretch">
-                                    AI-based leak detection in water infrastructure</a></h3>
-                            <p>
-                                We combine multi-sensor satellite data and AI to identify and locate
-                                leaks
-                                in
-                                water distribution networks by
-                                analysing subtle changes in the environment. By enabling continuous
-                                monitoring
-                                across
-                                large areas, the solution
-                                helps reduce water losses, lower operating costs and support a more
-                                sustainable
-                                water supply over the long term.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-                <div class="row no-padding-bottom clearfix">
-                    <div class="col-1 feature-card showcase text-left wow fadeInUp" data-wow-delay="0.1s">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="../images/showcase-images/raildamage.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
-                                    AI-based analysis of rail defects in image data</a></h3>
-                            <p>
-                                We develop methods for automatically detecting rail defects using
-                                deep learning
-                                and image data from
-                                railway inspections. By analysing visual patterns in track imagery, the system can
-                                identify defects at an early
-                                stage and support more efficient maintenance and higher operational reliability.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-
-            </section>
-
-            <section id="services" class="row text-center scrollto clearfix" data-featherlight-content
+            <section id="services" class="row scrollto clearfix" data-featherlight-content
                 data-featherlight-filter="a">
 
                 <div class="section-heading">
@@ -496,207 +365,146 @@
                     <p class="section-title">How can we help you</p>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-carousel image-carousel text-center" data-image-carousel data-carousel-label="Services"
+                    data-carousel-noun="service" data-carousel-autoplay="4000">
+                    <div class="service-track image-carousel-track clearfix">
+
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/it-support.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Implementation of IT support for asset management</h3>
-                                We offer expertise across every part of IBM Maximo and Esri ArcGIS for
-                                effective
-                                asset management.
+                                We offer expertise across every part of IBM Maximo and Esri ArcGIS for effective asset management.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/app-development.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Application development and configuration</h3>
-                                We help you get the most out of IBM Maximo and Esri ArcGIS together with
-                                integrated systems for the best possible result.
+                                We help you get the most out of IBM Maximo and Esri ArcGIS together with integrated systems for the best
+                                possible result.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/licenses.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Licensing and operations</h3>
-                                We handle every licensing process and simplify licence management for both IBM
-                                Maximo
-                                and Esri ArcGIS.
+                                We handle every licensing process and simplify licence management for both IBM Maximo and Esri ArcGIS.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/sensor.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Sensor technology</h3>
-                                With our knowledge and experience in sensor technology we help you develop and manage
-                                your
-                                facilities more
+                                With our knowledge and experience in sensor technology we help you develop and manage your facilities more
                                 efficiently.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/project-management.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Project management and advisory in asset information, digitalisation and AI
                                 </h3>
-                                We support you across many kinds of projects, from change programmes to migration
-                                projects
-                                within asset management.
+                                We support you across many kinds of projects, from change programmes to migration projects within asset
+                                management.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/geo-development.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Development and analysis in the geospatial domain</h3>
-                                We offer comprehensive services in geospatial data development and analysis to improve
-                                your
-                                workflows and decision-making.
+                                We offer comprehensive services in geospatial data development and analysis to improve your workflows and
+                                decision-making.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/consultancy.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Service-based and productised delivery</h3>
-                                We offer technical expertise to monitor and manage the health and performance of both
-                                IBM
-                                Maximo and Esri ArcGIS.
+                                We offer technical expertise to monitor and manage the health and performance of both IBM Maximo and Esri
+                                ArcGIS.
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-2 image-carousel-slide">
                     <div class="service-card">
                         <img src="../images/gallery-images/training-course.webp" alt="" loading="lazy">
                         <div class="overlay">
                             <span>
                                 <h3 class="card-title">Training</h3>
-                                We offer tailored training in both IBM Maximo and Esri ArcGIS to make sure
-                                you get the most out of
-                                your systems.
+                                We offer tailored training in both IBM Maximo and Esri ArcGIS to make sure you get the most out of your
+                                systems.
                             </span>
                         </div>
                     </div>
                 </div>
 
-            </section>
-
-
-            <!--Content Section-->
-            <div id="about" class="scrollto clearfix">
-
-                <div class="row no-padding-bottom clearfix">
-
-
-                    <!--Content Left Side-->
-                    <div class=" col-15">
-                        <!-- Contact data-->
-                        <address id="contact">
-                            <br />
-                            Total Digital AB<br />
-                            Fabriksgatan 4<br />
-                            531 60 Lidköping<br />
-                            Sweden<br />
-                            <br />
-                            Email: <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
-                            Phone: +46 10 10 100 70<br />
-                        </address>
-                        <!-- Contact data-->
-
                     </div>
-                    <!--End Content Left Side-->
-
-                    <!--Content of the Right Side-->
-                    <!-- <div class="col-15"> -->
-                    <div class="col-61">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">COMPANY</h2>
-                            <!-- Suggested rephrase, matches the nav label for #about:
-                            <h2 class="section-kicker">ABOUT</h2>
-                            -->
-                            <p class="section-title">We are Total Digital</p>
-                            <p class="section-subtitle">Our motto is “the agility of a small company with the
-                                strength of a large one”. We work constantly to live up to it.</p>
-                        </div>
-                        <p>We are unique in our ability to bring Maximo and ArcGIS together into integrated
-                            solutions that raise both
-                            functionality and efficiency for our customers. Our ability to combine domain knowledge with
-                            IT makes us a valuable
-                            partner for anyone looking for innovative and sustainable solutions.
-                        </p>
-                        <p>
-                            We believe in the long term, and our experience is that commitment, responsiveness and
-                            quality are what get you there.
-                            Engaged people with strong skills inspire trust – and that is something we at Total Digital
-                            have a black belt in.
-                        </p>
-                    </div>
-                    <!--End Content Right Side-->
-
-                    <!-- <div class="col-5">
-                        <img src="../images/banner-images/office.jpg" alt="About us" />
-                    </div> -->
-
                 </div>
 
-
-            </div>
-            <!--End of Content Section-->
+            </section>
 
             <!-- Testimonials-->
-            <aside id="testimonials" class="scrollto text-center" data-enllax-ratio=".2">
+            <aside id="testimonials" class="scrollto" data-enllax-ratio=".2">
 
                 <div class="row clearfix">
 
                     <div class="section-heading">
                         <h2 class="section-kicker">FEEDBACK</h2>
+                        <!-- Suggested rephrase, matches the nav label for #testimonials:
+                        <h2 class="section-kicker">TESTIMONIALS</h2>
+                        -->
                         <p class="section-title">What our customers say</p>
                     </div>
 
                     <!--Both quotes were given in Swedish and are translated here.-->
-                    <blockquote class="col-2 testimonial classic">
+                    <blockquote class="col-2 testimonial classic text-center">
                         <img src="../images/user-images/tf.webp" loading="lazy" alt="TrafikFörvaltningen" />
-                        <q>The project members from Total Digital show genuine commitment and work passionately towards reaching the goals of the project</q>
+                        <q>The project members from Total Digital show genuine commitment and work passionately towards reaching the
+                        goals of the project</q>
                         <footer>TrafikFörvaltningen</footer>
                     </blockquote>
 
-                    <blockquote class="col-2 testimonial classic">
+                    <blockquote class="col-2 testimonial classic text-center">
                         <img src="../images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
                         <q>I have done so many good things lately together with Total Digital 😊</q>
                         <footer>Öresundsbron</footer>
                     </blockquote>
 
-                    <!--<blockquote class="col-3 testimonial classic">
+                    <!--<blockquote class="col-3 testimonial classic text-center">
                         <img src="../images/user-images/connecting_stockholm.webp" alt="Connecting Stockholm" />
                         <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore
@@ -708,6 +516,192 @@
 
             </aside>
             <!--End of Testimonials -->
+
+            <section id="showcases" class="row scrollto clearfix" data-featherlight-content
+                data-featherlight-filter="a">
+
+                <div class="section-heading">
+                    <h2 class="section-kicker">SHOWCASES</h2>
+                    <p class="section-title">We create value for our customers</p>
+                </div>
+
+                <div class="showcase-carousel image-carousel" data-image-carousel data-carousel-label="Showcases"
+                    data-carousel-noun="showcase">
+                    <div class="showcase-track image-carousel-track clearfix">
+
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="../images/showcase-images/crm3000.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="railway-safety.html" class="card-link card-link-stretch">
+                                    Predictive railway safety with satellite data and AI</a></h3>
+                            <p>
+                                A satellite- and AI-based decision support system that forecasts rail temperature and the risk of track
+                                buckling 24–48 hours in advance. Combining multi-sensor satellite data,
+                                weather forecasts and infrastructure information makes proactive maintenance
+                                and safer railway operations possible.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="../images/showcase-images/interferogram.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="sar-processing.html" class="card-link card-link-stretch">
+                                    High- and medium-resolution SAR processing for scalable monitoring</a></h3>
+                            <p>
+                                We process both high- and medium-resolution SAR data to produce detailed information about ground movement at
+                                local as well as regional scale. Applying data fusion techniques to
+                                medium-resolution SAR also allows consistent monitoring of large areas,
+                                supporting infrastructure analysis and decision-making.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="../images/showcase-images/waterleak.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="leak-detection.html" class="card-link card-link-stretch">
+                                    AI-based leak detection in water infrastructure</a></h3>
+                            <p>
+                                We combine multi-sensor satellite data and AI to identify and locate leaks in water distribution networks by
+                                analysing subtle changes in the environment. By enabling continuous monitoring
+                                across large areas, the solution helps reduce water losses, lower operating
+                                costs and support a more sustainable water supply over the long term.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="../images/showcase-images/raildamage.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
+                                    AI-based analysis of rail defects in image data</a></h3>
+                            <p>
+                                We develop methods for automatically detecting rail defects using deep learning and image data from railway
+                                inspections. By analysing visual patterns in track imagery, the system can
+                                identify defects at an early stage and support more efficient maintenance and
+                                higher operational reliability.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!--Content Section-->
+            <!-- About us lives on about.html; the nav entry links there. -->
+
+            <section id="products" class="scrollto clearfix ">
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">PRODUCTS</h2>
+                        <p id="product-heading" class="section-title">We have the right solution for you</p>
+                    </div>
+
+                    <div class="product-carousel image-carousel text-center" data-image-carousel
+                        data-carousel-label="Products"
+                        data-carousel-noun="product">
+                        <div class="product-track image-carousel-track clearfix">
+
+                            <div class="col-2 image-carousel-slide">
+                                <div class="feature-card product">
+                                    <div>
+                                        <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset
+                                                Care</a></h3>
+                                        <p class="product-sub">For all your EAM needs</p>
+                                        <div class="product-image-wrapper">
+                                            <img src="../images/banner-images/td_asset_care.webp" loading="lazy" alt="Feature thumbnail">
+                                        </div>
+                                        <div class="product-content">
+                                            <p>
+                                                TD Asset Care is a complete 360° solution for all your EAM needs. It makes managing and maintaining your
+                                                physical assets simple and efficient. TD Asset Care contains
+                                                industry-specific functionality that improves on and adds to
+                                                standard maintenance capabilities. TD Asset Care can run
+                                                on-premise in your own data centres, hybrid or in the cloud,
+                                                depending on what you need.
+                                            </p>
+                                        </div>
+                                        <a href="mailto:info@totaldigital.se?subject=Book a meeting about TD Asset Care"
+                                            class="button">BOOK A
+                                            MEETING</a>
+                                    </div>
+                                    <div class="card-arrow">&gt;</div>
+                                </div>
+                            </div>
+
+                            <div class="col-2 image-carousel-slide">
+                                <div class="feature-card product">
+                                    <div>
+                                        <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
+                                        <p class="product-sub">Quality-assure your IBM Maximo</p>
+                                        <div class="product-image-wrapper">
+                                            <img src="../images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        </div>
+                                        <div class="product-content">
+                                            <p>
+                                                TD Test is the automated testing tool that works just as well for IBM Maximo 7.x as for the latest IBM Maximo
+                                                Application Suite.
+
+                                                If you want to be certain your customisations work as well in the newest version of IBM Maximo as they did in
+                                                your previous one, TD Test is the tool for you!
+
+                                                TD Test is perfect for verifying a successful upgrade to MAS, for example!
+                                            </p>
+                                        </div>
+                                        <a href="mailto:info@totaldigital.se?subject=Book a meeting about TD Test"
+                                            class="button">BOOK
+                                            A MEETING</a>
+                                    </div>
+                                    <div class="card-arrow">&gt;</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!--Clients-->
             <section id="partners" class="scrollto clearfix">
@@ -726,10 +720,8 @@
                     </div>
 
                     <div class="col-14">
-                        <p class="section-subtitle">We believe a strong partner network is the key to
-                            success. We often use the leverage our partnerships and our wide
-                            network give us to maximise the end result
-                            for our customers.</p>
+                        <p class="section-subtitle">We believe a strong partner network is the key to success. We often use the leverage our partnerships and our
+                            wide network give us to maximise the end result for our customers.</p>
                     </div>
 
                     <div class="col-1 logo-slider" id="logoSlider">
@@ -755,85 +747,6 @@
                 </div>
             </section>
             <!--End of Clients-->
-
-            <section id="products" class="secondary-color text-center scrollto clearfix ">
-                <div class="row clearfix">
-
-                    <div class="section-heading">
-                        <h2 class="section-kicker">PRODUCTS</h2>
-                        <p id="product-heading" class="section-title">We have the right solution for you</p>
-                    </div>
-
-                    <div class="col-2 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="feature-card product">
-                            <div>
-                                <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset
-                                        Care</a></h3>
-                                <p class="product-sub">For all your EAM needs</p>
-                                <div class="product-image-wrapper">
-                                    <img src="../images/banner-images/td_asset_care.webp" loading="lazy"
-                                        alt="Feature thumbnail">
-                                </div>
-                                <div class="product-content">
-                                    <p>
-                                        TD Asset Care is a complete 360° solution for all your EAM needs. It makes
-                                        managing
-                                        and maintaining your physical assets
-                                        simple and efficient. TD Asset Care contains industry-specific functionality
-                                        that
-                                        improves on and adds to standard
-                                        maintenance capabilities. TD Asset Care can run
-                                        on-premise in your own data centres,
-                                        hybrid or in the cloud, depending on what you need.
-                                    </p>
-                                </div>
-                                <a href="mailto:info@totaldigital.se?subject=Book a meeting about TD Asset Care"
-                                    class="button">BOOK A
-                                    MEETING</a>
-                            </div>
-                            <div class="card-arrow">&gt;</div>
-                        </div>
-                    </div>
-
-                    <div class="col-2 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="feature-card product">
-                            <div>
-                                <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
-                                <p class="product-sub">Quality-assure your IBM Maximo</p>
-                                <div class="product-image-wrapper">
-                                    <img src="../images/banner-images/td_test.webp" loading="lazy"
-                                        alt="Feature thumbnail">
-                                </div>
-                                <div class="product-content">
-                                    <p>
-                                        TD Test is the automated testing tool that works just as well for IBM Maximo
-                                        7.x
-                                        as
-                                        for
-                                        the latest IBM Maximo Application
-                                        Suite.
-
-                                        If you want to be certain your customisations work as well in the newest
-                                        version
-                                        of
-                                        IBM
-                                        Maximo as they did in your previous
-                                        one, TD Test is the tool for you!
-
-                                        TD Test is perfect for verifying a successful upgrade
-                                        to
-                                        MAS, for example!
-                                    </p>
-                                </div>
-                                <a href="mailto:info@totaldigital.se?subject=Book a meeting about TD Test"
-                                    class="button">BOOK
-                                    A MEETING</a>
-                            </div>
-                            <div class="card-arrow">&gt;</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
         </main>
         <!--End Main Content Area-->
@@ -879,6 +792,7 @@
     <script src="../js/lightbox.min.js"></script>
     <script src="../js/site.js"></script>
     <script src="../js/logo-slider.js"></script>
+    <script src="../js/image-carousel.js"></script>
 
 
 </body>
