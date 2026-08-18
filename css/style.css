@@ -1334,6 +1334,60 @@ h1.section-title {
     padding-top: 25px;
 }
 
+/* Affärsområden: four areas across, on a grid rather than the floated .col-6
+   the six-area version rode on — 16.67% each left a third of the row empty as
+   soon as there were four. The .col-6 stays on the blocks for its 20px gutter
+   and for the phone rules further down. align-items keeps the four icons on one
+   line when the bullet counts differ. */
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+}
+
+.area-grid > .col-6 {
+    width: auto;
+    float: none;
+}
+
+/* Branscher-raden under korten: samma sektion, men lättare än korten. Etiketten
+   är dämpad och ikonerna hälften så stora, så raden läses som sammanhang och
+   inte som ett femte affärsområde. */
+.segment-strip {
+    padding-top: 40px;
+}
+
+.segment-strip-label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--footer-text);
+}
+
+.segment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 45px;
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.segment-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+/* Wins over .row img { max-width: 100% } by sitting later in the file. */
+.segment-list img {
+    width: 30px;
+    height: auto;
+    flex: 0 0 auto;
+}
+
 /* --------- 5.2 Parallax Elements ---------- */
 
 .banner-parallax-1,
@@ -2367,18 +2421,19 @@ blockquote {
 }
 
 /* Affärsområden: two columns on every phone width, not just above 480px.
-   Grid rather than the floated .col-6, because the six blocks have unequal
-   bullet counts and floats snag on the taller ones. */
+   Grid rather than the floated .col-6, because the blocks have unequal bullet
+   counts and floats snag on the taller ones. Keyed off .area-grid rather than
+   #businessareas so the section can be duplicated for comparison. */
 @media (max-width: 767px) {
 
-    #businessareas .area-grid {
+    .area-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 15px;
         row-gap: 30px;
     }
 
-    #businessareas .area-grid > .col-6 {
+    .area-grid > .col-6 {
         width: auto;
         float: none;
         padding: 0;
@@ -2386,21 +2441,21 @@ blockquote {
 
     /* Icon sits above the text; shrink it so the label and bullets get the
        room in a ~170px column. */
-    #businessareas .area-grid .icon img {
+    .area-grid .icon img {
         max-width: 44px;
         height: auto;
     }
 
-    #businessareas .area-grid .icon-block-description {
+    .area-grid .icon-block-description {
         padding-top: 12px;
     }
 
-    #businessareas .area-grid .card-title {
+    .area-grid .card-title {
         font-size: 16px;
         line-height: 1.25;
     }
 
-    #businessareas .area-grid p {
+    .area-grid p {
         font-size: 14px;
         line-height: 1.45;
     }

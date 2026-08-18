@@ -65,6 +65,21 @@
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!--TEMP: etiketter över de tre Affärsområden-varianterna. Tas bort
+        tillsammans med de två bortvalda varianterna.-->
+    <style>
+        .variant-flag {
+            margin: 40px 0 0 0;
+            padding: 18px 20px 0 20px;
+            border-top: 1px dashed #666;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ff4b00;
+        }
+    </style>
+
     <!--Structured Data-->
     <script type="application/ld+json">
     {
@@ -146,13 +161,13 @@
                                     <a href="#businessareas">Affärsområden</a>
                                 </li>
                                 <li>
-                                    <a href="#showcases">Showcases</a>
+                                    <a href="#services">Tjänster</a>
                                 </li>
                                 <li>
                                     <a href="#testimonials">Kundbetyg</a>
                                 </li>
                                 <li>
-                                    <a href="#services">Tjänster</a>
+                                    <a href="#showcases">Showcases</a>
                                 </li>
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">Om oss</a>
@@ -244,40 +259,44 @@
         <main id="content">
 
             <!--Introduction-->
+            <!--TEMP: de tre varianterna av Affärsområden ligger här samtidigt för
+                jämförelse. När en är vald: behåll den, ge den id="businessareas", och ta
+                bort de andra två, .variant-flag-blocket i <head> och de regler i
+                style.css som bara den bortvalda varianten använder.-->
+
+            <p class="variant-flag">Variant A – segmenten som en rad i underrubriken</p>
+
             <section id="businessareas" class="introduction scrollto">
 
                 <div class="row clearfix">
 
                     <div class="col-14">
-                        <!-- <div class="col-38"> -->
                         <div class="section-heading">
                             <h2 class="section-kicker">AFFÄRSOMRÅDEN</h2>
-                            <p class="section-title">Omfattande, innovativa och moderna lösningar</p>
+                            <p class="section-title">Fyra områden – en samlad lösning</p>
                         </div>
                     </div>
 
                     <div class="col-14">
-                            <p class="section-subtitle">Vi jobbar inom olika områden med kärnkompetens inom
-                                infrastruktur, industri och fastighet.</p>
+                        <p class="section-subtitle">Det är här vår kompetens sitter. Lösningarna används inom infrastruktur,
+                            industri, fastighet och fleet management.</p>
                     </div>
 
-                    <!-- <div class="col-61"> -->
                     <div class="col-1 area-grid">
 
                         <!--Icon Block-->
                         <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa fa-train fa-4x"></i> -->
-                                <img src="images/icons/infrastructure_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                <img src="images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
                             <div class="icon-block-description">
-                                <h3 class="card-title">Infrastruktur</h3>
+                                <h3 class="card-title">Tillgångsförvaltning</h3>
                                 <p>
-                                    - Väg och Järnväg<br />
-                                    - Elkraft<br />
-                                    - Vatten/Avlopp
+                                    - Underhåll och anläggningsinformation<br />
+                                    - IBM Maximo, från införande till drift<br />
+                                    - Integration mot verksamhetens system
                                 </p>
                             </div>
                         </div>
@@ -287,33 +306,14 @@
                         <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa fa-industry fa-4x"></i> -->
-                                <img src="images/icons/industry_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                <img src="images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
                             <div class="icon-block-description">
-                                <h3 class="card-title">Industri</h3>
+                                <h3 class="card-title">GIS</h3>
                                 <p>
-                                    - Cellulosaindustri<br />
-                                    - Pappersbruk<br />
-                                    - Gruvindustri
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <!-- <i class="fa fa-building fa-4x"></i> -->
-                                <img src="images/icons/realestate_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Fastighet</h3>
-                                <p>
-                                    - Facility Management<br />
+                                    - Esri ArcGIS, från utveckling till drift<br />
+                                    - Geodataanalys och kartlösningar<br />
                                     - Indoor GIS
                                 </p>
                             </div>
@@ -324,25 +324,6 @@
                         <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa fa-truck fa-4x"></i> -->
-                                <img src="images/icons/fleetmanagement_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Fleet Management</h3>
-                                <p>
-                                    - Fordonsunderhåll<br />
-                                    - Monitorering och optimering
-                                </p>
-                            </div>
-                        </div>
-                        <!--End of Icon Block-->
-
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <!-- <i class="fa-solid fa-satellite fa-4x"></i> -->
                                 <img src="images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
@@ -357,10 +338,9 @@
                         <!--End of Icon Block-->
 
                         <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
                             <!--Icon-->
                             <div class="icon">
-                                <!-- <i class="fa-solid fa-brain fa-4x"></i> -->
                                 <img src="images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
                             </div>
                             <!--Icon Block Description-->
@@ -378,174 +358,225 @@
 
                 </div>
 
+            </section>
+
+            <p class="variant-flag">Variant B – egen branschrad under korten</p>
+
+            <section id="businessareas-b" class="introduction scrollto">
+
+                <div class="row clearfix">
+
+                    <div class="col-14">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">AFFÄRSOMRÅDEN</h2>
+                            <p class="section-title">Fyra områden – en samlad lösning</p>
+                        </div>
+                    </div>
+
+                    <div class="col-14">
+                        <p class="section-subtitle">Fyra områden vi kan på djupet – och som vi sätter ihop till en
+                            lösning.</p>
+                    </div>
+
+                    <div class="col-1 area-grid">
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">Tillgångsförvaltning</h3>
+                                <p>
+                                    - Underhåll och anläggningsinformation<br />
+                                    - IBM Maximo, från införande till drift<br />
+                                    - Integration mot verksamhetens system
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">GIS</h3>
+                                <p>
+                                    - Esri ArcGIS, från utveckling till drift<br />
+                                    - Geodataanalys och kartlösningar<br />
+                                    - Indoor GIS
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">Fjärranalys</h3>
+                                <p>
+                                    - Satellit-, drönar- och sensordata<br />
+                                    - Miljöövervakning och förändringsanalys
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">AI</h3>
+                                <p>
+                                    - Prediktivt underhåll<br />
+                                    - Beslutsstöd i drift och planering
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                    </div>
+
+                    <!--Branscher: en lättare rad under korten. Samma sektion, så ingen egen
+                        rubriknivå – etiketten är en p, inte en h3.-->
+                    <div class="col-1 segment-strip">
+                        <p class="segment-strip-label">VÅRA LÖSNINGAR ANVÄNDS INOM</p>
+                        <ul class="segment-list">
+                            <li>
+                                <img src="images/icons/infrastructure_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                Infrastruktur
+                            </li>
+                            <li>
+                                <img src="images/icons/industry_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                Industri
+                            </li>
+                            <li>
+                                <img src="images/icons/realestate_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                Fastighet
+                            </li>
+                            <li>
+                                <img src="images/icons/fleetmanagement_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                                Fleet Management
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <p class="variant-flag">Variant C – segmenten borta helt</p>
+
+            <section id="businessareas-c" class="introduction scrollto">
+
+                <div class="row clearfix">
+
+                    <div class="col-14">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">AFFÄRSOMRÅDEN</h2>
+                            <p class="section-title">Fyra områden – en samlad lösning</p>
+                        </div>
+                    </div>
+
+                    <div class="col-14">
+                        <p class="section-subtitle">Fyra områden vi kan på djupet – och som vi sätter ihop till en
+                            lösning.</p>
+                    </div>
+
+                    <div class="col-1 area-grid">
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">Tillgångsförvaltning</h3>
+                                <p>
+                                    - Underhåll och anläggningsinformation<br />
+                                    - IBM Maximo, från införande till drift<br />
+                                    - Integration mot verksamhetens system
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">GIS</h3>
+                                <p>
+                                    - Esri ArcGIS, från utveckling till drift<br />
+                                    - Geodataanalys och kartlösningar<br />
+                                    - Indoor GIS
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">Fjärranalys</h3>
+                                <p>
+                                    - Satellit-, drönar- och sensordata<br />
+                                    - Miljöövervakning och förändringsanalys
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
+                            <!--Icon-->
+                            <div class="icon">
+                                <img src="images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            </div>
+                            <!--Icon Block Description-->
+                            <div class="icon-block-description">
+                                <h3 class="card-title">AI</h3>
+                                <p>
+                                    - Prediktivt underhåll<br />
+                                    - Beslutsstöd i drift och planering
+                                </p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                    </div>
+
+                </div>
 
             </section>
             <!--End of Introduction-->
 
-            <section id="showcases" class="row scrollto clearfix" data-featherlight-content
-                data-featherlight-filter="a">
-
-                <div class="section-heading">
-                    <h2 class="section-kicker">SHOWCASES</h2>
-                    <p class="section-title">Vi skapar värde för våra kunder</p>
-                </div>
-
-                <div class="showcase-carousel image-carousel" data-image-carousel data-carousel-label="Showcases"
-                    data-carousel-noun="showcase">
-                    <div class="showcase-track image-carousel-track clearfix">
-
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/crm3000.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="railway-safety.html" class="card-link card-link-stretch">
-                                    Prediktiv järnvägssäkerhet med satellitdata och AI</a></h3>
-                            <p>
-                                Ett satellit- och AI-baserat beslutsstödsystem för att prognosticera rälsens
-                                temperatur
-                                och
-                                risken för spårförskjutning
-                                24–48 timmar i förväg. Genom att kombinera multisensor-satellitdata, väderprognoser
-                                och
-                                infrastrukturinformation
-                                möjliggörs proaktivt underhåll och säkrare järnvägsdrift.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/interferogram.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="sar-processing.html" class="card-link card-link-stretch">
-                                    Hög- och medelupplöst SAR-bearbetning för skalbar övervakning</a></h3>
-                            <p>
-                                Vi erbjuder bearbetning av både hög- och medelupplösta SAR-data för att ta fram
-                                detaljerad
-                                information om markrörelser
-                                på både lokal och regional skala. Genom att tillämpa datafusionstekniker på
-                                medelupplösta
-                                SAR möjliggörs även en
-                                enhetlig övervakning av stora områden som stödjer analys av infrastruktur och
-                                beslutsfattande.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/waterleak.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="leak-detection.html" class="card-link card-link-stretch">
-                                    AI-baserad läckagedetektering i vatteninfrastruktur</a></h3>
-                            <p>
-                                Vi kombinerar multisensor-satellitdata och AI för att identifiera och lokalisera
-                                läckor
-                                i
-                                vattenledningsnät genom att
-                                analysera subtila förändringar i miljön. Genom att möjliggöra kontinuerlig
-                                övervakning
-                                över
-                                stora områden bidrar
-                                lösningen till minskade vattenförluster, lägre driftkostnader och en mer långsiktigt
-                                hållbar
-                                vattenförsörjning.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/raildamage.webp" loading="lazy" alt="Feature thumbnail">
-                        </div>
-
-                        <!-- Right 80% Content Section -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
-                                    AI-baserad analys av rälsskador i bilddata</a></h3>
-                            <p>
-                                Vi utvecklar metoder för att automatiskt upptäcka skador på räls med hjälp av
-                                djupinlärning
-                                och bilddata från
-                                järnvägsinspektioner. Genom att analysera visuella mönster i spårbilder kan systemet
-                                identifiera defekter i ett tidigt
-                                skede och stödja mer effektivt underhåll och ökad driftsäkerhet.
-                            </p>
-                        </div>
-
-                        <!-- New text-based Arrow Icon -->
-                        <div class="card-arrow">&gt;</div>
-                    </div>
-                </div>
-
-                    </div>
-                </div>
-
-            </section>
-
-            <!-- Testimonials-->
-            <aside id="testimonials" class="scrollto" data-enllax-ratio=".2">
-
-                <div class="row clearfix">
-
-                    <div class="section-heading">
-                        <h2 class="section-kicker">FEEDBACK</h2>
-                        <!-- Suggested rephrase, matches the nav label for #testimonials:
-                        <h2 class="section-kicker">KUNDBETYG</h2>
-                        -->
-                        <p class="section-title">Vad säger våra kunder</p>
-                    </div>
-
-                    <blockquote class="col-2 testimonial classic text-center">
-                        <img src="images/user-images/tf.webp" loading="lazy" alt="TrafikFörvaltningen" />
-                        <q>Projektmedlemmarna från Total Digital visar på genuint engagemang och arbetar passionerat mot att nå projektets mål</q>
-                        <footer>TrafikFörvaltningen</footer>
-                    </blockquote>
-
-                    <blockquote class="col-2 testimonial classic text-center">
-                        <img src="images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
-                        <q>Jag har gjort så många bra saker sista tiden tillsammans med Total Digital 😊</q>
-                        <footer>Öresundsbron</footer>
-                    </blockquote>
-
-                    <!--<blockquote class="col-3 testimonial classic text-center">
-                        <img src="images/user-images/connecting_stockholm.webp" alt="Connecting Stockholm" />
-                        <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua</q>
-                        <footer>Sven Svensson - Connecting Stockholm</footer>
-                    </blockquote>-->
-
-                </div>
-
-            </aside>
-            <!--End of Testimonials -->
 
             <section id="services" class="row scrollto clearfix" data-featherlight-content
                 data-featherlight-filter="a">
@@ -670,6 +701,171 @@
                                 era system.
                             </span>
                         </div>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Testimonials-->
+            <aside id="testimonials" class="scrollto" data-enllax-ratio=".2">
+
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">FEEDBACK</h2>
+                        <!-- Suggested rephrase, matches the nav label for #testimonials:
+                        <h2 class="section-kicker">KUNDBETYG</h2>
+                        -->
+                        <p class="section-title">Vad säger våra kunder</p>
+                    </div>
+
+                    <blockquote class="col-2 testimonial classic text-center">
+                        <img src="images/user-images/tf.webp" loading="lazy" alt="TrafikFörvaltningen" />
+                        <q>Projektmedlemmarna från Total Digital visar på genuint engagemang och arbetar passionerat mot att nå projektets mål</q>
+                        <footer>TrafikFörvaltningen</footer>
+                    </blockquote>
+
+                    <blockquote class="col-2 testimonial classic text-center">
+                        <img src="images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
+                        <q>Jag har gjort så många bra saker sista tiden tillsammans med Total Digital 😊</q>
+                        <footer>Öresundsbron</footer>
+                    </blockquote>
+
+                    <!--<blockquote class="col-3 testimonial classic text-center">
+                        <img src="images/user-images/connecting_stockholm.webp" alt="Connecting Stockholm" />
+                        <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua</q>
+                        <footer>Sven Svensson - Connecting Stockholm</footer>
+                    </blockquote>-->
+
+                </div>
+
+            </aside>
+            <!--End of Testimonials -->
+
+            <section id="showcases" class="row scrollto clearfix" data-featherlight-content
+                data-featherlight-filter="a">
+
+                <div class="section-heading">
+                    <h2 class="section-kicker">SHOWCASES</h2>
+                    <p class="section-title">Vi skapar värde för våra kunder</p>
+                </div>
+
+                <div class="showcase-carousel image-carousel" data-image-carousel data-carousel-label="Showcases"
+                    data-carousel-noun="showcase">
+                    <div class="showcase-track image-carousel-track clearfix">
+
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="images/showcase-images/crm3000.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="railway-safety.html" class="card-link card-link-stretch">
+                                    Prediktiv järnvägssäkerhet med satellitdata och AI</a></h3>
+                            <p>
+                                Ett satellit- och AI-baserat beslutsstödsystem för att prognosticera rälsens
+                                temperatur
+                                och
+                                risken för spårförskjutning
+                                24–48 timmar i förväg. Genom att kombinera multisensor-satellitdata, väderprognoser
+                                och
+                                infrastrukturinformation
+                                möjliggörs proaktivt underhåll och säkrare järnvägsdrift.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="images/showcase-images/interferogram.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="sar-processing.html" class="card-link card-link-stretch">
+                                    Hög- och medelupplöst SAR-bearbetning för skalbar övervakning</a></h3>
+                            <p>
+                                Vi erbjuder bearbetning av både hög- och medelupplösta SAR-data för att ta fram
+                                detaljerad
+                                information om markrörelser
+                                på både lokal och regional skala. Genom att tillämpa datafusionstekniker på
+                                medelupplösta
+                                SAR möjliggörs även en
+                                enhetlig övervakning av stora områden som stödjer analys av infrastruktur och
+                                beslutsfattande.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="images/showcase-images/waterleak.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="leak-detection.html" class="card-link card-link-stretch">
+                                    AI-baserad läckagedetektering i vatteninfrastruktur</a></h3>
+                            <p>
+                                Vi kombinerar multisensor-satellitdata och AI för att identifiera och lokalisera
+                                läckor
+                                i
+                                vattenledningsnät genom att
+                                analysera subtila förändringar i miljön. Genom att möjliggöra kontinuerlig
+                                övervakning
+                                över
+                                stora områden bidrar
+                                lösningen till minskade vattenförluster, lägre driftkostnader och en mer långsiktigt
+                                hållbar
+                                vattenförsörjning.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
+                    </div>
+                </div>
+                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                    <div class="col-1 feature-card showcase text-left">
+                        <!-- Left 20% Image Section -->
+                        <div class="card-image-wrapper">
+                            <img src="images/showcase-images/raildamage.webp" loading="lazy" alt="Feature thumbnail">
+                        </div>
+
+                        <!-- Right 80% Content Section -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
+                                    AI-baserad analys av rälsskador i bilddata</a></h3>
+                            <p>
+                                Vi utvecklar metoder för att automatiskt upptäcka skador på räls med hjälp av
+                                djupinlärning
+                                och bilddata från
+                                järnvägsinspektioner. Genom att analysera visuella mönster i spårbilder kan systemet
+                                identifiera defekter i ett tidigt
+                                skede och stödja mer effektivt underhåll och ökad driftsäkerhet.
+                            </p>
+                        </div>
+
+                        <!-- New text-based Arrow Icon -->
+                        <div class="card-arrow">&gt;</div>
                     </div>
                 </div>
 

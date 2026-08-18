@@ -1,0 +1,9 @@
+<!--Lagerstapel för GIS. Samma familj som WebP-ikonerna: heltäckande orange,
+    och mellanrummen mellan lagren är genomsiktliga urtagningar. SVG istället
+    för 256px WebP eftersom det inte finns någon rasterisering i repot; byt mot
+    familjens riktiga ikon när den finns.-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" fill="#ff4b00">
+    <path d="M128 16 240 70 128 124 16 70Z" />
+    <path d="M16 116 128 180 240 116 204 102 128 164 52 102Z" />
+    <path d="M16 164 128 228 240 164 204 150 128 212 52 150Z" />
+</svg>
