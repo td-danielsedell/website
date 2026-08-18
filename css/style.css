@@ -409,10 +409,6 @@ section {
     padding: 0;
 }
 
-#header aside {
-    text-align: right;
-}
-
 #header ul {
     text-align: center;
 }
@@ -430,6 +426,15 @@ section {
     height: 71px;
     line-height: 66px;
     margin-right: 15px;
+    /* nav#nav-main is a full-width block that starts at the same left edge, so
+       its box lies over the logo — only its inline content is pushed aside by
+       this float. That was harmless until the nav gained position: relative (so
+       the language switcher could sit at its right edge), because a positioned
+       element paints above a float and began swallowing clicks on the logo
+       link. Positioning the logo too puts it back on top; the z-index is what
+       does the work, since the nav comes later in the document. */
+    position: relative;
+    z-index: 1;
 }
 
 #logo h1,
@@ -447,6 +452,14 @@ section {
 #logo h2 {
     font-size: 18px;
     padding: 0;
+}
+
+/* Both logos sit in one link back to the start page. Kept inline so the 66px
+   line box above still centres them, and stripped of the background that
+   "#header.nav-solid a" would otherwise paint behind it. */
+#logo a {
+    background: transparent;
+    text-decoration: none;
 }
 
 #logo img {
@@ -582,10 +595,6 @@ section {
     font-size: 13px;
 }
 
-#header aside {
-    float: right;
-}
-
 #header nav ul {
     text-transform: uppercase;
 
@@ -673,6 +682,10 @@ section {
     background: var(--secondary);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
     text-transform: none;
+    /* Same as .nav-sub: a list starting on a common left edge, which is also
+       where the current-item rule sits, rather than inheriting the centring
+       "#header ul" gives the nav bar. */
+    text-align: left;
 }
 
 #header nav .lang-options .lang-option {
@@ -713,6 +726,26 @@ section {
         right: 0;
         z-index: 10;
     }
+
+    /* The switcher is not one of the menu items, so it sits at the right edge
+       rather than travelling with them. Taking it out of the flow also lets the
+       links either side of it centre on their own.
+
+       Absolute rather than a flex ul on purpose: the nav items are
+       baseline-aligned inline-blocks, and a flex container has no text baseline
+       to align them on. #nav-main only gains position so that right:0 lands on
+       the column edge and keeps its 20px gutter. */
+    nav#nav-main {
+        position: relative;
+    }
+
+    /* Needs #header and the element type to outrank "#header nav .nav-lang",
+       which sets position: relative for the dropdown panel above. */
+    #header nav#nav-main .nav-lang {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 }
 
 /* In the mobile menu the row has to read as one of the stacked links, not as a
@@ -727,6 +760,209 @@ section {
 
 #nav-mobile .nav-lang .lang-options {
     margin: 0 0 10px;
+}
+
+/* On narrow screens the switcher leaves the dropdown and sits next to the
+   hamburger, so the language is reachable without opening the menu. js/nav.js
+   renders it into both places; these rules pick which one is visible.
+   #nav-lang-mobile lives inside #nav-trigger, which is display:none above
+   1023px, so the wide layout hides it without a rule of its own. */
+#nav-lang-mobile {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#nav-lang-mobile .lang-options {
+    position: absolute;
+    top: 71px;
+    right: 0;
+    z-index: 10;
+}
+
+@media all and (max-width: 1023px) {
+    #nav-mobile .nav-lang {
+        display: none;
+    }
+}
+
+/* --------- 2.4.1 Expandable menu groups ---------- */
+
+/* Nav items that own subpages (Showcases, Produkter) expand instead of jumping.
+   Same <details> approach as the language switcher, and for the same two
+   reasons: no script to write, and nothing to re-bind when site.js clones
+   #nav-main into #nav-mobile.
+
+   The summary only opens the group, so the section it used to link to is the
+   first entry inside — a summary cannot both toggle and navigate. */
+#header nav .nav-group {
+    position: relative;
+}
+
+/* The label inside is a real link to the group's section on the index page, so
+   the anchor keeps the full 71px box that "#header nav a" gives every other nav
+   item — that is what makes stickyNavbar's .active underline sit on the same
+   line as the flat items'. The summary only supplies the caret and the padding
+   around it.
+
+   Stays an inline line box for the same reason the language summary does: a
+   flex summary has no baseline and shunts every other item in the row down 3px. */
+#header nav .nav-group summary {
+    height: 71px;
+    line-height: 71px;
+    padding: 0 10px 0 0;
+    cursor: pointer;
+    color: var(--link);
+    list-style: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+#header nav .nav-group summary a {
+    /* inline-block, not the block that "#header nav a" hands every other nav
+       link. A summary whose only child is a block has no line box of its own,
+       so the <li> around it falls back to baseline-aligning on its bottom
+       margin edge — which drops every flat item in the row 71px. */
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 4px;
+}
+
+#header nav .nav-group summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Caret, so the item reads as expandable rather than broken. */
+#header nav .nav-group summary::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 6px;
+    vertical-align: 0.15em;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+    -webkit-transition: -webkit-transform 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+}
+
+#header nav .nav-group details[open] summary::after {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/* A <div> of <a>s rather than a <ul>: site.js opens the mobile menu with
+   $("nav#nav-mobile ul"), which would match a nested list and slide the submenu
+   open along with the menu. Same reason the language options are a <div>. */
+#header nav .nav-sub {
+    padding: 6px 0;
+    border-radius: 3px;
+    background: var(--secondary);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    text-transform: none;
+    /* The entries read as a list, so they start on a common left edge rather
+       than inheriting the centring "#header ul" gives the nav bar itself. That
+       edge is also where the current-page rule sits. The mobile menu already
+       aligns left, via nav#nav-mobile li. */
+    text-align: left;
+}
+
+#header nav .nav-sub a {
+    display: block;
+    height: auto;
+    line-height: 1.4;
+    padding: 8px 16px;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+    color: var(--link);
+    /* nav-solid paints every header link with the header colour; the panel sits
+       on its own surface and must not inherit it. */
+    background: transparent;
+    opacity: 0.8;
+}
+
+#header nav .nav-sub a:hover {
+    color: var(--link);
+    background: rgba(255, 255, 255, 0.08);
+    opacity: 1;
+}
+
+/* The entry for the page you are on: the same marker as
+   .lang-options .is-current, which is the other "this is the one you are on"
+   control in this header — it colours in the transparent left border that every
+   entry already carries.
+
+   It cannot use the .active styling the top-level items get: that paints
+   var(--link-hover-active), which is #111, and the panel it sits on is #333. */
+#header nav .nav-sub a.active {
+    font-weight: 700;
+    border-left-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--link);
+    opacity: 1;
+    /* "#header.nav-solid nav .active" underlines the top-level items in
+       var(--link-hover-active), which is #111. It matches any .active in the
+       nav, so a panel entry picked up a near-black rule across its bottom. The
+       language switcher never showed it because its current option is marked
+       .is-current, not .active. */
+    border-bottom: 0;
+}
+
+/* Same marker in the mobile menu, where the rows are painted var(--header)
+   rather than sitting on the dark panel, so only the rule and the weight
+   change. */
+#header nav#nav-mobile .nav-sub a.active {
+    border-left-color: var(--link-hover-active);
+    background: var(--header);
+}
+
+/* Wide nav: the panel hangs below its group. Below this the menu is a stacked
+   list and the entries just flow inside it. */
+@media all and (min-width: 1024px) {
+    #header nav .nav-sub {
+        position: absolute;
+        top: 71px;
+        left: 0;
+        min-width: 100%;
+        z-index: 10;
+    }
+}
+
+/* In the mobile menu the group has to read as one of the stacked rows, and its
+   entries as indented children of it. */
+#header nav#nav-mobile .nav-group summary {
+    height: auto;
+    line-height: normal;
+    padding: 15px;
+    background: var(--header);
+}
+
+/* On a touch screen the label opens the group instead of following its href
+   (js/site.js cancels the click), so it must not offer a link's box or padding
+   on top of the summary's. */
+#header nav#nav-mobile .nav-group summary a {
+    display: inline;
+    height: auto;
+    line-height: normal;
+    padding: 0;
+    background: transparent;
+}
+
+#header nav#nav-mobile .nav-sub {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+#header nav#nav-mobile .nav-sub a {
+    padding: 12px 15px 12px 32px;
+    background: var(--header);
+    border-left: 3px solid rgba(255, 255, 255, 0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 1;
 }
 
 /*Navigation Solid*/
@@ -792,12 +1028,17 @@ section {
 
 /* Responsive Nav Styling */
 
+/* The hamburger is addressed as a direct child throughout. #nav-trigger also
+   holds the mobile language switcher, whose "current language" marker is a
+   <span> — a descendant selector would hand it the 38px box, the 22px uppercase
+   type and the bars mask below. js/site.js scopes its click binding the same
+   way, for the same reason. */
 #nav-trigger {
     display: none;
     text-align: right;
 }
 
-#nav-trigger span {
+#nav-trigger > span {
     display: inline-block;
     width: 38px;
     height: 71px;
@@ -817,7 +1058,7 @@ section {
 /* fa-bars, and fa-xmark once the menu is open. Masks rather than icon-font
    glyphs, so the trigger keeps its color without loading Font Awesome.
    Paths from Font Awesome Free 6.7.2 (icons: CC BY 4.0). */
-#nav-trigger span:after {
+#nav-trigger > span:after {
     display: inline-block;
     content: "";
     width: 38px;
@@ -829,28 +1070,28 @@ section {
     border-top-left-radius: 5px;
 }
 
-#nav-trigger span.open:after {
+#nav-trigger > span.open:after {
     -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>');
     mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>');
 }
 
-#nav-trigger span:hover,
-.nav-solid #nav-trigger span.open:hover,
-.nav-solid #nav-trigger span:hover {
+#nav-trigger > span:hover,
+.nav-solid #nav-trigger > span.open:hover,
+.nav-solid #nav-trigger > span:hover {
     /* opacity: 0.6; */
     opacity: 1;
 }
 
-#nav-trigger span.open,
-#nav-trigger span.open:hover {
+#nav-trigger > span.open,
+#nav-trigger > span.open:hover {
     color: var(--link-hover-active);
 }
 
-.nav-solid #nav-trigger span.open:hover {
+.nav-solid #nav-trigger > span.open:hover {
     color: var(--footer-text);
 }
 
-.nav-solid #nav-trigger span {
+.nav-solid #nav-trigger > span {
     color: var(--footer-text);
     opacity: 1;
 }
@@ -946,10 +1187,6 @@ nav#nav-mobile a:hover {
 
 .social-icons span {
     display: none;
-}
-
-#header .social-icons {
-    margin-top: 27px;
 }
 
 /* --------- 2.6 Images ---------- */
@@ -2079,9 +2316,6 @@ blockquote {
         display: block;
     }
 
-    #header aside {
-        display: none;
-    }
 }
 
 /* Landscape mobile & down
@@ -2179,16 +2413,6 @@ blockquote {
     /*Logo*/
     #logo h2 {
         padding: 0;
-    }
-
-    /* Social */
-    #header aside {
-        clear: both;
-        padding: 0;
-    }
-
-    #header ul.social-icons {
-        margin-top: 0;
     }
 
     /* Pulls the headline up towards the nav so the expertise line and the CTA
@@ -2316,20 +2540,6 @@ blockquote {
     /*-----------------Header Elements-----------------*/
     #header .row {
         padding: 0 !important;
-    }
-
-    #header aside {
-        display: inline-block;
-        position: absolute;
-        top: 20px;
-        right: 60px;
-        padding-top: 3px;
-        padding-right: 5px;
-    }
-
-    #header aside ul {
-        margin-top: 0 !important;
-        padding-top: 6px;
     }
 
     /* Pulls the headline up towards the nav so the expertise line and the CTA
@@ -2481,24 +2691,6 @@ blockquote {
     }
 
     /*-----------------Header Elements-----------------*/
-    #header aside {
-        display: inline-block;
-        position: absolute;
-        top: 20px;
-        right: 60px;
-        padding-top: 3px;
-        padding-right: 5px;
-    }
-
-    /* #header.nav-solid aside {
-        top: 20px;
-    } */
-
-    #header aside ul {
-        margin-top: 0 !important;
-        padding-top: 6px;
-    }
-
     /*Navigation*/
     nav#nav-mobile ul {
         margin-left: -40px;
