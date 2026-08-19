@@ -1247,12 +1247,13 @@ h2 {
     line-height: normal;
 }
 
-/* Hero expertise line: "Vi kan" with the business areas cycling vertically
+/* Hero expertise line: "Vi kan" with the four affärsområden cycling vertically
    beside it.
 
    Sized in vw rather than px so the label and the longest area name stay on one
-   line at every phone width. "Vi kan" + icon + "Fleet Management" measures
-   ~15.9× the font size. */
+   line at every phone width. The widest combinations are "Vi kan" + icon +
+   "Tillgångsförvaltning" (~16.6× the font size) and, on /en/, "We know" + icon
+   + "Asset Management" (~17.7×). */
 .expertise-line {
     /* The reset zeroes margin on h1-h6 but not on p. */
     margin: 0;
@@ -1264,8 +1265,9 @@ h2 {
     align-items: center;
     gap: 0.3em;
     /* 4.4vw leaves room for a bigger icon and still keeps label + icon + the
-       longest name ("Fleet Management") on one line: ~272px of 358px usable at
-       390px. The short label leaves headroom up to ~5.7vw before it collides. */
+       longest name on one line: measured at 390px, 285px of the 360px usable
+       here and 305px on /en/. The tighter of the two, English, leaves headroom
+       up to ~5.2vw before it collides. */
     font-size: clamp(14px, 4.4vw, 34px);
     font-weight: 800;
     line-height: 1.25;
@@ -1285,8 +1287,8 @@ h2 {
 
 .expertise-reel {
     display: block;
-    /* 15s across 6 areas: 2.5s each, of which 0.5s is the slide */
-    animation: expertise-cycle 15s infinite;
+    /* 10s across 4 areas: 2.5s each, of which 0.5s is the slide */
+    animation: expertise-cycle 10s infinite;
 }
 
 .expertise-reel > span {
@@ -1312,42 +1314,32 @@ h2 {
 }
 
 /* Stepped in em, NOT in percent: a percentage translateY resolves against the
-   reel's own height — all seven items — so -100% would move it seven rows, not
-   one. The 7th item repeats the 1st, so the wrap back to 0 is invisible. */
+   reel's own height — all five items — so -100% would move it five rows, not
+   one. The 5th item repeats the 1st, so the wrap back to 0 is invisible. */
 @keyframes expertise-cycle {
 
     0%,
-    13.33% {
+    20% {
         transform: translateY(0);
     }
 
-    16.67%,
-    30% {
+    25%,
+    45% {
         transform: translateY(calc(-1 * var(--expertise-step)));
     }
 
-    33.33%,
-    46.67% {
+    50%,
+    70% {
         transform: translateY(calc(-2 * var(--expertise-step)));
     }
 
-    50%,
-    63.33% {
+    75%,
+    95% {
         transform: translateY(calc(-3 * var(--expertise-step)));
     }
 
-    66.67%,
-    80% {
-        transform: translateY(calc(-4 * var(--expertise-step)));
-    }
-
-    83.33%,
-    96.67% {
-        transform: translateY(calc(-5 * var(--expertise-step)));
-    }
-
     100% {
-        transform: translateY(calc(-6 * var(--expertise-step)));
+        transform: translateY(calc(-4 * var(--expertise-step)));
     }
 }
 
