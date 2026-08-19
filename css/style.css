@@ -1177,8 +1177,16 @@ nav#nav-mobile a:hover {
 
 .social-icons a {
     display: inline-block;
-    width: 32px;
+    width: 2.75em;
     text-align: center;
+}
+
+/* The footer icons stand alone rather than beside text, so they get their own
+   size instead of .svg-icon's 1em. The anchor is wider than the icon so the
+   two don't touch, which also leaves a finger-sized tap target. */
+.social-icons .svg-icon {
+    width: 2em;
+    height: 2em;
 }
 
 /* .social-icons a:hover {
