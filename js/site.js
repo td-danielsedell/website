@@ -64,6 +64,39 @@ $(document).ready(function () {
 	   closes the panel on the way out, which is what you want after using it.
 	   Moving the pointer back over the item reopens it. */
 
+	/* Hand the page-to-page nav links back to the browser.
+
+	   stickyNavbar lets a click through only when the href starts with http,
+	   mailto: or a slash; everything else it cancels and reads as the id of a
+	   section to scroll to. The links between pages are relative so that the
+	   site works wherever it is mounted — at the root on totaldigital.se, under
+	   /website/ on the GitHub Pages preview — and that puts them on the wrong
+	   side of the plugin's test, where they would be cancelled and mistaken for
+	   anchors on the current page.
+
+	   Stopping the click before the plugin's own handler sees it leaves the
+	   default action intact, so the browser navigates: an ordinary click
+	   follows the link, and cmd- or middle-click still opens a new tab. A
+	   scripted location change would have taken that away.
+
+	   Bound here, between the handlers above and the plugin below, because
+	   jQuery runs handlers on an element in the order they were bound: late
+	   enough that the menu-close handler still fires, early enough to win
+	   against stickyNavbar. Links with no href are stopped too — the group
+	   labels in the narrow menu had theirs removed above, and the plugin reads
+	   the attribute without checking that it exists.
+
+	   Same-page anchors are left alone; smooth-scrolling them is the plugin's
+	   whole job. */
+	$('#header').find('li a').each(function () {
+		var href = $(this).attr('href');
+		if (!href || href.charAt(0) !== '#') {
+			$(this).on('click', function (e) {
+				e.stopImmediatePropagation();
+			});
+		}
+	});
+
 	/* Sticky Navigation.
 
 	   animateCSS off: the plugin otherwise puts "fadeIn animated" on the header
