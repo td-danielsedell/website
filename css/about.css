@@ -1,0 +1,362 @@
+/*------------------------------------------------------------------------------------------*/
+/* About page
+/*------------------------------------------------------------------------------------------*/
+
+/* Page-scoped sheet, loaded only by about.html — same arrangement as td-test.css.
+   Nothing here touches style.css or colors.css.
+
+   The reset in style.css zeroes margin and padding on headings and lists but
+   deliberately not on p, so every p below states its own margin rather than
+   inheriting the UA's 1em. Everything is border-box (style.css:64). */
+
+
+/* --------- 1. Review scaffolding ---------- */
+
+/* Two sections currently ship in two variants so the layout can be picked
+   against something real. This label marks each one. Both the label and the
+   losing variant come out once a choice is made — it is not part of the
+   design. */
+.variant-label {
+    display: inline-block;
+    margin: 0 0 20px 0;
+    padding: 4px 10px;
+    border: 1px dashed #666;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--footer-text);
+}
+
+
+/* --------- 2. Timeline ---------- */
+
+/* An ordered list, because the entries are chronological and that is what a
+   screen reader should announce. The spine is a single line on the <ol> rather
+   than a run of per-item segments: segments have to reach from one dot to the
+   next across the items' own padding, which never quite lines up. The cost is
+   that the line runs past the last dot to the bottom of the last entry's text,
+   which is how most timelines look anyway.
+
+   .timeline is the single-column variant. .timeline--alt adds the centre spine
+   and the left/right stagger, and only above 768px — below that it falls back
+   to these same rules, which is why the two variants are identical on a
+   phone. */
+.timeline {
+    position: relative;
+    list-style: none;
+    /* Matches the 20px gutter the columns carry, so the dots line up with the
+       section title above them. */
+    padding: 0 0 0 20px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    /* Starts at the centre of the first dot: 4px offset + half of 14px. */
+    top: 11px;
+    bottom: 0;
+    /* 20px gutter + the dot's 7px centre, less half the line's 2px. */
+    left: 26px;
+    width: 2px;
+    background: #555;
+}
+
+.tl-item {
+    position: relative;
+    padding: 0 0 38px 34px;
+}
+
+.tl-item:last-child {
+    padding-bottom: 0;
+}
+
+.tl-marker {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+/* 20px bold clears the 18.66px bold threshold for large text, which is what
+   lets the orange stay: #ff4b00 on the #333 body is 3.8:1, enough for large
+   text and not enough for small. Shrink this and the year needs a lighter
+   colour. */
+.tl-year {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
+    color: var(--primary);
+}
+
+.tl-title {
+    margin: 0;
+    padding: 6px 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: normal;
+    color: var(--section-heading);
+}
+
+.tl-item p {
+    margin: 8px 0 0 0;
+}
+
+/* Alternating variant. Plain block layout rather than grid: each item is its
+   own block, so the entries stagger down the page instead of pairing up into
+   shared grid rows, and it works for any number of entries. */
+@media (min-width: 768px) {
+
+    .timeline--alt {
+        padding-left: 0;
+    }
+
+    .timeline--alt::before {
+        left: calc(50% - 1px);
+    }
+
+    .timeline--alt .tl-item {
+        width: 50%;
+        padding-bottom: 46px;
+    }
+
+    .timeline--alt .tl-item:nth-child(odd) {
+        text-align: right;
+        padding-left: 0;
+        padding-right: 34px;
+    }
+
+    .timeline--alt .tl-item:nth-child(even) {
+        margin-left: 50%;
+    }
+
+    /* The base :last-child rule and .timeline--alt .tl-item weigh the same, so
+       the 46px above wins on the last entry too and the spine overruns its own
+       last dot. Restate it. */
+    .timeline--alt .tl-item:last-child {
+        padding-bottom: 0;
+    }
+
+    /* Half of the 14px dot, so it centres on the spine from either side. */
+    .timeline--alt .tl-item:nth-child(odd) .tl-marker {
+        left: auto;
+        right: -7px;
+    }
+
+    .timeline--alt .tl-item:nth-child(even) .tl-marker {
+        left: -7px;
+    }
+
+}
+
+
+/* --------- 3. Ledningsgrupp ---------- */
+
+/* Variant A: one wide photo with the names as text under it. */
+.group-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.group-photo-names {
+    margin: 20px 0 0 0;
+    color: var(--footer-text);
+}
+
+.group-photo-names strong {
+    color: var(--section-heading);
+}
+
+/* Variant B: individual cards. Four across on the same grid shape and
+   breakpoint as .area-grid's affärsområden blocks. The card look is restated
+   here rather than pulling the 350-line feature-card.css onto this page for one
+   component — the values are feature-card's. */
+.person-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.person-card {
+    background: #333;
+    border: 2px solid #555;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.person-card:hover {
+    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.person-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.person-body {
+    padding: 16px 18px 20px 18px;
+}
+
+.person-name {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: normal;
+    color: var(--section-heading);
+}
+
+.person-role {
+    margin: 6px 0 0 0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    color: var(--section-subtitle);
+}
+
+.person-contact {
+    margin: 12px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+
+/* --------- 4. Two columns under a two-column heading ---------- */
+
+/* Orter and Examensarbete both put two blocks side by side under a heading that
+   is itself two .col-14 columns. Floated .col-2 blocks do not start a new row
+   there: the heading column is taller than the subtitle column, so the first
+   .col-2 slots up into the gap beside the short subtitle instead. It is the same
+   float snag that put the affärsområden blocks on a grid (style.css:1580). Grid
+   inside one full-width .col-1 sidesteps it, and gives equal columns whatever
+   the two blocks' heights. */
+.split-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 40px;
+    align-items: start;
+}
+
+/* The reset leaves p with its UA margin, which would push the text column down
+   relative to the map beside it. */
+.split-2 p:first-child {
+    margin-top: 0;
+}
+
+
+/* --------- 4. Locations ---------- */
+
+/* The map is a light image on a dark page, so it gets a border and the same
+   10px radius the cards use — without a frame its white edge reads as a hole.
+   It is portrait (987x1400), which is why it sits in half a row rather than
+   spanning one. */
+.about-map {
+    margin: 0;
+}
+
+.about-map img {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border: 1px solid #555;
+    border-radius: 10px;
+}
+
+.location-list {
+    list-style: none;
+    margin: 20px 0 0 0;
+    columns: 2;
+    column-gap: 24px;
+}
+
+.location-list li {
+    padding: 5px 0;
+}
+
+.location-list li:before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    vertical-align: middle;
+}
+
+
+/* --------- 5. Examensarbete ---------- */
+
+.thesis-list {
+    list-style: none;
+    margin: 0;
+}
+
+.thesis-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.2);
+}
+
+.thesis-list li:last-child {
+    border-bottom: 0;
+}
+
+.thesis-title {
+    display: block;
+    font-weight: bold;
+    color: var(--section-heading);
+}
+
+.thesis-meta {
+    display: block;
+    padding-top: 4px;
+    font-size: 14px;
+    color: var(--footer-text);
+}
+
+
+/* --------- 6. Phone ---------- */
+
+/* 767px is the breakpoint the affärsområden grid uses, and the person grid
+   follows it for the same reason: two columns read on every phone width, four
+   do not. */
+@media (max-width: 767px) {
+
+    .person-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .person-name {
+        font-size: 16px;
+    }
+
+    .person-body {
+        padding: 12px 14px 16px 14px;
+    }
+
+    .location-list {
+        columns: 1;
+    }
+
+    .split-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .about-map img {
+        max-width: 100%;
+    }
+
+}

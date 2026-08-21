@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-label="Platshållare för gruppfoto">
+    <!-- Temporary stand-in for the ledningsgrupp group photo. Delete once the
+         real photograph exists. Colours are the site palette: #3a3a3a panel,
+         #555 border, #999 label. -->
+    <rect x="1" y="1" width="1198" height="398" rx="10" fill="#3a3a3a" stroke="#555" stroke-width="2" />
+    <g fill="#4a4a4a">
+        <circle cx="360" cy="205" r="42" /><path d="M290 330a70 70 0 0 1 140 0z" />
+        <circle cx="500" cy="185" r="48" /><path d="M420 325a80 80 0 0 1 160 0z" />
+        <circle cx="650" cy="185" r="48" /><path d="M570 325a80 80 0 0 1 160 0z" />
+        <circle cx="800" cy="205" r="42" /><path d="M730 330a70 70 0 0 1 140 0z" />
+    </g>
+    <text x="600" y="108" fill="#999" font-family="'Open Sans', sans-serif" font-size="26"
+          font-weight="700" letter-spacing="4" text-anchor="middle">GRUPPFOTO</text>
+    <text x="600" y="142" fill="#777" font-family="'Open Sans', sans-serif" font-size="16"
+          font-weight="300" text-anchor="middle">platshållare 3:1</text>
+</svg>
