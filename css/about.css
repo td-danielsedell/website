@@ -10,26 +10,7 @@
    inheriting the UA's 1em. Everything is border-box (style.css:64). */
 
 
-/* --------- 1. Review scaffolding ---------- */
-
-/* Two sections currently ship in two variants so the layout can be picked
-   against something real. This label marks each one. Both the label and the
-   losing variant come out once a choice is made — it is not part of the
-   design. */
-.variant-label {
-    display: inline-block;
-    margin: 0 0 20px 0;
-    padding: 4px 10px;
-    border: 1px dashed #666;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: var(--footer-text);
-}
-
-
-/* --------- 2. Timeline ---------- */
+/* --------- 1. Timeline ---------- */
 
 /* An ordered list, because the entries are chronological and that is what a
    screen reader should announce. The spine is a single line on the <ol> rather
@@ -154,29 +135,12 @@
 }
 
 
-/* --------- 3. Ledningsgrupp ---------- */
+/* --------- 2. Ledningsgrupp ---------- */
 
-/* Variant A: one wide photo with the names as text under it. */
-.group-photo {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.group-photo-names {
-    margin: 20px 0 0 0;
-    color: var(--footer-text);
-}
-
-.group-photo-names strong {
-    color: var(--section-heading);
-}
-
-/* Variant B: individual cards. Four across on the same grid shape and
-   breakpoint as .area-grid's affärsområden blocks. The card look is restated
-   here rather than pulling the 350-line feature-card.css onto this page for one
-   component — the values are feature-card's. */
+/* Four portraits across, on the same grid shape and breakpoint as .area-grid's
+   affärsområden blocks. The card look is restated here rather than pulling the
+   350-line feature-card.css onto this page for one component — the values are
+   feature-card's. */
 .person-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -232,7 +196,7 @@
 }
 
 
-/* --------- 4. Two columns under a two-column heading ---------- */
+/* --------- 3. Two columns under a two-column heading ---------- */
 
 /* Orter and Examensarbete both put two blocks side by side under a heading that
    is itself two .col-14 columns. Floated .col-2 blocks do not start a new row

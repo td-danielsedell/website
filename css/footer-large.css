@@ -1,0 +1,112 @@
+/*------------------------------------------------------------------------------------------*/
+/* Large footer
+/*------------------------------------------------------------------------------------------*/
+
+/* Revision item 13: "Bigger text in the very end of the homepage with address
+   and GitHub and LinkedIn Icons." Written as its own sheet rather than inside
+   style.css so it can be linked from index.html later without touching the
+   shared sheets — the treatment was asked for on the homepage, and about.html is
+   where it landed first. Linking this sheet from index.html and swapping that
+   footer's markup is all that is left of revision item 13.
+
+   Self-contained on purpose. The default footer's colour and size rules are
+   keyed to #landing-footer (colors.css:533-544), and an id would have to be
+   duplicated on the page to inherit them, so nothing here relies on that id.
+   .social-icons' own class rules still apply and are overridden where needed. */
+
+.footer-large {
+    clear: both;
+    border-top: 1px solid #555;
+    padding: 55px 0 65px 0;
+}
+
+.footer-large .row {
+    padding: 0;
+}
+
+.footer-large p {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+    color: var(--footer-text);
+}
+
+.footer-large .footer-name {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: normal;
+    color: var(--section-heading);
+}
+
+/* The default footer runs the whole address through one line of pipes at 12px.
+   The point of this variant is that it is readable, so the lines break where a
+   letterhead would break them. */
+.footer-large .footer-address {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 30px;
+    padding-top: 10px;
+}
+
+.footer-large .footer-address a {
+    font-size: 17px;
+    color: var(--footer-text);
+}
+
+.footer-large .footer-address a:hover,
+.footer-large .footer-social a:hover {
+    color: var(--primary);
+}
+
+/* .social-icons floats right and hides its labels in the default footer. Here
+   the block is centred and the labels are the point — item 13 asks for the
+   icons to be identifiable, not just present. */
+.footer-large .footer-social {
+    float: none;
+    width: auto;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.footer-large .footer-social li {
+    display: inline-block;
+}
+
+.footer-large .footer-social a {
+    width: auto;
+    padding: 0 22px;
+    color: var(--footer-text);
+}
+
+.footer-large .footer-social span {
+    display: block;
+    padding-top: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* 2em off the inherited 15px is smaller than the 22px name above it, which
+   reads as an afterthought on a footer whose whole point is the icons. */
+.footer-large .svg-icon {
+    width: 2.4em;
+    height: 2.4em;
+    color: inherit;
+}
+
+@media (max-width: 480px) {
+
+    .footer-large {
+        padding: 40px 0 45px 0;
+    }
+
+    .footer-large .footer-name {
+        font-size: 19px;
+    }
+
+    .footer-large .footer-address,
+    .footer-large .footer-address a {
+        font-size: 15px;
+    }
+
+}
+
