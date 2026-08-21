@@ -1477,6 +1477,36 @@ h1.section-title {
     background-size: cover;
 }
 
+/* #home carries no height of its own: it is the 170px/100px banner padding plus
+   however tall the copy happens to be. The background is `cover`, so every
+   reflow of that copy recrops the photo — the intro paragraph gaining a line
+   walked the height between 950px and 994px across the desktop range, and the
+   Swedish and English intros wrap at different widths, so the two languages
+   showed a different amount of the train. Pin the box instead.
+
+   1000px clears the tallest content measured anywhere at 768px and up (994px,
+   English at a 1024px viewport), so nothing overflows into the section below.
+   Only index.html and en/index.html carry #home; the subpages have their own
+   header markup. */
+@media (min-width: 768px) {
+    #home {
+        height: 1000px;
+    }
+}
+
+/* A phone hero is content-tall too, but the failure mode is different: the
+   copy is already taller than the fold, and the peek of the next section shows
+   up once the address bar collapses on scroll and the viewport grows to the
+   large viewport height. 100lvh is exactly that height. min-height rather than
+   height, because the copy is allowed to be taller than the screen — 100vh is
+   the fallback for browsers without the lvh unit. */
+@media (max-width: 767px) {
+    #home {
+        min-height: 100vh;
+        min-height: 100lvh;
+    }
+}
+
 #banner-content.row {
     padding-top: 170px;
     padding-bottom: 100px;
@@ -2216,8 +2246,12 @@ blockquote {
     margin: 0 0 25px 0;
 }
 
+/* No height of its own. It used to be a hard 300px, which is what equalised the
+   two cards while they were floats — but the copy measures ~150px, so half of
+   that box was dead air above the button. The desktop track is a flex row now
+   (css/feature-card.css) and stretches the pair for us. */
 .product-content {
-    height: 300px;
+    padding-bottom: 20px;
 }
 
 

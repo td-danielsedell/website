@@ -176,7 +176,29 @@
     padding: 10px;
     width: 350px;
     margin: 0 auto;
-    min-height: 765px;
+    /* .feature-card is a flex row (image beside copy, which is what the showcase
+       cards want); a product card stacks instead. */
+    flex-direction: column;
+}
+
+/* The wrapper the markup already had around the card body. Making it fill the
+   card is what lets the button sit at the card's foot rather than directly under
+   the copy — that is where the 300px .product-content box and the 765px
+   min-height used to put it, at the cost of ~200px of dead air. */
+.product > div:first-child {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+}
+
+/* Pushed to the bottom of the card, so the two buttons line up whichever card
+   carries more copy. align-self is needed as well: a column flex item stretches
+   across the cross axis by default, which would blow the button out to the full
+   width of the card. Centred, even though the copy above it is left-aligned. */
+.product .button {
+    margin-top: auto;
+    align-self: center;
 }
 
 /* Product name. It is an h3 so the page keeps a single h1, but it is sized
@@ -208,13 +230,12 @@
         padding: 0;
     }
 
-    /* The fixed width and the height that equalises the desktop pair both
-       fight the track; the flex row already stretches both cards to the
-       tallest one. */
+    /* The fixed width fights the track, which sizes the slides itself. Height
+       comes from the slide either way: the track stretches every slide to the
+       tallest and the card fills it. */
     .product-track .product {
         width: auto;
         margin: 0;
-        min-height: 0;
         height: 100%;
     }
 
@@ -255,13 +276,33 @@
     }
 }
 
-/* Desktop keeps the plain floated columns: no track, and the affordances the
-   script injected have nothing to scroll. */
+/* Desktop lays the two products out side by side, and the affordances the script
+   injected have nothing to scroll.
+
+   A flex row rather than the floated columns it used to be: the flex default of
+   align-items: stretch is what equalises the two cards, which is the job the
+   300px .product-content box and the 765px .product min-height used to do by
+   hand. The slides are .col-2, so they still carry width: 50% and the 20px
+   gutter; float is ignored on a flex item. */
 @media (min-width: 768px) {
     .product-track.image-carousel-track {
-        display: block;
+        display: flex;
+        gap: 0;
         overflow: visible;
         padding: 0;
+    }
+
+    /* Flex on the slide too, so the card is the thing being stretched. Its
+       height: 100% would not resolve reliably against a slide that only has a
+       stretched height — same reasoning as the showcase track below.
+
+       flex-basis has to be restated: image-carousel.css gives every slide
+       `flex: 0 0 100%` so it fills the scroller on a phone, which in a flex row
+       put the second card a full track-width off to the right. .col-2's
+       width: 50% is only the fallback basis. */
+    .product-track > .image-carousel-slide {
+        display: flex;
+        flex: 0 0 50%;
     }
 
     .product-carousel .image-carousel-arrow,
@@ -341,6 +382,43 @@
         display: block;
         overflow: visible;
         padding: 0;
+    }
+
+    /* Each slide is a .row wrapper, so it arrived carrying .row's 75px of top
+       padding: the section heading sat 75px above the first card, where Tjänster
+       and Produkter sit 20px above theirs (their slides are col- cells, and 20px
+       is the column gutter). 20px on the first slide matches them; 35px on the
+       rest pulls the four cards together into one group instead of four
+       separately floating blocks. */
+    .showcase-track > .image-carousel-slide {
+        padding-top: 35px;
+    }
+
+    .showcase-track > .image-carousel-slide:first-child {
+        padding-top: 20px;
+    }
+
+    /* Alternate which side the image sits on down the stack, so four cards on
+       the same template do not read as one repeated block. The image is
+       absolutely positioned inside the card, so the flip is only a matter of
+       which edge it is pinned to and which side the copy reserves for it. */
+    .showcase-track > .image-carousel-slide:nth-child(even) .card-image-wrapper {
+        left: auto;
+        right: 0;
+    }
+
+    .showcase-track > .image-carousel-slide:nth-child(even) .card-content {
+        margin-left: 0;
+        margin-right: 30%;
+    }
+
+    /* The card's bottom right corner is over the photo on a flipped card, where
+       a white glyph on an unknown image is a coin toss. Pull it in to the inner
+       edge of the copy instead, which is the same place it sits on an unflipped
+       card — bottom right of the text block, still pointing right. The 45px of
+       padding-right the base rule keeps clear for it does the same job here. */
+    .showcase-track > .image-carousel-slide:nth-child(even) .card-arrow {
+        right: calc(30% + 20px);
     }
 
     .showcase-carousel .image-carousel-arrow,
