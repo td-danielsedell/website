@@ -69,11 +69,42 @@
             return button;
         }
 
+        /* Where the track has to be scrolled for a slide to be the one on show.
+
+           offsetLeft is measured from the track's padding box, so the first
+           slide's own offset is the lead-in gutter; subtracting it puts slide 0
+           at scrollLeft 0, which is where the snap actually lands it.
+
+           Positions past the end of the scroll range collapse onto the last one
+           that fits. A track showing more than one slide at a time runs out of
+           scroll before its final slides can reach the start, so they all come
+           to rest on the same view — and with mandatory snapping an unreachable
+           position is not merely clamped, it is rejected, which pinned the track
+           at slide 0 and made the arrows do nothing at all. */
+        function positionOf(index) {
+            var lead = slides[0].offsetLeft - track.offsetLeft;
+            var limit = track.scrollWidth - track.clientWidth;
+            var furthest = 0;
+
+            Array.prototype.forEach.call(slides, function (slide) {
+                var start = slide.offsetLeft - track.offsetLeft - lead;
+                if (start <= limit && start > furthest) {
+                    furthest = start;
+                }
+            });
+
+            return Math.min(slides[index].offsetLeft - track.offsetLeft - lead, furthest);
+        }
+
         function go(index) {
-            /* offsetLeft is relative to the track's padding box, so the
-               difference is exactly the scroll position that centers it */
+            /* Marked before the scroll rather than after it. On a multi-slide
+               view the last few slides share one scroll position, so stepping
+               between them moves nothing and fires no scroll event to mark them
+               — the arrows would go dead one slide short of the end. The scroll
+               handler re-derives it on settle and agrees. */
+            markCurrent(index);
             track.scrollTo({
-                left: slides[index].offsetLeft - track.offsetLeft,
+                left: positionOf(index),
                 behavior: 'smooth'
             });
         }
@@ -117,8 +148,11 @@
                 var shortest = Infinity;
 
                 Array.prototype.forEach.call(slides, function (slide, index) {
-                    var distance = Math.abs(slide.offsetLeft - track.offsetLeft - position);
-                    if (distance < shortest) {
+                    var distance = Math.abs(positionOf(index) - position);
+                    /* <= so that when several slides share the end position the
+                       last of them wins. Ties cannot arise otherwise: one slide
+                       per view gives every slide a position of its own. */
+                    if (distance <= shortest) {
                         shortest = distance;
                         nearest = index;
                     }

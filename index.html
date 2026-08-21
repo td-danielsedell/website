@@ -662,9 +662,9 @@
                         <p id="product-heading" class="section-title">Vi har rätt lösning till dig</p>
                     </div>
 
-                    <!-- No text-center: the card copy reads better left-aligned at this
-                         measure, and it matches the showcase cards. The carousel dots
-                         centre themselves. -->
+                    <!-- No text-center: the cards centre their own title, subtitle and
+                         button and left-align the body copy, which the one class could
+                         not express. See .product in css/feature-card.css. -->
                     <div class="product-carousel image-carousel" data-image-carousel
                         data-carousel-label="Produkter"
                         data-carousel-noun="produkt">
@@ -672,7 +672,7 @@
 
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
-                                    <div>
+                                    <div class="product-body">
                                         <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset
                                                 Care</a></h3>
                                         <p class="product-sub">För alla era EAM behov</p>
@@ -694,7 +694,7 @@
 
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
-                                    <div>
+                                    <div class="product-body">
                                         <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
                                         <p class="product-sub">Kvalitetssäkra ert IBM Maximo</p>
                                         <div class="product-image-wrapper">
@@ -706,6 +706,31 @@
                                             </p>
                                         </div>
                                         <a href="mailto:info@totaldigital.se?subject=Boka ett möte om TD Test"
+                                            class="button">BOKA
+                                            ETT MÖTE</a>
+                                    </div>
+                                    <div class="card-arrow">&gt;</div>
+                                </div>
+                            </div>
+
+                            <!-- MOCK: TD Linear is a placeholder to see three cards in the
+                                 row. Everything but the title is copied from TD Test, and
+                                 the link still points at td_test.html because there is no
+                                 td_linear.html yet. -->
+                            <div class="col-2 image-carousel-slide">
+                                <div class="feature-card product">
+                                    <div class="product-body">
+                                        <h3><a href="td_test.html" class="card-link card-link-stretch">TD Linear</a></h3>
+                                        <p class="product-sub">Kvalitetssäkra ert IBM Maximo</p>
+                                        <div class="product-image-wrapper">
+                                            <img src="images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        </div>
+                                        <div class="product-content">
+                                            <p>
+                                                TD Test automatiserar test av IBM Maximo och kvalitetssäkrar era uppgraderingar. Verktyget verifierar att anpassningar och funktioner fungerar som de ska – från Maximo 7.x till IBM Maximo Application Suite.
+                                            </p>
+                                        </div>
+                                        <a href="mailto:info@totaldigital.se?subject=Boka ett möte om TD Linear"
                                             class="button">BOKA
                                             ETT MÖTE</a>
                                     </div>

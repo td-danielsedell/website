@@ -630,9 +630,9 @@
                         <p id="product-heading" class="section-title">We have the right solution for you</p>
                     </div>
 
-                    <!-- No text-center: the card copy reads better left-aligned at this
-                         measure, and it matches the showcase cards. The carousel dots
-                         centre themselves. -->
+                    <!-- No text-center: the cards centre their own title, subtitle and
+                         button and left-align the body copy, which the one class could
+                         not express. See .product in css/feature-card.css. -->
                     <div class="product-carousel image-carousel" data-image-carousel
                         data-carousel-label="Products"
                         data-carousel-noun="product">
@@ -640,7 +640,7 @@
 
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
-                                    <div>
+                                    <div class="product-body">
                                         <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset
                                                 Care</a></h3>
                                         <p class="product-sub">For all your EAM needs</p>
@@ -666,7 +666,7 @@
 
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
-                                    <div>
+                                    <div class="product-body">
                                         <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
                                         <p class="product-sub">Quality-assure your IBM Maximo</p>
                                         <div class="product-image-wrapper">
@@ -681,6 +681,34 @@
                                                 for verifying a successful upgrade to MAS, for example!</p>
                                         </div>
                                         <a href="mailto:info@totaldigital.se?subject=Book a meeting about TD Test"
+                                            class="button">BOOK
+                                            A MEETING</a>
+                                    </div>
+                                    <div class="card-arrow">&gt;</div>
+                                </div>
+                            </div>
+
+                            <!-- MOCK: TD Linear is a placeholder to see three cards in the
+                                 row. Everything but the title is copied from TD Test, and
+                                 the link still points at td_test.html because there is no
+                                 td_linear.html yet. -->
+                            <div class="col-2 image-carousel-slide">
+                                <div class="feature-card product">
+                                    <div class="product-body">
+                                        <h3><a href="td_test.html" class="card-link card-link-stretch">TD Linear</a></h3>
+                                        <p class="product-sub">Quality-assure your IBM Maximo</p>
+                                        <div class="product-image-wrapper">
+                                            <img src="../images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        </div>
+                                        <div class="product-content">
+                                            <p>TD Test is the automated testing tool that works just as well
+                                                for IBM Maximo 7.x as for the latest IBM Maximo Application
+                                                Suite. If you want to be certain your customisations work as
+                                                well in the newest version of IBM Maximo as they did in your
+                                                previous one, TD Test is the tool for you! TD Test is perfect
+                                                for verifying a successful upgrade to MAS, for example!</p>
+                                        </div>
+                                        <a href="mailto:info@totaldigital.se?subject=Book a meeting about TD Linear"
                                             class="button">BOOK
                                             A MEETING</a>
                                     </div>
