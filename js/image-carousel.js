@@ -72,13 +72,15 @@
 
            One per slide while a single slide fills the view. Fewer once several
            are on screen at a time: the track runs out of scroll before its last
-           slides can reach the start, so they all come to rest on the same final
-           view. Two of three cards at a time is two views — [1,2] and [2,3] —
-           not three, and counting them is what the dots and the arrows both
-           need. Collapsing those positions is also load-bearing rather than
-           cosmetic: under mandatory snapping a position past the end of the
-           range is not clamped but rejected outright, which pinned the track on
-           the first slide and left the arrows doing nothing at all.
+           slides can reach the start, and everything past that shares the one
+           final view. Two of three cards at a time is two views — [1,2] and
+           [2,3] — not three, and counting them is what the dots and the arrows
+           both need.
+
+           Clamping to the end of the scroll range rather than to the last slide
+           start that fits inside it, because the end is a view in its own right:
+           at a width showing one and a third cards, scrolling fully right brings
+           the third card into view even though its own start never can be.
 
            offsetLeft is measured from the track's padding box, so the first
            slide's own offset is the lead-in gutter; subtracting it puts the
@@ -86,20 +88,10 @@
         function views() {
             var lead = slides[0].offsetLeft - track.offsetLeft;
             var limit = track.scrollWidth - track.clientWidth;
-            var furthest = 0;
-            var starts = [];
             var out = [];
 
-            Array.prototype.forEach.call(slides, function (slide) {
-                var start = slide.offsetLeft - track.offsetLeft - lead;
-                starts.push(start);
-                if (start <= limit && start > furthest) {
-                    furthest = start;
-                }
-            });
-
-            starts.forEach(function (start, index) {
-                var position = Math.min(start, furthest);
+            Array.prototype.forEach.call(slides, function (slide, index) {
+                var position = Math.min(slide.offsetLeft - track.offsetLeft - lead, limit);
                 /* first slide to land on a position is the one leading it */
                 if (!out.length || position > out[out.length - 1].position) {
                     out.push({ position: position, slide: index });
@@ -163,6 +155,8 @@
             });
         }
 
+        /* Padding first: how many views there are is measured off it. */
+        fitViews();
         renderDots();
 
         /* Whatever moved the track — arrow, dot, swipe, wheel — the view nearest
@@ -189,28 +183,90 @@
             }, 80);
         });
 
-        /* Keyboard control once the carousel has focus. The track is
-           focusable so this is reachable without a mouse — but only while it
-           actually scrolls: the product carousel goes back to a plain column
-           layout on desktop, and a tab stop on a static block is dead weight. */
+        /* Opt-in, for a track whose slides carry their own width rather than
+           filling the scrollport. Sets the side padding to whatever centres the
+           current view, which is the only way to centre a view of more than one
+           slide: scroll-snap-align can only centre a single slide, and would cut
+           both neighbours of a two-slide view in half.
+
+           Everything downstream then falls out of that padding. A slide resting
+           at the left padding edge is a centred view, so the snap positions are
+           just multiples of the stride; and
+
+               maxScroll = 2 x padding + total - port
+                         = (port - viewWidth) + total - port
+                         = total - viewWidth
+                         = (slides - per) x stride
+
+           lands the last view exactly on the end of the scroll range, so nothing
+           needs clamping and nothing is unreachable. When every slide fits, per
+           covers them all, the padding centres the lot and there is no scroll —
+           which is the wide layout, arrived at without a breakpoint.
+
+           Only for tracks that ask: a slide sized as a percentage of the content
+           box would feed its own width back into this and never settle. */
+        function fitViews() {
+            if (!carousel.hasAttribute('data-carousel-fit')) {
+                return;
+            }
+
+            var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+            var slide = slides[0].getBoundingClientRect().width;
+            /* clientWidth is the padding box, so it does not move when the
+               padding we are about to set does */
+            var port = track.clientWidth;
+            var per = Math.max(1, Math.floor((port + gap) / (slide + gap)));
+            var side = Math.max(0, (port - (per * slide + (per - 1) * gap)) / 2);
+
+            track.style.paddingLeft = side + 'px';
+            track.style.paddingRight = side + 'px';
+            track.style.scrollPaddingLeft = side + 'px';
+
+            /* Re-anchor on the view we were already on. Snapping does not re-run
+               when the padding under it changes, so the track would otherwise sit
+               a fallback-padding's worth off its own snap position — 20px, which
+               is exactly enough to make the first view look uncentred while every
+               other view looks right. Instantly, and without disturbing the
+               smooth scrolling the arrows rely on. */
+            stops = views();
+
+            var anchor = stops[Math.min(current, stops.length - 1)];
+            if (anchor) {
+                var behavior = track.style.scrollBehavior;
+                track.style.scrollBehavior = 'auto';
+                track.scrollLeft = anchor.position;
+                track.style.scrollBehavior = behavior;
+            }
+        }
+
         track.setAttribute('role', 'group');
         track.setAttribute('aria-label', groupLabel);
 
-        function syncFocusable() {
-            if (track.scrollWidth > track.clientWidth + 1) {
+        /* A track wide enough to hold all its slides has nothing to offer: the
+           arrows and dots would be lying and the tab stop is dead weight. The
+           products rely on this rather than a breakpoint — their cards keep a
+           fixed size, so whether it scrolls is a question of how many happen to
+           fit, which only measuring can answer. Keyboard control is reachable
+           without a mouse for the same reason the tab stop exists. */
+        function syncAffordances() {
+            var scrolls = track.scrollWidth > track.clientWidth + 1;
+
+            carousel.classList.toggle('image-carousel--static', !scrolls);
+            if (scrolls) {
                 track.setAttribute('tabindex', '0');
             } else {
                 track.removeAttribute('tabindex');
             }
         }
 
-        syncFocusable();
+        syncAffordances();
 
-        /* Crossing a breakpoint can change how many slides share the view, and
-           so how many views there are: the products go three-across, two-up and
-           one-up. renderDots is a no-op unless that count actually moved. */
+        /* A resize can change how many slides share the view, and so how many
+           views there are and whether it scrolls at all. renderDots is a no-op
+           unless the count actually moved. */
         window.addEventListener('resize', function () {
-            syncFocusable();
+            fitViews();
+            syncAffordances();
             renderDots();
         });
 

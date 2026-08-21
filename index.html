@@ -667,8 +667,12 @@
                          not express. See .product in css/feature-card.css. -->
                     <div class="product-carousel image-carousel" data-image-carousel
                         data-carousel-label="Produkter"
-                        data-carousel-noun="produkt">
-                        <div class="product-track image-carousel-track clearfix">
+                        data-carousel-noun="produkt"
+                        data-carousel-fit>
+                        <!-- No clearfix: the track is a flex container at every width, so
+                             there is nothing to clear, and .clearfix's ::after counts as a
+                             flex item — the gap before it pushed the centred row off-centre. -->
+                        <div class="product-track image-carousel-track">
 
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">

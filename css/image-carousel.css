@@ -20,6 +20,15 @@
     position: relative;
 }
 
+/* Set by js/image-carousel.js when the track holds every slide at once, so there
+   is nothing to scroll to. A page can still hide these at a breakpoint of its
+   own; this covers the case where whether it scrolls depends on how many
+   fixed-size slides happen to fit, which no media query can know. */
+.image-carousel--static .image-carousel-arrow,
+.image-carousel--static .image-carousel-dots {
+    display: none;
+}
+
 .image-carousel-track {
     display: flex;
     gap: 24px;

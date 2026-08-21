@@ -174,11 +174,10 @@
 
 .product {
     padding: 10px;
-    /* Capped rather than fixed: three cards across put the column at 341px on a
-       1024px viewport, and a hard 350px would overflow it. */
+    /* The slide sets the width, so this is only "fill it". Height comes from the
+       slide too: the track stretches every slide to the tallest and the card is
+       a flex item of it, which is what lines the buttons up across cards. */
     width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
     /* .feature-card is a flex row (image beside copy, which is what the showcase
        cards want); a product card stacks instead. */
     flex-direction: column;
@@ -223,146 +222,82 @@
     padding: 20px 0;
 }
 
-/* Below the width where every product fits in one row, they ride the sitewide
-   image carousel (css/image-carousel.css + js/image-carousel.js), which supplies
-   the track, the arrows and the dots; these rules only size the slides.
+/* The products ride the sitewide image carousel (css/image-carousel.css +
+   js/image-carousel.js) at every width, with no breakpoints of their own.
 
-   The cutover is 1020px rather than the usual 767px because three cards need
-   3 × 340px to sit side by side — see the row below. Between 768px and 1019px
-   the row wrapped to 2 + 1 and stranded the third card on a line of its own.
-   The number follows the product count: back at two products the row fits from
-   768px and this is a phone-only carousel again. */
-@media (max-width: 1019px) {
-    /* The side padding is what lets a slide sit centred: it is the gutter the
-       neighbouring card peeks through, at both ends of the track too. */
-    .product-track.image-carousel-track {
-        gap: 16px;
-        padding: 8px 11% 16px;
-    }
+   A card keeps its own size and however many fit is what you see: three side by
+   side on a wide screen, two on a laptop, one on a phone. Sizing cards to a
+   target number per view was the alternative, and it is what forced them to be a
+   function of the viewport — squeezed to 300px at 1020px — and needed two
+   breakpoints and a width cap to stay presentable.
 
-    /* Cancel the float and the 50% width the column grid hands these. */
-    .product-track > .image-carousel-slide {
-        float: none;
-        width: auto;
-        padding: 0;
-    }
+   The side padding is what centres the current view, and the script overwrites
+   it with (track width - view width) / 2 once it can measure how many cards fit.
+   That one number does all three tiers: a slide sitting at the left padding edge
+   IS a centred view, whether the view is one card or two, and the last view's
+   position works out to exactly the end of the scroll range. The values below
+   are the no-JS fallback, where this degrades to a plain scroller. */
+.product-track.image-carousel-track {
+    gap: 40px;
+    padding: 8px 20px 24px;
+}
 
-    /* The row's width cap fights the track, which sizes the slides itself.
-       Height comes from the slide either way: the track stretches every slide
-       to the tallest and the card fills it. */
-    .product-track .product {
-        width: auto;
-        max-width: none;
-        margin: 0;
-        height: 100%;
-    }
+/* 350px is the measure the copy is written for. The 78vw floor is for phones
+   too narrow for that: it leaves room for the padding either side, which is what
+   lets the neighbouring cards peek in and advertise the swipe.
 
-    /* 40px started wrapping "TD Asset Care" to two lines when the title went
-       bold: it measures 273px at 700 against 250px at 300, and the card gives
-       the title ~257px. 34px brings it to 232px, and is the size .section-title
-       already uses. */
+   Slides snap to their start, which is the same thing as their view being
+   centred once the padding above is in place — a centre snap would instead
+   centre one card of a two-card view and cut both its neighbours in half.
+
+   display: flex so the card is stretched by the slide rather than resolving a
+   percentage height against it. float and padding are the column grid's, which
+   the track sizes instead. */
+.product-track > .image-carousel-slide {
+    display: flex;
+    flex: 0 0 auto;
+    width: min(350px, 78vw);
+    float: none;
+    padding: 0;
+    scroll-snap-align: start;
+}
+
+/* The cards are ~600px tall, so an arrow centred on the track would land
+   halfway down a body of text. Put them on the dot row instead, where they sit
+   at a fixed spot no matter how the card copy reflows. */
+.product-carousel .image-carousel-dots {
+    align-items: center;
+    min-height: 36px;
+    margin-top: 8px;
+}
+
+.product-carousel .image-carousel-arrow {
+    top: auto;
+    bottom: 0;
+    transform: none;
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    line-height: 36px;
+}
+
+.product-carousel .image-carousel-arrow--prev {
+    left: 15px;
+}
+
+.product-carousel .image-carousel-arrow--next {
+    right: 15px;
+}
+
+/* The one width that still needs saying out loud. Below ~400px the 88% leaves
+   the card under 293px, and "TD Asset Care" measures 273px at 40px bold — it
+   wrapped to two lines. 34px brings it to 232px, and is the size .section-title
+   already uses. */
+@media (max-width: 400px) {
     .product h3 {
         font-size: 34px;
     }
-
-    /* The cards are ~600px tall, so an arrow centred on the track would land
-       halfway down a body of text. Put them on the dot row instead, where they
-       sit at a fixed spot no matter how the card copy reflows. */
-    .product-carousel .image-carousel-dots {
-        align-items: center;
-        min-height: 36px;
-        margin-top: 8px;
-    }
-
-    .product-carousel .image-carousel-arrow {
-        top: auto;
-        bottom: 0;
-        transform: none;
-        width: 36px;
-        height: 36px;
-        font-size: 15px;
-        line-height: 36px;
-    }
-
-    .product-carousel .image-carousel-arrow--prev {
-        left: 15px;
-    }
-
-    .product-carousel .image-carousel-arrow--next {
-        right: 15px;
-    }
 }
-
-/* One card per view. Holding the carousel to a card's width is what stops the
-   slide — 100% of the track — from stretching one card to ~600px at the top of
-   this range: 440px is the 350px card plus the 11% peek gutter either side. */
-@media (max-width: 767px) {
-    .product-carousel {
-        max-width: 440px;
-        margin: 0 auto;
-    }
-}
-
-/* Two cards per view. The pair fills the content box, so the track's 11% gutters
-   become the lead-in on one side and the third card peeking through on the other.
-
-   Start-aligned rather than the phone's centre snap: with two cards on screen
-   there is no single one to centre. The script already works in start
-   coordinates, and scroll-padding-left keeps the lead-in gutter at the first
-   position rather than scrolling it out of sight. */
-@media (min-width: 768px) and (max-width: 1019px) {
-    .product-track.image-carousel-track {
-        scroll-padding-left: 11%;
-    }
-
-    .product-track > .image-carousel-slide {
-        /* half the content box, less this slide's share of the 16px gap */
-        flex-basis: calc(50% - 8px);
-        scroll-snap-align: start;
-    }
-}
-
-/* Three cards, no carousel — the affordances the script injected have nothing
-   to scroll.
-
-   A flex row rather than the floated columns it used to be: align-items: stretch
-   equalises the cards, which is the job the 300px .product-content box and the
-   765px .product min-height used to do by hand. The slides are still .col-
-   cells, so they keep the 20px gutter; float is ignored on a flex item. */
-@media (min-width: 1020px) {
-    .product-track.image-carousel-track {
-        display: flex;
-        gap: 0;
-        overflow: visible;
-        padding: 0;
-    }
-
-    /* Flex on the slide too, so the card is the thing being stretched. Its
-       height: 100% would not resolve reliably against a slide that only has a
-       stretched height — same reasoning as the showcase track below.
-
-       flex has to be restated: image-carousel.css gives every slide
-       `flex: 0 0 100%` so it fills the scroller on a phone, which in a flex row
-       put the second card a full track-width off to the right. Grow-and-shrink
-       off a 340px basis rather than a hardcoded percentage, so adding or
-       removing a product needs no change here and none to the .col- classes.
-       340px is also what sets the 1020px breakpoint above: three of them.
-
-       No flex-wrap, deliberately. A fourth product would exceed the 1245px row
-       at this basis, and wrapping puts it alone on a second line — the orphan
-       this breakpoint exists to avoid. Shrinking all four to ~311px instead is
-       the better failure mode; the title still fits at that width. */
-    .product-track > .image-carousel-slide {
-        display: flex;
-        flex: 1 1 340px;
-    }
-
-    .product-carousel .image-carousel-arrow,
-    .product-carousel .image-carousel-dots {
-        display: none;
-    }
-}
-
 /* Showcases. Four cards at ~585px each is a 2,600px stack on a phone, so below
    the tablet breakpoint they ride the same sitewide carousel the products use.
    The slides are the existing .row wrappers, which keeps the desktop stack
