@@ -222,6 +222,114 @@ $(document).ready(function () {
 	$(window).on('scroll resize load', syncActiveNavItem);
 	syncActiveNavItem();
 
+	/* Keep the reader in place when the layout changes width.
+
+	   Chrome's scroll anchoring holds the page still through an ordinary
+	   resize — dragging a desktop window from 900 to 1000px moves Produkter
+	   91px up the document and moves scrollTop by exactly the same 91px. But
+	   it gives up at 768px: measured on index.html, a 767→768px step moves
+	   Produkter 2,013px down and leaves scrollTop untouched, so a reader
+	   sitting on Produkter is thrown back into the middle of Showcases.
+
+	   Not caused by anything we script — it happens with every <script> in the
+	   page stripped out, and anchoring demonstrably works here otherwise
+	   (inserting a 500px box above the viewport shifts scrollTop by exactly
+	   500). It is the layout change itself: a media query that changes padding
+	   or width on the anchor's own ancestors is a scroll-anchoring suppression
+	   trigger, and 768px is where the carousels in Tjänster and Showcases turn
+	   into grids — 1,060px of extra height in Tjänster alone. 768 is the only
+	   breakpoint on the page that moves anything; the others cost 0px.
+
+	   The real trigger is not dragging a window, it is turning a phone:
+	   portrait and landscape sit either side of that breakpoint.
+
+	   So keep our own anchor — which section the reader is in, and how far
+	   into it — and restore it after the resize, scaling the offset by how
+	   much the section itself grew or shrank so half way down a section stays
+	   half way down. Only when the browser has visibly failed, though: if the
+	   section moved and scrollTop moved with it, anchoring did its job and
+	   this stays out of the way. */
+	var anchor = null;
+	var anchorWidth = window.innerWidth;
+	var resizePending = false;
+
+	function captureAnchor() {
+		/* Not while a resize is being dealt with. The browser's own partial
+		   adjustment fires a scroll event of its own, and letting that land
+		   here would overwrite the anchor with the position we are about to
+		   correct — which is exactly why wide-to-narrow used to stay broken
+		   while narrow-to-wide was fixed. Both tests are needed because the
+		   scroll event and the resize event can arrive in either order: the
+		   flag catches resize-first, the width catches scroll-first. */
+		if (resizePending || window.innerWidth !== anchorWidth) {
+			return;
+		}
+
+		var y = window.pageYOffset;
+		var edge = y + $('#header').outerHeight(true);
+		var found = null;
+
+		/* The section whose top is last above the header, i.e. the one filling
+		   the viewport — the same reading of "where am I" the nav uses. */
+		$('.scrollto').each(function () {
+			var top = $(this).offset().top;
+			if (top <= edge + 2) {
+				found = { id: this.id, top: top, height: $(this).outerHeight() || 1, y: y };
+			}
+		});
+
+		anchor = found;
+	}
+
+	function restoreAnchor() {
+		var $section = anchor && $('#' + anchor.id);
+		if (!$section || !$section.length) {
+			return;
+		}
+
+		var top = $section.offset().top;
+		var y = window.pageYOffset;
+
+		/* What the browser left undone: how far the section travelled, less how
+		   far scrollTop travelled after it. Zero means the reader never moved
+		   relative to the page and there is nothing to correct. */
+		if (Math.abs((top - anchor.top) - (y - anchor.y)) <= 8) {
+			return;
+		}
+
+		var into = (anchor.y - anchor.top) * (($section.outerHeight() || 1) / anchor.height);
+		window.scrollTo(0, Math.max(0, Math.round(top + into)));
+	}
+
+	$(window).on('resize', function () {
+		/* Height-only resizes are a phone's toolbar sliding in and out while
+		   the reader scrolls. Nothing reflowed, and grabbing the scroll
+		   position back mid-gesture would be a jerk in itself. */
+		if (window.innerWidth === anchorWidth) {
+			captureAnchor();
+			return;
+		}
+
+		anchorWidth = window.innerWidth;
+
+		/* Next frame, so every other resize handler has had its turn first —
+		   the carousels hide their dots on the way to the wide layout, and
+		   measuring before that would anchor against a height about to
+		   change. Coalesced, because a window drag fires this continuously. */
+		if (resizePending) {
+			return;
+		}
+		resizePending = true;
+		requestAnimationFrame(function () {
+			resizePending = false;
+			restoreAnchor();
+			captureAnchor();
+		});
+	});
+
+	$(window).on('scroll load', captureAnchor);
+	captureAnchor();
+
 	/* WOW Elements. Started here rather than on window.load: WOW hides every
 	   .wow element until it initialises, so waiting for images to finish would
 	   keep half the page invisible long after it could have been read. */
