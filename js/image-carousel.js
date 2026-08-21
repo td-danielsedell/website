@@ -60,53 +60,68 @@
             button.innerHTML = '<svg class="svg-icon" viewBox="0 0 320 512" aria-hidden="true" focusable="false" '
                 + 'xmlns="http://www.w3.org/2000/svg"><path d="' + CHEVRON[glyph] + '" /></svg>';
             button.addEventListener('click', function () {
-                /* wrap around, so neither end is a dead button */
-                go(direction === 'prev'
-                    ? (current - 1 + slides.length) % slides.length
-                    : (current + 1) % slides.length);
+                /* go() wraps, so neither end is a dead button */
+                go(direction === 'prev' ? current - 1 : current + 1);
             });
             carousel.appendChild(button);
             return button;
         }
 
-        /* Where the track has to be scrolled for a slide to be the one on show.
+        /* The distinct positions the track can come to rest at, in order, each
+           tagged with the slide that leads it.
+
+           One per slide while a single slide fills the view. Fewer once several
+           are on screen at a time: the track runs out of scroll before its last
+           slides can reach the start, so they all come to rest on the same final
+           view. Two of three cards at a time is two views — [1,2] and [2,3] —
+           not three, and counting them is what the dots and the arrows both
+           need. Collapsing those positions is also load-bearing rather than
+           cosmetic: under mandatory snapping a position past the end of the
+           range is not clamped but rejected outright, which pinned the track on
+           the first slide and left the arrows doing nothing at all.
 
            offsetLeft is measured from the track's padding box, so the first
-           slide's own offset is the lead-in gutter; subtracting it puts slide 0
-           at scrollLeft 0, which is where the snap actually lands it.
-
-           Positions past the end of the scroll range collapse onto the last one
-           that fits. A track showing more than one slide at a time runs out of
-           scroll before its final slides can reach the start, so they all come
-           to rest on the same view — and with mandatory snapping an unreachable
-           position is not merely clamped, it is rejected, which pinned the track
-           at slide 0 and made the arrows do nothing at all. */
-        function positionOf(index) {
+           slide's own offset is the lead-in gutter; subtracting it puts the
+           first view at scrollLeft 0, where the snap actually lands it. */
+        function views() {
             var lead = slides[0].offsetLeft - track.offsetLeft;
             var limit = track.scrollWidth - track.clientWidth;
             var furthest = 0;
+            var starts = [];
+            var out = [];
 
             Array.prototype.forEach.call(slides, function (slide) {
                 var start = slide.offsetLeft - track.offsetLeft - lead;
+                starts.push(start);
                 if (start <= limit && start > furthest) {
                     furthest = start;
                 }
             });
 
-            return Math.min(slides[index].offsetLeft - track.offsetLeft - lead, furthest);
+            starts.forEach(function (start, index) {
+                var position = Math.min(start, furthest);
+                /* first slide to land on a position is the one leading it */
+                if (!out.length || position > out[out.length - 1].position) {
+                    out.push({ position: position, slide: index });
+                }
+            });
+
+            return out;
         }
 
+        var stops = views();
+
         function go(index) {
-            /* Marked before the scroll rather than after it. On a multi-slide
-               view the last few slides share one scroll position, so stepping
-               between them moves nothing and fires no scroll event to mark them
-               — the arrows would go dead one slide short of the end. The scroll
-               handler re-derives it on settle and agrees. */
+            /* Re-measured on the way in: a breakpoint may have changed both how
+               many views there are and where they sit since the last look. */
+            stops = views();
+            if (!stops.length) {
+                return;
+            }
+
+            index = ((index % stops.length) + stops.length) % stops.length;
             markCurrent(index);
-            track.scrollTo({
-                left: positionOf(index),
-                behavior: 'smooth'
-            });
+            track.scrollTo({ left: stops[index].position, behavior: 'smooth' });
         }
 
         arrow('prev', speech.prev + noun, 'left');
@@ -114,19 +129,32 @@
 
         var dots = document.createElement('div');
         dots.className = 'image-carousel-dots';
-
-        Array.prototype.forEach.call(slides, function (slide, index) {
-            var dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'image-carousel-dot';
-            dot.setAttribute('aria-label', speech.goto(noun, index + 1, slides.length));
-            dot.addEventListener('click', function () {
-                go(index);
-            });
-            dots.appendChild(dot);
-        });
-
         carousel.appendChild(dots);
+
+        /* One dot per view. The label still counts in slides — "go to product 2
+           of 3" names the card the view leads with, which is what a reader is
+           looking for; it is only the number of dots that follows the views. */
+        function renderDots() {
+            stops = views();
+
+            if (dots.children.length === stops.length) {
+                return;
+            }
+
+            dots.innerHTML = '';
+            stops.forEach(function (stop, index) {
+                var dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'image-carousel-dot';
+                dot.setAttribute('aria-label', speech.goto(noun, stop.slide + 1, slides.length));
+                dot.addEventListener('click', function () {
+                    go(index);
+                });
+                dots.appendChild(dot);
+            });
+
+            markCurrent(Math.min(current, stops.length - 1));
+        }
 
         function markCurrent(index) {
             current = index;
@@ -135,10 +163,11 @@
             });
         }
 
-        markCurrent(0);
+        renderDots();
 
-        /* Whatever moved the track — arrow, dot, swipe, wheel — the nearest
-           slide to the track's left edge is the one now on screen. */
+        /* Whatever moved the track — arrow, dot, swipe, wheel — the view nearest
+           the track's resting position is the one now on screen. No tie-break
+           needed: views() has already made the positions distinct. */
         var settle = null;
         track.addEventListener('scroll', function () {
             clearTimeout(settle);
@@ -147,12 +176,10 @@
                 var nearest = 0;
                 var shortest = Infinity;
 
-                Array.prototype.forEach.call(slides, function (slide, index) {
-                    var distance = Math.abs(positionOf(index) - position);
-                    /* <= so that when several slides share the end position the
-                       last of them wins. Ties cannot arise otherwise: one slide
-                       per view gives every slide a position of its own. */
-                    if (distance <= shortest) {
+                stops = views();
+                stops.forEach(function (stop, index) {
+                    var distance = Math.abs(stop.position - position);
+                    if (distance < shortest) {
                         shortest = distance;
                         nearest = index;
                     }
@@ -178,20 +205,27 @@
         }
 
         syncFocusable();
-        window.addEventListener('resize', syncFocusable);
+
+        /* Crossing a breakpoint can change how many slides share the view, and
+           so how many views there are: the products go three-across, two-up and
+           one-up. renderDots is a no-op unless that count actually moved. */
+        window.addEventListener('resize', function () {
+            syncFocusable();
+            renderDots();
+        });
 
         track.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
-                go((current - 1 + slides.length) % slides.length);
+                go(current - 1);
             } else if (e.key === 'ArrowRight') {
                 e.preventDefault();
-                go((current + 1) % slides.length);
+                go(current + 1);
             }
         });
 
         /* Optional auto-advance: data-carousel-autoplay="4000" steps one whole
-           slide every 4s. Unlike a marquee this always comes to rest on a
+           view every 4s. Unlike a marquee this always comes to rest on a
            snapped slide, so nothing is ever half readable. */
         var autoplayDelay = parseInt(carousel.getAttribute('data-carousel-autoplay'), 10);
         if (!autoplayDelay || autoplayDelay < 1000) {
@@ -232,7 +266,7 @@
                     stop();
                     return;
                 }
-                go((current + 1) % slides.length);
+                go(current + 1);
             }, autoplayDelay);
         }
 
