@@ -381,7 +381,11 @@
             </section>
             <!--End of Orter-->
 
-            <!--Karriär-->
+            <!--Karriär. Var två sektioner, Karriär och Examensarbete: de sa samma sak två
+                gånger – vi annonserar inte, hör av dig – och lade två CTA-block efter
+                varandra i slutet av sidan. Nu en sektion med två spår. Spåren behöver egna
+                rubriker (h3.split-heading) eftersom de två kickers som tidigare skilde dem
+                åt är borta.-->
             <section id="career" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -394,10 +398,14 @@
 
                     <div class="col-14">
                         <p class="section-subtitle">PLATSHÅLLARE. En rad om att vi hellre pratar
-                            med rätt person än utgår från en annons.</p>
+                            med rätt person än utgår från en annons – och att det gäller lika
+                            mycket den som är färdig som den som ska skriva sitt examensarbete.</p>
                     </div>
 
-                    <div class="col-1">
+                    <div class="col-1 split-2">
+
+                        <div>
+                        <h3 class="split-heading">Anställning</h3>
                         <p>PLATSHÅLLARE. Här står vad det innebär att arbeta hos oss: vilka
                             uppdrag man hamnar i, hur ett litet bolag med stora kunder fungerar i
                             praktiken, och vad vi förväntar oss av den som kommer in. Vi
@@ -405,47 +413,20 @@
                             oftast också ett uppdrag.</p>
                         <p>PLATSHÅLLARE. En rad om hur en spontanansökan bäst ser ut, och vad som
                             händer efter att den kommit in.</p>
-                    </div>
-
-                    <!--Call to Action-->
-                    <div class="col-1 text-center showcase-cta">
-                        <p>Känner du att du hör hemma hos oss? Hör av dig, även om vi inte söker
-                            just nu.</p>
-                        <a href="mailto:info@totaldigital.se?subject=Spontanansökan" class="button">SKICKA EN SPONTANANSÖKAN</a>
-                    </div>
-                    <!--End of Call to Action-->
-
-                </div>
-            </section>
-            <!--End of Karriär-->
-
-            <!--Examensarbete-->
-            <section id="thesis" class="introduction scrollto">
-                <div class="row clearfix">
-
-                    <div class="col-14">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">EXAMENSARBETE</h2>
-                            <p class="section-title">Vi tar emot examensarbetare</p>
                         </div>
-                    </div>
-
-                    <div class="col-14">
-                        <p class="section-subtitle">PLATSHÅLLARE. En rad om vad ett examensarbete
-                            hos oss ser ut som, och när man bör höra av sig.</p>
-                    </div>
-
-                    <div class="col-1 split-2">
 
                         <div>
+                        <h3 class="split-heading">Examensarbete</h3>
                         <p>PLATSHÅLLARE. Här står hur vi handleder, vad vi kan erbjuda i form av
                             data, plattformar och tid, och vilken typ av frågeställningar som
                             passar oss. Ett examensarbete hos oss ligger i skärningen mellan
                             tillgångsförvaltning, GIS, fjärranalys och AI.</p>
                         <p>PLATSHÅLLARE. En rad om vilka lärosäten vi samarbetat med och hur
                             processen brukar gå till.</p>
-                        </div>
 
+                        <!--Listan är kvar men är platshållare hela vägen. Finns det inga
+                            riktiga titlar att sätta här ska den bort: fyra påhittade rader i en
+                            ramad lista ser ut som innehåll man har och inte har.-->
                         <ul class="thesis-list">
                             <li>
                                 <span class="thesis-title">Platshållare: titel på examensarbetet</span>
@@ -459,25 +440,27 @@
                                 <span class="thesis-title">Platshållare: titel på examensarbetet</span>
                                 <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
                             </li>
-                            <li>
-                                <span class="thesis-title">Platshållare: titel på examensarbetet</span>
-                                <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
-                            </li>
                         </ul>
+                        </div>
 
                     </div>
 
-                    <!--Call to Action-->
+                    <!--Call to Action. Två knappar, inte en: ämnesraden i mailto skiljer en
+                        spontanansökan från en examensarbetsförfrågan, och den routningen är
+                        värd att behålla även när sektionerna slogs ihop.-->
                     <div class="col-1 text-center showcase-cta">
-                        <p>Har du en idé till ett examensarbete, eller vill du höra vilka uppslag
-                            vi har liggande?</p>
-                        <a href="mailto:info@totaldigital.se?subject=Examensarbete" class="button">HÖR AV DIG OM EXAMENSARBETE</a>
+                        <p>Känner du att du hör hemma hos oss? Hör av dig, även om vi inte söker
+                            just nu.</p>
+                        <div class="cta-buttons">
+                            <a href="mailto:info@totaldigital.se?subject=Spontanansökan" class="button">SKICKA EN SPONTANANSÖKAN</a>
+                            <a href="mailto:info@totaldigital.se?subject=Examensarbete" class="button">HÖR AV DIG OM EXAMENSARBETE</a>
+                        </div>
                     </div>
                     <!--End of Call to Action-->
 
                 </div>
             </section>
-            <!--End of Examensarbete-->
+            <!--End of Karriär-->
 
 
         </main>

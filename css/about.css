@@ -218,6 +218,24 @@
     margin-top: 0;
 }
 
+/* Sub-heading for a .split-2 column. Karriär needs it: the section carries two
+   tracks — anställning and examensarbete — that used to be two sections with a
+   kicker each, so without a label per column the reader gets two unmarked
+   blocks of text. h3 rather than h4 because the section's own heading is the h2.
+
+   h3 arrives with padding: 10px 0 from style.css:1360; the top half would push
+   the column below the row it starts, so only the bottom half is kept and the
+   first paragraph states its own gap instead of taking the UA's 1em. */
+.split-heading {
+    padding-top: 0;
+    font-size: 20px;
+    color: var(--section-heading);
+}
+
+.split-heading + p {
+    margin-top: 8px;
+}
+
 
 /* --------- 4. Locations ---------- */
 
