@@ -1,7 +1,7 @@
 /* 1. Container can now be ANY width you want (e.g., 600px, 50%, etc.) */
 .logo-slider {
     overflow: hidden;
-    padding: 30px 0;
+    padding-top: 30px;
     /* background: #f9f9f9; */
     position: relative;
 
@@ -60,4 +60,66 @@
 .logo-track img:hover {
     filter: grayscale(0%);
     opacity: 1;
+}
+/* The industry strip under Affärsområden runs on this same marquee, but it is a
+   row of small labelled icons, not a row of logos: 36px and in colour, exactly
+   the size they were when the row was a static list. Everything here is undoing
+   a .logo-track rule above, which is written for 160px greyscale logos. */
+.industry-slider {
+    /* Takes whatever width is left beside .industry-label. min-width:0 so the
+       flex item is allowed to be narrower than its (very wide) content. */
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.industry-slider .logo-track span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* 20px a side is the 40px between items the static row had. */
+    margin: 0 20px;
+    font-size: 17px;
+    line-height: normal;
+    color: #c2c2c2;
+    white-space: nowrap;
+}
+
+.industry-slider .logo-track img {
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    filter: none;
+    opacity: 1;
+}
+
+/* The strip stacks below 768px, and in a column flex container the flex-basis
+   above resolves against the height — which collapsed the marquee to nothing. */
+@media (max-width: 767px) {
+    .industry-slider {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* The slider inside the merged Kunder och partners section. It shares the row
+   with two testimonials there instead of having a section to itself, so the
+   logos come down from 160px and the copy above them is the section's own
+   subtitle rather than a heading. */
+.trust-partners {
+    padding-top: 20px;
+}
+
+.trust-partners .section-subtitle {
+    color: #fff;
+}
+
+.trust-partners .logo-slider {
+    margin-top: 10px;
+}
+
+.trust-partners .logo-track img {
+    height: 120px;
+    margin: 0 40px;
 }

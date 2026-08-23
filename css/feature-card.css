@@ -298,6 +298,127 @@
         font-size: 34px;
     }
 }
+
+/* Slot for a product still waiting on its own artwork. Deliberately reads as a
+   hole rather than as a design: the hatch and the monospace label are there so
+   nobody mistakes it for a finished card. */
+.product-image-placeholder {
+    height: 170px;
+    margin: 22px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(135deg, #3a3a3a 0 10px, #333 10px 20px);
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+}
+
+.product-image-placeholder span {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #8f8f8f;
+}
+
+/* The product card, at every width. It used to be desktop-only, which left the
+   phone showing the stock card — a 34px centred title with the subtitle in
+   italics under it — while the desktop showed a kicker above a 26px left-aligned
+   one. Two treatments of the same card on the same page.
+
+   One alignment for the whole card: the stock card centres title and subtitle
+   and left-aligns the copy, which is what made three of them side by side read
+   as messy. */
+.product-carousel .feature-card.product {
+    padding: 0;
+    text-align: left;
+}
+
+.product-carousel .product-body {
+    width: 100%;
+}
+
+.product-carousel .product h3 {
+    font-size: 26px;
+    font-weight: 700;
+    padding: 6px 28px 0;
+}
+
+/* Reads as the kicker-then-title pair every section on the page already uses:
+   small bright label, larger name under it. order:-1 lifts it above the h3
+   without moving it in the markup, where it belongs to the heading. No new
+   colour — it is the section subtitle's. */
+.product-carousel .product-sub {
+    order: -1;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--section-subtitle);
+    padding: 26px 28px 0;
+}
+
+.product-carousel .product-image-wrapper {
+    height: 170px;
+    margin: 22px 0 0;
+}
+
+.product-carousel .product-image-wrapper img {
+    height: 100%;
+}
+
+.product-carousel .product-content {
+    padding: 22px 28px 30px;
+}
+
+.product-carousel .product-content p {
+    font-size: 14px;
+    line-height: 23px;
+    color: #c2c2c2;
+}
+
+.product-carousel .card-arrow {
+    bottom: 30px;
+}
+
+/* Desktop drops the swipe and lays the products out on a grid. The carousel's
+   centring maths only ever mattered where the cards do not all fit, and three
+   of them do from 768px up. The rules above still run below that. */
+@media (min-width: 768px) {
+
+    .product-track.image-carousel-track {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 30px;
+        overflow: visible;
+        padding: 8px 20px 24px;
+    }
+
+    /* .clearfix's ::after counts as a grid item and opens an empty fourth cell.
+       Nothing to clear: the track is a grid here and a flex row below. */
+    .product-track.image-carousel-track::after {
+        display: none;
+    }
+
+    /* The track sizes the cells now, so drop the fixed slide width the scroller
+       needed. display:flex stays — it is what stretches the card to the row. */
+    .product-track > .image-carousel-slide {
+        width: auto;
+    }
+
+    .product-carousel .image-carousel-arrow,
+    .product-carousel .image-carousel-dots {
+        display: none;
+    }
+
+}
+
+/* Three 26px titles need about 1024px. Below that, two. */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .product-track.image-carousel-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
 /* Showcases. Four cards at ~585px each is a 2,600px stack on a phone, so below
    the tablet breakpoint they ride the same sitewide carousel the products use.
    The slides are the existing .row wrappers, which keeps the desktop stack
@@ -410,6 +531,280 @@
 
     .showcase-carousel .image-carousel-arrow,
     .showcase-carousel .image-carousel-dots {
+        display: none;
+    }
+}
+
+/*------------------------------------------------------------------------------------------*/
+/* Showcases: featured card + reveal
+/*------------------------------------------------------------------------------------------*/
+
+/* One featured card over a grid of the rest, instead of every case on the same
+   alternating full-width template. Which card is featured is a [data-featured]
+   attribute on its slide, written by js/showcase-featured.js and rotated a step
+   per visit; the cases past the first full row get [data-overflow] and wait
+   behind the button. Nothing here keys off DOM order, so cases can be added,
+   removed or reordered in the markup freely.
+
+   Desktop only — everything below 768px is the phone carousel above, which is
+   why the reveal button hides itself there: a swipe already reaches every case.
+
+   These rules come after the plain stacked-row block above on purpose; several
+   of them outrank it. */
+@media (min-width: 768px) {
+
+    /* Full rows fill exactly, so centring only shows on a part-filled last row:
+       one or two revealed cards sit centred under the row above instead of
+       hanging off the left edge. */
+    .showcase-featured .showcase-track.image-carousel-track {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px;
+        padding: 20px 20px 0;
+    }
+
+    /* .clearfix's ::after counts as a flex item on the last line, and the gap
+       before it pulls the centred row 14px left. Nothing to clear: the track is
+       a flex container at every width. */
+    .showcase-featured .showcase-track.image-carousel-track::after {
+        display: none;
+    }
+
+    .showcase-featured[data-collapsed] .image-carousel-slide[data-overflow] {
+        display: none;
+    }
+
+    /* !important beats the 35px/20px top padding the stacked rows carry: these
+       are flex items in a gapped row now, and the gap is the whole spacing. */
+    .showcase-featured .showcase-track > .image-carousel-slide {
+        display: flex;
+        float: none;
+        padding: 0 !important;
+        flex: 0 0 calc((100% - 56px) / 3);
+        width: auto;
+        max-width: calc((100% - 56px) / 3);
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .showcase-featured .feature-card.showcase {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* The featured card keeps the image-beside-copy layout, with a wider photo
+       and the largest title on the page after the section titles.
+
+       Written against the track child rather than [data-featured] alone: the
+       alternating flip above is keyed to :nth-child(even), any slide can be the
+       featured one, so these have to outrank it. */
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .feature-card.showcase {
+        min-height: 340px;
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-image-wrapper {
+        width: 46%;
+        left: 0;
+        right: auto;
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-content {
+        width: 54%;
+        margin-left: 46%;
+        margin-right: 0;
+        padding: 34px 48px 34px 40px;
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-title {
+        font-size: 30px;
+        text-wrap: pretty;
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-content p {
+        font-size: 16px;
+        line-height: 27px;
+        color: #c2c2c2;
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-arrow {
+        right: 20px;
+    }
+
+    /* The rest stack: photo band on top, copy under it. right/margin-right undo
+       the alternating flip the even slides carry. */
+    .showcase-featured .image-carousel-slide:not([data-featured]) .feature-card.showcase {
+        flex-direction: column;
+        min-height: 0;
+        padding: 0;
+    }
+
+    .showcase-featured .image-carousel-slide:not([data-featured]) .card-image-wrapper {
+        position: static;
+        width: 100%;
+        height: 170px;
+        right: auto;
+    }
+
+    .showcase-featured .image-carousel-slide:not([data-featured]) .card-content {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 24px 28px 48px;
+        justify-content: flex-start;
+    }
+
+    .showcase-featured .image-carousel-slide:not([data-featured]) .card-title {
+        font-size: 19px;
+        text-wrap: pretty;
+    }
+
+    /* Clamped so the cards read as a set of the same shape; the full case is one
+       click away. */
+    .showcase-featured .image-carousel-slide:not([data-featured]) .card-content p {
+        font-size: 14px;
+        line-height: 23px;
+        color: #c2c2c2;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .showcase-featured .image-carousel-slide:not([data-featured]) .card-arrow {
+        bottom: 18px;
+        right: 22px;
+    }
+
+}
+
+/* Two up between 768 and 1023px; a third of a tablet is not a card. The logic
+   class knows this breakpoint too — it shows one fewer case before the button,
+   so the visible set is still the featured card plus one full row. */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .showcase-featured .showcase-track > .image-carousel-slide {
+        flex: 0 0 calc((100% - 28px) / 2);
+        max-width: calc((100% - 28px) / 2);
+    }
+
+    .showcase-featured .showcase-track > .image-carousel-slide[data-featured] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+}
+
+/* Reveal style "list": the cards behind the button come back as full-width rows
+   in the original alternating layout, so the section reads featured card, one
+   row of three, then a list. "grid", the default, keeps them as third-width
+   cards, which can leave a part-filled row. Switched at the top of
+   js/showcase-featured.js. */
+@media (min-width: 768px) {
+
+    .showcase-featured[data-reveal-style="list"] .image-carousel-slide[data-overflow] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow] .feature-card.showcase {
+        flex-direction: row;
+        min-height: 200px;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow] .card-image-wrapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: auto;
+        width: 30%;
+        height: 100%;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow] .card-content {
+        width: 70%;
+        margin-left: 30%;
+        margin-right: 0;
+        padding: 20px 45px 20px 20px;
+        justify-content: center;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow] .card-title {
+        font-size: 22px;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow] .card-content p {
+        font-size: 15px;
+        line-height: 25px;
+        display: block;
+        overflow: visible;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow] .card-arrow {
+        bottom: 16px;
+        right: 20px;
+    }
+
+    /* Same alternation the stacked list had: every other row puts the photo
+       right. Keyed to the parity the logic class writes rather than to
+       :nth-child — which slides are revealed depends on which one rotation
+       featured. */
+    .showcase-featured[data-reveal-style="list"] [data-overflow][data-row-parity="even"] .card-image-wrapper {
+        left: auto;
+        right: 0;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow][data-row-parity="even"] .card-content {
+        margin-left: 0;
+        margin-right: 30%;
+    }
+
+    .showcase-featured[data-reveal-style="list"] [data-overflow][data-row-parity="even"] .card-arrow {
+        right: calc(30% + 20px);
+    }
+
+}
+
+/* The reveal button is the site's own square button. A <button> element needs
+   the two things an <a class="button"> gets for free — no UA background, a
+   pointer cursor — and .button's stock 35px margin cancelled, since the row
+   below carries the spacing. Size, weight, colour and border all come from
+   .button in style.css and colors.css. */
+.showcase-more {
+    display: flex;
+    justify-content: center;
+    padding: 38px 20px 0;
+}
+
+/* display:flex outranks the browser's own [hidden] { display: none }, so the
+   script setting .hidden would otherwise do nothing visible. */
+.showcase-more[hidden] {
+    display: none;
+}
+
+.showcase-more-button {
+    margin: 0;
+    background: none;
+    cursor: pointer;
+}
+
+/* The revealed cards fade and rise into place, staggered by the logic class. */
+.showcase-featured .image-carousel-slide[data-revealing] {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.showcase-featured .image-carousel-slide[data-reveal-anim] {
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Phones swipe the whole set, so there is nothing to reveal. */
+@media (max-width: 767px) {
+    .showcase-more {
         display: none;
     }
 }

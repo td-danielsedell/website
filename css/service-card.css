@@ -138,8 +138,14 @@ img.showcase-image {
         padding: 8px 11% 16px;
     }
 
-    /* Cancel the float and the width the column grid hands these. */
+    /* Cancel the float and the width the column grid hands these.
+
+       display:flex so the card fills the slide. The flex track already stretches
+       every slide to the tallest one; without this the card inside stays its own
+       content height and the four cards end at four different points as you
+       swipe past them. */
     .service-track > .image-carousel-slide {
+        display: flex;
         float: none;
         width: auto;
         padding: 0;
@@ -152,11 +158,33 @@ img.showcase-image {
     }
 }
 
-/* Desktop keeps the plain floated two-column grid. */
+/* Desktop lays the groups out two up, on a grid rather than the floated .col-2
+   the eight overlay tiles rode on: the four cards carry different amounts of
+   copy, and a grid row stretches them to a shared height where floats snag on
+   the taller one. */
 @media (min-width: 768px) {
     .service-track.image-carousel-track {
-        display: block;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        align-items: stretch;
         overflow: visible;
+        padding: 20px 20px 0;
+    }
+
+    /* .clearfix's ::after counts as a grid item and opens an empty fifth cell,
+       which the gap above then pays for. Nothing to clear: the track is a grid
+       here and a flex row below. */
+    .service-track.image-carousel-track::after {
+        display: none;
+    }
+
+    /* Cancel the float and the width the column grid hands these; the grid
+       sizes them. display:flex so the card fills the stretched row. */
+    .service-track > .image-carousel-slide {
+        display: flex;
+        float: none;
+        width: auto;
         padding: 0;
     }
 
@@ -164,4 +192,106 @@ img.showcase-image {
     .service-carousel .image-carousel-dots {
         display: none;
     }
+}
+
+/*------------------------------------------------------------------------------------------*/
+/* Service groups
+/*------------------------------------------------------------------------------------------*/
+
+/* The services grouped by how they are bought — four cards instead of eight
+   photo tiles, each a photo band with its services listed under it. Text first:
+   the tiles this replaces put a photograph in front of every service name and
+   hid the description under a veil.
+
+   Styled at every width, because the phone carousel above swipes these same
+   cards. */
+.service-group {
+    width: 100%;
+    background: #333;
+    border: 2px solid #555;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Same resting shadow and hover lift as .feature-card and .service-card. */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.service-group:hover {
+    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.service-group-image {
+    height: 160px;
+    overflow: hidden;
+}
+
+/* height:100% ties with style.css's `.row img { height: auto }` on specificity;
+   this sheet is linked after it, which is what settles it. */
+.service-group-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-group:hover .service-group-image img {
+    transform: scale(1.06);
+}
+
+.service-group-body {
+    padding: 24px 28px 30px;
+}
+
+.service-group h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    padding: 0;
+}
+
+/* The short rule under .section-title, at card scale. */
+.service-group h3:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin-top: 16px;
+    background: var(--primary);
+}
+
+.service-list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.service-list li {
+    padding: 16px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.service-list li:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.service-list li:last-child {
+    padding-bottom: 0;
+}
+
+.service-list strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    padding-bottom: 6px;
+}
+
+.service-list span {
+    display: block;
+    font-size: 14px;
+    line-height: 22px;
+    color: #c2c2c2;
 }

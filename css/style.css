@@ -253,7 +253,7 @@ section {
 .row {
     max-width: 1245px;
     margin: 0 auto;
-    padding: 75px 0;
+    padding: 35px 0;
     position: relative;
 }
 
@@ -1477,22 +1477,6 @@ h1.section-title {
     background-size: cover;
 }
 
-/* #home carries no height of its own: it is the 170px/100px banner padding plus
-   however tall the copy happens to be. The background is `cover`, so every
-   reflow of that copy recrops the photo — the intro paragraph gaining a line
-   walked the height between 950px and 994px across the desktop range, and the
-   Swedish and English intros wrap at different widths, so the two languages
-   showed a different amount of the train. Pin the box instead.
-
-   1000px clears the tallest content measured anywhere at 768px and up (994px,
-   English at a 1024px viewport), so nothing overflows into the section below.
-   Only index.html and en/index.html carry #home; the subpages have their own
-   header markup. */
-@media (min-width: 768px) {
-    #home {
-        height: 1000px;
-    }
-}
 
 /* A phone hero is content-tall too, but the failure mode is different: the
    copy is already taller than the fold, and the peek of the next section shows
@@ -1512,6 +1496,50 @@ h1.section-title {
     padding-bottom: 100px;
 }
 
+/* #home carries no height of its own: it is the 170px/100px banner padding plus
+   however tall the copy happens to be. The background is `cover`, so every
+   reflow of that copy recrops the photo — the intro paragraph gaining a line
+   walked the height between 950px and 994px across the desktop range, and the
+   Swedish and English intros wrap at different widths, so the two languages
+   showed a different amount of the train. Pin the box instead.
+
+   One viewport exactly, rather than the fixed 1000px this used to be. 1000px is
+   taller than most laptop windows, which pushed the calls to action below the
+   fold, and shorter than a large desktop one, which let Affärsområden peek in at
+   the bottom. min-height rather than height, so a narrow window that wraps the
+   intro long is still allowed to grow; svh is the viewport height with the
+   mobile address bar showing, so nothing jumps when it collapses.
+
+   Only index.html and en/index.html carry #home; the subpages have their own
+   header markup. */
+@media (min-width: 768px) {
+    #home {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* The banner row takes whatever height is left over and centres the copy in
+       it. 91px clears the fixed header; the stock 170px was sized for a box
+       pinned at 1000px, and centring does the rest. */
+    #banner-content.row {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        padding-top: 91px;
+        padding-bottom: 40px;
+    }
+
+    /* .col-61 carries its width as a float. Inside a flex row the float does
+       nothing, so the width has to go on the item itself. */
+    #banner-content.row > .col-61 {
+        width: 61.8%;
+        float: none;
+    }
+}
+
 .banner-spacer {
     height: 30px;
 }
@@ -1521,8 +1549,15 @@ h1.section-title {
     padding-top: 60px;
 }
 
-#home h1 {
-    padding-top: 5%;
+/* Phone only. The percentage is of the container's *width*, so this is a big
+   number on a wide screen — and from 768px up the banner row centres its copy in
+   the leftover height, which is what this padding used to approximate. Left in
+   place below that, where the hero is content-tall and the copy hangs off the
+   top of the screen without it. */
+@media (max-width: 767px) {
+    #home h1 {
+        padding-top: 5%;
+    }
 }
 
 /* The orange dash that used to sit above the banner headline is gone: it cost
@@ -1615,6 +1650,225 @@ h1.section-title {
 .area-grid > .col-6 {
     width: auto;
     float: none;
+}
+
+/* Affärsområden as cards rather than bare icon columns: each area gets a box, a
+   numbered label in the subtitle colour, and its own icon blown up as a
+   watermark behind the copy. Nothing is hidden — the bullets are all still on
+   screen — and the lift on hover is the same one the product and service cards
+   use.
+
+   Everything below is the card itself and applies at every width; only the
+   sizes differ per breakpoint, further down. The phone rules at the end of this
+   file set the 2-up grid these sit in. */
+#businessareas .area-grid {
+    counter-reset: area;
+}
+
+/* !important beats .col-6's own padding, which is the gutter of the floated
+   layout this grid replaced — the grid's gap does that job here. */
+#businessareas .area-grid > .col-6.icon-block {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #555;
+    border-radius: 10px;
+    background: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* The watermark. Named per card below rather than reusing the card's own icon:
+   that one is an <img>, which a background cannot point at. */
+#businessareas .icon-block::after {
+    content: "";
+    position: absolute;
+    right: -34px;
+    bottom: -34px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.07;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#businessareas .area-grid > .icon-block:nth-child(1)::after {
+    background-image: url("../images/icons/assetmanagement_logo.svg");
+}
+
+#businessareas .area-grid > .icon-block:nth-child(2)::after {
+    background-image: url("../images/icons/gis_logo.svg");
+}
+
+#businessareas .area-grid > .icon-block:nth-child(3)::after {
+    background-image: url("../images/icons/remotesensing_logo.webp");
+}
+
+#businessareas .area-grid > .icon-block:nth-child(4)::after {
+    background-image: url("../images/icons/ai_logo.webp");
+}
+
+/* The icon and the copy sit above the watermark. */
+#businessareas .icon {
+    position: relative;
+    z-index: 1;
+}
+
+#businessareas .icon-top .icon-block-description {
+    position: relative;
+    z-index: 1;
+}
+
+#businessareas .icon-block-description::before {
+    counter-increment: area;
+    content: "0" counter(area);
+    display: block;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--section-subtitle);
+}
+
+#businessareas .icon-block p {
+    color: #c2c2c2;
+}
+
+#businessareas .card-title {
+    text-wrap: pretty;
+}
+
+@media (min-width: 768px) {
+
+    #businessareas .area-grid {
+        gap: 20px;
+    }
+
+    #businessareas .area-grid > .col-6.icon-block {
+        padding: 30px 28px 34px !important;
+    }
+
+    #businessareas .icon-block:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+        border-color: var(--primary);
+    }
+
+    #businessareas .icon-block::after {
+        width: 180px;
+        height: 180px;
+    }
+
+    #businessareas .icon-block:hover::after {
+        transform: scale(1.12) rotate(-6deg);
+        opacity: 0.14;
+    }
+
+    #businessareas .icon,
+    #businessareas .icon img {
+        width: 58px;
+    }
+
+    #businessareas .icon img {
+        height: 58px;
+    }
+
+    #businessareas .icon-top .icon-block-description {
+        padding-top: 22px;
+    }
+
+    #businessareas .icon-block-description::before {
+        font-size: 13px;
+        padding-bottom: 10px;
+    }
+
+    #businessareas .card-title {
+        font-size: 21px;
+    }
+
+}
+
+/* The same card at phone scale. A ~155px column cannot carry 28px of padding or
+   a 180px watermark, but it carries the card — the plain two-column list this
+   replaced read as an afterthought next to the desktop treatment. */
+@media (max-width: 767px) {
+
+    #businessareas .area-grid > .col-6.icon-block {
+        padding: 16px 14px 18px !important;
+        border-width: 1px;
+    }
+
+    #businessareas .icon-block::after {
+        right: -22px;
+        bottom: -22px;
+        width: 96px;
+        height: 96px;
+    }
+
+    #businessareas .icon-top .icon-block-description {
+        padding-top: 12px;
+    }
+
+    #businessareas .icon-block-description::before {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        padding-bottom: 6px;
+    }
+
+    /* A ~140px measure and Swedish compounds: "Tillgångsförvaltning" and
+       "Anläggningsinformation" are both longer than the line. The card clips its
+       overflow, so without this they were cut off at the border rather than
+       wrapping. hyphens works off <html lang>, and break-word is the fallback
+       for anything it has no rule for. */
+    #businessareas .card-title,
+    #businessareas .icon-block p {
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        overflow-wrap: break-word;
+    }
+
+}
+
+/* .area-grid holds four columns from 768px up, which leaves a 206px card in the
+   768-1080px band — too narrow for "Tillgångsförvaltning" at 21px. Two up until
+   there is room for four. Floored at 768px because the phone rules further down
+   are already 2-up on their own terms. */
+@media (min-width: 768px) and (max-width: 1180px) {
+    #businessareas .area-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* The industries the four areas are sold into. The icons are the ones already in
+   images/icons from when this section listed branscher instead. */
+.industry-strip {
+    border-top: 1px solid #555;
+    margin-top: 34px;
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px 24px;
+}
+
+.industry-label {
+    margin: 0;
+    /* The label does not scroll; only the row beside it does. */
+    flex: none;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--section-heading);
+}
+
+/* The row itself is the sitewide marquee — see .industry-slider in
+   css/logo-slider.css, which keeps the icons at the size they are here rather
+   than the 160px the partner logos run at. */
+
+@media (max-width: 767px) {
+    .industry-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
 }
 
 /* --------- 5.2 Parallax Elements ---------- */
@@ -2635,8 +2889,11 @@ blockquote {
     .area-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        column-gap: 15px;
-        row-gap: 30px;
+        column-gap: 12px;
+        row-gap: 12px;
+        /* The blocks are cards here, so the two in a row share an edge rather
+           than each ending wherever its own bullets run out. */
+        align-items: stretch;
     }
 
     .area-grid > .col-6 {

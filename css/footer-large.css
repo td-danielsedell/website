@@ -93,6 +93,142 @@
     color: inherit;
 }
 
+/* Columns. index.html lays the large footer out as a set of ways back into the
+   site; about.html uses the same sheet without .footer-columns and is untouched
+   by everything below.
+
+   Equal quarters and a shared top edge. Unequal fractions put the headings at
+   positions that lined up with nothing else on the page, and the 22px brand name
+   sits on a different first line than the 14px headings beside it — the 4px
+   nudge puts their cap heights on one line. */
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+    align-items: start;
+}
+
+/* The column layout starts closer to the rule than the stacked variant does.
+   Four headings across read as the top edge of a block and want to sit near the
+   line that draws it; about.html's centred brand name is a single element with
+   nothing to line up against, and keeps the 55px. */
+.footer-large:has(.footer-columns) {
+    padding-top: 34px;
+}
+
+.footer-columns .footer-col .footer-heading {
+    margin-top: 4px;
+}
+
+.footer-heading {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--section-heading);
+    padding-bottom: 12px;
+}
+
+/* Smaller and tighter than the body copy above: these are a directory, not
+   something anybody reads through. 15px/32px made four links as tall as a
+   paragraph. */
+.footer-col a {
+    display: block;
+    font-size: 14px;
+    line-height: 28px;
+    color: var(--footer-text);
+}
+
+.footer-col a:hover {
+    color: var(--primary);
+}
+
+/* The address is one of four columns here, not the whole footer, so it drops to
+   the same 15px/32px as the link lists beside it and loses the top padding that
+   held it off the brand name in the stacked version. */
+.footer-large .footer-col .footer-address {
+    padding-top: 0;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.footer-large .footer-col .footer-address a {
+    display: inline;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+/* Postal code and city are one unit. In a half-width column the line broke
+   inside the code itself — "531" at the end of one line, "60 Lidköping" at the
+   start of the next. */
+.footer-nowrap {
+    white-space: nowrap;
+}
+
+.footer-large .footer-brand .footer-name {
+    padding-bottom: 4px;
+}
+
+/* The icons are centred when they are the footer's own row; in a column they
+   line up with the brand name above them. */
+.footer-large .footer-brand .footer-social {
+    text-align: left;
+    padding-top: 26px;
+}
+
+.footer-large .footer-brand .footer-social a {
+    padding: 0 22px 0 0;
+}
+
+/* Two columns from 1023px down, all the way to the narrowest phone. One column
+   stacks four blocks of links into an 800px footer, which is a lot of page to
+   scroll past for what is still just a footer.
+
+   Two up needs a different reading order than four across: the link lists go on
+   the top row and the brand and the address close the footer underneath them,
+   rather than the brand sitting alone beside "Om oss". Done with order rather
+   than by moving the markup, because the four-across row wants the brand first —
+   which does leave the tab order following the markup, not the eye. Acceptable
+   here: it is a heading, two social links and an address, and every one of them
+   is reachable either way. */
+@media (max-width: 1023px) {
+    .footer-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+    }
+
+    .footer-columns > :nth-child(1) {
+        /* the brand */
+        order: 3;
+    }
+
+    .footer-columns > :nth-child(2) {
+        order: 1;
+    }
+
+    .footer-columns > :nth-child(3) {
+        order: 2;
+    }
+
+    .footer-columns > :nth-child(4) {
+        /* the address */
+        order: 4;
+    }
+
+    /* Half the width means the two icons no longer clear their 22px gutters and
+       LinkedIn dropped onto its own line under GitHub. */
+    .footer-large .footer-brand .footer-social a {
+        padding: 0 12px 0 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .footer-columns {
+        gap: 30px 20px;
+    }
+}
+
 @media (max-width: 480px) {
 
     .footer-large {

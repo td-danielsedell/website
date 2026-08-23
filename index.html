@@ -62,6 +62,9 @@
     <!-- Image Carousel CSS -->
     <link href="css/image-carousel.css" rel="stylesheet" type="text/css">
 
+    <!-- Large Footer CSS -->
+    <link href="css/footer-large.css" rel="stylesheet" type="text/css">
+
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -129,17 +132,12 @@
                                     site.js klonar markupen till mobilmenyn. Undersidornas länkar är
                                     relativa så att sajten fungerar var den än ligger, och site.js
                                     hindrar stickyNavbar från att avbryta klicket på dem.-->
-                                <li>
-                                    <a href="#home">Home</a>
-                                </li>
+                                <!--The items follow the order of the sections. "Home" is
+                                    gone: the logo beside it already goes there, and the
+                                    banner is what you are looking at when the nav is not
+                                    sticky.-->
                                 <li>
                                     <a href="#businessareas">Affärsområden</a>
-                                </li>
-                                <li>
-                                    <a href="#services">Tjänster</a>
-                                </li>
-                                <li>
-                                    <a href="#testimonials">Kundbetyg</a>
                                 </li>
                                 <li class="nav-group">
                                     <details>
@@ -152,6 +150,9 @@
                                         </div>
                                     </details>
                                 </li>
+                                <li>
+                                    <a href="#services">Tjänster</a>
+                                </li>
                                 <li class="nav-group">
                                     <details>
                                         <summary><a href="#products">Produkter</a></summary>
@@ -161,8 +162,10 @@
                                         </div>
                                     </details>
                                 </li>
+                                <!--Kundbetyg and Partners were two entries for what is now
+                                    one section.-->
                                 <li>
-                                    <a href="#partners">Partners</a>
+                                    <a href="#trust">Kunder</a>
                                 </li>
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">Om oss</a>
@@ -233,14 +236,9 @@
                         </p>
                         <!--End of Expertise line-->
 
-                        <p class="banner-intro">På Total Digital har vi omfattande expertis inom
-                            tillgångsförvaltning, GIS, fjärranalys,
-                            miljö och AI. Våra team består
-                            av specialister med djupgående kunskaper inom dessa områden. Med i genomsnitt över 20 års
-                            erfarenhet av bland annat IBM
-                            Maximo och ArcGIS är våra medarbetare experter på att leverera lösningar som är
-                            skräddarsydda efter specifika behov och
-                            som skapar mätbar effekt i drift, underhåll och planering.</p>
+                        <p class="banner-intro">Vi kopplar ihop IBM Maximo och Esri ArcGIS – anläggningens skick och dess
+                            läge i samma bild – och lägger fjärranalys och AI ovanpå. Våra specialister har i
+                            genomsnitt över 20 års erfarenhet.</p>
                     </div>
 
                     <!--Call to Action-->
@@ -348,182 +346,36 @@
 
                     </div>
 
+                    <!--The industries the four areas are sold into, on the same marquee
+                        component as the partner logos (css/logo-slider.css +
+                        js/logo-slider.js). A row that never ends does not claim to be
+                        the whole list, and one more industry is one more <span> — it
+                        does not have to fit on a line. The icons are the ones this
+                        section used back when it listed branscher instead.-->
+                    <div class="col-1 industry-strip">
+                        <p class="industry-label">Våra kunder finns inom</p>
+                        <div class="logo-slider industry-slider" data-speed="0.35">
+                            <div class="logo-track">
+                                <span><img src="images/icons/infrastructure_logo.webp" width="256" height="256" loading="lazy" alt="" />Infrastruktur</span>
+                                <span><img src="images/icons/realestate_logo.webp" width="256" height="256" loading="lazy" alt="" />Fastighet</span>
+                                <span><img src="images/icons/industry_logo.webp" width="256" height="256" loading="lazy" alt="" />Industri</span>
+                                <span><img src="images/icons/fleetmanagement_logo.webp" width="256" height="256" loading="lazy" alt="" />Fordonsflotta</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </section>
             <!--End of Introduction-->
 
 
-            <section id="services" class="row scrollto clearfix" data-featherlight-content
-                data-featherlight-filter="a">
-
-                <div class="section-heading">
-                    <h2 class="section-kicker">TJÄNSTER</h2>
-                    <p class="section-title">Hur kan vi hjälpa dig</p>
-                </div>
-
-                <div class="service-carousel image-carousel text-center" data-image-carousel data-carousel-label="Tjänster"
-                    data-carousel-noun="tjänst" data-carousel-autoplay="4000">
-                    <div class="service-track image-carousel-track clearfix">
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/it-support.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Implementation av IT-stöd för tillgångsförvaltning</h3>
-                                Vi erbjuder expertis inom alla delar av systemen IBM Maximo och Esri ArcGIS för
-                                effektiv
-                                tillgångsförvaltning.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/app-development.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Applikationsutveckling och konfiguration</h3>
-                                Vi hjälper er att säkerställa användandet av IBM Maximo och Esri ArcGIS tillsammans med
-                                integrerade system för bästa resultat.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/licenses.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Licenser och drift</h3>
-                                Vi tar hand om alla licensprocesser och förenklar hanteringen av licenser för både IBM
-                                Maximo
-                                och Esri ArcGIS.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/sensor.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Sensorteknik</h3>
-                                Med vår kunskap och erfarenhet inom sensorteknik hjälper vi er att utveckla och förvalta
-                                er
-                                anläggning på ett
-                                effektivare sätt.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/project-management.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Projektledning och rådgivning inom anläggningsinformation, digitalisering och AI
-                                </h3>
-                                Vi stöttar er i olika typer av projekt, från förändringsprojekt till migreringsprojekt
-                                inom
-                                tillgångsförvaltning.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/geo-development.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Utveckling och analys inom geodataområdet</h3>
-                                Vi erbjuder omfattande tjänster inom utveckling och analys av geodata för att förbättra
-                                era
-                                arbetsflöden och beslutsprocesser.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/consultancy.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Tjänstebaserad och produktifierade leveranser</h3>
-                                Vi erbjuder teknisk expertis för att övervaka och hantera hälsa och prestanda inom både
-                                IBM
-                                Maximo och Esri ArcGIS.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-card">
-                        <img src="images/gallery-images/training-course.webp" alt="" loading="lazy">
-                        <div class="overlay">
-                            <span>
-                                <h3 class="card-title">Utbildning</h3>
-                                Vi erbjuder kundanpassad utbildning inom både IBM Maximo och Esri ArcGIS för att
-                                säkerställa att
-                                ni får ut det mesta av
-                                era system.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                    </div>
-                </div>
-
-            </section>
-
-            <!-- Testimonials-->
-            <aside id="testimonials" class="scrollto" data-enllax-ratio=".2">
-
-                <div class="row clearfix">
-
-                    <div class="section-heading">
-                        <h2 class="section-kicker">FEEDBACK</h2>
-                        <!-- Suggested rephrase, matches the nav label for #testimonials:
-                        <h2 class="section-kicker">KUNDBETYG</h2>
-                        -->
-                        <p class="section-title">Vad säger våra kunder</p>
-                    </div>
-
-                    <blockquote class="col-2 testimonial classic text-center">
-                        <img src="images/user-images/tf.webp" loading="lazy" alt="TrafikFörvaltningen" />
-                        <q>Projektmedlemmarna från Total Digital visar på genuint engagemang och arbetar passionerat mot att nå projektets mål.</q>
-                        <footer>TrafikFörvaltningen</footer>
-                    </blockquote>
-
-                    <blockquote class="col-2 testimonial classic text-center">
-                        <img src="images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
-                        <q>Jag har gjort så många bra saker sista tiden tillsammans med Total Digital 😊</q>
-                        <footer>Öresundsbron</footer>
-                    </blockquote>
-
-                    <!--<blockquote class="col-3 testimonial classic text-center">
-                        <img src="images/user-images/connecting_stockholm.webp" alt="Connecting Stockholm" />
-                        <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua</q>
-                        <footer>Sven Svensson - Connecting Stockholm</footer>
-                    </blockquote>-->
-
-                </div>
-
-            </aside>
-            <!--End of Testimonials -->
-
-            <section id="showcases" class="row scrollto clearfix" data-featherlight-content
+            <!--One featured case over a grid of the rest. Which case is featured is
+                the [data-featured] attribute below; js/showcase-featured.js moves it a
+                step per visit and hides anything past the first full row behind the
+                button at the foot of the section. Below 768px this is the same swipe
+                carousel it has always been.-->
+            <section id="showcases" class="row scrollto clearfix showcase-featured" data-featherlight-content
                 data-featherlight-filter="a">
 
                 <div class="section-heading">
@@ -532,10 +384,13 @@
                 </div>
 
                 <div class="showcase-carousel image-carousel" data-image-carousel data-carousel-label="Showcases"
-                    data-carousel-noun="showcase">
+                    data-carousel-noun="showcase" data-carousel-autoplay="4000">
                     <div class="showcase-track image-carousel-track clearfix">
 
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                <!--The starting featured card. The script rewrites this attribute on
+                    load, so which one carries it in the markup only decides the very
+                    first paint.-->
+                <div class="row no-padding-bottom clearfix image-carousel-slide" data-featured>
                     <div class="col-1 feature-card showcase text-left">
                         <!-- Left 20% Image Section -->
                         <div class="card-image-wrapper">
@@ -648,6 +503,109 @@
                     </div>
                 </div>
 
+                <!--Hidden by the script when there is nothing left to reveal, which is
+                    the case on a wide screen until there is a fifth showcase.-->
+                <div class="showcase-more" hidden>
+                    <button type="button" class="button showcase-more-button">VISA FLER</button>
+                </div>
+
+            </section>
+
+
+            <section id="services" class="row scrollto clearfix" data-featherlight-content
+                data-featherlight-filter="a">
+
+                <div class="section-heading">
+                    <h2 class="section-kicker">TJÄNSTER</h2>
+                    <p class="section-title">Hur kan vi hjälpa dig</p>
+                </div>
+
+                <!--The eight services grouped by how they are bought, four cards instead
+                    of eight photo tiles. The carousel wrapper is the one the tiles used:
+                    below 768px these still swipe, above it they lay out two up. See
+                    css/service-card.css.-->
+                <div class="service-carousel image-carousel" data-image-carousel data-carousel-label="Tjänster"
+                    data-carousel-noun="tjänst" data-carousel-autoplay="4000">
+                    <div class="service-track image-carousel-track clearfix">
+
+                <div class="col-2 image-carousel-slide">
+                    <div class="service-group">
+                        <div class="service-group-image">
+                            <img src="images/gallery-images/app-development.webp" alt="" loading="lazy" />
+                        </div>
+                        <div class="service-group-body">
+                            <h3>Implementation</h3>
+                            <ul class="service-list">
+                                <li><strong>Implementation av IT-stöd för tillgångsförvaltning</strong><span>Vi
+                                    erbjuder expertis inom alla delar av systemen IBM Maximo och Esri ArcGIS för
+                                    effektiv tillgångsförvaltning.</span></li>
+                                <li><strong>Applikationsutveckling och konfiguration</strong><span>Vi hjälper er att
+                                    säkerställa användandet av IBM Maximo och Esri ArcGIS tillsammans med integrerade
+                                    system för bästa resultat.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2 image-carousel-slide">
+                    <div class="service-group">
+                        <div class="service-group-image">
+                            <img src="images/gallery-images/licenses.webp" alt="" loading="lazy" />
+                        </div>
+                        <div class="service-group-body">
+                            <h3>Drift och licenser</h3>
+                            <ul class="service-list">
+                                <li><strong>Licenser och drift</strong><span>Vi tar hand om alla licensprocesser och
+                                    förenklar hanteringen av licenser för både IBM Maximo och Esri ArcGIS.</span></li>
+                                <li><strong>Tjänstebaserad och produktifierade leveranser</strong><span>Vi erbjuder
+                                    teknisk expertis för att övervaka och hantera hälsa och prestanda inom både IBM
+                                    Maximo och Esri ArcGIS.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2 image-carousel-slide">
+                    <div class="service-group">
+                        <div class="service-group-image">
+                            <img src="images/gallery-images/geo-development.webp" alt="" loading="lazy" />
+                        </div>
+                        <div class="service-group-body">
+                            <h3>Data och analys</h3>
+                            <ul class="service-list">
+                                <li><strong>Utveckling och analys inom geodataområdet</strong><span>Vi erbjuder
+                                    omfattande tjänster inom utveckling och analys av geodata för att förbättra era
+                                    arbetsflöden och beslutsprocesser.</span></li>
+                                <li><strong>Sensorteknik</strong><span>Med vår kunskap och erfarenhet inom sensorteknik
+                                    hjälper vi er att utveckla och förvalta er anläggning på ett effektivare
+                                    sätt.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2 image-carousel-slide">
+                    <div class="service-group">
+                        <div class="service-group-image">
+                            <img src="images/gallery-images/project-management.webp" alt="" loading="lazy" />
+                        </div>
+                        <div class="service-group-body">
+                            <h3>Ledning och kompetens</h3>
+                            <ul class="service-list">
+                                <li><strong>Projektledning och rådgivning inom anläggningsinformation, digitalisering
+                                    och AI</strong><span>Vi stöttar er i olika typer av projekt, från
+                                    förändringsprojekt till migreringsprojekt inom tillgångsförvaltning.</span></li>
+                                <li><strong>Utbildning</strong><span>Vi erbjuder kundanpassad utbildning inom både IBM
+                                    Maximo och Esri ArcGIS för att säkerställa att ni får ut det mesta av era
+                                    system.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
+
             </section>
 
 
@@ -688,9 +646,6 @@
                                                 TD Asset Care gör förvaltning och underhåll av fysiska tillgångar smidig. Lösningen kombinerar beprövad Enterprise Asset Management (EAM)-funktionalitet med branschspecifika funktioner och kan driftsättas on-prem, hybrid eller i molnet.
                                             </p>
                                         </div>
-                                        <a href="mailto:info@totaldigital.se?subject=Boka ett möte om TD Asset Care"
-                                            class="button">BOKA ETT
-                                            MÖTE</a>
                                     </div>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
@@ -709,34 +664,24 @@
                                                 TD Test automatiserar test av IBM Maximo och kvalitetssäkrar era uppgraderingar. Verktyget verifierar att anpassningar och funktioner fungerar som de ska – från Maximo 7.x till IBM Maximo Application Suite.
                                             </p>
                                         </div>
-                                        <a href="mailto:info@totaldigital.se?subject=Boka ett möte om TD Test"
-                                            class="button">BOKA
-                                            ETT MÖTE</a>
                                     </div>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>
 
-                            <!-- MOCK: TD Linear is a placeholder to see three cards in the
-                                 row. Everything but the title is copied from TD Test, and
-                                 the link still points at td_test.html because there is no
-                                 td_linear.html yet. -->
+                            <!-- TD Linear has no page and no artwork yet, so the card says
+                                 so rather than borrowing TD Test's copy and image, which is
+                                 what it used to do. The link points at td_test.html until
+                                 there is a td_linear.html. -->
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
                                     <div class="product-body">
                                         <h3><a href="td_test.html" class="card-link card-link-stretch">TD Linear</a></h3>
-                                        <p class="product-sub">Kvalitetssäkra ert IBM Maximo</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
-                                        </div>
+                                        <p class="product-sub">Snart här</p>
+                                        <div class="product-image-placeholder"><span>produktbild</span></div>
                                         <div class="product-content">
-                                            <p>
-                                                TD Test automatiserar test av IBM Maximo och kvalitetssäkrar era uppgraderingar. Verktyget verifierar att anpassningar och funktioner fungerar som de ska – från Maximo 7.x till IBM Maximo Application Suite.
-                                            </p>
+                                            <p>Beskrivning kommer inom kort.</p>
                                         </div>
-                                        <a href="mailto:info@totaldigital.se?subject=Boka ett möte om TD Linear"
-                                            class="button">BOKA
-                                            ETT MÖTE</a>
                                     </div>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
@@ -747,28 +692,35 @@
                 </div>
             </section>
 
-            <!--Clients-->
-            <section id="partners" class="scrollto clearfix">
+            <!--Kunder och partners. One section: what customers say, then who we
+                work with. They were two sections saying the same thing about trust,
+                and the partner logos had a whole screen to themselves.-->
+            <aside id="trust" class="scrollto" data-enllax-ratio=".2">
                 <div class="row clearfix">
 
-                    <div class="col-14">
-
-                        <div class="section-heading">
-                            <h2 class="section-kicker">TILLIT</h2>
-                            <!-- Suggested rephrase, matches the nav label for #partners:
-                            <h2 class="section-kicker">PARTNERS</h2>
-                            -->
-                            <p class="section-title">Vi tror på starka partnerskap</p>
-                        </div>
-
+                    <div class="section-heading">
+                        <h2 class="section-kicker">KUNDER OCH PARTNERS</h2>
+                        <p class="section-title">Vad säger våra kunder</p>
                     </div>
 
-                    <div class="col-14">
-                        <p class="section-subtitle">Ett starkt partnernätverk gör oss bättre. Genom nära samarbeten kombinerar vi rätt kompetens och resurser för att skapa större värde för våra kunder.</p>
-                    </div>
+                    <blockquote class="col-2 testimonial classic text-center">
+                        <img src="images/user-images/tf.webp" loading="lazy" alt="TrafikFörvaltningen" />
+                        <q>Projektmedlemmarna från Total Digital visar på genuint engagemang och arbetar passionerat mot att nå projektets mål.</q>
+                        <footer>TrafikFörvaltningen</footer>
+                    </blockquote>
 
-                    <div class="col-1 logo-slider" id="logoSlider">
-                        <div class="logo-track" id="logoTrack">
+                    <blockquote class="col-2 testimonial classic text-center">
+                        <img src="images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
+                        <q>Jag har gjort så många bra saker sista tiden tillsammans med Total Digital 😊</q>
+                        <footer>Öresundsbron</footer>
+                    </blockquote>
+
+                    <div class="col-1 trust-partners">
+                        <p class="section-subtitle">Vi tror på starka partnerskap. Ett starkt partnernätverk gör oss
+                            bättre. Genom nära samarbeten kombinerar vi rätt kompetens och resurser för att skapa
+                            större värde för våra kunder.</p>
+                        <div class="logo-slider" id="logoSlider">
+                            <div class="logo-track" id="logoTrack">
                             <!-- Replace these placeholder URLs with your actual partner logo image paths -->
                             <a href="https://www.ibm.com" target="_blank"><img src="images/company-images/ibm.webp" width="600" height="400" loading="lazy"
                                     alt="IBM"></a>
@@ -783,39 +735,61 @@
                             <a href="https://www.pedab.se/" target="_blank"><img src="images/company-images/pedab.webp" width="600" height="400" loading="lazy"
                                     alt="Pedab"></a>
                         </div>
+                        </div>
                     </div>
 
                 </div>
-            </section>
-            <!--End of Clients-->
+            </aside>
+            <!--End of Kunder och partners-->
 
         </main>
         <!--End Main Content Area-->
 
 
-        <!--Footer-->
-        <footer id="landing-footer" class="clearfix">
+        <!--Footer. The large variant (css/footer-large.css), laid out in columns:
+            the page ends with a way into everything rather than one 12px line.-->
+        <footer class="clearfix footer-large">
             <div class="row clearfix">
+                <div class="footer-columns">
 
-                <p id="copyright" class="col-2">
-                    Total Digital AB | Fabriksgatan 4 | 531 60 Lidköping | <a
-                        href="mailto:info@totaldigital.se">info@totaldigital.se</a> | 010-1010070
-                </p>
+                    <div class="footer-brand">
+                        <p class="footer-name">Total Digital AB</p>
+                        <ul class="social-icons footer-social">
+                            <li>
+                                <a target="_blank" title="Github" href="https://github.com/totaldigital-se"><svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg><span>GitHub</span></a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="LinkedIn" href="https://www.linkedin.com/company/total-digital-it-solutions"><svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg><span>LinkedIn</span></a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <!--Social Icons in Footer-->
-                <ul class="col-2 social-icons">
-                    <li>
-                        <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
-                            <!-- href="https://totaldigital-se.github.io/" -->
-                            <svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg><span>GitHub</span>
-                        </a>
-                        <a target="_blank" title="LinkedIn"
-                            href="https://www.linkedin.com/company/total-digital-it-solutions">
-                            <svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg><span>LinkedIn</span>
-                        </a>
-                    </li>
-                </ul>
-                <!--End of Social Icons in Footer-->
+                    <div class="footer-col">
+                        <p class="footer-heading">Om oss</p>
+                        <a href="about.html#history">Historia</a>
+                        <a href="about.html#management">Ledningsgrupp</a>
+                        <a href="about.html#locations">Var vi finns</a>
+                        <a href="about.html#career">Karriär</a>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Produkter</p>
+                        <a href="td_asset_care.html">TD Asset Care</a>
+                        <a href="td_test.html">TD Test</a>
+                        <a href="#showcases">Showcases</a>
+                        <a href="#services">Tjänster</a>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Kontakt</p>
+                        <p class="footer-address">
+                            Fabriksgatan 4 &middot; <span class="footer-nowrap">531 60 Lidköping</span><br />
+                            <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
+                            <a href="tel:+46101010070">010 - 10 100 70</a>
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </footer>
         <!--End of Footer-->
@@ -834,6 +808,7 @@
     <script src="js/site.js"></script>
     <script src="js/logo-slider.js"></script>
     <script src="js/image-carousel.js"></script>
+    <script src="js/showcase-featured.js"></script>
 
 
 </body>
