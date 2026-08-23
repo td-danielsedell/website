@@ -1733,6 +1733,9 @@ h1.section-title {
 
 #businessareas .card-title {
     text-wrap: pretty;
+    /* .card-title's own colour is #9c9c9c against #c2c2c2 bullets — two greys a
+       shade apart. White heading, grey body, same as the service cards. */
+    color: #fff;
 }
 
 @media (min-width: 768px) {

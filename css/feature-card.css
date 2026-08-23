@@ -145,6 +145,17 @@
    this selector would just duplicate what those two already do. */
 .showcase .card-title {
     font-weight: 700;
+    /* .card-title's var(--header-text) is #9c9c9c, which put a grey title over
+       white body copy — the wrong way round. The service cards set the pattern
+       the whole start page now follows: white heading, grey body. */
+    color: #fff;
+}
+
+/* The grey half of that pair. The desktop rules further down already say this
+   per card size; this is the one that covers the phone, where they do not
+   apply. */
+.showcase .card-content p {
+    color: #c2c2c2;
 }
 
 /* On a phone the 30% image column is a ~110px strip that crops the photo to
@@ -341,6 +352,8 @@
     font-size: 26px;
     font-weight: 700;
     padding: 6px 28px 0;
+    /* White heading over grey body, same pairing as the service cards. */
+    color: #fff;
 }
 
 /* Reads as the kicker-then-title pair every section on the page already uses:
@@ -356,6 +369,13 @@
     text-transform: uppercase;
     color: var(--section-subtitle);
     padding: 26px 28px 0;
+    /* Two lines are always reserved, whether the kicker uses them or not: at
+       some widths "Kvalitetssäkra ert IBM Maximo" wraps and "För alla era EAM
+       behov" does not, which slid TD Test's name and photo a line lower than
+       its neighbours'. The height is border-box, so it is the 26px of padding
+       plus two 18px lines. */
+    line-height: 18px;
+    min-height: 62px;
 }
 
 .product-carousel .product-image-wrapper {

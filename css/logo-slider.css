@@ -115,6 +115,41 @@
     color: #fff;
 }
 
+/* The partner statement, given the weight of a statement. It is the only claim
+   in the section, so it gets the accent rule the section titles carry, a
+   measure it can be read at, and its first sentence on a line of its own —
+   white lead over grey supporting copy, the pairing the cards on this page
+   use. */
+/* Scoped through .trust-partners so it outranks the plain white the rule above
+   gives every subtitle in this block. */
+.trust-partners .partner-lead {
+    max-width: 720px;
+    padding-left: 22px;
+    border-left: 3px solid var(--primary);
+    color: #c2c2c2;
+    line-height: 28px;
+}
+
+.partner-lead strong {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 34px;
+    color: #fff;
+    padding-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+    .partner-lead {
+        padding-left: 16px;
+    }
+
+    .partner-lead strong {
+        font-size: 20px;
+        line-height: 29px;
+    }
+}
+
 .trust-partners .logo-slider {
     margin-top: 10px;
 }
