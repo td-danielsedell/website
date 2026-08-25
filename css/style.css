@@ -1639,12 +1639,14 @@ h1.section-title {
 /* Affärsområden: four areas across, on a grid rather than the floated .col-6
    the six-area version rode on — 16.67% each left a third of the row empty as
    soon as there were four. The .col-6 stays on the blocks for its 20px gutter
-   and for the phone rules further down. align-items keeps the four icons on one
-   line when the bullet counts differ. */
+   and for the phone rules further down. align-items: stretch — the default,
+   spelled out because it is load-bearing — makes the cards in a row end at the
+   same edge instead of each one stopping wherever its own bullets run out; the
+   icons still line up because the copy is top-aligned inside the card. */
 .area-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: start;
+    align-items: stretch;
 }
 
 .area-grid > .col-6 {

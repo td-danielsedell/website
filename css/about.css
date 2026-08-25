@@ -239,21 +239,107 @@
 
 /* --------- 4. Locations ---------- */
 
-/* The map is a light image on a dark page, so it gets a border and the same
+/* The map is a light surface on a dark page, so it gets a border and the same
    10px radius the cards use — without a frame its white edge reads as a hole.
-   It is portrait (987x1400), which is why it sits in half a row rather than
-   spanning one. */
+   Sweden is portrait, which is why the map sits in half a row rather than
+   spanning one, and why the box keeps the 5:7 shape the static image had. */
 .about-map {
     margin: 0;
 }
 
-.about-map img {
+/* The child combinator on the image is load-bearing. Leaflet renders every
+   tile as an <img> inside #map, so a descendant `.about-map img` puts this
+   border and radius on all twelve of them — which reads as a grid of seams
+   ruled across the map. Only the <noscript> fallback image is a direct child. */
+.about-map #map,
+.about-map > img {
     display: block;
     width: 100%;
     max-width: 480px;
-    height: auto;
     border: 1px solid #555;
     border-radius: 10px;
+}
+
+.about-map > img {
+    height: auto;
+}
+
+/* Hidden by default and revealed by the .map-live class that about.js sets as
+   soon as it runs. Without JavaScript the class never arrives, #map stays
+   collapsed and the <noscript> image takes the slot instead of sitting under
+   an empty bordered box. The class goes on before Leaflet is even fetched, so
+   the box reserves its space up front and the section does not shift when the
+   map appears. */
+.about-map #map {
+    display: none;
+}
+
+.about-map #map.map-live {
+    display: block;
+    aspect-ratio: 5 / 7;
+    background: #ddd;
+}
+
+.about-map figcaption {
+    max-width: 480px;
+    padding-top: 10px;
+    font-size: 13px;
+    color: var(--footer-text);
+}
+
+/* OSM's default tiles are bright and colourful; on a dark page they shout
+   louder than anything else in the section, and the orange dots lose against
+   the coloured roads. Draining the colour matches the static map this
+   replaced and leaves the dots as the only colour on it. The filter goes on
+   the pane rather than each .leaflet-tile, which would show seams. */
+.about-map .leaflet-tile-pane {
+    filter: grayscale(1) contrast(0.95) brightness(1.02);
+}
+
+/* Leaflet writes fill/stroke as SVG presentation attributes, which CSS wins
+   over — so the dots can follow --primary from colors.css instead of
+   hardcoding the orange in about.js. */
+.city-dot {
+    fill: var(--primary);
+    fill-opacity: 1;
+    stroke: #fff;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.15s ease;
+}
+
+.city-dot.is-hovered,
+.city-dot.is-active {
+    stroke-width: 3;
+}
+
+/* Tooltips are the city labels. Leaflet's default is a white callout box with
+   a border and an arrow; here the label should read as map lettering, so the
+   box goes and a white halo carries it over whatever is underneath. */
+.city-label.leaflet-tooltip {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+    white-space: nowrap;
+    text-shadow:
+        0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+
+/* The default arrow belongs to the callout box that was just removed. */
+.city-label.leaflet-tooltip:before {
+    display: none;
+}
+
+/* Attribution is required by the OSM tile licence. It keeps Leaflet's own
+   light styling so it stays legible against the map rather than the page. */
+.about-map .leaflet-control-attribution {
+    font-size: 10px;
 }
 
 .location-list {
@@ -276,6 +362,33 @@
     border-radius: 50%;
     background: var(--primary);
     vertical-align: middle;
+    transition: transform 0.15s ease;
+}
+
+/* .is-linked is added by about.js once the list actually drives the map, so
+   nothing here promises interaction the page cannot deliver. fit-content pulls
+   the box in to the words: a full-column-width li means both the focus ring
+   and the click target run far past "Kumla" into empty space. */
+.location-list li.is-linked {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.location-list li.is-hovered,
+.location-list li.is-active {
+    color: var(--primary);
+}
+
+.location-list li.is-hovered:before,
+.location-list li.is-active:before {
+    transform: scale(1.6);
+}
+
+/* The list items become role="button" and take focus, so they need a visible
+   focus ring — the reset in style.css strips the UA outline. */
+.location-list li.is-linked:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
 }
 
 
@@ -308,7 +421,6 @@
     color: var(--footer-text);
 }
 
-
 /* --------- 6. Phone ---------- */
 
 /* 767px is the breakpoint the affärsområden grid uses, and the person grid
@@ -337,8 +449,22 @@
         grid-template-columns: 1fr;
     }
 
-    .about-map img {
+    .about-map #map,
+    .about-map > img,
+    .about-map figcaption {
         max-width: 100%;
+    }
+
+    /* On a phone the map is full-column width, so 5:7 makes it taller than the
+       viewport. The city labels are also too dense to read at that size — the
+       list right below carries the names, so the map is left as the shape of
+       the spread and the labels are dropped. */
+    .about-map #map {
+        aspect-ratio: 4 / 5;
+    }
+
+    .city-label.leaflet-tooltip {
+        display: none;
     }
 
 }

@@ -677,8 +677,17 @@
         justify-content: flex-start;
     }
 
+    /* Titles in the set run one to three lines, so left alone the body copy
+       starts at a different height on every card. Three lines are reserved —
+       the longest title in the set — which puts the paragraph, and with it the
+       whole lower half of the card, on the same line across the row. The 14px
+       is .card-title's own 7px top and bottom padding, inside the min-height
+       because box-sizing is border-box. A title longer than three lines still
+       grows the box; nothing is clipped. */
     .showcase-featured .image-carousel-slide:not([data-featured]) .card-title {
         font-size: 19px;
+        line-height: 1.35;
+        min-height: calc(3 * 1.35em + 14px);
         text-wrap: pretty;
     }
 

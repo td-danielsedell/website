@@ -17,6 +17,7 @@
     <link rel="alternate" hreflang="sv" href="https://www.totaldigital.se/about.html" />
     <link rel="alternate" hreflang="en" href="https://www.totaldigital.se/en/about.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.totaldigital.se/about.html" />
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Total Digital" />
     <meta property="og:locale" content="sv_SE" />
@@ -50,6 +51,18 @@
 
     <!-- Large footer CSS -->
     <link rel="stylesheet" href="css/footer-large.css">
+
+    <!--Leaflet is deliberately not linked here. css/leaflet.css and
+        js/leaflet.js are fetched by js/about.js instead, for one reason: a
+        <link> in <head> holds up the first paint while 14kB of stylesheet for
+        a section far below the fold loads. See the comment at the top of
+        js/about.js.
+
+        The library is vendored from unpkg like every other library in js/ —
+        one less third-party host on the page, and the map keeps working if
+        the CDN does not. The dist files were checked against the SRI hashes
+        unpkg publishes before being committed; local same-origin files need
+        no integrity attribute of their own.-->
 
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -208,9 +221,8 @@
                     </div>
 
                     <div class="col-14">
-                        <p class="section-subtitle">PLATSHÅLLARE. Här står en rad om hur bolaget
-                            vuxit – vem som startade det, vad som fick det att röra sig, och var vi
-                            är nu.</p>
+                        <p class="section-subtitle">Mycket har hänt sedan starten 2016. Nya kollegor, kompetensområden och uppdrag har tagit oss från ett mindre specialistbolag till det Total Digital vi är idag. Här är några av milstolparna längs vägen.
+</p>
                     </div>
 
 
@@ -219,35 +231,32 @@
                             <li class="tl-item">
                                 <span class="tl-marker" aria-hidden="true"></span>
                                 <p class="tl-year">2016</p>
-                                <h3 class="tl-title">Platshållare: bolaget grundas</h3>
-                                <p>En eller två rader om starten. Vilka som var med, vad idén var,
-                                    och vad den första uppdragsgivaren behövde.</p>
+                                <h3 class="tl-title">Starten</h3>
+                                <p>Total Digital grundas med fokus på IBM Maximo och tillgångsförvaltning. Ett litet specialistbolag tar sina första steg.</p>
                             </li>
                             <li class="tl-item">
                                 <span class="tl-marker" aria-hidden="true"></span>
                                 <p class="tl-year">2018</p>
-                                <h3 class="tl-title">Platshållare: första större kunden</h3>
-                                <p>En eller två rader om det uppdrag som gjorde att bolaget kunde
-                                    börja växa.</p>
+                                <h3 class="tl-title">Vi börjar växa</h3>
+                                <p>Fler och större uppdrag gör att teamet växer. Vi stärker vår kompetens och etablerar oss som specialister inom IBM Maximo och tillgångsförvaltning.</p>
                             </li>
                             <li class="tl-item">
                                 <span class="tl-marker" aria-hidden="true"></span>
                                 <p class="tl-year">2021</p>
-                                <h3 class="tl-title">Platshållare: Maximo möter ArcGIS</h3>
-                                <p>En eller två rader om när de två plattformarna började byggas
-                                    ihop, och vad det öppnade upp.</p>
+                                <h3 class="tl-title">Maximo möter ArcGIS</h3>
+                                <p>Vi börjar förena IBM Maximo och Esri ArcGIS. Information om anläggningens skick kopplas samman med dess geografiska läge och öppnar för nya sätt att arbeta med tillgångar och infrastruktur.</p>
                             </li>
                             <li class="tl-item">
                                 <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2023</p>
-                                <h3 class="tl-title">Platshållare: fjärranalys och AI</h3>
-                                <p>En eller två rader om steget ut i satellitdata och maskininlärning.</p>
+                                <p class="tl-year">2025</p>
+                                <h3 class="tl-title">Fjärranalys och AI</h3>
+                                <p>Vi breddar vår kompetens med fjärranalys och AI. Det ger oss nya möjligheter att upptäcka förändringar, analysera stora områden och se anläggningen i ett större sammanhang.</p>
                             </li>
                             <li class="tl-item">
                                 <span class="tl-marker" aria-hidden="true"></span>
                                 <p class="tl-year">2026</p>
-                                <h3 class="tl-title">Platshållare: tio orter, ett distansbolag</h3>
-                                <p>En eller två rader om var bolaget står idag.</p>
+                                <h3 class="tl-title">Lokalt närvarande. Samlade som ett team.</h3>
+                                <p>Idag finns vi på flera orter i Sverige och även på Åland. Vi växer där kompetensen och kunderna finns och arbetar tillsammans som ett team, oavsett geografi.</p>
                             </li>
                         </ol>
                     </div>
@@ -269,8 +278,7 @@
                     </div>
 
                     <div class="col-14">
-                        <p class="section-subtitle">PLATSHÅLLARE. En rad om ledningsgruppen – vad
-                            den gör och varför den ser ut som den gör.</p>
+                        <p class="section-subtitle">Ledningsgruppen håller ihop riktning, affärsområden och utveckling – med kompetens från olika delar av verksamheten.</p>
                     </div>
 
 
@@ -278,27 +286,17 @@
                         <div class="person-grid">
 
                             <div class="person-card">
-                                <img class="person-photo" src="images/company-images/ledningsgrupp-ma.webp"
-                                    width="600" height="750" loading="lazy" alt="" />
+                                <img class="person-photo" src="images/company-images/LG_LK.png"
+                                    width="400" height="500" loading="lazy" alt="" />
                                 <div class="person-body">
-                                    <h3 class="person-name">Monica Andreasson</h3>
-                                    <p class="person-role">HR-Ansvarig</p>
-                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">monica@totaldigital.se</a></p>
+                                    <h3 class="person-name">Linus Kozsinowski</h3>
+                                    <p class="person-role">VD</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">linus@totaldigital.se</a></p>
                                 </div>
                             </div>
 
                             <div class="person-card">
-                                <img class="person-photo" src="images/company-images/ledningsgrupp-pt.webp"
-                                    width="600" height="750" loading="lazy" alt="" />
-                                <div class="person-body">
-                                    <h3 class="person-name">Petter Tyrenius</h3>
-                                    <p class="person-role">Affärsområdeschef</p>
-                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">petter@totaldigital.se</a></p>
-                                </div>
-                            </div>
-
-                            <div class="person-card">
-                                <img class="person-photo" src="images/company-images/ledningsgrupp-ms.webp"
+                                <img class="person-photo" src="images/company-images/LG_MS.png"
                                     width="438" height="547" loading="lazy" alt="" />
                                 <div class="person-body">
                                     <h3 class="person-name">Mattias Svensson</h3>
@@ -308,13 +306,32 @@
                             </div>
 
                             <div class="person-card">
-                                <!--Fjärde porträttet saknas ännu; platshållaren står kvar tills fotot finns.-->
-                                <img class="person-photo" src="images/company-images/ledningsgrupp-lk.jpg"
-                                    width="400" height="500" loading="lazy" alt="" />
+                                <img class="person-photo" src="images/company-images/LG_MA.png"
+                                    width="600" height="750" loading="lazy" alt="" />
                                 <div class="person-body">
-                                    <h3 class="person-name">Linus Kozsinowski</h3>
-                                    <p class="person-role">VD</p>
-                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">linus@totaldigital.se</a></p>
+                                    <h3 class="person-name">Monica Andreasson</h3>
+                                    <p class="person-role">HR-Ansvarig</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">monica@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                            <div class="person-card">
+                                <img class="person-photo" src="images/company-images/LG_PT.png"
+                                    width="600" height="750" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Petter Tyrenius</h3>
+                                    <p class="person-role">Affärsområdeschef</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">petter@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                            <div class="person-card">
+                                <img class="person-photo" src="images/company-images/LG_PT.png"
+                                    width="600" height="750" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Anton Hansson</h3>
+                                    <p class="person-role">Affärsområdeschef</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">anton@totaldigital.se</a></p>
                                 </div>
                             </div>
 
@@ -332,7 +349,7 @@
                     <div class="col-14">
                         <div class="section-heading">
                             <h2 class="section-kicker">VAR VI FINNS</h2>
-                            <p class="section-title">Tio orter, inget huvudkontor</p>
+                            <p class="section-title">Från norr till syd, öst till väst</p>
                         </div>
                     </div>
                     <!--
@@ -343,33 +360,42 @@
                     -->
                     <div class="col-1 split-2">
 
-                        <!--Kartan är en bild så länge. Den ska bytas mot en inbäddad
-                            ESRI-karta: ersätt bilden inne i figure-elementet med iframen. Notera att en
-                            ESRI-inbäddning är en tredjepartsresurs med egna kakor – punkt 23 i
-                            revisionsdokumentet (cookie-samtycke) behöver lösas först. iframe
-                            får redan border: 0 globalt från style.css.-->
+                        <!--Leaflet map, drawn by js/about.js. The tiles come from
+                            tile.openstreetmap.org: a third-party resource (item 23 in the
+                            revision document) but a cookie-free one, unlike the ESRI embed
+                            once planned for this slot. Dropping the third party entirely
+                            would mean drawing the map as GeoJSON instead of tiles.
+
+                            #map is hidden until about.js marks it .map-live, so without
+                            JavaScript the static image below stands in its place rather
+                            than under an empty box.-->
                         <figure class="about-map">
-                            <img src="images/company-images/td-office-map.webp" width="987" height="1400"
-                                loading="lazy"
-                                alt="Karta över Sverige med Total Digitals orter utmärkta. Orterna räknas upp i listan intill." />
+                            <div id="map"></div>
+                            <noscript>
+                                <img src="images/company-images/td-office-map.webp" width="987" height="1400"
+                                    alt="Karta över Sverige med Total Digitals orter utmärkta. Orterna räknas upp i listan intill." />
+                            </noscript>
+                            <figcaption>Våra orter. Välj en ort i listan för att zooma dit.</figcaption>
                         </figure>
 
                         <div>
-                        <p>PLATSHÅLLARE. Vi är ett distansbolag. Ingen av oss sitter på ett
-                            huvudkontor, och det är ett val snarare än en följd – det låter oss
-                            hitta rätt kompetens där den finns i stället för där kontoret ligger.
-                            Från norr till söder finns vi representerade i:</p>
+                        <p>Vi är ett distansbolag utan huvudkontor. Det är ett medvetet val som låter oss hitta rätt kompetens där den finns och samtidigt vara nära våra kunder.</p>
+                        <p>Idag finns vi i:</p>
+                        <!--data-city ties each row to a dot in CITIES in js/about.js. The
+                            rows are plain text here and are only made clickable by the
+                            script, so the list survives as readable content without
+                            JavaScript.-->
                         <ul class="location-list">
-                            <li>Östersund</li>
-                            <li>Uppsala</li>
-                            <li>Stockholm</li>
-                            <li>Degerfors</li>
-                            <li>Kumla</li>
-                            <li>Lidköping</li>
-                            <li>Alingsås</li>
-                            <li>Varberg</li>
-                            <li>Båstad</li>
-                            <li>Malmö</li>
+                            <li data-city="ostersund">Östersund</li>
+                            <li data-city="uppsala">Uppsala</li>
+                            <li data-city="stockholm">Stockholm</li>
+                            <li data-city="degerfors">Degerfors</li>
+                            <li data-city="kumla">Kumla</li>
+                            <li data-city="lidkoping">Lidköping</li>
+                            <li data-city="alingsas">Alingsås</li>
+                            <li data-city="varberg">Varberg</li>
+                            <li data-city="bastad">Båstad</li>
+                            <li data-city="malmo">Malmö</li>
                         </ul>
                         </div>
 
@@ -395,32 +421,23 @@
                     </div>
 
                     <div class="col-14">
-                        <p class="section-subtitle">PLATSHÅLLARE. En rad om att vi hellre pratar
-                            med rätt person än utgår från en annons – och att det gäller lika
-                            mycket den som är färdig som den som ska skriva sitt examensarbete.</p>
+                        <p class="section-subtitle">Vi letar hellre efter rätt person än rätt CV för en färdig annons. Därför är vi alltid öppna för att prata med människor som kan bidra – oavsett om du är erfaren specialist, i början av karriären eller student.</p>
                     </div>
 
                     <div class="col-1 split-2">
 
                         <div>
                         <h3 class="split-heading">Anställning</h3>
-                        <p>PLATSHÅLLARE. Här står vad det innebär att arbeta hos oss: vilka
-                            uppdrag man hamnar i, hur ett litet bolag med stora kunder fungerar i
-                            praktiken, och vad vi förväntar oss av den som kommer in. Vi
-                            annonserar sällan – när vi hittar någon som kan sitt område hittar vi
-                            oftast också ett uppdrag.</p>
-                        <p>PLATSHÅLLARE. En rad om hur en spontanansökan bäst ser ut, och vad som
-                            händer efter att den kommit in.</p>
+                        <p>Hos oss får du arbeta nära både kunder och teknik, med stort eget ansvar och kort väg från idé till genomförande.
+
+                        Vi annonserar sällan. Ser du en match mellan det du kan och det vi gör, hör av dig och berätta kort om dig själv och vad du vill arbeta med.</p>
                         </div>
 
                         <div>
                         <h3 class="split-heading">Examensarbete</h3>
-                        <p>PLATSHÅLLARE. Här står hur vi handleder, vad vi kan erbjuda i form av
-                            data, plattformar och tid, och vilken typ av frågeställningar som
-                            passar oss. Ett examensarbete hos oss ligger i skärningen mellan
-                            tillgångsförvaltning, GIS, fjärranalys och AI.</p>
-                        <p>PLATSHÅLLARE. En rad om vilka lärosäten vi samarbetat med och hur
-                            processen brukar gå till.</p>
+                        <p>Vi handleder examensarbeten i skärningen mellan **tillgångsförvaltning, GIS, fjärranalys och AI** och kan bidra med kompetens, plattformar och relevant data.
+
+                        **Två nya examensarbeten publiceras här inom kort.**</p>
 
                         <!--Listan är kvar men är platshållare hela vägen. Finns det inga
                             riktiga titlar att sätta här ska den bort: fyra påhittade rader i en
@@ -505,6 +522,9 @@
     <script src="js/jquery.stickyNavbar.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/site.js"></script>
+    <!--Loads Leaflet itself and then draws the map. defer keeps it off the
+        critical path; it does not need L on the page beforehand.-->
+    <script src="js/about.js" defer></script>
 
 </body>
 
