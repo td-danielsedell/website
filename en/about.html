@@ -9,8 +9,7 @@
 
     <!--Meta Description-->
     <meta name="description"
-        content="Total Digital brings Maximo and ArcGIS together into integrated solutions for asset management and GIS.
-            Contact details and information about the company.">
+        content="About Total Digital: our history, the management team, the ten locations we work from, careers and degree projects – plus contact details.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--Canonical URL and Link Previews-->
@@ -25,8 +24,7 @@
     <meta property="og:url" content="https://www.totaldigital.se/en/about.html" />
     <meta property="og:title" content="About us | Total Digital" />
     <meta property="og:description"
-        content="Total Digital brings Maximo and ArcGIS together into integrated solutions for asset management and GIS.
-            Contact details and information about the company." />
+        content="About Total Digital: our history, the management team, the ten locations we work from, careers and degree projects – plus contact details." />
     <meta property="og:image" content="https://www.totaldigital.se/images/og/index.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -46,6 +44,22 @@
 
     <!-- Animations CSS -->
     <link href="../css/animations.css" rel="stylesheet" type="text/css">
+
+    <!-- About page CSS -->
+    <link rel="stylesheet" href="../css/about.css">
+
+    <!-- Large footer CSS -->
+    <link rel="stylesheet" href="../css/footer-large.css">
+
+    <!--Leaflet. On the Swedish page this sheet is fetched by js/about.js
+        instead of being linked here, to keep 14kB of stylesheet for a section
+        far below the fold off the critical path. That loader resolves
+        'css/leaflet.css' and 'js/leaflet.js' relative to the document, so from
+        /en/ it would look for /en/css/... and fail, hiding the map. Until the
+        loader resolves those two paths from its own script URL, this page
+        links Leaflet itself and loads leaflet.js ahead of about.js: about.js
+        sees window.L already defined and goes straight to drawing the map.-->
+    <link rel="stylesheet" href="../css/leaflet.css">
 
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="../fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -168,41 +182,21 @@
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
 
-                        <div class="col-1">
+                        <div class="col-14">
                             <div class="section-heading">
                                 <h2 class="section-kicker">ABOUT US</h2>
                                 <h1 class="section-title">We are Total Digital</h1>
-                                <p class="section-subtitle">Our motto is “the agility of a small company with
-                                    the strength of a large one”. We work constantly to live up to it.</p>
                             </div>
                         </div>
+                        <div class="col-14">
+                        <p class="section-subtitle">The agility of a small company. The strength of a large one. That is Total Digital.</p>
+</div>
 
                         <div class="col-1">
-                            <p>We are unique in our ability to bring Maximo and ArcGIS together into
-                                integrated solutions that raise both functionality and efficiency for our
-                                customers. Our ability to combine domain knowledge with IT makes us a valuable
-                                partner for anyone looking for innovative and sustainable solutions.</p>
-                            <p>We believe in the long term, and our experience is that commitment,
-                                responsiveness and quality are what get you there. Engaged people with strong
-                                skills inspire trust – and that is something we at Total Digital have a black
-                                belt in.</p>
-                        </div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h2 class="section-kicker">CONTACT</h2>
-                            </div>
-                            <!-- Contact data-->
-                            <address id="contact">
-                                Total Digital AB<br />
-                                Fabriksgatan 4<br />
-                                531 60 Lidköping<br />
-                                Sweden<br />
-                                <br />
-                                Email: <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
-                                Phone: +46 10 10 100 70<br />
-                            </address>
-                            <!-- End of Contact data-->
+                            <p>Technology meets domain knowledge. We combine leading platforms with deep domain knowledge and new technology to solve complex challenges – from new perspectives.
+                            </p><p>
+                            We like long-term relationships, high ambitions and people who know their field. Commitment and competence? We have a black belt in that.
+                            </p>
                         </div>
 
                     </div>
@@ -210,31 +204,310 @@
             </section>
             <!--End of Introduction-->
 
+            <!--History. The heading and the subheading sit in two col-14 so that they
+                stand side by side from 768px up, the same arrangement as
+                Business Areas and Trust on the start page.-->
+            <section id="history" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-14">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">HISTORY</h2>
+                            <p class="section-title">How we got here</p>
+                        </div>
+                    </div>
+
+                    <div class="col-14">
+                        <p class="section-subtitle">A lot has happened since we started in 2016. New colleagues, new areas of expertise and new assignments have taken us from a small specialist company to the Total Digital we are today. Here are some of the milestones along the way.
+</p>
+                    </div>
+
+
+                    <div class="col-1">
+                        <ol class="timeline timeline--alt">
+                            <li class="tl-item">
+                                <span class="tl-marker" aria-hidden="true"></span>
+                                <p class="tl-year">2016</p>
+                                <h3 class="tl-title">The start</h3>
+                                <p>Total Digital is founded with a focus on IBM Maximo and asset management. A small specialist company takes its first steps.</p>
+                            </li>
+                            <li class="tl-item">
+                                <span class="tl-marker" aria-hidden="true"></span>
+                                <p class="tl-year">2018</p>
+                                <h3 class="tl-title">We start to grow</h3>
+                                <p>More and larger assignments grow the team. We strengthen our expertise and establish ourselves as specialists in IBM Maximo and asset management.</p>
+                            </li>
+                            <li class="tl-item">
+                                <span class="tl-marker" aria-hidden="true"></span>
+                                <p class="tl-year">2021</p>
+                                <h3 class="tl-title">Maximo meets ArcGIS</h3>
+                                <p>We begin to bring IBM Maximo and Esri ArcGIS together. Information about the condition of an asset is linked to its geographical position, opening up new ways of working with assets and infrastructure.</p>
+                            </li>
+                            <li class="tl-item">
+                                <span class="tl-marker" aria-hidden="true"></span>
+                                <p class="tl-year">2025</p>
+                                <h3 class="tl-title">Remote sensing and AI</h3>
+                                <p>We broaden our expertise with remote sensing and AI. That gives us new ways to detect change, analyse large areas and see the asset base in a wider context.</p>
+                            </li>
+                            <li class="tl-item">
+                                <span class="tl-marker" aria-hidden="true"></span>
+                                <p class="tl-year">2026</p>
+                                <h3 class="tl-title">Locally present. Together as one team.</h3>
+                                <p>Today we are in several places across Sweden, and on Åland too. We grow where the skills and the customers are, and work together as one team whatever the geography.</p>
+                            </li>
+                        </ol>
+                    </div>
+
+
+                </div>
+            </section>
+            <!--End of History-->
+
+            <!--Management team-->
+            <section id="management" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-14">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">MANAGEMENT TEAM</h2>
+                            <p class="section-title">The people who hold it together</p>
+                        </div>
+                    </div>
+
+                    <div class="col-14">
+                        <p class="section-subtitle">The management team holds together direction, business areas and development – with expertise drawn from across the company.</p>
+                    </div>
+
+
+                    <div class="col-1">
+                        <div class="person-grid">
+
+                            <div class="person-card">
+                                <img class="person-photo" src="../images/company-images/LG_LK.webp"
+                                    width="400" height="500" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Linus Kozsinowski</h3>
+                                    <p class="person-role">CEO</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">linus@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                            <div class="person-card">
+                                <img class="person-photo" src="../images/company-images/LG_MS.webp"
+                                    width="400" height="500" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Mattias Svensson</h3>
+                                    <p class="person-role">Deputy CEO</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">mattias@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                            <div class="person-card">
+                                <img class="person-photo" src="../images/company-images/LG_MA.webp"
+                                    width="400" height="500" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Monica Andreasson</h3>
+                                    <p class="person-role">Head of HR</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">monica@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                            <div class="person-card">
+                                <img class="person-photo" src="../images/company-images/LG_PT.webp"
+                                    width="400" height="500" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Petter Tyrenius</h3>
+                                    <p class="person-role">Business Area Manager</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">petter@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                            <div class="person-card">
+                                <img class="person-photo" src="../images/company-images/LG_PT.webp"
+                                    width="400" height="500" loading="lazy" alt="" />
+                                <div class="person-body">
+                                    <h3 class="person-name">Anton Hansson</h3>
+                                    <p class="person-role">Business Area Manager</p>
+                                    <p class="person-contact"><a href="mailto:info@totaldigital.se">anton@totaldigital.se</a></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Management team-->
+
+            <!--Locations-->
+            <section id="locations" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-14">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">WHERE WE ARE</h2>
+                            <p class="section-title">From north to south, east to west</p>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-14">
+                        <p class="section-subtitle">PLACEHOLDER. A line about working
+                            remotely, and what that means for how we take on assignments.</p>
+                    </div>
+                    -->
+                    <div class="col-1 split-2">
+
+                        <!--Leaflet map, drawn by js/about.js. The tiles come from
+                            tile.openstreetmap.org: a third-party resource (item 23 in the
+                            revision document) but a cookie-free one, unlike the ESRI embed
+                            once planned for this slot. Dropping the third party entirely
+                            would mean drawing the map as GeoJSON instead of tiles.
+
+                            #map is hidden until about.js marks it .map-live, so without
+                            JavaScript the static image below stands in its place rather
+                            than under an empty box.-->
+                        <figure class="about-map">
+                            <div id="map"></div>
+                            <noscript>
+                                <img src="../images/company-images/td-office-map.webp" width="987" height="1400"
+                                    alt="Map of Sweden with Total Digital's locations marked. The locations are listed alongside." />
+                            </noscript>
+                            <figcaption>Our locations. Pick one from the list to zoom to it.</figcaption>
+                        </figure>
+
+                        <div>
+                        <p>We are a remote company with no head office. That is a deliberate choice: it lets us find the right skills wherever they are and stay close to our customers at the same time.</p>
+                        <p>Today you will find us in:</p>
+                        <!--data-city ties each row to a dot in CITIES in js/about.js. The
+                            rows are plain text here and are only made clickable by the
+                            script, so the list survives as readable content without
+                            JavaScript.-->
+                        <ul class="location-list">
+                            <li data-city="ostersund">Östersund</li>
+                            <li data-city="uppsala">Uppsala</li>
+                            <li data-city="stockholm">Stockholm</li>
+                            <li data-city="degerfors">Degerfors</li>
+                            <li data-city="kumla">Kumla</li>
+                            <li data-city="lidkoping">Lidköping</li>
+                            <li data-city="alingsas">Alingsås</li>
+                            <li data-city="varberg">Varberg</li>
+                            <li data-city="bastad">Båstad</li>
+                            <li data-city="malmo">Malmö</li>
+                        </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Locations-->
+
+            <!--Careers. This was two sections, Careers and Degree projects: they said the
+                same thing twice – we do not advertise, get in touch – and put two CTA blocks
+                one after the other at the end of the page. Now one section with two tracks.
+                The tracks need headings of their own (h3.split-heading) because the two
+                kickers that used to separate them are gone.-->
+            <section id="career" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-14">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">CAREERS</h2>
+                            <p class="section-title">We have no open vacancies posted</p>
+                        </div>
+                    </div>
+
+                    <div class="col-14">
+                        <p class="section-subtitle">We would rather look for the right person than the right CV for a ready-made advert. So we are always open to talking to people who can contribute – whether you are an experienced specialist, early in your career or a student.</p>
+                    </div>
+
+                    <div class="col-1 split-2">
+
+                        <div>
+                        <h3 class="split-heading">Employment</h3>
+                        <p>With us you work close to both customers and technology, with a great deal of your own responsibility and a short path from idea to delivery.
+
+                        We rarely advertise. If you see a match between what you can do and what we do, get in touch and tell us briefly about yourself and what you want to work with.</p>
+                        </div>
+
+                        <div>
+                        <h3 class="split-heading">Degree projects</h3>
+                        <p>We supervise degree projects at the intersection of <strong>asset management, GIS, remote sensing and AI</strong>, and can contribute expertise, platforms and relevant data.
+
+                        <strong>Two new degree projects will be published here shortly.</strong></p>
+
+                        <!--The list is still here but is placeholder all the way through. If
+                            there are no real titles to put here it should go: four invented rows in
+                            a framed list look like content you have when you do not.-->
+                        <ul class="thesis-list">
+                            <li>
+                                <span class="thesis-title">Placeholder: title of the degree project</span>
+                                <span class="thesis-meta">University &middot; Programme &middot; Year</span>
+                            </li>
+                            <li>
+                                <span class="thesis-title">Placeholder: title of the degree project</span>
+                                <span class="thesis-meta">University &middot; Programme &middot; Year</span>
+                            </li>
+                            <li>
+                                <span class="thesis-title">Placeholder: title of the degree project</span>
+                                <span class="thesis-meta">University &middot; Programme &middot; Year</span>
+                            </li>
+                        </ul>
+                        </div>
+
+                    </div>
+
+                    <!--Call to Action. Two buttons, not one: the mailto subject line separates a
+                        speculative application from a degree-project enquiry, and that routing is
+                        worth keeping even now the sections have been merged.-->
+                    <div class="col-1 text-center showcase-cta">
+                        <p>Feel you would belong here? Get in touch, even when we are not recruiting
+                            right now.</p>
+                        <div class="cta-buttons">
+                            <a href="mailto:info@totaldigital.se?subject=Speculative application" class="button">SEND A SPECULATIVE APPLICATION</a>
+                            <a href="mailto:info@totaldigital.se?subject=Degree project" class="button">ASK ABOUT A DEGREE PROJECT</a>
+                        </div>
+                    </div>
+                    <!--End of Call to Action-->
+
+                </div>
+            </section>
+            <!--End of Careers-->
+
+
         </main>
         <!--End of Main Content Area-->
 
+
         <!--Footer-->
-        <footer id="landing-footer" class="clearfix">
+        <footer class="clearfix footer-large">
             <div class="row clearfix">
+                <div class="col-1 text-center">
 
-                <p id="copyright" class="col-2">
-                    Total Digital AB | Fabriksgatan 4 | 531 60 Lidköping, Sweden | <a
-                        href="mailto:info@totaldigital.se">info@totaldigital.se</a> | +46 10 10 100 70
-                </p>
+                    <p class="footer-name">Total Digital AB</p>
+                    <p class="footer-address">
+                        Fabriksgatan 4 &middot; 531 60 Lidköping, Sweden<br />
+                        <a href="mailto:info@totaldigital.se">info@totaldigital.se</a> &middot;
+                        <a href="tel:+46101010070">+46 10 10 100 70</a>
+                    </p>
 
-                <!--Social Icons in Footer-->
-                <ul class="col-2 social-icons">
-                    <li>
-                        <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
-                            <svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg><span>GitHub</span>
-                        </a>
-                        <a target="_blank" title="LinkedIn"
-                            href="https://www.linkedin.com/company/total-digital-it-solutions">
-                            <svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg><span>LinkedIn</span>
-                        </a>
-                    </li>
-                </ul>
-                <!--End of Social Icons in Footer-->
+                    <!--Social Icons in Footer-->
+                    <ul class="social-icons footer-social">
+                        <li>
+                            <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
+                                <svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg><span>GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" title="LinkedIn"
+                                href="https://www.linkedin.com/company/total-digital-it-solutions">
+                                <svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg><span>LinkedIn</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--End of Social Icons in Footer-->
+
+                </div>
             </div>
         </footer>
         <!--End of Footer-->
@@ -246,6 +519,11 @@
     <script src="../js/jquery.stickyNavbar.min.js"></script>
     <script src="../js/jquery.waypoints.min.js"></script>
     <script src="../js/site.js"></script>
+    <!--Draws the map. defer keeps both off the critical path and preserves the
+        order: leaflet.js runs first, so about.js finds window.L and skips its
+        own loader. See the note beside the Leaflet stylesheet in <head>.-->
+    <script src="../js/leaflet.js" defer></script>
+    <script src="../js/about.js" defer></script>
 
 </body>
 

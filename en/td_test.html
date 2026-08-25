@@ -218,28 +218,13 @@
 
                         <div class="col-1">
                             <p>
-                                TD Test lets you test your IBM Maximo automatically &ndash; instead of someone clicking through the same checks
-                                by hand every time something changes. You describe once how a workflow is meant
-                                to behave, and from then on the test can be re-run as many times as you like:
-                                after an upgrade, after a new customisation, or ahead of every deployment.
-                            </p>
-                            <p>
-                                The result is a quick answer to the question that matters most: <strong>does Maximo still work the way the
-                                business expects?</strong> If something has gone wrong, TD Test shows where in
-                                the flow it happened, what the error was and what the screen looked like at that
-                                moment. The tests do not touch your data &ndash; the database is left as it was,
-                                so the same test can be run any number of times without leaving a trace.
-                            </p>
-                            <p>
-                                TD Test works just as well for older IBM Maximo 7.x as for the latest IBM Maximo Application Suite (MAS), and
-                                the same test can be run against both. That makes the tool especially useful
-                                during an upgrade: you can show, in black and white, that your customisations
-                                and processes work exactly as they did before in the new version.
-                            </p>
-                            <p>
-                                Unlike ordinary testing tools, TD Test works directly against Maximo rather than through a browser. That makes
-                                the tests considerably faster, more stable and easier to maintain over time
-                                &ndash; you avoid rewriting them every time the interface changes.
+                                TD Test automates testing of IBM Maximo and replaces time-consuming manual checks. A workflow is defined once and can then be tested over and over again &ndash; after upgrades, after customisations, or ahead of deployment.
+                            </p><p>
+                                You get a quick answer to the question that matters most: <strong>does Maximo still work the way the business expects?</strong> If something goes wrong, TD Test shows where in the flow the error occurred, what happened and what the screen looked like. The tests leave the database unchanged, so they can be repeated without affecting your data.
+                            </p><p>
+                                TD Test supports both IBM Maximo 7.x and IBM Maximo Application Suite (MAS), and the same tests can be run against either version. That makes it easy to verify that processes and customisations still work after an upgrade.
+                            </p><p>
+                                Unlike traditional testing tools, TD Test works directly against Maximo without going through the browser. That gives faster, more stable tests that do not need rewriting when the interface changes.
                             </p>
                             <p>
                                 Want to see what that looks like in practice? Get in touch for a demonstration &ndash; or read on for the
@@ -271,43 +256,38 @@
                          beside them: they belong together as a tour, see below. -->
                     <div class="tdt-trio">
                         <div>
-                            <h3 class="card-title">Different kinds of test</h3>
-                            <p>With TD Test you can cover the parts of Maximo that matter most to the business &ndash; from what users click on
-                            to what happens in the background:</p>
+                            <h3 class="card-title">Test what matters</h3>
+                            <p>TD Test can automate tests of:</p>
                             <ul class="tdt-list">
-                                <li>Maximo's web user interface</li>
-                                <li>Maximo's business logic, for example the rules for how a work order may be changed</li>
+                                <li>Maximo's user interface and business logic</li>
                                 <li>Integrations with other systems</li>
-                                <li>Your own customisations of Maximo</li>
-                                <li>Whole business processes, the way you actually work in Maximo &ndash; including flows where several users take
-                                turns, such as approval and handover, all within one and the same test</li>
+                                <li>Your own customisations and functions</li>
+                                <li>Complete business processes</li>
+                                <li>Flows with several users, for example approval and handover</li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3 class="card-title">Reporting</h3>
-                            <p>Results are compiled automatically after every run and shown simply &ndash; in the web interface, or sent to
-                            where you already work, such as a Teams channel.</p>
+                            <h3 class="card-title">See straight away what went wrong</h3>
+                            <p>After every run TD Test gives you:</p>
                             <ul class="tdt-list">
-                                <li>A result per test step, not just pass or fail for the test as a whole</li>
-                                <li>On failure: the error message in plain text, together with the step that broke</li>
-                                <li>A log extract from the moment of the failure, already pulled out for you</li>
-                                <li>A screenshot of Maximo for each step, so you see what the test saw</li>
-                                <li>History of earlier runs, so you can follow quality over time</li>
-                                <li>Results can be sent automatically to a Teams channel</li>
+                                <li>A result for each test step</li>
+                                <li>Error messages and relevant log extracts</li>
+                                <li>Screenshots from every step</li>
+                                <li>History of earlier test runs</li>
+                                <li>Automatic reporting to Teams, for example</li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3 class="card-title">Flexibility</h3>
-                            <p>You decide when and how the tests are run.</p>
+                            <h3 class="card-title">Run it on your terms</h3>
+                            <p>TD Test gives you the flexibility to:</p>
                             <ul class="tdt-list">
-                                <li>Run on demand, for example during ongoing development work</li>
-                                <li>Run a single test or a whole group of tests</li>
-                                <li>Schedule runs so that they happen automatically</li>
-                                <li>Start the tests from the browser &ndash; or let them form part of your existing automated pipelines (Jenkins,
-                                for example), if you have them. That is not a requirement.</li>
-                                <li>Choose how much log detail is collected per test, without affecting your normal Maximo settings</li>
+                                <li>Run single tests or whole test groups</li>
+                                <li>Schedule recurring runs</li>
+                                <li>Start tests directly from the browser</li>
+                                <li>Integrate with Jenkins, for example</li>
+                                <li>Control the log level per test without affecting Maximo's normal settings</li>
                             </ul>
                         </div>
                     </div>
@@ -373,40 +353,25 @@
                     <div class="col-2 tdt-feature wow fadeInUp" data-wow-delay="0.1s">
                         <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z" /></svg></div>
                         <h3 class="card-title">Fast</h3>
-                        <p>Because the tests do not have to detour through a browser, they are much faster. We have measured tests running
-                        up to 100 times faster with TD Test.</p>
+                        <p>TD Test works directly against Maximo, without the detour through a browser. That gives tests that can run up to 100 times faster.</p>
                     </div>
 
                     <div class="col-2 tdt-feature wow fadeInUp" data-wow-delay="0.1s">
                         <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8l0 378.1C394 378 431.1 230.1 432 141.4L256 66.8s0 0 0 0z" /></svg></div>
                         <h3 class="card-title">Stable</h3>
-                        <p>Ordinary testing tools drive a browser, which makes them sensitive to small things: a button that has moved, a
-                        page that loads slowly. TD Test talks directly to Maximo and checks the interface before
-                        it ever reaches the browser. The result is tests you can rely on, and that do not need
-                        rewriting every time something changes.</p>
+                        <p>TD Test is not affected in the same way by changes to Maximo's interface or by browser behaviour. The tests are more stable and need less maintenance as Maximo changes.</p>
                     </div>
 
                     <div class="col-2 tdt-feature wow fadeInUp" data-wow-delay="0.1s">
                         <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M512 80c0 18-14.3 34.6-38.4 48c-29.1 16.1-72.5 27.5-122.3 30.9c-3.7-1.8-7.4-3.5-11.3-5C300.6 137.4 248.2 128 192 128c-8.3 0-16.4 .2-24.5 .6l-1.1-.6C142.3 114.6 128 98 128 80c0-44.2 86-80 192-80S512 35.8 512 80zM160.7 161.1c10.2-.7 20.7-1.1 31.3-1.1c62.2 0 117.4 12.3 152.5 31.4C369.3 204.9 384 221.7 384 240c0 4-.7 7.9-2.1 11.7c-4.6 13.2-17 25.3-35 35.5c0 0 0 0 0 0c-.1 .1-.3 .1-.4 .2c0 0 0 0 0 0s0 0 0 0c-.3 .2-.6 .3-.9 .5c-35 19.4-90.8 32-153.6 32c-59.6 0-112.9-11.3-148.2-29.1c-1.9-.9-3.7-1.9-5.5-2.9C14.3 274.6 0 258 0 240c0-34.8 53.4-64.5 128-75.4c10.5-1.5 21.4-2.7 32.7-3.5zM416 240c0-21.9-10.6-39.9-24.1-53.4c28.3-4.4 54.2-11.4 76.2-20.5c16.3-6.8 31.5-15.2 43.9-25.5l0 35.4c0 19.3-16.5 37.1-43.8 50.9c-14.6 7.4-32.4 13.7-52.4 18.5c.1-1.8 .2-3.5 .2-5.3zm-32 96c0 18-14.3 34.6-38.4 48c-1.8 1-3.6 1.9-5.5 2.9C304.9 404.7 251.6 416 192 416c-62.8 0-118.6-12.6-153.6-32C14.3 370.6 0 354 0 336l0-35.4c12.5 10.3 27.6 18.7 43.9 25.5C83.4 342.6 135.8 352 192 352s108.6-9.4 148.1-25.9c7.8-3.2 15.3-6.9 22.4-10.9c6.1-3.4 11.8-7.2 17.2-11.2c1.5-1.1 2.9-2.3 4.3-3.4l0 3.4 0 5.7 0 26.3zm32 0l0-32 0-25.9c19-4.2 36.5-9.5 52.1-16c16.3-6.8 31.5-15.2 43.9-25.5l0 35.4c0 10.5-5 21-14.9 30.9c-16.3 16.3-45 29.7-81.3 38.4c.1-1.7 .2-3.5 .2-5.3zM192 448c56.2 0 108.6-9.4 148.1-25.9c16.3-6.8 31.5-15.2 43.9-25.5l0 35.4c0 44.2-86 80-192 80S0 476.2 0 432l0-35.4c12.5 10.3 27.6 18.7 43.9 25.5C83.4 438.6 135.8 448 192 448z" /></svg></div>
                         <h3 class="card-title">Cost-effective</h3>
-                        <p>TD Test is quick to get started with and needs no dedicated hardware of its own &ndash; it runs as a container
-                        in an environment you already have (Podman, Docker or Rancher, for example). Building
-                        tests for your particular business is fast too, so the benefit arrives early.</p>
+                        <p>TD Test needs no dedicated hardware and can run as a container in an environment you already have, such as Podman, Docker or Rancher. Fast implementation and less test maintenance mean benefit from the start.</p>
                     </div>
 
                     <div class="col-2 tdt-feature wow fadeInUp" data-wow-delay="0.1s">
                         <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" /></svg></div>
                         <h3 class="card-title">Easy to use</h3>
-                        <p>A test is written the way a user works in Maximo &ndash; step by step, using the same names that appear on the
-                        screen. Many steps also come ready to use, such as logging in or navigating to an
-                        application, so writing tests is quick and straightforward.</p>
-                        <p>The tests are just as easy to follow in the web interface:</p>
-                        <ul class="tdt-list">
-                            <li>Clear reporting on the tests that have run</li>
-                            <li>Easy to follow a test step by step</li>
-                            <li>A precise answer on where a test goes wrong</li>
-                            <li>Overview and follow-up of earlier runs</li>
-                        </ul>
+                        <p>TD Test follows the same logic and the same names as Maximo, which makes the tests easy to create and to follow. Common test steps are already built in, and clear reporting shows exactly where any error occurs.</p>
                     </div>
 
                 </div>
@@ -425,49 +390,49 @@
                     <table class="tdt-compare" aria-labelledby="comparison-heading">
                         <thead>
                             <tr>
-                                <th scope="col">Capability</th>
+                                <th scope="col">Features</th>
                                 <th scope="col">Browser-based</th>
                                 <th scope="col">TD Test</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">The test adapts automatically when Maximo's interface changes</th>
+                                <th scope="row">Adapts to changes in Maximo's interface</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">The same test can be run against different Maximo versions without being rewritten</th>
+                                <th scope="row">Same test for different Maximo versions</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">Built-in support for testing integrations</th>
+                                <th scope="row">Testing of integrations</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">Built-in support for testing Maximo's business logic</th>
+                                <th scope="row">Testing of Maximo's business logic</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">Can schedule runs without extra tooling (Jenkins, for example)</th>
+                                <th scope="row">Built-in scheduling</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">A report with everything needed for troubleshooting</th>
+                                <th scope="row">Troubleshooting data in the report</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">Tests that leave the system and the database untouched</th>
+                                <th scope="row">Testing without affecting systems or data</th>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                             </tr>
                             <tr>
-                                <th scope="row">Testing across different browsers and browser versions</th>
+                                <th scope="row">Testing of different browsers</th>
                                 <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
                                 <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
                             </tr>
