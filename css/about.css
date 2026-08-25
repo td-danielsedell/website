@@ -141,10 +141,13 @@
    affärsområden blocks. The card look is restated here rather than pulling the
    350-line feature-card.css onto this page for one component — the values are
    feature-card's. */
+/* Five columns so the whole ledningsgrupp reads as one row — the previous four
+   left a single card orphaned on a second row. Add a sixth person and this
+   number has to move with it. */
 .person-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }
 
 .person-card {
@@ -421,10 +424,23 @@
     color: var(--footer-text);
 }
 
-/* --------- 6. Phone ---------- */
+/* --------- 6. Tablet ---------- */
+
+/* Five columns need close to the full 1245px container: below 220px per card
+   "Monica Andreasson" breaks onto two lines, and 220px cards run out at a
+   1219px viewport. Under that, three columns. */
+@media (min-width: 768px) and (max-width: 1219px) {
+
+    .person-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* --------- 7. Phone ---------- */
 
 /* 767px is the breakpoint the affärsområden grid uses, and the person grid
-   follows it for the same reason: two columns read on every phone width, four
+   follows it for the same reason: two columns read on every phone width, more
    do not. */
 @media (max-width: 767px) {
 
