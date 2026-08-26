@@ -1,0 +1,146 @@
+/*------------------------------------------------------------------------------------------*/
+/* Affärsområden — the four areas as a band, not four cards
+/*------------------------------------------------------------------------------------------*/
+
+/* Replaces the card grid this section used to be: no border, no shadow, no
+   blown-up icon watermark, and one sentence per area instead of three bullets.
+   The bullets said "Systemstöd i IBM Maximo" two sections before Tjänster says
+   it again, and four bordered boxes here gave this section the same visual
+   weight as Showcases and Produkter — which do link somewhere. A box earns its
+   border by leading to its own page; these four do not.
+
+   The old card rules are still in style.css under #businessareas .area-grid:
+   en/index.html has not been resynced yet and still uses them. They can go when
+   it has.
+
+   Linked after style.css, which is what lets .area-band-item img beat
+   .row img { height: auto } — both are one class and one element, so the later
+   sheet settles it. */
+
+.area-band {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    counter-reset: area;
+}
+
+/* Hairline rules between the columns do the separating the four borders used to.
+   The first item gives up its left rule and its left padding so the copy starts
+   on the same line as the section heading above it. */
+.area-band-item {
+    padding: 0 28px;
+    border-left: 1px solid #555;
+}
+
+.area-band-item:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.area-band-item:last-child {
+    padding-right: 0;
+}
+
+.area-band-item img {
+    display: block;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+}
+
+.area-band-item h3 {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 25px;
+    color: #fff;
+    padding: 0;
+    text-wrap: pretty;
+}
+
+/* The 01-04 counter the cards carried in their description block. */
+.area-band-item h3::before {
+    counter-increment: area;
+    content: "0" counter(area);
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--section-subtitle);
+    padding-bottom: 8px;
+}
+
+/* margin and line-height spelled out: the sitewide reset skips <p>, so a
+   paragraph in new markup otherwise inherits the browser default. */
+.area-band-item p {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: #c2c2c2;
+}
+
+
+/* Two across. Below four columns each area gets ~200px, which is not enough for
+   "Tillgångsförvaltning" to stay on one line. */
+@media (max-width: 1023px) {
+
+    .area-band {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 34px 0;
+    }
+
+    /* The rule now belongs to the right-hand column only, and :first-child no
+       longer covers the third item — so reset both and key off the position in
+       the row instead. */
+    .area-band-item,
+    .area-band-item:first-child {
+        padding: 0 24px;
+        border-left: 1px solid #555;
+    }
+
+    .area-band-item:nth-child(odd) {
+        padding-left: 0;
+        border-left: 0;
+    }
+}
+
+
+/* One per row, icon beside the copy rather than above it: four stacked
+   icon-then-text blocks is four screens of scrolling on a phone. */
+@media (max-width: 567px) {
+
+    .area-band {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .area-band-item,
+    .area-band-item:first-child,
+    .area-band-item:nth-child(odd) {
+        padding: 22px 0;
+        border-left: 0;
+        border-top: 1px solid #555;
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 0 16px;
+    }
+
+    .area-band-item:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+
+    .area-band-item img {
+        width: 44px;
+        height: 44px;
+        margin: 0;
+        grid-row: span 2;
+    }
+
+    /* The number goes inline with the title here. Stacked, it sat alone beside
+       the icon and left a hole where the title should have been. */
+    .area-band-item h3::before {
+        display: inline;
+        padding: 0 10px 0 0;
+    }
+}
