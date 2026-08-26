@@ -785,6 +785,106 @@ section {
     }
 }
 
+/* --------- 2.4.0 Theme toggle ---------- */
+
+/* Sits beside the language switcher and is built the same way: an icon-only
+   control filling the header's 71px line box, styled here for both themes.
+   js/theme.js does the switching.
+
+   A <button> rather than an <a>, because nothing is being navigated to. That
+   also keeps it clear of stickyNavbar, which binds "li a" and would read the
+   click as a request to scroll to a section. */
+#header nav .theme-toggle {
+    /* Matches .nav-lang summary rather than the inline-block <li> around it:
+       the li is what the baseline-aligned nav row sees, and inside it this
+       behaves like the summary next door. */
+    display: block;
+    height: 71px;
+    line-height: 71px;
+    padding: 0 10px;
+    border: 0;
+    background: transparent;
+    color: var(--link);
+    opacity: 0.75;
+    cursor: pointer;
+    /* A button does not inherit type from the page. */
+    font: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+}
+
+#header nav .theme-toggle:hover {
+    opacity: 1;
+}
+
+/* Same weight as the globe beside it, and the same drop onto the centre of the
+   link labels either side. The transparent background is not decoration:
+   "#header.nav-solid .svg-icon" paints one, which shows up as an orange tile on
+   the mobile menu's dark panel. */
+#header nav .theme-toggle .svg-icon {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: -0.24em;
+    background: transparent;
+}
+
+/* One button, two icons: the visible one names the destination, so the dark
+   site offers a sun and the light site a moon. Swapped in CSS rather than by
+   the script, so the right icon is in place on the first paint. */
+#header nav .theme-toggle .icon-moon {
+    display: none;
+}
+
+html.theme-light #header nav .theme-toggle .icon-moon {
+    display: inline-block;
+}
+
+html.theme-light #header nav .theme-toggle .icon-sun {
+    display: none;
+}
+
+/* Wide nav: the language switcher is pinned to the right edge, so this one is
+   pinned just inside it. The offset is the globe control's own width — a
+   1.25em icon in 10px of padding a side — which is what makes the two read as
+   one pair of controls rather than two coincidences. */
+@media all and (min-width: 1024px) {
+    #header nav#nav-main .nav-theme {
+        position: absolute;
+        top: 0;
+        right: calc(1.25em + 20px);
+    }
+}
+
+/* In the mobile menu it becomes one of the stacked rows, matching the language
+   switcher's 48px box and 15px indent. */
+#header nav#nav-mobile .theme-toggle {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 15px;
+    width: 100%;
+    text-align: left;
+    background: var(--header);
+}
+
+/* Beside the hamburger, the narrow-screen home for both controls. */
+#nav-theme-mobile {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* The wide nav's copy is cloned into #nav-mobile by site.js, and below 1024px
+   the control lives next to the hamburger instead — same split as .nav-lang. */
+@media all and (max-width: 1023px) {
+    #nav-mobile .nav-theme {
+        display: none;
+    }
+}
+
 /* --------- 2.4.1 Expandable menu groups ---------- */
 
 /* Nav items that own subpages (Showcases, Produkter) expand instead of jumping.

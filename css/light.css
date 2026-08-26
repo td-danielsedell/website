@@ -1,0 +1,389 @@
+/* ==========================================================================
+   Light theme — experiment
+   --------------------------------------------------------------------------
+   Loaded LAST, and every rule is scoped to `html.theme-light`, so the dark
+   site is untouched unless a page opts in. Nothing here is a change to the
+   existing sheets.
+
+   Palette taken from the "light" PowerPoint template: pure white ground,
+   pure black shapes and type, orange #ff4b00 as the one accent, cyan
+   #00b4ff for the subtitle line. Deliberately NOT the dark theme inverted —
+   the template's contrast is black-on-white, not grey-on-grey.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   The existing sheets read almost everything through these, so the swap
+   below does most of the work on its own. Custom properties inherit, so
+   redeclaring them on <body> overrides the :root block in colors.css.
+   -------------------------------------------------------------------------- */
+
+html.theme-light {
+    --header: #ff4b00;
+    --primary: rgb(255, 75, 0);
+    --primary_0: rgb(255, 75, 0, 0);
+    --primary_100: rgb(255, 75, 0, 1);
+
+    /* The page ground. `body { background: var(--secondary) }` picks this up.
+       The template's ground is pure white, but that is a projector colour —
+       a full screen of #ffffff is punishing to read at low ambient light.
+       Warm paper instead, with the cards left pure white so they still lift
+       off it without needing a heavy border. Dial this one value to go
+       whiter or softer. */
+    --secondary: #f6f5f2;
+
+    --normal-text: #1a1a1a;
+    --header-text: #1a1a1a;
+    --banner-text: #fff;          /* nav over the photo hero stays white */
+    --section-title: #111111;
+    --section-heading: #111111;
+    /* The template's cyan is #00b4ff, which is 2.3:1 on this ground — fine as
+       a projected accent, not readable as text. Same hue, taken down to
+       ~4.6:1 so it can carry the kickers and the testimonial quotes. */
+    --section-subtitle: #0284c7;
+    --link: #111111;
+    --link-hover-active: #ff4b00;
+    --border: #e0e0e0;
+    --footer-text: #6b6b6b;
+
+    /* New, light-only. The dark sheets hardcode their surface colours, so the
+       overrides further down need names for the replacements. */
+    --surface: #ffffff;
+    --surface-border: #e0e0e0;
+    --surface-shadow: rgba(0, 0, 0, 0.07);
+    --surface-shadow-hover: rgba(0, 0, 0, 0.16);
+    --muted-text: #57534e;
+    --band: #000000;              /* the template's black blob, as a band */
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Ground and type
+   -------------------------------------------------------------------------- */
+
+html.theme-light body {
+    background: var(--secondary);
+    color: var(--normal-text);
+}
+
+/* The reset leaves headings at the inherited colour, and several rules paint
+   them white for the dark ground. */
+html.theme-light h1,
+html.theme-light h2,
+html.theme-light h3,
+html.theme-light h4,
+html.theme-light h5,
+html.theme-light h6,
+html.theme-light p,
+html.theme-light li {
+    color: var(--normal-text);
+}
+
+/* #c2c2c2 is the dark theme's "muted body copy" — 1.4:1 on paper. These are
+   every selector that hardcodes it. */
+html.theme-light #businessareas .icon-block p,
+html.theme-light .area-band-item p,
+html.theme-light .showcase .card-content p,
+html.theme-light .product-carousel .product-content,
+html.theme-light .product-carousel .product-content p,
+html.theme-light .service-list span,
+html.theme-light .industry-slider .logo-track > *,
+html.theme-light .trust-partners .partner-lead {
+    color: var(--muted-text);
+}
+
+/* Two more that hardcode #fff for the dark ground. */
+html.theme-light .trust-partners .section-subtitle,
+html.theme-light .partner-lead strong {
+    color: var(--normal-text);
+}
+
+/* #businessareas .card-title is #c2c2c2 too, but it is a title — it wants the
+   full-strength ink, not the muted grade. */
+html.theme-light #businessareas .card-title {
+    color: var(--normal-text);
+}
+
+
+
+/* --------------------------------------------------------------------------
+   3. Header / navigation
+   Transparent over the photo hero (white links, unchanged), white bar once
+   it sticks. The nav-solid background reads var(--normal-text), which is now
+   near-black, so it has to be set explicitly.
+   -------------------------------------------------------------------------- */
+
+/* Before it sticks, the header is the orange brand bar at the top of the page
+   and the transparent strip over the banner photo — both dark grounds, in both
+   themes. So the white nav treatment has to be held: --link is near-black here,
+   and colors.css feeds it to every header link and icon, which left black type
+   on orange and a white logo above it.
+
+   Scoped :not(.nav-solid) rather than overriding per state, so the solid rules
+   below stay the only place the light header is described. */
+html.theme-light #header:not(.nav-solid) a,
+html.theme-light #header:not(.nav-solid) i,
+html.theme-light #header:not(.nav-solid) .svg-icon,
+html.theme-light #header:not(.nav-solid) .theme-toggle,
+html.theme-light #header:not(.nav-solid) .nav-lang summary {
+    color: var(--banner-text);
+}
+
+html.theme-light #header.nav-solid {
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* colors.css paints `background: var(--header)` onto the solid nav AND onto
+   every link inside it, so each nav item wears its own orange block. On the
+   white ground those blocks have to go. */
+html.theme-light #header.nav-solid a,
+html.theme-light #header.nav-solid .svg-icon,
+html.theme-light #nav-mobile ul li a {
+    background: transparent;
+}
+
+html.theme-light #header.nav-solid nav a,
+html.theme-light #header.nav-solid a,
+html.theme-light #header.nav-solid i,
+html.theme-light #header.nav-solid .svg-icon {
+    color: #111111;
+}
+
+html.theme-light #header.nav-solid nav a:hover,
+html.theme-light #header.nav-solid i:hover {
+    color: var(--primary);
+}
+
+/* There is no dark logo asset — both #banner-logo and #navigation-logo are
+   td_white.webp. The lockup is white glyphs on transparency, so inverting it
+   gives the black lockup the template uses. */
+html.theme-light .nav-solid #logo #navigation-logo {
+    filter: invert(1);
+}
+
+/* The hamburger is a mask filled with background-color, and the fill is
+   --normal-text — white in the dark theme, near-black here. `color` on the
+   span paints nothing, so this is the only rule that moves it.
+
+   Over the orange bar and the banner photo it stays white; only the solid
+   header wants dark bars. */
+html.theme-light #nav-trigger > span:after {
+    background-color: var(--banner-text);
+}
+
+html.theme-light .nav-solid #nav-trigger > span:after {
+    background-color: #111111;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Cards
+   feature-card / service-card / the businessareas icon blocks all hardcode
+   #333 fill and #555 border for the dark ground.
+   -------------------------------------------------------------------------- */
+
+html.theme-light .feature-card,
+html.theme-light #businessareas .area-grid > .col-6.icon-block {
+    background: var(--surface);
+    background-color: var(--surface);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 1px 2px var(--surface-shadow), 0 4px 12px var(--surface-shadow);
+}
+
+html.theme-light .feature-card:hover,
+html.theme-light #businessareas .area-grid > .col-6.icon-block:hover {
+    border-color: #c9c9c9;
+    box-shadow: 0 10px 28px -8px var(--surface-shadow-hover);
+}
+
+html.theme-light .service-card,
+html.theme-light img.showcase-image {
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 1px 2px var(--surface-shadow), 0 4px 12px var(--surface-shadow);
+}
+
+/* The four Tjänster group cards: photo band over a #333 body. */
+html.theme-light .service-group {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 1px 2px var(--surface-shadow), 0 4px 12px var(--surface-shadow);
+}
+
+html.theme-light .service-group:hover {
+    border-color: #c9c9c9;
+    box-shadow: 0 10px 28px -8px var(--surface-shadow-hover);
+}
+
+html.theme-light .service-group h3,
+html.theme-light .service-list strong {
+    color: var(--normal-text);
+}
+
+/* The dividers between list items are white at 12% — invisible on paper. */
+html.theme-light .service-list li {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* The photo veil on the service cards stays dark — the caption is white type
+   over a photograph, and a light veil would drop it to ~1.6:1. Unchanged on
+   purpose. */
+
+/* Card titles and the ">" affordance are hardcoded #fff for the dark ground. */
+html.theme-light .showcase .card-title,
+html.theme-light .product-carousel .product h3,
+html.theme-light .area-band-item h3,
+html.theme-light .card-arrow {
+    color: var(--normal-text);
+}
+
+/* NOTE: do not invert the area icons. They are orange artwork, not white, so
+   they already read on paper — and invert(#ff4b00) is exactly #00b4ff, so an
+   invert here silently repaints the entire icon set cyan. */
+
+/* Carousel arrows and dots are white-on-dark-veil. */
+html.theme-light .image-carousel-arrow {
+    background: rgba(255, 255, 255, 0.85);
+    color: #1a1a1a;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+/* The oversized watermark behind each icon block is that same orange artwork
+   at 7%, which on paper reads as a peach smudge rather than a shadow. Taken
+   down so it stays a texture. */
+html.theme-light #businessareas .icon-block::after {
+    opacity: 0.05;
+}
+
+/* The hatched slot for a product still waiting on artwork. Keep it reading as
+   a hole, just a light one. */
+html.theme-light .product-image-placeholder {
+    background: repeating-linear-gradient(135deg, #ececec 0 10px, #f6f6f6 10px 20px);
+    border-top: 1px solid var(--surface-border);
+    border-bottom: 1px solid var(--surface-border);
+}
+
+html.theme-light .product-image-placeholder span {
+    color: #8a8a8a;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Buttons
+   -------------------------------------------------------------------------- */
+
+html.theme-light .button {
+    color: #111111;
+    border-color: #111111;
+}
+
+html.theme-light .button:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* The hero sits on the photo, so its buttons keep the white treatment. */
+html.theme-light #home .button {
+    color: var(--banner-text);
+    border-color: var(--banner-text);
+}
+
+html.theme-light #home .button:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   5b. Partner logo strip
+   Half the partner logos are white-on-transparent assets (Rymdstyrelsen,
+   Nvidia, Maxanv), so on paper they disappear, and the other half are dark —
+   no single filter fixes both. So the strip keeps a dark ground of its own.
+   That is also the template's move: a black shape crashing into the white.
+   -------------------------------------------------------------------------- */
+
+html.theme-light .trust-partners .logo-slider {
+    background: #111111;
+    border-radius: 12px;
+    padding: 18px 0;
+    margin-top: 28px;
+    overflow: hidden;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Footer
+   -------------------------------------------------------------------------- */
+
+html.theme-light #landing-footer {
+    border-top: 1px solid var(--surface-border);
+}
+
+html.theme-light .footer-large {
+    background: #f7f7f7;
+    border-top: 1px solid var(--surface-border);
+}
+
+html.theme-light .footer-large h4,
+html.theme-light .footer-large strong {
+    color: #111111;
+}
+
+html.theme-light .footer-large a,
+html.theme-light .footer-large p {
+    color: var(--muted-text);
+}
+
+html.theme-light .footer-large a:hover {
+    color: var(--primary);
+}
+
+/* The footer logo is the white lockup again. */
+html.theme-light .footer-large #logo img,
+html.theme-light .footer-large img[src*="td_white"],
+html.theme-light .footer-large img[src*="td_logo"] {
+    filter: invert(1);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Optional: one black band
+   The template's strongest move is a black shape crashing into the white
+   ground. Add `band-dark` to a section to give it that treatment. Off by
+   default so the plain repaint can be judged on its own.
+   -------------------------------------------------------------------------- */
+
+html.theme-light .band-dark {
+    background: var(--band);
+    /* Full-bleed out of the centred wrapper. */
+    box-shadow: 0 0 0 100vmax var(--band);
+    clip-path: inset(0 -100vmax);
+}
+
+html.theme-light .band-dark h1,
+html.theme-light .band-dark h2,
+html.theme-light .band-dark h3,
+html.theme-light .band-dark h4,
+html.theme-light .band-dark p,
+html.theme-light .band-dark li {
+    color: #ffffff;
+}
+
+html.theme-light .band-dark .feature-card,
+html.theme-light .band-dark .icon-block {
+    background: #141414;
+    background-color: #141414;
+    border-color: #333333;
+    box-shadow: none;
+}
+
+html.theme-light .band-dark .feature-card p,
+html.theme-light .band-dark .icon-block p {
+    color: #c2c2c2;
+}
+
+html.theme-light .band-dark .icon-block img,
+html.theme-light .band-dark .icon-block::after {
+    filter: none;
+}
