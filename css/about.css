@@ -137,13 +137,13 @@
 
 /* --------- 2. Ledningsgrupp ---------- */
 
-/* Four portraits across, on the same grid shape and breakpoint as .area-grid's
-   affärsområden blocks. The card look is restated here rather than pulling the
-   350-line feature-card.css onto this page for one component — the values are
-   feature-card's. */
-/* Five columns so the whole ledningsgrupp reads as one row — the previous four
-   left a single card orphaned on a second row. Add a sixth person and this
-   number has to move with it. */
+/* Five columns so the whole ledningsgrupp reads as one row. Add a sixth person
+   and this number has to move with it.
+
+   The card is the photo: no border, no visible box, name and role sitting on a
+   gradient over the bottom of the portrait. The five studio shots are all
+   near-white, so a grey bordered box around each one read as a row of passport
+   photos — going full-bleed is what stops that. */
 .person-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -151,28 +151,41 @@
 }
 
 .person-card {
+    /* Positions .person-body's caption. */
+    position: relative;
     background: #333;
-    border: 2px solid #555;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .person-card:hover {
-    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
-    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7);
 }
 
+/* 3/4 rather than the 4/5 the photos are cropped to, to buy the height the
+   caption sits in. object-fit trims from the bottom, so the difference comes off
+   the chest, not the face. */
 .person-photo {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
 }
 
 .person-body {
-    padding: 16px 18px 20px 18px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* The 46px top padding is the fade: it keeps the gradient's transparent end
+       well clear of the name. */
+    padding: 46px 16px 14px 16px;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.78) 50%,
+            rgba(0, 0, 0, 0) 100%);
 }
 
 .person-name {
@@ -192,10 +205,32 @@
     color: var(--section-subtitle);
 }
 
+/* Sits under the role and unfolds on hover — see the hover: hover block. The
+   orange link colour it inherits is only legible here because the gradient
+   behind it is near-black; #ff4b00 on the old #333 card was 3.77:1. */
 .person-contact {
-    margin: 12px 0 0 0;
+    margin: 6px 0 0 0;
     font-size: 14px;
     line-height: 20px;
+}
+
+/* Only where a real pointer exists, so a device that cannot hover never has the
+   address hidden from it — it is the card's only contact detail. max-height
+   rather than display or height because it animates; 26px is the contact line's
+   20px line-height plus its 6px top margin. */
+@media (hover: hover) {
+
+    .person-contact {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .person-card:hover .person-contact {
+        max-height: 26px;
+        opacity: 1;
+    }
 }
 
 
@@ -453,8 +488,26 @@
         font-size: 16px;
     }
 
+    /* The overlay comes off on a phone. At 168px the card is only 223px tall
+       and the name takes two lines, so the caption would cover the face — the
+       text drops back under the photo instead, on the card's own #333. */
+    .person-photo {
+        aspect-ratio: 4 / 5;
+    }
+
     .person-body {
+        position: static;
         padding: 12px 14px 16px 14px;
+        background: none;
+    }
+
+    /* Nothing to unfold once the caption is back under the photo — and a narrow
+       window on a laptop still matches hover: hover, so this has to undo the
+       collapse rather than rely on the pointer type. */
+    .person-contact {
+        max-height: none;
+        opacity: 1;
+        margin: 12px 0 0 0;
     }
 
     .location-list {
