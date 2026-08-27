@@ -82,7 +82,7 @@
     margin: 0 20px;
     font-size: 17px;
     line-height: normal;
-    color: #c2c2c2;
+    color: var(--muted-text);
     white-space: nowrap;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .trust-partners .section-subtitle {
-    color: #fff;
+    color: var(--normal-text);
 }
 
 /* The partner statement, given the weight of a statement. It is the only claim
@@ -126,7 +126,7 @@
     max-width: 720px;
     padding-left: 22px;
     border-left: 3px solid var(--primary);
-    color: #c2c2c2;
+    color: var(--muted-text);
     line-height: 28px;
 }
 
@@ -135,7 +135,7 @@
     font-size: 24px;
     font-weight: 700;
     line-height: 34px;
-    color: #fff;
+    color: var(--normal-text);
     padding-bottom: 8px;
 }
 

@@ -641,7 +641,7 @@ section {
     line-height: 71px;
     padding: 0 10px;
     cursor: pointer;
-    color: var(--link);
+    color: var(--on-header);
     opacity: 0.75;
     /* Hides the disclosure triangle: list-style for Firefox, the pseudo-element
        below for WebKit. The globe is the affordance. */
@@ -679,8 +679,8 @@ section {
 #header nav .lang-options {
     padding: 6px 0;
     border-radius: 3px;
-    background: var(--secondary);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    background: var(--surface);
+    box-shadow: var(--panel-shadow);
     text-transform: none;
     /* Same as .nav-sub: a list starting on a common left edge, which is also
        where the current-item rule sits, rather than inheriting the centring
@@ -704,14 +704,14 @@ section {
 
 #header nav .lang-options a.lang-option:hover {
     color: var(--link);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--panel-hover);
     opacity: 1;
 }
 
 #header nav .lang-options .is-current {
     font-weight: 700;
     border-left-color: var(--primary);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--panel-hover);
     opacity: 1;
     cursor: default;
 }
@@ -804,7 +804,7 @@ section {
     padding: 0 10px;
     border: 0;
     background: transparent;
-    color: var(--link);
+    color: var(--on-header);
     opacity: 0.75;
     cursor: pointer;
     /* A button does not inherit type from the page. */
@@ -911,7 +911,7 @@ html.theme-light #header nav .theme-toggle .icon-sun {
     line-height: 71px;
     padding: 0 10px 0 0;
     cursor: pointer;
-    color: var(--link);
+    color: var(--on-header);
     list-style: none;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
@@ -959,8 +959,8 @@ html.theme-light #header nav .theme-toggle .icon-sun {
 #header nav .nav-sub {
     padding: 6px 0;
     border-radius: 3px;
-    background: var(--secondary);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    background: var(--surface);
+    box-shadow: var(--panel-shadow);
     text-transform: none;
     /* The entries read as a list, so they start on a common left edge rather
        than inheriting the centring "#header ul" gives the nav bar itself. That
@@ -985,7 +985,7 @@ html.theme-light #header nav .theme-toggle .icon-sun {
 
 #header nav .nav-sub a:hover {
     color: var(--link);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--panel-hover);
     opacity: 1;
 }
 
@@ -999,7 +999,7 @@ html.theme-light #header nav .theme-toggle .icon-sun {
 #header nav .nav-sub a.active {
     font-weight: 700;
     border-left-color: var(--primary);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--panel-hover);
     color: var(--link);
     opacity: 1;
     /* "#header.nav-solid nav .active" underlines the top-level items in
@@ -1163,7 +1163,7 @@ html.theme-light #header nav .theme-toggle .icon-sun {
     content: "";
     width: 38px;
     height: 71px;
-    background-color: var(--normal-text);
+    background-color: var(--on-header);
     -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>') no-repeat center / 22px 22px;
     mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>') no-repeat center / 22px 22px;
     border-top-right-radius: 5px;
@@ -1216,7 +1216,7 @@ nav#nav-mobile ul {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    background-color: var(--secondary);
+    background-color: var(--surface);
     box-shadow: 0 5px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -1772,10 +1772,10 @@ h1.section-title {
 #businessareas .area-grid > .col-6.icon-block {
     position: relative;
     overflow: hidden;
-    border: 2px solid #555;
+    border: 2px solid var(--surface-border);
     border-radius: 10px;
-    background: #333;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    background: var(--surface);
+    box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -1830,14 +1830,14 @@ h1.section-title {
 }
 
 #businessareas .icon-block p {
-    color: #c2c2c2;
+    color: var(--muted-text);
 }
 
 #businessareas .card-title {
     text-wrap: pretty;
     /* .card-title's own colour is #9c9c9c against #c2c2c2 bullets — two greys a
        shade apart. White heading, grey body, same as the service cards. */
-    color: #fff;
+    color: var(--normal-text);
 }
 
 @media (min-width: 768px) {
@@ -1852,7 +1852,7 @@ h1.section-title {
 
     #businessareas .icon-block:hover {
         transform: translateY(-4px);
-        box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+        box-shadow: var(--card-shadow-hover);
         border-color: var(--primary);
     }
 
@@ -1944,7 +1944,7 @@ h1.section-title {
 /* The industries the four areas are sold into. The icons are the ones already in
    images/icons from when this section listed branscher instead. */
 .industry-strip {
-    border-top: 1px solid #555;
+    border-top: 1px solid var(--surface-border);
     margin-top: 34px;
     padding-top: 30px;
     display: flex;

@@ -4,7 +4,7 @@
     /* width: 500px; */
     /* height: 180px; */
     /* Same as the page, so the border is what makes it read as a card. */
-    background-color: #333;
+    background-color: var(--surface);
     border-radius: 10px;
     /* Rounded corners */
     overflow: hidden;
@@ -12,10 +12,10 @@
     position: relative;
     /* Required to anchor our absolute image */
     /* box-shadow: 0 4px 6px rgba(68, 68, 68, 0.15); */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--card-shadow);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
-    border: 2px solid #555;
+    border: 2px solid var(--surface-border);
 }
 
 /* Updated hover state for a perfectly uniform, rounded shadow glow */
@@ -26,7 +26,7 @@
        perfectly even on the sides with dark images.
     */
     /* box-shadow: 0 15px 30px -3px rgba(68, 68, 68, 0.6); */
-    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--card-shadow-hover);
     transform: translateY(-2px);
     /* Optional: lifts the card slightly to emphasize the shadow */
 }
@@ -97,7 +97,7 @@
     font-family: sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--normal-text);
     user-select: none;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -148,14 +148,14 @@
     /* .card-title's var(--header-text) is #9c9c9c, which put a grey title over
        white body copy — the wrong way round. The service cards set the pattern
        the whole start page now follows: white heading, grey body. */
-    color: #fff;
+    color: var(--normal-text);
 }
 
 /* The grey half of that pair. The desktop rules further down already say this
    per card size; this is the one that covers the phone, where they do not
    apply. */
 .showcase .card-content p {
-    color: #c2c2c2;
+    color: var(--muted-text);
 }
 
 /* On a phone the 30% image column is a ~110px strip that crops the photo to
@@ -319,16 +319,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: repeating-linear-gradient(135deg, #3a3a3a 0 10px, #333 10px 20px);
-    border-top: 1px solid #555;
-    border-bottom: 1px solid #555;
+    background: repeating-linear-gradient(135deg, var(--surface-alt) 0 10px, var(--surface) 10px 20px);
+    border-top: 1px solid var(--surface-border);
+    border-bottom: 1px solid var(--surface-border);
 }
 
 .product-image-placeholder span {
     font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
     font-size: 11px;
     letter-spacing: 1px;
-    color: #8f8f8f;
+    color: var(--faint-text);
 }
 
 /* The product card, at every width. It used to be desktop-only, which left the
@@ -353,7 +353,7 @@
     font-weight: 700;
     padding: 6px 28px 0;
     /* White heading over grey body, same pairing as the service cards. */
-    color: #fff;
+    color: var(--normal-text);
 }
 
 /* Reads as the kicker-then-title pair every section on the page already uses:
@@ -394,7 +394,7 @@
 .product-carousel .product-content p {
     font-size: 14px;
     line-height: 23px;
-    color: #c2c2c2;
+    color: var(--muted-text);
 }
 
 .product-carousel .card-arrow {
@@ -647,7 +647,7 @@
     .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-content p {
         font-size: 16px;
         line-height: 27px;
-        color: #c2c2c2;
+        color: var(--muted-text);
     }
 
     .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .card-arrow {
@@ -696,7 +696,7 @@
     .showcase-featured .image-carousel-slide:not([data-featured]) .card-content p {
         font-size: 14px;
         line-height: 23px;
-        color: #c2c2c2;
+        color: var(--muted-text);
         display: -webkit-box;
         -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;

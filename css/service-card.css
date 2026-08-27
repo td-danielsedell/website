@@ -4,14 +4,14 @@
     /* Set to your desired width */
     height: 280px;
     /* Set to your desired height */
-    border: 1px solid #555;
+    border: 1px solid var(--surface-border);
     border-radius: 12px;
     /* This used to be 0 15px 30px -9px rgba(0, 0, 0, 0.6), which is exactly the
        *hover* shadow of .feature-card — so the service cards sat permanently
        lifted next to the resting product and showcase cards. Same resting
        shadow as .feature-card now. They have no hover state of their own, so
        this is the only shadow they wear. */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
     position: relative;
     /* Crucial for anchoring the overlay */
@@ -40,7 +40,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    color: #ffffff;
+    color: var(--banner-text);
 
     /* Transparent background color using rgba (Red, Green, Blue, Opacity) */
     /* 0, 0, 0 is black. 0.5 means 50% transparent */
@@ -72,7 +72,7 @@
 }
 
 .overlay-showcase h3 {
-    color: #ffffff;
+    color: var(--banner-text);
     font-weight: bold;
 }
 
@@ -98,7 +98,7 @@ text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 */
 .overlay h4,
 .overlay .card-title {
-    color: #ffffff;
+    color: var(--banner-text);
     font-weight: bold;
 }
 
@@ -109,10 +109,10 @@ img.showcase-image {
     width: 100%;
     height: 280px;
     object-fit: cover;
-    border: 1px solid #555;
+    border: 1px solid var(--surface-border);
     border-radius: 12px;
     /* Kept in step with .service-card above — the framing is meant to match. */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--card-shadow);
 }
 
 .railway-safety {
@@ -207,17 +207,17 @@ img.showcase-image {
    cards. */
 .service-group {
     width: 100%;
-    background: #333;
-    border: 2px solid #555;
+    background: var(--surface);
+    border: 2px solid var(--surface-border);
     border-radius: 10px;
     overflow: hidden;
     /* Same resting shadow and hover lift as .feature-card and .service-card. */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--card-shadow);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .service-group:hover {
-    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--card-shadow-hover);
     transform: translateY(-2px);
 }
 
@@ -247,7 +247,7 @@ img.showcase-image {
 .service-group h3 {
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: var(--normal-text);
     padding: 0;
 }
 
@@ -269,7 +269,7 @@ img.showcase-image {
 
 .service-list li {
     padding: 16px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid var(--divider);
 }
 
 .service-list li:first-child {
@@ -285,7 +285,7 @@ img.showcase-image {
     display: block;
     font-size: 15px;
     font-weight: 700;
-    color: #fff;
+    color: var(--normal-text);
     padding-bottom: 6px;
 }
 
@@ -293,5 +293,5 @@ img.showcase-image {
     display: block;
     font-size: 14px;
     line-height: 22px;
-    color: #c2c2c2;
+    color: var(--muted-text);
 }
