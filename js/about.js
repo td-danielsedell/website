@@ -18,10 +18,12 @@
    avoiding; whether the bytes are fetched at all is not worth the complexity
    of a scroll trigger.
 
-   The tiles come from tile.openstreetmap.org, a third party (item 23 in the
+   The tiles come from services.arcgisonline.com, a third party (item 23 in the
    revision document), though that tile server sets no cookies — unlike the
-   ESRI embed once planned for this slot. To drop the third party entirely the
-   map would have to be drawn as GeoJSON polygons instead of tiles. */
+   ESRI embed once planned for this slot, which is a different thing entirely:
+   this is a plain raster tile request, not their JS API. To drop the third
+   party entirely the map would have to be drawn as GeoJSON polygons instead of
+   tiles. See the tileLayer call below for why this basemap. */
 
 (function () {
 
@@ -38,21 +40,34 @@
     var CSS_HREF = 'css/leaflet.css';
     var JS_SRC = 'js/leaflet.js';
 
-    /* The order mirrors the list in about.html: north to south. `label` is the
-       side the name is placed on. Degerfors/Kumla and Uppsala/Stockholm sit
-       close enough that their labels overwrite each other at national zoom, so
-       each pair is split to opposite sides. */
+    /* The order mirrors the list in about.html: the Swedish towns north to
+       south, then Åland last — its latitude would put it second, but it is the
+       one entry outside Sweden and reads better as the tail of the list. The dot
+       sits on Mariehamn.
+
+       `label` is the side the name is placed on, and two things decide it:
+       neighbours, and the frame. Degerfors/Kumla and Alingsås/Göteborg sit close
+       enough that same-side labels overwrite each other at national zoom, so
+       each pair is split. Kumla goes above its dot instead of beside it:
+       Katrineholm sits down and to the right, close enough that a right-hand
+       label put "Kumla" in the gap between the two dots and Katrineholm's own
+       label closed it. Åland points left, back inland, because it is the
+       easternmost dot and its name would otherwise hang off the edge of the box;
+       it clears Stockholm's label, which points the other way, on latitude. */
     var CITIES = [
         { id: 'ostersund', name: 'Östersund', lat: 63.1792, lng: 14.6357, label: 'right' },
         { id: 'uppsala', name: 'Uppsala', lat: 59.8586, lng: 17.6389, label: 'left' },
         { id: 'stockholm', name: 'Stockholm', lat: 59.3293, lng: 18.0686, label: 'right' },
         { id: 'degerfors', name: 'Degerfors', lat: 59.2378, lng: 14.4297, label: 'left' },
-        { id: 'kumla', name: 'Kumla', lat: 59.1283, lng: 15.1425, label: 'right' },
-        { id: 'lidkoping', name: 'Lidköping', lat: 58.5052, lng: 13.1577, label: 'right' },
-        { id: 'alingsas', name: 'Alingsås', lat: 57.9300, lng: 12.5333, label: 'left' },
+        { id: 'kumla', name: 'Kumla', lat: 59.1283, lng: 15.1425, label: 'top' },
+        { id: 'katrineholm', name: 'Katrineholm', lat: 58.9959, lng: 16.2065, label: 'right' },
+        { id: 'lidkoping', name: 'Lidköping', lat: 58.5052, lng: 13.1577, label: 'left' },
+        { id: 'linkoping', name: 'Linköping', lat: 58.4109, lng: 15.6216, label: 'right' },
+        { id: 'alingsas', name: 'Alingsås', lat: 57.9300, lng: 12.5333, label: 'right' },
+        { id: 'goteborg', name: 'Göteborg', lat: 57.7089, lng: 11.9746, label: 'left' },
         { id: 'varberg', name: 'Varberg', lat: 57.1057, lng: 12.2502, label: 'left' },
         { id: 'bastad', name: 'Båstad', lat: 56.4258, lng: 12.8517, label: 'left' },
-        { id: 'malmo', name: 'Malmö', lat: 55.6050, lng: 13.0038, label: 'left' }
+        { id: 'aland', name: 'Åland', lat: 60.0971, lng: 19.9348, label: 'left' }
     ];
 
     var DOT_RADIUS = 6;
@@ -131,23 +146,54 @@
             attributionControl: true
         });
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        /* Esri's World Shaded Relief rather than OSM's standard tiles. Three
+           reasons: it carries no place names at all, so the thirteen labels we
+           draw are the only text on the map; it is terrain rather than streets,
+           which suits an illustration; and at ~14kB a tile it is a third of
+           OSM's ~48kB. It needs no API key — which matters, because this site
+           has no build step and no backend, so a key would have to be committed
+           to the repo in the clear and would stay in its history.
+
+           Note the path order: Esri serves {z}/{y}/{x}, not {z}/{x}/{y}.
+
+           maxZoom stays at the map's own 12 even though the service goes to 13;
+           the picture never needs closer. */
+        L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 12,
             /* The Nordics are enough. Without this, tiles for half of Europe
                load as soon as someone drags sideways. */
             bounds: L.latLngBounds([53.0, 3.0], [70.5, 32.0]),
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; Source: Esri'
         }).addTo(map);
 
         var bounds = L.latLngBounds(CITIES.map(function (city) {
             return [city.lat, city.lng];
         }));
 
-        /* The labels stick out past their dots, so the frame needs air — most
-           of it sideways, where the city names sit. */
-        var FIT_PADDING = L.point(48, 24);
+        /* The labels stick out past their dots, so the frame needs air — most of
+           it sideways, where the city names sit, and now unevenly: every label
+           near an edge of the box points left (Göteborg is the westernmost dot,
+           Åland the easternmost and it points back inland), so the west side has
+           to fit a whole city name and the east side only a dot. Symmetric
+           padding wide enough for the west would throw away zoom on the east.
 
-        map.fitBounds(bounds, { padding: FIT_PADDING });
+           The box is taller than Sweden is wide, so fitBounds picks its zoom off
+           the height: horizontal padding alone only slides the frame sideways,
+           it never zooms out far enough to fit Göteborg's label and Åland's dot
+           in the same 480px. The vertical padding is what buys that room — it
+           forces the fit down one quarter-step, and the dots close up 16% in
+           both directions. */
+        var FIT_PADDING_TOP_LEFT = L.point(70, 54);
+        var FIT_PADDING_BOTTOM_RIGHT = L.point(20, 54);
+
+        function fitAll() {
+            map.fitBounds(bounds, {
+                paddingTopLeft: FIT_PADDING_TOP_LEFT,
+                paddingBottomRight: FIT_PADDING_BOTTOM_RIGHT
+            });
+        }
+
+        fitAll();
 
         /* The view the map can always fall back to. Read after fitBounds,
            because the zoom level depends on how wide the box turned out. */
@@ -164,6 +210,25 @@
         }
 
         var markers = {};
+
+        /* Leaflet anchors a tooltip on the marker's point and knows nothing
+           about a circleMarker's radius, so every direction has to clear it by
+           hand — and clear the *active* radius, or the label ends up underneath
+           its own dot as soon as the city is picked. Leaflet has already moved
+           the box to the right side of the anchor by the time this offset
+           applies, so each one is just the gap. */
+        function labelOffset(direction) {
+            if (direction === 'top') {
+                return [0, -(DOT_RADIUS_ACTIVE + 1)];
+            }
+            if (direction === 'bottom') {
+                return [0, DOT_RADIUS_ACTIVE + 1];
+            }
+            if (direction === 'left') {
+                return [-(DOT_RADIUS_ACTIVE + 1), 0];
+            }
+            return [DOT_RADIUS_ACTIVE + 1, 0];
+        }
 
         CITIES.forEach(function (city) {
             var marker = L.circleMarker([city.lat, city.lng], {
@@ -182,14 +247,7 @@
                 /* The label must not catch the pointer; the dot underneath it
                    is the hit target. */
                 interactive: false,
-                /* Leaflet anchors a tooltip on the marker's point and knows
-                   nothing about a circleMarker's radius, so the offset has to
-                   clear it by hand — and clear the *active* radius, or the
-                   label ends up underneath its own dot as soon as the city is
-                   picked. */
-                offset: city.label === 'left'
-                    ? [-(DOT_RADIUS_ACTIVE + 4), 0]
-                    : [DOT_RADIUS_ACTIVE + 4, 0]
+                offset: labelOffset(city.label)
             });
 
             marker.on('click', function () {
@@ -309,7 +367,7 @@
             resizeTimer = window.setTimeout(function () {
                 map.invalidateSize();
                 if (activeId === null) {
-                    map.fitBounds(bounds, { padding: FIT_PADDING });
+                    fitAll();
                     homeCenter = map.getCenter();
                     homeZoom = map.getZoom();
                 }

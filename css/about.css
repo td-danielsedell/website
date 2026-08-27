@@ -325,13 +325,24 @@
     color: var(--footer-text);
 }
 
-/* OSM's default tiles are bright and colourful; on a dark page they shout
-   louder than anything else in the section, and the orange dots lose against
-   the coloured roads. Draining the colour matches the static map this
-   replaced and leaves the dots as the only colour on it. The filter goes on
-   the pane rather than each .leaflet-tile, which would show seams. */
-.about-map .leaflet-tile-pane {
-    filter: grayscale(1) contrast(0.95) brightness(1.02);
+/* The basemap is Esri's World Shaded Relief (see the tileLayer call in
+   js/about.js): terrain in muted grey-brown with pale blue water, no text and
+   no roads. Untouched it sits perfectly on the light theme's #f6f5f2 — and
+   glares on the dark theme's #333, where it reads as a lit panel dropped onto
+   the page.
+
+   So the tiles are dimmed, but only in dark. Not grayscale, which is what the
+   old OSM tiles got: draining the last of the colour makes the relief look
+   broken rather than quiet. brightness carries the change, contrast puts back
+   the land/water separation that dimming costs, and saturate takes the edge off
+   the blue. Below about 0.35 brightness the relief disappears into the page and
+   the map stops saying anything, so that is the floor; 0.75 is where the dimming
+   stops fighting the terrain and was picked by eye against the #333 page.
+
+   The rule hangs off :not(.theme-light) rather than .theme-light because dark is
+   the default — js/theme.js only ever adds the class. */
+html:not(.theme-light) .about-map .leaflet-tile-pane {
+    filter: brightness(0.75) contrast(1.1) saturate(0.75);
 }
 
 /* Leaflet writes fill/stroke as SVG presentation attributes, which CSS wins
@@ -363,8 +374,19 @@
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 13px;
     font-weight: 600;
-    color: #222;
     white-space: nowrap;
+    /* Dark theme, so light text on a dark halo — against the dimmed tiles the
+       old dark-text-in-a-white-halo read as thirteen white smudges. The halo is
+       four stacked shadows rather than one because a single 3px shadow is not
+       opaque enough to carry text over the relief's own texture. */
+    color: #f5f5f5;
+    text-shadow:
+        0 0 3px #111, 0 0 3px #111, 0 0 3px #111, 0 0 4px #111;
+}
+
+/* Light theme: the tiles are at full brightness, so the halo flips back. */
+html.theme-light .city-label.leaflet-tooltip {
+    color: #222;
     text-shadow:
         0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
 }
