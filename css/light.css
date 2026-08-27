@@ -98,6 +98,13 @@ html.theme-light .service-group:hover {
     border-color: #c9c9c9;
 }
 
+/* The portrait cards carry a deliberately heavier hover lift, because a normal
+   shadow vanishes under an edge-to-edge photograph. At 0.7 alpha on paper that
+   reads as a slab, so here they fall back in with every other card. */
+html.theme-light .person-card:hover {
+    box-shadow: var(--card-shadow-hover);
+}
+
 
 /* --------------------------------------------------------------------------
    3. Header / navigation

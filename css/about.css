@@ -156,10 +156,15 @@
     background: var(--surface);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--card-shadow);
     transition: box-shadow 0.3s ease;
 }
 
+/* A heavier lift than --card-shadow-hover: these are the only cards on the site
+   that are edge-to-edge photograph, and the standard shadow disappears under
+   one. Kept literal rather than tokenised because the value is the exception —
+   light.css puts it back on the token, where a 0.7-alpha drop would be a slab
+   on paper. */
 .person-card:hover {
     box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7);
 }
