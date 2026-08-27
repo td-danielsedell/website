@@ -877,6 +877,19 @@ html.theme-light #header nav .theme-toggle .icon-sun {
     vertical-align: top;
 }
 
+/* Where localStorage cannot be written the choice would be forgotten on the
+   next page load, so js/theme.js withdraws the control rather than offer one
+   that undoes itself. The system setting still decides the theme.
+
+   Both copies, and !important because #nav-theme-mobile's own rule above and
+   the cloned row in #nav-mobile are more specific than a bare class. Nothing
+   reflows: in the wide nav both controls are absolutely positioned at explicit
+   offsets, so the globe does not move to fill the gap. */
+html.no-theme-choice .nav-theme,
+html.no-theme-choice #nav-theme-mobile {
+    display: none !important;
+}
+
 /* The wide nav's copy is cloned into #nav-mobile by site.js, and below 1024px
    the control lives next to the hamburger instead — same split as .nav-lang. */
 @media all and (max-width: 1023px) {

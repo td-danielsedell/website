@@ -36,9 +36,34 @@
         try {
             localStorage.setItem(STORAGE_KEY, value);
         } catch (e) {
-            /* The choice applies to this page view and is forgotten. */
+            /* Unreachable while the toggle is only offered where canStore()
+               passed, but the write stays guarded: the probe and the click are
+               separated by however long the page is open. */
         }
     }
+
+    /* A control that forgets is worse than no control: the reader presses it,
+       the site repaints, and the next click through the nav puts it back. So
+       the toggle is only offered where the choice will survive a navigation.
+
+       The probe has to be a real write. Safari with cookies blocked, and
+       private modes generally, hand back a localStorage object whose getItem
+       works and whose setItem throws — reading alone proves nothing. Read back
+       as well, to also catch a zero-quota store that accepts the call and
+       keeps nothing. */
+    function canStore() {
+        var probeKey = STORAGE_KEY + "-probe";
+        try {
+            localStorage.setItem(probeKey, "1");
+            var kept = localStorage.getItem(probeKey) === "1";
+            localStorage.removeItem(probeKey);
+            return kept;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    var persists = canStore();
 
     function systemPrefersLight() {
         return !!mql && mql.matches;
@@ -82,6 +107,15 @@
 
     apply(resolve());
 
+    /* Hides both copies of the toggle — the rule is in style.css §2.4.0. A
+       class on <html> rather than a DOM removal, because this runs in <head>
+       where neither button exists yet and site.js clones #nav-main into
+       #nav-mobile after load. The theme itself still follows the OS; it is
+       only the manual override that is withdrawn. */
+    if (!persists) {
+        root.classList.add("no-theme-choice");
+    }
+
     /* Follow the OS while it is still the OS deciding. Once a reader has
        pressed the toggle, their choice outranks a later system switch. */
     if (mql && mql.addEventListener) {
@@ -101,6 +135,12 @@
        "li a[href*=#]" — a <button> is not an <a>, so unlike the language links
        this control needs no stopImmediatePropagation to survive the plugin. */
     document.addEventListener("click", function (event) {
+        /* display:none already takes the hidden control out of the tab order,
+           so this only matters for a .theme-toggle in markup this file does not
+           know about. */
+        if (!persists) {
+            return;
+        }
         var target = event.target;
         var button = target && target.closest ? target.closest(".theme-toggle") : null;
         if (!button) {
