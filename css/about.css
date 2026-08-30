@@ -12,187 +12,213 @@
 
 /* --------- 0. Introduction ---------- */
 
-/* The section no longer sits in a narrow centred column, so its paragraphs run
-   the full width. Left off deliberately — the intro copy is being rewritten, so
-   the measure is a decision for whatever replaces it. This is the 720px the
-   section subtitles take, if it turns out to want one. */
-/*
-#about-intro .col-1 > p {
-    max-width: 720px;
-}
-*/
+/* Two columns rather than one stacked centre run: the opening statement sits
+   left and the body copy beside it, so the page does not open on a narrow strip
+   and then widen for every section under it.
 
-
-/* --------- 1. Historia: timeline ---------- */
-
-/* The #history-only version of the subtitle treatment, kept in case the general
-   rules turn out to be the wrong call. Superseded by colors.css (the accent rule
-   moving below the subtitle) and style.css (.section-heading > .section-subtitle
-   taking the measure and line height). The one thing here that did NOT go
-   general is the grey: every subtitle on the site keeps the gold
-   --section-subtitle. Uncomment the colour line alone to put this section back
-   to grey, or lift it out of #history to grey them all. */
-/*
-#history .section-heading .section-title:after {
-    display: none;
+   The h1 carries .about-title, not .section-title, which means the accent rule
+   in colors.css (.section-heading:has(> .section-subtitle) .section-title:after)
+   does not match here and the orange bar under the intro heading is gone. That
+   is deliberate — at 58px the title is the statement and does not need
+   underlining. Every other section keeps its rule. */
+.about-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px 70px;
+    /* The body column is centred against the heading block rather than sharing
+       its top edge: the left cell is kicker + 58px title + lead and runs a good
+       deal taller, so a shared top edge left the body copy hanging at the top
+       of the row with all the slack under it. */
+    align-items: center;
 }
 
-#history .section-subtitle:after {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 5px;
-    margin-top: 30px;
-    background: var(--primary);
-}
-
-#history .section-subtitle {
-    max-width: 720px;
+/* The 6px of top padding lines the cap height up with the body column beside
+   it, which starts on a 30px line box. */
+.about-title {
     margin: 0;
-    color: var(--muted-text);
-    line-height: 28px;
+    padding: 6px 0 0 0;
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -1px;
+    color: var(--section-heading);
+    text-wrap: balance;
 }
-*/
+
+/* The lead sits outside .section-heading, so it is not the .section-subtitle
+   the shared rules key off — it only borrows the colour. */
+.about-lead {
+    margin: 24px 0 0 0;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 34px;
+    color: var(--section-subtitle);
+    text-wrap: pretty;
+}
+
+.about-hero-body p {
+    margin: 0 0 18px 0;
+    font-size: 17px;
+    line-height: 30px;
+    color: var(--muted-text);
+}
+
+.about-hero-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Closes the opening block. The intro is the one section with no orange rule
+   under its heading — the 58px title carries it instead — so without this the
+   hero runs straight into Historia with nothing marking where it ends. Same
+   token as the rails and the Karriär divider, so the page has one line colour.
+
+   It sits in a .col-1 of its own rather than loose in the .row: every column
+   on the site is floated with 20px of padding by style.css, so a bare <hr>
+   would neither clear the hero above it nor pick up the gutter the hero's own
+   text is inset by. Those two paddings already stack to 40px, so the margin
+   here is only what tops that up. */
+.about-hero-rule {
+    height: 1px;
+    margin: 14px 0 0 0;
+    border: 0;
+    background: var(--surface-border);
+}
+
+
+/* --------- 1. Historia: year rail ---------- */
 
 /* An ordered list, because the entries are chronological and that is what a
-   screen reader should announce. The spine is a single line on the <ol> rather
-   than a run of per-item segments: segments have to reach from one dot to the
-   next across the items' own padding, which never quite lines up. The cost is
-   that the line runs past the last dot to the bottom of the last entry's text,
-   which is how most timelines look anyway.
+   screen reader should announce.
 
-   .timeline is the single-column variant. .timeline--alt adds the centre spine
-   and the left/right stagger, and only above 768px — below that it falls back
-   to these same rules, which is why the two variants are identical on a
-   phone. */
-.timeline {
+   This replaces an alternating centre-spine timeline. Alternating halves the
+   measure for every entry and, once the entries run past a line, reads as two
+   ragged columns rather than one sequence. Here the years are a right-aligned
+   rail on the left and each entry keeps a full text column beside it.
+
+   The spine is a single line on the <ol> rather than a run of per-item
+   segments: segments have to reach from one dot to the next across the items'
+   own padding, which never quite lines up. It stops 24px short of the bottom so
+   it does not overrun past the last dot into the last entry's descenders. */
+.year-rail {
     position: relative;
     list-style: none;
-    /* Matches the 20px gutter the columns carry, so the dots line up with the
-       section title above them. */
-    padding: 0 0 0 20px;
+    margin: 10px 0 0 0;
+    padding: 0;
 }
 
-.timeline::before {
+/* Follows the year column: the dot's right edge sits 24px past it and the dot
+   is 12px wide, so the dot centre — and therefore the line — lands at
+   column + 24 - 6, less half the line's own 2px. 118 + 17 = 135. Change the
+   column below and this has to move with it. */
+.year-rail::before {
     content: "";
     position: absolute;
-    /* Starts at the centre of the first dot: 4px offset + half of 14px. */
-    top: 11px;
-    bottom: 0;
-    /* 20px gutter + the dot's 7px centre, less half the line's 2px. */
-    left: 26px;
+    left: 135px;
+    top: 14px;
+    bottom: 24px;
     width: 2px;
     background: var(--surface-border);
 }
 
-.tl-item {
-    position: relative;
-    padding: 0 0 38px 34px;
+/* A four-digit year at 34px bold measures 77.8px, so the column width sets the
+   inset directly: 78 puts the years flush with the section heading, 160 (where
+   this started) pushed them 82px inside it. 118 lands the rail 40px in — read
+   as indented from the heading without the entries starting a third of the way
+   across the page. The years are all the same width, so right-aligning them is
+   what keeps the dots on one vertical whatever the column does. */
+.year-rail li {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 0 56px;
+    padding-bottom: 46px;
 }
 
-.tl-item:last-child {
+.year-rail li:last-child {
     padding-bottom: 0;
 }
 
-.tl-marker {
-    position: absolute;
-    left: 0;
-    top: 4px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--primary);
-}
-
-/* 20px bold clears the 18.66px bold threshold for large text, which is what
+/* 34px bold clears the 18.66px bold threshold for large text, which is what
    lets the orange stay: #ff4b00 on the #333 body is 3.8:1, enough for large
    text and not enough for small. Shrink this and the year needs a lighter
    colour. */
-.tl-year {
+.rail-year {
+    position: relative;
     margin: 0;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: normal;
+    text-align: right;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
     color: var(--primary);
 }
 
-.tl-title {
+/* The dot rides on the year rather than being its own element, so the markup
+   carries no decorative span. The halo is the page ground, not a surface — it
+   is what punches the dot out of the spine running behind it. */
+.rail-year::after {
+    content: "";
+    position: absolute;
+    right: -24px;
+    top: 11px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 7px var(--secondary);
+}
+
+.rail-body {
+    max-width: 720px;
+}
+
+.rail-title {
     margin: 0;
-    padding: 6px 0 0 0;
-    font-size: 18px;
-    font-weight: bold;
-    line-height: normal;
+    padding: 0;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 30px;
     color: var(--section-heading);
 }
 
-.tl-item p {
-    margin: 8px 0 0 0;
-}
-
-/* Alternating variant. Plain block layout rather than grid: each item is its
-   own block, so the entries stagger down the page instead of pairing up into
-   shared grid rows, and it works for any number of entries. */
-@media (min-width: 768px) {
-
-    .timeline--alt {
-        padding-left: 0;
-    }
-
-    .timeline--alt::before {
-        left: calc(50% - 1px);
-    }
-
-    .timeline--alt .tl-item {
-        width: 50%;
-        padding-bottom: 46px;
-    }
-
-    .timeline--alt .tl-item:nth-child(odd) {
-        text-align: right;
-        padding-left: 0;
-        padding-right: 34px;
-    }
-
-    .timeline--alt .tl-item:nth-child(even) {
-        margin-left: 50%;
-    }
-
-    /* The base :last-child rule and .timeline--alt .tl-item weigh the same, so
-       the 46px above wins on the last entry too and the spine overruns its own
-       last dot. Restate it. */
-    .timeline--alt .tl-item:last-child {
-        padding-bottom: 0;
-    }
-
-    /* Half of the 14px dot, so it centres on the spine from either side. */
-    .timeline--alt .tl-item:nth-child(odd) .tl-marker {
-        left: auto;
-        right: -7px;
-    }
-
-    .timeline--alt .tl-item:nth-child(even) .tl-marker {
-        left: -7px;
-    }
-
+.rail-body p {
+    margin: 10px 0 0 0;
+    color: var(--muted-text);
 }
 
 
 /* --------- 2. Ledningsgrupp ---------- */
 
-/* Five columns so the whole ledningsgrupp reads as one row. Add a sixth person
-   and this number has to move with it.
+/* Three across and two centred underneath, in a 700px block in the middle of
+   the page rather than five spanning the full 1245px container. Five
+   near-white studio portraits edge to edge across the whole measure was the
+   heaviest thing on the page by a distance.
+
+   Flex, not grid: a 3-column grid leaves the two trailing cards stuck to the
+   left edge, and centring a short last row is exactly what justify-content
+   does and grid does not. It also means adding a sixth person needs no change
+   here — they simply fill the second row.
+
+   700px is the widest that is still narrower than the old five-across card
+   (220px against 225px) while keeping every name on one line. Below about
+   700 the block starts breaking names in two: at 660 "Monica Andreasson"
+   wraps, at 620 "Linus Kozsinowski" goes too, and a wrapped name pushes its
+   role down over the face.
 
    The card is the photo: no border, no visible box, name and role sitting on a
    gradient over the bottom of the portrait. The five studio shots are all
    near-white, so a grey bordered box around each one read as a row of passport
    photos — going full-bleed is what stops that. */
 .person-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .person-card {
+    /* Thirds of the row, less the two 20px gaps between them. */
+    flex: 0 0 calc((100% - 40px) / 3);
     /* Positions .person-body's caption. */
     position: relative;
     background: var(--surface);
@@ -283,13 +309,12 @@
 
 /* --------- 3. Two columns under the heading ---------- */
 
-/* Orter and Examensarbete both put two blocks side by side under the heading.
-   That heading used to be two .col-14 columns, and floated .col-2 blocks did
-   not start a new row under it: the heading column was taller than the subtitle
-   column, so the first .col-2 slotted up into the gap beside the short subtitle
-   instead. The heading is one full-width column now, so the snag is gone, but
-   the grid stays — it is what gives the two blocks equal columns whatever their
-   heights, and it does not depend on the heading above it. */
+/* Orter is the only user left — Karriär moved to .track-grid. Kept as its own
+   class rather than folded into #locations because the alternative, floated
+   .col-2 blocks, does not start a new row under a heading: the heading column
+   was taller than the subtitle column, so the first .col-2 slotted up into the
+   gap beside the short subtitle instead. The grid gives two equal columns
+   whatever their heights and does not depend on the heading above it. */
 .split-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -303,22 +328,14 @@
     margin-top: 0;
 }
 
-/* Sub-heading for a .split-2 column. Karriär needs it: the section carries two
-   tracks — anställning and examensarbete — that used to be two sections with a
-   kicker each, so without a label per column the reader gets two unmarked
-   blocks of text. h3 rather than h4 because the section's own heading is the h2.
-
-   h3 arrives with padding: 10px 0 from style.css:1360; the top half would push
-   the column below the row it starts, so only the bottom half is kept and the
-   first paragraph states its own gap instead of taking the UA's 1em. */
-.split-heading {
-    padding-top: 0;
-    font-size: 20px;
-    color: var(--section-heading);
-}
-
-.split-heading + p {
-    margin-top: 8px;
+/* Orter puts the city list and the map side by side. The wider cell is the
+   list, and the two are centred against each other rather than top-aligned:
+   the map is a tall portrait and the list is shorter, so a shared top edge
+   left the list hanging at the top of a 670px box. */
+#locations .split-2 {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px 70px;
+    align-items: center;
 }
 
 
@@ -449,26 +466,52 @@ html.theme-light .city-label.leaflet-tooltip {
     font-size: 10px;
 }
 
+/* One column on a rail, not two loose columns: the list is read against the
+   pins going down the map beside it, so it has to run north to south in a
+   single sequence. Thirteen rows at ~42px come to ~546px against the map's
+   ~670px, so it stays inside the section either way.
+
+   The class name is load-bearing — js/about.js binds .location-list li and
+   sets .is-linked / .is-hovered / .is-active on them, and each row's
+   data-city ties it to an entry in CITIES. */
 .location-list {
+    position: relative;
     list-style: none;
     margin: 20px 0 0 0;
-    columns: 2;
-    column-gap: 24px;
+}
+
+.location-list::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 14px;
+    bottom: 14px;
+    width: 2px;
+    background: var(--surface-border);
 }
 
 .location-list li {
-    padding: 5px 0;
+    position: relative;
+    padding: 8px 0 8px 30px;
+    font-size: 18px;
+    line-height: 26px;
+    color: var(--muted-text);
+    transition: color 0.2s ease;
 }
 
+/* Absolute rather than the inline-block marker the two-column list used: the
+   dot has to sit on the spine, not in the text flow. Same page-ground halo as
+   the year rail. */
 .location-list li:before {
     content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--primary);
-    vertical-align: middle;
+    box-shadow: 0 0 0 6px var(--secondary);
     transition: transform 0.15s ease;
 }
 
@@ -488,7 +531,7 @@ html.theme-light .city-label.leaflet-tooltip {
 
 .location-list li.is-hovered:before,
 .location-list li.is-active:before {
-    transform: scale(1.6);
+    transform: scale(1.35);
 }
 
 /* The list items become role="button" and take focus, so they need a visible
@@ -499,7 +542,88 @@ html.theme-light .city-label.leaflet-tooltip {
 }
 
 
-/* --------- 5. Examensarbete ---------- */
+/* --------- 5. Karriär: tracks ---------- */
+
+/* Two tracks under one heading, each ending in its own button. The section used
+   to close with both buttons side by side under both columns, which put the
+   choice back on the reader after they had already read the column that
+   answered it.
+
+   Deliberately NOT drawn as cards. A card on this site means the whole thing is
+   clickable; a track is prose with a button in it, and boxing it would promise
+   a click target that is not there. What carries the split instead is the 70px
+   column gap and the orange rule under each heading. */
+.track-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 90px;
+    align-items: stretch;
+}
+
+/* The divider is drawn on the grid, not as a border on the second track. A
+   border sits on that track's own edge, which puts it hard against the right
+   column and 90px off the left one — lopsided. Here it hangs at 50%, and with
+   two equal 1fr columns 50% IS the centre of the gutter, so the 45px either
+   side is symmetric by construction rather than by two numbers that have to be
+   kept in step. Stretched to the grid's full height, so both tracks are
+   divided for their whole length whichever one is taller. */
+.track-grid:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--surface-border);
+}
+
+/* Flex column so .track-spacer can push the button to the bottom: the two
+   tracks are different lengths, and two buttons at different heights read as
+   one being an afterthought. */
+.track {
+    display: flex;
+    flex-direction: column;
+}
+
+/* h3 arrives with padding: 10px 0 from style.css; the top half would push the
+   column below the row it starts. The 8px at the bottom replaces the gap the
+   orange bar used to hold open.
+
+   No accent bar of its own, deliberately. The section already draws one under
+   its subtitle, and a bar under each of the two track headings on top of that
+   put three of them in one section — at which point the mark stops reading as
+   "this is where a block begins" and just reads as texture. 22px bold against
+   15px muted body, in two columns 70px apart, is already enough to say these
+   are headings. */
+.track h3 {
+    padding: 0 0 8px 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 30px;
+    color: var(--section-heading);
+}
+
+.track p {
+    margin: 18px 0 0 0;
+    color: var(--muted-text);
+}
+
+.track .thesis-list {
+    margin-top: 22px;
+}
+
+.track .track-spacer {
+    flex: 1 1 auto;
+}
+
+.track .button {
+    margin: 28px 0 0 0;
+    align-self: flex-start;
+}
+
+
+/* --------- 6. Examensarbete: list ---------- */
 
 .thesis-list {
     list-style: none;
@@ -528,29 +652,83 @@ html.theme-light .city-label.leaflet-tooltip {
     color: var(--footer-text);
 }
 
-/* --------- 6. Tablet ---------- */
+/* --------- 7. Laptop and tablet ---------- */
 
-/* Five columns need close to the full 1245px container: below 220px per card
-   "Monica Andreasson" breaks onto two lines, and 220px cards run out at a
-   1219px viewport. Under that, three columns. */
-@media (min-width: 768px) and (max-width: 1219px) {
+/* Above the phone breakpoint but below the full container. Two tracks side by
+   side need the measure; at 1023px they are down to ~460px each and the
+   thesis list rows start wrapping. */
+@media (max-width: 1023px) {
 
-    .person-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .about-title {
+        font-size: 46px;
     }
+
+    .track-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* One column now — a vertical rule down the middle of stacked blocks
+       divides nothing. The 40px row gap separates them instead. */
+    .track-grid:after {
+        display: none;
+    }
+
 }
 
 
-/* --------- 7. Phone ---------- */
+/* --------- 8. Phone ---------- */
 
 /* 767px is the breakpoint the affärsområden grid uses, and the person grid
    follows it for the same reason: two columns read on every phone width, more
    do not. */
 @media (max-width: 767px) {
 
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .about-title {
+        font-size: 36px;
+    }
+
+    .about-lead {
+        font-size: 19px;
+        line-height: 30px;
+    }
+
+    /* The year rail collapses to a plain stack: a 160px year column against a
+       320px viewport leaves nothing for the entry beside it, so the year
+       becomes a left-aligned label above its own entry and the spine and dots
+       go with it. */
+    .year-rail::before {
+        display: none;
+    }
+
+    .year-rail li {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-bottom: 34px;
+    }
+
+    .rail-year {
+        text-align: left;
+        font-size: 26px;
+        padding-bottom: 8px;
+    }
+
+    .rail-year::after {
+        display: none;
+    }
+
     .person-grid {
-        grid-template-columns: 1fr 1fr;
         gap: 15px;
+    }
+
+    /* Two up. The 700px cap is wider than the viewport here, so it stops
+       applying on its own and the row is whatever the column gives. */
+    .person-card {
+        flex-basis: calc((100% - 15px) / 2);
     }
 
     .person-name {
@@ -579,11 +757,11 @@ html.theme-light .city-label.leaflet-tooltip {
         margin: 12px 0 0 0;
     }
 
-    .location-list {
-        columns: 1;
-    }
-
-    .split-2 {
+    /* #locations .split-2 is an id plus a class, so it outweighs the bare
+       .split-2 rule above and has to be restated or the map and the list stay
+       side by side on a phone. */
+    .split-2,
+    #locations .split-2 {
         grid-template-columns: 1fr;
     }
 

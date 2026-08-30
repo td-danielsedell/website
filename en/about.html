@@ -196,28 +196,40 @@
         <!--Main Content Area-->
         <main id="content" class="showcase-top">
 
-            <!--Introduction. This used to sit in the showcase pages' narrow,
-                centred .col-2-3 inside .content-center, which indented the
-                page's first block while every section below it runs full width
-                – headings started at 428px rather than 154px. Same .row >
-                .col-1 as the rest of the page now; the body copy's line length
-                is held by #about-intro in css/about.css instead.-->
+            <!--Introduction. Two columns rather than one stacked centre run: the
+                opening statement on the left, the body copy beside it. The page
+                otherwise opened on a narrow strip and widened for every section
+                below it. The body copy's line length is held by .about-hero in
+                css/about.css.-->
             <section id="about-intro" class="introduction scrollto">
                 <div class="row clearfix">
 
-                    <div class="col-1">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">ABOUT US</h2>
-                            <h1 class="section-title">We are Total Digital</h1>
-                            <p class="section-subtitle">The agility of a small company. The strength of a large one. That is Total Digital.</p>
+                    <div class="col-1 about-hero">
+
+                        <div>
+                            <div class="section-heading">
+                                <h2 class="section-kicker">ABOUT US</h2>
+                                <h1 class="about-title">We are Total Digital</h1>
+                            </div>
+                            <!--The lead sits outside .section-heading. Inside it, it would be
+                                the page's .section-subtitle and would pull both the measure
+                                and the orange rule with it – here the heading is the
+                                statement.-->
+                            <p class="about-lead">The agility of a small company. The strength of a large one. That is Total Digital.</p>
                         </div>
+
+                        <div class="about-hero-body">
+                            <p>Technology meets domain knowledge. We combine leading platforms with deep domain knowledge and new technology to solve complex challenges – from new perspectives.</p>
+                            <p>We like long-term relationships, high ambitions and people who know their field. Commitment and competence? We have a black belt in that.</p>
+                        </div>
+
                     </div>
 
+                    <!--Closes the hero block. The intro is the one section with no orange
+                        rule under its heading, so without this line it runs straight into
+                        History.-->
                     <div class="col-1">
-                        <p>Technology meets domain knowledge. We combine leading platforms with deep domain knowledge and new technology to solve complex challenges – from new perspectives.
-                        </p><p>
-                        We like long-term relationships, high ambitions and people who know their field. Commitment and competence? We have a black belt in that.
-                        </p>
+                        <hr class="about-hero-rule" />
                     </div>
 
                 </div>
@@ -241,36 +253,46 @@
 
 
                     <div class="col-1">
-                        <ol class="timeline timeline--alt">
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2016</p>
-                                <h3 class="tl-title">The start</h3>
-                                <p>Total Digital is founded with a focus on IBM Maximo and asset management. A small specialist company takes its first steps.</p>
+                        <!--The years are their own rail on the left. The alternating
+                            variant halved the measure for every entry and read as two
+                            ragged columns as soon as an entry ran past one line. The dot
+                            hangs off the year (.rail-year::after) – no decorative span in
+                            the markup.-->
+                        <ol class="year-rail">
+                            <li>
+                                <p class="rail-year">2016</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">The start</h3>
+                                    <p>Total Digital is founded with a focus on IBM Maximo and asset management. A small specialist company takes its first steps.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2018</p>
-                                <h3 class="tl-title">We start to grow</h3>
-                                <p>More and larger assignments grow the team. We strengthen our expertise and establish ourselves as specialists in IBM Maximo and asset management.</p>
+                            <li>
+                                <p class="rail-year">2018</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">We start to grow</h3>
+                                    <p>More and larger assignments grow the team. We strengthen our expertise and establish ourselves as specialists in IBM Maximo and asset management.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2021</p>
-                                <h3 class="tl-title">Maximo meets ArcGIS</h3>
-                                <p>We begin to bring IBM Maximo and Esri ArcGIS together. Information about the condition of an asset is linked to its geographical position, opening up new ways of working with assets and infrastructure.</p>
+                            <li>
+                                <p class="rail-year">2021</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Maximo meets ArcGIS</h3>
+                                    <p>We begin to bring IBM Maximo and Esri ArcGIS together. Information about the condition of an asset is linked to its geographical position, opening up new ways of working with assets and infrastructure.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2025</p>
-                                <h3 class="tl-title">Remote sensing and AI</h3>
-                                <p>We broaden our expertise with remote sensing and AI. That gives us new ways to detect change, analyse large areas and see the asset base in a wider context.</p>
+                            <li>
+                                <p class="rail-year">2025</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Remote sensing and AI</h3>
+                                    <p>We broaden our expertise with remote sensing and AI. That gives us new ways to detect change, analyse large areas and see the asset base in a wider context.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2026</p>
-                                <h3 class="tl-title">Locally present. Together as one team.</h3>
-                                <p>Today we are in several places across Sweden, and on Åland too. We grow where the skills and the customers are, and work together as one team whatever the geography.</p>
+                            <li>
+                                <p class="rail-year">2026</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Locally present. Together as one team.</h3>
+                                    <p>Today we are in several places across Sweden, and on Åland too. We grow where the skills and the customers are, and work together as one team whatever the geography.</p>
+                                </div>
                             </li>
                         </ol>
                     </div>
@@ -372,24 +394,6 @@
                     </div>
                     <div class="col-1 split-2">
 
-                        <!--Leaflet map, drawn by js/about.js. The tiles come from
-                            tile.openstreetmap.org: a third-party resource (item 23 in the
-                            revision document) but a cookie-free one, unlike the ESRI embed
-                            once planned for this slot. Dropping the third party entirely
-                            would mean drawing the map as GeoJSON instead of tiles.
-
-                            #map is hidden until about.js marks it .map-live, so without
-                            JavaScript the static image below stands in its place rather
-                            than under an empty box.-->
-                        <figure class="about-map">
-                            <div id="map"></div>
-                            <noscript>
-                                <img src="../images/company-images/td-office-map.webp" width="987" height="1400"
-                                    alt="Map of Sweden with Total Digital's locations marked. The locations are listed alongside." />
-                            </noscript>
-                            <figcaption>Our locations. Pick one from the list to zoom to it.</figcaption>
-                        </figure>
-
                         <div>
                         <p>We are a remote company with no head office. That is a deliberate choice: it lets us find the right skills wherever they are and stay close to our customers at the same time.</p>
                         <p>Today you will find us in:</p>
@@ -414,6 +418,24 @@
                         </ul>
                         </div>
 
+                        <!--Leaflet map, drawn by js/about.js. The tiles come from
+                            tile.openstreetmap.org: a third-party resource (item 23 in the
+                            revision document) but a cookie-free one, unlike the ESRI embed
+                            once planned for this slot. Dropping the third party entirely
+                            would mean drawing the map as GeoJSON instead of tiles.
+
+                            #map is hidden until about.js marks it .map-live, so without
+                            JavaScript the static image below stands in its place rather
+                            than under an empty box.-->
+                        <figure class="about-map">
+                            <div id="map"></div>
+                            <noscript>
+                                <img src="../images/company-images/td-office-map.webp" width="987" height="1400"
+                                    alt="Map of Sweden with Total Digital's locations marked. The locations are listed alongside." />
+                            </noscript>
+                            <figcaption>Our locations. Pick one from the list alongside to zoom to it.</figcaption>
+                        </figure>
+
                     </div>
 
                 </div>
@@ -423,7 +445,7 @@
             <!--Careers. This was two sections, Careers and Degree projects: they said the
                 same thing twice – we do not advertise, get in touch – and put two CTA blocks
                 one after the other at the end of the page. Now one section with two tracks.
-                The tracks need headings of their own (h3.split-heading) because the two
+                The tracks need headings of their own (h3 inside .track) because the two
                 kickers that used to separate them are gone.-->
             <section id="career" class="introduction scrollto">
                 <div class="row clearfix">
@@ -436,54 +458,57 @@
                         </div>
                     </div>
 
-                    <div class="col-1 split-2">
+                    <div class="col-1">
 
-                        <div>
-                        <h3 class="split-heading">Employment</h3>
-                        <p>With us you work close to both customers and technology, with a great deal of your own responsibility and a short path from idea to delivery.
+                        <!--Two tracks, one button each. The section used to close with both
+                            buttons side by side under both columns, which put the choice back
+                            on the reader after they had already read the column that answered
+                            it. The mailto subject line still separates a speculative
+                            application from a degree-project enquiry.
 
-                        We rarely advertise. If you see a match between what you can do and what we do, get in touch and tell us briefly about yourself and what you want to work with.</p>
-                        </div>
+                            The tracks are deliberately not framed as cards: a card on this
+                            site means the whole surface is clickable, and a block of prose
+                            with a button in it is not.-->
+                        <div class="track-grid">
 
-                        <div>
-                        <h3 class="split-heading">Degree projects</h3>
-                        <p>We supervise degree projects at the intersection of <strong>asset management, GIS, remote sensing and AI</strong>, and can contribute expertise, platforms and relevant data.
+                            <div class="track">
+                                <h3>Employment</h3>
+                                <p>With us you work close to both customers and technology, with a great deal of your own responsibility and a short path from idea to delivery.</p>
+                                <p>We rarely advertise. If you see a match between what you can do and what we do, get in touch and tell us briefly about yourself and what you want to work with.</p>
+                                <div class="track-spacer"></div>
+                                <a href="mailto:info@totaldigital.se?subject=Speculative application" class="button">SEND A SPECULATIVE APPLICATION</a>
+                            </div>
 
-                        <strong>Two new degree projects will be published here shortly.</strong></p>
+                            <div class="track" id="thesis">
+                                <h3>Degree projects</h3>
+                                <p>We supervise degree projects at the intersection of <strong>asset management, GIS, remote sensing and AI</strong>, and can contribute expertise, platforms and relevant data.</p>
+                                <p><strong>Two new degree projects will be published here shortly.</strong></p>
 
-                        <!--The list is still here but is placeholder all the way through. If
-                            there are no real titles to put here it should go: four invented rows in
-                            a framed list look like content you have when you do not.-->
-                        <ul class="thesis-list">
-                            <li>
-                                <span class="thesis-title">Placeholder: title of the degree project</span>
-                                <span class="thesis-meta">University &middot; Programme &middot; Year</span>
-                            </li>
-                            <li>
-                                <span class="thesis-title">Placeholder: title of the degree project</span>
-                                <span class="thesis-meta">University &middot; Programme &middot; Year</span>
-                            </li>
-                            <li>
-                                <span class="thesis-title">Placeholder: title of the degree project</span>
-                                <span class="thesis-meta">University &middot; Programme &middot; Year</span>
-                            </li>
-                        </ul>
+                                <!--The list is still here but is placeholder all the way through.
+                                    If there are no real titles to put here it should go: three
+                                    invented rows look like content you have when you do not.-->
+                                <ul class="thesis-list">
+                                    <li>
+                                        <span class="thesis-title">Placeholder: title of the degree project</span>
+                                        <span class="thesis-meta">University &middot; Programme &middot; Year</span>
+                                    </li>
+                                    <li>
+                                        <span class="thesis-title">Placeholder: title of the degree project</span>
+                                        <span class="thesis-meta">University &middot; Programme &middot; Year</span>
+                                    </li>
+                                    <li>
+                                        <span class="thesis-title">Placeholder: title of the degree project</span>
+                                        <span class="thesis-meta">University &middot; Programme &middot; Year</span>
+                                    </li>
+                                </ul>
+
+                                <div class="track-spacer"></div>
+                                <a href="mailto:info@totaldigital.se?subject=Degree project" class="button">ASK ABOUT A DEGREE PROJECT</a>
+                            </div>
+
                         </div>
 
                     </div>
-
-                    <!--Call to Action. Two buttons, not one: the mailto subject line separates a
-                        speculative application from a degree-project enquiry, and that routing is
-                        worth keeping even now the sections have been merged.-->
-                    <div class="col-1 text-center showcase-cta">
-                        <p>Feel you would belong here? Get in touch, even when we are not recruiting
-                            right now.</p>
-                        <div class="cta-buttons">
-                            <a href="mailto:info@totaldigital.se?subject=Speculative application" class="button">SEND A SPECULATIVE APPLICATION</a>
-                            <a href="mailto:info@totaldigital.se?subject=Degree project" class="button">ASK ABOUT A DEGREE PROJECT</a>
-                        </div>
-                    </div>
-                    <!--End of Call to Action-->
 
                 </div>
             </section>
@@ -497,30 +522,54 @@
         <!--Footer-->
         <footer class="clearfix footer-large">
             <div class="row clearfix">
-                <div class="col-1 text-center">
+                <!--The four-column footer from css/footer-large.css, same as
+                    index.html. The markup order is load-bearing: the rules below 1023px
+                    in that sheet move children 1 and 4 under the link lists with order,
+                    and count on exactly this order.-->
+                <div class="footer-columns">
 
-                    <p class="footer-name">Total Digital AB</p>
-                    <p class="footer-address">
-                        Fabriksgatan 4 &middot; 531 60 Lidköping, Sweden<br />
-                        <a href="mailto:info@totaldigital.se">info@totaldigital.se</a> &middot;
-                        <a href="tel:+46101010070">+46 10 10 100 70</a>
-                    </p>
-
-                    <!--Social Icons in Footer-->
-                    <ul class="social-icons footer-social">
-                        <li>
-                            <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
+                    <div class="footer-brand">
+                        <p class="footer-name">Total Digital AB</p>
+                        <ul class="social-icons footer-social">
+                            <li>
+                                <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
                                 <svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg><span>GitHub</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" title="LinkedIn"
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="LinkedIn"
                                 href="https://www.linkedin.com/company/total-digital-it-solutions">
                                 <svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg><span>LinkedIn</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--End of Social Icons in Footer-->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">About us</p>
+                        <a href="#history">History</a>
+                        <a href="#management">Management team</a>
+                        <a href="#locations">Where we are</a>
+                        <a href="#career">Careers</a>
+                        <a href="#thesis">Degree projects</a>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Products</p>
+                        <a href="td_asset_care.html">TD Asset Care</a>
+                        <a href="td_test.html">TD Test</a>
+                        <a href="index.html#showcases">Showcases</a>
+                        <a href="index.html#services">Services</a>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Contact</p>
+                        <p class="footer-address">
+                            Fabriksgatan 4 &middot; <span class="footer-nowrap">531 60 Lidköping</span><br />
+                            <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
+                            <a href="tel:+46101010070">010 - 10 100 70</a>
+                        </p>
+                    </div>
 
                 </div>
             </div>

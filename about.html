@@ -199,28 +199,37 @@
         <!--Main Content Area-->
         <main id="content" class="showcase-top">
 
-            <!--Introduction. Låg tidigare i showcase-sidornas smala, centrerade
-                .col-2-3 inuti .content-center. Det gav sidans första block en
-                indragen vänsterkant medan alla sektioner under den ligger i
-                full bredd – rubrikerna startade på 428px i stället för 154px.
-                Samma .row > .col-1 som resten av sidan nu; radlängden på
-                brödtexten hålls i stället av #about-intro i css/about.css.-->
+            <!--Introduction. Två kolumner i stället för ett staplat mittspann:
+                utsagan till vänster, brödtexten bredvid. Sidan öppnade annars
+                på en smal remsa och vidgade sig för varje sektion under den.
+                Måttet på brödtexten hålls av .about-hero i css/about.css.-->
             <section id="about-intro" class="introduction scrollto">
                 <div class="row clearfix">
 
-                    <div class="col-1">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">OM OSS</h2>
-                            <h1 class="section-title">Vi är Total Digital</h1>
-                            <p class="section-subtitle">Lilla företagets smidighet. Stora företagets styrka. Det är Total Digital.</p>
+                    <div class="col-1 about-hero">
+
+                        <div>
+                            <div class="section-heading">
+                                <h2 class="section-kicker">OM OSS</h2>
+                                <h1 class="about-title">Vi är Total Digital</h1>
+                            </div>
+                            <!--Ledraden ligger utanför .section-heading. Inne i den hade den
+                                varit sidans .section-subtitle och dragit med sig både måttet
+                                och det orange strecket – här är rubriken själv utsagan.-->
+                            <p class="about-lead">Lilla företagets smidighet. Stora företagets styrka. Det är Total Digital.</p>
                         </div>
+
+                        <div class="about-hero-body">
+                            <p>Teknik möter domänkunskap. Vi kombinerar ledande plattformar med djup domänkunskap och ny teknik för att lösa komplexa utmaningar – från nya perspektiv.</p>
+                            <p>Vi gillar långsiktiga relationer, höga ambitioner och människor som kan sitt område. Engagemang och kompetens? Det har vi svart bälte i.</p>
+                        </div>
+
                     </div>
 
+                    <!--Avslutar hero-blocket. Introt är enda sektionen utan orange streck
+                        under rubriken, så utan den här linjen går det rakt in i Historia.-->
                     <div class="col-1">
-                        <p>Teknik möter domänkunskap. Vi kombinerar ledande plattformar med djup domänkunskap och ny teknik för att lösa komplexa utmaningar – från nya perspektiv.
-                        </p><p>
-                        Vi gillar långsiktiga relationer, höga ambitioner och människor som kan sitt område. Engagemang och kompetens? Det har vi svart bälte i.
-                        </p>
+                        <hr class="about-hero-rule" />
                     </div>
 
                 </div>
@@ -244,36 +253,45 @@
 
 
                     <div class="col-1">
-                        <ol class="timeline timeline--alt">
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2016</p>
-                                <h3 class="tl-title">Starten</h3>
-                                <p>Total Digital grundas med fokus på IBM Maximo och tillgångsförvaltning. Ett litet specialistbolag tar sina första steg.</p>
+                        <!--Årtalen är en egen skena till vänster. Varianten som växlade
+                            sida halverade måttet för varje post och läste som två ojämna
+                            kolumner så snart en post gick över en rad. Punkten hänger på
+                            årtalet (.rail-year::after) – ingen dekorativ span i markupen.-->
+                        <ol class="year-rail">
+                            <li>
+                                <p class="rail-year">2016</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Starten</h3>
+                                    <p>Total Digital grundas med fokus på IBM Maximo och tillgångsförvaltning. Ett litet specialistbolag tar sina första steg.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2018</p>
-                                <h3 class="tl-title">Vi börjar växa</h3>
-                                <p>Fler och större uppdrag gör att teamet växer. Vi stärker vår kompetens och etablerar oss som specialister inom IBM Maximo och tillgångsförvaltning.</p>
+                            <li>
+                                <p class="rail-year">2018</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Vi börjar växa</h3>
+                                    <p>Fler och större uppdrag gör att teamet växer. Vi stärker vår kompetens och etablerar oss som specialister inom IBM Maximo och tillgångsförvaltning.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2021</p>
-                                <h3 class="tl-title">Maximo möter ArcGIS</h3>
-                                <p>Vi börjar förena IBM Maximo och Esri ArcGIS. Information om anläggningens skick kopplas samman med dess geografiska läge och öppnar för nya sätt att arbeta med tillgångar och infrastruktur.</p>
+                            <li>
+                                <p class="rail-year">2021</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Maximo möter ArcGIS</h3>
+                                    <p>Vi börjar förena IBM Maximo och Esri ArcGIS. Information om anläggningens skick kopplas samman med dess geografiska läge och öppnar för nya sätt att arbeta med tillgångar och infrastruktur.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2025</p>
-                                <h3 class="tl-title">Fjärranalys och AI</h3>
-                                <p>Vi breddar vår kompetens med fjärranalys och AI. Det ger oss nya möjligheter att upptäcka förändringar, analysera stora områden och se anläggningen i ett större sammanhang.</p>
+                            <li>
+                                <p class="rail-year">2025</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Fjärranalys och AI</h3>
+                                    <p>Vi breddar vår kompetens med fjärranalys och AI. Det ger oss nya möjligheter att upptäcka förändringar, analysera stora områden och se anläggningen i ett större sammanhang.</p>
+                                </div>
                             </li>
-                            <li class="tl-item">
-                                <span class="tl-marker" aria-hidden="true"></span>
-                                <p class="tl-year">2026</p>
-                                <h3 class="tl-title">Lokalt närvarande. Samlade som ett team.</h3>
-                                <p>Idag finns vi på flera orter i Sverige och även på Åland. Vi växer där kompetensen och kunderna finns och arbetar tillsammans som ett team, oavsett geografi.</p>
+                            <li>
+                                <p class="rail-year">2026</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Lokalt närvarande. Samlade som ett team.</h3>
+                                    <p>Idag finns vi på flera orter i Sverige och även på Åland. Vi växer där kompetensen och kunderna finns och arbetar tillsammans som ett team, oavsett geografi.</p>
+                                </div>
                             </li>
                         </ol>
                     </div>
@@ -375,24 +393,6 @@
                     </div>
                     <div class="col-1 split-2">
 
-                        <!--Leaflet map, drawn by js/about.js. The tiles come from
-                            tile.openstreetmap.org: a third-party resource (item 23 in the
-                            revision document) but a cookie-free one, unlike the ESRI embed
-                            once planned for this slot. Dropping the third party entirely
-                            would mean drawing the map as GeoJSON instead of tiles.
-
-                            #map is hidden until about.js marks it .map-live, so without
-                            JavaScript the static image below stands in its place rather
-                            than under an empty box.-->
-                        <figure class="about-map">
-                            <div id="map"></div>
-                            <noscript>
-                                <img src="images/company-images/td-office-map.webp" width="987" height="1400"
-                                    alt="Karta över Sverige med Total Digitals orter utmärkta. Orterna räknas upp i listan intill." />
-                            </noscript>
-                            <figcaption>Våra orter. Välj en ort i listan för att zooma dit.</figcaption>
-                        </figure>
-
                         <div>
                         <p>Vi är ett distansbolag utan huvudkontor. Det är ett medvetet val som låter oss hitta rätt kompetens där den finns och samtidigt vara nära våra kunder.</p>
                         <p>Idag finns vi i:</p>
@@ -417,6 +417,24 @@
                         </ul>
                         </div>
 
+                        <!--Leaflet map, drawn by js/about.js. The tiles come from
+                            tile.openstreetmap.org: a third-party resource (item 23 in the
+                            revision document) but a cookie-free one, unlike the ESRI embed
+                            once planned for this slot. Dropping the third party entirely
+                            would mean drawing the map as GeoJSON instead of tiles.
+
+                            #map is hidden until about.js marks it .map-live, so without
+                            JavaScript the static image below stands in its place rather
+                            than under an empty box.-->
+                        <figure class="about-map">
+                            <div id="map"></div>
+                            <noscript>
+                                <img src="images/company-images/td-office-map.webp" width="987" height="1400"
+                                    alt="Karta över Sverige med Total Digitals orter utmärkta. Orterna räknas upp i listan intill." />
+                            </noscript>
+                            <figcaption>Våra orter. Välj en ort i listan bredvid för att zooma dit.</figcaption>
+                        </figure>
+
                     </div>
 
                 </div>
@@ -426,7 +444,7 @@
             <!--Karriär. Var två sektioner, Karriär och Examensarbete: de sa samma sak två
                 gånger – vi annonserar inte, hör av dig – och lade två CTA-block efter
                 varandra i slutet av sidan. Nu en sektion med två spår. Spåren behöver egna
-                rubriker (h3.split-heading) eftersom de två kickers som tidigare skilde dem
+                rubriker (h3 inne i .track) eftersom de två kickers som tidigare skilde dem
                 åt är borta.-->
             <section id="career" class="introduction scrollto">
                 <div class="row clearfix">
@@ -439,54 +457,57 @@
                         </div>
                     </div>
 
-                    <div class="col-1 split-2">
+                    <div class="col-1">
 
-                        <div>
-                        <h3 class="split-heading">Anställning</h3>
-                        <p>Hos oss får du arbeta nära både kunder och teknik, med stort eget ansvar och kort väg från idé till genomförande.
+                        <!--Två spår, varsin knapp. Sektionen avslutades tidigare med båda
+                            knapparna sida vid sida under båda kolumnerna, vilket lade valet
+                            tillbaka på läsaren efter att den kolumn som besvarade det redan
+                            var läst. Ämnesraden i mailto skiljer fortfarande en
+                            spontanansökan från en examensarbetsförfrågan.
 
-                        Vi annonserar sällan. Ser du en match mellan det du kan och det vi gör, hör av dig och berätta kort om dig själv och vad du vill arbeta med.</p>
-                        </div>
+                            Spåren är medvetet inte inramade som kort: ett kort på den här
+                            sajten betyder att hela ytan går att klicka på, och det gör inte
+                            ett stycke brödtext med en knapp i.-->
+                        <div class="track-grid">
 
-                        <div>
-                        <h3 class="split-heading">Examensarbete</h3>
-                        <p>Vi handleder examensarbeten i skärningen mellan **tillgångsförvaltning, GIS, fjärranalys och AI** och kan bidra med kompetens, plattformar och relevant data.
+                            <div class="track">
+                                <h3>Anställning</h3>
+                                <p>Hos oss får du arbeta nära både kunder och teknik, med stort eget ansvar och kort väg från idé till genomförande.</p>
+                                <p>Vi annonserar sällan. Ser du en match mellan det du kan och det vi gör, hör av dig och berätta kort om dig själv och vad du vill arbeta med.</p>
+                                <div class="track-spacer"></div>
+                                <a href="mailto:info@totaldigital.se?subject=Spontanansökan" class="button">SKICKA EN SPONTANANSÖKAN</a>
+                            </div>
 
-                        **Två nya examensarbeten publiceras här inom kort.**</p>
+                            <div class="track" id="thesis">
+                                <h3>Examensarbete</h3>
+                                <p>Vi handleder examensarbeten i skärningen mellan <strong>tillgångsförvaltning, GIS, fjärranalys och AI</strong> och kan bidra med kompetens, plattformar och relevant data.</p>
+                                <p><strong>Två nya examensarbeten publiceras här inom kort.</strong></p>
 
-                        <!--Listan är kvar men är platshållare hela vägen. Finns det inga
-                            riktiga titlar att sätta här ska den bort: fyra påhittade rader i en
-                            ramad lista ser ut som innehåll man har och inte har.-->
-                        <ul class="thesis-list">
-                            <li>
-                                <span class="thesis-title">Platshållare: titel på examensarbetet</span>
-                                <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
-                            </li>
-                            <li>
-                                <span class="thesis-title">Platshållare: titel på examensarbetet</span>
-                                <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
-                            </li>
-                            <li>
-                                <span class="thesis-title">Platshållare: titel på examensarbetet</span>
-                                <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
-                            </li>
-                        </ul>
+                                <!--Listan är kvar men är platshållare hela vägen. Finns det inga
+                                    riktiga titlar att sätta här ska den bort: tre påhittade rader
+                                    ser ut som innehåll man har och inte har.-->
+                                <ul class="thesis-list">
+                                    <li>
+                                        <span class="thesis-title">Platshållare: titel på examensarbetet</span>
+                                        <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
+                                    </li>
+                                    <li>
+                                        <span class="thesis-title">Platshållare: titel på examensarbetet</span>
+                                        <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
+                                    </li>
+                                    <li>
+                                        <span class="thesis-title">Platshållare: titel på examensarbetet</span>
+                                        <span class="thesis-meta">Lärosäte &middot; Program &middot; År</span>
+                                    </li>
+                                </ul>
+
+                                <div class="track-spacer"></div>
+                                <a href="mailto:info@totaldigital.se?subject=Examensarbete" class="button">HÖR AV DIG OM EXAMENSARBETE</a>
+                            </div>
+
                         </div>
 
                     </div>
-
-                    <!--Call to Action. Två knappar, inte en: ämnesraden i mailto skiljer en
-                        spontanansökan från en examensarbetsförfrågan, och den routningen är
-                        värd att behålla även när sektionerna slogs ihop.-->
-                    <div class="col-1 text-center showcase-cta">
-                        <p>Känner du att du hör hemma hos oss? Hör av dig, även om vi inte söker
-                            just nu.</p>
-                        <div class="cta-buttons">
-                            <a href="mailto:info@totaldigital.se?subject=Spontanansökan" class="button">SKICKA EN SPONTANANSÖKAN</a>
-                            <a href="mailto:info@totaldigital.se?subject=Examensarbete" class="button">HÖR AV DIG OM EXAMENSARBETE</a>
-                        </div>
-                    </div>
-                    <!--End of Call to Action-->
 
                 </div>
             </section>
@@ -500,30 +521,54 @@
         <!--Footer-->
         <footer class="clearfix footer-large">
             <div class="row clearfix">
-                <div class="col-1 text-center">
+                <!--Fyrkolumnsfoten från css/footer-large.css, samma som index.html.
+                    Ordningen i markupen är låst: reglerna under 1023px i det arket
+                    flyttar barn 1 och 4 under länklistorna med order, och räknar på
+                    just den här ordningen.-->
+                <div class="footer-columns">
 
-                    <p class="footer-name">Total Digital AB</p>
-                    <p class="footer-address">
-                        Fabriksgatan 4 &middot; 531 60 Lidköping<br />
-                        <a href="mailto:info@totaldigital.se">info@totaldigital.se</a> &middot;
-                        <a href="tel:+46101010070">010 - 10 100 70</a>
-                    </p>
-
-                    <!--Social Icons in Footer-->
-                    <ul class="social-icons footer-social">
-                        <li>
-                            <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
+                    <div class="footer-brand">
+                        <p class="footer-name">Total Digital AB</p>
+                        <ul class="social-icons footer-social">
+                            <li>
+                                <a target="_blank" title="Github" href="https://github.com/totaldigital-se">
                                 <svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg><span>GitHub</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" title="LinkedIn"
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="LinkedIn"
                                 href="https://www.linkedin.com/company/total-digital-it-solutions">
                                 <svg class="svg-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg><span>LinkedIn</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--End of Social Icons in Footer-->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Om oss</p>
+                        <a href="#history">Historia</a>
+                        <a href="#management">Ledningsgrupp</a>
+                        <a href="#locations">Var vi finns</a>
+                        <a href="#career">Karriär</a>
+                        <a href="#thesis">Examensarbete</a>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Produkter</p>
+                        <a href="td_asset_care.html">TD Asset Care</a>
+                        <a href="td_test.html">TD Test</a>
+                        <a href="index.html#showcases">Showcases</a>
+                        <a href="index.html#services">Tjänster</a>
+                    </div>
+
+                    <div class="footer-col">
+                        <p class="footer-heading">Kontakt</p>
+                        <p class="footer-address">
+                            Fabriksgatan 4 &middot; <span class="footer-nowrap">531 60 Lidköping</span><br />
+                            <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
+                            <a href="tel:+46101010070">010 - 10 100 70</a>
+                        </p>
+                    </div>
 
                 </div>
             </div>
