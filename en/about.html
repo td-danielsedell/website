@@ -196,49 +196,47 @@
         <!--Main Content Area-->
         <main id="content" class="showcase-top">
 
-            <!--Introduction-->
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
+            <!--Introduction. This used to sit in the showcase pages' narrow,
+                centred .col-2-3 inside .content-center, which indented the
+                page's first block while every section below it runs full width
+                – headings started at 428px rather than 154px. Same .row >
+                .col-1 as the rest of the page now; the body copy's line length
+                is held by #about-intro in css/about.css instead.-->
+            <section id="about-intro" class="introduction scrollto">
+                <div class="row clearfix">
 
-                        <div class="col-14">
-                            <div class="section-heading">
-                                <h2 class="section-kicker">ABOUT US</h2>
-                                <h1 class="section-title">We are Total Digital</h1>
-                            </div>
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">ABOUT US</h2>
+                            <h1 class="section-title">We are Total Digital</h1>
+                            <p class="section-subtitle">The agility of a small company. The strength of a large one. That is Total Digital.</p>
                         </div>
-                        <div class="col-14">
-                        <p class="section-subtitle">The agility of a small company. The strength of a large one. That is Total Digital.</p>
-</div>
-
-                        <div class="col-1">
-                            <p>Technology meets domain knowledge. We combine leading platforms with deep domain knowledge and new technology to solve complex challenges – from new perspectives.
-                            </p><p>
-                            We like long-term relationships, high ambitions and people who know their field. Commitment and competence? We have a black belt in that.
-                            </p>
-                        </div>
-
                     </div>
+
+                    <div class="col-1">
+                        <p>Technology meets domain knowledge. We combine leading platforms with deep domain knowledge and new technology to solve complex challenges – from new perspectives.
+                        </p><p>
+                        We like long-term relationships, high ambitions and people who know their field. Commitment and competence? We have a black belt in that.
+                        </p>
+                    </div>
+
                 </div>
             </section>
             <!--End of Introduction-->
 
-            <!--History. The heading and the subheading sit in two col-14 so that they
-                stand side by side from 768px up, the same arrangement as
-                Business Areas and Trust on the start page.-->
+            <!--History. The subheading sits inside .section-heading, the way the
+                showcase pages do it, rather than in a column of its own beside
+                the heading. The orange rule therefore moves below the
+                subheading and closes the whole block – see css/colors.css.-->
             <section id="history" class="introduction scrollto">
                 <div class="row clearfix">
 
-                    <div class="col-14">
+                    <div class="col-1">
                         <div class="section-heading">
                             <h2 class="section-kicker">HISTORY</h2>
                             <p class="section-title">How we got here</p>
+                            <p class="section-subtitle">A lot has happened since we started in 2016. New colleagues, new areas of expertise and new assignments have taken us from a small specialist company to the Total Digital we are today. Here are some of the milestones along the way.</p>
                         </div>
-                    </div>
-
-                    <div class="col-14">
-                        <p class="section-subtitle">A lot has happened since we started in 2016. New colleagues, new areas of expertise and new assignments have taken us from a small specialist company to the Total Digital we are today. Here are some of the milestones along the way.
-</p>
                     </div>
 
 
@@ -286,15 +284,12 @@
             <section id="management" class="introduction scrollto">
                 <div class="row clearfix">
 
-                    <div class="col-14">
+                    <div class="col-1">
                         <div class="section-heading">
                             <h2 class="section-kicker">MANAGEMENT TEAM</h2>
                             <p class="section-title">The people who hold it together</p>
+                            <p class="section-subtitle">The management team holds together direction, business areas and development – with expertise drawn from across the company.</p>
                         </div>
-                    </div>
-
-                    <div class="col-14">
-                        <p class="section-subtitle">The management team holds together direction, business areas and development – with expertise drawn from across the company.</p>
                     </div>
 
 
@@ -362,18 +357,19 @@
             <section id="locations" class="introduction scrollto">
                 <div class="row clearfix">
 
-                    <div class="col-14">
+                    <div class="col-1">
                         <div class="section-heading">
                             <h2 class="section-kicker">WHERE WE ARE</h2>
                             <p class="section-title">From north to south, east to west</p>
+                            <!--With no subheading the orange rule stays under the
+                                title. Bring this back in and the rule moves
+                                below it on its own.-->
+                            <!--
+                            <p class="section-subtitle">PLACEHOLDER. A line about working
+                                remotely, and what that means for how we take on assignments.</p>
+                            -->
                         </div>
                     </div>
-                    <!--
-                    <div class="col-14">
-                        <p class="section-subtitle">PLACEHOLDER. A line about working
-                            remotely, and what that means for how we take on assignments.</p>
-                    </div>
-                    -->
                     <div class="col-1 split-2">
 
                         <!--Leaflet map, drawn by js/about.js. The tiles come from
@@ -432,15 +428,12 @@
             <section id="career" class="introduction scrollto">
                 <div class="row clearfix">
 
-                    <div class="col-14">
+                    <div class="col-1">
                         <div class="section-heading">
                             <h2 class="section-kicker">CAREERS</h2>
                             <p class="section-title">We have no open vacancies posted</p>
+                            <p class="section-subtitle">We would rather look for the right person than the right CV for a ready-made advert. So we are always open to talking to people who can contribute – whether you are an experienced specialist, early in your career or a student.</p>
                         </div>
-                    </div>
-
-                    <div class="col-14">
-                        <p class="section-subtitle">We would rather look for the right person than the right CV for a ready-made advert. So we are always open to talking to people who can contribute – whether you are an experienced specialist, early in your career or a student.</p>
                     </div>
 
                     <div class="col-1 split-2">

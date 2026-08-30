@@ -1540,6 +1540,13 @@ h1.section-title {
     padding: 14px 0 0 0;
 }
 
+/* Except that they do have one now — about.html opens with an h1 and a subtitle,
+   and so do the showcase pages. Without this the gap under an h1 title is the
+   14px a p title states, tighter than every other section on the page. */
+.section-heading:has(> .section-subtitle) h1.section-title {
+    padding-bottom: 14px;
+}
+
 .section-heading h1.section-title:after {
     margin-top: 20px;
 }
@@ -1547,6 +1554,24 @@ h1.section-title {
 .section-subtitle {
     font-size: 18px;
     padding-top: 0;
+}
+
+/* A subtitle inside the heading is a paragraph the whole section is read
+   through, not a caption, so it takes a measure and a line height rather than
+   the reset's defaults. The reset does not zero p, so the margin has to be
+   stated: the title's own 14px bottom padding is the gap above it, and the
+   accent rule under it carries its own 30px (colors.css). */
+.section-heading > .section-subtitle {
+    max-width: 720px;
+    margin: 0;
+    line-height: 28px;
+}
+
+/* Centred headings centre their measure too, or the text sits left of a rule
+   that is centred under it. */
+.text-center .section-heading > .section-subtitle {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Showcase Call to Action */
@@ -3041,21 +3066,20 @@ blockquote {
         line-height: 1.45;
     }
 
-    /* Affärsområden and Tillit put the section subtitle in its own column so it
-       can stand beside the heading from 768px up. Stacked, everything that was
-       meant to separate the two columns lands between the title and the
-       subtitle instead: the heading column's 20px bottom padding, the subtitle
-       column's 20px top padding and the heading's own 15px. That put the
-       subtitle 87px below the orange rule. Collapsing the three puts it at 32px,
-       which is what td_asset_care measures — the page with the same h2 heading
-       block, but with the subtitle nested inside .section-heading. (The other
-       two subtitle pages sit elsewhere for their own reasons: about.html at
-       18px because its title is an h1, td_test.html at 57px. Neither is touched
-       by the rules below.)
+    /* Written for the sections that put the section subtitle in its own column
+       so it could stand beside the heading from 768px up. Stacked, everything
+       that was meant to separate the two columns landed between the title and
+       the subtitle instead: the heading column's 20px bottom padding, the
+       subtitle column's 20px top padding and the heading's own 15px. That put
+       the subtitle 87px below the orange rule; collapsing the three puts it at
+       32px, which is what the nested arrangement measures.
 
-       Matched on the relationship rather than on .section-heading, so the pages
-       that nest the subtitle inside the heading are left alone: there the
-       subtitle is a grandchild of the column, not a direct child. */
+       Every section has since been nested — the subtitle is a grandchild of the
+       column now, not a direct child, so none of them match these rules any
+       more and they all get the 32px from the nesting itself. What still
+       matches is .trust-partners on the start page, whose .partner-lead is a
+       .section-subtitle sitting straight in its column with the testimonial
+       block before it. Kept for that. */
     .row > [class*='col-']:has(+ [class*='col-'] > .section-subtitle),
     .row > [class*='col-']:has(+ [class*='col-'] > .section-subtitle) > .section-heading {
         padding-bottom: 0;

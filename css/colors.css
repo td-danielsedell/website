@@ -285,6 +285,32 @@ a {
     margin: 30px auto 25px auto;
 }
 
+/* Where a subtitle follows the title inside the heading, the rule closes the
+   block underneath it instead of splitting the title from the subtitle it
+   belongs to. Same 30x5 in --primary; only the element it hangs from changes.
+   Headings with no subtitle keep it on the title, which is the rule above.
+
+   Scoped to a subtitle that is the heading's own child, so a .section-subtitle
+   standing on its own outside a heading — .partner-lead on the start page — is
+   not handed a rule it never had. */
+.section-heading:has(> .section-subtitle) .section-title:after,
+.section-heading:has(> .section-subtitle) h2:not(.section-kicker):after {
+    display: none;
+}
+
+.section-heading > .section-subtitle:after {
+    background: var(--primary);
+    content: "";
+    display: block;
+    width: 30px;
+    height: 5px;
+    margin-top: 30px;
+}
+
+.text-center .section-heading > .section-subtitle:after {
+    margin: 30px auto 25px auto;
+}
+
 /* Primary Icon Colors */
 
 .primary-color .icon i,

@@ -10,7 +10,49 @@
    inheriting the UA's 1em. Everything is border-box (style.css:64). */
 
 
-/* --------- 1. Timeline ---------- */
+/* --------- 0. Introduction ---------- */
+
+/* The section no longer sits in a narrow centred column, so its paragraphs run
+   the full width. Left off deliberately — the intro copy is being rewritten, so
+   the measure is a decision for whatever replaces it. This is the 720px the
+   section subtitles take, if it turns out to want one. */
+/*
+#about-intro .col-1 > p {
+    max-width: 720px;
+}
+*/
+
+
+/* --------- 1. Historia: timeline ---------- */
+
+/* The #history-only version of the subtitle treatment, kept in case the general
+   rules turn out to be the wrong call. Superseded by colors.css (the accent rule
+   moving below the subtitle) and style.css (.section-heading > .section-subtitle
+   taking the measure and line height). The one thing here that did NOT go
+   general is the grey: every subtitle on the site keeps the gold
+   --section-subtitle. Uncomment the colour line alone to put this section back
+   to grey, or lift it out of #history to grey them all. */
+/*
+#history .section-heading .section-title:after {
+    display: none;
+}
+
+#history .section-subtitle:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 5px;
+    margin-top: 30px;
+    background: var(--primary);
+}
+
+#history .section-subtitle {
+    max-width: 720px;
+    margin: 0;
+    color: var(--muted-text);
+    line-height: 28px;
+}
+*/
 
 /* An ordered list, because the entries are chronological and that is what a
    screen reader should announce. The spine is a single line on the <ol> rather
@@ -239,15 +281,15 @@
 }
 
 
-/* --------- 3. Two columns under a two-column heading ---------- */
+/* --------- 3. Two columns under the heading ---------- */
 
-/* Orter and Examensarbete both put two blocks side by side under a heading that
-   is itself two .col-14 columns. Floated .col-2 blocks do not start a new row
-   there: the heading column is taller than the subtitle column, so the first
-   .col-2 slots up into the gap beside the short subtitle instead. It is the same
-   float snag that put the affärsområden blocks on a grid (style.css:1580). Grid
-   inside one full-width .col-1 sidesteps it, and gives equal columns whatever
-   the two blocks' heights. */
+/* Orter and Examensarbete both put two blocks side by side under the heading.
+   That heading used to be two .col-14 columns, and floated .col-2 blocks did
+   not start a new row under it: the heading column was taller than the subtitle
+   column, so the first .col-2 slotted up into the gap beside the short subtitle
+   instead. The heading is one full-width column now, so the snag is gone, but
+   the grid stays — it is what gives the two blocks equal columns whatever their
+   heights, and it does not depend on the heading above it. */
 .split-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
