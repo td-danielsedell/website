@@ -1682,6 +1682,107 @@ h1.section-title {
     height: 30px;
 }
 
+
+/* ---------- Scroll cue ---------- */
+
+/* Two chevrons at the foot of a one-viewport hero, the lower one faded. The
+   repetition says there is more than one section down there. No label and no
+   border, so the anchor carries an aria-label and the nudge under the pointer
+   is the whole affordance: a static arrow reads as decoration, one that answers
+   the pointer reads as a control. Nothing moves at rest.
+
+   The mark is shared; where it sits is the page's business — see the #home
+   block below and .tdt-intro in css/td-test.css, which each reserve their own
+   room for it. Both position it against a `position: relative` ancestor that is
+   coextensive with the hero.
+
+   js/site.js scrolls it: any anchor with data-scroll-to travels at the nav's
+   own 750ms and swing. */
+.scroll-cue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--section-title);
+    text-decoration: none;
+    transition: color .2s linear;
+}
+
+/* Below 768px a hero is content-tall and the reader is already scrolling, so
+   there is no fold to gesture at. */
+@media (max-width: 767px) {
+    .scroll-cue {
+        display: none;
+    }
+}
+
+.scroll-cue:hover,
+.scroll-cue:focus-visible {
+    color: var(--primary);
+}
+
+.scroll-cue svg {
+    display: block;
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+    transition: transform .2s ease-out;
+}
+
+.scroll-cue svg + svg {
+    /* tucked under the first, close enough to read as one mark */
+    margin-top: -9px;
+    opacity: .45;
+}
+
+.scroll-cue:hover svg,
+.scroll-cue:focus-visible svg {
+    transform: translateY(4px);
+}
+
+/* There is no border here to thicken, so the keyboard needs a ring of its
+   own. */
+.scroll-cue:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 6px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .scroll-cue,
+    .scroll-cue svg {
+        transition: none;
+    }
+
+    .scroll-cue:hover svg,
+    .scroll-cue:focus-visible svg {
+        transform: none;
+    }
+}
+
+/* On the start page the cue sits on the banner photo, which is a flat mid grey
+   behind the copy — --section-title would disappear into it. White with a
+   shadow instead, the same treatment the hero icons and #home .button already
+   use. */
+#home {
+    position: relative;
+}
+
+#home .scroll-cue {
+    color: var(--banner-text);
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .55));
+}
+
+#home .scroll-cue:hover,
+#home .scroll-cue:focus-visible {
+    color: var(--primary);
+}
+
 /* Showcase pages have no banner content, so their content clears the fixed header itself */
 .showcase-top {
     padding-top: 60px;

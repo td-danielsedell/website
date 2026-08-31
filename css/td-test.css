@@ -3,6 +3,158 @@
    Reuses the global palette from colors.css (var(--primary) etc.)
    -------------------------------------------------------------------------- */
 
+/* Intro / hero.
+   The page used to open in a 66% centred column and then jump to the full
+   1245px row at the next section. The hero now sits in that same row: copy
+   beside the product shot, the three detail paragraphs as columns under it,
+   the closing line and the CTA centred below. */
+/* The two .banner-spacer divs above clear the fixed header; this is the breath
+   after them. */
+.tdt-intro .row {
+    padding-top: 30px;
+}
+
+/* One viewport, the way #home is on the start page (see the long note by
+   #home in style.css). Pinning the box keeps Möjligheter from peeking in under
+   the CTA and stops the section height walking every time the copy rewraps.
+   The 60px is the two .banner-spacer divs above the section — they sit outside
+   it, so the section only gets what is left of the screen. svh is the viewport
+   height with the mobile address bar showing, so nothing jumps when it
+   collapses; 100vh is the fallback where svh is unknown.
+
+   min-height, not height: the intro is taller than a short laptop window and is
+   allowed to grow past it rather than clip. Phones are left out — there the
+   copy is several screens long whatever we do, and the section has no
+   background photo whose crop would give the reflow away. */
+@media (min-width: 768px) {
+
+    .tdt-intro {
+        min-height: calc(100vh - 60px);
+        min-height: calc(100svh - 60px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Takes the leftover height and centres the copy in it, as
+       #banner-content.row does. */
+    .tdt-intro > .row {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Room at the foot for the scroll cue below. Placing the cue without
+           reserving the strip put it 1px inside the KONTAKTA OSS button: the
+           row centres its content and the CTA is the last thing in it, so the
+           bottom edge is not empty, it is where the button already ends. The
+           padding pulls the centred copy up by half of what it gains, and the
+           cue sits in the space that opens under it. */
+        padding-bottom: 104px;
+    }
+}
+
+/* The scroll cue itself is shared — .scroll-cue lives in css/style.css, since
+   the start page carries one too. Only its room is page business, and that is
+   the row's padding-bottom above. */
+
+.tdt-intro .tdt-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 20px 60px;
+    align-items: center;
+    /* the hero sits straight in the row, so it takes the same 20px gutter a
+       col- would have given it */
+    padding: 0 20px;
+}
+
+.tdt-intro .tdt-hero .section-heading {
+    padding-bottom: 0;
+}
+
+.tdt-intro .tdt-hero h1.section-title {
+    padding-top: 0;
+    font-size: 46px;
+}
+
+.tdt-intro .tdt-lead {
+    font-size: 17px;
+    line-height: 28px;
+    padding-top: 14px;
+    text-wrap: pretty;
+}
+
+/* Framed like .tdt-shot and img.showcase-image, minus their fixed height: this
+   one is a 598x299 export and is meant to be seen whole, not cropped. */
+.tdt-intro .tdt-hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+/* The three capability paragraphs run side by side under the hero — the same
+   trio rhythm Möjligheter uses below, instead of a lopsided text/CTA split. */
+.tdt-intro .tdt-intro-body {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 34px;
+    padding: 26px 20px 0;
+    border-top: 1px solid var(--surface-border);
+}
+
+.tdt-intro .tdt-intro-body p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 26px;
+    text-wrap: pretty;
+}
+
+/* Closing line: one statement and one button, centred under the trio rather
+   than boxed off beside the text. */
+.tdt-intro .tdt-intro-cta {
+    text-align: center;
+    max-width: 640px;
+    margin: 28px auto 0;
+    padding: 0 20px;
+}
+
+.tdt-intro .tdt-intro-cta p {
+    margin: 0 0 22px;
+    font-size: 18px;
+    line-height: 29px;
+    color: var(--section-subtitle);
+}
+
+.tdt-intro .tdt-intro-cta .button {
+    margin: 0;
+}
+
+@media (max-width: 1023px) {
+    .tdt-intro .tdt-intro-body {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .tdt-intro .tdt-hero {
+        grid-template-columns: 1fr;
+    }
+
+    /* stacked, the shot leads — it says what the product is faster than the
+       lead paragraph does */
+    .tdt-intro .tdt-hero-image {
+        order: -1;
+    }
+
+    .tdt-intro .tdt-intro-body {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        margin-top: 40px;
+        padding-top: 34px;
+    }
+}
+
 /* The three capability blocks, side by side.
    Grid instead of the global float grid so an uneven column can't snag the
    next float; it also sits beside floats instead of clearing them. */
@@ -12,6 +164,9 @@
     gap: 20px 40px;
     align-items: start;
     clear: both;
+    /* sits straight in the row, not in a col-, so it states the 20px gutter
+       itself — without this it ran edge to edge past everything around it */
+    padding: 0 20px;
 }
 
 .tdt-trio>* {
@@ -102,20 +257,32 @@
     box-shadow: var(--card-shadow);
 }
 
-/* Feature grid (5 icons) — centering is inherited from the section's
-   .text-center; only the body copy opts back out */
-.tdt-feature .tdt-icon {
-    font-size: 42px;
+/* Fördelar rides the Affärsområden band (css/area-band.css): no cards, hairline
+   rules between the columns, icon over the heading, 01–04 counter. Was two rows
+   of floated .col-2 halves, which gave four short paragraphs the width of the
+   whole page each.
+
+   The one thing that differs from the start page is the icon. There it is a
+   52px <img>; here it is inline SVG, and .svg-icon is sized in em — so the box
+   is set on the wrapper instead. line-height: 0 keeps the inline SVG from
+   dragging a text line's worth of leading in under it, which would put this
+   icon lower than the images on index at the same margin. */
+.area-band .tdt-icon {
+    font-size: 52px;
+    line-height: 0;
     color: var(--primary);
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 }
 
-.tdt-feature .card-title {
-    margin-bottom: 8px;
-}
+@media (max-width: 567px) {
 
-.tdt-feature p {
-    text-align: left;
+    /* Beside the copy, not over it — .area-band-item turns into a 44px icon
+       column at this width. */
+    .area-band .tdt-icon {
+        font-size: 44px;
+        margin: 0;
+        grid-row: span 2;
+    }
 }
 
 /* Comparison matrix.
@@ -190,5 +357,21 @@
 
     .tdt-compare td {
         font-size: 17px;
+    }
+}
+
+/* Under 481px style.css swaps the gutter over: every col- class drops its 20px
+   padding, .row > .section-heading drops the 20px it borrowed from them, and
+   the row takes a 15px one instead. The blocks above state that gutter
+   themselves rather than getting it from a col-, so they have to drop it in the
+   same place — otherwise they sit 20px in from every heading on the page. */
+@media (max-width: 480px) {
+
+    .tdt-intro .tdt-hero,
+    .tdt-intro .tdt-intro-body,
+    .tdt-intro .tdt-intro-cta,
+    .tdt-trio {
+        padding-left: 0;
+        padding-right: 0;
     }
 }

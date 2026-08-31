@@ -106,6 +106,64 @@ $(document).ready(function () {
 		$('#header').stickyNavbar({ animateCSS: false });
 	}
 
+	/* Scroll cues in the page body.
+
+	   stickyNavbar is what smooth-scrolls same-page anchors on this site, but it
+	   only sees the links inside the nav it is bound to — an anchor in the page
+	   body jumps. Anything marked data-scroll-to gets the same travel instead:
+	   750ms and swing are the plugin's own defaults, so a cue click and a nav
+	   click feel identical.
+
+	   jQuery.animate rather than scrollTo({ behavior: "smooth" }): style.css
+	   puts overflow-x: hidden on <body>, which makes body its own scrolling box,
+	   and Chrome then drops a native smooth scroll on the way — measured on the
+	   TD Test hero, the page came to rest back at 0 while the same call with
+	   behavior "instant" landed correctly. jQuery sets scrollTop frame by frame
+	   and is unaffected.
+
+	   Delegated, so it does not care when the markup appears or how many cues
+	   there are. */
+	$(document).on('click', 'a[data-scroll-to]', function (e) {
+		var hash = $(this).attr('href') || '';
+		if (hash.charAt(0) !== '#' || hash.length < 2) {
+			return;
+		}
+
+		var target = document.getElementById(hash.slice(1));
+		if (!target) {
+			return;
+		}
+
+		e.preventDefault();
+
+		/* The header is fixed and overlaps the document, so the section top has
+		   to clear it. Measured at click time rather than held as a constant:
+		   the header is a different height once stickyNavbar makes it solid. */
+		var top = Math.max(0, Math.round(
+			$(target).offset().top - $('#header').outerHeight()
+		));
+
+		if (window.matchMedia
+			&& window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			window.scrollTo(0, top);
+			return;
+		}
+
+		/* "html, body" both: which of the two actually scrolls varies with that
+		   overflow, and animating the one that does not is a no-op. .stop()
+		   first so a second click does not queue behind the first. */
+		$('html, body').stop().animate(
+			{ scrollTop: top },
+			{ duration: 750, easing: 'swing' }
+		);
+
+		/* The hash is deliberately not written to the URL. Putting it there
+		   makes the back button undo a scroll rather than leave the page, and
+		   the section ids here are nav targets — a reader who lands on
+		   td_test.html#mojligheter from history skips the hero the cue exists
+		   to sell. */
+	});
+
 	/* The solid header is a state; fading it in is a reveal, and only the reveal
 	   should animate.
 
