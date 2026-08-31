@@ -1,0 +1,431 @@
+/*------------------------------------------------------------------------------------------*/
+/* Hero decor — squiggle band + circles (dark theme only)                                     */
+/*------------------------------------------------------------------------------------------*/
+/* Lifted out of colors.css unchanged so the composition can be tuned in one
+   place. Loaded after colors.css and before light.css; every rule is scoped
+   html:not(.theme-light), so light mode keeps the plain photo hero in
+   colors.css and this file contributes nothing there. index.html is the only
+   page that carries the .hero-decor / .hero-circles markup. */
+
+/* Hero redesign, dark theme only (design_handoff_squigglies/, option 3a).
+   Light mode keeps the plain photo hero until its own pass — every rule
+   below is scoped to html:not(.theme-light) so it wins over colors.css's
+   plain #home rule on specificity alone, no cascade-order games needed, and
+   light mode never sees this block. #banner-content gets position+z-index
+   unconditionally since the decor paints nothing when it's not there. */
+html:not(.theme-light) #home {
+    background: var(--secondary);
+    position: relative;
+
+
+    /* Decor geometry, measured off the reference slide (2000x1055) and kept
+       in the units the reference actually holds constant — the width. Both
+       circles are a share of the viewport width, so the composition scales
+       as one piece; sizing the photo circle off the height instead made it
+       swell on a wide-short window and crowd the copy.
+
+       Reference numbers: photo circle 52% of the width with its left edge at
+       58%, the rest hanging off the right. Left edge is what's pinned, since
+       that is the edge the copy and the accent circle meet.
+
+       The height term in that `max()` is what makes the circle run off the
+       hero top AND bottom rather than float inset on a short window. Both
+       ends are geometrically linked: the circle is centred on the hero, so
+       the further it is to overhang the bottom into Affärsområden, the more
+       it also overhangs the top and the wider it grows off the right edge
+       (showing less of the train). 118svh is the current balance — raise it
+       for more spill, lower it toward 104svh to hug the hero.
+
+       Accent circle 29% of the width, centre 94% down the hero, with its
+       right edge at 67% — 9% of the width, about a third of the disc, tucked
+       behind the photo circle's left arc. (The slide itself sits at 62.5%;
+       nudged right on Daniel's call so the overlap reads as "behind" rather
+       than "beside".) Dial these, not the rules below. */
+    --hero-photo-d: max(52vw, 118svh);
+    --hero-photo-left: 58%;      /* left edge, the one thing the composition hangs off */
+    --hero-accent-d: 29vw;
+    --hero-accent-cy: 94svh;     /* its centre, measured down from the top of the hero */
+}
+
+#banner-content.row {
+    position: relative;
+    z-index: 2;
+}
+
+/* #banner-content's z-index above put its invisible flex-row box (which
+   fills #home's full height, not just the visible text) ahead of
+   .scroll-cue in hit-testing even though scroll-cue comes later in the
+   markup — z-index:auto siblings lose to an explicit positive z-index
+   regardless of DOM order. Give the cue its own stacking so it stays
+   clickable. */
+html:not(.theme-light) #home .scroll-cue {
+    z-index: 3;
+}
+
+/* Same mixed overflow pair as .hero-circles below, and for the same reason:
+   the band's left end must be trimmed at the viewport edge or the page grows
+   wider than the window, but its lower edge crosses #home's bottom and is
+   meant to carry on down into Affärsområden rather than stop dead on the
+   section seam. `hidden` can't express that — it forces the other axis to
+   `auto` and re-clips the vertical spill. This wrapper is still separate from
+   #home because #home holds #header, and a clip there swallows the sticky
+   nav. #businessareas .row carries a z-index that keeps its text above the
+   spill. */
+.hero-decor {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow-x: clip;
+    overflow-y: visible;
+    pointer-events: none;
+}
+
+/* Native width. Line spacing across the 22 contours is baked into the
+   artwork, so plain `width` is the wrong knob for making the band longer —
+   scaling it up thins the fan out and flattens the curvature until it reads
+   as straight diagonal streaks. scaleX below lengthens it instead: in the
+   SVG's own axes x runs along the band and y runs across it, so scaleX
+   stretches the sweep while leaving the line spacing exactly as drawn. */
+.hero-squiggle {
+    position: absolute;
+    width: 760px;
+    height: auto;
+}
+
+/* One continuous band instead of the handoff's two opposing corners: two
+   squiggles read as two objects, one sweep reads as the page being a crop of
+   something bigger. It enters at the left edge below the copy, runs right
+   with a slight rise, and slides behind the photo circle — both ends hidden,
+   the left one by .hero-decor's clip, the right one by the circle itself
+   (.hero-circles paints after .hero-decor), so neither reads as a loose end.
+
+   The earlier version ran corner-to-corner, bottom-left up to off the top at
+   centre. It looked right and made the heading and paragraph hard to read:
+   the copy sits on that diagonal, so no opacity that kept the band visible
+   also kept the text clean. This angle keeps the whole band under the copy
+   instead, which is the only real fix.
+
+   Positioned by its own centre (translate(-50%,-50%)) rather than by an edge:
+   under rotation an edge offset stops corresponding to anything you can
+   reason about. scaleX(1.4) makes the band ~1060px long — enough to run from
+   off the left edge to behind the circle's left arc.
+
+   No scaleY(-1): the artwork's opacity ramps from one long edge to the other,
+   and unflipped the faint edge is the one facing the paragraph. Flipped, the
+   densest lines press right up under the last line of copy. */
+.hero-squiggle-sweep {
+    left: 30.8%;
+    top: 88%;
+    transform: translate(-50%, -50%) rotate(-12deg) scaleX(1.4);
+}
+
+/* Both circles hang off the right edge, so without a clip here the page grows
+   ~320px wider than the viewport. `clip` rather than `hidden`: hidden forces
+   the other axis to `auto` and would cut the circles off at the hero's bottom
+   edge, the one thing they are meant to escape. visible + clip is the one
+   mixed pair CSS allows, so the horizontal bleed is trimmed and the vertical
+   spill into Affärsområden survives.
+
+   This lives on its own wrapper rather than on #home because #home also holds
+   #header: clipping there swallowed the top of the nav bar once it went
+   sticky and the hero had scrolled away. */
+.hero-circles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow-x: clip;
+    overflow-y: visible;
+    pointer-events: none;
+}
+
+/* Loose bubbles scattered around the two big circles, to break up the very
+   even two-disc composition. Kept to the empty ground: the copy column runs
+   to roughly 58% of the width, which is also where the photo circle starts,
+   so these sit either left of the heading or in the gap above the button.
+   Sizes in vw so they scale with the rest of the decor; deliberately not on
+   a grid or a common size. z-index 0 puts them under both big circles. */
+.hero-bubble {
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    box-sizing: border-box;
+    left: var(--x);
+    top: var(--y);
+    width: var(--d);
+    height: var(--d);
+}
+
+/* Nine of them rather than three: at three, each one reads as a placed
+   object and the eye pairs them up. A field only starts reading as scatter
+   once no single member is important, so sizes run on a rough power
+   distribution — one big, two medium, the rest crumbs — and no two share an
+   x, a y, a diameter or a spacing. Numbers are deliberately off-round; do
+   not tidy them into halves.
+
+   Everything lives in the dark ground the copy leaves free: the left gutter,
+   the band above the heading, and the wedge below the button. The two big
+   circles cover the rest and these paint at z-index 0, so anything placed
+   under them is simply invisible — not a subtle overlap. Two members
+   (1 and 9) run off the viewport edge on purpose: a field where every member
+   happens to fit reads as arranged.
+
+   Nav is opaque, so nothing survives above about y 9%. */
+.hero-bubble-1 {
+    --x: -2.4%;
+    --y: 9.5%;
+    --d: 11.2vw;
+    border: 2px solid var(--muted-text);
+    opacity: 0.22;
+}
+
+/* Off the big ring's arc, not on it: sitting tangent to it read as a
+   deliberate pairing rather than as two unrelated members of the field. */
+.hero-bubble-2 {
+    --x: 6.4%;
+    --y: 35.2%;
+    --d: 0.9vw;
+    background: var(--primary);
+    opacity: 0.9;
+}
+
+.hero-bubble-3 {
+    --x: 2.2%;
+    --y: 46.8%;
+    --d: 4.3vw;
+    border: 2px solid var(--primary);
+    opacity: 0.4;
+}
+
+.hero-bubble-4 {
+    --x: 12.9%;
+    --y: 13.2%;
+    --d: 0.55vw;
+    background: var(--muted-text);
+    opacity: 0.5;
+}
+
+/* Clears the heading's cap-height by a hair and only grazes the top-right
+   squiggle — sitting whole inside the squiggle read as concentric-by-accident. */
+.hero-bubble-5 {
+    --x: 32.8%;
+    --y: 9.8%;
+    --d: 6.2vw;
+    border: 3px solid var(--primary);
+    opacity: 0.45;
+}
+
+.hero-bubble-6 {
+    --x: 26.7%;
+    --y: 90.6%;
+    --d: 1.7vw;
+    background: var(--primary);
+    opacity: 0.85;
+}
+
+/* Sits just off the accent circle's left arc (which starts at 38% of the
+   width) rather than clear of it — a crumb touching a big shape is what
+   keeps the two from reading as separate compositions. */
+.hero-bubble-7 {
+    --x: 35.4%;
+    --y: 79.3%;
+    --d: 0.7vw;
+    background: var(--muted-text);
+    opacity: 0.55;
+}
+
+/* Runs off the hero's bottom edge into Affärsområden, like the big circles. */
+.hero-bubble-8 {
+    --x: 17.8%;
+    --y: 96.2%;
+    --d: 2.9vw;
+    background: var(--primary);
+    opacity: 0.7;
+}
+
+.hero-bubble-9 {
+    --x: -1.1%;
+    --y: 68.5%;
+    --d: 1.3vw;
+    background: var(--primary);
+    opacity: 0.5;
+}
+
+/* Lowest of the two circles so the photo circle covers its right flank and it
+   reads as tucked behind rather than beside.
+
+   Outline, not a fill: as a solid disc it was the heaviest thing on the page
+   and pulled the eye off the copy. --primary rather than the --header orange
+   the fill used — at 4px on #1B1A19 the darker #C63D02 barely reads. Nothing
+   fills it, so the bottom-left squiggle and the small bubbles now show
+   through the ring; that's wanted, it's what keeps the outline from reading
+   as a cut-out hole. box-sizing so the border grows inward and
+   --hero-accent-d stays the outer diameter the geometry comment describes. */
+.hero-circle-accent {
+    position: absolute;
+    right: 33%;
+    top: calc(var(--hero-accent-cy) - var(--hero-accent-d) / 2);
+    width: var(--hero-accent-d);
+    height: var(--hero-accent-d);
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Both circles run past #home's own bottom edge, and #home has no
+   overflow:hidden, so left alone that bleed would paint over whatever comes
+   next — Affärsområden's kicker/heading are plain non-positioned text, which
+   always paints BEHIND any positioned element regardless of DOM order.
+   Promote that section's row into its own stacking context (z-index, not
+   just the position:relative every .row already has), above both circles, so
+   its real content stays on top and they only show around it. */
+html:not(.theme-light) #businessareas .row {
+    position: relative;
+    z-index: 2;
+}
+
+/* Outside .hero-decor so nothing clips it: like the accent circle it carries
+   on down into Affärsområden. Above the squiggles (also z-index 1, but this
+   comes later in the markup), below #banner-content's copy. */
+.hero-circle-photo {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    left: var(--hero-photo-left);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--hero-photo-d);
+    height: var(--hero-photo-d);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.hero-circle-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------------------------------------------------------------------------
+   Narrower viewports.
+
+   The composition is built around the copy running to about 58% of the width
+   with the photo circle starting there. That split survives down to roughly a
+   laptop; below it the copy column keeps its share of a shrinking width while
+   the circles keep their share too, so they meet. Rather than rescale
+   everything at every width, the decor sheds a layer at a time: first the
+   photo circle moves out of the copy's way, then it goes, then the accent
+   ring goes, and the band — which lives under the copy rather than beside it
+   — is the one element that survives all the way down.
+   ------------------------------------------------------------------------ */
+
+/* Its own breakpoint, above the rest: this ring sits in the left gutter, and
+   the gutter is gone well before the layout is. At 1360 it already half-laps
+   the "Vi kan" line, so it leaves ahead of everything else. */
+@media (max-width: 1439px) {
+    .hero-bubble-3 {
+        display: none;
+    }
+}
+
+/* Laptop. Full composition, but the photo circle is pushed right and shrunk
+   so its left arc clears the copy, and the accent ring comes down with it.
+   svh term drops out of the diameter: at this width the width term always
+   wins anyway, and keeping it only risks a short window blowing the circle up
+   past the copy again.
+
+   KNOWN: the circle's visible share steps from 42% of the window to 32% right
+   here, so the train jumps smaller as the window crosses 1360. Being fixed. */
+@media (max-width: 1359px) {
+    html:not(.theme-light) #home {
+        --hero-photo-d: 62vw;
+        --hero-photo-left: 68%;
+        --hero-accent-d: 26vw;
+        --hero-accent-cy: 88svh;
+    }
+
+    .hero-circle-accent {
+        right: 30%;
+    }
+
+    /* Shorter band for a narrower hero — scaleX only, so line spacing holds. */
+    .hero-squiggle-sweep {
+        left: 34%;
+        transform: translate(-50%, -50%) rotate(-12deg) scaleX(1.1);
+    }
+}
+
+/* Tablet. The photo circle has run out of room: at this width anything big
+   enough to read as the reference's "circle cut by the right edge" also
+   reaches the copy. Drop it and let the accent ring carry the bottom-right
+   corner on its own. */
+@media (max-width: 1023px) {
+    .hero-circle-photo {
+        display: none;
+    }
+
+    html:not(.theme-light) #home {
+        --hero-accent-d: 38vw;
+        --hero-accent-cy: 96svh;
+    }
+
+    .hero-circle-accent {
+        right: 8%;
+    }
+
+    .hero-squiggle-sweep {
+        left: 38%;
+        transform: translate(-50%, -50%) rotate(-12deg) scaleX(0.85);
+    }
+}
+
+/* Phone. Band and a few bubbles only. The ring at any size that reads as
+   deliberate covers a third of a 390px hero, and the crumbs sized in vw are
+   sub-3px here — gone rather than left as specks of dust. */
+@media (max-width: 767px) {
+    .hero-circle-accent,
+    .hero-bubble-2,
+    .hero-bubble-4,
+    .hero-bubble-7,
+    .hero-bubble-9 {
+        display: none;
+    }
+
+    /* Both move below the button (bubble-3 is already gone from 1359 down):
+       on a phone the copy runs the full width
+       of the hero, so the only ground that is still ground is the strip under
+       it and the spill past its bottom edge. */
+    .hero-bubble-1 {
+        --x: -14%;
+        --y: 78%;
+        --d: 36vw;
+    }
+
+    .hero-bubble-6 {
+        --x: 84%;
+        --y: 74%;
+        --d: 5vw;
+    }
+
+    .hero-bubble-8 {
+        --x: 52%;
+        --y: 95%;
+        --d: 8vw;
+    }
+
+    .hero-squiggle-sweep {
+        left: 40%;
+        top: 92%;
+        transform: translate(-50%, -50%) rotate(-12deg) scaleX(0.55);
+    }
+}
+
+/* The orange text-shadow outline on #main-heading (colors.css) was tuned for
+   the old low-contrast photo backdrop — see hero-backdrop-kills-orange. Flat
+   #1B1A19 already gives white text 15.4:1, so the outline is dead weight
+   here; drop it for the new ground. */
+html:not(.theme-light) #main-heading {
+    text-shadow: none;
+}
