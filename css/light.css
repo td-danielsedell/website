@@ -26,10 +26,10 @@
    -------------------------------------------------------------------------- */
 
 html.theme-light {
-    --header: #ff4b00;
-    --primary: rgb(255, 75, 0);
-    --primary_0: rgb(255, 75, 0, 0);
-    --primary_100: rgb(255, 75, 0, 1);
+    --header: #C63D02;
+    --primary: rgb(230, 74, 15);
+    --primary_0: rgb(230, 74, 15, 0);
+    --primary_100: rgb(230, 74, 15, 1);
 
     /* The page ground. `body { background: var(--secondary) }` picks this up.
        The template's ground is pure white, but that is a projector colour —
@@ -37,35 +37,34 @@ html.theme-light {
        Warm paper instead, with the cards left pure white so they still lift
        off it without needing a heavy border. Dial this one value to go
        whiter or softer. */
-    --secondary: #f6f5f2;
+    --secondary: #FAF6F0;
 
-    --normal-text: #1a1a1a;
-    --header-text: #1a1a1a;
-    --banner-text: #fff;          /* type over the photo hero stays white */
-    --section-title: #111111;
-    --section-heading: #111111;
-    /* The template's cyan is #00b4ff, which is 2.3:1 on this ground — fine as
-       a projected accent, not readable as text. Same hue, taken down to
-       ~4.6:1 so it can carry the kickers and the testimonial quotes. */
-    --section-subtitle: #0284c7;
-    --link: #111111;
+    --normal-text: #211D19;
+    --header-text: #211D19;
+    --banner-text: #fff;          /* hero treatment is a separate handoff; unchanged for now */
+    --section-title: #211D19;
+    --section-heading: #211D19;
+    /* Version A ("Tegel & Bärnsten"): #8F6400. Version B ("Tegel & Stålblå"):
+       #1A739E — swapped in live via .palette-b below, temporary preview toggle. */
+    --section-subtitle: #8F6400;
+    --link: #211D19;
     /* The header hover and the underline under the current section, both on
        the orange bar — so the dark theme's value, not the accent. */
     --link-hover-active: #111111;
-    --border: #e0e0e0;
-    --footer-text: #6b6b6b;
+    --border: #E8E0D6;
+    --footer-text: #6E675F;
 
     /* Surfaces. In the dark theme --surface and --secondary are the same #333
        and the border is what makes a card read as a card; here they separate —
        white cards lifting off warm paper. */
     --surface: #ffffff;
-    --surface-alt: #ececec;
-    --surface-border: #e0e0e0;
+    --surface-alt: #F0EAE2;
+    --surface-border: #E8E0D6;
     --divider: rgba(0, 0, 0, 0.1);
     --panel-hover: rgba(0, 0, 0, 0.06);
 
-    --muted-text: #57534e;
-    --faint-text: #8a8a8a;
+    --muted-text: #5C554D;
+    --faint-text: #8A827A;
 
     /* Two soft layers rather than the dark theme's single hard drop: on paper
        a card is lifted by a diffuse shadow, not by a dark edge. */
@@ -74,6 +73,17 @@ html.theme-light {
     --panel-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
 
     --band: #000000;              /* the template's black blob, as a band */
+}
+
+/* --primary is a graphics colour here (3.6:1 on the ground — fine for 5px
+   rules and borders, not for type). Where the accent carries text on a light
+   ground, use this AA-safe value instead; hover border-color stays
+   var(--primary). */
+html.theme-light a { color: #BC3D00; }
+
+html.theme-light .button:hover,
+html.theme-light input[type="submit"]:hover {
+    color: #BC3D00;
 }
 
 
@@ -242,4 +252,15 @@ html.theme-light .band-dark .area-band-item p {
 html.theme-light .band-dark .icon-block img,
 html.theme-light .band-dark .icon-block::after {
     filter: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   TEMPORARY — Tegel palette A/B preview toggle. Remove this block together
+   with js/palette-preview.js and its <script> includes once a version is
+   picked; nothing else reads .palette-b.
+   -------------------------------------------------------------------------- */
+
+html.theme-light.palette-b {
+    --section-subtitle: #1A739E;
 }

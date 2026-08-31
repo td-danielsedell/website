@@ -108,18 +108,20 @@
 /*------------------------------------------------------------------------------------------*/
 
 :root {
-    --header: #ff4b00ff;
-    --primary: rgb(255, 75, 0);
-    --primary_0: rgb(255, 75, 0, 0);
-    --primary_100: rgb(255, 75, 0, 1);
-    --secondary: #333;
-    --normal-text: #ffffff;
-    --header-text: #9c9c9c;
+    --header: #C63D02;
+    --primary: rgb(255, 106, 59);
+    --primary_0: rgb(255, 106, 59, 0);
+    --primary_100: rgb(255, 106, 59, 1);
+    --secondary: #1B1A19;
+    --normal-text: #F4F1EE;
+    --header-text: #BDB8B2;
     --banner-text: #fff;
-    --section-title: #9c9c9c;
-    --section-subtitle: #00B4FF;
-    --section-heading: #f5f5f5;
-    --link: #ffffff;
+    --section-title: #F4F1EE;
+    /* Version A ("Tegel & Bärnsten"): #E3A64B. Version B ("Tegel & Stålblå"):
+       #63B3E4 — swapped in live via .palette-b below, temporary preview toggle. */
+    --section-subtitle: #E3A64B;
+    --section-heading: #F4F1EE;
+    --link: #F4F1EE;
     --link-hover-active: #111;
     /* Type and icons ON the header bar. The bar is the brand orange in both
        themes, and the banner photo behind the non-solid header is dark in
@@ -127,18 +129,18 @@
        two is what lets the dropdown panels go white on paper while the bar
        above them does not. */
     --on-header: #ffffff;
-    --border: #f5f5f5;
-    --footer-text: #999;
+    --border: #403C38;
+    --footer-text: #9A948D;
 
     /* --- Surfaces -----------------------------------------------------------
        The card, panel and rule colours the sheets used to hardcode. They are
        named so light.css can swap a token instead of restating every rule.
        --secondary is the page ground; --surface is what sits ON it, which is
        the same #333 in the dark theme but a different colour on paper. */
-    --surface: #333;
+    --surface: #262422;
     /* The second stripe of the hatched product placeholder. */
-    --surface-alt: #3a3a3a;
-    --surface-border: #555;
+    --surface-alt: #2E2A27;
+    --surface-border: #403C38;
     /* A separator drawn inside a surface rather than around it. */
     --divider: rgba(255, 255, 255, 0.12);
     /* Hovered row in a dropdown panel. */
@@ -148,8 +150,8 @@
        --normal-text is the full-strength ink. These two are the steps below it.
        Text sitting on a photograph uses --banner-text and stays light in both
        themes. */
-    --muted-text: #c2c2c2;
-    --faint-text: #8f8f8f;
+    --muted-text: #BDB8B2;
+    --faint-text: #8C8680;
 
     /* --- Elevation ---------------------------------------------------------- */
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
@@ -204,7 +206,7 @@ a {
 .backgroundimage-overlay {
     position: absolute;
     background-color: var(--secondary);
-    opacity: 0.7;
+    opacity: 0.72;
     /* transition: 0.5s; */
     z-index: 1;
 }
@@ -605,4 +607,15 @@ input[type="submit"]:hover {
 
 #landing-footer .svg-icon {
     color: var(--footer-text);
+}
+
+
+/*------------------------------------------------------------------------------------------*/
+/* TEMPORARY — Tegel palette A/B preview toggle. Remove this block together with
+   js/palette-preview.js and its <script> includes once a version is picked;
+   nothing else reads .palette-b. */
+/*------------------------------------------------------------------------------------------*/
+
+:root.palette-b {
+    --section-subtitle: #63B3E4;
 }
