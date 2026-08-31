@@ -748,12 +748,12 @@
 
 
         <!--Footer. The large variant (css/footer-large.css), laid out in columns:
-            the page ends with a way into everything rather than one 12px line.
-
-            The About column mirrors the Swedish page: the four anchors below point at
-            the sections on en/about.html.-->
+            the page ends with a way into everything rather than one 12px line.-->
         <footer class="clearfix footer-large">
             <div class="row clearfix">
+                <!--The order in the markup is locked: the rules below 1023px in css/footer-large.css
+                    move children 1 and 4 below the link lists with order, and count on
+                    exactly this order.-->
                 <div class="footer-columns">
 
                     <div class="footer-brand">
@@ -769,27 +769,27 @@
                     </div>
 
                     <div class="footer-col">
-                        <p class="footer-heading">About</p>
+                        <p class="footer-heading">About us</p>
                         <a href="about.html#history">History</a>
                         <a href="about.html#management">Management team</a>
                         <a href="about.html#locations">Where we are</a>
-                        <a href="about.html#career">Careers</a>
+                        <a href="about.html#career">Careers/Degree projects</a>
                     </div>
 
                     <div class="footer-col">
                         <p class="footer-heading">Products</p>
                         <a href="td_asset_care.html">TD Asset Care</a>
                         <a href="td_test.html">TD Test</a>
-                        <a href="#showcases">Showcases</a>
-                        <a href="#services">Services</a>
+                        <a href="index.html#showcases">Showcases</a>
+                        <a href="index.html#services">Services</a>
                     </div>
 
                     <div class="footer-col">
                         <p class="footer-heading">Contact</p>
                         <p class="footer-address">
-                            Fabriksgatan 4 &middot; <span class="footer-nowrap">531 60 Lidköping</span>, Sweden<br />
+                            Fabriksgatan 4 &middot; <span class="footer-nowrap">531 60 Lidköping</span><br />
                             <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
-                            <a href="tel:+46101010070">+46 10 10 100 70</a>
+                            <a href="tel:+46101010070">010 - 10 100 70</a>
                         </p>
                     </div>
 
