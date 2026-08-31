@@ -170,6 +170,7 @@
                                         <div class="nav-sub">
                                             <a href="td_test.html">TD Test</a>
                                             <a href="td_asset_care.html">TD Asset Care</a>
+                                            <a href="td_linear.html">TD Linear</a>
                                         </div>
                                     </details>
                                 </li>
@@ -671,18 +672,22 @@
                                 </div>
                             </div>
 
-                            <!-- TD Linear has no page and no artwork yet, so the card says
-                                 so rather than borrowing TD Test's copy and image, which is
-                                 what it used to do. The link points at td_test.html until
-                                 there is a td_linear.html. -->
+                            <!-- td_linear.html finns nu, så kortet pekar dit och bär sidans
+                                 egen ingress i stället för platshållartexten. Bilden är
+                                 fortfarande TD Tests: det finns ingen egen artwork än.
+                                 Byt src när images/banner-images/td_linear.webp finns. -->
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
                                     <div class="product-body">
-                                        <h3><a href="td_test.html" class="card-link card-link-stretch">TD Linear</a></h3>
-                                        <p class="product-sub">Snart här</p>
-                                        <div class="product-image-placeholder"><span>produktbild</span></div>
+                                        <h3><a href="td_linear.html" class="card-link card-link-stretch">TD Linear</a></h3>
+                                        <p class="product-sub">Förstå era linjära tillgångar</p>
+                                        <div class="product-image-wrapper">
+                                            <img src="images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        </div>
                                         <div class="product-content">
-                                            <p>Beskrivning kommer inom kort.</p>
+                                            <p>
+                                                TD Linear visualiserar och analyserar data längs linjära tillgångar som järnväg, väg, kraftledningar samt vatten- och avloppsnät. Genom att samla EAM-, mät- och kartdata i en gemensam vy blir det enklare att följa förändringar över tid och förstå samband längs hela anläggningen.
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="card-arrow">&gt;</div>
@@ -785,6 +790,7 @@
                         <p class="footer-heading">Produkter</p>
                         <a href="td_asset_care.html">TD Asset Care</a>
                         <a href="td_test.html">TD Test</a>
+                        <a href="td_linear.html">TD Linear</a>
                         <a href="index.html#showcases">Showcases</a>
                         <a href="index.html#services">Tjänster</a>
                     </div>
