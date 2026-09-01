@@ -134,7 +134,9 @@ img.showcase-image {
     /* Side padding is the gutter the next card peeks through. With eight
        slides that peek is doing most of the work of saying "there is more". */
     .service-track.image-carousel-track {
-        gap: 16px;
+        /* Wider than 16px now the blocks are unbordered — at 16px the peeking
+           neighbour's photo reads as part of the current one. */
+        gap: 28px;
         padding: 8px 11% 16px;
     }
 
@@ -166,7 +168,9 @@ img.showcase-image {
     .service-track.image-carousel-track {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
+        /* Wider than the 20px the bordered cards used: with no border or fill
+           the gutter is the only thing keeping the two columns apart. */
+        gap: 48px 40px;
         align-items: stretch;
         overflow: visible;
         padding: 20px 20px 0;
@@ -204,21 +208,13 @@ img.showcase-image {
    hid the description under a veil.
 
    Styled at every width, because the phone carousel above swipes these same
-   cards. */
+   cards. Deliberately NOT a card: no fill, border, radius, shadow or hover
+   lift. Nothing here is clickable, and card framing plus a hover response is
+   the site's own vocabulary for "this goes somewhere" — the product and
+   showcase cards next to it really are links. A photo band with text under it
+   reads as an editorial block instead. */
 .service-group {
     width: 100%;
-    background: var(--surface);
-    border: 2px solid var(--surface-border);
-    border-radius: 10px;
-    overflow: hidden;
-    /* Same resting shadow and hover lift as .feature-card and .service-card. */
-    box-shadow: var(--card-shadow);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.service-group:hover {
-    box-shadow: var(--card-shadow-hover);
-    transform: translateY(-2px);
 }
 
 .service-group-image {
@@ -233,15 +229,12 @@ img.showcase-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.service-group:hover .service-group-image img {
-    transform: scale(1.06);
-}
-
+/* Flush left with the photo above, so the block reads as one column of text
+   under an image rather than as padded card contents. */
 .service-group-body {
-    padding: 24px 28px 30px;
+    padding: 22px 0 0;
 }
 
 .service-group h3 {
