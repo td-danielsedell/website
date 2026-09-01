@@ -226,6 +226,27 @@ html.theme-light .footer-large a:hover {
     color: var(--primary);
 }
 
+/* The certification marks are greyscaled in both themes (css/footer-large.css)
+   and get a brightness lift there so the discs clear the dark ground. On paper
+   the same lift takes them the wrong way — a pale grey disc with white type in
+   it, which loses the numbers. Back to plain greyscale, and a little further
+   down: on this ground they read as darker than everything around them, so 0.9
+   made them the loudest thing in the footer.
+
+   The hover has to be restated here. This selector carries one more element
+   than the :hover rule in footer-large.css does and would otherwise hold the
+   marks grey on paper however long the pointer sat on them. */
+html.theme-light .footer-certs .cert-badges a {
+    filter: grayscale(100%);
+    opacity: 0.75;
+}
+
+html.theme-light .footer-certs .cert-badges a:hover,
+html.theme-light .footer-certs .cert-badges a:focus-visible {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
 /* The footer logo is the white lockup again. */
 html.theme-light .footer-large #logo img,
 html.theme-light .footer-large img[src*="td_white"],

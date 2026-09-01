@@ -652,7 +652,75 @@ html.theme-light .city-label.leaflet-tooltip {
     color: var(--footer-text);
 }
 
-/* --------- 7. Laptop and tablet ---------- */
+/* --------- 7. Certifieringar ---------- */
+
+/* The marks sit in the right half of a .split-2 and are centred against the text
+   beside them: the copy runs three paragraphs and the pair of marks is shorter,
+   so a shared top edge left them hanging with all the slack underneath — the
+   same reason #locations centres the map against the city list. */
+#certificates .split-2 {
+    align-items: center;
+}
+
+/* The only inline link in body copy on the site so far. The base rule
+   (colors.css:321) is orange with no underline, which reads as a link in a nav
+   and as emphasis in a paragraph — so this one is underlined. 3px of offset
+   clears the descenders in "qValify". Hover is the opacity fade every anchor
+   already inherits from style.css. */
+#certificates p a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+#certificates p a:hover {
+    opacity: 0.75;
+}
+
+.cert-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.cert-mark {
+    margin: 0;
+    text-align: center;
+}
+
+/* 132px, not the column width — a mark the page presents, not a graphic it is
+   built around. The .webp files are the qValify PNGs cropped to the circle (the
+   masters carry 9% transparent padding), so the box is the circle. No border or
+   surface behind them: the badges carry their own colour and are transparent
+   outside the circle, so they sit on both themes as they are. */
+.cert-mark img {
+    display: block;
+    width: 132px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.cert-mark figcaption {
+    padding-top: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--section-heading);
+}
+
+/* The standard number is the label and the discipline is the gloss, so they are
+   one caption on two lines rather than two elements the eye has to pair up. */
+.cert-mark figcaption span {
+    display: block;
+    padding-top: 4px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0;
+    color: var(--muted-text);
+}
+
+
+/* --------- 8. Laptop and tablet ---------- */
 
 /* Above the phone breakpoint but below the full container. Two tracks side by
    side need the measure; at 1023px they are down to ~460px each and the
@@ -676,7 +744,7 @@ html.theme-light .city-label.leaflet-tooltip {
 }
 
 
-/* --------- 8. Phone ---------- */
+/* --------- 9. Phone ---------- */
 
 /* 767px is the breakpoint the affärsområden grid uses, and the person grid
    follows it for the same reason: two columns read on every phone width, more
@@ -781,6 +849,18 @@ html.theme-light .city-label.leaflet-tooltip {
 
     .city-label.leaflet-tooltip {
         display: none;
+    }
+
+    /* Two 132px marks and a 40px gap need 304px, which is wider than the column
+       on the narrowest phones. They stay side by side — a mark under a mark
+       reads as two claims instead of one pair — and shrink instead. */
+    .cert-grid {
+        gap: 24px;
+        padding-top: 6px;
+    }
+
+    .cert-mark img {
+        width: 106px;
     }
 
 }

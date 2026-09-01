@@ -144,6 +144,59 @@
     color: var(--primary);
 }
 
+/* Certifieringar: two badges where the third column used to hold a link list.
+   The .webp files are the qValify PNGs cropped to the circle — the masters carry
+   9% transparent padding on every side, which put the first mark six pixels
+   right of the heading above it and made the pair look badly set. Sized against
+   the 14px headings beside them rather than against the column, which would
+   make them a graphic element and not a mark.
+
+   line-height: 0 on the anchor because the images are inline content inside it,
+   and the descender space under them put the pair a few pixels lower than the
+   link lists in the columns on either side. */
+.footer-certs .cert-badges {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding-top: 4px;
+}
+
+/* Greyscale at rest, colour on hover — the same treatment the partner logos get
+   in css/logo-slider.css, and for the same reason: the footer is the quiet end
+   of the page, and two saturated circles down there pull harder than the links
+   beside them.
+
+   The brightness is for the dark theme only. Greyscaled, the orange and the
+   green both land around 40% luminance, which is a dark disc on a dark ground —
+   the marks read as smudges. css/light.css takes it back off: on paper the same
+   discs are already darker than the page and the lift only washes them out.
+   Not the logo strip's opacity: 0.6 either, for the same reason.
+
+   The filter and the opacity are transitioned by name. The theme swap
+   cross-fades the colour tokens (see js/theme.js) and nothing here inherits
+   from that, so without these two the hover snaps. */
+.footer-certs .cert-badges a {
+    display: block;
+    line-height: 0;
+    filter: grayscale(100%) brightness(1.25);
+    opacity: 0.9;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* Focus gets the colour too: the mark going colour is the only feedback these
+   two links have, and a keyboard reader should get it as well. */
+.footer-certs .cert-badges a:hover,
+.footer-certs .cert-badges a:focus-visible {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.footer-certs .cert-badges img {
+    display: block;
+    width: 72px;
+    height: auto;
+}
+
 /* The address is one of four columns here, not the whole footer, so it drops to
    the same 15px/32px as the link lists beside it and loses the top padding that
    held it off the brand name in the stacked version. */
@@ -242,6 +295,16 @@
     .footer-large .footer-address,
     .footer-large .footer-address a {
         font-size: 15px;
+    }
+
+    /* Half a phone column is about 150px wide once the 20px gutters and the
+       grid gap are off it; two 72px badges and their gap do not fit. */
+    .footer-certs .cert-badges {
+        gap: 10px;
+    }
+
+    .footer-certs .cert-badges img {
+        width: 58px;
     }
 
 }

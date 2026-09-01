@@ -440,6 +440,52 @@
             </section>
             <!--End of Orter-->
 
+            <!--Certifieringar. Märkena i foten leder hit, så avsnittet måste svara
+                på frågan de väcker: vad är det som är certifierat. Bilderna ligger i
+                figure med figcaption i stället för att texten under dem sätts som
+                brödtext – märket och vad det står för är ett par.
+
+                Ingen .wow här: en läsare som kommer via #certificates hoppar rakt
+                ned i sektionen, och wow.js hinner inte se elementen på ett hopp
+                (avsnittet hade stått tomt).-->
+            <section id="certificates" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">CERTIFIERINGAR</h2>
+                            <p class="section-title">Ett certifierat ledningssystem</p>
+                            <p class="section-subtitle">Vi är certifierade enligt ISO 9001 och ISO 14001. Det är vårt ledningssystem som är certifierat – hur vi planerar, genomför och följer upp vårt arbete.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-1 split-2">
+
+                        <div>
+                            <p>Certifieringen omfattar ledningssystemet: rutinerna för hur vi tar oss an uppdrag, styr leveranser, hanterar avvikelser och förbättrar oss över tid. Den säger alltså inte att en enskild produkt är certifierad, utan att sättet vi arbetar på är det.</p>
+                            <p>För dig som kund betyder det att arbetssättet är dokumenterat, följs upp internt och granskas regelbundet av en oberoende part – oavsett vem hos oss du arbetar med och var i landet vi sitter.</p>
+                            <p>Certifikaten är utfärdade av <a href="https://qvalify.se/" target="_blank">qValify</a>.</p>
+                        </div>
+
+                        <div class="cert-grid">
+                            <figure class="cert-mark">
+                                <img src="images/company-images/iso_9001.webp" width="400" height="400"
+                                    loading="lazy" alt="Certifierad enligt ISO 9001" />
+                                <figcaption>ISO 9001<span>Kvalitet</span></figcaption>
+                            </figure>
+                            <figure class="cert-mark">
+                                <img src="images/company-images/iso_14001.webp" width="400" height="400"
+                                    loading="lazy" alt="Certifierad enligt ISO 14001" />
+                                <figcaption>ISO 14001<span>Miljö</span></figcaption>
+                            </figure>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Certifieringar-->
+
             <!--Karriär. Var två sektioner, Karriär och Examensarbete: de sa samma sak två
                 gånger – vi annonserar inte, hör av dig – och lade två CTA-block efter
                 varandra i slutet av sidan. Nu en sektion med två spår. Spåren behöver egna
@@ -527,13 +573,22 @@
                         <a href="about.html#career">Karriär/Examensarbete</a>
                     </div>
 
-                    <div class="footer-col">
-                        <p class="footer-heading">Produkter</p>
-                        <a href="td_asset_care.html">TD Asset Care</a>
-                        <a href="td_test.html">TD Test</a>
-                        <a href="td_linear.html">TD Linear</a>
-                        <a href="index.html#showcases">Showcases</a>
-                        <a href="index.html#services">Tjänster</a>
+                    <!--Certifieringsmärkena står där en tredje länklista stod: produkterna
+                        nås från toppmenyn på varje sida, och foten är där märkena hör hemma.
+                        Bilderna leder till avsnittet på om-sidan som säger vad det är som är
+                        certifierat.-->
+                    <div class="footer-col footer-certs">
+                        <p class="footer-heading">Certifieringar</p>
+                        <div class="cert-badges">
+                            <a href="#certificates" data-scroll-to>
+                                <img src="images/company-images/iso_9001.webp" width="400" height="400"
+                                    loading="lazy" alt="Certifierad enligt ISO 9001" />
+                            </a>
+                            <a href="#certificates" data-scroll-to>
+                                <img src="images/company-images/iso_14001.webp" width="400" height="400"
+                                    loading="lazy" alt="Certifierad enligt ISO 14001" />
+                            </a>
+                        </div>
                     </div>
 
                     <div class="footer-col">
