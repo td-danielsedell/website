@@ -192,16 +192,67 @@ html.theme-light .person-role {
     color: #d4d4d4;
 }
 
-/* Half the partner logos are white-on-transparent assets (Rymdstyrelsen,
-   Nvidia, Maxanv) and the other half are dark, so no single filter fixes
-   both and the strip keeps a dark ground of its own. That is also the
-   template's move: a black shape crashing into the white. */
-html.theme-light .trust-partners .logo-slider {
-    background: #111111;
-    border-radius: 12px;
-    padding: 18px 0;
-    margin-top: 28px;
-    overflow: hidden;
+/* Four of the six partner logos (Esri, Nvidia, Rymdstyrelsen, Maxanv) are the
+   reversed variant: a colour mark with a white wordmark. No filter rescues
+   those — greyscale leaves the wordmark white and inverting would wreck the
+   mark — so light mode paints each brand's own light-background variant as a
+   background on the link and hides the reversed <img> sitting over it. The
+   -light.webp files are drawn on the same canvas as their dark counterparts,
+   with the artwork in the same box, so the strip does not reflow when the
+   theme flips. IBM and Pedab are solid coloured plates and need no swap. */
+html.theme-light .trust-partners .logo-track a {
+    /* The 40px a side normally lives on the img. Moved out to the link so the
+       link box is exactly the image box and background-size: contain lands on
+       the same pixels the <img> would have. Spacing is unchanged. */
+    display: inline-block;
+    margin: 0 40px;
+    line-height: 0;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+html.theme-light .trust-partners .logo-track a:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+html.theme-light .trust-partners .logo-track img {
+    margin: 0;
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]),
+html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]),
+html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]),
+html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* The reversed original stays in the markup for its alt text and its layout
+   box; only its pixels go. */
+html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) img,
+html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) img,
+html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) img,
+html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) img {
+    opacity: 0;
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) {
+    background-image: url(../images/company-images/esri-light.webp);
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) {
+    background-image: url(../images/company-images/nvidia-light.webp);
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) {
+    background-image: url(../images/company-images/rymdstyrelsen-light.webp);
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
+    background-image: url(../images/company-images/maxanv-light.webp);
 }
 
 
