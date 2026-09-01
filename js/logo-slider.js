@@ -28,11 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let guard = 0;
         while (slider.scrollWidth < slider.clientWidth + track.offsetWidth && guard++ < 20) {
             const copy = track.cloneNode(true);
-            /* The copies are the same content again. inert rather than
-               aria-hidden: the partner track is a row of links, and hiding a
-               focusable element from the accessibility tree while leaving it in
-               the tab order is worse than not hiding it. */
-            copy.inert = true;
+            /* The copies are the same content again, so they are hidden from
+               the accessibility tree and taken out of the tab order. NOT inert:
+               inert also removes the subtree from hit testing, and the marquee
+               scrolls the first copy off screen within a couple of seconds — so
+               everything the reader can actually see and point at is a copy.
+               inert made the partner logos unclickable and killed their hover. */
+            copy.setAttribute("aria-hidden", "true");
+            copy.removeAttribute("id");
+            copy.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+            copy.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
             slider.appendChild(copy);
         }
 
