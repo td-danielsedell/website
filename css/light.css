@@ -41,7 +41,11 @@ html.theme-light {
 
     --normal-text: #211D19;
     --header-text: #211D19;
-    --banner-text: #fff;          /* hero treatment is a separate handoff; unchanged for now */
+    --banner-text: #fff;          /* type burned onto a photograph — stays white here too */
+    /* The hero copy, which is not on the photograph any more: the CSS ramp in
+       colors.css puts the page ground under it in both themes, so it is ink
+       like the rest of the page. */
+    --hero-text: #211D19;
     --section-title: #211D19;
     --section-heading: #211D19;
     /* Version A ("Tegel & Bärnsten"): #8F6400. Version B ("Tegel & Stålblå"):
@@ -128,6 +132,26 @@ html.theme-light .person-card:hover {
    That is also why --link-hover-active stays near-black in the token block:
    every one of its uses is on the orange bar.
    -------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------
+   3b. Hero
+   The ramp itself needs no override — it reads var(--secondary), so it fades
+   to paper here on its own (see #home::before in colors.css), and --hero-text
+   in the token block turns the copy to ink. Only these two are left.
+   -------------------------------------------------------------------------- */
+
+/* Tried and rejected 2026-09-01: a flat wash of the ground over the whole
+   photo (`background-color` on ::before, which paints under the ramps), to lift
+   the dark grayscale frame towards paper. At 30% Daniel called it "a haze all
+   over the image" — it dulls the photo everywhere instead of only where the
+   copy needs ground. The ramps carry the fade; the photo keeps its contrast. */
+
+/* The cue is white-with-a-drop-shadow in the dark theme because it sits on the
+   photo. Here it is ink on paper, and a black glow under it reads as dirt. */
+html.theme-light #home .scroll-cue {
+    filter: none;
+}
 
 
 /* --------------------------------------------------------------------------

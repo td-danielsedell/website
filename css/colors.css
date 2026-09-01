@@ -107,6 +107,151 @@
 /* 1. Website Default Styling */
 /*------------------------------------------------------------------------------------------*/
 
+/* Every token whose value differs between the two themes is registered as a
+   <color> here, and that registration is the whole theme cross-fade. An
+   unregistered custom property is a string to the engine: it flips from one
+   value to the next with nothing in between, and so does every colour built
+   out of it. Registered, the token itself interpolates, and each frame the
+   hundreds of rules reading it re-resolve — one transition on <html> instead
+   of a transition on every element, and it reaches things an element-level
+   transition cannot: gradient stops (a linear-gradient() is not interpolable
+   when its stops come from substitution, which is why #home::before's hero
+   ramp used to snap to the new theme while the copy over it was still fading)
+   and text-shadow colours.
+
+   Which properties are transitioned, and for how long, is the .theme-animating
+   rule in style.css §2.4.0.
+
+   Rules, if you add a token:
+   - Only the ones that actually change. --header, --on-header, --banner-text
+     and --link-hover-active are the same in both themes; registering them
+     would buy nothing.
+   - initial-value must be a real colour or the registration is invalid and
+     silently ignored (the property then behaves as before — it snaps). It is
+     the dark theme's value, restated from :root below.
+   - The shadow tokens are not colours and cannot be registered; they snap.
+   - inherits: true, always. The transition runs on <html> and descendants read
+     the animated value through inheritance. */
+@property --primary {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59);
+}
+
+@property --primary_0 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59, 0);
+}
+
+@property --primary_100 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59, 1);
+}
+
+@property --secondary {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #1B1A19;
+}
+
+@property --normal-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --header-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #BDB8B2;
+}
+
+@property --section-title {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --section-subtitle {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #E3A64B;
+}
+
+@property --section-heading {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --link {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --border {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #403C38;
+}
+
+@property --footer-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #9A948D;
+}
+
+@property --surface {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #262422;
+}
+
+@property --surface-alt {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #2E2A27;
+}
+
+@property --surface-border {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #403C38;
+}
+
+@property --divider {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgba(255, 255, 255, 0.12);
+}
+
+@property --panel-hover {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgba(255, 255, 255, 0.08);
+}
+
+@property --hero-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #fff;
+}
+
+@property --muted-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #BDB8B2;
+}
+
+@property --faint-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #8C8680;
+}
+
 :root {
     --header: #C63D02;
     --primary: rgb(255, 106, 59);
@@ -149,7 +294,12 @@
     /* --- Text grades --------------------------------------------------------
        --normal-text is the full-strength ink. These two are the steps below it.
        Text sitting on a photograph uses --banner-text and stays light in both
-       themes. */
+       themes — service-card captions, the ledningsgrupp names, the carousel.
+       The hero copy is NOT one of those any more: the CSS ramp under it is the
+       page ground in both themes, so it takes its own token and light.css
+       flips it to ink. */
+    --hero-text: #fff;
+
     --muted-text: #BDB8B2;
     --faint-text: #8C8680;
 
@@ -335,11 +485,96 @@ a {
 
 /* Banner Background and Text Colors */
 
+/* The photograph without a baked fade — banner_gradient_wide.webp (still in the
+   folder, no longer used) carried the fade as pixels, ending in a flat #999
+   that belonged to the old palette, so it fought every palette change; and
+   since the photo is `cover` on a viewport-tall box, the baked fade landed
+   wherever the crop happened to put it rather than under the copy. The ramp is
+   on ::before below and reads var(--secondary), so one photo serves both
+   themes.
+
+   The photo stays on #home so it keeps its parallax: jquery.enllax reads
+   data-enllax-ratio on #home and writes background-position inline on scroll.
+   That is also why the fade cannot be another layer here — enllax's shorthand
+   applies to every layer, so the ramp would ride down with the photo and its
+   solid end would slide off the bottom of the box. ::before is animated by
+   nothing. */
 #home {
-    /* background: url("../images/banner-images/banner-image-orange.jpg") no-repeat center top; */
-    background: url("../images/banner-images/banner_gradient_wide.webp") no-repeat center top;
-    /* background: url("../images/banner-images/banner-image-gold.png") no-repeat center top; */
+    background: url("../images/banner-images/banner_wide.webp") no-repeat center top;
     background-size: cover;
+    position: relative;
+}
+
+/* Two ramps over the photo, both reading var(--secondary), so neither survives
+   a palette change as a stale grey:
+     1. vertical, dissolving the photo's bottom edge into Affärsområden instead
+        of cutting it dead on the section seam
+     2. horizontal, solid ground under the h1 and the intro, clear of the photo
+        from about two thirds across
+   Stops are shares of the hero box, not of the photo, so they stay under the
+   copy at every width no matter how `cover` crops.
+
+   color-mix(... 0%, transparent) is the same colour at zero alpha; plain
+   `transparent` is rgba(0,0,0,0) and can grey the middle of a ramp.
+
+   No z-index: an absolutely positioned ::before paints after the in-flow
+   background but before the positioned siblings that come after it in the
+   markup, so the copy stays on top without a stacking contest. #banner-content
+   is given a position below for exactly that; .scroll-cue is already absolute,
+   and #header carries z-index 9999. */
+#home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to bottom,
+            color-mix(in srgb, var(--secondary) 0%, transparent) 45%,
+            var(--secondary) 88%),
+        linear-gradient(to right,
+            var(--secondary) 0%,
+            var(--secondary) 30%,
+            color-mix(in srgb, var(--secondary) 0%, transparent) 68%);
+}
+
+#banner-content.row {
+    position: relative;
+}
+
+/* Between 768 and 1023 the copy column is still 61.8% but the window is not
+   wide enough for the ramp above to clear it — the intro ends up on the
+   platform. Push the stops right; the photo is down to the last third, which
+   at this width is all it was ever going to get. */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #home::before {
+        background-image:
+            linear-gradient(to bottom,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 45%,
+                var(--secondary) 88%),
+            linear-gradient(to right,
+                var(--secondary) 0%,
+                var(--secondary) 45%,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 85%);
+    }
+}
+
+/* On a phone the copy runs the full width, so a fade from the left has nothing
+   to clear — the photo would sit under the text either way. Turn the ramp
+   vertical instead: the photo reads at the top, behind the header, and has
+   faded to the page ground by the time the h1 starts. Nothing left to fade at
+   the bottom once it is already ground.
+
+   Not transparent even at the very top: the ceiling lights in that part of the
+   frame are the brightest thing in it, and the h1 starts about a tenth of the
+   way down. */
+@media (max-width: 767px) {
+    #home::before {
+        background-image:
+            linear-gradient(to bottom,
+                color-mix(in srgb, var(--secondary) 50%, transparent) 0%,
+                color-mix(in srgb, var(--secondary) 88%, transparent) 40%,
+                var(--secondary) 62%);
+    }
 }
 
 
@@ -383,14 +618,14 @@ body {
     font-size: 62px;
     line-height: 60px;
     font-weight: 800;
-    color: var(--banner-text);
+    color: var(--hero-text);
     /* color: var(--header-text) */
 }
 
 /* Hero expertise line. The label is held back so the area name sliding beside
    it is what the eye lands on. */
 #home .expertise-line {
-    color: var(--banner-text);
+    color: var(--hero-text);
 }
 
 #home .expertise-label {
@@ -403,7 +638,7 @@ body {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
     font-weight: 300;
-    color: var(--banner-text);
+    color: var(--hero-text);
     /* color: var(--header-text) */
 }
 
@@ -563,7 +798,7 @@ input[type="submit"]:hover {
 #home .button {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 16px;
-    color: var(--banner-text);
+    color: var(--hero-text);
     /* color: var(--header-text); */
 }
 
@@ -571,7 +806,7 @@ input[type="submit"]:hover {
 /* Button Color */
 
 #home .button {
-    border-color: var(--banner-text);
+    border-color: var(--hero-text);
     /* border-color: var(--header-text); */
 }
 

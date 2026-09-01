@@ -898,6 +898,41 @@ html.no-theme-choice #nav-theme-mobile {
     }
 }
 
+/* Cross-fading the theme swap.
+
+   One transition, on <html>, over the theme tokens themselves — not over
+   background-color and color on every element. colors.css registers each token
+   that changes with @property, which is what makes a custom property
+   interpolable; the long note there explains why that is the only way to reach
+   gradient stops and shadow colours. Everything reading a token re-resolves
+   per frame on its own.
+
+   Do NOT also transition background-color/color here. When both the token and
+   the property that reads it animate, the property's target moves every frame
+   and the fade never catches up: it crawls, and then jumps when
+   .theme-animating comes off.
+
+   js/theme.js hangs that class on <html> for the length of the fade and takes
+   it off again, so nothing is transitioning the rest of the time — and it only
+   does that for a swap the reader or the OS asks for, never for the theme
+   resolved in <head>, which has to land on the first frame. */
+html.theme-animating {
+    transition-property:
+        --primary, --primary_0, --primary_100, --secondary,
+        --normal-text, --header-text, --section-title, --section-subtitle,
+        --section-heading, --link, --border, --footer-text,
+        --surface, --surface-alt, --surface-border, --divider, --panel-hover,
+        --hero-text, --muted-text, --faint-text;
+    transition-duration: 320ms;
+    transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.theme-animating {
+        transition-duration: 0s;
+    }
+}
+
 /* --------- 2.4.1 Expandable menu groups ---------- */
 
 /* Nav items that own subpages (Showcases, Produkter) expand instead of jumping.
@@ -1774,7 +1809,7 @@ h1.section-title {
 }
 
 #home .scroll-cue {
-    color: var(--banner-text);
+    color: var(--hero-text);
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .55));
 }
 

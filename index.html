@@ -39,7 +39,7 @@
     <!--The banner is a CSS background, so the browser cannot find it until
         colors.css has been parsed. It is the largest thing on the first screen,
         so tell it up front.-->
-    <link rel="preload" href="images/banner-images/banner_gradient_wide.webp" as="image" />
+    <link rel="preload" href="images/banner-images/banner_wide.webp" as="image" />
 
     <!-- Main CSS Files -->
     <link rel="stylesheet" href="css/style.css">
@@ -67,10 +67,6 @@
 
     <!-- Large Footer CSS -->
     <link href="css/footer-large.css" rel="stylesheet" type="text/css">
-
-    <!--Hero-dekor: konturlinjer + cirklar. Bara startsidan har markupen, och
-        varje regel är låst till html:not(.theme-light).-->
-    <link href="css/hero-decor.css" rel="stylesheet" type="text/css">
 
     <!--Ljust tema. Reglerna är låsta till html.theme-light, så det här
         arket ändrar inget förrän js/theme.js sätter klassen.-->
@@ -233,55 +229,6 @@
                     </div>
                 </div>
             </div><!--End of Header-->
-
-            <!--Hero decor. Squiggles + circles from the PPT template (Tegel
-                palette handoff, design_handoff_squigglies/, option 3a).
-                Dark theme only for now — css/colors.css scopes every rule to
-                html:not(.theme-light), so this markup paints nothing yet in
-                light mode. Purely decorative, so aria-hidden + no pointer
-                events; sits before #banner-content so it stacks behind it.
-
-                Only the squiggle lives in here: .hero-decor is overflow:hidden,
-                and that clip is what cuts the band's left end off against the
-                hero's edge instead of leaving it visible mid-air (its right
-                end disappears behind the photo circle). Both circles are
-                siblings of it instead, so nothing clips them.-->
-            <div class="hero-decor" aria-hidden="true">
-                <img src="images/decor/squiggle-dark-theme-strong.svg" class="hero-squiggle hero-squiggle-sweep" alt="" />
-            </div>
-            <!--End of Hero decor-->
-
-            <!--Both circles run past the hero's own bottom edge into
-                Affärsområden below and scroll with the page — see the
-                html:not(.theme-light) #home / #businessareas rules in
-                colors.css. They need their own wrapper rather than sharing
-                .hero-decor's: this one only trims their bleed off the right
-                edge and lets them spill downwards, where .hero-decor clips
-                the squiggles on both axes. Order matters twice over — this
-                sits after .hero-decor so the circles cover the squiggles,
-                and the accent is first so the photo circle covers its right
-                flank.-->
-            <div class="hero-circles" aria-hidden="true">
-                <!--Loose bubbles. First in the wrapper so they paint behind
-                    the two big circles. Sizes and positions are deliberately
-                    off-grid — see .hero-bubble in colors.css. Numbered, not
-                    named, because none of them is individually meaningful:
-                    the scatter is the point.-->
-                <div class="hero-bubble hero-bubble-1"></div>
-                <div class="hero-bubble hero-bubble-2"></div>
-                <div class="hero-bubble hero-bubble-3"></div>
-                <div class="hero-bubble hero-bubble-4"></div>
-                <div class="hero-bubble hero-bubble-5"></div>
-                <div class="hero-bubble hero-bubble-6"></div>
-                <div class="hero-bubble hero-bubble-7"></div>
-                <div class="hero-bubble hero-bubble-8"></div>
-                <div class="hero-bubble hero-bubble-9"></div>
-
-                <div class="hero-circle-accent"></div>
-                <div class="hero-circle-photo">
-                    <img src="images/decor/hero-circle-photo.webp" alt="" />
-                </div>
-            </div>
 
             <!--Banner Content-->
             <div id="banner-content" class="row clearfix">

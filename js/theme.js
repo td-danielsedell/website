@@ -93,7 +93,45 @@
         }
     }
 
-    function apply(light) {
+    /* The swap is a cross-fade, not a cut — the rule is in style.css §2.4.0,
+       and it only bites while this class is on <html>. Kept to the swap itself
+       for two reasons: a standing transition on every element would slow every
+       hover and focus ring on the page, and the theme resolved in <head> must
+       land on the first frame already painted, with nothing to fade from.
+
+       The timeout has to outlast the CSS duration; if a reader double-taps the
+       toggle the pending one is cleared so the class does not come off in the
+       middle of the second fade. */
+    var ANIMATION_CLASS = "theme-animating";
+    var ANIMATION_MS = 380;
+    var animationTimer = null;
+
+    function crossfade() {
+        root.classList.add(ANIMATION_CLASS);
+
+        /* Load-bearing, and the whole reason this is not two lines: adding the
+           transition and swapping the theme in the SAME style change starts no
+           transition at all in Chrome when the colours come from a custom
+           property — the page cuts straight to the new theme. The properties
+           have to already be transitionable in the style the element is
+           transitioning *from*, so force a recalculation here, before the
+           caller flips .theme-light. Reading a computed value is what forces
+           it; the value itself is not used. */
+        void getComputedStyle(root).transitionProperty;
+
+        if (animationTimer) {
+            clearTimeout(animationTimer);
+        }
+        animationTimer = setTimeout(function () {
+            root.classList.remove(ANIMATION_CLASS);
+            animationTimer = null;
+        }, ANIMATION_MS);
+    }
+
+    function apply(light, animate) {
+        if (animate) {
+            crossfade();
+        }
         /* classList.toggle's second argument is the one IE11-era browsers got
            wrong, and it is the only part of this that matters, so it is spelled
            out instead. */
@@ -121,7 +159,7 @@
     if (mql && mql.addEventListener) {
         mql.addEventListener("change", function () {
             if (!stored()) {
-                apply(systemPrefersLight());
+                apply(systemPrefersLight(), true);
             }
         });
     }
@@ -148,7 +186,7 @@
         }
         var light = !root.classList.contains(LIGHT_CLASS);
         store(light ? "light" : "dark");
-        apply(light);
+        apply(light, true);
     });
 
     /* The markup arrives after this file runs, and again after site.js clones
