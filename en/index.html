@@ -620,13 +620,18 @@
                                         <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset
                                                 Care</a></h3>
                                         <p class="product-sub">Asset management in practice</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="../images/banner-images/td_asset_care.webp" loading="lazy" alt="Feature thumbnail">
+                                        <div class="product-image-wrapper product-icon">
+                                            <i class="fa-duotone fa-solid fa-chart-user" aria-hidden="true"></i>
                                         </div>
                                         <div class="product-content">
                                             <p>TD Asset Care makes managing and maintaining physical assets straightforward. It combines proven Enterprise Asset Management (EAM) functionality with industry-specific features and can be deployed on-premises, hybrid or in the cloud.</p>
                                         </div>
                                     </div>
+                                    <!-- Same icon again, blown up in the corner as a watermark.
+                                         A second <i> rather than a background-image on ::after:
+                                         the kit renders inline SVG, so there is no URL for a
+                                         background to point at. See .product-icon-mark. -->
+                                    <i class="fa-duotone fa-solid fa-chart-user product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>
@@ -636,34 +641,36 @@
                                     <div class="product-body">
                                         <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
                                         <p class="product-sub">Quality-assure your IBM Maximo</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="../images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        <div class="product-image-wrapper product-icon">
+                                            <i class="fa-duotone fa-solid fa-clipboard-list-check" aria-hidden="true"></i>
                                         </div>
                                         <div class="product-content">
                                             <p>TD Test automates testing of IBM Maximo and quality-assures your upgrades. It verifies that customisations and functions work as they should – from Maximo 7.x through to IBM Maximo Application Suite.</p>
                                         </div>
                                     </div>
+                                    <i class="fa-duotone fa-solid fa-clipboard-list-check product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>
 
                             <!-- td_linear.html exists now, so the card points there and
                                  carries the page's own intro instead of the placeholder
-                                 text. The image is still TD Test's: there is no artwork of
-                                 its own yet. Swap the src once
-                                 images/banner-images/td_linear.webp exists. -->
+                                 text. The card used to borrow TD Test's photo for want of
+                                 artwork of its own; it is an icon like the other two now,
+                                 so the placeholder is gone. -->
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
                                     <div class="product-body">
                                         <h3><a href="td_linear.html" class="card-link card-link-stretch">TD Linear</a></h3>
                                         <p class="product-sub">Understand your linear assets</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="../images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        <div class="product-image-wrapper product-icon">
+                                            <i class="fa-duotone fa-solid fa-chart-line" aria-hidden="true"></i>
                                         </div>
                                         <div class="product-content">
                                             <p>TD Linear visualises and analyses data along linear assets. Bringing Enterprise Asset Management (EAM), measurement and map data together makes it easier to spot anomalies, understand how things relate and follow how the asset develops over time.</p>
                                         </div>
                                     </div>
+                                    <i class="fa-duotone fa-solid fa-chart-line product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>

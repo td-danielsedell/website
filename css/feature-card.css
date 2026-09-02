@@ -74,6 +74,84 @@
     transform: scale(1.06);
 }
 
+/* Icon instead of a thumbnail photo.
+
+   Not an icon dropped into the slot the photo had: a 170px picture-sized band
+   is more room than one glyph can fill honestly, and every treatment tried in
+   it (flat tint, blueprint grid, bleed crop) read as a photo that had failed
+   to load. The band goes, the icon sits in the gap between the heading pair
+   and the body copy, and the card gets ~110px shorter for it.
+
+   No order of its own: .product-sub is lifted with order: -1, which leaves the
+   h3, this and .product-content to fall in markup order — heading, icon,
+   copy. Centred on the same axis as the heading above it. */
+.product-image-wrapper.product-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 4px;
+
+    /* The kit swaps the <i> for an <svg class="svg-inline--fa"> that is sized
+       height: 1em — so the size has to be set here, on the parent it inherits
+       from, not on the <i> that stops existing once the kit has run.
+       line-height: 0 keeps the inline SVG from dragging a text line's worth of
+       leading in under it, the same trick .area-band .tdt-icon uses. */
+    font-size: 88px;
+    line-height: 0;
+    color: var(--primary);
+    /* Duotone's back layer rides at 40 % by default, which at this size reads
+       as a second solid shape rather than a ground. */
+    --fa-secondary-opacity: 0.3;
+}
+
+.product-image-wrapper.product-icon svg {
+    transition: transform 0.5s ease;
+}
+
+/* The photo scaled on hover; the icon does the same so the card still answers
+   the pointer. */
+.feature-card:hover .product-image-wrapper.product-icon svg {
+    transform: scale(1.08);
+}
+
+/* The corner watermark: the card's own icon again, blown up and bled off the
+   bottom-right. Ported from the Affärsområden cards at 0eb7404
+   (#businessareas .icon-block::after in css/style.css) — same offsets, same
+   0.07 resting opacity, same hover.
+
+   That version was a background-image, one url() per card, because the icons
+   were <img> and a background cannot point at an inline SVG. The kit's icons
+   ARE inline SVG, so this is a second <i> in the markup instead. The card
+   already carries position: relative and overflow: hidden, so it clips to the
+   radius on its own. */
+.product .product-icon-mark {
+    position: absolute;
+    right: -34px;
+    bottom: -34px;
+    z-index: 0;
+    font-size: 180px;
+    line-height: 0;
+    color: var(--primary);
+    opacity: var(--product-mark-opacity);
+    /* Flat, not duotone: this faint, the two layers just read as a blurry
+       edge. */
+    --fa-secondary-opacity: 1;
+    pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+.product:hover .product-icon-mark {
+    transform: scale(1.12) rotate(-6deg);
+    opacity: var(--product-mark-opacity-hover);
+}
+
+/* The copy sits above the watermark — same job .icon and
+   .icon-block-description did with z-index: 1 in the original. */
+.product .product-body {
+    position: relative;
+    z-index: 1;
+}
+
 /* Right side container for your text/content */
 .card-content {
     width: 70%;
@@ -354,6 +432,10 @@
     padding: 6px 28px 0;
     /* White heading over grey body, same pairing as the service cards. */
     color: var(--normal-text);
+    /* Centred to sit on the same axis as the icon badge above. Only the
+       heading pair moves — the body copy below stays left, the way every
+       section title on the page is centred over left-aligned prose. */
+    text-align: center;
 }
 
 /* Reads as the kicker-then-title pair every section on the page already uses:
@@ -368,7 +450,11 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--section-subtitle);
-    padding: 26px 28px 0;
+    /* 16px, not 26px: the icon badge above already carries the card's top
+       margin, and 26px on top of it opened a gap between the two. */
+    padding: 16px 28px 0;
+    /* Centred with the h3 and the badge — see the note on .product h3. */
+    text-align: center;
     /* Two lines are always reserved, whether the kicker uses them or not: at
        some widths "Kvalitetssäkra ert IBM Maximo" wraps and "För alla era EAM
        behov" does not, which slid TD Test's name and photo a line lower than
@@ -378,7 +464,10 @@
     min-height: 62px;
 }
 
-.product-carousel .product-image-wrapper {
+/* Photo slot only. The :not() keeps this off the icon badge above, which sets
+   its own size — without it this rule wins on source order at equal
+   specificity and stretches the badge back into a 170px band. */
+.product-carousel .product-image-wrapper:not(.product-icon) {
     height: 170px;
     margin: 22px 0 0;
 }

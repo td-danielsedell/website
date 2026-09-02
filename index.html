@@ -643,8 +643,8 @@
                                     <div class="product-body">
                                         <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset Care</a></h3>
                                         <p class="product-sub">Tillgångsförvaltning i praktiken</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="images/banner-images/td_asset_care.webp" loading="lazy" alt="Feature thumbnail">
+                                        <div class="product-image-wrapper product-icon">
+                                            <i class="fa-duotone fa-solid fa-chart-user" aria-hidden="true"></i>
                                         </div>
                                         <div class="product-content">
                                             <p>
@@ -652,6 +652,11 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <!-- Same icon again, blown up in the corner as a watermark.
+                                         A second <i> rather than a background-image on ::after:
+                                         the kit renders inline SVG, so there is no URL for a
+                                         background to point at. See .product-icon-mark. -->
+                                    <i class="fa-duotone fa-solid fa-chart-user product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>
@@ -661,8 +666,8 @@
                                     <div class="product-body">
                                         <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
                                         <p class="product-sub">Kvalitetssäkra ert IBM Maximo</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        <div class="product-image-wrapper product-icon">
+                                            <i class="fa-duotone fa-solid fa-clipboard-list-check" aria-hidden="true"></i>
                                         </div>
                                         <div class="product-content">
                                             <p>
@@ -670,21 +675,22 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <i class="fa-duotone fa-solid fa-clipboard-list-check product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>
 
                             <!-- td_linear.html finns nu, så kortet pekar dit och bär sidans
-                                 egen ingress i stället för platshållartexten. Bilden är
-                                 fortfarande TD Tests: det finns ingen egen artwork än.
-                                 Byt src när images/banner-images/td_linear.webp finns. -->
+                                 egen ingress i stället för platshållartexten. Kortet bar
+                                 TD Tests bild i brist på egen artwork; nu är det en ikon
+                                 som de andra två, så platshållaren är borta. -->
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
                                     <div class="product-body">
                                         <h3><a href="td_linear.html" class="card-link card-link-stretch">TD Linear</a></h3>
                                         <p class="product-sub">Förstå era linjära tillgångar</p>
-                                        <div class="product-image-wrapper">
-                                            <img src="images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        <div class="product-image-wrapper product-icon">
+                                            <i class="fa-duotone fa-solid fa-chart-line" aria-hidden="true"></i>
                                         </div>
                                         <div class="product-content">
                                             <p>
@@ -692,6 +698,7 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <i class="fa-duotone fa-solid fa-chart-line product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow">&gt;</div>
                                 </div>
                             </div>
