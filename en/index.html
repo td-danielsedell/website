@@ -9,8 +9,7 @@
 
     <!--Meta Description-->
     <meta name="description"
-        content="Total Digital delivers solutions across asset management, GIS, remote sensing, environment and AI – with
-            specialists averaging more than 20 years of experience.">
+        content="Total Digital provides solutions in asset management, GIS, remote sensing, the environment, and AI – with specialists who have an average of over 20 years of experience.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--Canonical URL and Link Previews-->
@@ -25,8 +24,7 @@
     <meta property="og:url" content="https://www.totaldigital.se/en/" />
     <meta property="og:title" content="Total Digital – Experts in IBM Maximo and ArcGIS" />
     <meta property="og:description"
-        content="Total Digital delivers solutions across asset management, GIS, remote sensing, environment and AI – with
-            specialists averaging more than 20 years of experience." />
+        content="Total Digital provides solutions in asset management, GIS, remote sensing, the environment, and AI – with specialists who have an average of over 20 years of experience." />
     <meta property="og:image" content="https://www.totaldigital.se/images/og/index.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -54,6 +52,9 @@
 
     <!-- Logo Slider CSS -->
     <link href="../css/logo-slider.css" rel="stylesheet" type="text/css">
+
+    <!-- Area Band CSS -->
+    <link href="../css/area-band.css" rel="stylesheet" type="text/css">
 
     <!-- Feature Card CSS -->
     <link href="../css/feature-card.css" rel="stylesheet" type="text/css">
@@ -259,9 +260,8 @@
                         </p>
                         <!--End of Expertise line-->
 
-                        <p class="banner-intro">We join IBM Maximo and Esri ArcGIS together – the condition of
-                            an asset and its location in the same picture – and put remote sensing and AI on
-                            top. Our specialists average more than 20 years of experience.</p>
+                        <p class="banner-intro">20+ years of experience. Specialist expertise that makes a difference.
+                        <br/>We bring together asset management, GIS, remote sensing and AI – connecting the condition, location and development of your assets.</p>
                     </div>
 
                     <!--Call to Action-->
@@ -271,6 +271,17 @@
                 </div>
 
             </div><!--End of Row-->
+
+            <!--The scroll cue. It sits last in #home, outside the row: it belongs
+                to the view and not to the text, and #home is the thing that is
+                exactly one screen tall. No label – the chevrons carry the meaning
+                – so the link needs an aria-label. data-scroll-to is picked up by
+                js/site.js, which scrolls there smoothly with the same speed and
+                easing as the menu's own anchors. See .scroll-cue in
+                css/style.css.-->
+            <a href="#businessareas" class="scroll-cue" data-scroll-to
+                aria-label="Scroll on to Technology areas"><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg></a>
+
         </header>
 
         <!--Main Content Area-->
@@ -287,86 +298,52 @@
                         whole block – see css/colors.css.-->
                     <div class="col-1">
                         <div class="section-heading">
-                            <h2 class="section-kicker">BUSINESS AREAS</h2>
-                            <p class="section-title">Four areas – one joined-up solution</p>
-                            <p class="section-subtitle">The strength lies not in the areas on their own, but in
-                                the way we bring them together. We are unique in our ability to connect IBM Maximo
-                                and Esri ArcGIS – the condition of an asset and its location in the same picture –
-                                and on top of that we add remote sensing and AI.</p>
+                            <h2 class="section-kicker">TECHNOLOGY AREAS</h2>
+                            <p class="section-title">Four domains – one unified solution</p>
                         </div>
                     </div>
 
-                    <div class="col-1 area-grid">
+                    <!--The four areas as one band instead of four cards: no frame, no
+                        shadow, no icon watermark, and one sentence each instead of three
+                        bullets. The bullets repeated what Services says two sections
+                        further down, and four framed boxes gave this section the same
+                        weight as Showcases and Products, which actually lead somewhere.
+                        See css/area-band.css.-->
+                    <div class="col-1 area-band">
 
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="../images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Asset Management</h3>
-                                <p>
-                                    - Maintenance, operational planning &amp; life cycle<br />
-                                    - Asset information<br />
-                                    - System support in IBM Maximo
-                                </p>
-                            </div>
+                        <!--Area-->
+                        <div class="area-band-item">
+                            <img src="../images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            <h3>Asset Management</h3>
+                            <p>Maintenance, operational planning and life cycle — with the asset information
+                                gathered in IBM Maximo.</p>
                         </div>
-                        <!--End of Icon Block-->
+                        <!--End of Area-->
 
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="../images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">GIS</h3>
-                                <p>
-                                    - Geodata, mapping solutions &amp; analysis<br />
-                                    - Indoor GIS<br />
-                                    - System support in Esri ArcGIS
-                                </p>
-                            </div>
+                        <!--Area-->
+                        <div class="area-band-item">
+                            <img src="../images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            <h3>GIS</h3>
+                            <p>Geodata, mapping and analysis, indoors and out — with system support in Esri
+                                ArcGIS.</p>
                         </div>
-                        <!--End of Icon Block-->
+                        <!--End of Area-->
 
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="../images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">Remote Sensing</h3>
-                                <p>
-                                    - Satellite, drone &amp; sensor data<br />
-                                    - Environmental monitoring &amp; change detection
-                                </p>
-                            </div>
+                        <!--Area-->
+                        <div class="area-band-item">
+                            <img src="../images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            <h3>Remote Sensing</h3>
+                            <p>Satellite, drone and sensor data for environmental monitoring and change detection.</p>
                         </div>
-                        <!--End of Icon Block-->
+                        <!--End of Area-->
 
-                        <!--Icon Block-->
-                        <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
-                            <!--Icon-->
-                            <div class="icon">
-                                <img src="../images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
-                            </div>
-                            <!--Icon Block Description-->
-                            <div class="icon-block-description">
-                                <h3 class="card-title">AI</h3>
-                                <p>
-                                    - Applied AI<br />
-                                    - Predictive maintenance &amp; decision support
-                                </p>
-                            </div>
+                        <!--Area-->
+                        <div class="area-band-item">
+                            <img src="../images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            <h3>AI</h3>
+                            <p>Applied AI for predictive maintenance and decision support.</p>
                         </div>
-                        <!--End of Icon Block-->
+                        <!--End of Area-->
 
                     </div>
 
@@ -377,7 +354,7 @@
                         does not have to fit on a line. The icons are the ones this
                         section used back when it listed industries instead.-->
                     <div class="col-1 industry-strip">
-                        <p class="industry-label">Our customers work in</p>
+                        <p class="industry-label">Our customers operate within</p>
                         <div class="logo-slider industry-slider" data-speed="0.35">
                             <div class="logo-track">
                                 <span><img src="../images/icons/infrastructure_logo.webp" width="256" height="256" loading="lazy" alt="" />Infrastructure</span>
@@ -403,15 +380,18 @@
                 data-featherlight-filter="a">
 
                 <div class="section-heading">
-                    <h2 class="section-kicker">SHOWCASES</h2>
-                    <p class="section-title">We create value for our customers</p>
+                    <h2 class="section-kicker">SELECTED PROJECTS</h2>
+                    <p class="section-title">A selection of what we are working on right now</p>
                 </div>
 
                 <div class="showcase-carousel image-carousel" data-image-carousel data-carousel-label="Showcases"
                     data-carousel-noun="showcase" data-carousel-autoplay="4000">
                     <div class="showcase-track image-carousel-track clearfix">
 
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
+                <!--The starting featured card. The script rewrites this attribute on
+                    load, so which one carries it in the markup only decides the very
+                    first paint.-->
+                <div class="row no-padding-bottom clearfix image-carousel-slide" data-featured>
                     <div class="col-1 feature-card showcase text-left">
                         <!-- Left 20% Image Section -->
                         <div class="card-image-wrapper">
@@ -487,7 +467,7 @@
                         <!-- Right 80% Content Section -->
                         <div class="card-content">
                             <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
-                                    AI-based analysis of rail defects in image data</a></h3>
+                                    AI-based analysis of rail defects from imagery</a></h3>
                             <p>We develop methods for automatically detecting rail defects using deep learning
                                 and image data from railway inspections. </p>
                             <!--By analysing visual patterns in track
@@ -517,7 +497,7 @@
 
                 <div class="section-heading">
                     <h2 class="section-kicker">SERVICES</h2>
-                    <p class="section-title">How can we help you</p>
+                    <p class="section-title">How can we help you?</p>
                 </div>
 
                 <!--The eight services grouped by how they are bought, four cards instead
@@ -558,7 +538,7 @@
                                 <li><strong>Licensing and operations</strong><span>We handle every licensing process and
                                     simplify licence management for both IBM Maximo and Esri ArcGIS.</span></li>
                                 <li><strong>Service-based and productised delivery</strong><span>We offer technical
-                                    expertise to monitor and manage the health and performance of both IBM Maximo and
+                                    expertise to monitor and manage the health and performance in both IBM Maximo and
                                     Esri ArcGIS.</span></li>
                             </ul>
                         </div>
@@ -573,12 +553,12 @@
                         <div class="service-group-body">
                             <h3>Data and analysis</h3>
                             <ul class="service-list">
-                                <li><strong>Development and analysis in the geospatial domain</strong><span>We offer
+                                <li><strong>Geospatial development and analysis</strong><span>We offer
                                     comprehensive services in geospatial data development and analysis to improve your
                                     workflows and decision-making.</span></li>
                                 <li><strong>Sensor technology</strong><span>With our knowledge and experience in sensor
-                                    technology we help you develop and manage your facilities more
-                                    efficiently.</span></li>
+                                    technology, we help develop and streamline the management of your
+                                    facility.</span></li>
                             </ul>
                         </div>
                     </div>
@@ -590,11 +570,11 @@
                             <img src="../images/gallery-images/stock_2.webp" alt="" loading="lazy" />
                         </div>
                         <div class="service-group-body">
-                            <h3>Advisory</h3>
+                            <h3>Consulting</h3>
                             <ul class="service-list">
                                 <li><strong>Project management and advisory in asset information, digitalisation and
-                                    AI</strong><span>We support you across many kinds of projects, from change
-                                    programmes to migration projects within asset management.</span></li>
+                                    AI</strong><span>We provide support for various types of projects, ranging from
+                                    transformational projects to migration projects in asset management.</span></li>
                                 <li><strong>Training</strong><span>We offer tailored training in both IBM Maximo and
                                     Esri ArcGIS to make sure you get the most out of your systems.</span></li>
                             </ul>
@@ -616,7 +596,7 @@
 
                     <div class="section-heading">
                         <h2 class="section-kicker">PRODUCTS</h2>
-                        <p id="product-heading" class="section-title">We have the right solution for you</p>
+                        <p id="product-heading" class="section-title">Our experience, packaged for you</p>
                     </div>
 
                     <!-- No text-center: the cards centre their own title, subtitle and
@@ -636,7 +616,7 @@
                                     <div class="product-body">
                                         <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset
                                                 Care</a></h3>
-                                        <p class="product-sub">For all your EAM needs</p>
+                                        <p class="product-sub">Asset management that works in practice</p>
                                         <div class="product-image-wrapper">
                                             <img src="../images/banner-images/td_asset_care.webp" loading="lazy" alt="Feature thumbnail">
                                         </div>
@@ -664,18 +644,21 @@
                                 </div>
                             </div>
 
-                            <!-- TD Linear has no page and no artwork yet, so the card says
-                                 so rather than borrowing TD Test's copy and image, which is
-                                 what it used to do. The link points at td_test.html until
-                                 there is a td_linear.html. -->
+                            <!-- td_linear.html exists now, so the card points there and
+                                 carries the page's own intro instead of the placeholder
+                                 text. The image is still TD Test's: there is no artwork of
+                                 its own yet. Swap the src once
+                                 images/banner-images/td_linear.webp exists. -->
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
                                     <div class="product-body">
-                                        <h3><a href="td_test.html" class="card-link card-link-stretch">TD Linear</a></h3>
-                                        <p class="product-sub">Coming soon</p>
-                                        <div class="product-image-placeholder"><span>product image</span></div>
+                                        <h3><a href="td_linear.html" class="card-link card-link-stretch">TD Linear</a></h3>
+                                        <p class="product-sub">Understand your linear assets</p>
+                                        <div class="product-image-wrapper">
+                                            <img src="../images/banner-images/td_test.webp" loading="lazy" alt="Feature thumbnail">
+                                        </div>
                                         <div class="product-content">
-                                            <p>Description coming shortly.</p>
+                                            <p>TD Linear visualises and analyses data along linear assets. Bringing Enterprise Asset Management (EAM), measurement and map data together makes it easier to spot anomalies, understand how things relate and follow how the asset develops over time.</p>
                                         </div>
                                     </div>
                                     <div class="card-arrow">&gt;</div>
@@ -694,14 +677,14 @@
                 <div class="row clearfix">
 
                     <div class="section-heading">
-                        <h2 class="section-kicker">CUSTOMERS AND PARTNERS</h2>
-                        <p class="section-title">What our customers say</p>
+                        <h2 class="section-kicker">CUSTOMERS & PARTNERS</h2>
+                        <p class="section-title">We grow together with others</p>
                     </div>
 
                     <blockquote class="col-2 testimonial classic text-center">
                         <img src="../images/user-images/tf.webp" loading="lazy" alt="Trafikförvaltningen" />
                         <q>The project members from Total Digital show genuine commitment and work
-                            passionately towards reaching the goals of the project</q>
+                            passionately towards reaching the goals of the project.</q>
                         <footer>Trafikförvaltningen</footer>
                     </blockquote>
 
