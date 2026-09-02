@@ -148,7 +148,10 @@
         padding-top: 0;
     }
 
-    .area-band-item :is(img, svg) {
+    /* `i` is in here too: the Font Awesome kit swaps <i> for <svg> only once
+       it loads, and until then an unmatched icon leaves the paragraph to fall
+       into the 44px column. */
+    .area-band-item :is(i, img, svg) {
         width: 44px;
         height: 44px;
         margin: 0;

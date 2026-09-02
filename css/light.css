@@ -105,6 +105,18 @@ html.theme-light input[type="submit"]:hover {
     color: #BC3D00;
 }
 
+/* Same trap, same fix, one component over: a card title is an <a>, so the rule
+   above painted every showcase and product name orange on the light theme
+   while the dark theme showed them in ink. .card-link already says
+   `color: inherit` (css/feature-card.css) and wins there against a bare `a` —
+   it just loses to `html.theme-light a`, which carries an element selector on
+   top of its class. Two classes here, so the component's intent holds in both
+   themes. The whole card is the link; the title does not need to look like
+   one. */
+html.theme-light .card-link {
+    color: inherit;
+}
+
 
 /* --------------------------------------------------------------------------
    2. Card weight
@@ -197,8 +209,8 @@ html.theme-light .image-carousel-arrow {
 
 /* The ledningsgrupp captions are burned into a near-black gradient at the foot
    of each portrait, so they keep the light-on-dark treatment the rest of the
-   page drops. --section-heading and --section-subtitle both go dark here and
-   would put near-black type and a mid cyan on black. */
+   page drops. --section-heading and --muted-text both go dark here and would
+   put near-black type on black. */
 html.theme-light .person-name {
     color: var(--banner-text);
 }

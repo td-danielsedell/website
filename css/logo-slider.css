@@ -14,26 +14,44 @@
     display: flex;
 }
 
-/* Fade-out edge gradients */
-.logo-slider::before,
-.logo-slider::after {
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 100%;
-    content: "";
-    z-index: 2;
-}
+/* Fade-out edges. `overflow: hidden` alone cuts whatever is crossing the edge
+   dead: the industry strip showed a stray "g" on the left and "Infrastru" on
+   the right, and the partner row cut "esri" and "NVIDIA" through the letters.
+   A word chopped mid-glyph reads as a broken layout; faded out it reads as a
+   row that continues.
 
-/* .logo-slider::before {
-    left: 0;
-    background: linear-gradient(to right, #f9f9f9, rgba(249, 249, 249, 0));
-}
+   A mask rather than the two gradient overlays that used to sit here (they were
+   hardcoded #f9f9f9 from the old palette and had been commented out for that
+   reason, leaving two invisible 80px blocks at z-index 2 over both ends of
+   every marquee — which is where the partner logos' own links live, so a logo
+   under either end could not be hovered or clicked).
 
-.logo-slider::after {
-    right: 0;
-    background: linear-gradient(to left, #f9f9f9, rgba(249, 249, 249, 0));
-} */
+   A mask needs no colour, so one rule serves both themes, and it fades the
+   content itself: in the light theme four of the partner logos are painted as
+   the link's background-image rather than as the <img> (see css/light.css), and
+   a mask takes those with it where a gradient over the top would not have been
+   the right colour anyway.
+
+   40px, in px and not the percentage a mask normally reads better in: the fade
+   has to be about a glyph wide to do its job, and 8% of a 390px phone is 31px
+   of a 17px word while 8% of a wide desktop is 100px of nothing. Fixed stops
+   fade the same way at every width.
+
+   The mask is painted against the element's own box, not against the content it
+   scrolls, so the fade stays at the two edges while the row travels through
+   it. */
+.logo-slider {
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0,
+            #000 40px,
+            #000 calc(100% - 40px),
+            transparent 100%);
+    mask-image: linear-gradient(to right,
+            transparent 0,
+            #000 40px,
+            #000 calc(100% - 40px),
+            transparent 100%);
+}
 
 /* 2. The Track: Flexbox prevents any shrinking or overlapping */
 .logo-track {

@@ -81,6 +81,16 @@
     transition: background 0.2s ease, opacity 0.2s ease;
 }
 
+/* js/image-carousel.js builds the chevron as a kit <i>, which Font Awesome
+   swaps for an <svg> carrying this same class across. `display` is what makes
+   .svg-icon's 1em square hold on the <i> too: width and height do nothing on a
+   non-replaced inline box, and the glyph would jump from nothing to 18px when
+   the kit caught up. The button is a fixed 44px, so only the chevron itself is
+   ever affected -- the disc never moves. */
+.image-carousel-arrow .svg-icon {
+    display: inline-block;
+}
+
 .image-carousel-arrow:hover,
 .image-carousel-arrow:focus-visible {
     background: var(--primary, #ff5722);

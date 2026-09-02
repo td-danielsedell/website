@@ -827,6 +827,13 @@ section {
    "#header.nav-solid .svg-icon" paints one, which shows up as an orange tile on
    the mobile menu's dark panel. */
 #header nav .theme-toggle .svg-icon {
+    /* Load-bearing since these two became kit <i> elements: width and height
+       are ignored on a non-replaced inline box, so an <i> left at its default
+       display would reserve nothing and the nav controls beside it would shift
+       when the kit swapped in the <svg>. Sits above .icon-moon's display: none
+       in this sheet, which ties on specificity and wins on order — as it
+       must. */
+    display: inline-block;
     width: 1.25em;
     height: 1.25em;
     vertical-align: -0.24em;
@@ -1354,12 +1361,16 @@ img {
 }
 
 /* Inline icons, sized like the icon font they replaced: 1em square, painted
-   with whatever `color` the surrounding rules set. Most paths come from Font
+   with whatever `color` the surrounding rules set. These paths come from Font
    Awesome Free 6.7.2 (icons: CC BY 4.0, https://fontawesome.com/license/free),
    inlined so the page no longer waits on a CDN stylesheet and two webfonts.
-   The two theme-toggle icons are Font Awesome Pro 7.3.1 instead (`solid sun`,
-   `solid moon-star`), harvested from the kit CDN and inlined the same way, so
-   they do not depend on the site kit's per-icon subset. */
+
+   The class is also worn by the theme toggle's two <i> elements, which the kit
+   swaps for its own <svg> — Font Awesome copies author classes across, so the
+   sizing below applies before and after. Those two are the only icons here
+   that come from the kit rather than from a path in this repo, because
+   `moon-star` is a Pro glyph and the licence does not cover keeping its
+   drawing in our source. */
 .svg-icon {
     width: 1em;
     height: 1em;
@@ -1727,16 +1738,75 @@ h1.section-title {
 }
 
 
-/* A phone hero is content-tall too, but the failure mode is different: the
-   copy is already taller than the fold, and the peek of the next section shows
-   up once the address bar collapses on scroll and the viewport grows to the
-   large viewport height. 100lvh is exactly that height. min-height rather than
-   height, because the copy is allowed to be taller than the screen — 100vh is
-   the fallback for browsers without the lvh unit. */
+/* The phone hero is a screen tall as well, and svh is that screen: the height
+   with the address bar showing, which is what the reader has at first paint.
+   It used to be 100lvh — the taller height the viewport grows to once the bar
+   collapses — back when the copy ran off the bottom anyway and the only thing
+   at stake was Affärsområden peeking in. It is the wrong height now that the
+   intro and the scroll cue are pinned to the bottom of the box: on a 390x844
+   phone lvh would park them 110px below the fold, unseen until the reader
+   scrolls, which is exactly what the cue is there to ask for. The peek on
+   collapse is the price, and it is the same trade the desktop hero already
+   makes. min-height rather than height, because the copy is allowed to be
+   taller than the screen; 100vh is the fallback where svh is unsupported. */
 @media (max-width: 767px) {
     #home {
         min-height: 100vh;
-        min-height: 100lvh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* The row takes the height the header leaves, so the copy inside it can be
+       pulled apart: the headline keeps the top, everything after it drops to the
+       bottom of the screen, and the band that opens up in the middle is where
+       the photo reads (see #home::before in css/colors.css). The bottom padding
+       is the room the scroll cue needs below the intro. */
+    #banner-content.row {
+        flex: 1 1 auto;
+        display: flex;
+        /* The room the scroll cue needs under the intro: the cue is about 62px
+           of label and chevrons sitting 32px off the bottom, and the copy is
+           pinned to the bottom of this box. !important because ".row { padding:
+           15px !important }" below 480px would otherwise leave the intro's
+           orange rule crossing the cue's label. */
+        padding-bottom: 110px !important;
+    }
+
+    /* .col-61 carries its width as a float, which does nothing inside a flex
+       row — the width has to go on the item itself. Full width here: on a phone
+       the copy has the screen to itself. */
+    #banner-content.row > .col-61 {
+        width: 100%;
+        float: none;
+        display: flex;
+    }
+
+    #banner-content .section-heading {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* The headline keeps the top of the screen and the photo behind it. The
+       expertise line and the intro follow it down to the middle: an auto margin
+       above the pair and another below it split the leftover height evenly, so
+       they sit centred between the headline and the scroll cue however tall the
+       screen is. Pinned to the bottom instead — the first thing tried — they
+       sat in among the cue and left the middle of the hero empty. */
+    #home .expertise-line {
+        margin-top: auto;
+    }
+
+    #home .banner-intro {
+        margin-bottom: auto;
+    }
+
+    /* A phone hero is a screen tall, so there is a fold to gesture at after
+       all. Sits under the intro rather than over it — the copy is bottom-aligned
+       here, unlike the desktop hero where the cue has the whole lower half. */
+    #home .scroll-cue {
+        display: flex;
     }
 }
 
@@ -1803,12 +1873,12 @@ h1.section-title {
 
 /* ---------- Scroll cue ---------- */
 
-/* A word and two chevrons at the foot of a one-viewport hero, the lower chevron
-   faded. The repetition says there is more than one section down there; the
-   label says what the gesture buys. No border, so the nudge under the pointer
-   is the rest of the affordance: a static arrow reads as decoration, one that
-   answers the pointer reads as a control. Nothing moves at rest — the bounce
-   below runs three times on arrival and then stops.
+/* A word and a double chevron at the foot of a one-viewport hero. The doubling
+   says there is more than one section down there; the label says what the
+   gesture buys. No border, so the nudge under the pointer is the rest of the
+   affordance: a static arrow reads as decoration, one that answers the pointer
+   reads as a control. Nothing moves at rest — the bounce below runs three
+   times on arrival and then stops.
 
    The mark is shared; where it sits is the page's business — see the #home
    block below and .tdt-intro in css/td-test.css, which each reserve their own
@@ -1847,8 +1917,9 @@ h1.section-title {
     transition: opacity .3s ease, visibility 0s linear .3s;
 }
 
-/* Below 768px a hero is content-tall and the reader is already scrolling, so
-   there is no fold to gesture at. */
+/* Below 768px only the hero has a fold worth gesturing at, and it turns the
+   mark back on itself (see #home .scroll-cue in the banner section). Everywhere
+   else on a phone the reader is already scrolling and the mark is clutter. */
 @media (max-width: 767px) {
     .scroll-cue {
         display: none;
@@ -1873,7 +1944,26 @@ h1.section-title {
     line-height: 1;
 }
 
-.scroll-cue svg {
+/* One `fa-solid fa-chevrons-down`, drawn by the kit from an <i> rather than
+   inlined as path data, so the glyph is never copied out of Font Awesome and
+   into this repo. It replaces two stacked copies of the Free chevron-down that
+   a `svg + svg` rule used to tuck together and fade; both chevrons draw at
+   full strength now, since one glyph cannot fade half of itself. The pair also
+   closes up -- 23px of ink against the hand-stacked 29px.
+
+   `i` is in the selector alongside `svg` for two reasons. The kit swaps the
+   <i> for an <svg> only once it has loaded, and until then an unmatched icon
+   is a 0x0 inline: the label would sit at the foot of the hero on its own and
+   then jump 26px when the kit landed. And the kit ships its own
+   `.svg-inline--fa { height: 1em }`, which one class plus one element
+   outspecifies -- see the same trick on .area-band-item in css/area-band.css.
+
+   No viewBox correction needed on this route, unlike the inlined version:
+   chevrons-down spans x -3.2..451.2 of its declared `0 0 448 512` box, and the
+   kit's own overflow: visible is what keeps both tips from being clipped.
+   preserveAspectRatio defaults to `meet`, so 512 governs the fit in a 26px
+   square and the ink lands at 23.1px. */
+.scroll-cue :is(i, svg) {
     display: block;
     width: 26px;
     height: 26px;
@@ -1909,14 +1999,8 @@ h1.section-title {
     }
 }
 
-.scroll-cue svg + svg {
-    /* tucked under the first, close enough to read as one mark */
-    margin-top: -9px;
-    opacity: .45;
-}
-
-.scroll-cue:hover svg,
-.scroll-cue:focus-visible svg {
+.scroll-cue:hover :is(i, svg),
+.scroll-cue:focus-visible :is(i, svg) {
     transform: translateY(4px);
 }
 
@@ -1931,16 +2015,16 @@ h1.section-title {
 @media (prefers-reduced-motion: reduce) {
 
     .scroll-cue,
-    .scroll-cue svg {
+    .scroll-cue :is(i, svg) {
         transition: none;
     }
 
-    .scroll-cue svg {
+    .scroll-cue :is(i, svg) {
         animation: none;
     }
 
-    .scroll-cue:hover svg,
-    .scroll-cue:focus-visible svg {
+    .scroll-cue:hover :is(i, svg),
+    .scroll-cue:focus-visible :is(i, svg) {
         transform: none;
     }
 }
@@ -2369,8 +2453,11 @@ blockquote {
     border-radius: 250em;
 }
 
+/* 15px, not 12px: this used to be 12px plus the 10/15px margins of the orange
+   bar that sat between the quote and the name. The bar is gone — the quote
+   carries the block's one orange mark now — so its spacing moves here. */
 .testimonial footer {
-    padding-top: 12px;
+    padding-top: 15px;
 }
 
 /* Style Classic - Avatar above Testimonial */
@@ -2382,14 +2469,6 @@ blockquote {
 
 .testimonial.classic q {
     display: block;
-}
-
-.testimonial.classic footer:before {
-    display: block;
-    content: "";
-    width: 30px;
-    height: 4px;
-    margin: 10px auto 15px auto;
 }
 
 /* Style Big */
@@ -2920,7 +2999,7 @@ blockquote {
 
 .product-sub {
     font-style: italic;
-    color: var(--section-subtitle);
+    color: var(--muted-text);
     margin: 0 0 25px 0;
 }
 
@@ -3039,8 +3118,19 @@ blockquote {
         padding: 0;
     }
 
+    /* EXPERIENCE is the longest line and it sets the size: at a flat 58px it is
+       366px wide, which runs off a 360px screen and off a 320px one badly — the
+       body's overflow-x: hidden just cut the last letters off. 13.4vw is that
+       word at the width it has, minus the row's 15px gutters; 58px is where it
+       stops growing, the size that was signed off, reached at 430px.
+
+       Both declarations need !important: css/colors.css carries the hero type
+       and loads after this file, so its 62px/60px would otherwise win on order.
+       The line-height goes relative rather than staying at that flat 60px, or
+       the lines keep sitting 60px apart while the letters shrink. */
     #home h1 {
-        font-size: 58px !important;
+        font-size: clamp(40px, 13.4vw, 58px) !important;
+        line-height: 1.05 !important;
     }
 
     /* .page-border,
@@ -3446,4 +3536,56 @@ blockquote {
         /* width: 33%; */
     }
 
+}
+
+
+/* Phone hero, heading position
+===============================*/
+
+/* The headline starts 40px under the header at phone widths (see
+   "#home #main-heading" in the two blocks above). That is as high as it needs to
+   be on a short screen, and lower than it wants to be on a tall one — the
+   desktop hero centres its whole block, and a phone reads better with the
+   headline off the top edge too. 10vh of the screen, so the drop grows with the
+   screen: 67px at 667, 73px at 734, 88px at 885.
+
+   Gated on height, not applied everywhere: under 720px there is no slack left
+   in the hero — headline, the two-line intro and the cue already fill it — and
+   a drop there pushes the cue off the bottom. Placed after those blocks because
+   it has the same specificity as the rules it overrides, so order is what
+   decides. */
+@media (max-width: 767px) and (min-height: 720px) {
+    #home #main-heading {
+        padding-top: clamp(56px, 10vh, 110px);
+    }
+}
+
+/* Short phones. The hero holds four things — headline, expertise line, the
+   two-line intro and the cue — and by 667px of screen the 110px reserved under
+   the copy is the one that has to give. 60px still clears the cue's own 32px
+   offset; it is the breathing room above it that goes. */
+@media (max-width: 767px) and (max-height: 719px) {
+    #banner-content.row {
+        padding-bottom: 60px !important;
+    }
+}
+
+/* Shorter still, and the arithmetic stops working: at 320x568 the four parts
+   need about 700px. Stop pretending the hero is one screen there — let it be as
+   tall as its copy, and drop the cue, which is what it did at every phone size
+   before this rebuild. A reader on a screen this short is already scrolling.
+   The photo needs no special case: it is sized as a share of the hero, so it
+   simply follows the taller box. */
+@media (max-width: 767px) and (max-height: 620px) {
+    #home {
+        min-height: 0;
+    }
+
+    #home .scroll-cue {
+        display: none;
+    }
+
+    #banner-content.row {
+        padding-bottom: 40px !important;
+    }
 }

@@ -6,13 +6,6 @@
 (function () {
     'use strict';
 
-    /* Chevrons from Font Awesome Free 6.7.2 (icons: CC BY 4.0), inlined for the
-       same reason as the rest of the icons: no CDN stylesheet, no webfont. */
-    var CHEVRON = {
-        left: 'M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z',
-        right: 'M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'
-    };
-
     /* The English mirror at /en/ loads this same file, so the strings the
        screen reader hears follow <html lang> rather than being fixed in
        Swedish. Anything that is not English falls back to Swedish, which is
@@ -57,8 +50,15 @@
             button.type = 'button';
             button.className = 'image-carousel-arrow image-carousel-arrow--' + direction;
             button.setAttribute('aria-label', label);
-            button.innerHTML = '<svg class="svg-icon" viewBox="0 0 320 512" aria-hidden="true" focusable="false" '
-                + 'xmlns="http://www.w3.org/2000/svg"><path d="' + CHEVRON[glyph] + '" /></svg>';
+            /* The kit draws the chevron from this <i>, rather than the page
+               shipping Font Awesome's path data itself. Only the chevron: the
+               disc under it is the button's own background and border-radius
+               in css/image-carousel.css, which keeps the glyph solid white
+               over a photograph -- fa-circle-chevron-* would knock the chevron
+               out of the disc as a transparent hole and lose it on a pale
+               image. */
+            button.innerHTML = '<i class="svg-icon fa-solid fa-chevron-' + glyph
+                + '" aria-hidden="true"></i>';
             button.addEventListener('click', function () {
                 /* go() wraps, so neither end is a dead button */
                 go(direction === 'prev' ? current - 1 : current + 1);
@@ -86,11 +86,24 @@
            slide's own offset is the lead-in gutter; subtracting it puts the
            first view at scrollLeft 0, where the snap actually lands it. */
         function views() {
-            var lead = slides[0].offsetLeft - track.offsetLeft;
+            /* Sorted by where the slides actually sit, not by DOM order. A track
+               is allowed to reorder itself with flex `order` — the showcases do,
+               to rotate which case is featured (js/showcase-featured.js) — and
+               everything below reads along the axis the reader scrolls: the
+               lead-in gutter belongs to whichever slide comes first on screen,
+               and "a position past the last one" is only a test for distinct
+               views if the positions arrive in ascending order. Read in DOM
+               order instead, a reordered track drops the views whose position
+               went backwards, and the last case became unreachable by arrow and
+               dot both. */
+            var ordered = Array.prototype.slice.call(slides).sort(function (a, b) {
+                return a.offsetLeft - b.offsetLeft;
+            });
+            var lead = ordered[0].offsetLeft - track.offsetLeft;
             var limit = track.scrollWidth - track.clientWidth;
             var out = [];
 
-            Array.prototype.forEach.call(slides, function (slide, index) {
+            ordered.forEach(function (slide, index) {
                 var position = Math.min(slide.offsetLeft - track.offsetLeft - lead, limit);
                 /* first slide to land on a position is the one leading it */
                 if (!out.length || position > out[out.length - 1].position) {

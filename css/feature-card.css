@@ -178,23 +178,47 @@
     padding-right: 45px;
 }
 
-/* ">" Arrow styling and positioning */
+/* Chevron affordance, bottom right of the card: a `fa-solid fa-chevron-right`
+   the kit draws from the <i> the div wraps, replacing the literal "&gt;" this
+   used to print.
+
+   The <i> stays a child rather than taking the .card-arrow class itself, so
+   the five rules further down that move this box on the flipped, featured and
+   list-revealed cards keep addressing a plain div and do not depend on Font
+   Awesome copying author classes onto the <svg> it swaps in.
+
+   colour comes from `color`, not from a fill: FA's generated path is
+   fill="currentColor", which is also how the old text glyph took the token.
+   So the light theme needs no filter: invert() and the arrow cannot end up
+   the one grey thing on a swapped surface. */
 .card-arrow {
     position: absolute;
     bottom: 16px;
     right: 20px;
     /* Purely an affordance. Without this it sits on top of the stretched card
-       link and swallows the clicks it is advertising. */
+       link and swallows the clicks it is advertising. Set here rather than on
+       the icon so it covers the <i> before the kit has replaced it too. */
     pointer-events: none;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 14px;
     color: var(--normal-text);
-    user-select: none;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Moves the ">" arrow slightly to the right on hover */
+/* `i` alongside `svg` for the same two reasons as .area-band-item and the
+   scroll cue: the box has to exist before the kit has swapped the <i>, and the
+   kit's own `.svg-inline--fa { height: 1em }` needs one class plus one element
+   to outspecify it. Nothing shifts if the swap is slow or never happens here
+   though -- unlike the area-band icons, this box is absolutely positioned, so
+   a 0-wide <i> moves no copy.
+   height: 1em against the 14px above, and chevron-right's 320x512 viewBox then
+   puts the ink at 8.75px wide. */
+.card-arrow :is(i, svg) {
+    display: block;
+    height: 1em;
+    width: auto;
+}
+
+/* Moves the chevron slightly to the right on hover */
 .feature-card:hover .card-arrow {
     transform: translateX(6px);
 }
@@ -453,9 +477,11 @@
 }
 
 /* Reads as the kicker-then-title pair every section on the page already uses:
-   small bright label, larger name under it. order:-1 lifts it above the h3
-   without moving it in the markup, where it belongs to the heading. No new
-   colour — it is the section subtitle's. */
+   small label, larger name under it. order:-1 lifts it above the h3 without
+   moving it in the markup, where it belongs to the heading.
+
+   Muted, not the section subtitle's gold: gold is down to one job, the line
+   under a heading, and a card kicker is not that. */
 .product-carousel .product-sub {
     order: -1;
     font-size: 14px;
@@ -463,7 +489,7 @@
     font-style: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--section-subtitle);
+    color: var(--muted-text);
     /* 16px, not 26px: the icon badge above already carries the card's top
        margin, and 26px on top of it opened a gap between the two. */
     padding: 16px 28px 0;

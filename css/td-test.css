@@ -130,7 +130,7 @@
     margin: 0 0 22px;
     font-size: 18px;
     line-height: 29px;
-    color: var(--section-subtitle);
+    color: var(--normal-text);
 }
 
 .tdt-intro .tdt-intro-cta .button {

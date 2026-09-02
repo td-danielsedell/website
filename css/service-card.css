@@ -158,6 +158,64 @@ img.showcase-image {
     .service-carousel .image-carousel-dots {
         margin-top: 12px;
     }
+
+    /* The rules between the services line up across the cards, the same way
+       they do in the two-up desktop grid below and for the same reason: each
+       card hands its four rows (photo, heading, service 1, service 2) back to
+       the track, so the tallest service name or description sets that row for
+       every card. Without it the photo and the heading agreed and nothing
+       below them did — the divider sat at 379, 358, 401 and 399px in the four
+       cards, which is exactly what you see peeking in from the next slide.
+
+       The track becomes a grid to host the subgrid: one column per card,
+       flowing sideways, each column the width of the scrollport's content box —
+       the same 281px the flex track gave them. Scroll snapping is unaffected;
+       it is a property of the scroll container, not of its display type.
+
+       Row gap has to go: `gap: 28px` above is both axes, and on a grid the 28px
+       meant for the space between cards would open between the photo and the
+       heading too. The column gap stays.
+
+       The three inner rules repeat the desktop block's — duplicated rather
+       than hoisted so that nothing in the signed-off desktop grid has to move
+       to fix the phone. */
+    @supports (grid-template-rows: subgrid) {
+        .service-track.image-carousel-track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 100%;
+            grid-template-rows: repeat(4, auto);
+            column-gap: 28px;
+            row-gap: 0;
+        }
+
+        /* .clearfix's ::after would take a column of its own. */
+        .service-track.image-carousel-track::after {
+            display: none;
+        }
+
+        .service-track > .image-carousel-slide {
+            display: grid;
+            grid-row: span 4;
+            grid-template-rows: subgrid;
+        }
+
+        .service-group,
+        .service-group-body,
+        .service-list {
+            display: grid;
+            grid-template-rows: subgrid;
+        }
+
+        .service-group {
+            grid-row: 1 / -1;
+        }
+
+        .service-group-body,
+        .service-list {
+            grid-row: 2 / -1;
+        }
+    }
 }
 
 /* Desktop lays the groups out two up, on a grid rather than the floated .col-2

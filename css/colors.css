@@ -343,13 +343,6 @@ a {
     /*#d2b356;*/
 }
 
-/* Border Color */
-
-.testimonial.classic footer:before {
-    background: var(--primary);
-    /*#d2b356;*/
-}
-
 #main-heading {
     text-shadow: 2px 0 var(--primary), -2px 0 var(--primary), 0 2px var(--primary), 0 -2px var(--primary),
         1px 1px var(--primary), -1px -1px var(--primary), 1px -1px var(--primary), -1px 1px var(--primary);
@@ -564,26 +557,65 @@ a {
     }
 }
 
-/* On a phone the copy runs the full width, so a fade from the left has nothing
-   to clear — the photo would sit under the text either way. Turn the ramp
-   vertical instead: the photo reads at the top, behind the header, and has
-   faded to the page ground by the time the h1 starts. Nothing left to fade at
-   the bottom once it is already ground.
+/* On a phone the photo is a different file: banner_wide_full.webp, the 1600x900
+   frame this hero used before 4be999d cropped it to banner_wide.webp's 780x448
+   for the desktop box. On a phone that crop is far too small — 60% of an
+   885px-tall screen is a 1848px-wide layer at DPR 2, a 2.4x upscale of a 780px
+   frame, which is why every attempt at it came back "still just grey". The full
+   frame at the same size is 1.5x, and it has the whole scene: the train front
+   at the left, the platform, the rails. Desktop keeps the crop — it is what was
+   signed off there, and the phone layer lives inside this media query, so a
+   desktop visit never fetches the bigger file.
 
-   Not transparent even at the very top: the ceiling lights in that part of the
-   frame are the brightest thing in it, and the h1 starts about a tenth of the
-   way down. */
+   Sized by height, 85% of the hero, anchored left: that is the cab front and
+   the platform, clear of the traveller who stands in the right half of the
+   frame. `cover` is what not to do — it fits the 1.78:1 frame to a 1:1.9 box by
+   scaling until the width overflows, so 70% of the picture is off-screen and
+   what is left is a smear of one door.
+
+   85% is the last stop that still holds the front of the cab. There is no
+   vertical slack to spend: the whole 900px of image height is already on
+   screen, so a taller band is pure zoom — it trades width away and costs
+   sharpness (85% is a 1109px-wide layer, a 1.4x upscale of a 1600px frame at
+   DPR 2). At 95% the headlights drop to the bottom edge and the frame is cab
+   windows; at 105% it is a grey panel again.
+
+   The photo also moves off #home for phone widths: jquery.enllax writes
+   `background-position` inline on #home as you scroll, which would drag the
+   photo off the top, and its shorthand hits every layer so the ramps could not
+   live there either. ::before is animated by nothing, so all three layers go
+   here. The parallax is no loss on a screen this size.
+
+   Both ramps the desktop hero has, then, not the single vertical one this used
+   to be: ground from the left under the copy, and ground at the bottom where
+   the photo ends. Both are pushed harder than the desktop pair rather than
+   softer, which is how they first went in and read as "just weaker on mobile":
+   the copy runs the full width of a phone, so it needs more ground under it,
+   not less. Left solid to 35% and clear at 78%; bottom clear to 35% and solid
+   at 80%, which is above the photo's own bottom edge at 85% so that edge never
+   shows. Layers paint first to last, so the ramps are written before the
+   photo. */
 @media (max-width: 767px) {
+    #home {
+        background-image: none;
+    }
+
     #home::before {
         background-image:
             linear-gradient(to bottom,
-                color-mix(in srgb, var(--secondary) 50%, transparent) 0%,
-                color-mix(in srgb, var(--secondary) 88%, transparent) 40%,
-                var(--secondary) 62%);
+                color-mix(in srgb, var(--secondary) 0%, transparent) 40%,
+                var(--secondary) 80%,
+                var(--secondary) 100%),
+            linear-gradient(to right,
+                var(--secondary) 0%,
+                var(--secondary) 35%,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 78%),
+            url("../images/banner-images/banner_wide_full.webp");
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-size: 100% 100%, 100% 100%, auto 85%;
+        background-position: center, center, left top;
     }
 }
-
-
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -679,13 +711,33 @@ body {
 
 .testimonial q {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 300;
+    color: var(--normal-text);
+    /* The browser's own marks around <q>, which the opening mark below stands
+       in for. Without this the quote opens with two of them and closes with an
+       orphan. */
+    quotes: none;
 }
 
-.testimonial.classic q,
+/* The decorative mark the orange bar under the quote used to be. Open Sans
+   draws U+201C as two straight slanted strokes — a double prime, not a
+   quotation mark — so this one pseudo-element takes a serif face to get the
+   filled comma shape. Nothing else in the block leaves Open Sans. */
+.testimonial.classic q:before {
+    display: block;
+    content: "\201C";
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 64px;
+    line-height: 0.7;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+/* Metadata, not the statement: the name steps down from the quote rather than
+   matching it. Both were gold, which flattened the two together. */
 .testimonial.classic footer {
-    color: var(--section-subtitle)
+    color: var(--muted-text);
 }
 
 /* About */

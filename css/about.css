@@ -275,7 +275,7 @@
     font-size: 14px;
     font-weight: 300;
     line-height: 20px;
-    color: var(--section-subtitle);
+    color: var(--muted-text);
 }
 
 /* Sits under the role and unfolds on hover — see the hover: hover block. The
