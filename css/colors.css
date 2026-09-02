@@ -262,8 +262,8 @@
     --header-text: #BDB8B2;
     --banner-text: #fff;
     --section-title: #F4F1EE;
-    /* Version A ("Tegel & Bärnsten"): #E3A64B. Version B ("Tegel & Stålblå"):
-       #63B3E4 — swapped in live via .palette-b below, temporary preview toggle. */
+    /* Version A ("Tegel & Bärnsten") amber, picked over Version B's steel
+       blue (#63B3E4) 2026-09-02. */
     --section-subtitle: #E3A64B;
     --section-heading: #F4F1EE;
     --link: #F4F1EE;
@@ -853,12 +853,3 @@ input[type="submit"]:hover {
 }
 
 
-/*------------------------------------------------------------------------------------------*/
-/* TEMPORARY — Tegel palette A/B preview toggle. Remove this block together with
-   js/palette-preview.js and its <script> includes once a version is picked;
-   nothing else reads .palette-b. */
-/*------------------------------------------------------------------------------------------*/
-
-:root.palette-b {
-    --section-subtitle: #63B3E4;
-}

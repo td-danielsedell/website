@@ -42,11 +42,16 @@
     padding-right: 0;
 }
 
-/* :is(img, svg) so a Font Awesome kit icon sizes like the webp ones. The kit
+/* :is(i, img, svg) so a Font Awesome kit icon sizes like the webp ones. The kit
    injects an <svg class="svg-inline--fa"> in place of the <i>, and its own
    height: 1em would otherwise win on document order — this selector is one
-   class and one element, so it outspecifies it. */
-.area-band-item :is(img, svg) {
+   class and one element, so it outspecifies it.
+
+   The <i> is in the list so the 52px box exists before the kit has run, and
+   still exists if it never does. Without it that item's icon is a 0x0 inline
+   and its title climbs 70px while its three neighbours' titles stay put — the
+   four stop lining up for as long as the kit is in flight. */
+.area-band-item :is(i, img, svg) {
     display: block;
     width: 52px;
     height: 52px;

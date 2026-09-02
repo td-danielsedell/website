@@ -48,8 +48,8 @@ html.theme-light {
     --hero-text: #211D19;
     --section-title: #211D19;
     --section-heading: #211D19;
-    /* Version A ("Tegel & Bärnsten"): #8F6400. Version B ("Tegel & Stålblå"):
-       #1A739E — swapped in live via .palette-b below, temporary preview toggle. */
+    /* Version A ("Tegel & Bärnsten"), picked over Version B's steel blue
+       (#1A739E) 2026-09-02. */
     --section-subtitle: #8F6400;
     --link: #211D19;
     /* The header hover and the underline under the current section, both on
@@ -89,6 +89,16 @@ html.theme-light {
    ground, use this AA-safe value instead; hover border-color stays
    var(--primary). */
 html.theme-light a { color: #BC3D00; }
+
+/* A .button is an <a>, so the rule above caught it and every button read
+   orange at rest — against a --header-text border, which had stayed ink. The
+   accent belongs to the hover state here, the way it does in the dark theme.
+   Two class selectors, so this beats `html.theme-light a` (one class, one
+   element) while the :hover pair below still beats this. */
+html.theme-light .button,
+html.theme-light input[type="submit"] {
+    color: var(--header-text);
+}
 
 html.theme-light .button:hover,
 html.theme-light input[type="submit"]:hover {
@@ -356,12 +366,3 @@ html.theme-light .band-dark .icon-block::after {
 }
 
 
-/* --------------------------------------------------------------------------
-   TEMPORARY — Tegel palette A/B preview toggle. Remove this block together
-   with js/palette-preview.js and its <script> includes once a version is
-   picked; nothing else reads .palette-b.
-   -------------------------------------------------------------------------- */
-
-html.theme-light.palette-b {
-    --section-subtitle: #1A739E;
-}

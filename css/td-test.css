@@ -5,9 +5,10 @@
 
 /* Intro / hero.
    The page used to open in a 66% centred column and then jump to the full
-   1245px row at the next section. The hero now sits in that same row: copy
-   beside the product shot, the three detail paragraphs as columns under it,
-   the closing line and the CTA centred below. */
+   1245px row at the next section. The hero now sits in that same row: the
+   product name and its lead side by side, the three detail paragraphs as
+   columns under it, the closing line and the CTA centred below. */
+
 /* The two .banner-spacer divs above clear the fixed header; this is the breath
    after them. */
 .tdt-intro .row {
@@ -56,10 +57,15 @@
    the start page carries one too. Only its room is page business, and that is
    the row's padding-bottom above. */
 
+/* Same two-column open as about.html's .about-hero, now that the stock shot is
+   gone: the title states what the product is on the left and the lead reads
+   beside it, rather than one centred strip that widens for every section below.
+   Same 1.05fr/1fr split and centred cells for the same reason — the heading
+   cell runs shorter than the lead, so a shared top edge left the lead hanging. */
 .tdt-intro .tdt-hero {
     display: grid;
     grid-template-columns: 1.05fr 1fr;
-    gap: 20px 60px;
+    gap: 40px 70px;
     align-items: center;
     /* the hero sits straight in the row, so it takes the same 20px gutter a
        col- would have given it */
@@ -72,24 +78,25 @@
 
 .tdt-intro .tdt-hero h1.section-title {
     padding-top: 0;
-    font-size: 46px;
+    font-size: 52px;
+    line-height: 1.06;
+    letter-spacing: -1px;
+    text-wrap: balance;
+}
+
+/* The subtitle is the statement's second line here, not a caption over a wide
+   section, so it drops the shared 720px measure and takes the cell's width. */
+.tdt-intro .tdt-hero .section-heading > .section-subtitle {
+    max-width: none;
+    font-size: 21px;
+    line-height: 32px;
 }
 
 .tdt-intro .tdt-lead {
+    margin: 0;
     font-size: 17px;
-    line-height: 28px;
-    padding-top: 14px;
+    line-height: 30px;
     text-wrap: pretty;
-}
-
-/* Framed like .tdt-shot and img.showcase-image, minus their fixed height: this
-   one is a 598x299 export and is meant to be seen whole, not cropped. */
-.tdt-intro .tdt-hero-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
 }
 
 /* The three capability paragraphs run side by side under the hero — the same
@@ -131,20 +138,29 @@
 }
 
 @media (max-width: 1023px) {
+    .tdt-intro .tdt-hero h1.section-title {
+        font-size: 44px;
+    }
+
     .tdt-intro .tdt-intro-body {
         grid-template-columns: 1fr 1fr;
     }
+
 }
 
 @media (max-width: 767px) {
     .tdt-intro .tdt-hero {
         grid-template-columns: 1fr;
+        gap: 26px;
     }
 
-    /* stacked, the shot leads — it says what the product is faster than the
-       lead paragraph does */
-    .tdt-intro .tdt-hero-image {
-        order: -1;
+    .tdt-intro .tdt-hero h1.section-title {
+        font-size: 36px;
+    }
+
+    .tdt-intro .tdt-hero .section-heading > .section-subtitle {
+        font-size: 19px;
+        line-height: 30px;
     }
 
     .tdt-intro .tdt-intro-body {
@@ -154,6 +170,7 @@
         padding-top: 34px;
     }
 }
+
 
 /* The three capability blocks, side by side.
    Grid instead of the global float grid so an uneven column can't snag the

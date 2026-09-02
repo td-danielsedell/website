@@ -68,7 +68,6 @@
     <!--Måste ligga blockerande i <head>: temat ska stå på <html> innan
         första bildrutan, annars visas mörkt tema en bildruta och byter sen.-->
     <script src="js/theme.js"></script>
-    <script src="js/palette-preview.js"></script>
 
     <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -189,7 +188,7 @@
                                     hamnar därmed utanför stickyNavbars "li a".-->
                                 <li class="nav-theme">
                                     <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
-                                            title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><svg class="svg-icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" /><rect x="11.1" y="0.6" width="1.8" height="3.8" rx="0.9" /><rect x="11.1" y="19.6" width="1.8" height="3.8" rx="0.9" /><rect x="0.6" y="11.1" width="3.8" height="1.8" rx="0.9" /><rect x="19.6" y="11.1" width="3.8" height="1.8" rx="0.9" /><rect x="11.1" y="0.6" width="1.8" height="3.8" rx="0.9" transform="rotate(45 12 12)" /><rect x="11.1" y="19.6" width="1.8" height="3.8" rx="0.9" transform="rotate(45 12 12)" /><rect x="0.6" y="11.1" width="3.8" height="1.8" rx="0.9" transform="rotate(45 12 12)" /><rect x="19.6" y="11.1" width="3.8" height="1.8" rx="0.9" transform="rotate(45 12 12)" /></svg><svg class="svg-icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M12 3A9 9 0 1 0 12 21A13 13 0 0 1 12 3Z" /></svg></button>
+                                            title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><svg class="svg-icon icon-sun" viewBox="0 -32 576 576" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M288-32c8.4 0 16.3 4.4 20.6 11.7L364.1 72.3 468.9 46c8.2-2 16.9 .4 22.8 6.3S500 67 498 75.1l-26.3 104.7 92.7 55.5c7.2 4.3 11.7 12.2 11.7 20.6s-4.4 16.3-11.7 20.6L471.7 332.1 498 436.8c2 8.2-.4 16.9-6.3 22.8S477 468 468.9 466l-104.7-26.3-55.5 92.7c-4.3 7.2-12.2 11.7-20.6 11.7s-16.3-4.4-20.6-11.7L211.9 439.7 107.2 466c-8.2 2-16.8-.4-22.8-6.3S76 445 78 436.8l26.2-104.7-92.6-55.5C4.4 272.2 0 264.4 0 256s4.4-16.3 11.7-20.6L104.3 179.9 78 75.1c-2-8.2 .3-16.8 6.3-22.8S99 44 107.2 46l104.7 26.2 55.5-92.6 1.8-2.6c4.5-5.7 11.4-9.1 18.8-9.1zm0 144a144 144 0 1 0 0 288 144 144 0 1 0 0-288zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192z" /></svg><svg class="svg-icon icon-moon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M0 256c0-141.4 114.6-256 256-256 19.4 0 38.4 2.2 56.7 6.3 9.9 2.2 17.3 10.5 18.5 20.5s-4 19.8-13.1 24.4c-60.6 30.2-102.1 92.7-102.1 164.8 0 101.6 82.4 184 184 184 5 0 9.9-.2 14.8-.6 10.1-.8 19.6 4.8 23.8 14.1s2 20.1-5.3 27.1C387.3 484.8 324.8 512 256 512 114.6 512 0 397.4 0 256zm371.2-19.2l-58-16.6c-5.5-1.6-9.2-6.6-9.2-12.2s3.8-10.7 9.2-12.2l58-16.6 16.6-58c1.6-5.5 6.6-9.2 12.2-9.2s10.7 3.8 12.2 9.2l16.6 58 58 16.6c5.5 1.6 9.2 6.6 9.2 12.2s-3.8 10.7-9.2 12.2l-58 16.6-16.6 58c-1.6 5.5-6.6 9.2-12.2 9.2s-10.7-3.8-12.2-9.2l-16.6-58z" /></svg></button>
                                 </li>
                             </ul>
                         </nav>
@@ -200,7 +199,7 @@
                         <div id="nav-trigger">
                             <nav id="nav-theme-mobile">
                                 <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
-                                        title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><svg class="svg-icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" /><rect x="11.1" y="0.6" width="1.8" height="3.8" rx="0.9" /><rect x="11.1" y="19.6" width="1.8" height="3.8" rx="0.9" /><rect x="0.6" y="11.1" width="3.8" height="1.8" rx="0.9" /><rect x="19.6" y="11.1" width="3.8" height="1.8" rx="0.9" /><rect x="11.1" y="0.6" width="1.8" height="3.8" rx="0.9" transform="rotate(45 12 12)" /><rect x="11.1" y="19.6" width="1.8" height="3.8" rx="0.9" transform="rotate(45 12 12)" /><rect x="0.6" y="11.1" width="3.8" height="1.8" rx="0.9" transform="rotate(45 12 12)" /><rect x="19.6" y="11.1" width="3.8" height="1.8" rx="0.9" transform="rotate(45 12 12)" /></svg><svg class="svg-icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M12 3A9 9 0 1 0 12 21A13 13 0 0 1 12 3Z" /></svg></button>
+                                        title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><svg class="svg-icon icon-sun" viewBox="0 -32 576 576" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M288-32c8.4 0 16.3 4.4 20.6 11.7L364.1 72.3 468.9 46c8.2-2 16.9 .4 22.8 6.3S500 67 498 75.1l-26.3 104.7 92.7 55.5c7.2 4.3 11.7 12.2 11.7 20.6s-4.4 16.3-11.7 20.6L471.7 332.1 498 436.8c2 8.2-.4 16.9-6.3 22.8S477 468 468.9 466l-104.7-26.3-55.5 92.7c-4.3 7.2-12.2 11.7-20.6 11.7s-16.3-4.4-20.6-11.7L211.9 439.7 107.2 466c-8.2 2-16.8-.4-22.8-6.3S76 445 78 436.8l26.2-104.7-92.6-55.5C4.4 272.2 0 264.4 0 256s4.4-16.3 11.7-20.6L104.3 179.9 78 75.1c-2-8.2 .3-16.8 6.3-22.8S99 44 107.2 46l104.7 26.2 55.5-92.6 1.8-2.6c4.5-5.7 11.4-9.1 18.8-9.1zm0 144a144 144 0 1 0 0 288 144 144 0 1 0 0-288zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192z" /></svg><svg class="svg-icon icon-moon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M0 256c0-141.4 114.6-256 256-256 19.4 0 38.4 2.2 56.7 6.3 9.9 2.2 17.3 10.5 18.5 20.5s-4 19.8-13.1 24.4c-60.6 30.2-102.1 92.7-102.1 164.8 0 101.6 82.4 184 184 184 5 0 9.9-.2 14.8-.6 10.1-.8 19.6 4.8 23.8 14.1s2 20.1-5.3 27.1C387.3 484.8 324.8 512 256 512 114.6 512 0 397.4 0 256zm371.2-19.2l-58-16.6c-5.5-1.6-9.2-6.6-9.2-12.2s3.8-10.7 9.2-12.2l58-16.6 16.6-58c1.6-5.5 6.6-9.2 12.2-9.2s10.7 3.8 12.2 9.2l16.6 58 58 16.6c5.5 1.6 9.2 6.6 9.2 12.2s-3.8 10.7-9.2 12.2l-58 16.6-16.6 58c-1.6 5.5-6.6 9.2-12.2 9.2s-10.7-3.8-12.2-9.2l-16.6-58z" /></svg></button>
                             </nav>
                             <nav id="nav-lang-mobile">
                                 <div class="nav-lang"><details>
@@ -237,20 +236,20 @@
 
                     <div class="tdt-hero">
                         <div class="tdt-hero-copy">
-                            <div class="section-heading">
+                            <div class="section-heading has-title-icon">
                                 <h1 class="section-title">TD Test</h1>
                                 <p class="section-subtitle">Kvalitetssäkra ert IBM Maximo</p>
+                                <!--Samma ikon som produktkortet i Produkter på startsidan, så kortet
+                                    och sidan hänger ihop. Står här tills sidorna har egen artwork.
+                                    Se .section-heading.has-title-icon i css/style.css.-->
+                                <i class="fa-duotone fa-solid fa-clipboard-list-check title-icon" aria-hidden="true"></i>
                             </div>
+                        </div>
+
+                        <div class="tdt-hero-body">
                             <p class="tdt-lead">
                                 TD Test automatiserar test av IBM Maximo och ersätter tidskrävande manuella kontroller. Ett arbetsflöde definieras en gång och kan sedan testas om och om igen – efter uppgraderingar, anpassningar eller inför driftsättning.
                             </p>
-                        </div>
-                        <!--Ingen .showcase-image här: den klassen låser höjden till
-                            280px och beskär med object-fit, och den här bilden är
-                            en 598x299-export som ska synas hel.-->
-                        <div class="tdt-hero-image">
-                            <img src="images/banner-images/td_test.webp" alt="TD Test"
-                                width="598" height="299" fetchpriority="high" />
                         </div>
                     </div>
 
@@ -276,13 +275,14 @@
                     </div>
 
                     <!--Rullningsmärket. Ligger utanför CTA-blocket och sist i raden:
-                        det hör till vyn, inte till texten. Ingen etikett – pilarna
-                        får bära betydelsen – så länken behöver ett aria-label.
+                        det hör till vyn, inte till texten. Etiketten står i länken, så
+                        aria-label börjar med samma ord – annars stämmer inte det
+                        upplästa namnet med det synliga.
                         data-scroll-to plockas upp av js/site.js, som rullar dit mjukt
                         med samma fart och easing som menyns egna ankare. Se
                         .scroll-cue i css/td-test.css.-->
                     <a href="#mojligheter" class="scroll-cue" data-scroll-to
-                        aria-label="Rulla vidare till Möjligheter"><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg></a>
+                        aria-label="Läs mer om Möjligheter"><span class="scroll-cue-label">Läs mer</span><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg></a>
 
                 </div>
             </section>
@@ -506,18 +506,28 @@
             <!--End of Comparison-->
 
             <!--Contact-->
-            <!--Enda avsnittet som fortfarande är centrerat: det är en uppmaning,
-                inte en textmassa, och rubriken bär knappen.-->
-            <section id="kontakt" class="scrollto text-center clearfix">
-                <div class="row clearfix">
+            <!--Samma avslutning som TD Asset Care och TD Linear: .showcase-cta,
+                alltså ett hårstreck, en dämpad rad och knappen. Det var ett eget
+                avsnitt med KONTAKT-etikett och 34px-rubrik, vilket lät högre än
+                slutraden på de andra två produktsidorna. id och .scrollto står
+                kvar – inget länkar hit i dag, men ankaret kan finnas sparat.-->
+            <section id="kontakt" class="scrollto clearfix">
+                <!--Samma omslag som TD Asset Care och TD Linear har runt sin
+                    .showcase-cta: .col-1.content-center > .col-2-3.row. Rakt i
+                    .row blev blocket 1245px brett mot deras 696, så hårstrecket
+                    var nästan dubbelt så långt. Bredden räknas fram av samma
+                    regler i stället för att sättas här, så de följer med om
+                    .row eller .col-2-3 ändras.-->
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
 
-                    <div class="section-heading">
-                        <h2 class="section-kicker">KONTAKT</h2>
-                        <p class="section-title">Vill ni veta mer om TD Test eller få en demonstration?</p>
-                        <a href="mailto:info@totaldigital.se?subject=Jag vill veta mer om TD Test"
-                            class="button">KONTAKTA OSS</a>
+                        <div class="col-1 text-center showcase-cta">
+                            <p>Vill ni veta mer om TD Test eller få en demonstration?</p>
+                            <a href="mailto:info@totaldigital.se?subject=Jag vill veta mer om TD Test"
+                                class="button">KONTAKTA OSS</a>
+                        </div>
+
                     </div>
-
                 </div>
             </section>
             <!--End of Contact-->

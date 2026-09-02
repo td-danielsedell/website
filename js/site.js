@@ -164,6 +164,42 @@ $(document).ready(function () {
 		   to sell. */
 	});
 
+	/* ...and the cue steps aside as soon as the reader moves. It exists to say
+	   "there is more below" to someone who has not started yet; to someone who
+	   is already scrolling it is a label on a door they walked through. Back at
+	   the top it is wanted again, so it fades in rather than staying spent.
+
+	   Two thresholds, not one. A single line at 40px is a line the page can sit
+	   on: a slow trackpad, or Chrome's own scroll anchoring nudging by a pixel,
+	   would cross it repeatedly and blink the mark. Hiding at 60 and returning
+	   at 16 leaves a band the page has to be carried across on purpose.
+
+	   The first call is synchronous rather than left to the scroll event: a page
+	   that opens already scrolled — a reload partway down, a back button — gets
+	   the class here, before paint, so the mark is absent instead of fading out
+	   in front of the reader. */
+	var $cues = $('.scroll-cue');
+	if ($cues.length) {
+		var spent = false;
+
+		var syncCues = function () {
+			var top = $(window).scrollTop();
+
+			if (!spent && top > 60) {
+				spent = true;
+			} else if (spent && top < 16) {
+				spent = false;
+			} else {
+				return;
+			}
+
+			$cues.toggleClass('is-spent', spent);
+		};
+
+		$(window).on('scroll.scrollCue resize.scrollCue', syncCues);
+		syncCues();
+	}
+
 	/* The solid header is a state; fading it in is a reveal, and only the reveal
 	   should animate.
 

@@ -1354,9 +1354,12 @@ img {
 }
 
 /* Inline icons, sized like the icon font they replaced: 1em square, painted
-   with whatever `color` the surrounding rules set. The paths come from Font
+   with whatever `color` the surrounding rules set. Most paths come from Font
    Awesome Free 6.7.2 (icons: CC BY 4.0, https://fontawesome.com/license/free),
-   inlined so the page no longer waits on a CDN stylesheet and two webfonts. */
+   inlined so the page no longer waits on a CDN stylesheet and two webfonts.
+   The two theme-toggle icons are Font Awesome Pro 7.3.1 instead (`solid sun`,
+   `solid moon-star`), harvested from the kit CDN and inlined the same way, so
+   they do not depend on the site kit's per-icon subset. */
 .svg-icon {
     width: 1em;
     height: 1em;
@@ -1629,6 +1632,59 @@ h1.section-title {
     margin-right: auto;
 }
 
+/* A product page's own icon beside its title: the same duotone glyph its card
+   in Produkter on the start page carries, so the card and the page read as one
+   thing. Stands in until there is artwork for these pages.
+
+   The icon spans both heading rows, so the title and its subtitle sit as one
+   block beside it rather than the subtitle wrapping under the glyph.
+
+   The box is a stated width, not the glyph's own: the three product icons have
+   different aspect ratios, and without it each page starts its title at a
+   different offset. */
+.section-heading.has-title-icon {
+    display: grid;
+    /* Both columns hug their content and the pair sits at the start, so the
+       icon follows the longer of title and subtitle instead of being pushed out
+       to the container's right edge — at the far edge of TD Test's hero cell it
+       read as the lead paragraph's icon, not the title's. */
+    grid-template-columns: auto auto;
+    justify-content: start;
+    align-items: center;
+    gap: 0 28px;
+}
+
+.section-heading.has-title-icon .title-icon {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    width: 94px;
+    text-align: center;
+    /* The kit swaps the <i> for an <svg> sized height: 1em, so the size has to
+       be set here, on the parent it inherits from, not on the <i> that stops
+       existing once the kit has run. line-height: 0 keeps the inline SVG from
+       dragging a text line's worth of leading in under it — the same trick
+       .product-image-wrapper.product-icon uses in css/feature-card.css. */
+    font-size: 84px;
+    line-height: 0;
+    color: var(--primary);
+    /* Duotone's back layer rides at 40% by default, which at this size reads as
+       a second solid shape rather than a ground. Same 0.3 as the cards. */
+    --fa-secondary-opacity: 0.3;
+}
+
+/* Phone: 84px and a 24px gap leave a 36px title barely 250px to wrap in. */
+@media (max-width: 767px) {
+
+    .section-heading.has-title-icon {
+        gap: 0 20px;
+    }
+
+    .section-heading.has-title-icon .title-icon {
+        width: 64px;
+        font-size: 56px;
+    }
+}
+
 /* Showcase Call to Action */
 
 .showcase-cta {
@@ -1747,11 +1803,12 @@ h1.section-title {
 
 /* ---------- Scroll cue ---------- */
 
-/* Two chevrons at the foot of a one-viewport hero, the lower one faded. The
-   repetition says there is more than one section down there. No label and no
-   border, so the anchor carries an aria-label and the nudge under the pointer
-   is the whole affordance: a static arrow reads as decoration, one that answers
-   the pointer reads as a control. Nothing moves at rest.
+/* A word and two chevrons at the foot of a one-viewport hero, the lower chevron
+   faded. The repetition says there is more than one section down there; the
+   label says what the gesture buys. No border, so the nudge under the pointer
+   is the rest of the affordance: a static arrow reads as decoration, one that
+   answers the pointer reads as a control. Nothing moves at rest — the bounce
+   below runs three times on arrival and then stops.
 
    The mark is shared; where it sits is the page's business — see the #home
    block below and .tdt-intro in css/td-test.css, which each reserve their own
@@ -1771,7 +1828,23 @@ h1.section-title {
     transform: translateX(-50%);
     color: var(--section-title);
     text-decoration: none;
-    transition: color .2s linear;
+    transition: color .2s linear, opacity .3s ease;
+}
+
+/* Once the reader has moved, the invitation has been taken and the mark is
+   clutter over whatever comes next. It fades back in at the top, where a reader
+   is looking at the hero again and the offer stands again. js/site.js carries
+   the class, on a band rather than a single scroll position so the mark cannot
+   blink at the threshold.
+
+   visibility, not just opacity: a link at opacity 0 still takes tab focus. Its
+   transition is a delay rather than a fade, so it flips after the fade out —
+   and on the way back in it is dropped, so focus returns with the first
+   frame. */
+.scroll-cue.is-spent {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility 0s linear .3s;
 }
 
 /* Below 768px a hero is content-tall and the reader is already scrolling, so
@@ -1787,12 +1860,53 @@ h1.section-title {
     color: var(--primary);
 }
 
+/* Small, letterspaced and uppercase: the same voice as .section-kicker, so it
+   reads as a caption on the mark rather than as a second line of hero copy. */
+.scroll-cue-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    /* the reset skips this element's defaults; without it the label inherits
+       the body's line-height and sits too far off the first chevron */
+    line-height: 1;
+}
+
 .scroll-cue svg {
     display: block;
     width: 26px;
     height: 26px;
     fill: currentColor;
     transition: transform .2s ease-out;
+    /* Three bounces once the hero has settled, then still again. An arrow that
+       pulses forever reads as an advert; three passes is enough to catch an eye
+       that is still on the headline. The delay clears the hero's own entrance.
+
+       While it runs it outranks the hover nudge below — animations beat
+       transitions in the cascade — so for the first ~6.6s the pointer gets the
+       colour change but not the travel. No fill-mode on purpose: `forwards`
+       would hold the final frame and outrank the hover nudge for good. */
+    animation: scroll-cue-bounce 1.8s ease-in-out 1.2s 3;
+}
+
+@keyframes scroll-cue-bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(7px);
+    }
+
+    60% {
+        transform: translateY(3px);
+    }
 }
 
 .scroll-cue svg + svg {
@@ -1819,6 +1933,10 @@ h1.section-title {
     .scroll-cue,
     .scroll-cue svg {
         transition: none;
+    }
+
+    .scroll-cue svg {
+        animation: none;
     }
 
     .scroll-cue:hover svg,

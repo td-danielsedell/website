@@ -196,6 +196,51 @@ img.showcase-image {
     .service-carousel .image-carousel-dots {
         display: none;
     }
+
+    /* The rules between the services line up across the two columns: every card
+       hands its four rows (photo, heading, service 1, service 2) back to the
+       track's grid, so a title that wraps to two lines in one card grows that
+       row in the card beside it too. Without this each card measures its own
+       rows and the dividers land at different heights.
+
+       Zeroing the row gap is part of it: a subgrid inherits the parent's gap on
+       every row it spans, so the 48px meant for the space between the two card
+       rows would open between the photo and the heading as well. It comes back
+       as a margin under the top two slides. */
+    @supports (grid-template-rows: subgrid) {
+        .service-track.image-carousel-track {
+            row-gap: 0;
+        }
+
+        .service-track > .image-carousel-slide {
+            display: grid;
+            grid-row: span 4;
+            grid-template-rows: subgrid;
+        }
+
+        .service-track > .image-carousel-slide:nth-child(-n + 2) {
+            margin-bottom: 48px;
+        }
+
+        /* Each level passes the rows down: the slide holds all four, the group
+           gives row 1 to the photo, the body row 2 to the heading, and the list
+           takes the last two — one service each. */
+        .service-group,
+        .service-group-body,
+        .service-list {
+            display: grid;
+            grid-template-rows: subgrid;
+        }
+
+        .service-group {
+            grid-row: 1 / -1;
+        }
+
+        .service-group-body,
+        .service-list {
+            grid-row: 2 / -1;
+        }
+    }
 }
 
 /*------------------------------------------------------------------------------------------*/
