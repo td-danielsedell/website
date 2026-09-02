@@ -1454,10 +1454,30 @@ h2 {
     height: var(--expertise-step);
 }
 
-.expertise-reel img {
+/* :is(img, svg) because the kit swaps each <i> for an <svg class="svg-inline--fa">.
+   width stays auto so the glyph keeps its own aspect ratio, same as the webp
+   and svg art this replaced. */
+.expertise-reel :is(img, svg) {
     height: var(--expertise-icon);
     width: auto;
     flex: 0 0 auto;
+}
+
+/* The custom kit upload draws its glyph inside a 640-unit viewBox but fills
+   only 76% of the height, where the stock Font Awesome glyphs fill all of
+   theirs. Given the same height as the others it reads about a quarter
+   smaller, so this one icon is scaled back up. One knob for both places it
+   appears; 1.3 is 1/0.76 rounded down. */
+:root {
+    --kit-icon-boost: 1.3;
+}
+
+/* Height, not transform: this is a flex row with the area name beside the
+   icon, so the box has to reserve the wider footprint or the glyph rides over
+   the label. The extra height is the upload's own empty padding — the
+   rotator clips it and the ink still lands inside the window. */
+.expertise-reel svg.fa-hand-holding-gear-industry-sack-dollar {
+    height: calc(var(--expertise-icon) * var(--kit-icon-boost));
 }
 
 /* On a phone the icon needs to be relatively larger to read at all: 1.5em is

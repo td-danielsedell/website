@@ -104,6 +104,11 @@
         ]
     }
     </script>
+
+    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Blocking on purpose: the hero
+         expertise reel is above the fold, and deferring pops the icons in
+         after first paint. -->
+    <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -245,16 +250,11 @@
                             <span class="expertise-label">Vi kan</span>
                             <span class="expertise-rotator">
                                 <span class="expertise-reel">
-                                    <span><img src="images/icons/assetmanagement_logo.svg" alt="" width="256"
-                                            height="256" />Tillgångsförvaltning</span>
-                                    <span><img src="images/icons/gis_logo.svg" alt="" width="256"
-                                            height="256" />GIS</span>
-                                    <span><img src="images/icons/remotesensing_logo.webp" alt="" width="256"
-                                            height="256" />Fjärranalys</span>
-                                    <span><img src="images/icons/ai_logo.webp" alt="" width="256"
-                                            height="256" />AI</span>
-                                    <span aria-hidden="true"><img src="images/icons/assetmanagement_logo.svg" alt=""
-                                            width="256" height="256" />Tillgångsförvaltning</span>
+                                    <span><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" aria-hidden="true"></i>Tillgångsförvaltning</span>
+                                    <span><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>GIS</span>
+                                    <span><i class="fa-solid fa-satellite" aria-hidden="true"></i>Fjärranalys</span>
+                                    <span><i class="fa-solid fa-microchip-ai" aria-hidden="true"></i>AI</span>
+                                    <span aria-hidden="true"><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>Tillgångsförvaltning</span>
                                 </span>
                             </span>
                         </p>
@@ -312,7 +312,7 @@
 
                         <!--Area-->
                         <div class="area-band-item">
-                            <img src="images/icons/assetmanagement_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            <i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>Tillgångsförvaltning</h3>
                             <p>Underhåll, driftplanering och livscykel — med anläggningsinformationen samlad i
                                 IBM Maximo.</p>
@@ -321,7 +321,7 @@
 
                         <!--Area-->
                         <div class="area-band-item">
-                            <img src="images/icons/gis_logo.svg" width="256" height="256" loading="lazy" alt="" />
+                            <i class="fa-solid fa-map-location-dot" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>GIS</h3>
                             <p>Geodata, kartlösningar och analys, inomhus som utomhus — med systemstöd i Esri
                                 ArcGIS.</p>
@@ -330,7 +330,7 @@
 
                         <!--Area-->
                         <div class="area-band-item">
-                            <img src="images/icons/remotesensing_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            <i class="fa-solid fa-satellite" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>Fjärranalys</h3>
                             <p>Satellit-, drönar- och sensordata för miljöövervakning och förändringsanalys.</p>
                         </div>
@@ -338,7 +338,7 @@
 
                         <!--Area-->
                         <div class="area-band-item">
-                            <img src="images/icons/ai_logo.webp" width="256" height="256" loading="lazy" alt="" />
+                            <i class="fa-solid fa-microchip-ai" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>AI</h3>
                             <p>Tillämpad AI för prediktivt underhåll och beslutsstöd.</p>
                         </div>
