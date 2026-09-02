@@ -1703,6 +1703,13 @@ h1.section-title {
         align-items: center;
         padding-top: 91px;
         padding-bottom: 40px;
+        /* #home is a column flex container, and the row's `margin: 0 auto` is a
+           cross-axis auto margin: it beats the default stretch, so the row was
+           shrink-to-fit instead of the 1245px every other row on the page gets.
+           The copy started 135px right of every section title below it. Stating
+           the width puts the row back on the same measure; the auto margins keep
+           centring it. */
+        width: 100%;
     }
 
     /* .col-61 carries its width as a float. Inside a flex row the float does
