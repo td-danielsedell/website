@@ -86,12 +86,24 @@
     white-space: nowrap;
 }
 
-.industry-slider .logo-track img {
+/* :is(img, svg, i) covers all three states this element passes through. The
+   icons are Font Awesome kit icons now, so the markup starts as an <i>, becomes
+   an <svg class="svg-inline--fa"> once the kit runs, and the img is what the row
+   used before. The <i> has to carry the box too: js/logo-slider.js measures
+   scrollWidth to decide how many copies of the track it needs, and an unsized
+   <i> measures as nothing — the marquee would clone itself twenty times over.
+   Two classes and an element also outspecifies the kit's own height: 1em. */
+.industry-slider .logo-track :is(img, svg, i) {
     width: 36px;
     height: 36px;
     margin: 0;
     filter: none;
     opacity: 1;
+    flex: 0 0 auto;
+    /* The webp icons this replaced were orange artwork; an inline svg takes its
+       fill from currentColor, which here is the span's muted grey. Set the
+       colour on the icon so the row keeps the look it had. */
+    color: var(--primary);
 }
 
 /* The strip stacks below 768px, and in a column flex container the flex-basis
