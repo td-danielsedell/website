@@ -102,6 +102,20 @@
     /* Duotone's back layer rides at 40 % by default, which at this size reads
        as a second solid shape rather than a ground. */
     --fa-secondary-opacity: 0.3;
+
+    /* .product-image-wrapper is overflow: hidden so a photo could not spill out
+       of its band. There is no band here: the box shrink-wraps the glyph
+       exactly, so the hover scale(1.08) below had its outer 8 % sliced off on
+       all four sides. */
+    overflow: visible;
+
+    /* Purely decorative, and the card's own title link is what makes the card
+       clickable (.card-link-stretch::after). A transformed element paints with
+       the positioned descendants, after that ::after in tree order — so the
+       moment the hover scale kicks in the glyph rose above the stretched link
+       and ate the click. Same reason .card-arrow and .product-icon-mark opt
+       out. */
+    pointer-events: none;
 }
 
 .product-image-wrapper.product-icon svg {
