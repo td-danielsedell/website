@@ -244,14 +244,22 @@
    Full size is one click away — the images carry data-zoomable, see
    css/image-zoom.css. */
 .tdt-tour {
-    /* leave the outside gutters for the arrows on wide screens.
-       float:none so the auto margins actually center it — the global
+    /* float:none so the auto margins actually center it — the global
        .col-1 floats, and a floated box ignores them. */
     float: none;
     max-width: 900px;
     /* the top margin separates the tour from the trio above it, now that
        there is no section heading between the two */
     margin: 60px auto 0;
+}
+
+/* TD Linear's screenshots are wide dashboards (1832x859), not TD Test's tall
+   4:3 app views. At 900px a full dashboard reads as mush, so that page's tour
+   takes the whole row instead. The width and the ratio are the only two things
+   the two large product pages do not share — everything else on this sheet is
+   common to both. */
+.tdt-tour--wide {
+    max-width: 100%;
 }
 
 .tdt-shot {
@@ -272,6 +280,63 @@
     /* Same framing as .service-card and img.showcase-image; kept in step with
        them rather than wearing .feature-card's hover shadow at rest. */
     box-shadow: var(--card-shadow);
+}
+
+.tdt-shot--wide {
+    /* Every TD Linear screenshot is exported at exactly 1832x859; keep the
+       exports uniform or this ratio starts to lie, same as .tdt-shot above.
+       object-fit is the safety net: an image with another ratio scales into the
+       frame instead of being stretched, so the caption and dots stay put. */
+    aspect-ratio: 1832 / 859;
+    object-fit: contain;
+}
+
+/* Arrows on the product tours.
+   css/image-carousel.css parks them in the gutter outside the image (-56px from
+   1200px up), which worked while the tour was capped at 900px. TD Linear's tour
+   runs the full row, so there is no gutter left and they landed outside the
+   content column. Both large product pages therefore keep them just inside the
+   image edge instead.
+
+   Leaving them outside is not an option once the tour is full width: between
+   1200px and about 1330px the -56px offset puts them past the viewport edge and
+   they clip away entirely.
+
+   They also need their own colour there. Over a screenshot the default black
+   disc disappears into dark UI, and css/light.css turns it white at 85%, which
+   vanishes into a light one. Orange with a white chevron reads on both. The
+   white ring is what carries it over TD Test's orange sidebar, which the prev
+   arrow now sits on top of — orange on orange otherwise. The html.theme-light
+   copy of each rule is what beats light.css without !important; index.html's
+   carousels are untouched, they still sit on section background where the
+   default treatment is right. */
+.tdt-tour .image-carousel-arrow,
+html.theme-light .tdt-tour .image-carousel-arrow {
+    left: auto;
+    right: auto;
+    background: var(--primary, #ff5722);
+    color: #fff;
+    box-shadow: 0 0 0 2px #fff, 0 2px 10px rgba(0, 0, 0, 0.45);
+    opacity: 0.95;
+}
+
+.tdt-tour .image-carousel-arrow:hover,
+.tdt-tour .image-carousel-arrow:focus-visible,
+html.theme-light .tdt-tour .image-carousel-arrow:hover,
+html.theme-light .tdt-tour .image-carousel-arrow:focus-visible {
+    background: var(--primary, #ff5722);
+    color: #fff;
+    opacity: 1;
+}
+
+.tdt-tour .image-carousel-arrow--prev,
+html.theme-light .tdt-tour .image-carousel-arrow--prev {
+    left: 14px;
+}
+
+.tdt-tour .image-carousel-arrow--next,
+html.theme-light .tdt-tour .image-carousel-arrow--next {
+    right: 14px;
 }
 
 /* Fördelar rides the Affärsområden band (css/area-band.css): no cards, hairline

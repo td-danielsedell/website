@@ -86,6 +86,15 @@
     <!-- Large footer -->
     <link href="css/footer-large.css" rel="stylesheet" type="text/css">
 
+    <!--Produktsidans layout och komponenter. Exakt samma ark som td_test.html
+        använder – de två stora produktsidorna delar layout, så en ändring i
+        css/td-test.css slår igenom på båda.-->
+    <link href="css/area-band.css" rel="stylesheet" type="text/css">
+    <link href="css/td-test.css" rel="stylesheet" type="text/css">
+    <!-- Click-to-enlarge images (opt in with data-zoomable) -->
+    <link href="css/image-zoom.css" rel="stylesheet" type="text/css">
+    <link href="css/image-carousel.css" rel="stylesheet" type="text/css">
+
     <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Loaded async; icons swap in after paint. -->
     <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous" defer></script>
 </head>
@@ -218,55 +227,182 @@
 
         <!--Main Content Area-->
         <main id="content">
-
             <div class="banner-spacer"></div>
             <div class="banner-spacer"></div>
 
-            <!--Introduction-->
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
+            <!--Introduction / Hero. Samma upplägg som td_test.html: rubrik och
+                ingress bredvid varandra, detaljstyckena som kolumner under, och
+                avslutningsraden med knappen centrerad längst ned.-->
+            <section class="introduction scrollto tdt-intro" tabindex="-1">
+                <div class="row clearfix">
 
-                        <div class="col-1">
-                            <!-- <div class="col-38"> -->
+                    <div class="tdt-hero">
+                        <div class="tdt-hero-copy">
                             <div class="section-heading has-title-icon">
-                                <!-- <h3>SHOWCASES</h3> -->
                                 <h1 class="section-title">TD Linear</h1>
                                 <p class="section-subtitle">Förstå era linjära tillgångar</p>
                                 <!--Samma ikon som produktkortet i Produkter på startsidan, så kortet
-                                    och sidan hänger ihop. Står här tills sidorna har egen artwork.
-                                    Se .section-heading.has-title-icon i css/style.css.-->
+                                    och sidan hänger ihop. Se .section-heading.has-title-icon i css/style.css.-->
                                 <i class="fa-duotone fa-solid fa-chart-line title-icon" aria-hidden="true"></i>
                             </div>
                         </div>
 
-                        <!-- <div class="col-61"> -->
-                        <div class="col-1">
-                            <p>
-                                TD Linear visualiserar och analyserar data längs linjära tillgångar som järnväg, väg, kraftledningar samt vatten- och avloppsnät. Genom att samla <strong>Enterprise Asset Management- (EAM), mät- och kartdata</strong> i en gemensam vy blir det enklare att följa förändringar över tid, upptäcka avvikelser och förstå samband längs hela anläggningen.
-                            </p><p>
-                                Data från IBM Maximo kan visas tillsammans med mätdata som staplade och länkade interaktiva diagram längs den linjära anläggningen. Det ger snabbt svar på den viktigaste frågan: var har avvikelser inträffat och vad kan de kopplas till?
-                            </p><p>
-                                Genom att analysera tidsserier kan TD Linear <strong>synliggöra mönster och onormala förändringar </strong> som annars är svåra att upptäcka. Samtidigt kan punktvisa objekt, som komponenter och arbetsordrar, sättas i relation till mätdata och andra händelser längs sträckan.
-                            </p><p>
-                                Resultatet är <strong>en tydlig bild av anläggningens utveckling</strong> och ett bättre underlag för analys, underhåll och långsiktiga beslut.
+                        <div class="tdt-hero-body">
+                            <p class="tdt-lead">
+                                TD Linear visualiserar och analyserar data längs linjära tillgångar som järnväg, väg, kraftledningar samt vatten- och avloppsnät. Mätdata, tillgångar och kartdata kopplas till samma längdmätning och kan därför analyseras tillsammans, position för position.
                             </p>
                         </div>
-
-                        <!--Call to Action-->
-                        <div class="col-1 text-center showcase-cta">
-                            <p>Vill ni veta mer om TD Linear eller se hur det fungerar med er data?</p>
-                            <a href="mailto:info@totaldigital.se?subject=TD%20Linear" class="button">KONTAKTA OSS</a>
-                        </div>
-                        <!--End of Call to Action-->
-
                     </div>
-                </div>
 
+                    <div class="tdt-intro-body">
+                        <p>
+                            Ni får snabbt svar på den viktigaste frågan: <strong>var har anläggningen förändrats, och vad kan förändringen kopplas till?</strong> Genom att samla EAM-, mät- och kartdata i en gemensam vy syns exakt var ett mätvärde avviker – och vilka tillgångar, arbetsordrar och tidigare åtgärder som finns på samma plats.
+                        </p>
+                        <p>
+                            Data från exempelvis IBM Maximo visas tillsammans med tekniska mätvärden i staplade och länkade interaktiva diagram. Flera dataset och mättillfällen kan jämföras för att visa förändringar över tid, och kravgränser, varningsnivåer och avvikande segment kan markeras direkt i analysen.
+                        </p>
+                        <p>
+                            Med AI-stöd kan stora datamängder analyseras snabbare. Resultatet är fortsatt spårbart till den bakomliggande positionen och datan, så att varje slutsats kan granskas och verifieras.
+                        </p>
+                    </div>
+
+                    <div class="tdt-intro-cta">
+                        <p>
+                            Vill ni se hur det ser ut i praktiken? Hör av er för en demonstration – eller läs
+                            vidare för detaljer.
+                        </p>
+                        <a href="mailto:info@totaldigital.se?subject=Jag%20vill%20veta%20mer%20om%20TD%20Linear" class="button">KONTAKTA OSS</a>
+                    </div>
+
+                    <a href="#mojligheter" class="scroll-cue" data-scroll-to
+                        aria-label="Läs mer om Möjligheter"><span class="scroll-cue-label">Läs mer</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
+
+                </div>
             </section>
             <!--End of Introduction-->
 
-        </main>
+            <!--What can TD Linear do-->
+            <section id="mojligheter" class="primary-color scrollto clearfix" tabindex="-1">
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">MÖJLIGHETER</h2>
+                        <p class="section-title">Vad kan TD Linear?</p>
+                        <p class="section-subtitle">"En vy för hela sträckan." <br>Allt kopplas till samma
+                            längdmätning – mätvärden, tillgångar och åtgärder analyseras därför tillsammans.</p>
+                    </div>
+
+                    <!--De tre blocken. Skärmbilderna ligger som en tur under dem,
+                        precis som på td_test.html.-->
+                    <div class="tdt-trio">
+                        <div>
+                            <h3 class="card-title">Samla data som hör ihop</h3>
+                            <p>TD Linear kan visa:</p>
+                            <ul class="tdt-list">
+                                <li>Mätdata från mätvagnar, sensorer och inspektioner</li>
+                                <li>Tillgångar och arbetsordrar från EAM-system som IBM Maximo</li>
+                                <li>Kart- och GIS-data längs anläggningen</li>
+                                <li>Historiska mätserier och tidigare åtgärder</li>
+                                <li>Egna dataset och nyckeltal</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Analysera längs sträckan</h3>
+                            <p>I analysen kan ni:</p>
+                            <ul class="tdt-list">
+                                <li>Se flera mätvärden i staplade och länkade diagram</li>
+                                <li>Välja en position och få profil, objekt och karta att följa med</li>
+                                <li>Filtrera på sträcka, mätvärde, år, datum, riktning och sida</li>
+                                <li>Jämföra dataset och mättillfällen över tid</li>
+                                <li>Markera kravgränser, varningsnivåer och avvikande segment</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Hitta det som avviker</h3>
+                            <p>Med AI-stöd får ni:</p>
+                            <ul class="tdt-list">
+                                <li>En sammanfattning av ett valt område</li>
+                                <li>Onormala förändringar lyfta fram</li>
+                                <li>Möjliga mönster och samband mellan mätdata, tillgångar och underhållshistorik</li>
+                                <li>Spårbarhet till position och underliggande data</li>
+                                <li>Underlag för att prioritera underhåll</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--Bildspelet. Samma .image-carousel som td_test.html – samma
+                        .tdt-tour och .tdt-shot ur css/td-test.css, och samma
+                        css/image-carousel.css + js/image-carousel.js bygger pilarna
+                        och punkterna.-->
+                    <div class="col-1 tdt-tour tdt-tour--wide">
+                        <div class="image-carousel" data-image-carousel="">
+                            <div class="image-carousel-track" role="group" aria-label="Bildspel" tabindex="0">
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot tdt-shot--wide" src="images/product-images/td-linear/funktioner.webp" width="1832" height="859" loading="lazy" alt="Sex illustrationer: mätdata och objekt på samma sträcka, datalager som läggs ovanpå varandra, en avvikelse som sticker ut mot kravgränsen, underhållsåtgärder längs sträckan, AI-stöd som sorterar fynd, och kravgränser med planerat underhåll." data-zoomable>
+                                    <figcaption><strong>Vad TD Linear gör</strong> – samlar data som hör ihop, analyserar längs sträckan och lyfter det som avviker.</figcaption>
+                                </figure>
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot tdt-shot--wide" src="images/product-images/td-linear/analys.webp" width="1832" height="859" loading="lazy" alt="Analys av ett urval i TD Linear. Varje kravfynd listas med kravnivå, exakt mätpunkt och avvikelse, och panelen till höger visar underlaget bakom bedömningen: segment, kravnivå, avvikelse från nominellt värde och vilken regel som träffat." data-zoomable>
+                                    <figcaption><strong>Spårbar bedömning av varje fynd</strong> – kravfynden rangordnas automatiskt och varje bedömning går att öppna och granska: mätpunkt, avvikelse och regelträff redovisas steg för steg.</figcaption>
+                                </figure>
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot tdt-shot--wide" src="images/product-images/td-linear/punktjamforelse.webp" width="1832" height="859" loading="lazy" alt="Punktjämförelse i TD Linear. Tre mättillfällen jämförs i samma position tillsammans med differenskurvor, så att förändringen mellan åren syns direkt." data-zoomable>
+                                    <figcaption><strong>Jämför mättillfällen i samma punkt</strong> – flera år läggs över varandra med differenskurva, så att en förändring syns innan den blir ett kravfynd.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Product tour-->
+
+            <!--Features-->
+            <section id="funktioner" class="scrollto clearfix" tabindex="-1">
+                <div class="row clearfix">
+                    <div class="section-heading">
+                        <h2 class="section-kicker">FÖRDELAR</h2>
+                        <p class="section-title">Varför TD Linear?</p>
+                    </div>
+                    <div class="col-1 area-band">
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M256 56 456 160 256 264 56 160Z"/><path d="M56 264 256 368 456 264"/><path d="M56 360 256 464 456 360"/></svg></div>
+                            <h3>Samlad vy</h3>
+                            <p>EAM-, mät- och kartdata visas i samma vy. Ingen växling mellan system och rapporter för att förstå vad som hänt längs en sträcka.</p>
+                        </div>
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M72 152H440"/><path d="M72 360H440"/><path d="M256 96V416"/><circle cx="256" cy="152" r="30" style="fill:currentColor;stroke:none"/><circle cx="256" cy="360" r="30" style="fill:currentColor;stroke:none"/></svg></div>
+                            <h3>Synkroniserad analys</h3>
+                            <p>Profil, objekt och karta följer samma längdposition. En vald punkt visar mätvärden, tillgångar och händelser på exakt samma ställe.</p>
+                        </div>
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M88 136H424"/><path d="M88 256H296"/><path d="M88 376H368"/></svg></div>
+                            <h3>Enklare jämförelser</h3>
+                            <p>Jämför dataset, mättillfällen och sträckor över tid. Förändringar syns direkt, tillsammans med kravgränser och avvikande segment.</p>
+                        </div>
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M56 344H160L216 176 288 408 344 296H456"/><path d="M400 40 418 90 468 108 418 126 400 176 382 126 332 108 382 90Z" style="fill:currentColor;stroke:none"/></svg></div>
+                            <h3>AI-stöd med spårbarhet</h3>
+                            <p>Avvikelser och mönster hittas snabbare i stora datamängder – och varje slutsats är spårbar till position och underliggande data.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--End of Features-->
+
+            <!--Contact-->
+            <section id="kontakt" class="scrollto clearfix" tabindex="-1">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+                        <div class="col-1 text-center showcase-cta">
+                            <p>Vill ni veta mer om TD Linear eller se hur det fungerar med er data?</p>
+                            <a href="mailto:info@totaldigital.se?subject=Jag%20vill%20veta%20mer%20om%20TD%20Linear" class="button">KONTAKTA OSS</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--End of Contact-->
+</main>
         <!--End Main Content Area-->
 
 
@@ -343,6 +479,11 @@
     <script src="js/images-loaded.min.js"></script>
     <script src="js/lightbox.min.js"></script>
     <script src="js/site.js"></script>
+
+    <script src="js/image-zoom.js"></script>
+
+    <!--Bygger pilar och punkter i .image-carousel-->
+    <script src="js/image-carousel.js"></script>
 
 
 </body>
