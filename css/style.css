@@ -1725,16 +1725,19 @@ h1.section-title {
     text-align: left;
 }
 
-/* A 2:3 half-figure photo cropped to a circle. The window sits near the top of
-   the frame rather than centred: a 1:1 cover crop of a 2:3 portrait already
-   holds the whole head, so centring it would show chest instead of face. */
+/* The .webp files are already cut square and centred on the head — cwebp does
+   the crop, not this rule, because a 1:1 cover crop of the 2:3 master can only
+   ever show the head as small as the original framing left it. So object-fit
+   has nothing to trim here; it stays as a guard in case a future portrait is
+   dropped in at the wrong aspect. Re-cut from the PNG masters alongside:
+   cwebp -q 85 -crop <x> <y> <s> <s> -resize 416 416 -m 6 PT.png -o PT.webp */
 .showcase-cta .cta-face {
     display: block;
     flex: 0 0 104px;
     width: 104px;
     height: 104px;
     object-fit: cover;
-    object-position: 50% 4%;
+    object-position: 50% 50%;
     border-radius: 50%;
 }
 
