@@ -1709,20 +1709,24 @@ h1.section-title {
     font-size: 16px;
 }
 
-/* The personal sign-off in the CTA: portrait to the left, the question over the
-   full width of the text column, and the button beside the name under it.
-   .showcase-cta keeps .text-center for its own centred question, so the
-   signature sets the text back to the left.
+/* The personal sign-off in the CTA: portrait on top, then the question, the
+   name and roll, and the way in. Centred at every width — it inherits that
+   from .showcase-cta's own .text-center, so nothing here sets text-align.
+
+   align-items rather than justify-content does the centring: the column runs
+   down the main axis, so the horizontal placement of the portrait and the text
+   is a cross-axis question. It also means the text block takes its fit-content
+   width, which is what lets the question wrap at the column edge on a phone
+   and sit on one line on a desktop without a max-width anywhere.
 
    Everything below is scoped under .showcase-cta: `.showcase-cta p` is (0,1,1)
    and a bare .cta-role would be (0,1,0), so the shared 16px would win and the
    role would never take its own size. */
 .showcase-cta .cta-signature {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 24px;
-    text-align: left;
+    gap: 16px;
 }
 
 /* A 2:3 half-figure photo cropped to a circle. The window sits near the top of
@@ -1738,11 +1742,8 @@ h1.section-title {
     border-radius: 50%;
 }
 
-/* The CTA sits in a .col-2-3, so there are only ~696px to lay out in. That is
-   why the button goes beside the name and not to the right of the whole text
-   block — there the question breaks and its short last line reads as a hole. */
 .showcase-cta .cta-signature-body {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     min-width: 0;
 }
 
@@ -1750,14 +1751,17 @@ h1.section-title {
     margin: 0 0 10px;
 }
 
+/* Name and roll, then the button under them. A flex column rather than plain
+   blocks so the 18px stands on its own instead of fighting .button's margin. */
 .showcase-cta .cta-signature-foot {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 18px;
 }
 
 /* .button carries 35px of vertical margin for its usual place under a line of
-   text. Here it is a flex child on the name's own row and carries none. */
+   text. Here the column's own gap sets the spacing, so it carries none. */
 .showcase-cta .cta-signature-foot .button {
     flex: 0 0 auto;
     margin: 0;
@@ -1781,22 +1785,6 @@ h1.section-title {
     margin: 4px 0 0;
     font-size: 14px;
     line-height: 20px;
-}
-
-/* The signature stacks and centres on the same breakpoint as the rest of the
-   page. The row would still fit horizontally at 700px, but it lines up with
-   the column above it if both change at once. */
-@media (max-width: 767px) {
-    .showcase-cta .cta-signature {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-    }
-
-    .showcase-cta .cta-signature-foot {
-        flex-direction: column;
-        gap: 18px;
-    }
 }
 
 /* The small uppercase label above a section title. It is the section's real
