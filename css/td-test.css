@@ -302,40 +302,17 @@
    1200px and about 1330px the -56px offset puts them past the viewport edge and
    they clip away entirely.
 
-   They also need their own colour there. Over a screenshot the default black
-   disc disappears into dark UI, and css/light.css turns it white at 85%, which
-   vanishes into a light one. Orange with a white chevron reads on both. The
-   white ring is what carries it over TD Test's orange sidebar, which the prev
-   arrow now sits on top of — orange on orange otherwise. The html.theme-light
-   copy of each rule is what beats light.css without !important; index.html's
-   carousels are untouched, they still sit on section background where the
-   default treatment is right. */
-.tdt-tour .image-carousel-arrow,
-html.theme-light .tdt-tour .image-carousel-arrow {
-    left: auto;
-    right: auto;
-    background: var(--primary, #ff5722);
-    color: #fff;
-    box-shadow: 0 0 0 2px #fff, 0 2px 10px rgba(0, 0, 0, 0.45);
-    opacity: 0.95;
-}
-
-.tdt-tour .image-carousel-arrow:hover,
-.tdt-tour .image-carousel-arrow:focus-visible,
-html.theme-light .tdt-tour .image-carousel-arrow:hover,
-html.theme-light .tdt-tour .image-carousel-arrow:focus-visible {
-    background: var(--primary, #ff5722);
-    color: #fff;
-    opacity: 1;
-}
-
-.tdt-tour .image-carousel-arrow--prev,
-html.theme-light .tdt-tour .image-carousel-arrow--prev {
+   Position is the only thing that changes. The disc keeps the chrome every
+   other carousel on the site wears — black at rest, orange on hover, and the
+   light-mode flip css/light.css gives it — so the arrows read the same on the
+   start page and on a product page. That does cost some contrast where an arrow
+   lands on artwork of its own colour, which is the trade this is making
+   deliberately. */
+.tdt-tour .image-carousel-arrow--prev {
     left: 14px;
 }
 
-.tdt-tour .image-carousel-arrow--next,
-html.theme-light .tdt-tour .image-carousel-arrow--next {
+.tdt-tour .image-carousel-arrow--next {
     right: 14px;
 }
 
