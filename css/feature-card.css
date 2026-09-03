@@ -530,44 +530,12 @@
     bottom: 30px;
 }
 
-/* Desktop drops the swipe and lays the products out on a grid. The carousel's
-   centring maths only ever mattered where the cards do not all fit, and three
-   of them do from 768px up. The rules above still run below that. */
-@media (min-width: 768px) {
+/* No desktop grid. A 3-then-2 column grid was tried above 768px and it is what
+   put a lone third card on its own row from 768 to 1023px — the orphan the
+   carousel exists to avoid. The cards keep their 350px at every width and
+   however many fit is a view; where all three fit there is nothing to scroll
+   and syncAffordances drops the arrows, dots and tab stop on its own. */
 
-    .product-track.image-carousel-track {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 30px;
-        overflow: visible;
-        padding: 8px 20px 24px;
-    }
-
-    /* .clearfix's ::after counts as a grid item and opens an empty fourth cell.
-       Nothing to clear: the track is a grid here and a flex row below. */
-    .product-track.image-carousel-track::after {
-        display: none;
-    }
-
-    /* The track sizes the cells now, so drop the fixed slide width the scroller
-       needed. display:flex stays — it is what stretches the card to the row. */
-    .product-track > .image-carousel-slide {
-        width: auto;
-    }
-
-    .product-carousel .image-carousel-arrow,
-    .product-carousel .image-carousel-dots {
-        display: none;
-    }
-
-}
-
-/* Three 26px titles need about 1024px. Below that, two. */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .product-track.image-carousel-track {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
 /* Showcases. Four cards at ~585px each is a 2,600px stack on a phone, so below
    the tablet breakpoint they ride the same sitewide carousel the products use.
    The slides are the existing .row wrappers, which keeps the desktop stack

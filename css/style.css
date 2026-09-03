@@ -1436,8 +1436,16 @@ h2 {
 
    Sized in vw rather than px so the label and the longest area name stay on one
    line at every phone width. The widest combinations are "Vi kan" + icon +
-   "Tillgångsförvaltning" (~16.6× the font size) and, on /en/, "We know" + icon
-   + "Asset Management" (~17.7×). */
+   "Tillgångsförvaltning" (~14.2× the font size) and, on /en/, "We know" + icon
+   + "Asset Management" (~15.4×).
+
+   The size is deliberately flat from 773px up, where 4.4vw meets the 34px
+   ceiling — see the stacking rule below for what happens when the column is
+   too narrow to hold that size on one line. Sizing the line off the column
+   instead was tried and reverted: it holds one line at every width, but the
+   type then steps down at 768px where the column drops to 61.8% and climbs
+   back only at 1245px, and the h1 beside it is a flat 62px through that whole
+   band, so the line alone visibly collapsed. */
 .expertise-line {
     /* The reset zeroes margin on h1-h6 but not on p. */
     margin: 0;
@@ -1456,6 +1464,30 @@ h2 {
     font-weight: 800;
     line-height: 1.25;
     white-space: nowrap;
+}
+
+/* Label above the reel between 768px and 1023px, instead of beside it.
+
+   The hero copy is full width up to 767px and the 61.8% column from 768px, so
+   the box loses a third of its width at that breakpoint while the type is
+   already pinned at its 34px ceiling. One line needs 15.4× the font size in
+   English — 522px — and the column only offers 435px at 768px, so the name was
+   clipped by the rotator's overflow:hidden: "Tillgångsförvaltning" from 768px
+   to 849px and "Asset Management" from 768px to 919px, English reaching
+   further because "We know" is half again as wide as "Vi kan".
+
+   Stacking is what fits without touching the type size. The reel on its own
+   needs 10.7× the font size, 364px, which the 435px column holds with room to
+   spare, and the label carries no width requirement once it has its own line.
+   1023px rather than the 919px where English stops clipping: it is a
+   breakpoint the sheet already uses, and stacking a little longer than
+   necessary is cheaper than leaving 25px of slack for a copy change to eat.
+   From 1024px the column is wide enough and the line goes back to one row. */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .expertise-line {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 /* --expertise-step is the height of one reel item, sized off the icon since the
