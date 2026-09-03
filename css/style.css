@@ -1709,6 +1709,96 @@ h1.section-title {
     font-size: 16px;
 }
 
+/* The personal sign-off in the CTA: portrait to the left, the question over the
+   full width of the text column, and the button beside the name under it.
+   .showcase-cta keeps .text-center for its own centred question, so the
+   signature sets the text back to the left.
+
+   Everything below is scoped under .showcase-cta: `.showcase-cta p` is (0,1,1)
+   and a bare .cta-role would be (0,1,0), so the shared 16px would win and the
+   role would never take its own size. */
+.showcase-cta .cta-signature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    text-align: left;
+}
+
+/* A 2:3 half-figure photo cropped to a circle. The window sits near the top of
+   the frame rather than centred: a 1:1 cover crop of a 2:3 portrait already
+   holds the whole head, so centring it would show chest instead of face. */
+.showcase-cta .cta-face {
+    display: block;
+    flex: 0 0 104px;
+    width: 104px;
+    height: 104px;
+    object-fit: cover;
+    object-position: 50% 4%;
+    border-radius: 50%;
+}
+
+/* The CTA sits in a .col-2-3, so there are only ~696px to lay out in. That is
+   why the button goes beside the name and not to the right of the whole text
+   block — there the question breaks and its short last line reads as a hole. */
+.showcase-cta .cta-signature-body {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.showcase-cta .cta-signature-body > p:first-child {
+    margin: 0 0 10px;
+}
+
+.showcase-cta .cta-signature-foot {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* .button carries 35px of vertical margin for its usual place under a line of
+   text. Here it is a flex child on the name's own row and carries none. */
+.showcase-cta .cta-signature-foot .button {
+    flex: 0 0 auto;
+    margin: 0;
+}
+
+.showcase-cta .cta-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.showcase-cta .cta-role {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+}
+
+.showcase-cta .cta-mail {
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* The signature stacks and centres on the same breakpoint as the rest of the
+   page. The row would still fit horizontally at 700px, but it lines up with
+   the column above it if both change at once. */
+@media (max-width: 767px) {
+    .showcase-cta .cta-signature {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .showcase-cta .cta-signature-foot {
+        flex-direction: column;
+        gap: 18px;
+    }
+}
+
 /* The small uppercase label above a section title. It is the section's real
    heading, so it is an h2 here; the h3 selector stays for the pages that have
    not been converted yet. */

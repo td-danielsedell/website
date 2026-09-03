@@ -707,6 +707,16 @@ body {
     color: var(--footer-text);
 }
 
+/* Name and role step up out of the muted question colour: the same two-step
+   ink the person cards use. Scoped to beat `.showcase-cta p` above. */
+.showcase-cta .cta-name {
+    color: var(--section-heading);
+}
+
+.showcase-cta .cta-role {
+    color: var(--muted-text);
+}
+
 /* Testimonial */
 
 .testimonial q {
