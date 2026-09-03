@@ -291,31 +291,6 @@
     object-fit: contain;
 }
 
-/* Arrows on the product tours.
-   css/image-carousel.css parks them in the gutter outside the image (-56px from
-   1200px up), which worked while the tour was capped at 900px. TD Linear's tour
-   runs the full row, so there is no gutter left and they landed outside the
-   content column. Both large product pages therefore keep them just inside the
-   image edge instead.
-
-   Leaving them outside is not an option once the tour is full width: between
-   1200px and about 1330px the -56px offset puts them past the viewport edge and
-   they clip away entirely.
-
-   Position is the only thing that changes. The disc keeps the chrome every
-   other carousel on the site wears — black at rest, orange on hover, and the
-   light-mode flip css/light.css gives it — so the arrows read the same on the
-   start page and on a product page. That does cost some contrast where an arrow
-   lands on artwork of its own colour, which is the trade this is making
-   deliberately. */
-.tdt-tour .image-carousel-arrow--prev {
-    left: 14px;
-}
-
-.tdt-tour .image-carousel-arrow--next {
-    right: 14px;
-}
-
 /* Fördelar rides the Affärsområden band (css/area-band.css): no cards, hairline
    rules between the columns, icon over the heading, 01–04 counter. Was two rows
    of floated .col-2 halves, which gave four short paragraphs the width of the

@@ -153,10 +153,15 @@ img.showcase-image {
         padding: 0;
     }
 
-    /* .service-card is a fixed 280px tall, so the arrows can sit centred on
-       the track without landing in the middle of a paragraph. */
+    /* The dot row carries the arrows, which is now the base treatment in
+       css/image-carousel.css; nothing to set here beyond the gap above it.
+       This block used to centre them on the track, on the grounds that
+       .service-card was a fixed 280px and nothing could be covered. The card has
+       since grown a photo, a heading and two described services: it measures
+       613px on a 390px screen, and the arrows sat at 276px, square on the body
+       copy of one card and over the neighbour peeking in beside it. */
     .service-carousel .image-carousel-dots {
-        margin-top: 12px;
+        margin-top: 8px;
     }
 
     /* The rules between the services line up across the cards, the same way

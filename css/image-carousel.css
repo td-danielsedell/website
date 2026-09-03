@@ -61,22 +61,40 @@
     opacity: 0.85;
 }
 
-/* Arrows sit outside the image on wide screens and overlap it on narrow ones,
-   where there is no gutter to spare. */
+/* Arrows flank the dots on the row under the track, and this is the only place
+   that is decided — every carousel on the site takes it from here, so there is
+   nothing per-page to keep in step and no variant to go looking for.
+
+   They used to sit on the slide, centred at top:45%. Two things were wrong with
+   that. On the text-card tracks the arrow landed in the middle of a paragraph,
+   and on the neighbouring card peeking in beside it. On the product tours it
+   sat over the screenshot, which on TD Test and TD Linear is a light, text-dense
+   application view where a disc and a chevron are simply in the way. Centring
+   was also never quite honest: this box holds the caption and the dot row as
+   well as the image, so a percentage of it misses the image's middle by more
+   the longer the caption runs.
+
+   Below the track there is no such argument to have. The dot row is already
+   reserved space, the arrows have somewhere definite to sit at every width, and
+   nothing is ever covered.
+
+   Chrome: black disc, white chevron, orange on hover, flipped to a white disc
+   and a dark chevron by css/light.css. */
 .image-carousel-arrow {
     position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
+    /* on the dot row, not on the slide */
+    top: auto;
+    bottom: 0;
     z-index: 2;
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     padding: 0;
     border: 0;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.55);
     color: #fff;
-    font-size: 18px;
-    line-height: 44px;
+    font-size: 15px;
+    line-height: 36px;
     cursor: pointer;
     transition: background 0.2s ease, opacity 0.2s ease;
 }
@@ -85,7 +103,7 @@
    swaps for an <svg> carrying this same class across. `display` is what makes
    .svg-icon's 1em square hold on the <i> too: width and height do nothing on a
    non-replaced inline box, and the glyph would jump from nothing to 18px when
-   the kit caught up. The button is a fixed 44px, so only the chevron itself is
+   the kit caught up. The button is a fixed 36px, so only the chevron itself is
    ever affected -- the disc never moves. */
 .image-carousel-arrow .svg-icon {
     display: inline-block;
@@ -97,30 +115,25 @@
 }
 
 .image-carousel-arrow--prev {
-    left: -8px;
+    left: 15px;
 }
 
 .image-carousel-arrow--next {
-    right: -8px;
+    right: 15px;
 }
 
-@media (min-width: 1200px) {
-    .image-carousel-arrow--prev {
-        left: -56px;
-    }
-
-    .image-carousel-arrow--next {
-        right: -56px;
-    }
-}
-
+/* The row has to clear the arrows: they are absolutely positioned, so they add
+   no height of their own, and without a floor the dots alone would let it
+   collapse to 24px and the arrows would hang below the carousel. */
 .image-carousel-dots {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 36px;
     /* The buttons carry their own 24px of tap area, so the row needs no gap of
        its own; the dots still read as ~14px apart. */
     gap: 0;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 
 /* The button is the 24x24 touch target WCAG asks for, the ::before is the 10px
