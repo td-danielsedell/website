@@ -1751,22 +1751,6 @@ h1.section-title {
     margin: 0 0 10px;
 }
 
-/* Name and roll, then the button under them. A flex column rather than plain
-   blocks so the 18px stands on its own instead of fighting .button's margin. */
-.showcase-cta .cta-signature-foot {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-}
-
-/* .button carries 35px of vertical margin for its usual place under a line of
-   text. Here the column's own gap sets the spacing, so it carries none. */
-.showcase-cta .cta-signature-foot .button {
-    flex: 0 0 auto;
-    margin: 0;
-}
-
 .showcase-cta .cta-name {
     margin: 0;
     font-size: 16px;
