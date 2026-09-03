@@ -86,6 +86,15 @@
     <!-- Large footer -->
     <link href="../css/footer-large.css" rel="stylesheet" type="text/css">
 
+    <!--The product page layout and its components. Exactly the sheet td_test.html
+        uses - the two large product pages share a layout, so a change in
+        css/td-test.css lands on both.-->
+    <link href="../css/area-band.css" rel="stylesheet" type="text/css">
+    <link href="../css/td-test.css" rel="stylesheet" type="text/css">
+    <!-- Click-to-enlarge images (opt in with data-zoomable) -->
+    <link href="../css/image-zoom.css" rel="stylesheet" type="text/css">
+    <link href="../css/image-carousel.css" rel="stylesheet" type="text/css">
+
     <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Loaded async; icons swap in after paint. -->
     <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous" defer></script>
 </head>
@@ -221,55 +230,183 @@
 
         <!--Main Content Area-->
         <main id="content">
-
             <div class="banner-spacer"></div>
             <div class="banner-spacer"></div>
 
-            <!--Introduction-->
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
+            <!--Introduction / Hero. The same arrangement as td_test.html: heading and
+                lead side by side, the detail paragraphs as columns underneath, and the
+                closing line with the button centred at the foot.-->
+            <section class="introduction scrollto tdt-intro" tabindex="-1">
+                <div class="row clearfix">
 
-                        <div class="col-1">
-                            <!-- <div class="col-38"> -->
+                    <div class="tdt-hero">
+                        <div class="tdt-hero-copy">
                             <div class="section-heading has-title-icon">
-                                <!-- <h3>SHOWCASES</h3> -->
                                 <h1 class="section-title">TD Linear</h1>
                                 <p class="section-subtitle">Understand your linear assets</p>
                                 <!--The same icon this product's card carries in Produkter on the start
-                                    page, so the card and the page read as one thing. Stands in until
-                                    these pages have artwork of their own. See
+                                    page, so the card and the page read as one thing. See
                                     .section-heading.has-title-icon in css/style.css.-->
                                 <i class="fa-duotone fa-solid fa-chart-line title-icon" aria-hidden="true"></i>
                             </div>
                         </div>
 
-                        <!-- <div class="col-61"> -->
-                        <div class="col-1">
-                            <p>
-                                TD Linear visualises and analyses data along linear assets such as railway, road, power lines and water and wastewater networks. Bringing <strong>Enterprise Asset Management (EAM), measurement and map data</strong> together in one shared view makes it easier to follow change over time, spot anomalies and understand how things relate along the whole asset.
-                            </p><p>
-                                Data from IBM Maximo can be shown alongside measurement data as stacked and linked interactive charts running the length of the linear asset. That answers the question that matters most, and answers it quickly: where did the anomalies occur, and what can they be connected to?
-                            </p><p>
-                                By analysing time series, TD Linear can <strong>bring out patterns and abnormal changes</strong> that are otherwise hard to spot. At the same time, point objects such as components and work orders can be set in relation to measurement data and other events along the route.
-                            </p><p>
-                                The result is <strong>a clear picture of how the asset is developing</strong>, and a better basis for analysis, maintenance and long-term decisions.
+                        <div class="tdt-hero-body">
+                            <p class="tdt-lead">
+                                TD Linear visualises and analyses data along linear assets such as railway, road, power lines and water and wastewater networks. Measurement data, assets and map data are tied to the same linear referencing, and can therefore be analysed together, position by position.
                             </p>
                         </div>
-
-                        <!--Call to Action-->
-                        <div class="col-1 text-center showcase-cta">
-                            <p>Want to know more about TD Linear, or see how it works with your data?</p>
-                            <a href="mailto:info@totaldigital.se?subject=TD%20Linear" class="button">CONTACT US</a>
-                        </div>
-                        <!--End of Call to Action-->
-
                     </div>
-                </div>
 
+                    <div class="tdt-intro-body">
+                        <p>
+                            You get a quick answer to the question that matters most: <strong>where has the asset changed, and what can the change be connected to?</strong> Bringing EAM, measurement and map data into one shared view shows exactly where a measured value deviates &ndash; and which assets, work orders and earlier interventions sit in the same place.
+                        </p>
+                        <p>
+                            Data from IBM Maximo, for instance, is shown alongside technical measurements in stacked and linked interactive charts. Several datasets and survey runs can be compared to show change over time, and requirement limits, warning levels and deviating segments can be marked up directly in the analysis.
+                        </p>
+                        <p>
+                            With AI support, large volumes of data can be analysed faster. The result stays traceable to the underlying position and data, so every conclusion can be reviewed and verified.
+                        </p>
+                    </div>
+
+                    <div class="tdt-intro-cta">
+                        <p>
+                            Want to see what it looks like in practice? Get in touch for a demonstration &ndash;
+                            or read on for the detail.
+                        </p>
+                        <a href="mailto:info@totaldigital.se?subject=I%20would%20like%20to%20know%20more%20about%20TD%20Linear" class="button">CONTACT US</a>
+                    </div>
+
+                    <a href="#capabilities" class="scroll-cue" data-scroll-to
+                        aria-label="Read more about Capabilities"><span class="scroll-cue-label">Read more</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
+
+                </div>
             </section>
             <!--End of Introduction-->
 
+            <!--What can TD Linear do-->
+            <section id="capabilities" class="primary-color scrollto clearfix" tabindex="-1">
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">CAPABILITIES</h2>
+                        <p class="section-title">What can TD Linear do?</p>
+                        <p class="section-subtitle">"One view of the whole route." <br>Everything is tied to the same
+                            linear referencing &ndash; so measurements, assets and interventions are analysed together.</p>
+                    </div>
+
+                    <!--The three blocks. The screenshots sit as a tour underneath them,
+                        exactly as on td_test.html.-->
+                    <div class="tdt-trio">
+                        <div>
+                            <h3 class="card-title">Bring related data together</h3>
+                            <p>TD Linear can show:</p>
+                            <ul class="tdt-list">
+                                <li>Measurement data from survey vehicles, sensors and inspections</li>
+                                <li>Assets and work orders from EAM systems such as IBM Maximo</li>
+                                <li>Map and GIS data along the asset</li>
+                                <li>Historical measurement series and earlier interventions</li>
+                                <li>Your own datasets and key figures</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Analyse along the route</h3>
+                            <p>In the analysis you can:</p>
+                            <ul class="tdt-list">
+                                <li>See several measured values in stacked and linked charts</li>
+                                <li>Pick a position and have the profile, the objects and the map follow</li>
+                                <li>Filter by section, measured value, year, date, direction and side</li>
+                                <li>Compare datasets and survey runs over time</li>
+                                <li>Mark up requirement limits, warning levels and deviating segments</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Find what deviates</h3>
+                            <p>With AI support you get:</p>
+                            <ul class="tdt-list">
+                                <li>A summary of a selected area</li>
+                                <li>Abnormal changes brought to the front</li>
+                                <li>Possible patterns and connections between measurement data, assets and maintenance history</li>
+                                <li>Traceability to the position and the underlying data</li>
+                                <li>A basis for prioritising maintenance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--The tour. The same .image-carousel as td_test.html - the same
+                        .tdt-tour and .tdt-shot from css/td-test.css, and the same
+                        css/image-carousel.css + js/image-carousel.js building the arrows
+                        and the dots. --wide is where the two pages part: these
+                        screenshots are wide dashboards, so the tour takes the whole row.-->
+                    <div class="col-1 tdt-tour tdt-tour--wide">
+                        <div class="image-carousel" data-image-carousel="">
+                            <div class="image-carousel-track" role="group" aria-label="Image carousel" tabindex="0">
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot tdt-shot--wide" src="../images/product-images/td-linear/funktioner.webp" width="1832" height="859" loading="lazy" alt="Six illustrations: measurement data and objects on the same route, data layers stacked on top of one another, a deviation standing out against the requirement limit, maintenance work along the route, AI support sorting findings, and requirement limits with planned maintenance." data-zoomable>
+                                    <figcaption><strong>What TD Linear does</strong> &ndash; brings related data together, analyses along the route and surfaces what deviates.</figcaption>
+                                </figure>
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot tdt-shot--wide" src="../images/product-images/td-linear/analys.webp" width="1832" height="859" loading="lazy" alt="Analysis of a selection in TD Linear. Every requirement finding is listed with its requirement level, exact measurement point and deviation, and the panel on the right shows the basis for the assessment: segment, requirement level, deviation from the nominal value and which rule was matched." data-zoomable>
+                                    <figcaption><strong>A traceable assessment of every finding</strong> &ndash; requirement findings are ranked automatically, and each assessment can be opened and reviewed: measurement point, deviation and rule match are set out step by step.</figcaption>
+                                </figure>
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot tdt-shot--wide" src="../images/product-images/td-linear/punktjamforelse.webp" width="1832" height="859" loading="lazy" alt="Point comparison in TD Linear. Three survey runs are compared at the same position together with difference curves, so the change between years is immediately visible." data-zoomable>
+                                    <figcaption><strong>Compare survey runs at the same point</strong> &ndash; several years are laid over one another with a difference curve, so a change shows up before it becomes a requirement finding.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Product tour-->
+
+            <!--Features-->
+            <section id="features" class="scrollto clearfix" tabindex="-1">
+                <div class="row clearfix">
+                    <div class="section-heading">
+                        <h2 class="section-kicker">BENEFITS</h2>
+                        <p class="section-title">Why TD Linear?</p>
+                    </div>
+                    <div class="col-1 area-band">
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M256 56 456 160 256 264 56 160Z"/><path d="M56 264 256 368 456 264"/><path d="M56 360 256 464 456 360"/></svg></div>
+                            <h3>One shared view</h3>
+                            <p>EAM, measurement and map data are shown in the same view. No switching between systems and reports to understand what happened along a route.</p>
+                        </div>
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M72 152H440"/><path d="M72 360H440"/><path d="M256 96V416"/><circle cx="256" cy="152" r="30" style="fill:currentColor;stroke:none"/><circle cx="256" cy="360" r="30" style="fill:currentColor;stroke:none"/></svg></div>
+                            <h3>Synchronised analysis</h3>
+                            <p>Profile, objects and map follow the same linear position. A selected point shows the measurements, assets and events in exactly the same place.</p>
+                        </div>
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M88 136H424"/><path d="M88 256H296"/><path d="M88 376H368"/></svg></div>
+                            <h3>Easier comparisons</h3>
+                            <p>Compare datasets, survey runs and sections over time. Changes show up straight away, together with requirement limits and deviating segments.</p>
+                        </div>
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><svg class="svg-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:34;stroke-linecap:round;stroke-linejoin:round"><path d="M56 344H160L216 176 288 408 344 296H456"/><path d="M400 40 418 90 468 108 418 126 400 176 382 126 332 108 382 90Z" style="fill:currentColor;stroke:none"/></svg></div>
+                            <h3>AI support with traceability</h3>
+                            <p>Deviations and patterns are found faster in large volumes of data &ndash; and every conclusion is traceable to the position and the underlying data.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--End of Features-->
+
+            <!--Contact-->
+            <section id="contact" class="scrollto clearfix" tabindex="-1">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+                        <div class="col-1 text-center showcase-cta">
+                            <p>Want to know more about TD Linear, or see how it works with your data?</p>
+                            <a href="mailto:info@totaldigital.se?subject=I%20would%20like%20to%20know%20more%20about%20TD%20Linear" class="button">CONTACT US</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--End of Contact-->
         </main>
         <!--End Main Content Area-->
 
@@ -346,6 +483,10 @@
     <script src="../js/images-loaded.min.js"></script>
     <script src="../js/lightbox.min.js"></script>
     <script src="../js/site.js"></script>
+    <script src="../js/image-zoom.js"></script>
+
+    <!--Builds the arrows and dots inside .image-carousel-->
+    <script src="../js/image-carousel.js"></script>
 
 
 </body>
