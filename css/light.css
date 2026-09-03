@@ -207,6 +207,23 @@ html.theme-light .image-carousel-arrow {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
+/* The dots are the other half of that. Unlike the arrows they never sit on a
+   photo — every carousel on the site puts them on section background — so the
+   white they carry in dark mode leaves them invisible here, and a three-slide
+   carousel reads as a single orange dot with nothing to say how many more there
+   are. Same weights as the dark-mode pair, inverted. The current dot is
+   --primary in both themes, and :not() is what keeps it that way: without it
+   this rule outranks .image-carousel-dot[aria-current="true"]::before — two
+   classes and two elements against two classes and one — and the current dot
+   would go grey here. */
+html.theme-light .image-carousel-dot:not([aria-current="true"])::before {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+html.theme-light .image-carousel-dot:hover::before {
+    background: rgba(0, 0, 0, 0.45);
+}
+
 /* The ledningsgrupp captions are burned into a near-black gradient at the foot
    of each portrait, so they keep the light-on-dark treatment the rest of the
    page drops. --section-heading and --muted-text both go dark here and would
