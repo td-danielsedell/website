@@ -1731,7 +1731,17 @@ h1.section-title {
 
 /* A 2:3 half-figure photo cropped to a circle. The window sits near the top of
    the frame rather than centred: a 1:1 cover crop of a 2:3 portrait already
-   holds the whole head, so centring it would show chest instead of face. */
+   holds the whole head, so centring it would show chest instead of face.
+
+   Note that a square cover crop of a 2:3 source shows the FULL width, so the
+   horizontal half of object-position does nothing here — where the head sits
+   left to right is decided when the .webp is cut, not by this rule. Both
+   portraits are cut so the head is centred and both heads come out the same
+   size; straight off the camera Petter's head sat 4.5% right of frame and was
+   23% smaller than Hanna's. Re-cut from the PNG masters alongside with:
+
+     cwebp -q 82 -crop 180 162 779 1169 -resize 416 0 -m 6 PT.png -o PT.webp
+     cwebp -q 82 -crop  65   0 958 1437 -resize 416 0 -m 6 HH.png -o HH.webp */
 .showcase-cta .cta-face {
     display: block;
     flex: 0 0 104px;
