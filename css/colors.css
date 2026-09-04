@@ -374,11 +374,14 @@ a {
     /*var(--header-text);*/
 }
 
+/* White is the only ink that survives on the bar: --link-hover-active is #111,
+   which read 3.0:1 against --header. The panels set their own hover and
+   outspecify this. */
 #header nav a:hover,
 #header .svg-icon:hover,
 #header.nav-solid a:hover,
 #header.nav-solid .svg-icon:hover {
-    color: var(--link-hover-active);
+    color: var(--on-header);
     /*var(--header-text);*/
 }
 
@@ -389,23 +392,26 @@ a {
 
 /* Navigation Colors when the Navigation is sticky and solid */
 
+/* The solid bar and everything sitting on it. #nav-mobile ul li a used to be
+   bolted onto this group, which painted every row of the open menu in the bar's
+   orange — that is what made the mobile menu a fourth visual language, and what
+   outranked the panel rules in style.css. The menu is a panel now, styled with
+   the dropdown and the language list. */
 #header.nav-solid,
 #header.nav-solid a,
-#header.nav-solid .svg-icon,
-#nav-mobile ul li a {
+#header.nav-solid .svg-icon {
     color: var(--on-header);
     /*var(--secondary);*/
     background: var(--header);
 }
 
-/* Navigation Active State */
+/* Navigation Active State
 
-#header.nav-solid .active {
-    color: var(--link-hover-active);
-    /*#d2b356;*/
-    border-color: var(--link-hover-active);
-    /*#d2b356;*/
-}
+   Nothing here. The page you are on is marked in style.css, in the bar's own
+   ink, whether or not the bar has gone solid — this block used to paint it
+   --link-hover-active (#111), which is 3.0:1 on --header, so the marker read
+   worse than the items around it. The white every nav link already gets from
+   the two rules above is correct for the current one too. */
 
 
 

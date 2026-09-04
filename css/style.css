@@ -752,20 +752,6 @@ section {
     }
 }
 
-/* In the mobile menu the row has to read as one of the stacked links, not as a
-   leftover of the 71px header bar: the same 48px painted box and 15px indent as
-   the anchors beside it, so the globe lines up with their labels. */
-#header nav#nav-mobile .nav-lang summary {
-    height: 48px;
-    line-height: 48px;
-    padding: 0 15px;
-    background: var(--header);
-}
-
-#nav-mobile .nav-lang .lang-options {
-    margin: 0 0 10px;
-}
-
 /* On narrow screens the switcher leaves the dropdown and sits next to the
    hamburger, so the language is reachable without opening the menu. js/nav.js
    renders it into both places; these rules pick which one is visible.
@@ -871,17 +857,6 @@ html.theme-light #header nav .theme-toggle .icon-sun {
     }
 }
 
-/* In the mobile menu it becomes one of the stacked rows, matching the language
-   switcher's 48px box and 15px indent. */
-#header nav#nav-mobile .theme-toggle {
-    height: 48px;
-    line-height: 48px;
-    padding: 0 15px;
-    width: 100%;
-    text-align: left;
-    background: var(--header);
-}
-
 /* Beside the hamburger, the narrow-screen home for both controls. */
 #nav-theme-mobile {
     display: inline-block;
@@ -951,10 +926,22 @@ html.theme-animating {
    reasons: no script to write, and nothing to re-bind when site.js clones
    #nav-main into #nav-mobile.
 
-   The summary only opens the group, so the section it used to link to is the
-   first entry inside — a summary cannot both toggle and navigate. */
+   A summary cannot both toggle and navigate, so below 1024px — where the label
+   is the toggle and js/site.js strips its href — the group's own section would
+   be unreachable from the menu. .nav-sub-all is that link, added as the first
+   entry inside each group. The wide nav does not need it: there the label is a
+   working link, so the entry is hidden rather than shown twice. */
 #header nav .nav-group {
     position: relative;
+}
+
+@media all and (min-width: 1024px) {
+    /* Spelled out through .nav-sub a, not as a bare .nav-sub-all: the entry is
+       one of the dropdown's anchors and #header nav .nav-sub a already gives it
+       display: block at the same specificity plus an element. */
+    #header nav .nav-sub a.nav-sub-all {
+        display: none;
+    }
 }
 
 /* The label inside is a real link to the group's section on the index page, so
@@ -1069,14 +1056,6 @@ html.theme-animating {
     border-bottom: 0;
 }
 
-/* Same marker in the mobile menu, where the rows are painted var(--header)
-   rather than sitting on the dark panel, so only the rule and the weight
-   change. */
-#header nav#nav-mobile .nav-sub a.active {
-    border-left-color: var(--link-hover-active);
-    background: var(--header);
-}
-
 /* Wide nav: the panel hangs below its group. Below this the menu is a stacked
    list and the entries just flow inside it. */
 @media all and (min-width: 1024px) {
@@ -1095,7 +1074,20 @@ html.theme-animating {
     height: auto;
     line-height: normal;
     padding: 15px;
-    background: var(--header);
+    /* A panel row, so the panel's ink — the bar's white belongs to the bar. */
+    color: var(--link);
+    opacity: 0.8;
+    border-left: 3px solid transparent;
+}
+
+/* The group whose page you are on, marked the same way as the entry inside it:
+   the summary carries it, because js/site.js puts .active on the inline anchor,
+   which has no box of its own to mark. */
+#header nav#nav-mobile .nav-group summary:has(a.active) {
+    font-weight: 700;
+    border-left-color: var(--primary);
+    background: var(--panel-hover);
+    opacity: 1;
 }
 
 /* On a touch screen the label opens the group instead of following its href
@@ -1107,6 +1099,11 @@ html.theme-animating {
     line-height: normal;
     padding: 0;
     background: transparent;
+    /* js/site.js marks this anchor .active, not the summary — but the summary
+       is what has a row to mark, and it does so through :has() above. Without
+       this the anchor drew the 3px bar a second time, mid-row, right against
+       the label. */
+    border-left: 0;
 }
 
 #header nav#nav-mobile .nav-sub {
@@ -1116,12 +1113,12 @@ html.theme-animating {
     background: transparent;
 }
 
+/* Everything else — colour, opacity, the transparent left border the current
+   page fills in — comes from the shared "#header nav .nav-sub a" rule. Only the
+   indent and the separator are particular to the stacked menu. */
 #header nav#nav-mobile .nav-sub a {
     padding: 12px 15px 12px 32px;
-    background: var(--header);
-    border-left: 3px solid rgba(255, 255, 255, 0.35);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    opacity: 1;
+    border-top: 1px solid var(--surface-border);
 }
 
 /*Navigation Solid*/
@@ -1131,7 +1128,11 @@ html.theme-animating {
 }
 
 #header.nav-solid {
-    background: var(--normal-text);
+    /* No background here. css/colors.css loads after this file and paints the
+       solid bar var(--header) at the same specificity, so the var(--normal-text)
+       that used to sit on this line never applied — and --normal-text is
+       near-white on the dark theme, so it would have turned the sticky bar into
+       a white slab the day anyone reordered the two sheets. */
     box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.2);
     position: fixed !important;
     left: 0;
@@ -1146,9 +1147,18 @@ html.theme-animating {
     transition: all 0.3s ease-out;
 }
 
-#header.nav-solid nav .active {
+/* The underline under the current top-level item, in the bar's own ink. It was
+   var(--link-hover-active) (#111) on --header, 3.0:1 — the marker read as a
+   smudge rather than as emphasis.
+
+   No longer scoped to .nav-solid: the bar only takes that class after the
+   waypoint fires, so on a subpage at rest the current item had no marker at
+   all. Panel entries are excluded by their own rules — .nav-sub a.active sets
+   border-bottom: 0, and nav#nav-mobile a kills it outright. */
+#header nav .active {
+    font-weight: 700;
     border-bottom: 3px solid;
-    border-color: var(--link-hover-active);
+    border-color: var(--on-header);
 }
 
 #header.nav-solid nav a:hover {
@@ -1287,7 +1297,7 @@ nav#nav-mobile li {
     margin: 0 20px;
     float: none;
     text-align: left;
-    border-bottom: 1px solid #e1e1e1;
+    border-bottom: 1px solid var(--surface-border);
 }
 
 nav#nav-mobile li:last-child {
@@ -1295,7 +1305,7 @@ nav#nav-mobile li:last-child {
 }
 
 .nav-solid nav#nav-mobile li {
-    border-top: 1px solid #e1e1e1;
+    border-top: 1px solid var(--surface-border);
     border-bottom: none;
 }
 
@@ -1306,7 +1316,6 @@ nav#nav-mobile li:last-child {
 nav#nav-mobile a {
     display: block;
     padding: 12px 0;
-    color: var(--secondary);
     width: 100%;
     height: auto;
     line-height: normal;
@@ -1318,9 +1327,53 @@ nav#nav-mobile a {
     transition: all 0.3s ease-out;
 }
 
-nav#nav-mobile a:hover {
-    background: #fafafa;
+/* The panel hover, identical to the dropdown's and the language list's. Scoped
+   through #header with .nav-sub and summary spelled out so it outranks the
+   rules those two set for themselves — a bare `nav#nav-mobile a:hover` lost to
+   them, which is why the entries under Produkter had no hover at all. */
+/* The panel's ink, and the 3px channel every panel entry carries so the current
+   page can be marked here the way it is in the dropdown and the language list.
+
+   Scoped through #header rather than written into the nav#nav-mobile block
+   above: "#header nav a" in colors.css paints the bar's white at the same
+   specificity and loads later, so an unscoped rule here loses. The block above
+   keeps the layout, which must stay at its own specificity — "nav#nav-mobile ul
+   li a" sets the 15px row indent and would be outranked by an #header-scoped
+   rule carrying padding. */
+#header nav#nav-mobile a {
+    color: var(--link);
+    opacity: 0.8;
+    border-left: 3px solid transparent;
+    /* Explicitly transparent, not merely unset: once the bar goes solid,
+       "#header.nav-solid a" in colors.css paints every anchor in the header with
+       the bar's orange — including these, which put the old orange slab back the
+       moment the reader scrolled. The rows sit on the panel's own ground. */
+    background: transparent;
+}
+
+#header nav#nav-mobile a:hover,
+#header nav#nav-mobile .nav-sub a:hover,
+#header nav#nav-mobile .nav-group summary:hover {
+    background: var(--panel-hover);
     opacity: 1;
+}
+
+/* The page you are on, in the stacked menu: the marker every panel in this
+   header uses. .nav-sub entries get it from the shared rule; this is the
+   top-level rows. */
+#header nav#nav-mobile a.active {
+    font-weight: 700;
+    border-left-color: var(--primary);
+    background: var(--panel-hover);
+    opacity: 1;
+}
+
+/* A group label is not a link on mobile — js/site.js strips its href so the
+   summary's own toggle runs — so the whole summary row above carries the
+   hover. The inline anchor has to stay transparent or the tint paints a second
+   box the width of the text inside the row that is already tinted. */
+#header nav#nav-mobile .nav-group summary a:hover {
+    background: transparent;
 }
 
 /* --------- 2.5 Social Elements ---------- */
@@ -3451,7 +3504,7 @@ blockquote {
 
 /* Mobile to Tablet Portrait
 ===============================*/
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 767px) {
 
     #wrapper {
         margin: 0;
