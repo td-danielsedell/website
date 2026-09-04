@@ -801,28 +801,48 @@ html.theme-light .city-label.leaflet-tooltip {
         line-height: 30px;
     }
 
-    /* The year rail collapses to a plain stack: a 160px year column against a
-       320px viewport leaves nothing for the entry beside it, so the year
-       becomes a left-aligned label above its own entry and the spine and dots
-       go with it. */
+    /* The rail keeps its line on a phone, only narrower. The year column cannot
+       come with it — 118px against a 320px viewport leaves nothing for the entry
+       beside it — so the spine moves into a 28px gutter on the <ol>, the year
+       becomes a left-aligned label above its own entry, and the dot hangs off
+       the year's left edge onto the line. */
+    .year-rail {
+        padding-left: 28px;
+    }
+
+    /* The 2px line at left: 4px has its centre at 5px, which is where the dot
+       below lands too. Move the gutter and both of these move with it. top: 8px
+       starts the line just above the first dot centre, under that dot's halo;
+       bottom keeps the desktop 24px. */
     .year-rail::before {
-        display: none;
+        left: 4px;
+        top: 8px;
     }
 
     .year-rail li {
         grid-template-columns: 1fr;
         gap: 0;
-        padding-bottom: 34px;
+        padding-bottom: 30px;
     }
 
+    /* 24px, not smaller: 700 weight above 18.66px is what lets the orange stay
+       — see the note on .rail-year above. */
     .rail-year {
         text-align: left;
-        font-size: 26px;
-        padding-bottom: 8px;
+        font-size: 24px;
+        padding-bottom: 6px;
     }
 
+    /* left: -28px puts the dot's left edge on the <ol>'s own left edge, so a
+       10px dot centres at 5px — on the line. top is half the 24px line box less
+       half the dot. */
     .rail-year::after {
-        display: none;
+        right: auto;
+        left: -28px;
+        top: 7px;
+        width: 10px;
+        height: 10px;
+        box-shadow: 0 0 0 5px var(--secondary);
     }
 
     .person-grid {
