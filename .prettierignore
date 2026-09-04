@@ -1,0 +1,6 @@
+# Migration: formatters must not reflow the sources under verification.
+src/
+verify/
+dist/
+.astro/
+node_modules/

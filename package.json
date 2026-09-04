@@ -1,0 +1,20 @@
+{
+  "name": "totaldigital-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "verify": "node verify/diff-pages.mjs",
+    "verify:self-test": "node verify/diff-pages.mjs --self-test && node verify/assert-invariants.mjs --self-test",
+    "verify:invariants": "node verify/assert-invariants.mjs",
+    "verify:baseline": "node verify/diff-pages.mjs --candidate verify/baseline && node verify/assert-invariants.mjs verify/baseline",
+    "verify:serve": "node verify/serve.mjs"
+  },
+  "devDependencies": {
+    "astro": "7.3.1",
+    "parse5": "8.0.0"
+  }
+}
