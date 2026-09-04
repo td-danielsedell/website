@@ -1,0 +1,12 @@
+---
+/** End-of-body scripts for the about pages. Order is load-bearing. */
+import { assetPrefix, type Lang } from '../../data/nav';
+import AboutMapEn from './AboutMapEn.astro';
+import AboutMapSv from './AboutMapSv.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = assetPrefix(lang);
+---
+    <script src={`${p}js/image-carousel.js`} is:inline></script>
+{lang === 'en' ? <AboutMapEn /> : <AboutMapSv />}

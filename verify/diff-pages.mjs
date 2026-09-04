@@ -60,6 +60,57 @@ const RAW_TEXT_ELEMENTS = new Set(['script', 'style', 'pre', 'textarea']);
 const collapse = (s) => s.replace(/\s+/g, ' ');
 
 /**
+ * Elements that render nothing at all. Whitespace sitting between two of them
+ * cannot produce a box, so it cannot move the page.
+ */
+const NON_RENDERING = new Set(['script', 'link', 'meta', 'style', 'base', 'title']);
+
+/**
+ * True for a whitespace-only text node that provably cannot affect layout.
+ *
+ * Astro trims the newline after a `</script>`, in <head> and in <body> alike.
+ * Rather than litter the templates with `{"\n"}` to win a byte comparison, the
+ * diff ignores whitespace in the two places where it demonstrably does nothing:
+ *
+ *   - anywhere inside <head>, since nothing in <head> renders; or
+ *   - between two non-rendering elements (script/link/meta/style/base/title),
+ *     optionally with the document boundary standing in for one side when the
+ *     parent is <html>/<body>/<head>.
+ *
+ * Everything else stays strict: a gap next to a rendered element is layout —
+ * `<a>x</a> <a>y</a>` must never compare equal to `<a>x</a><a>y</a>`. The
+ * self-test pins both directions.
+ */
+function ignorableWhitespace(node) {
+  const parent = node.parentNode;
+  if (!parent || node.value.trim()) return false;
+  if (parent.tagName === 'head') return true;
+
+  const sibs = parent.childNodes ?? [];
+  const idx = sibs.indexOf(node);
+  const scan = (step) => {
+    for (let i = idx + step; i >= 0 && i < sibs.length; i += step) {
+      const n = sibs[i];
+      if (n.nodeName === '#comment') continue;
+      if (n.nodeName === '#text') {
+        if (!n.value.trim()) continue;
+        return '#text';
+      }
+      return n.tagName;
+    }
+    return null; // document boundary
+  };
+
+  const atBoundaryOk = ['html', 'body', 'head'].includes(parent.tagName);
+  const isNonRendering = (x) => x !== null && NON_RENDERING.has(x);
+  const sideOk = (x) => isNonRendering(x) || (x === null && atBoundaryOk);
+  const prev = scan(-1), next = scan(1);
+  // At least one side must be an actual non-rendering element, so that a lone
+  // whitespace node inside an empty container is still compared.
+  return sideOk(prev) && sideOk(next) && (isNonRendering(prev) || isNonRendering(next));
+}
+
+/**
  * Remove the indentation shared by every non-blank line. Leading/trailing
  * blank lines go too — they are pure placement artifacts.
  */
@@ -102,6 +153,8 @@ function canonicalLines(node, depth = 0, out = []) {
       return out;
 
     case '#text': {
+      if (ignorableWhitespace(node)) return out;
+
       const raw = node.parentNode && RAW_TEXT_ELEMENTS.has(node.parentNode.tagName);
       if (raw) {
         for (const line of dedent(node.value).split('\n')) out.push(`${pad}| ${line}`);
@@ -300,6 +353,11 @@ function main(argv) {
   };
   const selfTest = args.includes('--self-test');
   if (selfTest) args.splice(args.indexOf('--self-test'), 1);
+  // Prints every unexplained hunk as a ready-to-paste allowlist entry, with an
+  // empty `reason` that the author must fill in — diff-pages.mjs refuses to load
+  // an entry whose reason is blank, so nothing can be waved through by accident.
+  const emit = args.includes('--emit-allowlist');
+  if (emit) args.splice(args.indexOf('--emit-allowlist'), 1);
   const baselineDir = join(ROOT, take('--baseline', 'verify/baseline'));
   const candidateDir = join(ROOT, take('--candidate', 'dist'));
   const context = Number(take('--context', '4'));
@@ -309,6 +367,13 @@ function main(argv) {
   const allowlist = loadAllowlist();
   const pages = args.length ? args : listPages(baselineDir);
   const results = pages.map((p) => comparePage(p, baselineDir, candidateDir, allowlist, context));
+
+  if (emit) {
+    const entries = results.flatMap((r) =>
+      r.hunks.map(({ hunk }) => ({ pages: [r.page], hunk: hunkKey(hunk), reason: '' })));
+    console.log(JSON.stringify({ entries }, null, 2));
+    process.exit(0);
+  }
 
   let failed = 0, missing = 0, allowedTotal = 0;
   for (const r of results) {
@@ -368,6 +433,18 @@ function runSelfTest(baselineDir, context) {
       (h) => h.replace(/\n    <script src="js\//g, '\n\t\t\t<script src="js/')],
     ['comment re-wrapped across lines', 'about.html',
       (h) => h.replace(/<!-- ([^\n-]{20,40}) -->/, '<!--\n         $1\n    -->')],
+    ['newline after a </script> in <head> removed', 'about.html',
+      (h) => once(h, '<script src="js/theme.js"></script>\n', '<script src="js/theme.js"></script>')],
+    ['all whitespace between <head> children removed', 'about.html', (h) => {
+      const i = h.indexOf('<head>'), j = h.indexOf('</head>');
+      return h.slice(0, i) + h.slice(i, j).replace(/>\s+</g, '><') + h.slice(j);
+    }],
+    ['whitespace between two end-of-body <script> tags removed', 'about.html',
+      (h) => once(h, '</script>\n    <script src="js/jquery.stickyNavbar.min.js">',
+                     '</script><script src="js/jquery.stickyNavbar.min.js">')],
+    ['whitespace between the last <script> and </body> removed', 'about.html',
+      (h) => once(h, '<script src="js/about.js" defer></script>\n\n</body>',
+                     '<script src="js/about.js" defer></script></body>')],
   ];
 
   const SUBSTANTIVE = [
@@ -397,6 +474,13 @@ function runSelfTest(baselineDir, context) {
     ['visible text changed', 'about.html', (h) => once(h, '</h1>', ' Extra</h1>')],
     ['a whitespace gap around an inline element removed', 'about.html',
       (h) => once(h, 'och AI</strong> och', 'och AI</strong>och')],
+    ['whitespace between two body elements removed (the rule must not leak)', 'about.html', (h) => {
+      const i = h.indexOf('<body>');
+      return h.slice(0, i) + h.slice(i).replace(/<\/li>\s+<li>/, '</li><li>');
+    }],
+    ['whitespace between a rendered element and a <script> removed', 'about.html',
+      (h) => once(h, '</div>\n\n    <!-- Include JavaScript resources -->',
+                     '</div><!-- Include JavaScript resources -->')],
     ['an element unwrapped (structure flattened)', 'about.html',
       (h) => once(h, '<footer', '<div><footer').replace('</footer>', '</footer></div>')],
     ['JSON-LD content changed', 'index.html',

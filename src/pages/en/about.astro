@@ -1,0 +1,391 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AboutCss from '../../components/head/AboutCss.astro';
+import AboutScripts from '../../components/scripts/AboutScripts.astro';
+---
+<Layout
+    lang="en"
+    path="about.html"
+    title="About us | Total Digital"
+    description="About Total Digital: our history, the management team, the thirteen locations we work from, careers and degree projects – plus contact details."
+    onAboutPage
+>
+    <AboutCss slot="head-css" lang="en" />
+    <AboutScripts slot="scripts" lang="en" />
+        <main id="content" class="showcase-top about-top">
+
+            <!--Introduction. Two columns rather than one stacked centre run: the
+                opening statement on the left, the body copy beside it. The page
+                otherwise opened on a narrow strip and widened for every section
+                below it. The body copy's line length is held by .about-hero in
+                css/about.css.-->
+            <section id="about-intro" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1 about-hero">
+
+                        <div>
+                            <div class="section-heading">
+                                <!--A p, not an h2, unlike the kicker above every section title
+                                    further down. This label sits above the page's h1, and an h2
+                                    before the only h1 breaks the outline: the page would start
+                                    at level two and step back up to level one.-->
+                                <p class="section-kicker">ABOUT US</p>
+                                <h1 class="about-title">We are Total Digital</h1>
+                            </div>
+                            <!--The lead sits outside .section-heading. Inside it, it would be
+                                the page's .section-subtitle and would pull both the measure
+                                and the orange rule with it – here the heading is the
+                                statement.-->
+                            <p class="about-lead">The agility of a small company. The strength of a large one. </p>
+                        </div>
+
+                        <div class="about-hero-body">
+                            <p>Technology meets domain knowledge. We combine leading platforms with deep domain knowledge and new technology to solve complex challenges – from new perspectives.</p>
+                            <p>We like long-term relationships, high ambitions and people who know their field. Commitment and competence? That is Total Digital.</p>
+                        </div>
+
+                    </div>
+
+                    <!--Closes the hero block. The intro is the one section with no orange
+                        rule under its heading, so without this line it runs straight into
+                        History.-->
+                    <div class="col-1">
+                        <hr class="about-hero-rule" />
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Introduction-->
+
+            <!--History. The subheading sits inside .section-heading, the way the
+                showcase pages do it, rather than in a column of its own beside
+                the heading. The orange rule therefore moves below the
+                subheading and closes the whole block – see css/colors.css.-->
+            <section id="history" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">OUR JOURNEY</h2>
+                            <p class="section-title">From Maximo to satellite data</p>
+                            <p class="section-subtitle">A lot has happened since we started in 2018. New colleagues, new areas of expertise and new assignments have taken us from a small specialist company to the Total Digital we are today. Here are some of the milestones along the way.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-1">
+                        <!--The years are their own rail on the left. The alternating
+                            variant halved the measure for every entry and read as two
+                            ragged columns as soon as an entry ran past one line. The dot
+                            hangs off the year (.rail-year::after) – no decorative span in
+                            the markup.-->
+                        <ol class="year-rail">
+                            <li>
+                                <p class="rail-year">2018</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">We are founded</h3>
+                                    <p>Total Digital is founded by Linus, Jonas and Per, who between them have more than 60 years of experience in Enterprise Asset Management (EAM) and Maximo. A new consultancy is born.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="rail-year">2020</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Our first employees</h3>
+                                    <p>We hire for the first time. Over the year we double in number, the customer base grows and we take on our first managed-service customers.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="rail-year">2023</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">TD Spatial is started</h3>
+                                    <p>At the end of 2023 we start a new business area, TD Spatial, focused on asset data combined with geodata. We begin to bring IBM Maximo and Esri ArcGIS together.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="rail-year">2024</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">We grow fast</h3>
+                                    <p>More customers and more assignments call for more hands. Over the year we double our headcount and welcome new colleagues in both Maximo and geodata.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="rail-year">2025</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Remote sensing and AI</h3>
+                                    <p>We broaden our expertise with remote sensing and AI. That gives us new ways to detect change, analyse large areas and see the asset base in a wider perspective.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="rail-year">2026</p>
+                                <div class="rail-body">
+                                    <h3 class="rail-title">Locally present, together as one team</h3>
+                                    <p>Today we are in several places across Sweden, and on &Aring;land too. We grow where the skills and the customers are, and work together as one team &ndash; whatever the geography.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+
+                </div>
+            </section>
+            <!--End of History-->
+
+            <!--Management team-->
+            <section id="management" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">MANAGEMENT TEAM</h2>
+                            <p class="section-title">A short path to a decision</p>
+                            <p class="section-subtitle">The management team holds together direction, business areas and development – with expertise drawn from across the company.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-1">
+                        <div class="person-carousel image-carousel" data-image-carousel
+                            data-carousel-label="Management team" data-carousel-noun="person"
+                            data-carousel-autoplay="4000">
+                        <div class="person-grid person-track image-carousel-track clearfix">
+
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="../images/company-images/LG_LK.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Linus Kozsinowski</h3>
+                                        <p class="person-role">CEO</p>
+                                        <p class="person-contact"><a href="mailto:linus@totaldigital.se">linus@totaldigital.se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="../images/company-images/LG_MS.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Mattias Svensson</h3>
+                                        <p class="person-role">Deputy CEO</p>
+                                        <p class="person-contact"><a href="mailto:mattias@totaldigital.se">mattias@totaldigital.se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="../images/company-images/LG_MA.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Monica Andreasson</h3>
+                                        <p class="person-role">Head of HR</p>
+                                        <p class="person-contact"><a href="mailto:monica@totaldigital.se">monica@totaldigital.se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="../images/company-images/LG_PT.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Petter Tyrenius</h3>
+                                        <p class="person-role">Business Area Manager</p>
+                                        <p class="person-contact"><a href="mailto:petter@totaldigital.se">petter@totaldigital.se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="../images/company-images/LG_AH.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Anton Hansson</h3>
+                                        <p class="person-role">Business Area Manager</p>
+                                        <p class="person-contact"><a href="mailto:anton@totaldigital.se">anton@totaldigital.se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Management team-->
+
+            <!--Locations-->
+            <section id="locations" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">WHERE WE ARE</h2>
+                            <p class="section-title">Thirteen locations. One team.</p>
+                            <!--With no subheading the orange rule stays under the
+                                title. Bring this back in and the rule moves
+                                below it on its own.-->
+                            <!--
+                            <p class="section-subtitle">PLACEHOLDER. A line about working
+                                remotely, and what that means for how we take on assignments.</p>
+                            -->
+                        </div>
+                    </div>
+                    <div class="col-1 split-2">
+
+                        <div>
+                        <p>We are a remote company with no head office. That is a deliberate choice: it lets us find the right skills wherever they are and stay close to our customers at the same time.</p>
+                        <!--The class is there for the mobile rule in css/about.css: below
+                            768px the list is hidden and this line would point at nothing.-->
+                        <p class="locations-lead">Today you will find us in:</p>
+                        <!--data-city ties each row to a dot in CITIES in js/about.js. The
+                            rows are plain text here and are only made clickable by the
+                            script, so the list survives as readable content without
+                            JavaScript.-->
+                        <ul class="location-list">
+                            <li data-city="ostersund">Östersund</li>
+                            <li data-city="uppsala">Uppsala</li>
+                            <li data-city="stockholm">Stockholm</li>
+                            <li data-city="degerfors">Degerfors</li>
+                            <li data-city="kumla">Kumla</li>
+                            <li data-city="katrineholm">Katrineholm</li>
+                            <li data-city="lidkoping">Lidköping</li>
+                            <li data-city="linkoping">Linköping</li>
+                            <li data-city="alingsas">Alingsås</li>
+                            <li data-city="goteborg">Göteborg</li>
+                            <li data-city="varberg">Varberg</li>
+                            <li data-city="bastad">Båstad</li>
+                            <li data-city="aland">Åland</li>
+                        </ul>
+                        </div>
+
+                        <!--Leaflet map, drawn by js/about.js. The tiles come from
+                            tile.openstreetmap.org: a third-party resource (item 23 in the
+                            revision document) but a cookie-free one, unlike the ESRI embed
+                            once planned for this slot. Dropping the third party entirely
+                            would mean drawing the map as GeoJSON instead of tiles.
+
+                            #map is hidden until about.js marks it .map-live, so without
+                            JavaScript there is no empty box here — and the city list
+                            beside it stays on screen at every width, since it is then the
+                            only place the orter are named.-->
+                        <figure class="about-map">
+                            <div id="map"></div>
+                            <!--The pointer to the list is its own element: on a phone there
+                                is no list to pick from, so only that sentence is hidden
+                                rather than the whole caption.-->
+                            <figcaption>Our locations. <span class="map-hint">Pick one from the list alongside to zoom to it.</span></figcaption>
+                        </figure>
+
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Locations-->
+
+            <!--Certifications. The marks in the footer lead here, so the section has to
+                answer the question they raise: what is certified. The images sit in a
+                figure with a figcaption rather than having the line under them set as
+                body copy – the mark and what it stands for are a pair.
+
+                No .wow here: a reader arriving via #certificates jumps straight into
+                the section, and wow.js does not see the elements on a jump (the
+                section would have stood empty).-->
+            <section id="certificates" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">CERTIFICATIONS</h2>
+                            <p class="section-title">Quality you can check</p>
+                            <p class="section-subtitle">We are certified to ISO 9001 and ISO 14001</p>
+                        </div>
+                    </div>
+
+                    <div class="col-1 split-2">
+
+                        <div>
+                            <p>The certification covers the management system: the routines for how we take on assignments, run deliveries, handle deviations and improve over time.</p>
+                            <p>For you as a customer it means our way of working is documented, followed up internally and audited regularly.</p>
+                            <p>The certificates are issued by <a href="https://qvalify.se/" target="_blank" rel="noopener noreferrer">qValify</a>.</p>
+                        </div>
+
+                        <div class="cert-grid">
+                            <figure class="cert-mark">
+                                <img src="../images/company-images/iso_9001.webp" width="400" height="400"
+                                    loading="lazy" alt="Certified to ISO 9001" />
+                                <figcaption>ISO 9001<span>Quality</span></figcaption>
+                            </figure>
+                            <figure class="cert-mark">
+                                <img src="../images/company-images/iso_14001.webp" width="400" height="400"
+                                    loading="lazy" alt="Certified to ISO 14001" />
+                                <figcaption>ISO 14001<span>Environment</span></figcaption>
+                            </figure>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Certifications-->
+
+            <!--Careers. This was two sections, Careers and Degree projects: they said the
+                same thing twice – we do not advertise, get in touch – and put two CTA blocks
+                one after the other at the end of the page. Now one section with two tracks.
+                The tracks need headings of their own (h3 inside .track) because the two
+                kickers that used to separate them are gone.-->
+            <section id="career" class="introduction scrollto">
+                <div class="row clearfix">
+
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-kicker">CAREERS & DEGREE PROJECTS</h2>
+                            <p class="section-title">The right person before the right CV</p>
+                            <p class="section-subtitle">We would rather look for the right person than the right CV for a ready-made advert. So we are always open to talking to people who can contribute – whether you are an experienced specialist, early in your career or a student.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-1">
+
+                        <!--Two tracks, one button each. The section used to close with both
+                            buttons side by side under both columns, which put the choice back
+                            on the reader after they had already read the column that answered
+                            it. The mailto subject line still separates a speculative
+                            application from a degree-project enquiry.
+
+                            The tracks are deliberately not framed as cards: a card on this
+                            site means the whole surface is clickable, and a block of prose
+                            with a button in it is not.-->
+                        <div class="track-grid">
+
+                            <div class="track">
+                                <h3>Speculative application</h3>
+                                <p>With us you work close to both customers and technology, with a great deal of your own responsibility and a short path from idea to delivery.</p>
+                                <p>We rarely advertise. If you see a match between what you can do and what we do, get in touch and tell us briefly about yourself and what you want to work with.</p>
+                                <div class="track-spacer"></div>
+                                <a href="mailto:info@totaldigital.se?subject=Speculative application" class="button">SEND A SPECULATIVE APPLICATION</a>
+                            </div>
+
+                            <div class="track" id="thesis">
+                                <h3>Degree projects</h3>
+                                <p>We supervise degree projects at the intersection of <strong>asset management, GIS, remote sensing and AI</strong>, and can contribute expertise, platforms and relevant data.</p>
+                                <p><strong>Two new degree projects will be published here shortly.</strong></p>
+                                <div class="track-spacer"></div>
+                                <a href="mailto:info@totaldigital.se?subject=Degree project" class="button">ASK ABOUT A DEGREE PROJECT</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Careers-->
+
+
+        </main>
+</Layout>

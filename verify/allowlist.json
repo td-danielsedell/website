@@ -1,4 +1,129 @@
 {
   "_comment": "Every accepted divergence between verify/baseline/ (fork point 80e3937) and the built page. An entry is only valid with a non-empty `reason` — diff-pages.mjs throws otherwise. `pages` is a page path, an array of them, or \"*\". `hunk` is the canonical diff text of the divergence, `-` lines from the baseline and `+` lines from the build, trimmed. Phases 1-4 must reach zero divergences with this list EMPTY; phase 5 adds one entry per deliberate improvement, each in its own commit.",
-  "entries": []
+  "entries": [
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Both logos sit in one link back to the start page.-->",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Båda logotyperna ligger i en länk tillbaka till startsidan.-->\n+<!--Both logos sit in one link back to the start page.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Footer. The large variant (css/footer-large.css), laid out in columns:",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Foten. Den stora varianten (css/footer-large.css), satt i kolumner: sidan slutar med en väg in i allt i stället för en 12px-rad.-->\n+<!--Footer. The large variant (css/footer-large.css), laid out in columns: the page ends with a way into everything rather than one 12px line.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Language dropdown. The option links are relative so the site works whe",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Språkväljare. Länkarnas href är relativa så att sajten fungerar var den än ligger; site.js hindrar stickyNavbar från att avbryta klicket.-->\n+<!--Language dropdown. The option links are relative so the site works wherever it is mounted; site.js keeps stickyNavbar from cancelling the click.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Light theme. The rules are scoped to html.theme-light, so this sheet c",
+      "firstSeenOn": [
+        "about.html",
+        "en/about.html"
+      ],
+      "hunk": "-<!--Ljust tema. Reglerna är låsta till html.theme-light, så det här arket ändrar inget förrän js/theme.js sätter klassen.-->\n+<!--Light theme. The rules are scoped to html.theme-light, so this sheet changes nothing until js/theme.js sets the class.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Must be blocking in <head>: the theme has to be on <html> before the f",
+      "firstSeenOn": [
+        "about.html",
+        "en/about.html"
+      ],
+      "hunk": "-<!--Måste ligga blockerande i <head>: temat ska stå på <html> innan första bildrutan, annars visas mörkt tema en bildruta och byter sen.-->\n+<!--Must be blocking in <head>: the theme has to be on <html> before the first frame, otherwise the dark theme shows for one frame and then swaps.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Nav items that own subpages are <details> groups. Same reason as the l",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Menyposter med undersidor är <details>-grupper. Samma skäl som språkväljaren nedan: ingen händelsehanterare behöver kopieras när site.js klonar markupen till mobilmenyn. Undersidornas länkar är relativa så att sajten fungerar var den än ligger, och site.js hindrar stickyNavbar från att avbryta klicket på dem.-->\n+<!--Nav items that own subpages are <details> groups. Same reason as the language switcher below: there is no event handler to copy when site.js clones this markup into the mobile menu. The subpage links are relative so the site works wherever it is mounted, and site.js keeps stickyNavbar from cancelling the click on them.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Testimonials and Partners are one section on the start page now.-->",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Kundbetyg och Partners är en sektion på startsidan nu.-->\n+<!--Testimonials and Partners are one section on the start page now.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "The certification marks stand where a third link list stood: the produ",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Certifieringsmärkena står där en tredje länklista stod: produkterna nås från toppmenyn på varje sida, och foten är där märkena hör hemma. Bilderna leder till avsnittet på om-sidan som säger vad det är som är certifierat.-->\n+<!--The certification marks stand where a third link list stood: the products are reachable from the top menu on every page, and the footer is where the marks belong. The images lead to the section on the about page that says what is certified.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "The order in the markup is locked: the rules below 1023px in css/foote",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Ordningen i markupen är låst: reglerna under 1023px i css/footer-large.css flyttar barn 1 och 4 under länklistorna med order, och räknar på just den här ordningen.-->\n+<!--The order in the markup is locked: the rules below 1023px in css/footer-large.css move children 1 and 4 below the link lists with order, and count on exactly this order.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "The same switcher again, here beside the hamburger. CSS shows one of t",
+      "firstSeenOn": [
+        "about.html"
+      ],
+      "hunk": "-<!--Samma väljare igen, här bredvid hamburgaren. CSS visar en av dem, aldrig båda.-->\n+<!--The same switcher again, here beside the hamburger. CSS shows one of them, never both.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "The theme switcher. Sits to the left of the language switcher and is b",
+      "firstSeenOn": [
+        "about.html",
+        "en/about.html"
+      ],
+      "hunk": "-<!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd likadant, men som <button>: inget navigeras till, och knappen hamnar därmed utanför stickyNavbars \"li a\". Ligger före språkväljaren i markupen just för att den ligger till vänster om den på skärmen. Båda är absolutpositionerade i den breda menyn, så ordningen här syns inte — men den styr tabbordningen, och omvänd ordning gav globen fokus före temaknappen fast temaknappen står först.-->\n+<!--The theme switcher. Sits to the left of the language switcher and is built the same way, but as a <button>: nothing is navigated to, which also keeps it outside stickyNavbar's \"li a\". It comes before the language switcher in the markup precisely because it sits to the left of it on screen. Both are absolutely positioned in the wide menu, so the order here is invisible — but it drives the tab order, and the reverse order gave the globe focus before the theme button even though the theme button comes first.-->",
+      "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    }
+  ]
 }

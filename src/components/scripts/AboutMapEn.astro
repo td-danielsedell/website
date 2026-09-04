@@ -1,0 +1,7 @@
+---
+---
+    <!--Draws the map. defer keeps both off the critical path and preserves the
+        order: leaflet.js runs first, so about.js finds window.L and skips its
+        own loader. See the note beside the Leaflet stylesheet in <head>.-->
+    <script src="../js/leaflet.js" defer is:inline></script>
+    <script src="../js/about.js" defer is:inline></script>

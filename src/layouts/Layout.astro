@@ -1,0 +1,166 @@
+---
+/**
+ * The shared page shell: <head>, header, <main>, footer, and the four
+ * site-wide scripts.
+ *
+ * Two rules govern everything here.
+ *
+ * 1. Every <script> carries `is:inline`, without exception. Astro's default is
+ *    to hoist, modulize, defer, bundle and dedupe scripts, which would destroy
+ *    the jQuery plugin load order this site depends on. Stylesheets stay as
+ *    <link> tags for the same reason — importing CSS or a public/ asset in
+ *    frontmatter creates a second, hashed copy under _astro/.
+ *
+ * 2. Asset URLs stay RELATIVE (`css/...` at the root, `../css/...` under /en/).
+ *    GitHub Pages serves project repos from a subpath, so root-absolute URLs
+ *    would 404 there.
+ *
+ * The variable parts of <head> come in through two slots rather than a string
+ * array of hrefs, because the per-page stylesheet links carry their own
+ * explanatory comments AND differ in attribute form (`rel`/`href` order,
+ * `type="text/css"` present or not) — neither survives a list of URLs.
+ *
+ * MECHANISM, verified by build probe: Astro SILENTLY DROPS an HTML comment
+ * written at the TOP LEVEL of slot content — inside a `<Fragment>`, inside
+ * `<Fragment slot="...">`, and equally among a page's default-slot children.
+ * That last one is why `<main>` lives in the PAGE and not here: the page body
+ * has comments between its sections, and as direct slot children they vanished.
+ * Nested inside `<main>` they are ordinary descendants and survive.
+ * So slot content that carries comments must be passed as a COMPONENT
+ * (`<PageCss slot="head-css" />`) — a component renders its own template, so
+ * its comments survive, and the tag itself emits nothing. Several components
+ * may target the same slot; they concatenate in source order. Comments also
+ * survive inside `{cond && <Component />}` and inside `{cond && (<div>…)}`,
+ * but NOT as a bare comment inside a Fragment.
+ */
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { assetPrefix, type Lang } from '../data/nav';
+
+interface Props {
+  lang: Lang;
+  /** File name of this page, e.g. 'about.html'. Drives canonical, hreflang, og:url and the language switcher. */
+  path: string;
+  title: string;
+  description: string;
+  /** og:title when it differs from the <title> (several subpages do). */
+  ogTitle?: string;
+  /** 'website' everywhere except the four project pages, which use 'article'. */
+  ogType?: string;
+  ogImage?: string;
+  /** True on the two index pages — see Header for what it changes. */
+  isHome?: boolean;
+  /** The about pages own the #certificates section the footer badges point at. */
+  onAboutPage?: boolean;
+}
+
+const {
+  lang,
+  path,
+  title,
+  description,
+  ogTitle = title,
+  ogType = 'website',
+  ogImage = 'https://www.totaldigital.se/images/og/index.jpg',
+  isHome = false,
+  onAboutPage = false,
+} = Astro.props;
+
+const p = assetPrefix(lang);
+const SITE = 'https://www.totaldigital.se';
+const svUrl = `${SITE}/${path}`;
+const enUrl = `${SITE}/en/${path}`;
+const canonical = lang === 'sv' ? svUrl : enUrl;
+---
+<!DOCTYPE html>
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--Page Title-->
+    <title>{title}</title>
+
+    <!--Meta Description-->
+    <meta name="description"
+        content={description}>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Canonical URL and Link Previews-->
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="sv" href={svUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={svUrl} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Total Digital" />
+    <meta property="og:locale" content={lang === 'sv' ? 'sv_SE' : 'en_GB'} />
+    <meta property="og:locale:alternate" content={lang === 'sv' ? 'en_GB' : 'sv_SE'} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description"
+        content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Total Digital" />
+
+    <!--Favicon and App Icons-->
+    <link rel="icon" href={`${p}images/favicon.ico`} sizes="any" />
+    <link rel="icon" type="image/png" href={`${p}images/favicon.png`} />
+    <link rel="apple-touch-icon" href={`${p}images/apple-touch-icon.png`} />
+    <meta name="theme-color" content="#C63D02" />
+
+    <!-- Main CSS Files -->
+    <link rel="stylesheet" href={`${p}css/style.css`}>
+
+    <!-- Color CSS -->
+    <link rel="stylesheet" href={`${p}css/colors.css`}>
+
+    <!-- Animations CSS -->
+    <link href={`${p}css/animations.css`} rel="stylesheet" type="text/css">
+
+    <slot name="head-css" />
+
+    <!--Light theme. The rules are scoped to html.theme-light, so this sheet
+        changes nothing until js/theme.js sets the class.-->
+    <link rel="stylesheet" href={`${p}css/light.css`}>
+
+    <!--Must be blocking in <head>: the theme has to be on <html> before the
+        first frame, otherwise the dark theme shows for one frame and then swaps.-->
+    <script src={`${p}js/theme.js`} is:inline></script>
+
+    <slot name="head-after-theme" />
+
+    <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
+    <link rel="preload" href={`${p}fonts/open-sans-latin.woff2`} as="font" type="font/woff2" crossorigin />
+
+    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Loaded async; icons swap in after paint. -->
+    <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous" defer is:inline></script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <Header lang={lang} path={path} isHome={isHome} />
+
+        <!--Main Content Area-->
+        <slot />
+        <!--End of Main Content Area-->
+
+
+        <Footer lang={lang} onAboutPage={onAboutPage} />
+
+    </div>
+
+    <!-- Include JavaScript resources -->
+    <script src={`${p}js/jquery.1.8.3.min.js`} is:inline></script>
+    <script src={`${p}js/jquery.stickyNavbar.min.js`} is:inline></script>
+    <script src={`${p}js/jquery.waypoints.min.js`} is:inline></script>
+    <script src={`${p}js/site.js`} is:inline></script>
+    <slot name="scripts" />
+
+</body>
+
+</html>
