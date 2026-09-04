@@ -15,6 +15,9 @@ The site is ~finished: 18 pages (9 Swedish at root + 9 English mirrors in `en/`)
 - **CSS**: re-home, don't rewrite. Globals (colors, style, animations, light) stay global; page sheets may move into scoped component styles in a late phase, rules unchanged; `scopedStyleStrategy: 'where'`. No Tailwind/Sass.
 - **i18n**: plain file placement (`src/pages/about.astro` + `src/pages/en/about.astro`), NOT Astro's i18n routing module — the URL structure already is the file structure, translated strings live in markup, and 2 locales × 9 pages needs no middleware/fallback machinery. `lang` is an ordinary Layout prop.
 - **Images**: `astro:assets` deferred — hand-done WebP work stays as-is.
+- **Git topology**: `origin` (totaldigital-se/website) carries the unknown live deployment and is ~144 commits behind local main; `fork` (td-danielsedell/website) receives all work. The `astro` branch pushes to fork only. **Fork GitHub Pages = live verification/preview surface**: a GitHub Action on the astro branch runs `astro build` and publishes `dist/` to Pages, so the converted site is reviewable at a real URL.
+- **Asset paths stay RELATIVE**: Pages serves project repos under a subpath (`/website/`), so root-absolute `/css/...` URLs would 404 there — and would break the byte-diff anyway. Keep the current relative scheme (`css/…` at root, `../css/…` under en/); Layout computes the `../` prefix from `lang`. The en/about leaflet workaround is fixed by loading leaflet.css/js from the `<head>` via Layout props on BOTH about pages and deleting about.js's dynamic injection (simpler and idiomatic anyway).
+- **Origin catch-up sequencing**: before the Astro merge ever reaches origin, land the plain-HTML 144-commit catch-up there first — so the Astro change arrives as a clean shape-only diff, not months of content + shape at once. Part of the hosting-owner conversation; not this migration's work.
 
 ## Architecture
 
@@ -55,7 +58,8 @@ Baseline first: fork `astro` from a committed main state (working tree has uncom
 2. **Verification harness**: snapshot fork-point HTML to `verify/baseline/`; write `diff-pages.mjs` (parse5: sort attributes, normalize whitespace except in script/style/pre, normalize quote/boolean-attr/void forms, compare comment nodes too — several comments are load-bearing docs). Gate: baseline-vs-baseline clean AND a deliberately planted mutation is caught.
 3. **Layout + Header + Footer + icons, pilot = about pair** (exercises id="banner", footer variant, the en/about leaflet workaround — preserved verbatim this phase). Gate: both about pages pass diff with an empty allowlist.
 4. **Fan-out remaining 16 pages**: one subagent per page pair — convert, run diff for its pages, iterate to zero. Index pair last (most variance) with a review pass. Gate: all 18 pass normalized diff, empty allowlist, plus browser spot-checks.
-5. **Deliberate improvements** — one commit + one allowlist entry each: root-absolute asset URLs; fix `js/about.js` leaflet relative-path bug and drop en/about's duplicate loads (behavior change — verify map on both about pages); collapse per-page CSS/JS literals into named bundles in `src/data/assets.ts`; optionally start moving page CSS into scoped styles (per-sheet, verified). Gate: diff passes with only allowlisted divergences.
+5. **Deliberate improvements** — one commit + one allowlist entry each: leaflet loading moved to `<head>` via Layout props on both about pages, about.js dynamic injection deleted (behavior change — verify map on both about pages); collapse per-page CSS/JS literals into named bundles in `src/data/assets.ts`; optionally start moving page CSS into scoped styles (per-sheet, verified). Asset paths stay relative — NO root-absolute conversion (breaks Pages subpath + byte-diff). Gate: diff passes with only allowlisted divergences.
+5b. **Fork Pages preview**: GitHub Action on the astro branch — `astro build`, publish `dist/` to Pages. Gate: converted site browsable at the Pages URL, spot-checked on phone + desktop; this is also the colleague-review surface before any merge.
 6. **Re-sync with main**: `git diff <fork-point>..main -- '*.html' 'en/*.html' css/ js/ images/` and re-apply ongoing main edits into the .astro sources / public/. Re-run full verification against a REGENERATED baseline (current main). Repeat if main moved again.
 7. **Cleanup + handover**: delete old root .html on the branch; decide `ledningsgrupp-candidates.html` (scratch file — drop into public/ or leave on main); README section on `npm run dev` / `npm run build`; keep `compressHTML: false` permanently (byte savings trivial, whitespace can shift inline-block layout). Merge to main is Daniel's call, after the deploy question is answered with the hosting owner.
 
@@ -102,7 +106,7 @@ Mechanics: the Agent/Task tool takes a `model` parameter per spawn, so the Opus 
 ## Critical files
 
 - Created: `astro.config.mjs`, `src/layouts/Layout.astro`, `src/components/Header.astro`, `src/components/Footer.astro`, `src/data/nav.ts`, `verify/diff-pages.mjs`, 18 `src/pages/**/*.astro`.
-- Existing contracts to satisfy (read, don't change until phase 5): `js/theme.js` (data-label reads, must stay blocking), `js/site.js` (#nav-mobile innerHTML clone, stopImmediatePropagation handlers, data-scroll-to), `js/about.js` (leaflet relative-path bug, fixed in phase 5).
+- Existing contracts to satisfy (read, don't change until phase 5): `js/theme.js` (data-label reads, must stay blocking), `js/site.js` (#nav-mobile innerHTML clone, stopImmediatePropagation handlers, data-scroll-to), `js/about.js` (leaflet dynamic injection — replaced by `<head>` loading in phase 5).
 
 ## Out of scope
 
