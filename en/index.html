@@ -190,6 +190,19 @@
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">About</a>
                                 </li>
+                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
+                                    likadant, men som <button>: inget navigeras till, och knappen
+                                    hamnar därmed utanför stickyNavbars "li a".
+
+                                    Ligger före språkväljaren i markupen just för att den ligger
+                                    till vänster om den på skärmen. Båda är absolutpositionerade i
+                                    den breda menyn, så ordningen här syns inte — men den styr
+                                    tabbordningen, och omvänd ordning gav globen fokus före
+                                    temaknappen fast temaknappen står först.-->
+                                <li class="nav-theme">
+                                    <button type="button" class="theme-toggle" aria-label="Switch to light mode"
+                                            title="Switch to light mode" data-label-light="Switch to light mode" data-label-dark="Switch to dark mode"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
+                                </li>
                                 <!--Language dropdown. The option links are relative so the site works
                                     wherever it is mounted; site.js keeps stickyNavbar from cancelling
                                     the click. <details> keeps the whole control script-free, so it
@@ -202,13 +215,6 @@
                                             <span class="lang-option is-current" lang="en" aria-current="true">English</span>
                                         </div>
                                     </details>
-                                </li>
-                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
-                                    likadant, men som <button>: inget navigeras till, och knappen
-                                    hamnar därmed utanför stickyNavbars "li a".-->
-                                <li class="nav-theme">
-                                    <button type="button" class="theme-toggle" aria-label="Switch to light mode"
-                                            title="Switch to light mode" data-label-light="Switch to light mode" data-label-dark="Switch to dark mode"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
                         </nav>
@@ -250,7 +256,7 @@
                             jump. -->
                         <p class="expertise-line">
                             <span class="expertise-label">We know</span>
-                            <span class="expertise-rotator">
+                            <span class="expertise-rotator" aria-hidden="true">
                                 <span class="expertise-reel">
                                     <span><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" aria-hidden="true"></i>Asset Management</span>
                                     <span><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>GIS</span>
@@ -259,6 +265,11 @@
                                     <span aria-hidden="true"><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>Asset Management</span>
                                 </span>
                             </span>
+                            <!--The reel is four items deep in the DOM and only clipped by CSS, so
+                                a screen reader used to hear "We know Asset ManagementGISRemote SensingAI"
+                                as one word. It is hidden above and read as a sentence here; the
+                                visible "We know" is not repeated, so the line is spoken once.-->
+                            <span class="sr-only">asset management, GIS, remote sensing and AI.</span>
                         </p>
                         <!--End of Expertise line-->
 

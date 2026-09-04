@@ -13,13 +13,51 @@ $(document).ready(function () {
 
 	/*Responsive Navigation*/
 	$("#nav-mobile").html($("#nav-main").html());
-	$("#nav-trigger > span").on("click",function() {
-		if ($("nav#nav-mobile ul").hasClass("expanded")) {
-			$("nav#nav-mobile ul.expanded").removeClass("expanded").slideUp(250);
-			$(this).removeClass("open");
+
+	/* The trigger is a bare <span> in the markup, so everything that makes it a
+	   control is set here rather than in eighteen pages of HTML. This matters
+	   more than it looks: below 1024px the hamburger is the only way into the
+	   site's navigation, and a <span> with a click handler has no tab stop, no
+	   role and no state, so the whole menu was unreachable by keyboard.
+
+	   Same shape as the About page's city list in js/about.js — role, tab stop,
+	   Enter and Space — all of which a real <button> would have given for free.
+	   The span stays because CSS hangs the fa-bars/fa-xmark mask off it. */
+	var $menuTrigger = $("#nav-trigger > span");
+	var $menuList = $("nav#nav-mobile ul");
+
+	/* Only one <ul> is ever in here: the dropdown and the language list are
+	   deliberately <div>s so this selector cannot reach them (see the .nav-sub
+	   note in style.css), which is also what makes this id safe to add. */
+	$menuList.attr("id", "nav-mobile-list");
+	$menuTrigger.attr({
+		"role": "button",
+		"tabindex": "0",
+		"aria-controls": "nav-mobile-list",
+		"aria-expanded": "false",
+		"aria-label": document.documentElement.lang === "en" ? "Menu" : "Meny"
+	});
+
+	function setMenu(open) {
+		if (open) {
+			$menuList.addClass("expanded").slideDown(250);
+			$menuTrigger.addClass("open");
 		} else {
-			$("nav#nav-mobile ul").addClass("expanded").slideDown(250);
-			$(this).addClass("open");
+			$menuList.filter(".expanded").removeClass("expanded").slideUp(250);
+			$menuTrigger.removeClass("open");
+		}
+		$menuTrigger.attr("aria-expanded", open ? "true" : "false");
+	}
+
+	$menuTrigger.on("click", function () {
+		setMenu(!$menuList.hasClass("expanded"));
+	});
+
+	$menuTrigger.on("keydown", function (event) {
+		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+			/* Space scrolls the page unless we stop it. */
+			event.preventDefault();
+			setMenu(!$menuList.hasClass("expanded"));
 		}
 	});
 
@@ -35,9 +73,11 @@ $(document).ready(function () {
 
 	/* ...which also means it must not close the menu it just opened. */
 	$("#nav-mobile ul a").not(".nav-group summary a").on("click",function() {
-		if ($("nav#nav-mobile ul").hasClass("expanded")) {
-			$("nav#nav-mobile ul.expanded").removeClass("expanded").slideUp(250);
-			$("#nav-trigger > span").removeClass("open");
+		if ($menuList.hasClass("expanded")) {
+			/* Through setMenu, so aria-expanded goes back to false with it —
+			   closing here used to strip the classes and leave the trigger
+			   claiming the menu was still open. */
+			setMenu(false);
 		}
 	});
 

@@ -242,6 +242,25 @@
     inset: 0;
 }
 
+/* Tabbing to a card highlights the whole card rather than the title text. The
+   <a> is an inline-block around its own words, so a ring on it traced the
+   headline and left the rest of the card — the part the link actually
+   activates — unmarked. The overlay above already covers the card, so that is
+   what gets the ring.
+
+   Inset by 3px because .feature-card is overflow:hidden and clips anything
+   drawn outside its box, and radius-matched so the ring follows the card's 10px
+   corners instead of cutting across them. */
+.card-link-stretch:focus-visible {
+    outline: none;
+}
+
+.card-link-stretch:focus-visible::after {
+    outline: 2px solid var(--primary);
+    outline-offset: -3px;
+    border-radius: 10px;
+}
+
 .feature-card .button {
     position: relative;
     z-index: 1;

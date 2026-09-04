@@ -173,6 +173,19 @@
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">Om oss</a>
                                 </li>
+                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
+                                    likadant, men som <button>: inget navigeras till, och knappen
+                                    hamnar därmed utanför stickyNavbars "li a".
+
+                                    Ligger före språkväljaren i markupen just för att den ligger
+                                    till vänster om den på skärmen. Båda är absolutpositionerade i
+                                    den breda menyn, så ordningen här syns inte — men den styr
+                                    tabbordningen, och omvänd ordning gav globen fokus före
+                                    temaknappen fast temaknappen står först.-->
+                                <li class="nav-theme">
+                                    <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
+                                            title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
+                                </li>
                                 <!--Språkväljare. Länkarnas href är relativa så att sajten fungerar
                                     var den än ligger; site.js hindrar stickyNavbar från att avbryta
                                     klicket. <details> håller hela kontrollen fri från skript, så den
@@ -185,10 +198,6 @@
                                             <a class="lang-option" href="en/td_linear.html" hreflang="en" lang="en">English</a>
                                         </div>
                                     </details>
-                                </li>
-                                <li class="nav-theme">
-                                    <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
-                                            title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
                         </nav>
@@ -335,7 +344,7 @@
                         och punkterna.-->
                     <div class="col-1 tdt-tour tdt-tour--wide">
                         <div class="image-carousel" data-image-carousel="">
-                            <div class="image-carousel-track" role="group" aria-label="Bildspel" tabindex="0">
+                            <div class="image-carousel-track">
                                 <figure class="image-carousel-slide">
                                     <img class="tdt-shot tdt-shot--wide" src="images/product-images/td-linear/funktioner.webp" width="1832" height="859" loading="lazy" alt="Sex illustrationer: mätdata och objekt på samma sträcka, datalager som läggs ovanpå varandra, en avvikelse som sticker ut mot kravgränsen, underhållsåtgärder längs sträckan, AI-stöd som sorterar fynd, och kravgränser med planerat underhåll." data-zoomable>
                                     <figcaption><strong>Vad TD Linear gör</strong> – samlar data som hör ihop, analyserar längs sträckan och lyfter det som avviker.</figcaption>

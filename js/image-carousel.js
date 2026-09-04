@@ -13,10 +13,14 @@
     var SPEECH = {
         sv: { prev: 'Föregående ', next: 'Nästa ', goto: function (noun, i, n) {
             return 'Gå till ' + noun + ' ' + i + ' av ' + n;
-        }, group: 'Bildspel', noun: 'bild' },
+        }, at: function (noun, i, n) {
+            return noun + ' ' + i + ' av ' + n;
+        }, group: 'Bildspel', pick: 'Välj ', noun: 'bild' },
         en: { prev: 'Previous ', next: 'Next ', goto: function (noun, i, n) {
             return 'Go to ' + noun + ' ' + i + ' of ' + n;
-        }, group: 'Image carousel', noun: 'image' }
+        }, at: function (noun, i, n) {
+            return noun + ' ' + i + ' of ' + n;
+        }, group: 'Image carousel', pick: 'Choose ', noun: 'image' }
     };
     var speech = (document.documentElement.lang || '').slice(0, 2) === 'en'
         ? SPEECH.en
@@ -40,6 +44,12 @@
 
         var current = 0;
 
+        /* Read up here rather than down with the autoplay block, where it used
+           to live: that sits below an early return, so on a carousel with no
+           data-carousel-autoplay the var was hoisted but never assigned, and
+           go() reading .matches off it would throw. */
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
         /* Defaults describe an image carousel; a carousel of something else
            renames itself with data-carousel-label / data-carousel-noun. */
         var groupLabel = carousel.getAttribute('data-carousel-label') || speech.group;
@@ -62,9 +72,24 @@
             button.addEventListener('click', function () {
                 /* go() wraps, so neither end is a dead button */
                 go(direction === 'prev' ? current - 1 : current + 1);
+                announce();
             });
             carousel.appendChild(button);
             return button;
+        }
+
+        /* Only the slides that currently have a layout box. A display:none slide
+           reports offsetLeft 0, which sorts it to the front of views() below and
+           makes its zero the lead-in gutter — every position downstream then
+           comes out wrong, and the strictly-ascending test drops real views on
+           the floor. js/showcase-featured.js hides slides on this very page, so
+           this is live rather than theoretical: it is also why the dot labels
+           counted "of 4" while only three cards were on screen. */
+        function laidOut() {
+            return Array.prototype.slice.call(slides).filter(function (slide) {
+                return slide.offsetWidth || slide.offsetHeight
+                    || slide.getClientRects().length;
+            });
         }
 
         /* The distinct positions the track can come to rest at, in order, each
@@ -96,9 +121,12 @@
                order instead, a reordered track drops the views whose position
                went backwards, and the last case became unreachable by arrow and
                dot both. */
-            var ordered = Array.prototype.slice.call(slides).sort(function (a, b) {
+            var ordered = laidOut().sort(function (a, b) {
                 return a.offsetLeft - b.offsetLeft;
             });
+            if (!ordered.length) {
+                return [];
+            }
             var lead = ordered[0].offsetLeft - track.offsetLeft;
             var limit = track.scrollWidth - track.clientWidth;
             var out = [];
@@ -126,23 +154,67 @@
 
             index = ((index % stops.length) + stops.length) % stops.length;
             markCurrent(index);
-            track.scrollTo({ left: stops[index].position, behavior: 'smooth' });
+            /* A behavior in the options object beats the stylesheet, so the
+               scroll-behavior:auto that image-carousel.css sets under reduced
+               motion had no say here at all — only autoplay was ever gated. */
+            track.scrollTo({
+                left: stops[index].position,
+                behavior: reduceMotion.matches ? 'auto' : 'smooth'
+            });
         }
 
+        /* Spoken only when the reader worked a control: arrow, dot or arrow key.
+           Deliberately not on scroll-settle — autoplay moves the track through
+           the same handler, and a carousel that talks every few seconds is worse
+           than one that says nothing. Swipe is silent for the same reason, and
+           the reader can see it anyway. */
+        function announce() {
+            if (!stops.length) {
+                return;
+            }
+            live.textContent = speech.at(noun, stops[current].slide + 1, laidOut().length);
+        }
+
+        /* Appended prev, dots, next, which is how they read across the screen:
+           the arrows are absolutely positioned at the two edges and the dots sit
+           in the middle, so appending both arrows first put the tab order at
+           prev, next, dots — the keyboard jumped the right-hand arrow before the
+           dots that sit to its left. */
         arrow('prev', speech.prev + noun, 'left');
-        arrow('next', speech.next + noun, 'right');
+
+        /* The one the sheet's header comment has been promising all along. */
+        var live = document.createElement('div');
+        live.className = 'image-carousel-live';
+        live.setAttribute('role', 'status');
+        live.setAttribute('aria-live', 'polite');
+        live.setAttribute('aria-atomic', 'true');
+        carousel.appendChild(live);
 
         var dots = document.createElement('div');
         dots.className = 'image-carousel-dots';
+        /* Named separately from the track's own group, so a reader tabbing past
+           hears which of the two things they have landed on. */
+        dots.setAttribute('role', 'group');
+        dots.setAttribute('aria-label', speech.pick + noun);
         carousel.appendChild(dots);
+
+        arrow('next', speech.next + noun, 'right');
 
         /* One dot per view. The label still counts in slides — "go to product 2
            of 3" names the card the view leads with, which is what a reader is
            looking for; it is only the number of dots that follows the views. */
         function renderDots() {
             stops = views();
+            var total = laidOut().length;
 
             if (dots.children.length === stops.length) {
+                /* Same number of dots, but a resize changes which slide leads
+                   each view, so the labels are stale even when the count is not
+                   — this used to return before touching them. */
+                Array.prototype.forEach.call(dots.children, function (dot, index) {
+                    dot.setAttribute('aria-label',
+                        speech.goto(noun, stops[index].slide + 1, total));
+                });
                 return;
             }
 
@@ -151,9 +223,10 @@
                 var dot = document.createElement('button');
                 dot.type = 'button';
                 dot.className = 'image-carousel-dot';
-                dot.setAttribute('aria-label', speech.goto(noun, stop.slide + 1, slides.length));
+                dot.setAttribute('aria-label', speech.goto(noun, stop.slide + 1, total));
                 dot.addEventListener('click', function () {
                     go(index);
+                    announce();
                 });
                 dots.appendChild(dot);
             });
@@ -168,9 +241,63 @@
             });
         }
 
+        /* Only the slides on screen put their own controls in the tab order.
+           The product pages make every screenshot a zoom trigger — js/image-zoom.js
+           gives each one role="button" and a tab stop — so without this a reader
+           tabbing past the carousel walked all five images, four of them scrolled
+           out of sight, before reaching the arrows. Tab now offers the one on
+           screen; the arrows and dots are how you reach the others, which is what
+           they are for.
+
+           tabindex only, not `inert`: the slides off screen are still one swipe
+           away, so their text has to stay readable to a screen reader. The
+           original value is remembered rather than assumed, because a slide may
+           hold a plain link that never had a tabindex of its own. */
+        function slideReachable(slide, on) {
+            var controls = slide.querySelectorAll('a[href], button, [tabindex]');
+            Array.prototype.forEach.call(controls, function (el) {
+                if (typeof el.dataset.carouselTabindex === 'undefined') {
+                    el.dataset.carouselTabindex = el.hasAttribute('tabindex')
+                        ? el.getAttribute('tabindex')
+                        : 'none';
+                }
+                if (!on) {
+                    el.setAttribute('tabindex', '-1');
+                } else if (el.dataset.carouselTabindex === 'none') {
+                    el.removeAttribute('tabindex');
+                } else {
+                    el.setAttribute('tabindex', el.dataset.carouselTabindex);
+                }
+            });
+        }
+
+        /* Measured off the track's own scroll position rather than watched with
+           an IntersectionObserver: this has to be right immediately and on every
+           settle, and it is the same offsetLeft-minus-track-offsetLeft frame
+           views() already works in. A slide counts as on screen once more than
+           half of it is inside the scrollport, so a sliver clipped at the edge
+           does not claim a tab stop. */
+        function syncReach() {
+            /* A track that does not scroll is showing everything it has, so
+               nothing may be taken out of the tab order — at the widths where
+               these rows become a wrapped grid the second row sits outside the
+               scrollport horizontally, and measuring overlap alone dropped a
+               showcase card that was plainly on screen. */
+            var scrolls = track.scrollWidth > track.clientWidth + 1;
+            var left = track.scrollLeft;
+            var right = left + track.clientWidth;
+
+            Array.prototype.forEach.call(slides, function (slide) {
+                var start = slide.offsetLeft - track.offsetLeft;
+                var shown = Math.min(start + slide.offsetWidth, right) - Math.max(start, left);
+                slideReachable(slide, !scrolls || shown > slide.offsetWidth / 2);
+            });
+        }
+
         /* Padding first: how many views there are is measured off it. */
         fitViews();
         renderDots();
+        syncReach();
 
         /* Whatever moved the track — arrow, dot, swipe, wheel — the view nearest
            the track's resting position is the one now on screen. No tie-break
@@ -193,6 +320,7 @@
                 });
 
                 markCurrent(nearest);
+                syncReach();
             }, 80);
         });
 
@@ -256,21 +384,33 @@
         track.setAttribute('aria-label', groupLabel);
 
         /* A track wide enough to hold all its slides has nothing to offer: the
-           arrows and dots would be lying and the tab stop is dead weight. The
-           products rely on this rather than a breakpoint — their cards keep a
-           fixed size, so whether it scrolls is a question of how many happen to
-           fit, which only measuring can answer. Keyboard control is reachable
-           without a mouse for the same reason the tab stop exists. */
+           arrows and dots would be lying. The products rely on this rather than
+           a breakpoint — their cards keep a fixed size, so whether it scrolls is
+           a question of how many happen to fit, which only measuring can answer.
+
+           The track deliberately does NOT become a tab stop. It used to carry
+           tabindex="0", and because nothing gave it a focus style that stop was
+           invisible; once the site-wide focus ring landed it showed up as a box
+           around the whole scrollport — image plus caption on the product pages,
+           the whole row on the index — which reads as a bug on something that is
+           not itself clickable.
+
+           tabindex="-1", not a missing attribute: Chrome 127 and later make any
+           scroll container keyboard-focusable on its own so the arrow keys can
+           scroll it, so simply deleting the attribute left the stop exactly where
+           it was. Only an explicit -1 opts out.
+
+           Nothing is lost by it: the arrows and dots are rendered at exactly the
+           widths where the track scrolls, so every view stays reachable from the
+           keyboard, and the ArrowLeft/ArrowRight handler below still fires for a
+           control inside the track because the event bubbles up to here. */
         function syncAffordances() {
             var scrolls = track.scrollWidth > track.clientWidth + 1;
 
             carousel.classList.toggle('image-carousel--static', !scrolls);
-            if (scrolls) {
-                track.setAttribute('tabindex', '0');
-            } else {
-                track.removeAttribute('tabindex');
-            }
         }
+
+        track.setAttribute('tabindex', '-1');
 
         syncAffordances();
 
@@ -281,15 +421,21 @@
             fitViews();
             syncAffordances();
             renderDots();
+            syncReach();
         });
 
+        /* Bound to the track, but reached by bubbling now that the track is not
+           itself focusable: the arrow keys work while focus sits on a link
+           inside a slide. */
         track.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 go(current - 1);
+                announce();
             } else if (e.key === 'ArrowRight') {
                 e.preventDefault();
                 go(current + 1);
+                announce();
             }
         });
 
@@ -301,7 +447,6 @@
             return;
         }
 
-        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         var timer = null;
         var idleTimer = null;
         /* No IntersectionObserver means we cannot tell, so assume visible. */

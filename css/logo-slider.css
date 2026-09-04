@@ -82,10 +82,19 @@
     transition: all 0.3s ease;
 }
 
-.logo-track img:hover {
+.logo-track img:hover,
+.logo-track a:focus-visible img {
     filter: grayscale(0%);
     opacity: 1;
 }
+
+/* .logo-slider carries a linear-gradient edge mask for the 40px fade, and a
+   mask fades everything painted inside it — a focus ring included. A logo that
+   comes to rest under the fade therefore gets a half-transparent ring that
+   reads grey rather than --primary. The colour restore above is what actually
+   marks focus here; the ring is the backup, not the other way round. The
+   marquee also stops on focusin (js/logo-slider.js), so the logo holds still
+   while it is the focused one. */
 /* The industry strip under Affärsområden runs on this same marquee, but it is a
    row of small labelled icons, not a row of logos: 36px and in colour, exactly
    the size they were when the row was a static list. Everything here is undoing

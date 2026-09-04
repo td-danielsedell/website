@@ -173,6 +173,19 @@
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">About</a>
                                 </li>
+                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
+                                    likadant, men som <button>: inget navigeras till, och knappen
+                                    hamnar därmed utanför stickyNavbars "li a".
+
+                                    Ligger före språkväljaren i markupen just för att den ligger
+                                    till vänster om den på skärmen. Båda är absolutpositionerade i
+                                    den breda menyn, så ordningen här syns inte — men den styr
+                                    tabbordningen, och omvänd ordning gav globen fokus före
+                                    temaknappen fast temaknappen står först.-->
+                                <li class="nav-theme">
+                                    <button type="button" class="theme-toggle" aria-label="Switch to light mode"
+                                            title="Switch to light mode" data-label-light="Switch to light mode" data-label-dark="Switch to dark mode"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
+                                </li>
                                 <!--Language dropdown. The option links are relative so the site works
                                     wherever it is mounted; site.js keeps stickyNavbar from cancelling
                                     the click. <details> keeps the whole control script-free, so it
@@ -185,13 +198,6 @@
                                             <span class="lang-option is-current" lang="en" aria-current="true">English</span>
                                         </div>
                                     </details>
-                                </li>
-                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
-                                    likadant, men som <button>: inget navigeras till, och knappen
-                                    hamnar därmed utanför stickyNavbars "li a".-->
-                                <li class="nav-theme">
-                                    <button type="button" class="theme-toggle" aria-label="Switch to light mode"
-                                            title="Switch to light mode" data-label-light="Switch to light mode" data-label-dark="Switch to dark mode"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
                         </nav>
@@ -340,7 +346,7 @@
                         screenshots are wide dashboards, so the tour takes the whole row.-->
                     <div class="col-1 tdt-tour tdt-tour--wide">
                         <div class="image-carousel" data-image-carousel="">
-                            <div class="image-carousel-track" role="group" aria-label="Image carousel" tabindex="0">
+                            <div class="image-carousel-track">
                                 <figure class="image-carousel-slide">
                                     <img class="tdt-shot tdt-shot--wide" src="../images/product-images/td-linear/funktioner.webp" width="1832" height="859" loading="lazy" alt="Six illustrations: measurement data and objects on the same route, data layers stacked on top of one another, a deviation standing out against the requirement limit, maintenance work along the route, AI support sorting findings, and requirement limits with planned maintenance." data-zoomable>
                                     <figcaption><strong>What TD Linear does</strong> &ndash; brings related data together, analyses along the route and surfaces what deviates.</figcaption>

@@ -235,8 +235,33 @@ textarea:focus {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-*:focus {
+/* Only the mouse loses the ring. This used to be a bare `*:focus`, which hid
+   keyboard focus on every interactive element on the site. */
+*:focus:not(:focus-visible) {
     outline: none;
+}
+
+/* Site-wide default. Components that draw their own ring (.scroll-cue, the
+   carousel arrow, the footer cert badges, the About city list) are all more
+   specific and keep winning. The header draws its own per surface — see the
+   two rules under the nav, further down this sheet. */
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Screen-reader-only text: in the accessibility tree, out of the layout. Used
+   by the hero expertise line and by the carousel's live region. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /*------------------------------------------------------------------------------------------*/
@@ -622,6 +647,38 @@ section {
 #header nav a:hover {
     /* opacity: 0.6; */
     opacity: 1;
+}
+
+/* Keyboard focus in the header, drawn in each surface's own ink — the same rule
+   the hover and current-page markers follow (see the .nav-solid notes below).
+   The orange bar takes white: its own rows, its group labels, and the two
+   controls that sit beside them. */
+#header nav#nav-main > ul > li > a:focus-visible,
+#header nav#nav-main .nav-group summary:focus-visible,
+#header nav#nav-main .nav-lang summary:focus-visible,
+#header #nav-lang-mobile .nav-lang summary:focus-visible,
+#header .theme-toggle:focus-visible,
+#nav-trigger > span:focus-visible {
+    outline: 2px solid #fff;
+    /* Inset. A bar row is the full 71px of the header, so a positive offset
+       puts the ring's top and bottom edges outside it and clips them. */
+    outline-offset: -2px;
+}
+
+/* The neutral panels — the wide dropdown, the language list and the mobile
+   menu — take --primary instead. Every one of these has to name #nav-main or
+   #nav-mobile: "#header nav#nav-main a" above carries two ids, so a panel rule
+   written with classes alone loses to it and the dropdown inside the wide nav
+   came out ringed in white on a near-white panel. The bar rule is now scoped to
+   direct children for the same reason, and these still spell the id out so
+   neither can drift back into outranking the other. */
+#header nav#nav-main .nav-sub a:focus-visible,
+#header nav#nav-main .nav-lang .lang-options a:focus-visible,
+#header #nav-lang-mobile .nav-lang .lang-options a:focus-visible,
+#header nav#nav-mobile a:focus-visible,
+#header nav#nav-mobile .nav-group summary:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
 }
 
 /* The language switcher rides along at the end of the nav list so the mobile

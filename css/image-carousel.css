@@ -109,10 +109,15 @@
     display: inline-block;
 }
 
-.image-carousel-arrow:hover,
-.image-carousel-arrow:focus-visible {
+.image-carousel-arrow:hover {
     background: var(--primary, #ff5722);
 }
+
+/* Focus deliberately does NOT take the hover fill. The site-wide ring is
+   --primary, and tinting the disc the same colour would draw the ring on top of
+   itself — which is why this button used to carry a white ring of its own and
+   was the one place in the page where the tab colour changed. The ring alone is
+   the focus indicator here; hover keeps the fill. */
 
 .image-carousel-arrow--prev {
     left: 15px;
@@ -163,9 +168,36 @@
     background: rgba(255, 255, 255, 0.55);
 }
 
+/* The button itself is a transparent 24px box, so the site-wide ring would
+   outline empty space beside the dot. Ring the 10px circle you can actually
+   see instead, and offset it out so it does not sit on the dot's own colour. */
+.image-carousel-dot:focus-visible {
+    outline: none;
+}
+
+.image-carousel-dot:focus-visible::before {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
 .image-carousel-dot[aria-current="true"]::before {
     background: var(--primary, #ff5722);
     transform: scale(1.3);
+}
+
+/* Slide changes, for a reader who cannot see the dots move. In the
+   accessibility tree, out of the layout -- same recipe as .sr-only in
+   style.css, repeated here so this component carries its own. */
+.image-carousel-live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

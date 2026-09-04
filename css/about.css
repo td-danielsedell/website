@@ -747,23 +747,25 @@ html.theme-light .city-label.leaflet-tooltip {
 
 /* --------- 8. Laptop and tablet ---------- */
 
-/* Above the phone breakpoint but below the full container. Two tracks side by
-   side need the measure; at 1023px they are down to ~460px each and the
-   thesis list rows start wrapping. */
+/* Above the phone breakpoint but below the full container. */
 @media (max-width: 1023px) {
 
     .about-title {
         font-size: 46px;
     }
 
-    .track-grid {
-        grid-template-columns: 1fr;
-    }
+    /* The tracks stay two up all the way down to the phone breakpoint. What
+       used to collapse them here was the thesis list, whose rows wrapped once
+       a column got under ~460px; that list is gone from this section and two
+       short paragraphs with a button under them take a narrow column fine.
 
-    /* One column now — a vertical rule down the middle of stacked blocks
-       divides nothing. The 40px row gap separates them instead. */
-    .track-grid:after {
-        display: none;
+       The gutter is what has to give instead of the column count. 90px out of
+       a 728px row at 768 leaves 319px a side, which is where the body copy
+       starts breaking mid-phrase; at 48px each track keeps 340px — about 45
+       characters, still a measure — and the rule at 50% stays centred in the
+       gutter by construction, so nothing else has to move. */
+    .track-grid {
+        gap: 40px 48px;
     }
 
     /* Two proportional columns hand the map whatever half the row happens to
@@ -794,6 +796,18 @@ html.theme-light .city-label.leaflet-tooltip {
 
     .about-title {
         font-size: 36px;
+    }
+
+    /* One column on a phone: two tracks a side of a 320px viewport is 140px
+       each. */
+    .track-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* A vertical rule down the middle of stacked blocks divides nothing. The
+       40px row gap separates them instead. */
+    .track-grid:after {
+        display: none;
     }
 
     .about-lead {

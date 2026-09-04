@@ -33,8 +33,61 @@
     box-shadow: 0 25px 60px -15px #000;
 }
 
+/* The dialog's only focusable child, so it is also what holds focus while the
+   overlay is open (js/image-zoom.js). The X is two rotated bars rather than a
+   glyph: nothing here should depend on the Font Awesome kit having loaded, and
+   the overlay is the one place on the site with no other way out. */
+.image-zoom-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.image-zoom-close::before,
+.image-zoom-close::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    margin: -1px 0 0 -10px;
+    background: #fff;
+}
+
+.image-zoom-close::before {
+    transform: rotate(45deg);
+}
+
+.image-zoom-close::after {
+    transform: rotate(-45deg);
+}
+
+.image-zoom-close:hover {
+    background: var(--primary);
+}
+
+/* White, not --primary: this one sits on the overlay's near-black backdrop,
+   which is the same surface in both themes. */
+.image-zoom-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
 @media (max-width: 600px) {
     .image-zoom-overlay {
         padding: 12px;
+    }
+
+    .image-zoom-close {
+        top: 8px;
+        right: 8px;
     }
 }

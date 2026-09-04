@@ -139,6 +139,19 @@
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">Om oss</a>
                                 </li>
+                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
+                                    likadant, men som <button>: inget navigeras till, och knappen
+                                    hamnar därmed utanför stickyNavbars "li a".
+
+                                    Ligger före språkväljaren i markupen just för att den ligger
+                                    till vänster om den på skärmen. Båda är absolutpositionerade i
+                                    den breda menyn, så ordningen här syns inte — men den styr
+                                    tabbordningen, och omvänd ordning gav globen fokus före
+                                    temaknappen fast temaknappen står först.-->
+                                <li class="nav-theme">
+                                    <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
+                                            title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
+                                </li>
                                 <!--Språkväljare. Länkarnas href är relativa så att sajten fungerar
                                     var den än ligger; site.js hindrar stickyNavbar från att avbryta
                                     klicket. <details> håller hela kontrollen fri från skript, så den
@@ -151,13 +164,6 @@
                                             <a class="lang-option" href="en/railway-safety.html" hreflang="en" lang="en">English</a>
                                         </div>
                                     </details>
-                                </li>
-                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
-                                    likadant, men som <button>: inget navigeras till, och knappen
-                                    hamnar därmed utanför stickyNavbars "li a".-->
-                                <li class="nav-theme">
-                                    <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
-                                            title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
                         </nav>
