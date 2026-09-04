@@ -1,0 +1,8 @@
+---
+/** images-loaded and lightbox — between waypoints and site.js. */
+import { assetPrefix, type Lang } from '../../data/nav';
+interface Props { lang: Lang }
+const p = assetPrefix(Astro.props.lang);
+---
+    <script src={`${p}js/images-loaded.min.js`} is:inline></script>
+    <script src={`${p}js/lightbox.min.js`} is:inline></script>

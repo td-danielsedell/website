@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TdAssetCareCss from '../../components/head/TdAssetCareCss.astro';
+import TdAssetCareJsonLdEn from '../../components/head/TdAssetCareJsonLdEn.astro';
+import TdAssetCareFooterCss from '../../components/head/TdAssetCareFooterCss.astro';
+import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
+import LightboxScripts from '../../components/scripts/LightboxScripts.astro';
+---
+<Layout
+    lang="en"
+    path="td_asset_care.html"
+    title="TD Asset Care – 360° solution for EAM and maintenance | Total Digital"
+    description="TD Asset Care is a complete 360° solution for managing and maintaining physical assets. Industry-specific functionality, deployed on-premises, hybrid or in the cloud."
+    ogTitle="TD Asset Care – 360° solution for EAM and maintenance"
+    ogImage="https://www.totaldigital.se/images/og/td_asset_care.jpg"
+    ogImageAlt="TD Asset Care"
+>
+    <ParallaxScripts slot="scripts-early" lang="en" />
+    <LightboxScripts slot="scripts-late" lang="en" />
+    <TdAssetCareCss slot="head-css" lang="en" />
+    <TdAssetCareJsonLdEn slot="head-after-fonts" />
+    <TdAssetCareFooterCss slot="head-after-fonts" lang="en" />
+        <main id="content" class="showcase-top title-top">
+
+            <!--Introduction-->
+            <section class="introduction scrollto">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <div class="col-1">
+                            <!-- <div class="col-38"> -->
+                            <div class="section-heading has-title-icon">
+                                <!-- <h3>SHOWCASES</h3> -->
+                                <h1 class="section-title">TD Asset Care</h1>
+                                <p class="section-subtitle">Asset management in practice</p>
+                                <!--The same icon this product's card carries in Produkter on the start
+                                    page, so the card and the page read as one thing. Stands in until
+                                    these pages have artwork of their own. See
+                                    .section-heading.has-title-icon in css/style.css.-->
+                                <i class="fa-duotone fa-solid fa-chart-user title-icon" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-61"> -->
+                        <div class="col-1">
+                            <p>
+                                TD Asset Care is a finished and <strong>proven solution for Enterprise Asset Management (EAM)</strong>, built for organisations that want better control over their physical assets and maintenance.
+                            </p><p>
+                                It combines standard EAM functionality with industry-specific features and supports the full asset lifecycle – from planning and preventive maintenance through to corrective work, follow-up and analysis. <strong>You get a solid foundation that can be adapted to your processes without starting from scratch.</strong>
+                            </p><p>
+                                TD Asset Care can be deployed on-premises, hybrid or in the cloud, and integrates with your existing IT environment. The result is better <strong>control</strong>, <strong>structured maintenance</strong> and <strong>greater value</strong> from your assets.
+                            </p>
+                        </div>
+
+                        <!--Call to Action-->
+                        <div class="col-1 text-center showcase-cta">
+                            <p>Want to know more about TD Asset Care and how it could work in your organisation?</p>
+                            <a href="mailto:info@totaldigital.se?subject=TD%20Asset%20Care" class="button">CONTACT US</a>
+                        </div>
+                        <!--End of Call to Action-->
+
+                    </div>
+                </div>
+
+            </section>
+            <!--End of Introduction-->
+
+        </main>
+</Layout>

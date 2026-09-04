@@ -1,0 +1,25 @@
+---
+/**
+ * End-of-body scripts for td_linear (sv) that CAN be placed via Layout's
+ * `scripts` slot (i.e. that belong after site.js).
+ *
+ * NOT included here: js/wow.min.js, js/jquery.enllax.min.js and
+ * js/jquery.easing.min.js (baseline loads them between jquery.1.8.3.min.js
+ * and jquery.stickyNavbar.min.js — enllax drives the banner's
+ * data-enllax-ratio parallax, wow/easing drive .wow scroll animations
+ * elsewhere on the page), nor js/images-loaded.min.js and js/lightbox.min.js
+ * (baseline loads them between jquery.waypoints.min.js and js/site.js).
+ * Layout.astro hardcodes jquery → stickyNavbar → waypoints → site.js with a
+ * single `scripts` slot AFTER that block, so there is no slot this component
+ * can use to land content inside it. This is a Layout gap, not something
+ * fixable from a page component — see the migration report (also affects
+ * td_test and td_asset_care).
+ */
+import { assetPrefix } from '../../data/nav';
+
+const p = assetPrefix('sv');
+---
+    <script src={`${p}js/image-zoom.js`} is:inline></script>
+
+    <!--Bygger pilar och punkter i .image-carousel-->
+    <script src={`${p}js/image-carousel.js`} is:inline></script>

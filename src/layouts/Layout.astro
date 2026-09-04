@@ -36,6 +36,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { assetPrefix, type Lang } from '../data/nav';
+import FaKitDefault from '../components/head/FaKitDefault.astro';
+import FaKitHome from '../components/head/FaKitHome.astro';
 
 interface Props {
   lang: Lang;
@@ -79,8 +81,9 @@ const {
 
 const p = assetPrefix(lang);
 const SITE = 'https://www.totaldigital.se';
-const svUrl = `${SITE}/${path}`;
-const enUrl = `${SITE}/en/${path}`;
+// The index pages are canonicalised to the bare directory URL, not /index.html.
+const svUrl = isHome ? `${SITE}/` : `${SITE}/${path}`;
+const enUrl = isHome ? `${SITE}/en/` : `${SITE}/en/${path}`;
 const canonical = lang === 'sv' ? svUrl : enUrl;
 ---
 <!DOCTYPE html>
@@ -123,6 +126,8 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     <link rel="apple-touch-icon" href={`${p}images/apple-touch-icon.png`} />
     <meta name="theme-color" content="#C63D02" />
 
+    <slot name="head-preload" />
+
     <!-- Main CSS Files -->
     <link rel="stylesheet" href={`${p}css/style.css`}>
 
@@ -149,8 +154,7 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
 
     <slot name="head-after-fonts" />
 
-    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Loaded async; icons swap in after paint. -->
-    <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous" defer is:inline></script>
+{isHome ? <FaKitHome /> : <FaKitDefault />}
 </head>
 
 <body>
@@ -169,11 +173,22 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     </div>
 
     <!-- Include JavaScript resources -->
+{/* The four site-wide scripts are fixed, but three pages interleave others
+    between them. `scripts-early` lands between jQuery and stickyNavbar (wow /
+    enllax / easing); `scripts-late` lands between waypoints and site.js
+    (images-loaded / lightbox); `scripts` appends after site.js. `all-scripts`
+    replaces the whole block, which the index pair uses. */}
+{Astro.slots.has('all-scripts') ? <slot name="all-scripts" /> : (
+    <Fragment>
     <script src={`${p}js/jquery.1.8.3.min.js`} is:inline></script>
+    <slot name="scripts-early" />
     <script src={`${p}js/jquery.stickyNavbar.min.js`} is:inline></script>
     <script src={`${p}js/jquery.waypoints.min.js`} is:inline></script>
+    <slot name="scripts-late" />
     <script src={`${p}js/site.js`} is:inline></script>
     <slot name="scripts" />
+    </Fragment>
+)}
 
 </body>
 

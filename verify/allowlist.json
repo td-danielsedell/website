@@ -28,6 +28,17 @@
       "pages": [
         "*"
       ],
+      "note": "Font Awesome Kit 863e7191f5 (SVG+JS). Blocking on purpose: t",
+      "firstSeenOn": [
+        "en/index.html"
+      ],
+      "hunk": "-<!-- Font Awesome Kit 863e7191f5 (SVG+JS). Blocking on purpose: the hero expertise reel is above the fold, and deferring pops the icons in after first paint. Same as the Swedish index.html. -->\n+<!-- Font Awesome Kit 863e7191f5 (SVG+JS). Blocking on purpose: the hero expertise reel is above the fold, and deferring pops the icons in after first paint. -->",
+      "reason": "Comment wording unification. The English index's Font Awesome note ended with an extra sentence, 'Same as the Swedish index.html.' — a cross-reference that only made sense while the two index pages were hand-maintained copies. They now render from one shared component, so the sentence describes nothing. Comment text only; the script itself is byte-identical and still non-deferred (traps item 7)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
       "note": "Footer. The large variant (css/footer-large.css), laid out in columns:",
       "firstSeenOn": [
         "about.html"
@@ -86,6 +97,17 @@
       "pages": [
         "*"
       ],
+      "note": "Light theme. The rules are scoped to html.theme-light, so th",
+      "firstSeenOn": [
+        "en/td_linear.html"
+      ],
+      "hunk": "-<!--Light theme. The rules are keyed to html.theme-light, so this sheet changes nothing until js/theme.js sets the class.-->\n+<!--Light theme. The rules are scoped to html.theme-light, so this sheet changes nothing until js/theme.js sets the class.-->",
+      "reason": "Comment wording drift in the /en/ mirror. en/td_linear.html carried its own phrasing of the two shared head comments ('keyed to' for 'scoped to', 'render-blocking' for 'blocking') because structural edits never propagated to en/. Both comments now come from the shared Layout. Comment text only — the stylesheet and the blocking script tag are unchanged."
+    },
+    {
+      "pages": [
+        "*"
+      ],
       "note": "Light theme. The rules are scoped to html.theme-light, so this sheet c",
       "firstSeenOn": [
         "about.html",
@@ -93,6 +115,17 @@
       ],
       "hunk": "-<!--Ljust tema. Reglerna är låsta till html.theme-light, så det här arket ändrar inget förrän js/theme.js sätter klassen.-->\n+<!--Light theme. The rules are scoped to html.theme-light, so this sheet changes nothing until js/theme.js sets the class.-->",
       "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Must be blocking in <head>: the theme has to be on <html> be",
+      "firstSeenOn": [
+        "en/td_linear.html"
+      ],
+      "hunk": "-<!--Must be render-blocking in <head>: the theme has to be on <html> before the first frame, otherwise the dark theme shows for one frame and swaps.-->\n+<!--Must be blocking in <head>: the theme has to be on <html> before the first frame, otherwise the dark theme shows for one frame and then swaps.-->",
+      "reason": "Comment wording drift in the /en/ mirror. en/td_linear.html carried its own phrasing of the two shared head comments ('keyed to' for 'scoped to', 'render-blocking' for 'blocking') because structural edits never propagated to en/. Both comments now come from the shared Layout. Comment text only — the stylesheet and the blocking script tag are unchanged."
     },
     {
       "pages": [
@@ -116,6 +149,28 @@
       ],
       "hunk": "-<!--Menyposter med undersidor är <details>-grupper. Samma skäl som språkväljaren nedan: ingen händelsehanterare behöver kopieras när site.js klonar markupen till mobilmenyn. Undersidornas länkar är relativa så att sajten fungerar var den än ligger, och site.js hindrar stickyNavbar från att avbryta klicket på dem.-->\n+<!--Nav items that own subpages are <details> groups. Same reason as the language switcher below: there is no event handler to copy when site.js clones this markup into the mobile menu. The subpage links are relative so the site works wherever it is mounted, and site.js keeps stickyNavbar from cancelling the click on them.-->",
       "reason": "Shared-component HTML comment, translated to English. Decided 2026-09-05: comments are English-only, so the header, footer and <head> comments that used to be per-locale are now written once in the shared component. Comment text only — the diff confirms zero markup, attribute or visible-text change on either about page (14 hunks, 14 deletions, 14 additions, all 1:1 comment replacements)."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Testimonials and Partners are one section on the start page",
+      "firstSeenOn": [
+        "en/index.html"
+      ],
+      "hunk": "-<!--Testimonials and Partners were two entries for what is now one section.-->\n+<!--Testimonials and Partners are one section on the start page now.-->",
+      "reason": "Comment wording unification. The two index pages describe the merged testimonials/partners section as 'were two entries for what is now one section', the other 16 pages as 'are one section on the start page now'. One shared Header can hold one text, so the 16-page majority wins. Comment text only. (The Swedish index's version was also half-translated — 'Kundbetyg and Partners' — which the English-only decision resolves.)"
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "Testimonials and Partners are one section on the start page",
+      "firstSeenOn": [
+        "index.html"
+      ],
+      "hunk": "-<!--Kundbetyg and Partners were two entries for what is now one section.-->\n+<!--Testimonials and Partners are one section on the start page now.-->",
+      "reason": "Comment wording unification. The two index pages describe the merged testimonials/partners section as 'were two entries for what is now one section', the other 16 pages as 'are one section on the start page now'. One shared Header can hold one text, so the 16-page majority wins. Comment text only. (The Swedish index's version was also half-translated — 'Kundbetyg and Partners' — which the English-only decision resolves.)"
     },
     {
       "pages": [

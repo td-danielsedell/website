@@ -1,0 +1,14 @@
+---
+/**
+ * wow.js, enllax and easing — loaded between jQuery and stickyNavbar on the
+ * product pages. The position matters: enllax drives the header's
+ * data-enllax-ratio parallax and wow.js the scroll-in animations, and both
+ * expect jQuery present and stickyNavbar not yet initialised.
+ */
+import { assetPrefix, type Lang } from '../../data/nav';
+interface Props { lang: Lang }
+const p = assetPrefix(Astro.props.lang);
+---
+    <script src={`${p}js/wow.min.js`} is:inline></script>
+    <script src={`${p}js/jquery.enllax.min.js`} is:inline></script>
+    <script src={`${p}js/jquery.easing.min.js`} is:inline></script>

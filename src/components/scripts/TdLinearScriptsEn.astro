@@ -1,0 +1,17 @@
+---
+/**
+ * End-of-body scripts for td_linear (en) that CAN be placed via Layout's
+ * `scripts` slot (i.e. that belong after site.js). See TdLinearScriptsSv for
+ * the KNOWN GAP: wow.min.js/jquery.enllax.min.js/jquery.easing.min.js load
+ * between jquery.1.8.3.min.js and jquery.stickyNavbar.min.js, and
+ * images-loaded.min.js/lightbox.min.js load between jquery.waypoints.min.js
+ * and site.js, in the baseline — Layout.astro has no slot in either spot.
+ */
+import { assetPrefix } from '../../data/nav';
+
+const p = assetPrefix('en');
+---
+    <script src={`${p}js/image-zoom.js`} is:inline></script>
+
+    <!--Builds the arrows and dots inside .image-carousel-->
+    <script src={`${p}js/image-carousel.js`} is:inline></script>

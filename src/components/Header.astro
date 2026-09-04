@@ -16,6 +16,7 @@
 import { strings, assetPrefix, type Lang } from '../data/nav';
 import Globe from './icons/Globe.astro';
 import BannerPlaceholder from './BannerPlaceholder.astro';
+import NavOrderNote from './NavOrderNote.astro';
 
 interface Props {
   lang: Lang;
@@ -42,7 +43,9 @@ const p = assetPrefix(lang);
 // serves both locales. On the index pages themselves the links are bare hashes.
 const home = isHome ? '' : 'index.html';
 // The switcher points at the same page in the other language.
-const otherHref = lang === 'sv' ? `en/${path}` : `../${path}`;
+const otherHref = lang === 'sv'
+  ? (isHome ? 'en/' : `en/${path}`)
+  : (isHome ? '../' : `../${path}`);
 const current = (href: string) => (href === path ? 'page' : undefined);
 ---
 <header id={isHome ? 'home' : 'banner'} class="scrollto clearfix" data-enllax-ratio=".5">
@@ -79,7 +82,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                     site.js clones this markup into the mobile menu. The subpage links
                                     are relative so the site works wherever it is mounted, and site.js
                                     keeps stickyNavbar from cancelling the click on them.-->
-                                <li onclick={`location.href='${home}#businessareas';`}>
+{isHome && <NavOrderNote />}
+                                <li onclick={isHome ? undefined : `location.href='${home}#businessareas';`}>
                                     <a href={`${home}#businessareas`}>{t.nav.businessareas}</a>
                                 </li>
                                 <li class="nav-group">
@@ -95,7 +99,7 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                         </div>
                                     </details>
                                 </li>
-                                <li onclick={`location.href='${home}#services';`}>
+                                <li onclick={isHome ? undefined : `location.href='${home}#services';`}>
                                     <a href={`${home}#services`}>{t.nav.services}</a>
                                 </li>
                                 <li class="nav-group">
@@ -112,7 +116,7 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                     </details>
                                 </li>
                                 <!--Testimonials and Partners are one section on the start page now.-->
-                                <li onclick={`location.href='${home}#trust';`}>
+                                <li onclick={isHome ? undefined : `location.href='${home}#trust';`}>
                                     <a href={`${home}#trust`}>{t.nav.trust}</a>
                                 </li>
                                 <li onclick="location.href='about.html';">

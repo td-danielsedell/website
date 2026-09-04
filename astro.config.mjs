@@ -2,8 +2,11 @@
 import { defineConfig } from 'astro/config';
 
 // Migration constraints (see astro-migration-plan.md):
-// - `build.format: 'file'` + `trailingSlash: 'never'` keep the existing
+// - `build.format: 'preserve'` + `trailingSlash: 'never'` keep the existing
 //   `about.html` style URLs, so no link in the site body has to change.
+//   'preserve' rather than 'file': 'file' emits src/pages/en/index.astro as
+//   dist/en.html, which is not a URL this site has. 'preserve' maps every page
+//   to its source path, so en/index.astro lands at en/index.html as it must.
 // - `compressHTML: false` is permanent: the byte saving is trivial and
 //   collapsing whitespace shifts inline-block layout.
 // - `scopedStyleStrategy: 'where'` keeps specificity at zero when page CSS
@@ -17,6 +20,6 @@ export default defineConfig({
   scopedStyleStrategy: 'where',
   trailingSlash: 'never',
   build: {
-    format: 'file',
+    format: 'preserve',
   },
 });

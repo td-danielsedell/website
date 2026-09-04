@@ -1,0 +1,336 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TdTestCss from '../components/head/TdTestCss.astro';
+import TdTestJsonLdSv from '../components/head/TdTestJsonLdSv.astro';
+import TdTestFooterCss from '../components/head/TdTestFooterCss.astro';
+import TdTestScripts from '../components/scripts/TdTestScripts.astro';
+import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
+---
+<Layout
+    lang="sv"
+    path="td_test.html"
+    title="TD Test – Automattester för IBM Maximo | Total Digital"
+    description="TD Test är verktyget för automatiserade tester av IBM Maximo och Maximo Application Suite (MAS). Testar gränssnitt, affärslogik och integrationer m.m."
+    ogTitle="TD Test – Automattester för IBM Maximo"
+    ogImage="https://www.totaldigital.se/images/og/td_test.jpg"
+    ogImageAlt="TD Test"
+    bannerPlaceholder={false}
+>
+    <ParallaxScripts slot="scripts-early" lang="sv" />
+    <TdTestCss slot="head-css" lang="sv" />
+    <TdTestJsonLdSv slot="head-after-fonts" />
+    <TdTestFooterCss slot="head-after-fonts" lang="sv" />
+    <TdTestScripts slot="scripts" lang="sv" />
+        <main id="content" class="showcase-top">
+
+            <!--Introduction / Hero. Låg tidigare i en 66% bred centrerad kolumn,
+                så sidan öppnade smalt och breddade sig först vid nästa avsnitt.
+                Nu i samma rad som resten av sidan: rubrik och ingress bredvid
+                produktbilden, de tre detaljstyckena som kolumner under den, och
+                avslutningsraden med knappen centrerad längst ned. Samma text,
+                samma ordning.-->
+            <section class="introduction scrollto tdt-intro">
+                <div class="row clearfix">
+
+                    <div class="tdt-hero">
+                        <div class="tdt-hero-copy">
+                            <div class="section-heading has-title-icon">
+                                <h1 class="section-title">TD Test</h1>
+                                <p class="section-subtitle">Kvalitetssäkra ert IBM Maximo</p>
+                                <!--Samma ikon som produktkortet i Produkter på startsidan, så kortet
+                                    och sidan hänger ihop. Står här tills sidorna har egen artwork.
+                                    Se .section-heading.has-title-icon i css/style.css.-->
+                                <i class="fa-duotone fa-solid fa-clipboard-list-check title-icon" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="tdt-hero-body">
+                            <p class="tdt-lead">
+                                TD Test automatiserar test av IBM Maximo och ersätter tidskrävande manuella kontroller. Ett arbetsflöde definieras en gång och kan sedan testas om och om igen – efter uppgraderingar, anpassningar eller inför driftsättning.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tdt-intro-body">
+                        <p>
+                            Ni får snabbt svar på den viktigaste frågan: <strong>fungerar Maximo fortfarande som verksamheten förväntar sig?</strong> Om något går fel visar TD Test var i flödet felet uppstod, vad som hände och hur skärmen såg ut. Testerna lämnar databasen oförändrad, vilket gör att de kan upprepas utan att påverka er data.
+                        </p>
+                        <p>
+                            TD Test stödjer både IBM Maximo 7.x och IBM Maximo Application Suite (MAS), och samma tester kan köras mot båda versionerna. Det gör det enkelt att verifiera att processer och anpassningar fungerar även efter en uppgradering.
+                        </p>
+                        <p>
+                            Till skillnad från traditionella testverktyg arbetar TD Test direkt mot Maximo, utan att gå via webbläsaren. Det ger snabbare och stabilare tester som inte behöver skrivas om när gränssnittet förändras.
+                        </p>
+                    </div>
+
+                    <div class="tdt-intro-cta">
+                        <p>
+                            Vill ni se hur det ser ut i praktiken? Hör av er för en demonstration &ndash; eller läs
+                            vidare för detaljer.
+                        </p>
+                        <a href="mailto:info@totaldigital.se?subject=Jag vill veta mer om TD Test"
+                            class="button">KONTAKTA OSS</a>
+                    </div>
+
+                    <!--Rullningsmärket. Ligger utanför CTA-blocket och sist i raden:
+                        det hör till vyn, inte till texten. Etiketten står i länken, så
+                        aria-label börjar med samma ord – annars stämmer inte det
+                        upplästa namnet med det synliga.
+                        data-scroll-to plockas upp av js/site.js, som rullar dit mjukt
+                        med samma fart och easing som menyns egna ankare. Se
+                        .scroll-cue i css/td-test.css.-->
+                    <a href="#mojligheter" class="scroll-cue" data-scroll-to
+                        aria-label="Läs mer om Möjligheter"><span class="scroll-cue-label">Läs mer</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
+
+                </div>
+            </section>
+            <!--End of Introduction-->
+
+            <!--What can TD Test do. Inget text-center: rubrikerna ligger vänster
+                som på startsidan och Om oss, och det orange strecket hänger
+                under underrubriken – se css/colors.css. Rubriken står direkt i
+                raden, så rännan kommer från .row > .section-heading i
+                style.css och linjerar med .tdt-trio nedanför.-->
+            <section id="mojligheter" class="primary-color scrollto clearfix">
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">MÖJLIGHETER</h2>
+                        <p class="section-title">Vad kan TD Test?</p>
+                        <p class="section-subtitle">"Testar Maximo med hjälp av Maximo." <br>TD Test arbetar inifrån
+                            Maximo och når därför både gränssnittet och affärslogiken m.m.</p>
+                    </div>
+
+                    <!-- The three capability blocks. Screenshots no longer sit
+                         beside them: they belong together as a tour, see below. -->
+                    <div class="tdt-trio">
+                        <div>
+                            <h3 class="card-title">Testa det som är viktigt</h3>
+                            <p>TD Test kan automatisera tester av:</p>
+                            <ul class="tdt-list">
+                                <li>Maximos användargränssnitt och affärslogik</li>
+                                <li>Integrationer med andra system</li>
+                                <li>Egna anpassningar och funktioner</li>
+                                <li>Kompletta verksamhetsprocesser</li>
+                                <li>Flöden med flera användare, exempelvis attestering och överlämning</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="card-title">Se direkt vad som gick fel</h3>
+                            <p>TD Test ger er efter varje körning:</p>
+                            <ul class="tdt-list">
+                                <li>Resultat för varje teststeg</li>
+                                <li>Felmeddelanden och relevanta loggutdrag</li>
+                                <li>Skärmbilder från varje steg</li>
+                                <li>Historik över tidigare testkörningar</li>
+                                <li>Automatisk rapportering till exempelvis Teams</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="card-title">Kör på era villkor</h3>
+                            <p>TD Test ger flexibilitet att:</p>
+                            <ul class="tdt-list">
+                                <li>Köra enskilda tester eller hela testgrupper</li>
+                                <li>Schemalägga återkommande körningar</li>
+                                <li>Starta tester direkt från webbläsaren</li>
+                                <li>Integrera med exempelvis Jenkins</li>
+                                <li>Styra loggnivån per test utan att påverka Maximos ordinarie inställningar</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-1 tdt-tour">
+                        <div class="image-carousel" data-image-carousel>
+                            <div class="image-carousel-track">
+
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot" src="images/product-images/td-test/landing-page.webp"
+                                        width="1920" height="1416" loading="lazy"
+                                        alt="Startsidan i TD Test med testsviter och senaste körningar" data-zoomable>
+                                    <figcaption><strong>Startsidan</strong> &ndash; en överblick av läget just nu.
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot" src="images/product-images/td-test/test-runs-history.webp" width="1920"
+                                        height="1416" loading="lazy" alt="Historik över tidigare testkörningar i TD Test"
+                                        data-zoomable>
+                                    <figcaption><strong>Körningshistorik</strong> &ndash; tidigare körningar, så ni
+                                        kan följa kvaliteten över tid.</figcaption>
+                                </figure>
+
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot" src="images/product-images/td-test/test-run-report.webp"
+                                        width="1920" height="1416" loading="lazy"
+                                        alt="Detaljer för en testkörning i TD Test" data-zoomable>
+                                    <figcaption><strong>Körningsdetaljer</strong> &ndash; resultatet för varje test som
+                                        ingick i körningen.</figcaption>
+                                </figure>
+
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot" src="images/product-images/td-test/test-case-report.webp"
+                                        width="1920" height="1416" loading="lazy"
+                                        alt="Detaljer för ett enskilt testfall i TD Test, med källkod" data-zoomable>
+                                    <figcaption><strong>Testfallsdetaljer</strong> &ndash; steg för steg, med testets
+                                        källkod bredvid för att se vad som testades.</figcaption>
+                                </figure>
+
+                                <figure class="image-carousel-slide">
+                                    <img class="tdt-shot" src="images/product-images/td-test/maximo-gui.webp"
+                                        width="1920" height="1416" loading="lazy"
+                                        alt="Sparad skärmbild av Maximo från ett teststeg" data-zoomable>
+                                    <figcaption><strong>Sparad Maximo-vy</strong> &ndash; exakt vad Maximos gränssnitt var i det teststeget.</figcaption>
+                                </figure>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Product tour-->
+
+            <!--Features-->
+            <section id="funktioner" class="scrollto clearfix">
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">FÖRDELAR</h2>
+                        <p class="section-title">Varför TD Test?</p>
+                    </div>
+
+                    <!--Samma band som Affärsområden på startsidan: inga kort, bara
+                        hårfina linjer mellan kolumnerna, ikon över rubriken och en
+                        numrering 01–04. Se css/area-band.css; ikonerna här är
+                        duotone ur kitet i stället för <img>, se .area-band .tdt-icon
+                        i css/td-test.css. Ingen --fa-secondary-opacity här: bandet
+                        kör kitets default, till skillnad från rubrikikonen som
+                        trycks ner till 0,3 i style.css.-->
+                    <div class="col-1 area-band">
+
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-gauge-high" aria-hidden="true"></i></div>
+                            <h3>Snabbt</h3>
+                            <p>TD Test arbetar direkt mot Maximo, utan omvägen via en webbläsare. Det ger tester som kan köras upp till 100 gånger snabbare.</p>
+                        </div>
+
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-shield-check" aria-hidden="true"></i></div>
+                            <h3>Stabilt</h3>
+                            <p>TD Test påverkas inte av ändringar i Maximos gränssnitt eller webbläsarens beteende. Testerna blir stabilare och kräver mindre underhåll när Maximo förändras.</p>
+                        </div>
+
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-piggy-bank" aria-hidden="true"></i></div>
+                            <h3>Kostnadseffektivt</h3>
+                            <p>TD Test kräver ingen dedikerad hårdvara och kan köras som container i befintlig miljö. Snabb implementation och mindre testunderhåll ger snabbt nytta.</p>
+                        </div>
+
+                        <div class="area-band-item">
+                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-list-check" aria-hidden="true"></i></div>
+                            <h3>Användarvänligt</h3>
+                            <p>TD Test följer samma logik och benämningar som i Maximo, vilket gör testerna enkla att skapa och följa. Tydlig återrapportering visar exakt var felet uppstår.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            <!--End of Features-->
+
+            <!--Comparison-->
+            <section class="primary-color scrollto clearfix">
+                <div class="row clearfix">
+
+                    <div class="section-heading">
+                        <h2 class="section-kicker">JÄMFÖRELSE</h2>
+                        <p id="comparison-heading" class="section-title">TD Test vs. webbläsarbaserade tester</p>
+                    </div>
+
+                    <table class="tdt-compare" aria-labelledby="comparison-heading">
+                        <thead>
+                            <tr>
+                                <th scope="col">Funktioner</th>
+                                <th scope="col">Webbläsar-baserade</th>
+                                <th scope="col">TD Test</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Anpassar sig till ändringar i Maximos gränssnitt</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Samma test för olika Maximo-versioner</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Test av integrationer</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Test av Maximos affärslogik</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Inbyggd schemaläggning</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Felsökningsdata i rapporten</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Test utan påverkan på system eller data</th>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Test av olika webbläsare</th>
+                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Ja" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
+                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="Nej" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </section>
+            <!--End of Comparison-->
+
+            <!--Contact-->
+            <!--Samma avslutning som TD Asset Care och TD Linear: .showcase-cta,
+                alltså ett hårstreck, en dämpad rad och knappen. Det var ett eget
+                avsnitt med KONTAKT-etikett och 34px-rubrik, vilket lät högre än
+                slutraden på de andra två produktsidorna. id och .scrollto står
+                kvar – inget länkar hit i dag, men ankaret kan finnas sparat.-->
+            <section id="kontakt" class="scrollto clearfix">
+                <!--Samma omslag som TD Asset Care och TD Linear har runt sin
+                    .showcase-cta: .col-1.content-center > .col-2-3.row. Rakt i
+                    .row blev blocket 1245px brett mot deras 696, så hårstrecket
+                    var nästan dubbelt så långt. Bredden räknas fram av samma
+                    regler i stället för att sättas här, så de följer med om
+                    .row eller .col-2-3 ändras.-->
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <div class="col-1 text-center showcase-cta">
+                            <p>Vill ni veta mer om TD Test eller få en demonstration?</p>
+                            <a href="mailto:info@totaldigital.se?subject=Jag vill veta mer om TD Test"
+                                class="button">KONTAKTA OSS</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!--End of Contact-->
+
+        </main>
+</Layout>
