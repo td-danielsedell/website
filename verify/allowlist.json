@@ -1,0 +1,4 @@
+{
+  "_comment": "Every accepted divergence between verify/baseline/ (fork point 80e3937) and the built page. An entry is only valid with a non-empty `reason` — diff-pages.mjs throws otherwise. `pages` is a page path, an array of them, or \"*\". `hunk` is the canonical diff text of the divergence, `-` lines from the baseline and `+` lines from the build, trimmed. Phases 1-4 must reach zero divergences with this list EMPTY; phase 5 adds one entry per deliberate improvement, each in its own commit.",
+  "entries": []
+}

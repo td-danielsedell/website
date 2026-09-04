@@ -1,0 +1,29 @@
+{
+  "_comment": "Fork point of the astro branch. verify/baseline/ is a verbatim snapshot of the 18 HTML files at this commit and is the ground truth every converted page is diffed against. Regenerate (phase 6) with: git archive <commit> -- \"*.html\" \"en\" | tar -x -C verify/baseline, then re-run this generator.",
+  "commit": "80e393749f35dd4329fa74a4d90b99881b8ed59c",
+  "abbrev": "80e3937",
+  "subject": "Updated astro-migration plan",
+  "committedAt": "2026-09-04T23:34:31+03:00",
+  "branchedFrom": "main",
+  "fileCount": 18,
+  "sha256": {
+    "about.html": "9790356592b27b7fc630af50e5208d33143cae59598e792f4f247340f073e104",
+    "en/about.html": "81b4468ac8f4104a52b5a702ee8eed93a2f88a1dca679dd39a2cc96fd6066c64",
+    "en/index.html": "f0182982ca2ebc07f598c3e874d248ae8bd4bd5ce8277fc498d802ba1fbc4d54",
+    "en/leak-detection.html": "41a13a45f3c96461670559ef3eaebbbef3d505d4710a1e9a79668935ea5194c2",
+    "en/raildamage-analyses.html": "c5fa6e44bed72c5e7ff61596f644f1ac09240c1a280b8945fe36e2b15b1363e7",
+    "en/railway-safety.html": "f88d7c67b5e8482d37f5d47c1bc06f13e03f29f3bcaafdc5bb1c36190c1fbc09",
+    "en/sar-processing.html": "048156683c3d78e50b4e2521c622b32bc6a9a4c63be3dd7a9540bcc83d311ab0",
+    "en/td_asset_care.html": "2703f44af19db3c8b0468c8541a16562085bcacb399b09f06fd9780008f4caa1",
+    "en/td_linear.html": "3128a5a261070af24cf6561ed77c4df0cae877a556c1be29831ec523f73fe012",
+    "en/td_test.html": "fe33636205034f4f822dd3b641856e4cd7e3841374933fedc2785ded52f94ef0",
+    "index.html": "03d809a715808c6f81a32242afb1ed09cfaab2bf550a2a241296d43efe8a64c4",
+    "leak-detection.html": "6d7a5334976f787dd2ca4a08ffd550d2d839f5a3938d3d8d631a0610ba48745f",
+    "raildamage-analyses.html": "5164ddb856c643a88b6e07e6d8fa4260a6b70f3ffee5024aec52caed15eb8f60",
+    "railway-safety.html": "730af260f35480ac3dcf518521ee24bae832aa57aa942e4874ae43f29a9d6803",
+    "sar-processing.html": "fa1668039ca5efbde32a6fe7347f208d214244f1054f41368cf9bbe47c684c33",
+    "td_asset_care.html": "d5eaaf0e70ebf67254302200f326426c349292b360e33835c4fcc66cba68f33b",
+    "td_linear.html": "3961190d768297cbb3c16ff78a6431a4f4d51cca62327cfe5e98596eb2a33fee",
+    "td_test.html": "25a6a39767475bd1c7aa79095e888e885d77c9eadf433509798d2a4bb673c0f9"
+  }
+}
