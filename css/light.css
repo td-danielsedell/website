@@ -216,6 +216,22 @@ html.theme-light .image-carousel-arrow {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
+/* The rule above was swallowing every state the arrow has. It is (0,2,1) — the
+   `html` is an element selector on top of two classes — and the base
+   `.image-carousel-arrow:hover` in css/image-carousel.css is only (0,2,0), so
+   this beat it on specificity rather than on source order: no amount of
+   reordering the sheets would have fixed it. In light mode the disc simply
+   stayed white through hover, press and focus alike, which is what Daniel saw.
+
+   Restated here at (0,3,1) so the states come back. The chevron goes white on
+   the orange the way it already does in the dark theme — 3.9:1 against
+   --primary on this ground, past the 3:1 a non-text control needs. */
+html.theme-light .image-carousel-arrow:hover,
+html.theme-light .image-carousel-arrow:active {
+    background: var(--primary);
+    color: #fff;
+}
+
 /* The dots are the other half of that. Unlike the arrows they never sit on a
    photo — every carousel on the site puts them on section background — so the
    white they carry in dark mode leaves them invisible here, and a three-slide

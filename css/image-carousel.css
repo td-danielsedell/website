@@ -113,6 +113,15 @@
     background: var(--primary);
 }
 
+/* Pressed. Touch never hovers, so without this the arrows gave no feedback at
+   all on the device most likely to use them. The scale is deliberately not in
+   the transition above — a press wants to register on the frame it happens,
+   not ease in over 200ms. */
+.image-carousel-arrow:active {
+    background: var(--primary);
+    transform: scale(0.92);
+}
+
 /* Focus deliberately does NOT take the hover fill. The site-wide ring is
    --primary, and tinting the disc the same colour would draw the ring on top of
    itself — which is why this button used to carry a white ring of its own and
