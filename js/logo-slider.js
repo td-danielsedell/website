@@ -43,13 +43,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const speed = parseFloat(slider.dataset.speed) || 1;
         let scrollX = 0;
+        let paused = false;
+
+        /* WCAG 2.2.2 asks for a way to stop motion that runs longer than five
+           seconds. No visible button — hover covers the pointer, focus covers
+           the keyboard, and between them every reader who is trying to read or
+           click a logo has already stopped the strip by reaching for it. The
+           clones are out of the tab order, so a Tab into the row always lands
+           in the first copy, which is the one the loop measures against. */
+        slider.addEventListener("mouseenter", pause);
+        slider.addEventListener("focusin", pause);
+        slider.addEventListener("mouseleave", resume);
+        slider.addEventListener("focusout", resume);
+
+        function pause() {
+            paused = true;
+        }
+
+        /* Focusing a link scrolls it into view, and the wheel still works while
+           the strip is held — either leaves slider.scrollLeft somewhere the
+           loop's own counter knows nothing about, and resuming from the stale
+           counter would snap the row sideways. Read the real position back
+           instead. The copies are identical, so the modulo lands on the same
+           picture the reader is already looking at. */
+        function resume() {
+            paused = false;
+            scrollX = track.offsetWidth ? slider.scrollLeft % track.offsetWidth : 0;
+        }
 
         (function animate() {
-            scrollX += speed;
-            if (scrollX >= track.offsetWidth) {
-                scrollX = 0;
+            if (!paused) {
+                scrollX += speed;
+                if (scrollX >= track.offsetWidth) {
+                    scrollX = 0;
+                }
+                slider.scrollLeft = scrollX;
             }
-            slider.scrollLeft = scrollX;
             requestAnimationFrame(animate);
         })();
     }
