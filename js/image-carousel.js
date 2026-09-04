@@ -372,6 +372,11 @@
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
                 stop();
+            } else {
+                /* The IntersectionObserver only fires on threshold crossings, so
+                   coming back to the tab never re-starts a carousel that was
+                   already on screen when we left. */
+                start();
             }
         });
 

@@ -23,8 +23,6 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#nav-mobile").html($("#nav-main").html());
-
 	/* A group's label is a link to its section on the index page, which is what
 	   the wide nav wants. There is no hover on a touch screen, so here the label
 	   has to open the group instead.

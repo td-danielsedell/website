@@ -97,7 +97,7 @@
         more.hidden = false;
 
         var button = more.querySelector(".showcase-more-button");
-        if (button.dataset.bound) return;
+        if (!button || button.dataset.bound) return;
         button.dataset.bound = "1";
         button.addEventListener("click", function () {
             var revealed = Array.prototype.slice.call(
@@ -126,8 +126,12 @@
 
     function init() {
         layout(false);
-        window.matchMedia("(min-width: 768px) and (max-width: 1023px)")
-            .addEventListener("change", function () { layout(true); });
+        /* Guarded the same way js/theme.js guards its own matchMedia listener:
+           older Safari only has the deprecated addListener. */
+        var mql = window.matchMedia("(min-width: 768px) and (max-width: 1023px)");
+        if (mql && mql.addEventListener) {
+            mql.addEventListener("change", function () { layout(true); });
+        }
     }
 
     if (document.readyState === "loading") {

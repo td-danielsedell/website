@@ -2,6 +2,13 @@
 .logo-slider {
     overflow: hidden;
     padding-top: 30px;
+    /* The 40px the mask below fades over. Without it the row starts with its
+       first item already half-faded ("Järnväg" reading "ärnväg" on load): the
+       marquee is driven by scrollLeft, which cannot go negative, so the clear
+       space has to be part of the scrollable content. Leading padding on the
+       scroll container rather than on the track, so the gap between one copy
+       and the next stays the even 100px the items already have. */
+    padding-left: 40px;
     /* background: #f9f9f9; */
     position: relative;
 
@@ -89,7 +96,9 @@
     flex: 1 1 0;
     min-width: 0;
     margin: 0;
-    padding: 0;
+    /* Drops the 30px top the partner row wants, keeps the 40px start offset —
+       this strip is the one that showed the clipped first word. */
+    padding: 0 0 0 40px;
 }
 
 .industry-slider .logo-track span {
