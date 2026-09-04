@@ -48,6 +48,11 @@ interface Props {
   /** 'website' everywhere except the four project pages, which use 'article'. */
   ogType?: string;
   ogImage?: string;
+  /**
+   * Slot `og-image-note` sits immediately before <meta property="og:image">.
+   * td_linear needs it: its preview borrows TD Test's artwork and a PLACEHOLDER
+   * comment says so. Pass a component, never a string — see the slot note above.
+   */
   /** True on the two index pages — see Header for what it changes. */
   isHome?: boolean;
   /** The about pages own the #certificates section the footer badges point at. */
@@ -100,6 +105,7 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description"
         content={description} />
+    <slot name="og-image-note" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
