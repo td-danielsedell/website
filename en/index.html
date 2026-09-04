@@ -105,8 +105,10 @@
     }
     </script>
 
-    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Loaded async; icons swap in after paint. -->
-    <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous" defer></script>
+    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Blocking on purpose: the hero
+         expertise reel is above the fold, and deferring pops the icons in
+         after first paint. Same as the Swedish index.html. -->
+    <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
