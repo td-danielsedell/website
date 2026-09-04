@@ -591,8 +591,12 @@ section {
 
 /* --------- 2.4 Navigation ---------- */
 
+/* 13px uppercase is below what reads comfortably at arm's length, and the nav
+   is the one thing on the page every visitor has to read. 15px is the size the
+   row can carry: see the note on the 1024px block further down for what it
+   costs at the narrow end of the wide nav. */
 #header {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 #header nav ul {
@@ -1839,6 +1843,15 @@ h1.section-title {
     padding: 10px 0 0;
 }
 
+/* The one kicker that is a p rather than an h2: the label over the About page's
+   h1, where an h2 would put a level two above the page's only level one. A p
+   needs these two, because the reset at the top of this sheet skips `p` and the
+   rule under it hands every p a 25px line-height. */
+p.section-kicker {
+    margin: 0;
+    line-height: normal;
+}
+
 /* Was an h2: keep its spacing and line height, and drop the margin a p gets
    from the UA. */
 .section-title {
@@ -2052,7 +2065,7 @@ h1.section-title {
 /* Small, letterspaced and uppercase: the same voice as .section-kicker, so it
    reads as a caption on the mark rather than as a second line of hero copy. */
 .scroll-cue-label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -2165,9 +2178,53 @@ h1.section-title {
     color: var(--primary);
 }
 
-/* Showcase pages have no banner content, so their content clears the fixed header itself */
+/* Every page that opens on content rather than on the hero: the showcases, Om
+   oss and the three product pages. There is no banner to push them down, so
+   #content clears the fixed header itself.
+
+   One target sitewide: the first ink 130px down the page, 59px clear of the
+   71px header. 60px did not even reach the header — it left the showcase photo
+   4px under the nav on a phone — and the product pages were faking the same
+   measurement with two 30px .banner-spacer divs, which is why the four page
+   types all opened at a different height.
+
+   The padding differs from 130 by whatever the first element brings with it:
+   the showcase <figure> and the product <h1> each add 20px, so 110 lands them
+   both on the line. Same value at every width — the margins collapse smaller
+   on a phone, so the gap there comes out 54px rather than 59px, and tightening
+   that is a phone-only rule if anyone ever asks for it. */
 .showcase-top {
-    padding-top: 60px;
+    padding-top: 110px;
+}
+
+/* Om oss opens on a .section-kicker inside a full-width .row. Two things ride
+   above its lettering that the other templates do not have: the row contributes
+   35px where theirs contribute 20, and the kicker itself carries 10px of
+   padding. 85 + 35 + 10 lands on the same 130px line.
+
+   The 35 is a desktop measurement — below 768px the row falls back to the 15px
+   gutter every .row takes, the same as everywhere else, so the sum changes and
+   the phone needs its own number. See the media query below. */
+.showcase-top.about-top {
+    padding-top: 85px;
+}
+
+/* TD Asset Care opens straight on an h1.section-title, which brings the 14px of
+   its own padding that rule states — so its box sat on the 130px line while the
+   lettering inside it sat 14px lower than every other page's. The line is a
+   line of text, not of boxes: take the 14 back here. */
+.showcase-top.title-top {
+    padding-top: 96px;
+}
+
+/* Om oss again: below 768px its row gives up the 35px and takes the 15px gutter
+   the other templates take, so the sum that landed on 130 above now lands 20
+   short. Everything else keeps its one value at every width. */
+@media (max-width: 767px) {
+
+    .showcase-top.about-top {
+        padding-top: 100px;
+    }
 }
 
 /* Phone only. The percentage is of the container's *width*, so this is a big

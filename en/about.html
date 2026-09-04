@@ -195,7 +195,7 @@
         </header>
 
         <!--Main Content Area-->
-        <main id="content" class="showcase-top">
+        <main id="content" class="showcase-top about-top">
 
             <!--Introduction. Two columns rather than one stacked centre run: the
                 opening statement on the left, the body copy beside it. The page
@@ -209,7 +209,11 @@
 
                         <div>
                             <div class="section-heading">
-                                <h2 class="section-kicker">ABOUT US</h2>
+                                <!--A p, not an h2, unlike the kicker above every section title
+                                    further down. This label sits above the page's h1, and an h2
+                                    before the only h1 breaks the outline: the page would start
+                                    at level two and step back up to level one.-->
+                                <p class="section-kicker">ABOUT US</p>
                                 <h1 class="about-title">We are Total Digital</h1>
                             </div>
                             <!--The lead sits outside .section-heading. Inside it, it would be
@@ -404,7 +408,9 @@
 
                         <div>
                         <p>We are a remote company with no head office. That is a deliberate choice: it lets us find the right skills wherever they are and stay close to our customers at the same time.</p>
-                        <p>Today you will find us in:</p>
+                        <!--The class is there for the mobile rule in css/about.css: below
+                            768px the list is hidden and this line would point at nothing.-->
+                        <p class="locations-lead">Today you will find us in:</p>
                         <!--data-city ties each row to a dot in CITIES in js/about.js. The
                             rows are plain text here and are only made clickable by the
                             script, so the list survives as readable content without
@@ -433,15 +439,15 @@
                             would mean drawing the map as GeoJSON instead of tiles.
 
                             #map is hidden until about.js marks it .map-live, so without
-                            JavaScript the static image below stands in its place rather
-                            than under an empty box.-->
+                            JavaScript there is no empty box here — and the city list
+                            beside it stays on screen at every width, since it is then the
+                            only place the orter are named.-->
                         <figure class="about-map">
                             <div id="map"></div>
-                            <noscript>
-                                <img src="../images/company-images/td-office-map.webp" width="987" height="1400"
-                                    alt="Map of Sweden with Total Digital's locations marked. The locations are listed alongside." />
-                            </noscript>
-                            <figcaption>Our locations. Pick one from the list alongside to zoom to it.</figcaption>
+                            <!--The pointer to the list is its own element: on a phone there
+                                is no list to pick from, so only that sentence is hidden
+                                rather than the whole caption.-->
+                            <figcaption>Our locations. <span class="map-hint">Pick one from the list alongside to zoom to it.</span></figcaption>
                         </figure>
 
                     </div>

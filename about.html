@@ -198,7 +198,7 @@
         </header>
 
         <!--Main Content Area-->
-        <main id="content" class="showcase-top">
+        <main id="content" class="showcase-top about-top">
 
             <!--Introduction. Två kolumner i stället för ett staplat mittspann:
                 utsagan till vänster, brödtexten bredvid. Sidan öppnade annars
@@ -211,7 +211,11 @@
 
                         <div>
                             <div class="section-heading">
-                                <h2 class="section-kicker">OM OSS</h2>
+                                <!--Ett p, inte ett h2, till skillnad från kickern över varje
+                                    avsnittsrubrik längre ner. Här står etiketten över sidans h1,
+                                    och ett h2 före det enda h1:et bryter dispositionen: sidan
+                                    börjar då på nivå två och backar till nivå ett.-->
+                                <p class="section-kicker">OM OSS</p>
                                 <h1 class="about-title">Vi är Total Digital</h1>
                             </div>
                             <!--Ledraden ligger utanför .section-heading. Inne i den hade den
@@ -403,7 +407,9 @@
 
                         <div>
                         <p>Vi är ett distansbolag utan huvudkontor. Det är ett medvetet val som låter oss hitta rätt kompetens där den finns och samtidigt vara nära våra kunder.</p>
-                        <p>Idag finns vi i:</p>
+                        <!--Klassen finns för mobilregeln i css/about.css: under 768px
+                            är listan dold och den här raden pekar då på ingenting.-->
+                        <p class="locations-lead">Idag finns vi i:</p>
                         <!--data-city ties each row to a dot in CITIES in js/about.js. The
                             rows are plain text here and are only made clickable by the
                             script, so the list survives as readable content without
@@ -432,15 +438,15 @@
                             would mean drawing the map as GeoJSON instead of tiles.
 
                             #map is hidden until about.js marks it .map-live, so without
-                            JavaScript the static image below stands in its place rather
-                            than under an empty box.-->
+                            JavaScript there is no empty box here — and the city list
+                            beside it stays on screen at every width, since it is then the
+                            only place the orter are named.-->
                         <figure class="about-map">
                             <div id="map"></div>
-                            <noscript>
-                                <img src="images/company-images/td-office-map.webp" width="987" height="1400"
-                                    alt="Karta över Sverige med Total Digitals orter utmärkta. Orterna räknas upp i listan intill." />
-                            </noscript>
-                            <figcaption>Våra orter. Välj en ort i listan bredvid för att zooma dit.</figcaption>
+                            <!--Hänvisningen till listan är ett eget element: på telefon
+                                finns ingen lista att välja ur, och då döljs bara den
+                                meningen i stället för hela bildtexten.-->
+                            <figcaption>Våra orter. <span class="map-hint">Välj en ort i listan bredvid för att zooma dit.</span></figcaption>
                         </figure>
 
                     </div>

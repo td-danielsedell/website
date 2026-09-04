@@ -345,8 +345,10 @@ img.showcase-image {
     padding: 22px 0 0;
 }
 
+/* 19px is the size the area band and the showcase cards use for their titles.
+   It sat at 20px, which read as a third size on a page that already has two. */
 .service-group h3 {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     color: var(--normal-text);
     padding: 0;

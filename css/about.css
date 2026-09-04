@@ -345,16 +345,18 @@
    10px radius the cards use — without a frame its white edge reads as a hole.
    Sweden is portrait, which is why the map sits in half a row rather than
    spanning one, and why the box keeps the 5:7 shape the static image had. */
+
+/* A container so the labels inside can size themselves against the map rather
+   than against the window. The two are not the same measurement: between 768
+   and 1023px the map is the narrow half of a two-column row, so it is smaller
+   there than it is on a phone, where it has the whole column. A viewport media
+   query would set the small label size at the wrong end of that range. */
 .about-map {
     margin: 0;
+    container-type: inline-size;
 }
 
-/* The child combinator on the image is load-bearing. Leaflet renders every
-   tile as an <img> inside #map, so a descendant `.about-map img` puts this
-   border and radius on all twelve of them — which reads as a grid of seams
-   ruled across the map. Only the <noscript> fallback image is a direct child. */
-.about-map #map,
-.about-map > img {
+.about-map #map {
     display: block;
     width: 100%;
     max-width: 480px;
@@ -362,16 +364,13 @@
     border-radius: 10px;
 }
 
-.about-map > img {
-    height: auto;
-}
-
 /* Hidden by default and revealed by the .map-live class that about.js sets as
-   soon as it runs. Without JavaScript the class never arrives, #map stays
-   collapsed and the <noscript> image takes the slot instead of sitting under
-   an empty bordered box. The class goes on before Leaflet is even fetched, so
-   the box reserves its space up front and the section does not shift when the
-   map appears. */
+   soon as it runs. Without JavaScript the class never arrives and #map stays
+   collapsed rather than showing an empty bordered box; the city list is what
+   carries the section then — see the phone rules, which only take the list
+   away when there is a live map to replace it. The class goes on before
+   Leaflet is even fetched, so the box reserves its space up front and the
+   section does not shift when the map appears. */
 .about-map #map {
     display: none;
 }
@@ -380,6 +379,13 @@
     display: block;
     aspect-ratio: 5 / 7;
     background: #ddd;
+}
+
+/* No live map, no figure. The caption is the one part of it that would still
+   draw — "Våra orter. Välj en ort i listan bredvid för att zooma dit." under
+   a collapsed box, describing a picture that is not there. */
+.about-map:not(:has(#map.map-live)) {
+    display: none;
 }
 
 .about-map figcaption {
@@ -460,6 +466,18 @@ html.theme-light .city-label.leaflet-tooltip {
     display: none;
 }
 
+/* A label box is a fixed number of pixels wide whatever the map does, so the
+   thirteen names crowd as the box narrows: at 13px, Uppsala/Kumla and
+   Stockholm/Katrineholm touch once the map is under ~440px — measured, they
+   are clear at 446 and overlap at 430. Below that the names step down a size.
+   The threshold is on the map's own width — see the container on
+   .about-map. */
+@container (max-width: 440px) {
+    .city-label.leaflet-tooltip {
+        font-size: 11px;
+    }
+}
+
 /* Attribution is required by the OSM tile licence. It keeps Leaflet's own
    light styling so it stays legible against the map rather than the page. */
 .about-map .leaflet-control-attribution {
@@ -468,7 +486,7 @@ html.theme-light .city-label.leaflet-tooltip {
 
 /* One column on a rail, not two loose columns: the list is read against the
    pins going down the map beside it, so it has to run north to south in a
-   single sequence. Thirteen rows at ~42px come to ~546px against the map's
+   single sequence. Thirteen rows at 34px come to 442px against the map's
    ~670px, so it stays inside the section either way.
 
    The class name is load-bearing — js/about.js binds .location-list li and
@@ -484,15 +502,21 @@ html.theme-light .city-label.leaflet-tooltip {
     content: "";
     position: absolute;
     left: 5px;
-    top: 14px;
-    bottom: 14px;
+    /* 7px short of the first and last dot centres, which sit 17px into their
+       rows — tied to the row padding below, so both move together. */
+    top: 10px;
+    bottom: 10px;
     width: 2px;
     background: var(--surface-border);
 }
 
 .location-list li {
     position: relative;
-    padding: 8px 0 8px 30px;
+    /* 4px, not 8: thirteen rows at 42px ran 546px against a map of 672, and
+       the list read as a loose column beside a dense one. At 34px the rows
+       still clear each other — 26px of line box, 8px of air — and the block
+       lands closer to the height of the pins it is read against. */
+    padding: 4px 0 4px 30px;
     font-size: 18px;
     line-height: 26px;
     color: var(--muted-text);
@@ -506,7 +530,8 @@ html.theme-light .city-label.leaflet-tooltip {
     content: "";
     position: absolute;
     left: 0;
-    top: 16px;
+    /* Row padding + half the line box - half the dot: 4 + 13 - 6. */
+    top: 11px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -741,6 +766,17 @@ html.theme-light .city-label.leaflet-tooltip {
         display: none;
     }
 
+    /* Two proportional columns hand the map whatever half the row happens to
+       be: at 800px that is a 337px box, and Sweden with thirteen names in it
+       stops being readable well before that. The map takes a real width
+       instead and the list lives on what is left — the list is thirteen short
+       words and takes a narrow column better than the map does. 320px is the
+       floor because the row itself is only ~690px wide at 768. */
+    #locations .split-2 {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+        gap: 40px;
+    }
+
 }
 
 
@@ -833,21 +869,53 @@ html.theme-light .city-label.leaflet-tooltip {
         grid-template-columns: 1fr;
     }
 
-    .about-map #map,
-    .about-map > img,
+    /* Only the caption is let out of the 480px cap. #map used to be on this
+       list too, and once the list beside it went away the map took the whole
+       column: 697px wide and 871px tall on a 767px tablet, taller than the
+       section had ever been. The cap is what keeps Sweden a picture rather
+       than a wall. */
     .about-map figcaption {
         max-width: 100%;
     }
 
     /* On a phone the map is full-column width, so 5:7 makes it taller than the
-       viewport. The city labels are also too dense to read at that size — the
-       list right below carries the names, so the map is left as the shape of
-       the spread and the labels are dropped. */
-    .about-map #map {
+       viewport. The class has to be on the selector here: the desktop ratio is
+       set on .about-map #map.map-live, which outweighs a bare #map and left
+       this rule doing nothing.
+
+       Nothing is lost by the shorter box. fitBounds snaps to quarter zoom
+       steps (zoomSnap in js/about.js), and 4:5 and 5:7 land on the same step
+       at this width — the taller frame only padded the map above and below. */
+    .about-map #map.map-live {
         aspect-ratio: 4 / 5;
     }
 
-    .city-label.leaflet-tooltip {
+    /* Thirteen rows of list plus a map made the section ~1580px on a 390px
+       phone, half of it the list. The map keeps the slot and the list goes,
+       which means the map has to name the orter itself: the labels are shown
+       here rather than hidden.
+
+       The labels themselves need no rule here: they step down a size on their
+       own once the map is under 420px, from the container query up beside the
+       .city-label block. */
+
+    /* The list stays in the markup — the wider layouts use it — and is only
+       taken out of the phone layout. Its lead line goes with it: "Idag finns
+       vi i:" with nothing after it reads as a missing paragraph.
+
+       Conditional on .map-live, which about.js sets on #map as it starts. The
+       list is the only place the thirteen orter are written out, so without a
+       map to name them instead this section would say nothing at all: no
+       JavaScript, no map, and the list has to stay. The :has() reaches from
+       the map back up to the row that holds both columns. */
+    .split-2:has(#map.map-live) .location-list,
+    .split-2:has(#map.map-live) .locations-lead {
+        display: none;
+    }
+
+    /* "Välj en ort i listan bredvid" points at something that is not on the
+       page at this width — when the list has in fact gone. */
+    .split-2:has(#map.map-live) .map-hint {
         display: none;
     }
 

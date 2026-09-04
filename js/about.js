@@ -1,7 +1,10 @@
 'use strict';
 
-/* The map in "Var vi finns". It replaces the static td-office-map.webp, which
-   stays behind in a <noscript> for visitors without JavaScript.
+/* The map in "Var vi finns". It replaced a static td-office-map.webp, which
+   is gone: it had gone years out of date behind the live map — Malmö on it,
+   four current orter missing — and only visitors with JavaScript switched off
+   ever saw it. Without JavaScript the slot is simply empty now, and the city
+   list beside it stays visible at every width to carry the orter.
 
    The map is an illustration, not a tool: it shows the spread across the
    country, it does not navigate. So it sits still by default — the wheel does
@@ -33,8 +36,9 @@
     }
 
     /* The box is reserved now, not when Leaflet finishes, or the page jumps
-       when the map appears. Without JavaScript the class is never set and
-       #map stays hidden — then the <noscript> image is what shows. */
+       when the map appears. Without JavaScript the class is never set, and
+       about.css then hides the whole figure and keeps the city list on screen
+       at every width instead. */
     container.classList.add('map-live');
 
     var CSS_HREF = 'css/leaflet.css';
@@ -48,10 +52,13 @@
        `label` is the side the name is placed on, and two things decide it:
        neighbours, and the frame. Degerfors/Kumla and Alingsås/Göteborg sit close
        enough that same-side labels overwrite each other at national zoom, so
-       each pair is split. Kumla goes above its dot instead of beside it:
+       each pair is split. Kumla goes under its dot instead of beside it:
        Katrineholm sits down and to the right, close enough that a right-hand
        label put "Kumla" in the gap between the two dots and Katrineholm's own
-       label closed it. Åland points left, back inland, because it is the
+       label closed it. Under rather than over, because over lands in Uppsala's
+       label once the map is phone-width — the dots draw together as the box
+       narrows while the label boxes stay the size they are. Åland points left,
+       back inland, because it is the
        easternmost dot and its name would otherwise hang off the edge of the box;
        it clears Stockholm's label, which points the other way, on latitude. */
     var CITIES = [
@@ -59,7 +66,7 @@
         { id: 'uppsala', name: 'Uppsala', lat: 59.8586, lng: 17.6389, label: 'left' },
         { id: 'stockholm', name: 'Stockholm', lat: 59.3293, lng: 18.0686, label: 'right' },
         { id: 'degerfors', name: 'Degerfors', lat: 59.2378, lng: 14.4297, label: 'left' },
-        { id: 'kumla', name: 'Kumla', lat: 59.1283, lng: 15.1425, label: 'top' },
+        { id: 'kumla', name: 'Kumla', lat: 59.1283, lng: 15.1425, label: 'bottom' },
         { id: 'katrineholm', name: 'Katrineholm', lat: 58.9959, lng: 16.2065, label: 'right' },
         { id: 'lidkoping', name: 'Lidköping', lat: 58.5052, lng: 13.1577, label: 'left' },
         { id: 'linkoping', name: 'Linköping', lat: 58.4109, lng: 15.6216, label: 'right' },

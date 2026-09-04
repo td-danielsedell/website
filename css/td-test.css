@@ -9,19 +9,25 @@
    product name and its lead side by side, the three detail paragraphs as
    columns under it, the closing line and the CTA centred below. */
 
-/* The two .banner-spacer divs above clear the fixed header; this is the breath
-   after them. */
+/* The clearance under the fixed header is #content's job now — .showcase-top in
+   style.css, 110px, the same on every page that opens on content. This is the
+   20px the other templates get from their first element's own margin: the hero
+   grid strips that margin off the h1, so without it these two pages open 20px
+   higher than every other page on a window short enough that the centring below
+   has no slack. */
 .tdt-intro .row {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 /* One viewport, the way #home is on the start page (see the long note by
    #home in style.css). Pinning the box keeps Möjligheter from peeking in under
    the CTA and stops the section height walking every time the copy rewraps.
-   The 60px is the two .banner-spacer divs above the section — they sit outside
-   it, so the section only gets what is left of the screen. svh is the viewport
-   height with the mobile address bar showing, so nothing jumps when it
-   collapses; 100vh is the fallback where svh is unknown.
+   The 110px is #content's own padding above the section — it sits outside the
+   section, so the section only gets what is left of the screen. It used to be
+   60px, for two .banner-spacer divs that stood in the same place and have been
+   deleted. svh is the viewport height with the mobile address bar showing, so
+   nothing jumps when it collapses; 100vh is the fallback where svh is
+   unknown.
 
    min-height, not height: the intro is taller than a short laptop window and is
    allowed to grow past it rather than clip. Phones are left out — there the
@@ -30,8 +36,8 @@
 @media (min-width: 768px) {
 
     .tdt-intro {
-        min-height: calc(100vh - 60px);
-        min-height: calc(100svh - 60px);
+        min-height: calc(100vh - 110px);
+        min-height: calc(100svh - 110px);
         display: flex;
         flex-direction: column;
     }
