@@ -44,7 +44,7 @@ The site is ~finished: 18 pages (9 Swedish at root + 9 English mirrors in `en/`)
 
 **Header.astro** (`lang`, `isHome`, `path`): `aria-current` derived from `path`; nav hrefs `` `${isHome ? '' : 'index.html'}#…` `` (relative `index.html` resolves correctly under /en/); load-bearing `<li onclick>` attrs rendered as plain string attributes from `src/data/nav.ts`; native `<details>/<summary>` dropdowns and the EMPTY `<nav id="nav-mobile">` pass through untouched (site.js clones #nav-main into it); `data-label-*` strings emitted per-locale (theme.js reads them from markup); lang-switcher child order flips per locale.
 
-**Footer.astro** (`lang`, `onAboutPage`): component root IS the `<footer>` (no wrapper — CSS reorders its exactly-4 children by index at ≤1023px); about pages get `href="#certificates" data-scroll-to`.
+**Footer.astro** (`lang`, `onAboutPage`): component root IS the `<footer class="clearfix footer-large">`, and its two inner wrappers are load-bearing — the real chain is `footer.footer-large > div.row.clearfix > div.footer-columns > (4 columns)`. `css/footer-large.css:253` reorders `.footer-columns > :nth-child(1..4)` at ≤1023px, so the index-locked count of exactly 4 sits on `.footer-columns`, NOT on the `<footer>` (corrected 2026-09-05 against the source; the earlier wording would have dropped both wrappers). About pages get `href="#certificates" data-scroll-to`.
 
 **JSON-LD**: slotted verbatim `<script type="application/ld+json" is:inline slot="head">` per page — never a prop through JSON.stringify (re-serialization breaks the diff).
 
@@ -74,8 +74,8 @@ Baseline first: fork `astro` from a committed main state (working tree has uncom
 
 1. `<li onclick>` nav attrs (stickyNavbar swallows nav clicks) — 1 on index, 4 on subpages.
 2. `#nav-mobile` stays empty; dropdowns stay `<details>` (mobile clone carries no handlers).
-3. theme.js: blocking `is:inline` in head after CSS; reads per-locale `data-label-*` from markup.
-4. Footer: 4 children, locked order, no wrappers. Testimonial `<footer>`s inside index blockquotes — extraction targets `footer.footer-large` only.
+3. theme.js: blocking `is:inline` in head, no defer/async/module, placed after `light.css` — NOT after every stylesheet. `footer-large.css` deliberately loads after theme.js on all 14 subpages, so "after CSS" as originally written is false for 14 of 18 pages (corrected 2026-09-05). Reads per-locale `data-label-*` from markup.
+4. Footer: `.footer-columns` has exactly 4 children in locked order; the `div.row.clearfix` and `div.footer-columns` wrappers stay. Testimonial `<footer>`s inside index blockquotes — extraction targets `footer.footer-large` only.
 5. Translated section ids on product pages (sv `#mojligheter/#funktioner/#kontakt`, en `#capabilities/#features/#contact`) — anchors/scroll-cues stay per-language in page bodies.
 6. area-band.css must load after style.css (css array order).
 7. FA kit non-defer on index only (deliberate — above-fold expertise reel).
