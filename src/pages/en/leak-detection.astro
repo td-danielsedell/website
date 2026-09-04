@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LeakDetectionCss from '../../components/head/LeakDetectionCss.astro';
+import LeakDetectionFooterCss from '../../components/head/LeakDetectionFooterCss.astro';
+---
+<Layout
+    lang="en"
+    path="leak-detection.html"
+    title="AI-based leak detection in water infrastructure | Total Digital"
+    description="AI and satellite data that detect leaks in water distribution networks, reduce water losses and give a better basis for managing the pipe network."
+    ogTitle="AI-based leak detection in water infrastructure"
+    ogType="article"
+    ogImage="https://www.totaldigital.se/images/og/leak-detection.jpg"
+    ogImageAlt="Leak detection in a water distribution network"
+>
+    <LeakDetectionCss slot="head-css" lang="en" />
+    <LeakDetectionFooterCss slot="head-after-fonts" lang="en" />
+        <main id="content" class="showcase-top">
+
+            <!--Introduction-->
+            <section class="introduction scrollto">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <figure>
+                        <img class="showcase-image" src="../images/showcase-images/water-leak.webp"
+                            alt="Leak in a water distribution network" width="900" height="450" fetchpriority="high" />
+</figure>
+
+                        <div class="banner-spacer"></div>
+
+                        <div class="col-1">
+                            <div class="section-heading">
+                                <h1 class="section-title">AI-based leak detection in water infrastructure</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <p>
+                                We combine AI, satellite data and operational data to detect <strong>leaks and water losses</strong> in large water distribution networks.
+                            </p>  <p>
+                                By analysing changes in ground, vegetation and moisture levels over time, we can identify patterns that point to leakage – even before the problem is visible in the field. Across large areas, anomalies and patterns of change can be identified and followed on an ongoing basis, which helps locate risk areas and prioritise the right work.
+                            </p><p>
+                                The method enables continuous monitoring of the pipe network and can support both day-to-day and long-term maintenance. That enables: <strong> reduced water losses and a more efficient, better basis for decisions.</strong>
+                            </p>
+                            <i>Partners: Laholmsbukten VA, Stockholm University</i>
+                        </div>
+
+                        <!--Call to Action. Portrait, question, name and role sit in a
+                            centred column, and the address is the way in — no button.
+                            The rules live under .showcase-cta .cta-* in css/style.css.-->
+                        <div class="col-1 text-center showcase-cta">
+                            <div class="cta-signature">
+                                <img class="cta-face" src="../images/showcase-images/HH.webp" width="104" height="104"
+                                    loading="lazy" alt="Hanna Hassberg" />
+                                <div class="cta-signature-body">
+                                    <p>Want to know more about how this could work in your organisation?</p>
+                                    <p class="cta-name">Hanna Hassberg</p>
+                                    <p class="cta-role">Project Lead</p>
+                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=Leak detection">hanna@totaldigital.se</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Call to Action-->
+
+                    </div>
+                </div>
+
+            </section>
+            <!--End of Introduction-->
+
+        </main>
+</Layout>

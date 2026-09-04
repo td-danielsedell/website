@@ -1,0 +1,15 @@
+---
+/**
+ * footer-large.css for the raildamage-analyses pages. Baseline order is
+ * theme.js -> preload(font) -> footer-large.css -> FA kit, so this targets
+ * Layout's `head-after-fonts` slot (after the font preload, before the FA
+ * kit script) rather than `head-after-theme`.
+ */
+import { assetPrefix, type Lang } from '../../data/nav';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = assetPrefix(lang);
+---
+    <!-- Large footer -->
+    <link href={`${p}css/footer-large.css`} rel="stylesheet" type="text/css">

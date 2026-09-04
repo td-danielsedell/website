@@ -1,0 +1,34 @@
+---
+/**
+ * Structured data, verbatim. Never build this from an object through
+ * JSON.stringify — re-serialisation reorders keys and changes whitespace, and
+ * the byte-for-byte diff against the fork-point page would fail.
+ */
+---
+
+    <!--Structured Data-->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.totaldigital.se/#organization",
+        "name": "Total Digital AB",
+        "url": "https://www.totaldigital.se/",
+        "logo": "https://www.totaldigital.se/images/favicon.png",
+        "email": "info@totaldigital.se",
+        "telephone": "+46101010070",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Fabriksgatan 4",
+            "postalCode": "531 60",
+            "addressLocality": "Lidköping",
+            "addressCountry": "SE"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/total-digital-it-solutions",
+            "https://github.com/totaldigital-se"
+        ]
+    }
+    </script>
+
+    

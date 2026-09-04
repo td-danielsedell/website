@@ -1,0 +1,421 @@
+/* --------------------------------------------------------------------------
+   TD Test product page — page-specific helpers (loaded only by td_test.html)
+   Reuses the global palette from colors.css (var(--primary) etc.)
+   -------------------------------------------------------------------------- */
+
+/* Intro / hero.
+   The page used to open in a 66% centred column and then jump to the full
+   1245px row at the next section. The hero now sits in that same row: the
+   product name and its lead side by side, the three detail paragraphs as
+   columns under it, the closing line and the CTA centred below. */
+
+/* The clearance under the fixed header is #content's job now — .showcase-top in
+   style.css, 110px, the same on every page that opens on content. This is the
+   20px the other templates get from their first element's own margin: the hero
+   grid strips that margin off the h1, so without it these two pages open 20px
+   higher than every other page on a window short enough that the centring below
+   has no slack. */
+.tdt-intro .row {
+    padding-top: 20px;
+}
+
+/* One viewport, the way #home is on the start page (see the long note by
+   #home in style.css). Pinning the box keeps Möjligheter from peeking in under
+   the CTA and stops the section height walking every time the copy rewraps.
+   The 110px is #content's own padding above the section — it sits outside the
+   section, so the section only gets what is left of the screen. It used to be
+   60px, for two .banner-spacer divs that stood in the same place and have been
+   deleted. svh is the viewport height with the mobile address bar showing, so
+   nothing jumps when it collapses; 100vh is the fallback where svh is
+   unknown.
+
+   min-height, not height: the intro is taller than a short laptop window and is
+   allowed to grow past it rather than clip. Phones are left out — there the
+   copy is several screens long whatever we do, and the section has no
+   background photo whose crop would give the reflow away. */
+@media (min-width: 768px) {
+
+    .tdt-intro {
+        min-height: calc(100vh - 110px);
+        min-height: calc(100svh - 110px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Takes the leftover height and centres the copy in it, as
+       #banner-content.row does. */
+    .tdt-intro > .row {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Room at the foot for the scroll cue below. Placing the cue without
+           reserving the strip put it 1px inside the KONTAKTA OSS button: the
+           row centres its content and the CTA is the last thing in it, so the
+           bottom edge is not empty, it is where the button already ends. The
+           padding pulls the centred copy up by half of what it gains, and the
+           cue sits in the space that opens under it. */
+        padding-bottom: 104px;
+    }
+}
+
+/* The scroll cue itself is shared — .scroll-cue lives in css/style.css, since
+   the start page carries one too. Only its room is page business, and that is
+   the row's padding-bottom above. */
+
+/* Same two-column open as about.html's .about-hero, now that the stock shot is
+   gone: the title states what the product is on the left and the lead reads
+   beside it, rather than one centred strip that widens for every section below.
+   Same 1.05fr/1fr split and centred cells for the same reason — the heading
+   cell runs shorter than the lead, so a shared top edge left the lead hanging. */
+.tdt-intro .tdt-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px 70px;
+    align-items: center;
+    /* the hero sits straight in the row, so it takes the same 20px gutter a
+       col- would have given it */
+    padding: 0 20px;
+}
+
+.tdt-intro .tdt-hero .section-heading {
+    padding-bottom: 0;
+}
+
+.tdt-intro .tdt-hero h1.section-title {
+    padding-top: 0;
+    font-size: 52px;
+    line-height: 1.06;
+    letter-spacing: -1px;
+    text-wrap: balance;
+}
+
+/* The subtitle is the statement's second line here, not a caption over a wide
+   section, so it drops the shared 720px measure and takes the cell's width. */
+.tdt-intro .tdt-hero .section-heading > .section-subtitle {
+    max-width: none;
+    font-size: 21px;
+    line-height: 32px;
+}
+
+.tdt-intro .tdt-lead {
+    margin: 0;
+    font-size: 17px;
+    line-height: 30px;
+    text-wrap: pretty;
+}
+
+/* The three capability paragraphs run side by side under the hero — the same
+   trio rhythm Möjligheter uses below, instead of a lopsided text/CTA split. */
+.tdt-intro .tdt-intro-body {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 34px;
+    padding: 26px 20px 0;
+    border-top: 1px solid var(--surface-border);
+}
+
+.tdt-intro .tdt-intro-body p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 26px;
+    text-wrap: pretty;
+}
+
+/* Closing line: one statement and one button, centred under the trio rather
+   than boxed off beside the text. */
+.tdt-intro .tdt-intro-cta {
+    text-align: center;
+    max-width: 640px;
+    margin: 28px auto 0;
+    padding: 0 20px;
+}
+
+.tdt-intro .tdt-intro-cta p {
+    margin: 0 0 22px;
+    font-size: 18px;
+    line-height: 29px;
+    color: var(--normal-text);
+}
+
+.tdt-intro .tdt-intro-cta .button {
+    margin: 0;
+}
+
+@media (max-width: 1023px) {
+    .tdt-intro .tdt-hero h1.section-title {
+        font-size: 44px;
+    }
+
+    .tdt-intro .tdt-intro-body {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .tdt-intro .tdt-hero {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .tdt-intro .tdt-hero h1.section-title {
+        font-size: 36px;
+    }
+
+    .tdt-intro .tdt-hero .section-heading > .section-subtitle {
+        font-size: 19px;
+        line-height: 30px;
+    }
+
+    .tdt-intro .tdt-intro-body {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        margin-top: 40px;
+        padding-top: 34px;
+    }
+}
+
+
+/* The three capability blocks, side by side.
+   Grid instead of the global float grid so an uneven column can't snag the
+   next float; it also sits beside floats instead of clearing them. */
+.tdt-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 40px;
+    align-items: start;
+    clear: both;
+    /* sits straight in the row, not in a col-, so it states the 20px gutter
+       itself — without this it ran edge to edge past everything around it */
+    padding: 0 20px;
+}
+
+.tdt-trio>* {
+    min-width: 0;
+}
+
+@media (max-width: 1023px) {
+    .tdt-trio {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Content lists (capabilities / reporting / execution) */
+/* padding/margin already zeroed by the global reset in style.css */
+.tdt-list {
+    list-style: none;
+    text-align: left;
+}
+
+.tdt-list li {
+    position: relative;
+    padding: 6px 0 6px 28px;
+    line-height: 1.5;
+}
+
+/* fa-check, as a mask rather than an icon-font glyph, so the list marker keeps
+   taking its color from the palette without pulling in Font Awesome.
+   Path from Font Awesome Free 6.7.2 (icons: CC BY 4.0). */
+.tdt-list li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary);
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>') no-repeat center / contain;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>') no-repeat center / contain;
+}
+
+.tdt-list ul {
+    list-style: disc;
+    margin: 6px 0 6px 18px;
+    padding-left: 18px;
+}
+
+.tdt-list ul li {
+    padding: 3px 0;
+}
+
+.tdt-list ul li:before {
+    content: none;
+}
+
+/* Product tour carousel.
+   The screenshots are all cropped to roughly 4:3 (1.355–1.367), so a fixed
+   height gives every slide the same frame without cropping anything.
+   Full size is one click away — the images carry data-zoomable, see
+   css/image-zoom.css. */
+.tdt-tour {
+    /* float:none so the auto margins actually center it — the global
+       .col-1 floats, and a floated box ignores them. */
+    float: none;
+    max-width: 900px;
+    /* the top margin separates the tour from the trio above it, now that
+       there is no section heading between the two */
+    margin: 60px auto 0;
+}
+
+/* TD Linear's screenshots are wide dashboards (1832x859), not TD Test's tall
+   4:3 app views. At 900px a full dashboard reads as mush, so that page's tour
+   takes the whole row instead. The width and the ratio are the only two things
+   the two large product pages do not share — everything else on this sheet is
+   common to both. */
+.tdt-tour--wide {
+    max-width: 100%;
+}
+
+.tdt-shot {
+    /* The slide width is the constraint at every size, so fill it and take the
+       height from the ratio. Sizing by height instead would not work here:
+       `.row img` in style.css sets `height: auto` at a higher specificity and
+       would silently win, leaving nothing definite for the ratio to resolve
+       against — lazy slides would then reserve no space and pop in on scroll.
+       Every screenshot is exported at exactly 1920x1416; keep the exports
+       uniform or this ratio starts to lie. */
+    aspect-ratio: 1920 / 1416;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    /* Same framing as .service-card and img.showcase-image; kept in step with
+       them rather than wearing .feature-card's hover shadow at rest. */
+    box-shadow: var(--card-shadow);
+}
+
+.tdt-shot--wide {
+    /* Every TD Linear screenshot is exported at exactly 1832x859; keep the
+       exports uniform or this ratio starts to lie, same as .tdt-shot above.
+       object-fit is the safety net: an image with another ratio scales into the
+       frame instead of being stretched, so the caption and dots stay put. */
+    aspect-ratio: 1832 / 859;
+    object-fit: contain;
+}
+
+/* Fördelar rides the Affärsområden band (css/area-band.css): no cards, hairline
+   rules between the columns, icon over the heading, 01–04 counter. Was two rows
+   of floated .col-2 halves, which gave four short paragraphs the width of the
+   whole page each.
+
+   The one thing that differs from the start page is the icon. There it is a
+   52px <img>; here it is inline SVG, and .svg-icon is sized in em — so the box
+   is set on the wrapper instead. line-height: 0 keeps the inline SVG from
+   dragging a text line's worth of leading in under it, which would put this
+   icon lower than the images on index at the same margin. */
+.area-band .tdt-icon {
+    font-size: 52px;
+    line-height: 0;
+    color: var(--primary);
+    margin-bottom: 18px;
+}
+
+@media (max-width: 567px) {
+
+    /* Beside the copy, not over it — .area-band-item turns into a 44px icon
+       column at this width. */
+    .area-band .tdt-icon {
+        font-size: 44px;
+        margin: 0;
+        grid-row: span 2;
+    }
+}
+
+/* Comparison matrix.
+   border-collapse stays `separate` — padding on the table box is ignored
+   in the collapsing border model, and the card needs its inner padding. */
+.tdt-compare {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto 0 auto;
+    text-align: left;
+    background-color: var(--secondary);
+    padding: 10px 30px 20px 30px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.tdt-compare th,
+.tdt-compare td {
+    border-bottom: 1px solid var(--surface-border);
+    padding: 14px 0;
+    vertical-align: middle;
+}
+
+/* last row flush inside the card */
+.tdt-compare tbody tr:last-child th,
+.tdt-compare tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* criteria column: a row header, but it reads as body copy */
+.tdt-compare th[scope="row"] {
+    font-weight: normal;
+    padding-right: 20px;
+}
+
+.tdt-compare thead th {
+    font-weight: bold;
+    color: var(--section-heading);
+}
+
+.tdt-compare thead th+th {
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.tdt-compare td,
+.tdt-compare thead th+th {
+    width: 90px;
+    text-align: center;
+}
+
+.tdt-compare td {
+    font-size: 20px;
+}
+
+/* scoped to .tdt-compare so these outrank `.primary-color i` in colors.css,
+   which otherwise paints every icon in the section white */
+.tdt-compare .tdt-yes {
+    color: var(--primary);
+}
+
+/* The step below --muted-text: a "no" row is supporting information, not a
+   claim. --muted-text would read as loud as the body copy beside it; the raw
+   #666 this replaced was 3.0:1 on the dark ground and had no light-theme
+   value at all. */
+.tdt-compare .tdt-no {
+    color: var(--faint-text);
+}
+
+@media (max-width: 600px) {
+
+    .tdt-compare td,
+    .tdt-compare thead th+th {
+        width: 60px;
+    }
+
+    .tdt-compare td {
+        font-size: 17px;
+    }
+}
+
+/* Under 481px style.css swaps the gutter over: every col- class drops its 20px
+   padding, .row > .section-heading drops the 20px it borrowed from them, and
+   the row takes a 15px one instead. The blocks above state that gutter
+   themselves rather than getting it from a col-, so they have to drop it in the
+   same place — otherwise they sit 20px in from every heading on the page. */
+@media (max-width: 480px) {
+
+    .tdt-intro .tdt-hero,
+    .tdt-intro .tdt-intro-body,
+    .tdt-intro .tdt-intro-cta,
+    .tdt-trio {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

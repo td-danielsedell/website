@@ -1,0 +1,26 @@
+---
+/** Stylesheets specific to the td_test pages, in load order. area-band.css
+ * must load after style.css (see css/area-band.css). */
+import { assetPrefix, type Lang } from '../../data/nav';
+import AreaBandNoteSv from './AreaBandNoteSv.astro';
+import AreaBandNoteEn from './AreaBandNoteEn.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = assetPrefix(lang);
+---
+    <!-- Service Card CSS -->
+    <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">
+
+{lang === 'sv' && <AreaBandNoteSv />}
+{lang === 'en' && <AreaBandNoteEn />}
+    <link href={`${p}css/area-band.css`} rel="stylesheet" type="text/css">
+
+    <!-- TD Test Page CSS -->
+    <link href={`${p}css/td-test.css`} rel="stylesheet" type="text/css">
+
+    <!-- Click-to-enlarge images (opt in with data-zoomable) -->
+    <link href={`${p}css/image-zoom.css`} rel="stylesheet" type="text/css">
+
+    <!-- Image carousel (opt in with data-image-carousel) -->
+    <link href={`${p}css/image-carousel.css`} rel="stylesheet" type="text/css">

@@ -1,0 +1,13 @@
+---
+/**
+ * Preloads the banner image. Must sit BEFORE the stylesheets: the banner is a
+ * CSS background, so the browser cannot discover it until colors.css parses,
+ * and it is the largest thing on the first screen.
+ */
+---
+<!--The banner is a CSS background, so the browser cannot find it until
+        colors.css has been parsed. It is the largest thing on the first screen,
+        so tell it up front.-->
+    <link rel="preload" href="../images/banner-images/banner_wide.webp" as="image" />
+
+    

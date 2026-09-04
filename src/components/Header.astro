@@ -15,16 +15,26 @@
  */
 import { strings, assetPrefix, type Lang } from '../data/nav';
 import Globe from './icons/Globe.astro';
+import BannerPlaceholder from './BannerPlaceholder.astro';
 
 interface Props {
   lang: Lang;
   /** Page file name, e.g. 'about.html'. Drives aria-current. */
   path: string;
-  /** True on the two index pages: header gets id="home" and nav hrefs go bare-hash. */
+  /** True on the two index pages: header gets id="home" and nav hrefs go bare-hash.
+   *  On those pages the real banner content arrives through the default slot. */
   isHome?: boolean;
+  /**
+   * The commented-out `#banner-content` placeholder that sits before </header>.
+   * Present on 14 of 18 fork-point pages; about.html and td_test.html (both
+   * locales) had already dropped it, so they pass `false`. Kept rather than
+   * deleted everywhere: removing dead markup from 14 pages is a content call,
+   * not a migration one.
+   */
+  bannerPlaceholder?: boolean;
 }
 
-const { lang, path, isHome = false } = Astro.props;
+const { lang, path, isHome = false, bannerPlaceholder = true } = Astro.props;
 const t = strings[lang];
 const p = assetPrefix(lang);
 
@@ -47,11 +57,13 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                             <a href="index.html" aria-label="Total Digital">
 
                             <!--Logo that is shown on the banner-->
-                            <img src={`${p}images/banner-images/td_white.webp`} id="banner-logo" alt="Total Digital" />
+                            <img src={`${p}images/banner-images/td_white.webp`} id="banner-logo" width="412" height="122"
+                                alt="Total Digital" />
                             <!--End of Banner Logo-->
 
                             <!--The Logo that is shown on the sticky Navigation Bar-->
-                            <img src={`${p}images/banner-images/td_white.webp`} id="navigation-logo" alt="Total Digital" />
+                            <img src={`${p}images/banner-images/td_white.webp`} id="navigation-logo" width="412" height="122"
+                                alt="Total Digital" />
                             <!--End of Navigation Logo-->
                             </a>
 
@@ -121,7 +133,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                 </li>
                                 <!--Language dropdown. The option links are relative so the site works
                                     wherever it is mounted; site.js keeps stickyNavbar from cancelling
-                                    the click.-->
+                                    the click. <details> keeps the whole control script-free, so it
+                                    still works once site.js clones this markup into the mobile menu.-->
                                 <li class="nav-lang">
                                     <details>
                                         <summary aria-label={t.lang.choose}><Globe /></summary>
@@ -175,5 +188,5 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                     </div>
                 </div>
             </div><!--End of Header-->
-
+{isHome ? <slot /> : bannerPlaceholder && <BannerPlaceholder />}
         </header>

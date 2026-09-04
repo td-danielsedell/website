@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RailwaySafetyCss from '../components/head/RailwaySafetyCss.astro';
+import RailwaySafetyFooterCss from '../components/head/RailwaySafetyFooterCss.astro';
+---
+<Layout
+    lang="sv"
+    path="railway-safety.html"
+    title="Prediktiv järnvägssäkerhet med satellitdata och AI | Total Digital"
+    description="AI och satellitdata som prognosticerar rälstemperatur och risk för spårförskjutning upp till 48 timmar i förväg – för proaktivt underhåll och säkrare järnvägsdrift."
+    ogTitle="Prediktiv järnvägssäkerhet med satellitdata och AI"
+    ogType="article"
+    ogImage="https://www.totaldigital.se/images/og/railway-safety.jpg"
+    ogImageAlt="Järnvägsspår under övervakning"
+>
+    <RailwaySafetyCss slot="head-css" lang="sv" />
+    <RailwaySafetyFooterCss slot="head-after-fonts" lang="sv" />
+        <main id="content" class="showcase-top">
+
+            <!--Introduction-->
+            <section class="introduction scrollto">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <figure>
+                        <img class="showcase-image" src="images/showcase-images/rail-sensor-cropped.png"
+                            alt="Järnvägsspår med mätutrustning" width="1600" height="1177" fetchpriority="high" />
+<figcaption>Rälstemperatursensor. © Total Digital.</figcaption>
+                        </figure>
+                        <div class="banner-spacer"></div>
+
+                        <div class="col-1">
+                            <div class="section-heading">
+                                <h1 class="section-title">Prediktiv järnvägssäkerhet med satellitdata och AI</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <p>
+                                Vi utvecklar <strong>AI-baserade prognoser för rälstemperatur och risk för spårförskjutning</strong> – för en säkrare och mer förutsägbar järnvägsdrift i ett varmare klimat.
+                            </p><p>
+                                Högre temperaturer och fler värmeböljor ökar risken för spårförskjutning i helsvetsad räls, med störningar och förseningar som följd. Genom att kombinera termisk satellitdata, terräng- och väderdata samt markbaserade mätningar kan vi prognosticera temperaturförhållanden längs spåret upp till <strong>48 timmar i förväg.</strong> Det möjliggör riktade, proaktiva åtgärder och visar samtidigt var risken är störst – och varför.
+                            </p><p>
+                                Metoden är utvecklad för operativ användning, kan skalas från enskilda högrisksträckor till hela järnvägsnät, och stödjer prioritering av underhåll, trafikplanering och långsiktig klimatanpassning.
+                            </p>
+                           <i> Samarbetspartners: Region Stockholm, KTH - Kungliga Tekniska högskolan, InfraNord</i>
+                        </div>
+
+                        <!--Call to Action. Porträtt, fråga, namn och roll står i en
+                            centrerad kolumn, och adressen är vägen in – ingen knapp.
+                            Reglerna ligger under .showcase-cta .cta-* i css/style.css.-->
+                        <div class="col-1 text-center showcase-cta">
+                            <div class="cta-signature">
+                                <img class="cta-face" src="images/showcase-images/HH.webp" width="104" height="104"
+                                    loading="lazy" alt="Hanna Hassberg" />
+                                <div class="cta-signature-body">
+                                    <p>Vill du veta mer om hur detta kan tillämpas i er verksamhet?</p>
+                                    <p class="cta-name">Hanna Hassberg</p>
+                                    <p class="cta-role">Projektledare</p>
+                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=Prediktiv järnvägssäkerhet">hanna@totaldigital.se</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Call to Action-->
+
+                    </div>
+                </div>
+
+            </section>
+            <!--End of Introduction-->
+
+        </main>
+</Layout>

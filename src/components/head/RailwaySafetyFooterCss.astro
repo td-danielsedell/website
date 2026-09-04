@@ -1,0 +1,16 @@
+---
+/**
+ * footer-large.css for the railway-safety page. Loads after the Open Sans
+ * preload link (slot `head-after-fonts` in Layout) — this is the order
+ * every subpage uses (verified against all 14 non-about subpage
+ * baselines), unlike the about pages where it loads earlier as part of
+ * head-css.
+ */
+import { assetPrefix, type Lang } from '../../data/nav';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = assetPrefix(lang);
+---
+    <!-- Large footer -->
+    <link href={`${p}css/footer-large.css`} rel="stylesheet" type="text/css">

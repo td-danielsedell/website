@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LeakDetectionCss from '../components/head/LeakDetectionCss.astro';
+import LeakDetectionFooterCss from '../components/head/LeakDetectionFooterCss.astro';
+---
+<Layout
+    lang="sv"
+    path="leak-detection.html"
+    title="AI-baserad läckagedetektering i vatteninfrastruktur | Total Digital"
+    description="AI och satellitdata som upptäcker läckage i vattendistributionsnät, minskar vattenförluster och ger bättre underlag för förvaltning av ledningsnätet."
+    ogTitle="AI-baserad läckagedetektering i vatteninfrastruktur"
+    ogType="article"
+    ogImage="https://www.totaldigital.se/images/og/leak-detection.jpg"
+    ogImageAlt="Läckagedetektering i vattendistributionsnät"
+>
+    <LeakDetectionCss slot="head-css" lang="sv" />
+    <LeakDetectionFooterCss slot="head-after-fonts" lang="sv" />
+        <main id="content" class="showcase-top">
+
+            <!--Introduction-->
+            <section class="introduction scrollto">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <figure>
+                        <img class="showcase-image" src="images/showcase-images/water-leak.webp"
+                            alt="Läckage i vattenledningsnät" width="900" height="450" fetchpriority="high" />
+</figure>
+
+                        <div class="banner-spacer"></div>
+
+                        <div class="col-1">
+                            <div class="section-heading">
+                                <h1 class="section-title">AI-baserad läckagedetektering i vatteninfrastruktur</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <p>
+                                Vi kombinerar AI, satellitdata och driftsdata för att upptäcka <strong>läckage och vattenförluster</strong> i stora vattendistributionsnät.
+                            </p>  <p>
+                                Genom att analysera förändringar i mark, vegetation och fuktnivåer över tid kan vi identifiera mönster som tyder på läckage – även när problemen ännu inte är synliga i fält. Över stora områden kan avvikelser och förändringsmönster identifieras och följas löpande, vilket hjälper till att lokalisera riskområden och prioritera rätt insatser.
+                            </p><p>
+                                Metoden möjliggör kontinuerlig övervakning av ledningsnätet och kan användas som stöd i både operativt och långsiktigt underhåll. Det möjliggör: <strong> minskade vattenförluster samt effektivare och bättre beslutsunderlag.</strong>
+                            </p>
+                            <i>Samarbetspartners: Laholmsbukten VA, Stockholms Universitet</i>
+                        </div>
+
+                        <!--Call to Action. Porträtt, fråga, namn och roll står i en
+                            centrerad kolumn, och adressen är vägen in – ingen knapp.
+                            Reglerna ligger under .showcase-cta .cta-* i css/style.css.-->
+                        <div class="col-1 text-center showcase-cta">
+                            <div class="cta-signature">
+                                <img class="cta-face" src="images/showcase-images/HH.webp" width="104" height="104"
+                                    loading="lazy" alt="Hanna Hassberg" />
+                                <div class="cta-signature-body">
+                                    <p>Vill du veta mer om hur detta kan tillämpas i er verksamhet?</p>
+                                    <p class="cta-name">Hanna Hassberg</p>
+                                    <p class="cta-role">Projektledare</p>
+                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=Läckagedetektering">hanna@totaldigital.se</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Call to Action-->
+
+                    </div>
+                </div>
+
+            </section>
+            <!--End of Introduction-->
+
+        </main>
+</Layout>

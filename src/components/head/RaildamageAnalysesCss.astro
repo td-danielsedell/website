@@ -1,0 +1,10 @@
+---
+/** Stylesheet specific to the raildamage-analyses pages. */
+import { assetPrefix, type Lang } from '../../data/nav';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = assetPrefix(lang);
+---
+    <!-- Service Card CSS -->
+    <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">

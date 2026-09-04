@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SarProcessingCss from '../../components/head/SarProcessingCss.astro';
+import SarProcessingFooterCss from '../../components/head/SarProcessingFooterCss.astro';
+---
+<Layout
+    lang="en"
+    path="sar-processing.html"
+    title="High- and medium-resolution SAR processing | Total Digital"
+    description="InSAR-based processing of high- and medium-resolution SAR data for monitoring ground movement and deformation across infrastructure and the built environment."
+    ogTitle="High- and medium-resolution SAR processing"
+    ogType="article"
+    ogImage="https://www.totaldigital.se/images/og/sar-processing.jpg"
+    ogImageAlt="Interferogram from SAR data"
+>
+    <SarProcessingCss slot="head-css" lang="en" />
+    <SarProcessingFooterCss slot="head-after-fonts" lang="en" />
+        <main id="content" class="showcase-top">
+
+            <!--Introduction-->
+            <section class="introduction scrollto">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <figure>
+                        <img class="showcase-image" src="../images/showcase-images/interferogram.webp"
+                            alt="Interferogram produced from SAR data" width="619" height="413" fetchpriority="high" />
+<figcaption>Interferogram of the Selenga River, based on our own InSAR analysis. © Total Digital.</figcaption>
+</figure>
+                        <div class="banner-spacer"></div>
+
+                        <div class="col-1">
+                            <div class="section-heading">
+                                <h1 class="section-title">Synthetic Aperture Radar In(SAR) for scalable
+                                    monitoring</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <p>
+                                We develop <strong>InSAR-based solutions for monitoring ground movement, deformation and environmental impact</strong> across infrastructure and the built environment.
+                            </p> <p>
+                                With radar data from commercial SAR satellites, Sentinel-1 and NISAR we can follow change across large areas, independent of weather and time of day. That makes it possible to detect settlement and movement before it becomes visible in the field. Persistent Scatterers (PSI) and Distributed Scatterers (DSI) are used depending on the needs of the project and the ground conditions.
+                            </p>  <p>
+                                The solution scales from individual structures to large geographical areas and integrates directly into the customer's own systems. It can be used in railway, road, geotechnics, construction, dams and urban environments, among others<br><strong>- for long-term monitoring, risk management and decision support.</strong>
+                            </p>
+                        </div>
+
+                        <!--Call to Action. Portrait, question, name and role sit in a
+                            centred column, and the address is the way in — no button.
+                            The rules live under .showcase-cta .cta-* in css/style.css.-->
+                        <div class="col-1 text-center showcase-cta">
+                            <div class="cta-signature">
+                                <img class="cta-face" src="../images/showcase-images/HH.webp" width="104" height="104"
+                                    loading="lazy" alt="Hanna Hassberg" />
+                                <div class="cta-signature-body">
+                                    <p>Want to know more about how this could work in your organisation?</p>
+                                    <p class="cta-name">Hanna Hassberg</p>
+                                    <p class="cta-role">Project Lead</p>
+                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=SAR processing">hanna@totaldigital.se</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Call to Action-->
+
+                    </div>
+                </div>
+
+            </section>
+            <!--End of Introduction-->
+
+        </main>
+</Layout>

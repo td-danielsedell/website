@@ -16,8 +16,10 @@ interface Props {
   lang: Lang;
   /**
    * The certificate badges link to #certificates, a section that only exists on
-   * the about page. On every other page they need a full page-relative href
-   * instead of a bare hash; `data-scroll-to` (site.js) is the same-page case.
+   * the about page. On the about pages that is a bare hash and site.js smooth-
+   * scrolls it via `data-scroll-to`; everywhere else it is real cross-page
+   * navigation to about.html#certificates, with no attribute — there is nothing
+   * on the page for site.js to scroll to.
    */
   onAboutPage?: boolean;
 }
@@ -64,11 +66,11 @@ const certHref = onAboutPage ? '#certificates' : 'about.html#certificates';
                     <div class="footer-col footer-certs">
                         <p class="footer-heading">{t.footer.certsHeading}</p>
                         <div class="cert-badges">
-                            <a href={certHref} data-scroll-to>
+                            <a href={certHref} data-scroll-to={onAboutPage ? '' : undefined}>
                                 <img src={`${p}images/company-images/iso_9001.webp`} width="400" height="400"
                                     loading="lazy" alt={t.footer.certAlt.iso9001} />
                             </a>
-                            <a href={certHref} data-scroll-to>
+                            <a href={certHref} data-scroll-to={onAboutPage ? '' : undefined}>
                                 <img src={`${p}images/company-images/iso_14001.webp`} width="400" height="400"
                                     loading="lazy" alt={t.footer.certAlt.iso14001} />
                             </a>
