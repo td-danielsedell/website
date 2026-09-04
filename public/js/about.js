@@ -19,7 +19,8 @@
    path. A <link> in <head> holds the first paint while 14kB of stylesheet for
    a section far below the fold arrives, and that is the one cost worth
    avoiding; whether the bytes are fetched at all is not worth the complexity
-   of a scroll trigger.
+   of a scroll trigger. Both paths are resolved from this script's own url, so
+   the same loader serves the site root and /en/ alike.
 
    The tiles come from services.arcgisonline.com, a third party (item 23 in the
    revision document), though that tile server sets no cookies — unlike the
@@ -27,6 +28,10 @@
    this is a plain raster tile request, not their JS API. To drop the third
    party entirely the map would have to be drawn as GeoJSON polygons instead of
    tiles. See the tileLayer call below for why this basemap. */
+
+/* Read at top-level on purpose: document.currentScript is set while a deferred
+   script executes and null afterwards, so this cannot move inside the loader. */
+var ABOUT_JS_URL = document.currentScript && document.currentScript.src;
 
 (function () {
 
@@ -41,8 +46,18 @@
        at every width instead. */
     container.classList.add('map-live');
 
-    var CSS_HREF = 'css/leaflet.css';
-    var JS_SRC = 'js/leaflet.js';
+    /* Resolved against this script's OWN url, not the document's. Resolving
+       against the document worked from the site root but not from /en/, where
+       'css/leaflet.css' became /en/css/leaflet.css and 404'd — which is why the
+       English page used to link Leaflet itself in <head>, paying the first-paint
+       cost this loader exists to avoid and putting leaflet.css after about.css
+       in the cascade. Resolving from the script url fixes both pages at once. */
+    function assetUrl(rel) {
+        return ABOUT_JS_URL ? new URL(rel, ABOUT_JS_URL).href : rel;
+    }
+
+    var CSS_HREF = assetUrl('../css/leaflet.css');
+    var JS_SRC = assetUrl('./leaflet.js');
 
     /* The order mirrors the list in about.html: the Swedish towns north to
        south, then Åland last — its latitude would put it second, but it is the

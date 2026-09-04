@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AboutCss from '../../components/head/AboutCss.astro';
+import LeafletNote from '../../components/head/LeafletNote.astro';
 import AboutScripts from '../../components/scripts/AboutScripts.astro';
 ---
 <Layout
@@ -12,6 +13,7 @@ import AboutScripts from '../../components/scripts/AboutScripts.astro';
     bannerPlaceholder={false}
 >
     <AboutCss slot="head-css" lang="en" />
+    <LeafletNote slot="head-after-theme" />
     <AboutScripts slot="scripts" lang="en" />
         <main id="content" class="showcase-top about-top">
 

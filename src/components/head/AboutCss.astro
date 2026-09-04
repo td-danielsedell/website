@@ -1,7 +1,6 @@
 ---
 /** Stylesheets specific to the about pages, in load order. */
 import { assetPrefix, type Lang } from '../../data/nav';
-import LeafletCss from './LeafletCss.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -15,4 +14,3 @@ const p = assetPrefix(lang);
     <link rel="stylesheet" href={`${p}css/image-carousel.css`}>
 
     <link rel="stylesheet" href={`${p}css/footer-large.css`}>
-{lang === 'en' && <LeafletCss />}

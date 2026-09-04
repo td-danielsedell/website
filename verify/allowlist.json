@@ -271,6 +271,39 @@
       ],
       "hunk": "-<img alt=\"Total Digital\" id=\"navigation-logo\" src=\"images/banner-images/td_white.webp\"/>\n+<img alt=\"Total Digital\" height=\"122\" id=\"navigation-logo\" src=\"images/banner-images/td_white.webp\" width=\"412\"/>",
       "reason": "Deliberate fix, sanctioned by the migration plan's traps checklist item 10: the about pages' logo <img> tags were missing width/height while all 16 other pages carry width=\"412\" height=\"122\". Templating the header once makes the omission impossible to keep, and adding the intrinsic size removes layout shift. Same image, same rendered size — the attributes only tell the browser the aspect ratio up front."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "phase 5 leaflet: Draws the map. defer keeps both off the critical path and pr",
+      "firstSeenOn": [
+        "en/about.html"
+      ],
+      "hunk": "-<!--Draws the map. defer keeps both off the critical path and preserves the order: leaflet.js runs first, so about.js finds window.L and skips its own loader. See the note beside the Leaflet stylesheet in <head>.-->\n-<script defer src=\"../js/leaflet.js\"/>\n+<!--Loads Leaflet itself and then draws the map. defer keeps it off the critical path; it does not need L on the page beforehand.-->",
+      "reason": "PHASE 5 DELIBERATE IMPROVEMENT — the /en/ Leaflet workaround is gone. js/about.js used to resolve 'css/leaflet.css' and 'js/leaflet.js' against the DOCUMENT, so from /en/ they became /en/css/... and 404'd; the English page worked around that by linking Leaflet in <head> itself and loading leaflet.js ahead of about.js. It now resolves both paths against its own script url (document.currentScript, read at top level), so one loader serves the site root and /en/ alike.\n\nChosen over the migration plan's original wording ('link leaflet.css/js in <head> on both pages') for two measured reasons: that would have put 159kB (14.8kB render-blocking CSS + 144kB JS) on first paint for a section far below the fold, which is exactly the cost the loader exists to avoid; and it would have spread the English page's cascade inversion to the Swedish one — about.js inserts leaflet.css as the FIRST child of <head> on purpose so about.css can override Leaflet's defaults, while the workaround linked it AFTER about.css.\n\nVerified in the browser on both pages after the change: window.L present, #map has class map-live, 12 tiles and 16 markers drawn, leaflet.css resolved to /css/leaflet.css and sitting first in the stylesheet order. The English page's cascade is now correct where it previously was not."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "phase 5 leaflet: Leaflet is deliberately not linked here. css/leaflet.css and",
+      "firstSeenOn": [
+        "en/about.html"
+      ],
+      "hunk": "+<!--Leaflet is deliberately not linked here. css/leaflet.css and js/leaflet.js are fetched by js/about.js instead, for one reason: a <link> in <head> holds up the first paint while 14kB of stylesheet for a section far below the fold loads. See the comment at the top of js/about.js. The library is vendored from unpkg like every other library in js/ — one less third-party host on the page, and the map keeps working if the CDN does not. The dist files were checked against the SRI hashes unpkg publishes before being committed; local same-origin files need no integrity attribute of their own.-->",
+      "reason": "PHASE 5 DELIBERATE IMPROVEMENT — the /en/ Leaflet workaround is gone. js/about.js used to resolve 'css/leaflet.css' and 'js/leaflet.js' against the DOCUMENT, so from /en/ they became /en/css/... and 404'd; the English page worked around that by linking Leaflet in <head> itself and loading leaflet.js ahead of about.js. It now resolves both paths against its own script url (document.currentScript, read at top level), so one loader serves the site root and /en/ alike.\n\nChosen over the migration plan's original wording ('link leaflet.css/js in <head> on both pages') for two measured reasons: that would have put 159kB (14.8kB render-blocking CSS + 144kB JS) on first paint for a section far below the fold, which is exactly the cost the loader exists to avoid; and it would have spread the English page's cascade inversion to the Swedish one — about.js inserts leaflet.css as the FIRST child of <head> on purpose so about.css can override Leaflet's defaults, while the workaround linked it AFTER about.css.\n\nVerified in the browser on both pages after the change: window.L present, #map has class map-live, 12 tiles and 16 markers drawn, leaflet.css resolved to /css/leaflet.css and sitting first in the stylesheet order. The English page's cascade is now correct where it previously was not."
+    },
+    {
+      "pages": [
+        "*"
+      ],
+      "note": "phase 5 leaflet: Leaflet. On the Swedish page this sheet is fetched by js/abo",
+      "firstSeenOn": [
+        "en/about.html"
+      ],
+      "hunk": "-<!--Leaflet. On the Swedish page this sheet is fetched by js/about.js instead of being linked here, to keep 14kB of stylesheet for a section far below the fold off the critical path. That loader resolves 'css/leaflet.css' and 'js/leaflet.js' relative to the document, so from /en/ it would look for /en/css/... and fail, hiding the map. Until the loader resolves those two paths from its own script URL, this page links Leaflet itself and loads leaflet.js ahead of about.js: about.js sees window.L already defined and goes straight to drawing the map.-->\n-<link href=\"../css/leaflet.css\" rel=\"stylesheet\"/>\n-<!--Ljust tema. Reglerna är låsta till html.theme-light, så det här arket ändrar inget förrän js/theme.js sätter klassen.-->\n+<!--Light theme. The rules are scoped to html.theme-light, so this sheet changes nothing until js/theme.js sets the class.-->",
+      "reason": "PHASE 5 DELIBERATE IMPROVEMENT — the /en/ Leaflet workaround is gone. js/about.js used to resolve 'css/leaflet.css' and 'js/leaflet.js' against the DOCUMENT, so from /en/ they became /en/css/... and 404'd; the English page worked around that by linking Leaflet in <head> itself and loading leaflet.js ahead of about.js. It now resolves both paths against its own script url (document.currentScript, read at top level), so one loader serves the site root and /en/ alike.\n\nChosen over the migration plan's original wording ('link leaflet.css/js in <head> on both pages') for two measured reasons: that would have put 159kB (14.8kB render-blocking CSS + 144kB JS) on first paint for a section far below the fold, which is exactly the cost the loader exists to avoid; and it would have spread the English page's cascade inversion to the Swedish one — about.js inserts leaflet.css as the FIRST child of <head> on purpose so about.css can override Leaflet's defaults, while the workaround linked it AFTER about.css.\n\nVerified in the browser on both pages after the change: window.L present, #map has class map-live, 12 tiles and 16 markers drawn, leaflet.css resolved to /css/leaflet.css and sitting first in the stylesheet order. The English page's cascade is now correct where it previously was not."
     }
   ]
 }
