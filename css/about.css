@@ -216,9 +216,47 @@
     margin: 0 auto;
 }
 
+/* The grid is also the carousel track below 768 (see the media query at the
+   foot of this file), so above the breakpoint it has to be talked back out of
+   every scroller property css/image-carousel.css gives it. Same shape as
+   .service-track in css/service-card.css, and for the same reason. */
+@media (min-width: 768px) {
+
+    .person-grid.image-carousel-track {
+        overflow: visible;
+        scroll-snap-type: none;
+        padding: 0;
+        /* .image-carousel-track sets 24px and its sheet loads after this one,
+           so a bare .person-grid loses the tie on source order. The slide's
+           calc((100% - 40px) / 3) is written against 20px — at 24px the three
+           cards need 708px in a 700px row, so only two fit and the row became
+           three. Two classes here, so it holds. */
+        gap: 20px;
+    }
+
+    /* A slide is a transparent wrapper here; the card inside it is what the
+       row measures, so the thirds move onto the slide. Thirds of the row, less
+       the two 20px gaps between them. */
+    .person-grid > .image-carousel-slide {
+        flex: 0 0 calc((100% - 40px) / 3);
+        scroll-snap-align: none;
+        display: flex;
+    }
+
+    .person-grid > .image-carousel-slide > .person-card {
+        flex: 1 1 auto;
+    }
+
+    /* No controls on a row that does not scroll. The script also refuses to
+       autoplay a track whose scrollWidth fits, so nothing is running here
+       either — this only hides the furniture. */
+    .person-carousel .image-carousel-arrow,
+    .person-carousel .image-carousel-dots {
+        display: none;
+    }
+}
+
 .person-card {
-    /* Thirds of the row, less the two 20px gaps between them. */
-    flex: 0 0 calc((100% - 40px) / 3);
     /* Positions .person-body's caption. */
     position: relative;
     background: var(--surface);
@@ -551,7 +589,7 @@ html.theme-light .city-label.leaflet-tooltip {
 
 .location-list li.is-hovered,
 .location-list li.is-active {
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 .location-list li.is-hovered:before,
@@ -859,34 +897,87 @@ html.theme-light .city-label.leaflet-tooltip {
         box-shadow: 0 0 0 5px var(--secondary);
     }
 
-    .person-grid {
-        gap: 15px;
+    /* ---- Below 768 the row of portraits becomes a carousel ----------------
+
+       Three cards will not stand side by side on a phone, and stacking them
+       made the section 963px — a screen and a half of near-identical white
+       studio portraits, which is what Daniel called a never ending scroll. The
+       same swap css/service-card.css makes for Tjänster: a grid above the
+       breakpoint, a swipe below it, driven by the shared component in
+       js/image-carousel.js rather than anything written here.
+
+       It also retires an afternoon of alignment work. Name, role and address
+       only ever fell out of step with the card *beside* them; with one card on
+       screen at a time there is no card beside them, so the caption can wrap
+       however it likes. The two-line reservations, the fluid address size and
+       the one-per-row fallback that each bought alignment at some cost are all
+       gone with it — see review-consolidated.md for what was tried. */
+    .person-grid.image-carousel-track {
+        gap: 14px;
+        /* Lead-in and lead-out wide enough for a card to reach the middle.
+           .image-carousel-slide snaps on its centre, but a slide can only rest
+           where the track can actually scroll to: without these gutters the
+           first card cannot centre (nothing to its left) and neither can the
+           last, so from ~600px up — where more than one card fits — the
+           trailing slides all shared the final resting position and the script
+           drew four dots for five people. Half the leftover width each side
+           gives every card a stop of its own: five people, five dots, at every
+           width, each one centred when it is the current slide. */
+        padding: 4px calc((100% - 220px) / 2) 16px;
+        max-width: none;
+        /* Both load-bearing, and both come from .person-grid being a wrapping,
+           capped grid in its other life. Left wrapping, the 82% slides fold
+           onto five rows and the track never overflows, so it does not scroll,
+           the script counts one view and draws one dot. Left capped at 700px it
+           would stop growing with the viewport. */
+        flex-wrap: nowrap;
+        justify-content: flex-start;
     }
 
-    /* Two up. The 700px cap is wider than the viewport here, so it stops
-       applying on its own and the row is whatever the column gives. */
+    /* 82%, not 100%. The peek is the whole point: it is the only thing on a
+       still screen that says the row continues, and without it the carousel
+       reads as a single portrait somebody forgot to finish. */
+    /* The same 220px the card settles at on a full window — (700 - 2*20) / 3,
+       the desktop third. A slide sized off the viewport instead grew the
+       portrait to 300px and more, so the same face was one size on a phone,
+       another on a tablet and a third on a desktop. One number for all three,
+       and on a 390px screen it leaves the next card peeking by ~126px, which
+       is the affordance the peek was for. */
+    .person-grid > .image-carousel-slide {
+        flex: 0 0 220px;
+        display: flex;
+    }
+
     .person-card {
-        flex-basis: calc((100% - 15px) / 2);
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        max-width: none;
     }
 
-    .person-name {
-        font-size: 16px;
-    }
-
-    /* The overlay comes off on a phone. At 168px the card is only 223px tall
-       and the name takes two lines, so the caption would cover the face — the
-       text drops back under the photo instead, on the card's own #333. */
+    /* The overlay comes off here: the caption drops below the photo, on the
+       card's own surface, rather than sitting on a gradient over the face.
+       The crop stays the base 3/4 — the extra height 4/5 used to buy was room
+       for a caption sitting *on* the photo, and there is no caption on the
+       photo any more. Same aspect as desktop, so the portrait is identical at
+       every width. */
     .person-photo {
-        aspect-ratio: 4 / 5;
+        flex: 0 0 auto;
     }
 
     .person-body {
         position: static;
-        padding: 12px 14px 16px 14px;
+        padding: 14px 16px 16px;
         background: none;
+        flex: 1 1 auto;
     }
 
-    /* Nothing to unfold once the caption is back under the photo — and a narrow
+    .person-name {
+        font-size: 17px;
+        line-height: 1.35;
+    }
+
+    /* Nothing to unfold once the caption is under the photo — and a narrow
        window on a laptop still matches hover: hover, so this has to undo the
        collapse rather than rely on the pointer type. */
     .person-contact {

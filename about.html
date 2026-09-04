@@ -50,6 +50,9 @@
     <link rel="stylesheet" href="css/about.css">
 
     <!-- Large footer CSS -->
+    <!-- Ledningsgruppen is a carousel below 768px (see css/about.css). -->
+    <link rel="stylesheet" href="css/image-carousel.css">
+
     <link rel="stylesheet" href="css/footer-large.css">
 
     <!--Ljust tema. Reglerna är låsta till html.theme-light, så det här
@@ -335,58 +338,72 @@
 
 
                     <div class="col-1">
-                        <div class="person-grid">
+                        <div class="person-carousel image-carousel" data-image-carousel
+                            data-carousel-label="Ledningsgruppen" data-carousel-noun="person"
+                            data-carousel-autoplay="4000">
+                        <div class="person-grid person-track image-carousel-track clearfix">
 
-                            <div class="person-card">
-                                <img class="person-photo" src="images/company-images/LG_LK.webp"
-                                    width="400" height="500" loading="lazy" alt="" />
-                                <div class="person-body">
-                                    <h3 class="person-name">Linus Kozsinowski</h3>
-                                    <p class="person-role">VD</p>
-                                    <p class="person-contact"><a href="mailto:linus@totaldigital.se">linus@totaldigital.se</a></p>
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="images/company-images/LG_LK.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Linus Kozsinowski</h3>
+                                        <p class="person-role">VD</p>
+                                        <p class="person-contact"><a href="mailto:linus@totaldigital.se">linus@totaldigital.se</a></p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="person-card">
-                                <img class="person-photo" src="images/company-images/LG_MS.webp"
-                                    width="400" height="500" loading="lazy" alt="" />
-                                <div class="person-body">
-                                    <h3 class="person-name">Mattias Svensson</h3>
-                                    <p class="person-role">Vice-VD</p>
-                                    <p class="person-contact"><a href="mailto:mattias@totaldigital.se">mattias@totaldigital.se</a></p>
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="images/company-images/LG_MS.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Mattias Svensson</h3>
+                                        <p class="person-role">Vice-VD</p>
+                                        <p class="person-contact"><a href="mailto:mattias@totaldigital.se">mattias@totaldigital.se</a></p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="person-card">
-                                <img class="person-photo" src="images/company-images/LG_MA.webp"
-                                    width="400" height="500" loading="lazy" alt="" />
-                                <div class="person-body">
-                                    <h3 class="person-name">Monica Andreasson</h3>
-                                    <p class="person-role">HR-Ansvarig</p>
-                                    <p class="person-contact"><a href="mailto:monica@totaldigital.se">monica@totaldigital.se</a></p>
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="images/company-images/LG_MA.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Monica Andreasson</h3>
+                                        <p class="person-role">HR-Ansvarig</p>
+                                        <p class="person-contact"><a href="mailto:monica@totaldigital.se">monica@totaldigital.se</a></p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="person-card">
-                                <img class="person-photo" src="images/company-images/LG_PT.webp"
-                                    width="400" height="500" loading="lazy" alt="" />
-                                <div class="person-body">
-                                    <h3 class="person-name">Petter Tyrenius</h3>
-                                    <p class="person-role">Affärsområdeschef</p>
-                                    <p class="person-contact"><a href="mailto:petter@totaldigital.se">petter@totaldigital.se</a></p>
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="images/company-images/LG_PT.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Petter Tyrenius</h3>
+                                        <p class="person-role">Affärsområdeschef</p>
+                                        <p class="person-contact"><a href="mailto:petter@totaldigital.se">petter@totaldigital.se</a></p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="person-card">
-                                <img class="person-photo" src="images/company-images/LG_AH.webp"
-                                    width="400" height="500" loading="lazy" alt="" />
-                                <div class="person-body">
-                                    <h3 class="person-name">Anton Hansson</h3>
-                                    <p class="person-role">Affärsområdeschef</p>
-                                    <p class="person-contact"><a href="mailto:anton@totaldigital.se">anton@totaldigital.se</a></p>
+                            <div class="image-carousel-slide">
+                                <div class="person-card">
+                                    <img class="person-photo" src="images/company-images/LG_AH.webp"
+                                        width="400" height="500" loading="lazy" alt="" />
+                                    <div class="person-body">
+                                        <h3 class="person-name">Anton Hansson</h3>
+                                        <p class="person-role">Affärsområdeschef</p>
+                                        <p class="person-contact"><a href="mailto:anton@totaldigital.se">anton@totaldigital.se</a></p>
+                                    </div>
                                 </div>
                             </div>
 
+                        </div>
                         </div>
                     </div>
 
@@ -635,6 +652,7 @@
     <script src="js/jquery.stickyNavbar.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/site.js"></script>
+    <script src="js/image-carousel.js"></script>
     <!--Loads Leaflet itself and then draws the map. defer keeps it off the
         critical path; it does not need L on the page beforehand.-->
     <script src="js/about.js" defer></script>

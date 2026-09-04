@@ -384,8 +384,12 @@
     color: var(--primary);
 }
 
+/* The step below --muted-text: a "no" row is supporting information, not a
+   claim. --muted-text would read as loud as the body copy beside it; the raw
+   #666 this replaced was 3.0:1 on the dark ground and had no light-theme
+   value at all. */
 .tdt-compare .tdt-no {
-    color: #666;
+    color: var(--faint-text);
 }
 
 @media (max-width: 600px) {

@@ -54,7 +54,7 @@
 
 .footer-large .footer-address a:hover,
 .footer-large .footer-social a:hover {
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 /* .social-icons floats right and hides its labels in the default footer. Here
@@ -141,7 +141,7 @@
 }
 
 .footer-col a:hover {
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 /* Certifieringar: two badges where the third column used to hold a link list.

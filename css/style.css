@@ -965,7 +965,7 @@ html.theme-animating {
         --normal-text, --header-text, --section-title, --section-subtitle,
         --section-heading, --link, --border, --footer-text,
         --surface, --surface-alt, --surface-border, --divider, --panel-hover,
-        --hero-text, --muted-text, --faint-text;
+        --hero-text, --muted-text, --faint-text, --accent-text;
     transition-duration: 320ms;
     transition-timing-function: ease;
 }
@@ -2169,7 +2169,7 @@ p.section-kicker {
 
 .scroll-cue:hover,
 .scroll-cue:focus-visible {
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 /* Small, letterspaced and uppercase: the same voice as .section-kicker, so it
@@ -2285,7 +2285,7 @@ p.section-kicker {
 
 #home .scroll-cue:hover,
 #home .scroll-cue:focus-visible {
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 /* Every page that opens on content rather than on the hero: the showcases, Om

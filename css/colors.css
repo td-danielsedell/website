@@ -252,6 +252,12 @@
     initial-value: #8C8680;
 }
 
+@property --accent-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59);
+}
+
 :root {
     --header: #C63D02;
     --primary: rgb(255, 106, 59);
@@ -303,6 +309,19 @@
     --muted-text: #BDB8B2;
     --faint-text: #8C8680;
 
+    /* The accent when it is carrying TEXT rather than drawing a graphic.
+       --primary is a graphics colour: on the light theme it is 3.6:1 against
+       the paper ground, which clears the 3:1 that borders, rules and icons
+       need and fails the 4.5:1 that body copy needs. This token is the
+       AA-safe sibling — deliberately identical to --primary in the dark
+       theme, where the accent already reads 6.1:1, so swapping a rule from
+       one to the other is a no-op here and a fix on paper.
+
+       Use it for: links, hovered link text, any word that turns orange.
+       Do NOT use it for: icons, rules, borders, fills — those stay --primary
+       so the brand orange is the brand orange. */
+    --accent-text: rgb(255, 106, 59);
+
     /* The corner icon watermark on a product card. A token because the same
        0.07 that reads as texture over a dark surface reads as pink over white
        paper — see light.css. */
@@ -325,7 +344,7 @@ body {
 /* Default Link Color */
 
 a {
-    color: var(--primary);
+    color: var(--accent-text);
     /*var(--primary); */
     /*#d2b356;*/
 }
@@ -706,7 +725,7 @@ body {
 /* Showcase Call to Action */
 
 .showcase-cta {
-    border-top-color: rgba(153, 153, 153, 0.3);
+    border-top-color: var(--surface-border);
 }
 
 .showcase-cta p {
@@ -859,7 +878,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     border-color: var(--primary);
     /*#d2b356;*/
-    color: var(--primary);
+    color: var(--accent-text);
     /*#d2b356;*/
 }
 
@@ -888,7 +907,7 @@ input[type="submit"]:hover {
 /* Button Hover Color */
 
 #home .button:hover {
-    color: var(--primary);
+    color: var(--accent-text);
     /*#d2b356;*/
     border-color: var(--primary);
     /*#d2b356;*/

@@ -110,7 +110,7 @@
 }
 
 .image-carousel-arrow:hover {
-    background: var(--primary, #ff5722);
+    background: var(--primary);
 }
 
 /* Focus deliberately does NOT take the hover fill. The site-wide ring is
@@ -181,7 +181,7 @@
 }
 
 .image-carousel-dot[aria-current="true"]::before {
-    background: var(--primary, #ff5722);
+    background: var(--primary);
     transform: scale(1.3);
 }
 

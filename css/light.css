@@ -68,7 +68,16 @@ html.theme-light {
     --panel-hover: rgba(0, 0, 0, 0.06);
 
     --muted-text: #5C554D;
-    --faint-text: #8A827A;
+    /* Was #8A827A, which is 3.5:1 on this ground — a fail at the 11px the one
+       consumer (.product-image-placeholder span) uses it at. 5.2:1 now, the
+       same value --footer-text already carries. */
+    --faint-text: #6E675F;
+
+    /* The accent as text. --primary is 3.6:1 here: right for a 5px rule or an
+       icon, a fail for a word. See the long note on this token in colors.css.
+       #BC3D00 is 5.1:1 and is the value this sheet already hardcoded twice
+       before it became a token. */
+    --accent-text: #BC3D00;
 
     /* Orange at the dark theme's 0.07 turns pink on white and starts competing
        with the body copy it sits under. Halved. */
@@ -84,11 +93,11 @@ html.theme-light {
     --band: #000000;              /* the template's black blob, as a band */
 }
 
-/* --primary is a graphics colour here (3.6:1 on the ground — fine for 5px
-   rules and borders, not for type). Where the accent carries text on a light
-   ground, use this AA-safe value instead; hover border-color stays
-   var(--primary). */
-html.theme-light a { color: #BC3D00; }
+/* Links take the text-safe accent, not --primary. The two tokens and the
+   reason they are separate are documented where --accent-text is declared;
+   note that a hover border-color still wants var(--primary), because a border
+   is a graphic. */
+html.theme-light a { color: var(--accent-text); }
 
 /* A .button is an <a>, so the rule above caught it and every button read
    orange at rest — against a --header-text border, which had stayed ink. The
@@ -102,7 +111,7 @@ html.theme-light input[type="submit"] {
 
 html.theme-light .button:hover,
 html.theme-light input[type="submit"]:hover {
-    color: #BC3D00;
+    color: var(--accent-text);
 }
 
 /* Same trap, same fix, one component over: a card title is an <a>, so the rule
@@ -227,13 +236,38 @@ html.theme-light .image-carousel-dot:hover::before {
 /* The ledningsgrupp captions are burned into a near-black gradient at the foot
    of each portrait, so they keep the light-on-dark treatment the rest of the
    page drops. --section-heading and --muted-text both go dark here and would
-   put near-black type on black. */
-html.theme-light .person-name {
-    color: var(--banner-text);
-}
+   put near-black type on black.
 
-html.theme-light .person-role {
-    color: #d4d4d4;
+   The media query is load-bearing, not tidiness. Below 768px css/about.css
+   takes the overlay off — .person-body goes `position: static` with
+   `background: none`, so the caption sits on the card's own fill, which on this
+   theme is white. Unguarded, these two rules painted a white name on a white
+   card (1:1, the name simply was not there) and a #d4d4d4 role at 1.4:1. Below
+   the breakpoint the tokens in colors.css are already right, so the fix is to
+   stop overriding them rather than to add a second override. Keep this bound to
+   the same 767/768 edge as the `.person-body` block in css/about.css — if one
+   moves, both move. */
+@media (min-width: 768px) {
+
+    html.theme-light .person-name {
+        color: var(--banner-text);
+    }
+
+    html.theme-light .person-role {
+        color: #d4d4d4;
+    }
+
+    /* And the address on the same gradient. It is an <a>, so it took the
+       light theme's --accent-text (#BC3D00) — which is the AA-safe accent on
+       paper and 3.34:1 on this near-black veil. The veil is the dark theme's
+       ground whatever the page theme is, so the link takes the dark theme's
+       accent with it: 6.5:1, and the card now reads identically in both
+       themes above the breakpoint, which is what the two rules above already
+       intended. Literal because there is no "the other theme's token" to
+       reference from inside html.theme-light. */
+    html.theme-light .person-contact a {
+        color: rgb(255, 106, 59);
+    }
 }
 
 /* Four of the six partner logos (Esri, Nvidia, Rymdstyrelsen, Maxanv) are the
@@ -304,10 +338,13 @@ html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
    5. Footer
    -------------------------------------------------------------------------- */
 
-/* A band off the page ground rather than a token surface — it is the bottom
-   of the sheet, not a card. */
+/* A band off the page ground rather than a card — it is the bottom of the
+   sheet. It used to be #f7f7f7, a cool neutral that read as a colour error
+   against the warm paper ground above it and made a fourth light surface
+   value; --surface-alt is the warm step off the ground this palette already
+   owns. */
 html.theme-light .footer-large {
-    background: #f7f7f7;
+    background: var(--surface-alt);
 }
 
 /* The footer links are body copy, not calls to action; colors.css gives every
@@ -318,7 +355,7 @@ html.theme-light .footer-large p {
 }
 
 html.theme-light .footer-large a:hover {
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 /* The certification marks are greyscaled in both themes (css/footer-large.css)
