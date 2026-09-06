@@ -2002,19 +2002,20 @@ p.section-kicker {
         flex-direction: column;
     }
 
-    /* The row takes the height the header leaves, so the copy inside it can be
-       pulled apart: the headline keeps the top, everything after it drops to the
-       bottom of the screen, and the band that opens up in the middle is where
-       the photo reads (see #home::before in css/colors.css). The bottom padding
-       is the room the scroll cue needs below the intro. */
+    /* The row takes the height the header leaves and centres the copy in it —
+       the same treatment the desktop hero gets from 768px up, so the phone
+       reads as one cluster (headline, expertise line, intro together) with the
+       photo above and below it, rather than the earlier pulled-apart layout
+       (headline pinned top, the rest dropped to the middle) that read as
+       scattered pieces. */
     #banner-content.row {
         flex: 1 1 auto;
         display: flex;
+        align-items: center;
         /* The room the scroll cue needs under the intro: the cue is about 62px
-           of label and chevrons sitting 32px off the bottom, and the copy is
-           pinned to the bottom of this box. !important because ".row { padding:
-           15px !important }" below 480px would otherwise leave the intro's
-           orange rule crossing the cue's label. */
+           of label and chevrons sitting 32px off the bottom. !important because
+           ".row { padding: 15px !important }" below 480px would otherwise leave
+           the intro's orange rule crossing the cue's label. */
         padding-bottom: 110px !important;
     }
 
@@ -2033,19 +2034,9 @@ p.section-kicker {
         width: 100%;
     }
 
-    /* The headline keeps the top of the screen and the photo behind it. The
-       expertise line and the intro follow it down to the middle: an auto margin
-       above the pair and another below it split the leftover height evenly, so
-       they sit centred between the headline and the scroll cue however tall the
-       screen is. Pinned to the bottom instead — the first thing tried — they
-       sat in among the cue and left the middle of the hero empty. */
-    #home .expertise-line {
-        margin-top: auto;
-    }
-
-    #home .banner-intro {
-        margin-bottom: auto;
-    }
+    /* The copy stacks in natural flow — no auto margins pulling the expertise
+       line and intro away from the headline. (The earlier split layout lived
+       here as margin-top/bottom: auto on the pair.) */
 
     /* A phone hero is a screen tall, so there is a fold to gesture at after
        all. Sits under the intro rather than over it — the copy is bottom-aligned
@@ -2108,6 +2099,19 @@ p.section-kicker {
     #banner-content.row > .col-61 {
         width: 61.8%;
         float: none;
+    }
+}
+
+/* On a wide screen the auto-centred row walks the copy toward the middle —
+   358px in from the left at 1920 — and the hero reads worse than at 1280,
+   where the row sits nearly flush left. Bias it: keep only 30% of the growth
+   past 1280 as left margin, so the copy stays toward the photo-free left edge
+   and the extra width goes to the train instead. Continuous at the boundary
+   (auto centring gives the same 17px at 1280); margin-right stays auto and
+   takes the rest. */
+@media (min-width: 1280px) {
+    #banner-content.row {
+        margin-left: calc(17px + (100vw - 1280px) * 0.3);
     }
 }
 
@@ -2341,16 +2345,10 @@ p.section-kicker {
     }
 }
 
-/* Phone only. The percentage is of the container's *width*, so this is a big
-   number on a wide screen — and from 768px up the banner row centres its copy in
-   the leftover height, which is what this padding used to approximate. Left in
-   place below that, where the hero is content-tall and the copy hangs off the
-   top of the screen without it. */
-@media (max-width: 767px) {
-    #home h1 {
-        padding-top: 5%;
-    }
-}
+/* The phone headline's top spacing lives on #home #main-heading in the
+   width blocks further down (40px flat, svh clamp on tall screens); a
+   "#home h1 { padding-top: 5% }" rule that used to sit here was dead —
+   outspecified at every phone width — and was removed. */
 
 /* The orange dash that used to sit above the banner headline is gone: it cost
    35px above the fold and the headline reads better hard against the nav. The
@@ -3420,21 +3418,6 @@ blockquote {
         padding: 0;
     }
 
-    /* EXPERIENCE is the longest line and it sets the size: at a flat 58px it is
-       366px wide, which runs off a 360px screen and off a 320px one badly — the
-       body's overflow-x: hidden just cut the last letters off. 13.4vw is that
-       word at the width it has, minus the row's 15px gutters; 58px is where it
-       stops growing, the size that was signed off, reached at 430px.
-
-       Both declarations need !important: css/colors.css carries the hero type
-       and loads after this file, so its 62px/60px would otherwise win on order.
-       The line-height goes relative rather than staying at that flat 60px, or
-       the lines keep sitting 60px apart while the letters shrink. */
-    #home h1 {
-        font-size: clamp(40px, 13.4vw, 58px) !important;
-        line-height: 1.05 !important;
-    }
-
     /* .page-border,
     #scrollUp,
     #scrollUp:before {
@@ -3702,6 +3685,23 @@ blockquote {
    #businessareas so the section can be duplicated for comparison. */
 @media (max-width: 767px) {
 
+    /* EXPERIENCE is the longest line and it sets the size: at a flat 58px it is
+       366px wide, which runs off a 360px screen and off a 320px one badly — the
+       body's overflow-x: hidden just cut the last letters off. 13.4vw is that
+       word at the width it has, minus the row's 15px gutters; 58px is where it
+       stops growing, the size that was signed off, reached at 433px. The whole
+       sub-768 range rides this one curve — a 744 tablet gets the same 58px cap
+       as a 480 phone instead of jumping to the desktop 62px one pixel up.
+
+       Both declarations need !important: css/colors.css carries the hero type
+       and loads after this file, so its 62px/60px would otherwise win on order.
+       The line-height goes relative rather than staying at that flat 60px, or
+       the lines keep sitting 60px apart while the letters shrink. */
+    #home h1 {
+        font-size: clamp(40px, 13.4vw, 58px) !important;
+        line-height: 1.05 !important;
+    }
+
     .area-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -3844,34 +3844,14 @@ blockquote {
 /* Phone hero, heading position
 ===============================*/
 
-/* The headline starts 40px under the header at phone widths (see
-   "#home #main-heading" in the two blocks above). That is as high as it needs to
-   be on a short screen, and lower than it wants to be on a tall one — the
-   desktop hero centres its whole block, and a phone reads better with the
-   headline off the top edge too. The drop grows with the screen, up to 10vh of
-   it: 34px at 734, 78px at 780, 88px at 885.
-
-   The drop is the slack, so it is sized as the slack: everything below the
-   headline — expertise line, the intro's two sentences with 28px between them
-   (see .banner-intro-next), and the cue with its 110px of room — needs about
-   700px of hero, and what the screen has over that is what the headline can
-   have. Hence calc(100svh - 700px), capped at 10vh so it stays a proportion of
-   the screen once there is plenty, and floored at the 20px the base h1 rule
-   gives. svh, not vh: vh on a phone measures the screen without the address
-   bar, which is 110px more than the hero actually gets, and the arithmetic here
-   is against the real fold. Not dvh either — that shifts the headline as the
-   bar hides.
-
-   Gated on height, not applied everywhere: under 720px the formula is at its
-   floor anyway, and the blocks below have their own answers for short screens.
-   Placed after those blocks because it has the same specificity as the rules it
-   overrides, so order is what decides. */
-@media (max-width: 767px) and (min-height: 720px) {
-    #home #main-heading {
-        padding-top: clamp(20px, calc(100vh - 700px), min(10vh, 110px));
-        padding-top: clamp(20px, calc(100svh - 700px), min(10svh, 110px));
-    }
-}
+/* The copy block is flex-centred in the row's leftover height (see
+   "#banner-content.row" in the max-width:767 banner block) — the same mechanism
+   as the desktop hero — so the tall-screen headline drop that used to be
+   computed here as an svh clamp is gone. What remains at phone widths is the
+   flat 40px on #home #main-heading in the two width blocks above: on a tall
+   screen it just biases the centred cluster slightly below true centre, and on
+   a short one (where the hero grows past the screen and centring has no slack)
+   it is the whole top gap, which is what it was sized for. */
 
 /* Short phones. The hero holds four things — headline, expertise line, the
    two-line intro and the cue — and by 667px of screen the 110px reserved under
@@ -4211,9 +4191,19 @@ blockquote {
         padding-bottom: 16px !important;
     }
 
+    /* Height sets the size here, not width: a short window is height-starved
+       whatever its width, and a flat 34px that fit 375px of screen read as a
+       whisper in a 500px-tall one. 9svh keeps the headline the same share of
+       the screen across the range — 34px at 375 (exactly the old value), 45px
+       at 500 — and svh rather than vh so a phone's collapsing URL bar cannot
+       change the type size mid-scroll (vh line is the fallback for engines
+       without svh). !important on both: landscape phones are also under 768px
+       wide, where the 13.4vw clamp (same flags) would otherwise win on order,
+       and this selector outranks it once both are important. */
     #home #main-heading {
-        font-size: 34px;
-        line-height: 1.1;
+        font-size: clamp(34px, 9vh, 45px) !important;
+        font-size: clamp(34px, 9svh, 45px) !important;
+        line-height: 1.1 !important;
         padding-top: 0;
         padding-bottom: 14px;
     }
