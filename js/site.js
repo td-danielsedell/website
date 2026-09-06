@@ -11,6 +11,29 @@ $(document).ready(function () {
 		$.scrollUp();
 	}
 
+	/* Personal contact addresses (about.html's ledningsgrupp, the showcase
+	   pages' named contacts) carry no "@" or "mailto:" in the markup, so a
+	   static-HTML scraper finds nothing to harvest. The address is built here
+	   from data-user/data-domain and only exists in the DOM after this runs.
+	   The shared info@ address on contact buttons and in footers is not
+	   obfuscated — it is a shared inbox already published everywhere, so
+	   hiding it here buys nothing. */
+	$(".email-obfuscated").each(function () {
+		var $link = $(this);
+		var user = $link.data("user");
+		var domain = $link.data("domain");
+		if (!user || !domain) {
+			return;
+		}
+		var address = user + "@" + domain;
+		var href = "mailto:" + address;
+		var subject = $link.data("subject");
+		if (subject) {
+			href += "?subject=" + encodeURIComponent(subject);
+		}
+		$link.attr("href", href).text(address);
+	});
+
 	/*Responsive Navigation*/
 	$("#nav-mobile").html($("#nav-main").html());
 
