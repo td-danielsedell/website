@@ -522,9 +522,22 @@ a {
    That is also why the fade cannot be another layer here — enllax's shorthand
    applies to every layer, so the ramp would ride down with the photo and its
    solid end would slide off the bottom of the box. ::before is animated by
-   nothing. */
+   nothing.
+
+   banner_wide_clean.webp is a 930x523 crop of the 1600x900 master
+   (banner_wide_full.webp, still in the folder): the person-free left part of
+   the frame — train front and platform — with the traveller, who occupied the
+   right 40%, cropped away. The phone hero paints the same scene from the same
+   master (banner_full_clean.webp, the full-height version of this crop), so
+   no device ever shows content another device lacks. The two files exist
+   because no single file survives both layouts: desktop needs 16:9 for
+   `cover` under enllax's y-panning, the phone block below needs the full 900
+   of height, and the person-free pixels end 59% across the master so neither
+   letterboxing nor anchoring can bridge the difference. banner_wide.webp, the
+   old 780x448 desktop crop (4be999d), is superseded by the wide_clean crop —
+   same framing family, more pixels. */
 #home {
-    background: url("../images/banner-images/banner_wide.webp") no-repeat center top;
+    background: url("../images/banner-images/banner_wide_clean.webp") no-repeat center top;
     background-size: cover;
     position: relative;
 }
@@ -565,11 +578,58 @@ a {
     position: relative;
 }
 
+/* ---- Hero photo framing per breakpoint group ----------------------------
+   Every size/position below was hand-tuned by Daniel in the compare harness
+   (2026-09-07), one tune per matrix size, then generalized to the breakpoint
+   groups this file already has. The tuned values per size are recorded in
+   each block. Where a group's #home position is set it carries !important:
+   jquery.enllax writes `background-position: center <y>px` INLINE on scroll,
+   and inline loses only to !important (the nav plays the same trick against
+   stickyNavbar) — so those groups trade the parallax away for the framing.
+   Daniel's call: "parallax is nice, but let's get it looking nice first."
+   1280px-and-up normal-height desktop is untouched (the base rule above):
+   that look was the reference, and it keeps the parallax.
+
+   Block order matters: the short-landscape blocks live AFTER the 768-1023
+   block so they win the tie between equally specific !important positions. */
+
+/* Desktop 1024-1279, normal height. Tuned on 1024x768 as 105%-of-width /
+   50% 40% on the 16:9 crop — but width-based sizing makes the image height
+   a function of window WIDTH while the hero is viewport-tall, so across the
+   band the photo shrank and showed borders above and below. The same look,
+   gap-proof: the full-height crop under plain `cover`. Cover is width-bound
+   at every desktop aspect here, so the whole scene width is visible (what
+   the 105% tune was reaching for) and vertical coverage is guaranteed; 40%
+   keeps Daniel's band. */
+@media (min-width: 1024px) and (max-width: 1279px) and (min-height: 501px) {
+    #home {
+        background-image: url("../images/banner-images/banner_full_clean.webp");
+        background-position: 50% 40% !important;
+    }
+}
+
 /* Between 768 and 1023 the copy column is still 61.8% but the window is not
    wide enough for the ramp above to clear it — the intro ends up on the
    platform. Push the stops right; the photo is down to the last third, which
    at this width is all it was ever going to get. */
 @media (min-width: 768px) and (max-width: 1023px) {
+    /* This box is tall for its width, so `cover` on the 16:9 crop blows up
+       to a smear of one door — the full-height crop is the right file here.
+       Daniel's tune on 768x1024 was 120%-of-width / -20% 50%, but the hero is
+       viewport-tall and width-based sizing caps the image height at ~1.16x
+       the window width, so an iPad portrait (820x1120) showed bands above
+       and below — invisible when tuning only because the dark theme's ground
+       matches the photo's dark edges. Same cure as the 1024-1279 block:
+       plain `cover` (from the base rule) never gaps; height-bound here, so
+       the y-anchor is moot. x 0% aligns the image's left edge with the box —
+       the leftmost window `cover` allows — which brings the cab front and
+       headlights out from under the ramp fade (centered, only the doors
+       showed). Daniel stepped -25% / -12% / 0% live and picked 0. */
+    #home {
+        background-image: url("../images/banner-images/banner_full_clean.webp");
+        background-position: 0% 50% !important;
+    }
+
     #home::before {
         background-image:
             linear-gradient(to bottom,
@@ -582,28 +642,48 @@ a {
     }
 }
 
-/* On a phone the photo is a different file: banner_wide_full.webp, the 1600x900
-   frame this hero used before 4be999d cropped it to banner_wide.webp's 780x448
-   for the desktop box. On a phone that crop is far too small — 60% of an
-   885px-tall screen is a 1848px-wide layer at DPR 2, a 2.4x upscale of a 780px
-   frame, which is why every attempt at it came back "still just grey". The full
-   frame at the same size is 1.5x, and it has the whole scene: the train front
-   at the left, the platform, the rails. Desktop keeps the crop — it is what was
-   signed off there, and the phone layer lives inside this media query, so a
-   desktop visit never fetches the bigger file.
+/* Short landscape, phone-on-its-side band (a squat window below 1024). At
+   95% of the box width the full-height crop leaves a 5%-of-width sliver
+   uncovered; x 200% pushes the image right so the sliver sits at the left
+   edge, under the solid ramp, and the train side fills the open right.
+   Tuned: 812x375 = 844x390 = 932x430 = 95% / 200% 40%. (1023x500 was left
+   at 115% / -50% 46% in the harness — treated as an experiment leftover,
+   the three agreeing sizes won.) */
+@media (min-width: 768px) and (max-width: 1023px) and (max-height: 500px) {
+    #home {
+        background-size: 95% auto;
+        background-position: 200% 40% !important;
+    }
+}
 
-   Sized by height, 85% of the hero, anchored left: that is the cab front and
-   the platform, clear of the traveller who stands in the right half of the
-   frame. `cover` is what not to do — it fits the 1.78:1 frame to a 1:1.9 box by
+/* Short landscape at desktop widths (the 16:9 crop, per the base rule).
+   Tuned: 1024x500 = 95% / 100% 70%. */
+@media (min-width: 1024px) and (max-height: 500px) {
+    #home {
+        background-size: 95% auto;
+        background-position: 100% 70% !important;
+    }
+}
+
+/* Same scene as the desktop hero, from the same master —
+   banner_full_clean.webp, the person-free crop at its full 900px of height —
+   but the phone cannot share the desktop's 16:9 file: a wide crop this small
+   sized for a phone hero is a 2.4x-plus upscale at DPR 2, which is why every
+   attempt at one came back "still just grey". The full-height crop at the
+   same size is 1.5x, and it has the whole scene: the train front at the left,
+   the platform, the rails.
+
+   Sized by height, 88% of the hero, anchored a third across and pulled 60%
+   down: cab front and windshield with the platform under it. Hand-tuned by
+   Daniel in the compare harness (2026-09-07): 320x568 = 390x844 = 90% /
+   36% 60%, 360x800 = 85% / 30% 60%, 744x1133 = 85% / 30% 40% — generalized
+   to 88% / 33% 60% (744's y 40 lost to the three phones' y 60).
+
+   `cover` is what not to do — it fits the 1.78:1 frame to a 1:1.9 box by
    scaling until the width overflows, so 70% of the picture is off-screen and
-   what is left is a smear of one door.
-
-   85% is the last stop that still holds the front of the cab. There is no
-   vertical slack to spend: the whole 900px of image height is already on
-   screen, so a taller band is pure zoom — it trades width away and costs
-   sharpness (85% is a 1109px-wide layer, a 1.4x upscale of a 1600px frame at
-   DPR 2). At 95% the headlights drop to the bottom edge and the frame is cab
-   windows; at 105% it is a grey panel again.
+   what is left is a smear of one door. Much past this zoom is also known
+   bad: earlier rounds found ~105% of height already reads as a grey panel
+   at DPR 2 on a screen this size.
 
    The photo also moves off #home for phone widths: jquery.enllax writes
    `background-position` inline on #home as you scroll, which would drag the
@@ -635,10 +715,23 @@ a {
                 var(--secondary) 0%,
                 var(--secondary) 35%,
                 color-mix(in srgb, var(--secondary) 0%, transparent) 78%),
-            url("../images/banner-images/banner_wide_full.webp");
+            url("../images/banner-images/banner_full_clean.webp");
         background-repeat: no-repeat, no-repeat, no-repeat;
-        background-size: 100% 100%, 100% 100%, auto 85%;
-        background-position: center, center, left top;
+        background-size: 100% 100%, 100% 100%, auto 88%;
+        background-position: center, center, 33% 60%;
+    }
+}
+
+/* Phone on its side, below 768: the block above sizes the photo by hero
+   height, and a landscape hero is so short that 88% of it is a stamp. Its
+   own frame: 130% of the hero height, pushed so the cab front and windshield
+   fill the open right side. This is its own group — the size never existed
+   in the CSS before, it just inherited the portrait phone frame.
+   Tuned: 667x375 = 130% / 106% 22%. */
+@media (max-width: 767px) and (max-height: 500px) {
+    #home::before {
+        background-size: 100% 100%, 100% 100%, auto 130%;
+        background-position: center, center, 106% 22%;
     }
 }
 
