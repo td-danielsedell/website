@@ -1580,27 +1580,23 @@ h2 {
     white-space: nowrap;
 }
 
-/* Label above the reel between 768px and 1023px, instead of beside it.
+/* Between 768px and 1023px the 61.8% column only offers 435px, and the type
+   is already pinned at its 34px ceiling, so the widest combo ("We know" +
+   icon + "Asset Management", ~15.4× the font size = 522px) no longer fits
+   inside the column. This used to move the label above the reel instead, but
+   the line must never stack or shrink, so instead it is let to grow past the
+   column's edge: width:max-content stops it stretching to fill (and wrap
+   inside) the 435px box, so the nowrap content overflows the column's right
+   edge — nothing else on the row sits there to collide with. Height is
+   untouched: the rotator's overflow:hidden window is sized for one reel item
+   by --expertise-step and has nothing to do with this.
 
-   The hero copy is full width up to 767px and the 61.8% column from 768px, so
-   the box loses a third of its width at that breakpoint while the type is
-   already pinned at its 34px ceiling. One line needs 15.4× the font size in
-   English — 522px — and the column only offers 435px at 768px, so the name was
-   clipped by the rotator's overflow:hidden: "Tillgångsförvaltning" from 768px
-   to 849px and "Asset Management" from 768px to 919px, English reaching
-   further because "We know" is half again as wide as "Vi kan".
-
-   Stacking is what fits without touching the type size. The reel on its own
-   needs 10.7× the font size, 364px, which the 435px column holds with room to
-   spare, and the label carries no width requirement once it has its own line.
-   1023px rather than the 919px where English stops clipping: it is a
-   breakpoint the sheet already uses, and stacking a little longer than
-   necessary is cheaper than leaving 25px of slack for a copy change to eat.
-   From 1024px the column is wide enough and the line goes back to one row. */
+   A dedicated class rather than folding this into .expertise-line itself:
+   this is a one-off escape from the grid column, not a base property of the
+   expertise line. */
 @media (min-width: 768px) and (max-width: 1023px) {
-    .expertise-line {
-        flex-direction: column;
-        align-items: flex-start;
+    .expertise-line-grow {
+        width: max-content;
     }
 }
 
