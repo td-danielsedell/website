@@ -37,6 +37,21 @@ $(document).ready(function () {
 	/*Responsive Navigation*/
 	$("#nav-mobile").html($("#nav-main").html());
 
+	/* A brand row for the landscape panel (the landscape block at the end of
+	   style.css is what shows it — every other width keeps it display: none).
+	   There is no header bar in that layout, so the panel carries the logo
+	   instead. href and image are read from #logo rather than hard-coded, so
+	   the per-page paths — index.html here, ../index.html under /en/ — come
+	   along for free on all eighteen pages. The id must not survive the copy:
+	   #navigation-logo is already in the bar. */
+	$("nav#nav-mobile ul").prepend(
+		$("<li>", { "class": "nav-panel-logo" }).append(
+			$("<a>", { href: $("#logo a").attr("href") }).append(
+				$("#navigation-logo").clone().removeAttr("id")
+			)
+		)
+	);
+
 	/* The trigger is a bare <span> in the markup, so everything that makes it a
 	   control is set here rather than in eighteen pages of HTML. This matters
 	   more than it looks: below 1024px the hamburger is the only way into the
@@ -53,6 +68,12 @@ $(document).ready(function () {
 	   deliberately <div>s so this selector cannot reach them (see the .nav-sub
 	   note in style.css), which is also what makes this id safe to add. */
 	$menuList.attr("id", "nav-mobile-list");
+
+	/* The landscape layout caps the panel's height and lets it scroll. Chrome
+	   127+ hands every scrollable box a tab stop of its own; -1 keeps the list
+	   out of the tab order — its rows are the stops — while script focus still
+	   works. */
+	$menuList.attr("tabindex", "-1");
 	$menuTrigger.attr({
 		"role": "button",
 		"tabindex": "0",
@@ -81,6 +102,16 @@ $(document).ready(function () {
 			/* Space scrolls the page unless we stop it. */
 			event.preventDefault();
 			setMenu(!$menuList.hasClass("expanded"));
+		}
+	});
+
+	/* Escape closes the open menu from anywhere on the page. Focus goes back
+	   to the trigger, since whatever had it was very likely a row inside the
+	   panel that just went away. */
+	$(document).on("keydown", function (event) {
+		if (event.key === "Escape" && $menuList.hasClass("expanded")) {
+			setMenu(false);
+			$menuTrigger.trigger("focus");
 		}
 	});
 

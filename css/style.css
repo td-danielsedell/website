@@ -1350,6 +1350,14 @@ nav#nav-mobile ul:after {
     display: none;
 }
 
+/* The panel's brand row, prepended into the clone by js/site.js. Only the
+   landscape-phone block at the end of this sheet shows it: there the header
+   bar is gone and the panel is the one place the logo can live. Every other
+   width already has the logo in the bar, twice would be noise. */
+nav#nav-mobile .nav-panel-logo {
+    display: none;
+}
+
 nav#nav-mobile li {
     margin: 0 20px;
     float: none;
@@ -3886,5 +3894,324 @@ blockquote {
 
     #banner-content.row {
         padding-bottom: 40px !important;
+    }
+}
+
+/* Short screens. 844x390 is an iPhone on its side, and none of the blocks
+   above reach it: they are all gated on max-width 767px and a phone in
+   landscape is 844 wide. Keyed on height alone — no width bound — because
+   height is the whole problem: a 1024x500 or 1920x500 desktop window reads
+   through the same slot a phone does, and gets the same answer. A 480px-tall
+   portrait phone would match too — none has shipped in a decade, and this
+   layout would still hold.
+
+   The header bar is the single biggest cost on a screen this short: 71px of
+   390 spent restating a logo. So the bar goes entirely. What remains is a
+   floating hamburger chip pinned top-right, opening the panel as a full-height
+   sheet from the right edge — logo on top, theme and language as rows at the
+   bottom, since the chip's neighbours from the portrait bar are hidden here
+   with the bar they belong to.
+
+   Above 1023px this overrides the wide nav, not the narrow one, so the pieces
+   the 1024 breakpoint takes for granted are set explicitly: the trigger and
+   the panel exist at any width here, and the wide layout's absolute dropdown,
+   hidden "Alla ..." entries and pinned language options are all put back to
+   the stacked-menu shape. */
+@media (max-height: 500px) {
+    /* What the max-width:1023px breakpoint provides below 1024, restated so a
+       wide short window gets it too. */
+    #nav-trigger {
+        display: block;
+    }
+
+    nav#nav-mobile {
+        display: block;
+    }
+
+    nav#nav-mobile li {
+        display: block;
+        /* The 20px li margin stays: it is what insets the hairlines from the
+           panel edges, same distance as the stacked menu's. The ul's own side
+           padding is zeroed in the panel rule below — with both, the lines sat
+           40px in, which is what read as "stopping short". */
+    }
+
+    /* The wide nav pins these for the dropdown-under-a-bar layout; the panel
+       stacks them. Doubled ids so they outrank the min-width:1024 rules at any
+       load order. */
+    #header nav#nav-mobile .nav-sub {
+        position: static;
+        min-width: 0;
+    }
+
+    #header nav#nav-mobile .nav-sub a.nav-sub-all {
+        display: block;
+    }
+
+    /* The bar itself. Everything !important is matching the base rules, which
+       are !important to defeat stickyNavbar's inline styles — and .nav-solid's
+       fadeInDown must not run: the animation carries a transform, a transformed
+       ancestor becomes the containing block for fixed descendants, and the chip
+       and panel would ride the bar's entrance instead of staying pinned. */
+    #header,
+    #header.nav-solid {
+        position: fixed !important;
+        height: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    #header .row {
+        padding: 0 !important;
+    }
+
+    nav#nav-main {
+        display: none !important;
+    }
+
+    /* The closed state's identifier: the logo rides beside the chip as the
+       left half of one orange pill — same ground, so the seam between the two
+       elements never shows. Sits under the panel (z below it), which covers
+       it when open and shows its own logo row instead. The bar's two-image
+       swap is pointless here; one copy, sized for the pill. */
+    #logo {
+        display: block;
+        float: none;
+        position: fixed;
+        top: 10px;
+        right: 58px;
+        height: 48px;
+        line-height: 48px;
+        margin: 0;
+        padding: 0 6px 0 14px;
+        background: var(--header);
+        border-radius: 10px 0 0 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        z-index: 10000;
+    }
+
+    #logo #banner-logo {
+        display: none;
+    }
+
+    #logo #navigation-logo {
+        display: inline-block;
+        height: 18px;
+        width: auto;
+        vertical-align: middle;
+    }
+
+    /* The chip: the bar's remnant, so it keeps the bar's clothes — brand
+       orange ground, white glyph. The right half of the pill the logo starts;
+       square left corners so the two halves join without a seam. The shadow
+       is what separates the pill from the hero photo, whose midtones sit
+       close to the orange in value. */
+    #nav-trigger {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: 48px;
+        height: 48px;
+        margin: 0;
+        border-radius: 0 10px 10px 0;
+        background: var(--header);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        z-index: 10002;
+        text-align: center;
+    }
+
+    /* The theme and language controls that sit beside the hamburger at other
+       narrow widths. Their function moves into the panel rows below. */
+    #nav-trigger nav {
+        display: none;
+    }
+
+    /* Open panel: the chip does not move — the pointer that opened the menu
+       is already resting on the close control — it only loses its own ground
+       and shadow, becoming a glyph on the logo row's orange behind it. */
+    #nav-trigger:has(> span.open) {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    #nav-trigger > span,
+    #nav-trigger > span:after {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        border-radius: 10px;
+    }
+
+    /* The panel: a full-height sheet off the right edge instead of a strip
+       under a bar that no longer exists. Positioning the ul, never a wrapper
+       around the nav — a wrapper with overflow clips this to zero height. */
+    nav#nav-mobile > ul {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        width: min(280px, 80vw);
+        margin: 0;
+        /* Flush on three sides: the stacked menu's 10px of headroom would
+           show as a strip of panel surface above the logo row's orange, and
+           the 481-767 and 768-1023 blocks below give the ul 20px of side
+           padding that would inset the orange and every hairline. Only the
+           bottom breathing room stays. */
+        padding: 0 0 10px;
+        overflow-y: auto;
+        box-shadow: -4px 0 16px rgba(0, 0, 0, 0.45);
+        z-index: 10001;
+    }
+
+    /* The brand row js/site.js put at the top of the clone: full-bleed on the
+       bar's own orange, which does two jobs — the white logo stays visible on
+       the light theme's white panel, and the open panel's top edge echoes the
+       bar the other orientations show. The X chip overlaps this row and
+       shares its ground. */
+    nav#nav-mobile .nav-panel-logo {
+        display: block;
+        margin: 0;
+        background: var(--header);
+        border-bottom: none;
+        /* Pinned inside the scrolling panel: the X parks on this row's orange,
+           which must not scroll out from under it. */
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    /* Sized so the row backs the whole chip: the chip's box ends 58px down
+       (10px offset + 48px), the row runs 66px. The paddings are uneven on
+       purpose — they centre the 20px logo on the chip's own midline (34px),
+       so logo and X sit on one line. */
+    /* 35px left: the row is full-bleed (no li margin), so it carries the
+       20px gutter + 15px row padding itself to line up with the rows below. */
+    nav#nav-mobile .nav-panel-logo a {
+        padding: 24px 15px 22px 35px;
+    }
+
+    nav#nav-mobile .nav-panel-logo img {
+        height: 20px;
+        width: auto;
+        display: block;
+    }
+
+    /* The cloned theme and language rows, hidden at every other narrow width
+       because the originals sit beside the hamburger. Here they are the only
+       copies on screen, sharing one utility row at the panel's foot — floated
+       halves rather than inline-blocks, because the whitespace between two
+       inline <li>s is enough to push 50%+50% onto two lines. The ul's
+       overflow already contains the floats. The language options still open
+       as stacked rows inside the right half. */
+    #nav-mobile .nav-theme {
+        display: block;
+        float: left;
+        width: 50%;
+        margin: 0;
+        border-bottom: none;
+    }
+
+    #nav-mobile .nav-lang {
+        display: block;
+        float: left;
+        width: 50%;
+        margin: 0;
+        border-bottom: none;
+    }
+
+    /* Both controls are sized for the bar's 71px line box; on the panel they
+       are rows like any other — 15px padding to sit on the same left edge and
+       row height as the links above them. Doubled ids on the lang rules
+       because "#header nav .nav-lang summary" and "#header nav .lang-options
+       .lang-option" carry an id and two levels of their own and would win
+       otherwise. */
+    /* Both halves are full-bleed lis (margin zeroed for the shared row), so
+       like the logo row they carry the 20px gutter in their own padding. */
+    #nav-mobile .nav-theme .theme-toggle {
+        height: auto;
+        line-height: normal;
+        width: 100%;
+        padding: 15px 15px 15px 35px;
+        text-align: left;
+    }
+
+    #header nav#nav-mobile .nav-lang summary {
+        height: auto;
+        line-height: normal;
+        padding: 15px 15px 15px 35px;
+        display: block;
+    }
+
+    /* The marker drawn in its own surface's ink. Both controls carry the bar's
+       white — style.css for the button, "#header .svg-icon" in colors.css for
+       the icons themselves — which is invisible on the light theme's white
+       panel. Same ink as the panel's other rows; the double id outranks the
+       colors.css rule at any load order. */
+    #header nav#nav-mobile .theme-toggle,
+    #header nav#nav-mobile .nav-lang summary,
+    #header nav#nav-mobile .svg-icon {
+        color: var(--link);
+        opacity: 0.8;
+    }
+
+    #header nav#nav-mobile .theme-toggle:hover,
+    #header nav#nav-mobile .nav-lang summary:hover {
+        opacity: 1;
+    }
+
+    #nav-mobile .nav-lang .lang-options {
+        position: static;
+        box-shadow: none;
+    }
+
+    /* Same indent and rhythm as the group entries ("#header nav#nav-mobile
+       .nav-sub a" at 32px inside a 20px-margined li = 52px), so
+       Svenska/English read as children of the globe row the way Alla projekt
+       reads as a child of Projekt — the li here is full-bleed, so the 52 is
+       carried whole. */
+    #header nav#nav-mobile .lang-options .lang-option {
+        display: block;
+        padding: 12px 15px 12px 52px;
+    }
+
+    /* With no bar there is nothing for a jumped-to section to duck under; a
+       hair of clearance so headings do not sit flush on the edge. The base
+       rule's 71px is the header height this layout removed. */
+    .scrollto {
+        scroll-margin-top: 8px;
+    }
+
+    /* The hero, re-fit for 390px of height: the cue and the intro's second
+       sentence go, the headline drops to 34px — 60px of fixed leading on three
+       hard-broken lines was 200px of the 390 on its own. 24px of top padding
+       clears the chip's row; the 71px the old padding cleared is gone with the
+       bar. */
+    #banner-content.row {
+        padding-top: 24px !important;
+        padding-bottom: 16px !important;
+    }
+
+    #home #main-heading {
+        font-size: 34px;
+        line-height: 1.1;
+        padding-top: 0;
+        padding-bottom: 14px;
+    }
+
+    #home .expertise-line {
+        font-size: 28px;
+        padding: 8px 0 4px;
+    }
+
+    #home .banner-intro-next {
+        display: none;
+    }
+
+    #home .scroll-cue {
+        display: none;
     }
 }
