@@ -1608,6 +1608,27 @@ h2 {
     }
 }
 
+/* The line's size follows each band's headline instead of riding its own
+   4.4vw curve, which drifted from 0.33× the headline on a phone (smaller
+   than the intro's body copy — inverted hierarchy) to 0.82× on a short
+   screen. Now 0.37-0.55× everywhere. Phones: 5vw is the fit ceiling — the
+   nowrap "We know" + icon + "Asset Management" combo (English is the wider
+   language) collides past ~5.2vw. Tablets: 28px against the 62px headline
+   rather than the base rule's 34px cap, which is desktop's. The short-screen
+   size lives in the max-height:500 block at the end of the file, where order
+   lets it beat these. */
+@media (max-width: 767px) {
+    #home .expertise-line {
+        font-size: clamp(15px, 5vw, 24px);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    #home .expertise-line {
+        font-size: 28px;
+    }
+}
+
 /* --expertise-step is the height of one reel item, sized off the icon since the
    icon is taller than the text. The window shows exactly one item, and the
    keyframes below step the reel by this much. */
@@ -1633,12 +1654,17 @@ h2 {
 }
 
 /* :is(img, svg) because the kit swaps each <i> for an <svg class="svg-inline--fa">.
-   width stays auto so the glyph keeps its own aspect ratio, same as the webp
-   and svg art this replaced. */
+   A fixed-width slot rather than width:auto: the four glyphs are different
+   widths, and with auto the area name started at a different x each time the
+   reel stepped — the restless shifting Daniel called out. 1.3× the icon height
+   fits the widest glyph (and matches --kit-icon-boost, so the boosted upload
+   fills its slot exactly); the SVGs keep their aspect ratio and centre in the
+   slot (preserveAspectRatio's default), so narrower glyphs get symmetric air
+   instead of pulling the name leftward. */
 .expertise-reel :is(img, svg) {
     height: var(--expertise-icon);
-    width: auto;
-    flex: 0 0 auto;
+    width: calc(var(--expertise-icon) * 1.3);
+    flex: 0 0 calc(var(--expertise-icon) * 1.3);
 }
 
 /* The custom kit upload draws its glyph inside a 640-unit viewBox but fills
@@ -1659,11 +1685,13 @@ h2 {
 }
 
 /* On a phone the icon needs to be relatively larger to read at all: 1.5em is
-   ~51px against 34px text on desktop, which is balanced, but only ~26px on a
-   390px screen. 2.4em puts it at ~41px there. */
+   balanced against desktop's 34px text but too small against the phone's ~20px.
+   2em (was 2.4 when the phone text was 17px) puts it at ~39px on a 390px
+   screen. The short-screen block at the end of the file pins this back to
+   1.5em: with height-scaled text, 2em was the 67px icon that broke 667x375. */
 @media (max-width: 767px) {
     .expertise-rotator {
-        --expertise-icon: 2.4em;
+        --expertise-icon: 2em;
     }
 }
 
@@ -4208,9 +4236,20 @@ blockquote {
         padding-bottom: 14px;
     }
 
+    /* Height-scaled like the headline (which is 9svh here): 4.5svh holds the
+       same ~0.5 ratio to it across the 375-500px range. The flat 28px this
+       replaces was 0.82× the headline at 375 — and fed the 2em phone icon
+       multiplier, which is why 667x375 showed a 67px icon; the icon pins back
+       to 1.5em below. Order beats the phone-width font rule for landscape
+       phones; both svh lines' vh twins are the fallback. */
     #home .expertise-line {
-        font-size: 28px;
+        font-size: clamp(17px, 4.5vh, 22px);
+        font-size: clamp(17px, 4.5svh, 22px);
         padding: 8px 0 4px;
+    }
+
+    #home .expertise-rotator {
+        --expertise-icon: 1.5em;
     }
 
     #home .banner-intro-next {

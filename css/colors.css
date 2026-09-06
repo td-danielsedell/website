@@ -788,6 +788,15 @@ body {
     opacity: 0.7;
 }
 
+/* The rotating area icon takes the amber subtitle token rather than the line's
+   white — Daniel's pick from the 2026-09-07 harness session. Same token both
+   themes: #E3A64B on the dark photo, the darker #8F6400 on light paper. The
+   glyphs are aria-hidden decoration beside their own names, so the 3:1
+   graphics floor is comfort, not compliance. */
+#home .expertise-reel :is(i, svg) {
+    color: var(--section-subtitle);
+}
+
 /* Banner intro. Body copy rather than a heading, but it keeps the look the
    banner h2 had, orange rule included. */
 #home .banner-intro {
