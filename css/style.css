@@ -3396,6 +3396,19 @@ blockquote {
         display: block;
     }
 
+    /* The open menu had no height cap: with both groups expanded it runs past
+       a short screen's bottom edge and the tail is unreachable — the page
+       behind it scrolls, the menu does not. Capped to what fits under the
+       71px bar; dvh so a phone's collapsing address bar doesn't hide the last
+       row, vh line first as the fallback for engines without it. The
+       short-screen block at the end of this sheet lifts the cap again — its
+       panel is pinned top and bottom instead. */
+    nav#nav-mobile > ul {
+        max-height: calc(100vh - 71px);
+        max-height: calc(100dvh - 71px);
+        overflow-y: auto;
+    }
+
 }
 
 /* Landscape mobile & down
@@ -4062,6 +4075,9 @@ blockquote {
            padding that would inset the orange and every hairline. Only the
            bottom breathing room stays. */
         padding: 0 0 10px;
+        /* The stacked menu's viewport cap does not apply here — the sheet is
+           pinned top and bottom instead. */
+        max-height: none;
         overflow-y: auto;
         box-shadow: -4px 0 16px rgba(0, 0, 0, 0.45);
         z-index: 10001;
