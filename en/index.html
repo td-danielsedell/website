@@ -115,7 +115,11 @@
 
     <div id="wrapper">
 
-        <header id="home" class="scrollto clearfix" data-enllax-ratio=".5">
+        <!--data-enllax-ratio removed: the hero's parallax is its own handler in
+            js/site.js (--hero-shift), which coexists with the per-breakpoint
+            framing anchors in css/colors.css where enllax's inline writes could
+            not.-->
+        <header id="home" class="scrollto clearfix">
             <div id="header" class="nav-collapse">
                 <div class="row clearfix">
                     <div class="col-1">

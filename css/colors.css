@@ -517,12 +517,16 @@ a {
    on ::before below and reads var(--secondary), so one photo serves both
    themes.
 
-   The photo stays on #home so it keeps its parallax: jquery.enllax reads
-   data-enllax-ratio on #home and writes background-position inline on scroll.
-   That is also why the fade cannot be another layer here — enllax's shorthand
-   applies to every layer, so the ramp would ride down with the photo and its
-   solid end would slide off the bottom of the box. ::before is animated by
-   nothing.
+   Parallax: the photo's y-position is anchor + shift. Each breakpoint group
+   sets its hand-tuned anchor as --hero-x/--hero-y, and js/site.js writes
+   --hero-shift (0.5px per scrolled px, the ratio enllax used) on #home; the
+   shared background-position rules below combine them. #home carries no
+   data-enllax-ratio any more — enllax wrote the whole background-position
+   inline, which could not coexist with per-group anchors (the groups spent
+   !important to beat it and lost their parallax doing so). The fade still
+   cannot be a second layer here: background-position is per-layer but the
+   shift belongs only to the photo, and keeping ramps on ::before lets their
+   stops stay put while the photo moves.
 
    banner_wide_clean.webp is a 930x523 crop of the 1600x900 master
    (banner_wide_full.webp, still in the folder): the person-free left part of
@@ -537,7 +541,10 @@ a {
    old 780x448 desktop crop (4be999d), is superseded by the wide_clean crop —
    same framing family, more pixels. */
 #home {
-    background: url("../images/banner-images/banner_wide_clean.webp") no-repeat center top;
+    background: url("../images/banner-images/banner_wide_clean.webp") no-repeat;
+    /* Anchor + parallax shift. Defaults reproduce the old `center top`;
+       the media groups below override the anchor vars per breakpoint. */
+    background-position: var(--hero-x, center) calc(var(--hero-y, 0%) + var(--hero-shift, 0px));
     background-size: cover;
     position: relative;
 }
@@ -582,16 +589,15 @@ a {
    Every size/position below was hand-tuned by Daniel in the compare harness
    (2026-09-07), one tune per matrix size, then generalized to the breakpoint
    groups this file already has. The tuned values per size are recorded in
-   each block. Where a group's #home position is set it carries !important:
-   jquery.enllax writes `background-position: center <y>px` INLINE on scroll,
-   and inline loses only to !important (the nav plays the same trick against
-   stickyNavbar) — so those groups trade the parallax away for the framing.
-   Daniel's call: "parallax is nice, but let's get it looking nice first."
-   1280px-and-up normal-height desktop is untouched (the base rule above):
-   that look was the reference, and it keeps the parallax.
+   each block. Each group states its anchor as --hero-x/--hero-y, which the
+   shared background-position rules (on #home above, on ::before in the phone
+   block) combine with the js/site.js parallax shift — so every group keeps
+   both its framing and the parallax. These used to be background-position
+   !important, fighting enllax's inline writes and freezing the parallax below
+   1280; that whole conflict is gone with enllax off #home.
 
    Block order matters: the short-landscape blocks live AFTER the 768-1023
-   block so they win the tie between equally specific !important positions. */
+   block so they win the tie between equally specific anchors. */
 
 /* Desktop 1024-1279, normal height. Tuned on 1024x768 as 105%-of-width /
    50% 40% on the 16:9 crop — but width-based sizing makes the image height
@@ -604,7 +610,8 @@ a {
 @media (min-width: 1024px) and (max-width: 1279px) and (min-height: 501px) {
     #home {
         background-image: url("../images/banner-images/banner_full_clean.webp");
-        background-position: 50% 40% !important;
+        --hero-x: 50%;
+        --hero-y: 40%;
     }
 }
 
@@ -627,7 +634,8 @@ a {
        showed). Daniel stepped -25% / -12% / 0% live and picked 0. */
     #home {
         background-image: url("../images/banner-images/banner_full_clean.webp");
-        background-position: 0% 50% !important;
+        --hero-x: 0%;
+        --hero-y: 50%;
     }
 
     #home::before {
@@ -652,7 +660,8 @@ a {
 @media (min-width: 768px) and (max-width: 1023px) and (max-height: 500px) {
     #home {
         background-size: 95% auto;
-        background-position: 200% 40% !important;
+        --hero-x: 200%;
+        --hero-y: 40%;
     }
 }
 
@@ -661,7 +670,8 @@ a {
 @media (min-width: 1024px) and (max-height: 500px) {
     #home {
         background-size: 95% auto;
-        background-position: 100% 70% !important;
+        --hero-x: 100%;
+        --hero-y: 70%;
     }
 }
 
@@ -685,11 +695,13 @@ a {
    bad: earlier rounds found ~105% of height already reads as a grey panel
    at DPR 2 on a screen this size.
 
-   The photo also moves off #home for phone widths: jquery.enllax writes
-   `background-position` inline on #home as you scroll, which would drag the
-   photo off the top, and its shorthand hits every layer so the ramps could not
-   live there either. ::before is animated by nothing, so all three layers go
-   here. The parallax is no loss on a screen this size.
+   The photo lives on ::before at phone widths (historically to escape
+   enllax's inline writes; kept because three layers with independent motion
+   need per-layer positions anyway). Only the photo layer takes the
+   --hero-shift parallax — the ramps' stops stay put, which is the point of
+   the split. ::before inherits the custom props from #home, where the JS
+   writes them, so phones get the same parallax the desktop hero has (they
+   never had it before — the photo used to be frozen here).
 
    Both ramps the desktop hero has, then, not the single vertical one this used
    to be: ground from the left under the copy, and ground at the bottom where
@@ -718,7 +730,8 @@ a {
             url("../images/banner-images/banner_full_clean.webp");
         background-repeat: no-repeat, no-repeat, no-repeat;
         background-size: 100% 100%, 100% 100%, auto 88%;
-        background-position: center, center, 33% 60%;
+        background-position: center, center,
+            var(--hero-x, 33%) calc(var(--hero-y, 60%) + var(--hero-shift, 0px));
     }
 }
 
@@ -731,7 +744,11 @@ a {
 @media (max-width: 767px) and (max-height: 500px) {
     #home::before {
         background-size: 100% 100%, 100% 100%, auto 130%;
-        background-position: center, center, 106% 22%;
+    }
+
+    #home {
+        --hero-x: 106%;
+        --hero-y: 22%;
     }
 }
 

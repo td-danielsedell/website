@@ -528,4 +528,34 @@ $(document).ready(function () {
 		$(window).enllax();
 	}
 
+	/* Hero parallax. The start page's #home carries no data-enllax-ratio:
+	   enllax writes the whole background-position inline, which cannot coexist
+	   with the per-breakpoint framing anchors in css/colors.css (they had to go
+	   !important to beat it, freezing the parallax below 1280px). Instead the
+	   anchors live in CSS as --hero-x/--hero-y and this writes only the scroll
+	   term, --hero-shift, which the CSS adds inside a calc() — one handler for
+	   every breakpoint group, including the phone ::before layer, which never
+	   had parallax before. 0.5 is the ratio enllax ran at. Skipped under
+	   prefers-reduced-motion (the CSS falls back to a 0px shift), something
+	   enllax never honoured. */
+	(function () {
+		var hero = document.getElementById('home');
+		if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			return;
+		}
+		var ratio = 0.5;
+		var ticking = false;
+		function update() {
+			ticking = false;
+			hero.style.setProperty('--hero-shift', (window.pageYOffset * ratio).toFixed(1) + 'px');
+		}
+		window.addEventListener('scroll', function () {
+			if (!ticking) {
+				ticking = true;
+				requestAnimationFrame(update);
+			}
+		}, { passive: true });
+		update();
+	})();
+
 });
