@@ -1544,6 +1544,17 @@ h2 {
     max-width: 55ch;
 }
 
+/* Below the 1280 desktop range the full 55ch reads long against the smaller
+   screen — Daniel called 1024x768 borderline. 48ch (~55 characters) for
+   everything narrower; phone columns are already narrower than 48ch, so this
+   only bites on tablets (768-1023 and the 744 in-between). The short-screen
+   block at the end of the file tightens further to 45ch. */
+@media (max-width: 1279px) {
+    #home .banner-intro {
+        max-width: 48ch;
+    }
+}
+
 /* The second sentence of the hero intro, set apart from the first by the same
    gap the expertise line has above it: ~35px there, and a plain line break
    leaves only the 6.5px that line-height:normal gives, so 28px makes up the
@@ -4228,8 +4239,8 @@ blockquote {
        intro rules below. 16px of top padding clears the chip's row; the 71px
        the old padding cleared is gone with the bar. */
     #banner-content.row {
-        padding-top: 16px !important;
-        padding-bottom: 12px !important;
+        padding-top: 12px !important;
+        padding-bottom: 10px !important;
     }
 
     /* Height sets the size here, not width: a short window is height-starved
@@ -4246,7 +4257,7 @@ blockquote {
         font-size: clamp(34px, 9svh, 45px) !important;
         line-height: 1.1 !important;
         padding-top: 0;
-        padding-bottom: 14px;
+        padding-bottom: 10px;
     }
 
     /* Height-scaled like the headline (which is 9svh here): 4.5svh holds the
@@ -4274,7 +4285,14 @@ blockquote {
     #home .banner-intro {
         font-size: clamp(13px, 3.4vh, 16px) !important;
         font-size: clamp(13px, 3.4svh, 16px) !important;
-        padding: 8px 0;
+        padding: 6px 0;
+        /* Tighter than the 48ch tablet cap: at 13px a 55ch line ran 384px
+           across a 375px-tall screen and read long. 45ch is ~52 characters.
+           The wrap line this adds is paid for by the spacing shaves in this
+           block (row padding, headline padding-bottom, the sentence gap) —
+           the hero bottom still lands at the fold, worst case 1px past at
+           667x375, both languages. */
+        max-width: 45ch;
     }
 
     /* The second sentence used to be display:none here — at the old flat sizes
@@ -4285,8 +4303,8 @@ blockquote {
        allows. Verified 375-500 with the Swedish and English intros: the hero
        bottom lands at or above the fold everywhere. */
     #home .banner-intro-next {
-        margin-top: clamp(12px, 4vh, 20px);
-        margin-top: clamp(12px, 4svh, 20px);
+        margin-top: clamp(10px, 4vh, 20px);
+        margin-top: clamp(10px, 4svh, 20px);
     }
 
     #home .scroll-cue {
