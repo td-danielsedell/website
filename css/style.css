@@ -1537,6 +1537,11 @@ h2 {
     margin: 0;
     padding: 14px 0;
     line-height: normal;
+    /* The hero column is 61.8% of the row, which by 1245px of grid is an
+       ~86-character line — far past the 45-75 readable range. 55ch caps it
+       around 63 characters and, being ch, follows the font size wherever the
+       bands below change it. Phone columns are narrower than the cap already. */
+    max-width: 55ch;
 }
 
 /* The second sentence of the hero intro, set apart from the first by the same
@@ -1620,6 +1625,14 @@ h2 {
 @media (max-width: 767px) {
     #home .expertise-line {
         font-size: clamp(15px, 5vw, 24px);
+    }
+
+    /* The intro follows the same thinking: colors.css's flat 18px was 0.29× the
+       headline on desktop but 0.42× on a 320px phone. 4.6vw keeps a 390px phone
+       at its signed-off 18px and only tapers the smaller ones. !important for
+       the same load-order reason as the headline clamp above. */
+    #home .banner-intro {
+        font-size: clamp(15px, 4.6vw, 18px) !important;
     }
 }
 
@@ -4209,14 +4222,14 @@ blockquote {
         scroll-margin-top: 8px;
     }
 
-    /* The hero, re-fit for 390px of height: the cue and the intro's second
-       sentence go, the headline drops to 34px — 60px of fixed leading on three
-       hard-broken lines was 200px of the 390 on its own. 24px of top padding
-       clears the chip's row; the 71px the old padding cleared is gone with the
-       bar. */
+    /* The hero, re-fit for 375px of height. The cue goes (its ~100px below the
+       intro never fits here); the intro's second sentence used to go with it,
+       but with every part height-scaled the whole intro fits again — see the
+       intro rules below. 16px of top padding clears the chip's row; the 71px
+       the old padding cleared is gone with the bar. */
     #banner-content.row {
-        padding-top: 24px !important;
-        padding-bottom: 16px !important;
+        padding-top: 16px !important;
+        padding-bottom: 12px !important;
     }
 
     /* Height sets the size here, not width: a short window is height-starved
@@ -4252,8 +4265,28 @@ blockquote {
         --expertise-icon: 1.5em;
     }
 
+    /* Height-scaled with the headline like everything else in this block:
+       18px against a 34px headline read at 0.53× — body copy at over half the
+       display size. 13-16px holds ~0.4, and the shave from 14px at the 375px
+       floor is part of what buys the second sentence back (below). !important
+       beats colors.css's 18px on load order and the phone-width clamp above on
+       file order. */
+    #home .banner-intro {
+        font-size: clamp(13px, 3.4vh, 16px) !important;
+        font-size: clamp(13px, 3.4svh, 16px) !important;
+        padding: 8px 0;
+    }
+
+    /* The second sentence used to be display:none here — at the old flat sizes
+       the four hero parts needed ~700px. With the copy height-scaled it fits
+       again at every short height, provided its 28px gap (sized to match the
+       expertise line's padding at desktop scale) also shrinks with the screen:
+       12px at the 375px floor, easing back toward the base value as height
+       allows. Verified 375-500 with the Swedish and English intros: the hero
+       bottom lands at or above the fold everywhere. */
     #home .banner-intro-next {
-        display: none;
+        margin-top: clamp(12px, 4vh, 20px);
+        margin-top: clamp(12px, 4svh, 20px);
     }
 
     #home .scroll-cue {
