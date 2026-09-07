@@ -1,0 +1,663 @@
+
+
+.about-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px 70px;
+
+    align-items: center;
+}
+
+.about-title {
+    margin: 0;
+    padding: 6px 0 0 0;
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -1px;
+    color: var(--section-heading);
+    text-wrap: balance;
+}
+
+.about-lead {
+    margin: 24px 0 0 0;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 34px;
+    color: var(--section-subtitle);
+    text-wrap: pretty;
+}
+
+.about-hero-body p {
+    margin: 0 0 18px 0;
+    font-size: 17px;
+    line-height: 30px;
+    color: var(--muted-text);
+}
+
+.about-hero-body p:last-child {
+    margin-bottom: 0;
+}
+
+.about-hero-rule {
+    height: 1px;
+    margin: 14px 0 0 0;
+    border: 0;
+    background: var(--surface-border);
+}
+
+.year-rail {
+    position: relative;
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+.year-rail::before {
+    content: "";
+    position: absolute;
+    left: 135px;
+    top: 14px;
+    bottom: 24px;
+    width: 2px;
+    background: var(--surface-border);
+}
+
+.year-rail li {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 0 56px;
+    padding-bottom: 46px;
+}
+
+.year-rail li:last-child {
+    padding-bottom: 0;
+}
+
+.rail-year {
+    position: relative;
+    margin: 0;
+    text-align: right;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--primary);
+}
+
+.rail-year::after {
+    content: "";
+    position: absolute;
+    right: -24px;
+    top: 11px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 7px var(--secondary);
+}
+
+.rail-body {
+    max-width: 720px;
+}
+
+.rail-title {
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 30px;
+    color: var(--section-heading);
+}
+
+.rail-body p {
+    margin: 10px 0 0 0;
+    color: var(--muted-text);
+}
+
+.person-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+
+    .person-grid.image-carousel-track {
+        overflow: visible;
+        scroll-snap-type: none;
+        padding: 0;
+
+        gap: 20px;
+    }
+
+    .person-grid > .image-carousel-slide {
+        flex: 0 0 calc((100% - 40px) / 3);
+        scroll-snap-align: none;
+        display: flex;
+    }
+
+    .person-grid > .image-carousel-slide > .person-card {
+        flex: 1 1 auto;
+    }
+
+    .person-carousel .image-carousel-arrow,
+    .person-carousel .image-carousel-dots {
+        display: none;
+    }
+}
+
+.person-card {
+
+    position: relative;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.3s ease;
+}
+
+.person-card:hover {
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7);
+}
+
+.person-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.person-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 46px 16px 14px 16px;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.78) 50%,
+            rgba(0, 0, 0, 0) 100%);
+}
+
+.person-name {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: normal;
+    color: var(--section-heading);
+}
+
+.person-role {
+    margin: 6px 0 0 0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    color: var(--muted-text);
+}
+
+.person-contact {
+    margin: 6px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@media (hover: hover) {
+
+    .person-contact {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .person-card:hover .person-contact {
+        max-height: 26px;
+        opacity: 1;
+    }
+}
+
+.split-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 40px;
+    align-items: start;
+}
+
+.split-2 p:first-child {
+    margin-top: 0;
+}
+
+#locations .split-2 {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px 70px;
+    align-items: center;
+}
+
+.about-map {
+    margin: 0;
+    container-type: inline-size;
+}
+
+.about-map #map {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid var(--surface-border);
+    border-radius: 10px;
+}
+
+.about-map #map {
+    display: none;
+}
+
+.about-map #map.map-live {
+    display: block;
+    aspect-ratio: 5 / 7;
+    background: #ddd;
+}
+
+.about-map:not(:has(#map.map-live)) {
+    display: none;
+}
+
+.about-map figcaption {
+    max-width: 480px;
+    padding-top: 10px;
+    font-size: 13px;
+    color: var(--footer-text);
+}
+
+html:not(.theme-light) .about-map .leaflet-tile-pane {
+    filter: brightness(0.75) contrast(1.1) saturate(0.75);
+}
+
+.city-dot {
+    fill: var(--primary);
+    fill-opacity: 1;
+    stroke: #fff;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.15s ease;
+}
+
+.city-dot.is-hovered,
+.city-dot.is-active {
+    stroke-width: 3;
+}
+
+.city-label.leaflet-tooltip {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    color: #f5f5f5;
+    text-shadow:
+        0 0 3px #111, 0 0 3px #111, 0 0 3px #111, 0 0 4px #111;
+}
+
+html.theme-light .city-label.leaflet-tooltip {
+    color: #222;
+    text-shadow:
+        0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+
+.city-label.leaflet-tooltip:before {
+    display: none;
+}
+
+@container (max-width: 440px) {
+    .city-label.leaflet-tooltip {
+        font-size: 11px;
+    }
+}
+
+/* Attribution is required by the OSM tile licence. It keeps Leaflet's own
+   light styling so it stays legible against the map rather than the page. */
+.about-map .leaflet-control-attribution {
+    font-size: 10px;
+}
+
+.location-list {
+    position: relative;
+    list-style: none;
+    margin: 20px 0 0 0;
+}
+
+.location-list::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--surface-border);
+}
+
+.location-list li {
+    position: relative;
+
+    padding: 4px 0 4px 30px;
+    font-size: 18px;
+    line-height: 26px;
+    color: var(--muted-text);
+    transition: color 0.2s ease;
+}
+
+.location-list li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+
+    top: 11px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 6px var(--secondary);
+    transition: transform 0.15s ease;
+}
+
+.location-list li.is-linked {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.location-list li.is-hovered,
+.location-list li.is-active {
+    color: var(--accent-text);
+}
+
+.location-list li.is-hovered:before,
+.location-list li.is-active:before {
+    transform: scale(1.35);
+}
+
+.location-list li.is-linked:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+.track-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 90px;
+    align-items: stretch;
+}
+
+.track-grid:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--surface-border);
+}
+
+.track {
+    display: flex;
+    flex-direction: column;
+}
+
+.track h3 {
+    padding: 0 0 8px 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 30px;
+    color: var(--section-heading);
+}
+
+.track p {
+    margin: 18px 0 0 0;
+    color: var(--muted-text);
+}
+
+.track .thesis-list {
+    margin-top: 22px;
+}
+
+.track .track-spacer {
+    flex: 1 1 auto;
+}
+
+.track .button {
+    margin: 28px 0 0 0;
+    align-self: flex-start;
+}
+
+.thesis-list {
+    list-style: none;
+    margin: 0;
+}
+
+.thesis-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.2);
+}
+
+.thesis-list li:last-child {
+    border-bottom: 0;
+}
+
+.thesis-title {
+    display: block;
+    font-weight: bold;
+    color: var(--section-heading);
+}
+
+.thesis-meta {
+    display: block;
+    padding-top: 4px;
+    font-size: 14px;
+    color: var(--footer-text);
+}
+
+#certificates .split-2 {
+    align-items: center;
+}
+
+#certificates p a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+#certificates p a:hover {
+    opacity: 0.75;
+}
+
+.cert-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.cert-mark {
+    margin: 0;
+    text-align: center;
+}
+
+.cert-mark img {
+    display: block;
+    width: 132px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.cert-mark figcaption {
+    padding-top: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--section-heading);
+}
+
+.cert-mark figcaption span {
+    display: block;
+    padding-top: 4px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0;
+    color: var(--muted-text);
+}
+
+@media (max-width: 1023px) {
+
+    .about-title {
+        font-size: 46px;
+    }
+
+    .track-grid {
+        gap: 40px 48px;
+    }
+
+    #locations .split-2 {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+        gap: 40px;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .about-title {
+        font-size: 36px;
+    }
+
+    .track-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .track-grid:after {
+        display: none;
+    }
+
+    .about-lead {
+        font-size: 19px;
+        line-height: 30px;
+    }
+
+    .year-rail {
+        padding-left: 28px;
+    }
+
+    .year-rail::before {
+        left: 4px;
+        top: 8px;
+    }
+
+    .year-rail li {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-bottom: 30px;
+    }
+
+    .rail-year {
+        text-align: left;
+        font-size: 24px;
+        padding-bottom: 6px;
+    }
+
+    .rail-year::after {
+        right: auto;
+        left: -28px;
+        top: 7px;
+        width: 10px;
+        height: 10px;
+        box-shadow: 0 0 0 5px var(--secondary);
+    }
+
+    .person-grid.image-carousel-track {
+        gap: 14px;
+
+        padding: 4px calc((100% - 220px) / 2) 16px;
+        max-width: none;
+
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .person-grid > .image-carousel-slide {
+        flex: 0 0 220px;
+        display: flex;
+    }
+
+    .person-card {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        max-width: none;
+    }
+
+    .person-photo {
+        flex: 0 0 auto;
+    }
+
+    .person-body {
+        position: static;
+        padding: 14px 16px 16px;
+        background: none;
+        flex: 1 1 auto;
+    }
+
+    .person-name {
+        font-size: 17px;
+        line-height: 1.35;
+    }
+
+    .person-contact {
+        max-height: none;
+        opacity: 1;
+        margin: 12px 0 0 0;
+    }
+
+    .split-2,
+    #locations .split-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .about-map figcaption {
+        max-width: 100%;
+    }
+
+    .about-map #map.map-live {
+        aspect-ratio: 4 / 5;
+    }
+
+    .split-2:has(#map.map-live) .location-list,
+    .split-2:has(#map.map-live) .locations-lead {
+        display: none;
+    }
+
+    .split-2:has(#map.map-live) .map-hint {
+        display: none;
+    }
+
+    .cert-grid {
+        gap: 24px;
+        padding-top: 6px;
+    }
+
+    .cert-mark img {
+        width: 106px;
+    }
+
+}

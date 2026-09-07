@@ -1,31 +1,56 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-    const track = document.getElementById("logoTrack");
-    const slider = document.getElementById("logoSlider");
 
-    // Clone the track for seamless looping
-    const clone = track.cloneNode(true);
-    slider.appendChild(clone);
-
-    let speed = 1;
-    let scrollX = 0;
-    let isPaused = false;
-
-    function animate() {
-        if (!isPaused) {
-            scrollX += speed;
-
-            // The track's offsetWidth is now accurately calculated by Flexbox
-            if (scrollX >= track.offsetWidth) {
-                scrollX = 0;
-            }
-
-            slider.scrollLeft = scrollX;
-        }
-        requestAnimationFrame(animate);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
     }
 
-    animate();
+    document.querySelectorAll(".logo-slider").forEach(setup);
 
-    // slider.addEventListener("mouseenter", () => isPaused = true);
-    // slider.addEventListener("mouseleave", () => isPaused = false);
+    function setup(slider) {
+        const track = slider.querySelector(".logo-track");
+        if (!track) {
+            return;
+        }
+
+        let guard = 0;
+        while (slider.scrollWidth < slider.clientWidth + track.offsetWidth && guard++ < 20) {
+            const copy = track.cloneNode(true);
+
+            copy.setAttribute("aria-hidden", "true");
+            copy.removeAttribute("id");
+            copy.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+            copy.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
+            slider.appendChild(copy);
+        }
+
+        const speed = parseFloat(slider.dataset.speed) || 1;
+        let scrollX = 0;
+        let paused = false;
+
+        slider.addEventListener("mouseenter", pause);
+        slider.addEventListener("focusin", pause);
+        slider.addEventListener("mouseleave", resume);
+        slider.addEventListener("focusout", resume);
+
+        function pause() {
+            paused = true;
+        }
+
+        function resume() {
+            paused = false;
+            scrollX = track.offsetWidth ? slider.scrollLeft % track.offsetWidth : 0;
+        }
+
+        (function animate() {
+            if (!paused) {
+                scrollX += speed;
+                if (scrollX >= track.offsetWidth) {
+                    scrollX = 0;
+                }
+                slider.scrollLeft = scrollX;
+            }
+            requestAnimationFrame(animate);
+        })();
+    }
 });

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Platshållare för porträtt">
+    <!-- Temporary stand-in for a ledningsgrupp portrait, reused by every card.
+         Delete once the real photographs exist. -->
+    <rect width="400" height="500" fill="#3a3a3a" />
+    <circle cx="200" cy="215" r="66" fill="#4a4a4a" />
+    <path d="M90 430a110 110 0 0 1 220 0z" fill="#4a4a4a" />
+    <text x="200" y="118" fill="#999" font-family="'Open Sans', sans-serif" font-size="18"
+          font-weight="700" letter-spacing="3" text-anchor="middle">PORTR&#196;TT</text>
+</svg>

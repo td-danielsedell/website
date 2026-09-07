@@ -1,63 +1,136 @@
-/* 1. Container can now be ANY width you want (e.g., 600px, 50%, etc.) */
+
 .logo-slider {
     overflow: hidden;
-    padding: 30px 0;
-    /* background: #f9f9f9; */
+    padding-top: 30px;
+
+    padding-left: 40px;
+
     position: relative;
 
-    /* Change this to whatever width fits your design */
-    /* width: 80%; */
     margin: 0 auto;
-    /* Centers the slider on the page */
 
-    /* Use flex to force the main track and cloned track to sit side-by-side */
     display: flex;
 }
 
-/* Fade-out edge gradients */
-.logo-slider::before,
-.logo-slider::after {
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 100%;
-    content: "";
-    z-index: 2;
+.logo-slider {
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0,
+            #000 40px,
+            #000 calc(100% - 40px),
+            transparent 100%);
+    mask-image: linear-gradient(to right,
+            transparent 0,
+            #000 40px,
+            #000 calc(100% - 40px),
+            transparent 100%);
 }
 
-/* .logo-slider::before {
-    left: 0;
-    background: linear-gradient(to right, #f9f9f9, rgba(249, 249, 249, 0));
-}
-
-.logo-slider::after {
-    right: 0;
-    background: linear-gradient(to left, #f9f9f9, rgba(249, 249, 249, 0));
-} */
-
-/* 2. The Track: Flexbox prevents any shrinking or overlapping */
 .logo-track {
     display: flex;
     align-items: center;
-    /* Prevent the track from shrinking to fit the parent container */
+
     flex-shrink: 0;
 }
 
-/* 3. Your Logos: Enlarge them safely here */
 .logo-track img {
-    /* height: 80px; */
+
     height: 160px;
-    /* Enlarge safely; the track will adapt */
+
     width: auto;
-    /* Maintains aspect ratio */
+
     margin: 0 50px;
-    /* Generous spacing between logos */
+
     filter: grayscale(100%);
     opacity: 0.6;
     transition: all 0.3s ease;
 }
 
-.logo-track img:hover {
+.logo-track img:hover,
+.logo-track a:focus-visible img {
     filter: grayscale(0%);
     opacity: 1;
+}
+
+.industry-slider {
+
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+
+    padding: 0 0 0 40px;
+}
+
+.industry-slider .logo-track span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 0 20px;
+    font-size: 17px;
+    line-height: normal;
+    color: var(--muted-text);
+    white-space: nowrap;
+}
+
+.industry-slider .logo-track :is(img, svg, i) {
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    filter: none;
+    opacity: 1;
+    flex: 0 0 auto;
+
+    color: var(--primary);
+}
+
+@media (max-width: 767px) {
+    .industry-slider {
+        flex: none;
+        width: 100%;
+    }
+}
+
+.trust-partners {
+    padding-top: 20px;
+}
+
+.trust-partners .section-subtitle {
+    color: var(--normal-text);
+}
+
+.trust-partners .partner-lead {
+    max-width: 720px;
+    padding-left: 22px;
+    border-left: 3px solid var(--primary);
+    color: var(--muted-text);
+    line-height: 28px;
+}
+
+.partner-lead strong {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 34px;
+    color: var(--normal-text);
+    padding-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+    .partner-lead {
+        padding-left: 16px;
+    }
+
+    .partner-lead strong {
+        font-size: 20px;
+        line-height: 29px;
+    }
+}
+
+.trust-partners .logo-slider {
+    margin-top: 10px;
+}
+
+.trust-partners .logo-track img {
+    height: 120px;
+    margin: 0 40px;
 }

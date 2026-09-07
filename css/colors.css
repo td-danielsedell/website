@@ -1,165 +1,189 @@
-/* Namari Landing Page Dynamic Style Index
 
-1. Website Default Styling
-2. Navigation
-3. Primary and Secondary Colors
-4. Banner
-5. Typography
-6. Buttons
-7. Footer
 
-/* CSS HEX
---cardinal: #ad343eff;
---outer-space: #474747ff;
---xanthous: #f2af29ff;
---black: #000000ff;
---eggshell: #e0e0ceff;
-
-/* CSS HEX
---aerospace-orange: #ff4b00ff;
---ash-gray: #c0caadff;
---ash-gray-2: #9da9a0ff;
---outer-space: #404e4dff;
---bistre: #311e10ff;
-
-#9c9c9cff
-
-/* CSS HEX 
---charcoal: #3e4c5eff;
---asparagus: #678D58ff;
---air-superiority-blue: #6d9dc5ff;
---linen: #f7ece1ff;
---celeste: #aeecefff;
-
-### GREEN
-:root {
-    --header: #678D58;
-    --primary: rgb(103, 141, 88);
-    --primary_0: rgb(103, 141, 88, 0);
-    --primary_100: rgb(103, 141, 88, 1);
-    --secondary: #02182B;
-    --normal-text: #ffffff;
-    --header-text: #678D58;
-    --banner-text: #fff;
-    --section-title: #678D58;
-    --section-subtitle: #E9C387;
-    --link: #ffffff;
-    --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999
+@property --primary {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59);
 }
 
-### ORANGE
-:root {
-    --header: #ff4b00ff;
-    --primary: rgb(255, 75, 0);
-    --primary_0: rgb(255, 75, 0, 0);
-    --primary_100: rgb(255, 75, 0, 1);
-    --secondary: #333;
-    --normal-text: #ffffff;
-    --header-text: #9c9c9c;
-    --banner-text: #fff;
-    --section-title: #9c9c9c;
-    --section-subtitle: #ffffff;
-    --link: #ffffff;
-    --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999;
+@property --primary_0 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59, 0);
 }
 
-### YELLOW
-:root {
-    --header: #f2af29;
-    --primary: rgb(242, 175, 41);
-    --primary_0: rgb(242, 175, 41, 0);
-    --primary_100: rgb(242, 175, 41, 1);
-    --secondary: #404e4d;
-    --normal-text: #ffffff;
-    --header-text: #61A0AF;
-    --banner-text: #fff;
-    --section-title: #61A0AF;
-    --section-subtitle: #f2af29;
-    --link: #ffffffff;
-    --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999
+@property --primary_100 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59, 1);
 }
 
-### GOLD
-:root {
-    --header: #fff;
-    --primary: rgb(210, 179, 86);
-    --primary_0: rgb(210, 179, 86, 0);
-    --primary_100: rgb(210, 179, 86, 1);
-    --secondary: #fff;
-    --normal-text: #111;
-    --header-text: #cccccc;
-    --banner-text: #fff;
-    --section-title: #111;
-    --section-subtitle: #66635B;
-    --link: #111;
-    --link-hover-active: #d2b356;
-    --border: #f5f5f5ff;
-    --footer-text: #999
+@property --secondary {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #1B1A19;
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* 1. Website Default Styling */
-/*------------------------------------------------------------------------------------------*/
+@property --normal-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --header-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #BDB8B2;
+}
+
+@property --section-title {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --section-subtitle {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #E3A64B;
+}
+
+@property --section-heading {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --link {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #F4F1EE;
+}
+
+@property --border {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #403C38;
+}
+
+@property --footer-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #9A948D;
+}
+
+@property --surface {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #262422;
+}
+
+@property --surface-alt {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #2E2A27;
+}
+
+@property --surface-border {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #403C38;
+}
+
+@property --divider {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgba(255, 255, 255, 0.12);
+}
+
+@property --panel-hover {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgba(255, 255, 255, 0.08);
+}
+
+@property --hero-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #fff;
+}
+
+@property --muted-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #BDB8B2;
+}
+
+@property --faint-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #8C8680;
+}
+
+@property --accent-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(255, 106, 59);
+}
 
 :root {
-    --header: #ff4b00ff;
-    --primary: rgb(255, 75, 0);
-    --primary_0: rgb(255, 75, 0, 0);
-    --primary_100: rgb(255, 75, 0, 1);
-    --secondary: #333;
-    --normal-text: #ffffff;
-    --header-text: #9c9c9c;
+    --header: #C63D02;
+    --primary: rgb(255, 106, 59);
+    --primary_0: rgb(255, 106, 59, 0);
+    --primary_100: rgb(255, 106, 59, 1);
+    --secondary: #1B1A19;
+    --normal-text: #F4F1EE;
+    --header-text: #BDB8B2;
     --banner-text: #fff;
-    --section-title: #9c9c9c;
-    --section-subtitle: #00B4FF;
-    --section-heading: #f5f5f5;
-    --link: #ffffff;
+    --section-title: #F4F1EE;
+
+    --section-subtitle: #E3A64B;
+    --section-heading: #F4F1EE;
+    --link: #F4F1EE;
     --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999;
+
+    --on-header: #ffffff;
+    --border: #403C38;
+    --footer-text: #9A948D;
+
+    --surface: #262422;
+
+    --surface-alt: #2E2A27;
+    --surface-border: #403C38;
+
+    --divider: rgba(255, 255, 255, 0.12);
+
+    --panel-hover: rgba(255, 255, 255, 0.08);
+
+    --hero-text: #fff;
+
+    --muted-text: #BDB8B2;
+    --faint-text: #8C8680;
+
+    --accent-text: rgb(255, 106, 59);
+
+    --product-mark-opacity: 0.07;
+    --product-mark-opacity-hover: 0.14;
+
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    --card-shadow-hover: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+    --panel-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
 body {
     background: var(--secondary);
-    /*var(--primary);*/
-    /*var(--normal-text);*/
+
 }
 
+a {
+    color: var(--accent-text);
 
-/* Default Link Color */
-
-a,
-.la-ball-triangle-path {
-    color: var(--primary);
-    /*var(--primary); */
-    /*#d2b356;*/
 }
-
-/* a:hover,
-#header.nav-solid nav a:hover {
-    color: #d2b356;
-} */
-
-/* Default Icon Color */
 
 .icon i {
     color: var(--primary);
     ;
-    /*#d2b356;*/
-}
 
-/* Border Color */
-
-#home .section-heading:before,
-.testimonial.classic footer:before {
-    background: var(--primary);
-    /*#d2b356;*/
 }
 
 #main-heading {
@@ -167,117 +191,41 @@ a,
         1px 1px var(--primary), -1px -1px var(--primary), 1px -1px var(--primary), -1px 1px var(--primary);
 }
 
-#pricing-heading.section-title {
-    color: var(--normal-text);
-}
-
-.pricing-block {
-    color: var(--normal-text);
-}
-
-.pricing-block-content {
-    border-color: var(--secondary);
-    background: var(--secondary);
-    /* min-width: 335px; */
-    max-width: 355px;
-}
-
-.pricing-block-content:hover {
-    border-color: var(--primary);
-    /*#d2b356;*/
-}
-
 .backgroundimage-overlay {
     position: absolute;
     background-color: var(--secondary);
-    opacity: 0.7;
-    /* transition: 0.5s; */
+    opacity: 0.72;
+
     z-index: 1;
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 2. Navigation */
-/*------------------------------------------------------------------------------------------*/
-
-
-/* Transparent Navigation Color on a Banner */
-
 #header nav a,
-#header i {
-    color: var(--link);
-    /*var(--header-text);*/
+#header .svg-icon {
+    color: var(--on-header);
+
 }
 
 #header nav a:hover,
-#header i:hover,
+#header .svg-icon:hover,
 #header.nav-solid a:hover,
-#header.nav-solid i:hover {
-    color: var(--link-hover-active);
-    /*var(--header-text);*/
+#header.nav-solid .svg-icon:hover {
+    color: var(--on-header);
+
 }
-
-/* .social-icons a:hover {
-    color: var(--link-hover-active);
-} */
-
-
-/* Navigation Colors when the Navigation is sticky and solid */
 
 #header.nav-solid,
 #header.nav-solid a,
-#header.nav-solid i,
-#nav-mobile ul li a {
-    color: var(--link);
-    /*var(--secondary);*/
+#header.nav-solid .svg-icon {
+    color: var(--on-header);
+
     background: var(--header);
 }
 
-/* Navigation Active State */
-
-#header.nav-solid .active {
-    color: var(--link-hover-active);
-    /*#d2b356;*/
-    border-color: var(--link-hover-active);
-    /*#d2b356;*/
-}
-
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 3. Primary and Secondary Colors */
-/*------------------------------------------------------------------------------------------*/
-
-
-/* Primary Background and Text Colors */
-
-/* .primary-color,
-.featured .pricing {
-    background-color: var(--primary);
-    /*#d2b356;
-} */
-
-/* .primary-color,
-.primary-color .section-title,
-.primary-color .section-subtitle,
-.featured .pricing,
-.featured .pricing p {
-    color: blue;
-} */
-
-.pricing {
-    color: var(--link-hover-active);
-}
-
-.featured .pricing {
-    background-color: var(--primary);
-    color: var(--normal-text);
-}
-
-.section-heading h1:after,
-.section-heading h2:after {
+.section-heading h2:not(.section-kicker):after,
+.section-heading .section-title:after,
+.section-heading .banner-intro:after {
     background: var(--primary);
-    /*#d2b356;*/
+
     content: "";
     display: block;
     width: 30px;
@@ -285,45 +233,142 @@ a,
     margin-top: 30px;
 }
 
-.text-center .section-heading h1:after,
-.text-center .section-heading h2:after {
+.text-center .section-heading h2:not(.section-kicker):after,
+.text-center .section-heading .section-title:after {
     margin: 30px auto 25px auto;
 }
 
-/* Primary Icon Colors */
-
-.primary-color .icon i,
-.primary-color i {
-    color: var(--normal-text);
+.section-heading:has(> .section-subtitle) .section-title:after,
+.section-heading:has(> .section-subtitle) h2:not(.section-kicker):after {
+    display: none;
 }
 
+.section-heading > .section-subtitle:after {
+    background: var(--primary);
+    content: "";
+    display: block;
+    width: 30px;
+    height: 5px;
+    margin-top: 30px;
+}
 
-/* Secondary Background and Text Colors */
+.text-center .section-heading > .section-subtitle:after {
+    margin: 30px auto 25px auto;
+}
+
+.primary-color .icon i,
+.primary-color .svg-icon {
+    color: var(--normal-text);
+}
 
 .secondary-color {
     background-color: var(--header-text);
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 4. Banner */
-/*------------------------------------------------------------------------------------------*/
-
-
-/* Banner Background and Text Colors */
-
 #home {
-    /* background: url("../images/banner-images/banner-image-orange.jpg") no-repeat center top; */
-    background: url("../images/banner-images/banner_gradient_wide.webp") no-repeat center top;
-    /* background: url("../images/banner-images/banner-image-gold.png") no-repeat center top; */
+    background: url("../images/banner-images/banner_wide_clean.webp") no-repeat;
+
+    background-position: var(--hero-x, center) calc(var(--hero-y, 0%) + var(--hero-shift, 0px));
     background-size: cover;
+    position: relative;
 }
 
+#home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to bottom,
+            color-mix(in srgb, var(--secondary) 0%, transparent) 45%,
+            var(--secondary) 88%),
+        linear-gradient(to right,
+            var(--secondary) 0%,
+            var(--secondary) 30%,
+            color-mix(in srgb, var(--secondary) 0%, transparent) 68%);
+}
 
-/*------------------------------------------------------------------------------------------*/
-/* 5. Typography */
-/*------------------------------------------------------------------------------------------*/
+#banner-content.row {
+    position: relative;
+}
 
+@media (min-width: 1024px) and (max-width: 1279px) and (min-height: 501px) {
+    #home {
+        background-image: url("../images/banner-images/banner_full_clean.webp");
+        --hero-x: 50%;
+        --hero-y: 40%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    #home {
+        background-image: url("../images/banner-images/banner_full_clean.webp");
+        --hero-x: 0%;
+        --hero-y: 50%;
+    }
+
+    #home::before {
+        background-image:
+            linear-gradient(to bottom,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 45%,
+                var(--secondary) 88%),
+            linear-gradient(to right,
+                var(--secondary) 0%,
+                var(--secondary) 45%,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 85%);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) and (max-height: 500px) {
+    #home {
+        background-size: 95% auto;
+        --hero-x: 200%;
+        --hero-y: 40%;
+    }
+}
+
+@media (min-width: 1024px) and (max-height: 500px) {
+    #home {
+        background-size: 95% auto;
+        --hero-x: 100%;
+        --hero-y: 70%;
+    }
+}
+
+@media (max-width: 767px) {
+    #home {
+        background-image: none;
+    }
+
+    #home::before {
+        background-image:
+            linear-gradient(to bottom,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 40%,
+                var(--secondary) 80%,
+                var(--secondary) 100%),
+            linear-gradient(to right,
+                var(--secondary) 0%,
+                var(--secondary) 35%,
+                color-mix(in srgb, var(--secondary) 0%, transparent) 78%),
+            url("../images/banner-images/banner_full_clean.webp");
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-size: 100% 100%, 100% 100%, auto 88%;
+        background-position: center, center,
+            var(--hero-x, 33%) calc(var(--hero-y, 60%) + var(--hero-shift, 0px));
+    }
+}
+
+@media (max-width: 767px) and (max-height: 500px) {
+    #home::before {
+        background-size: 100% 100%, 100% 100%, auto 130%;
+    }
+
+    #home {
+        --hero-x: 106%;
+        --hero-y: 22%;
+    }
+}
 
 body {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -332,46 +377,34 @@ body {
     color: var(--normal-text)
 }
 
-/* Logo, if you are using Fonts as Logo and not image
-
-#logo h1 {
-    font-family:;
-    font-size:; 
-    font-weight:;
-    color:;
-}
-
-#logo h2 {
-    font-family:;
-    font-size:; 
-    font-weight:;
-    color:;
-}
-
-*/
-
-
-/* Banner Typography */
-
 #home h1 {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 62px;
     line-height: 60px;
     font-weight: 800;
-    color: var(--banner-text);
-    /* color: var(--header-text) */
+    color: var(--hero-text);
+
 }
 
-#home h2 {
+#home .expertise-line {
+    color: var(--hero-text);
+}
+
+#home .expertise-label {
+    opacity: 0.7;
+}
+
+#home .expertise-reel :is(i, svg) {
+    color: var(--section-subtitle);
+}
+
+#home .banner-intro {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
     font-weight: 300;
-    color: var(--banner-text);
-    /* color: var(--header-text) */
+    color: var(--hero-text);
+
 }
-
-
-/* Section Title and Subtitle */
 
 .section-title {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -387,35 +420,51 @@ body {
     color: var(--section-subtitle);
 }
 
-/* Showcase Call to Action */
-
 .showcase-cta {
-    border-top-color: rgba(153, 153, 153, 0.3);
+    border-top-color: var(--surface-border);
 }
 
 .showcase-cta p {
     color: var(--footer-text);
 }
 
-/* Testimonial */
+.showcase-cta .cta-name {
+    color: var(--section-heading);
+}
+
+.showcase-cta .cta-role {
+    color: var(--muted-text);
+}
 
 .testimonial q {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 300;
+    color: var(--normal-text);
+
+    quotes: none;
 }
 
-.testimonial.classic q,
+.testimonial.classic q:before {
+    display: block;
+    content: "\201C";
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 64px;
+    line-height: 0.7;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
 .testimonial.classic footer {
-    color: var(--section-subtitle)
+    color: var(--muted-text);
 }
-
-/* About */
 
 #contact {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
     font-weight: 300;
+    font-style: normal;
+    padding: 10px 0;
     color: var(--normal-text)
 }
 
@@ -427,9 +476,6 @@ body {
 .text-on-image h4 {
     font-weight: bold;
 }
-
-
-/* Standard Headings h1-h6 */
 
 h1 {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -452,6 +498,7 @@ h3 {
     color: var(--header-text)
 }
 
+.card-title,
 h4 {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
@@ -473,16 +520,6 @@ h6 {
     color: var(--header-text)
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 6. Buttons */
-/*------------------------------------------------------------------------------------------*/
-
-/* ----------Default Buttons---------- */
-
-
-/* Button Text */
-
 .button,
 input[type="submit"] {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -491,60 +528,41 @@ input[type="submit"] {
     color: var(--header-text)
 }
 
-
-/* Button Color */
-
 .button,
 input[type="submit"] {
     border-color: var(--header-text);
 }
 
-
-/* Button Hover Color */
-
 .button:hover,
 input[type="submit"]:hover {
     border-color: var(--primary);
-    /*#d2b356;*/
-    color: var(--primary);
-    /*#d2b356;*/
+
+    color: var(--accent-text);
+
 }
-
-
-/* ----------Banner Buttons---------- */
-
-
-/* Button Text */
 
 #home .button {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 16px;
-    color: var(--banner-text);
-    /* color: var(--header-text); */
+    color: var(--hero-text);
+
 }
-
-
-/* Button Color */
 
 #home .button {
-    border-color: var(--banner-text);
-    /* border-color: var(--header-text); */
+    border-color: var(--hero-text);
+
 }
-
-
-/* Button Hover Color */
 
 #home .button:hover {
-    color: var(--primary);
-    /*#d2b356;*/
+    color: var(--accent-text);
+
     border-color: var(--primary);
-    /*#d2b356;*/
+
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 7. Footer */
-/*------------------------------------------------------------------------------------------*/
+#landing-footer {
+    border-top: 1px solid var(--surface-border);
+}
 
 #landing-footer,
 #landing-footer p,
@@ -555,8 +573,7 @@ input[type="submit"]:hover {
     color: var(--footer-text);
 }
 
-/* Footer Icon Color */
-
-#landing-footer i {
+#landing-footer .svg-icon {
     color: var(--footer-text);
 }
+

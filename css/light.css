@@ -1,0 +1,236 @@
+
+
+html.theme-light {
+    --header: #C63D02;
+    --primary: rgb(230, 74, 15);
+    --primary_0: rgb(230, 74, 15, 0);
+    --primary_100: rgb(230, 74, 15, 1);
+
+    --secondary: #FAF6F0;
+
+    --normal-text: #211D19;
+    --header-text: #211D19;
+    --banner-text: #fff;
+
+    --hero-text: #211D19;
+    --section-title: #211D19;
+    --section-heading: #211D19;
+
+    --section-subtitle: #8F6400;
+    --link: #211D19;
+
+    --link-hover-active: #111111;
+    --border: #E8E0D6;
+    --footer-text: #6E675F;
+
+    --surface: #ffffff;
+    --surface-alt: #F0EAE2;
+    --surface-border: #E8E0D6;
+    --divider: rgba(0, 0, 0, 0.1);
+    --panel-hover: rgba(0, 0, 0, 0.06);
+
+    --muted-text: #5C554D;
+
+    --faint-text: #6E675F;
+
+    --accent-text: #BC3D00;
+
+    --product-mark-opacity: 0.035;
+    --product-mark-opacity-hover: 0.08;
+
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.07);
+    --card-shadow-hover: 0 10px 28px -8px rgba(0, 0, 0, 0.16);
+    --panel-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+
+    --band: #000000;
+}
+
+html.theme-light a { color: var(--accent-text); }
+
+html.theme-light .button,
+html.theme-light input[type="submit"] {
+    color: var(--header-text);
+}
+
+html.theme-light .button:hover,
+html.theme-light input[type="submit"]:hover {
+    color: var(--accent-text);
+}
+
+html.theme-light .card-link {
+    color: inherit;
+}
+
+html.theme-light .feature-card,
+html.theme-light .service-group,
+html.theme-light #businessareas .area-grid > .col-6.icon-block {
+    border-width: 1px;
+}
+
+html.theme-light .feature-card:hover,
+html.theme-light .service-group:hover {
+    border-color: #c9c9c9;
+}
+
+html.theme-light .person-card:hover {
+    box-shadow: var(--card-shadow-hover);
+}
+
+html.theme-light #home .scroll-cue {
+    filter: none;
+}
+
+html.theme-light #businessareas .icon-block::after {
+    opacity: 0.05;
+}
+
+html.theme-light .image-carousel-arrow {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--normal-text);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+html.theme-light .image-carousel-arrow:hover,
+html.theme-light .image-carousel-arrow:active {
+    background: var(--primary);
+    color: #fff;
+}
+
+html.theme-light .image-carousel-dot:not([aria-current="true"])::before {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+html.theme-light .image-carousel-dot:hover::before {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 768px) {
+
+    html.theme-light .person-name {
+        color: var(--banner-text);
+    }
+
+    html.theme-light .person-role {
+        color: #d4d4d4;
+    }
+
+    html.theme-light .person-contact a {
+        color: rgb(255, 106, 59);
+    }
+}
+
+html.theme-light .trust-partners .logo-track a {
+
+    display: inline-block;
+    margin: 0 40px;
+    line-height: 0;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+html.theme-light .trust-partners .logo-track a:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+html.theme-light .trust-partners .logo-track img {
+    margin: 0;
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]),
+html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]),
+html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]),
+html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) img,
+html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) img,
+html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) img,
+html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) img {
+    opacity: 0;
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) {
+    background-image: url(../images/company-images/esri-light.webp);
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) {
+    background-image: url(../images/company-images/nvidia-light.webp);
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) {
+    background-image: url(../images/company-images/rymdstyrelsen-light.webp);
+}
+
+html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
+    background-image: url(../images/company-images/maxanv-light.webp);
+}
+
+html.theme-light .footer-large {
+    background: var(--surface-alt);
+}
+
+html.theme-light .footer-large a,
+html.theme-light .footer-large p {
+    color: var(--muted-text);
+}
+
+html.theme-light .footer-large a:hover {
+    color: var(--accent-text);
+}
+
+html.theme-light .footer-certs .cert-badges a {
+    filter: grayscale(100%);
+    opacity: 0.75;
+}
+
+html.theme-light .footer-certs .cert-badges a:hover,
+html.theme-light .footer-certs .cert-badges a:focus-visible {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+html.theme-light .footer-large #logo img,
+html.theme-light .footer-large img[src*="td_white"],
+html.theme-light .footer-large img[src*="td_logo"] {
+    filter: invert(1);
+}
+
+html.theme-light .band-dark {
+    background: var(--band);
+
+    box-shadow: 0 0 0 100vmax var(--band);
+    clip-path: inset(0 -100vmax);
+
+    --surface: #141414;
+    --surface-border: #333333;
+    --muted-text: #c2c2c2;
+    --divider: rgba(255, 255, 255, 0.12);
+    --card-shadow: none;
+    --card-shadow-hover: none;
+}
+
+html.theme-light .band-dark h1,
+html.theme-light .band-dark h2,
+html.theme-light .band-dark h3,
+html.theme-light .band-dark h4,
+html.theme-light .band-dark p,
+html.theme-light .band-dark li {
+    color: #ffffff;
+}
+
+html.theme-light .band-dark .feature-card p,
+html.theme-light .band-dark .icon-block p,
+html.theme-light .band-dark .area-band-item p {
+    color: var(--muted-text);
+}
+
+html.theme-light .band-dark .icon-block img,
+html.theme-light .band-dark .icon-block::after {
+    filter: none;
+}
+

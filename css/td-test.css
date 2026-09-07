@@ -1,17 +1,138 @@
-/* --------------------------------------------------------------------------
-   TD Test product page — page-specific helpers (loaded only by td_test.html)
-   Reuses the global palette from colors.css (var(--primary) etc.)
-   -------------------------------------------------------------------------- */
 
-/* The three capability blocks, side by side.
-   Grid instead of the global float grid so an uneven column can't snag the
-   next float; it also sits beside floats instead of clearing them. */
+
+.tdt-intro .row {
+    padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+
+    .tdt-intro {
+        min-height: calc(100vh - 110px);
+        min-height: calc(100svh - 110px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tdt-intro > .row {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        padding-bottom: 104px;
+    }
+}
+
+.tdt-intro .tdt-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px 70px;
+    align-items: center;
+
+    padding: 0 20px;
+}
+
+.tdt-intro .tdt-hero .section-heading {
+    padding-bottom: 0;
+}
+
+.tdt-intro .tdt-hero h1.section-title {
+    padding-top: 0;
+    font-size: 52px;
+    line-height: 1.06;
+    letter-spacing: -1px;
+    text-wrap: balance;
+}
+
+.tdt-intro .tdt-hero .section-heading > .section-subtitle {
+    max-width: none;
+    font-size: 21px;
+    line-height: 32px;
+}
+
+.tdt-intro .tdt-lead {
+    margin: 0;
+    font-size: 17px;
+    line-height: 30px;
+    text-wrap: pretty;
+}
+
+.tdt-intro .tdt-intro-body {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 34px;
+    padding: 26px 20px 0;
+    border-top: 1px solid var(--surface-border);
+}
+
+.tdt-intro .tdt-intro-body p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 26px;
+    text-wrap: pretty;
+}
+
+.tdt-intro .tdt-intro-cta {
+    text-align: center;
+    max-width: 640px;
+    margin: 28px auto 0;
+    padding: 0 20px;
+}
+
+.tdt-intro .tdt-intro-cta p {
+    margin: 0 0 22px;
+    font-size: 18px;
+    line-height: 29px;
+    color: var(--normal-text);
+}
+
+.tdt-intro .tdt-intro-cta .button {
+    margin: 0;
+}
+
+@media (max-width: 1023px) {
+    .tdt-intro .tdt-hero h1.section-title {
+        font-size: 44px;
+    }
+
+    .tdt-intro .tdt-intro-body {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .tdt-intro .tdt-hero {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .tdt-intro .tdt-hero h1.section-title {
+        font-size: 36px;
+    }
+
+    .tdt-intro .tdt-hero .section-heading > .section-subtitle {
+        font-size: 19px;
+        line-height: 30px;
+    }
+
+    .tdt-intro .tdt-intro-body {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        margin-top: 40px;
+        padding-top: 34px;
+    }
+}
+
 .tdt-trio {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 40px;
     align-items: start;
     clear: both;
+
+    padding: 0 20px;
 }
 
 .tdt-trio>* {
@@ -24,8 +145,6 @@
     }
 }
 
-/* Content lists (capabilities / reporting / execution) */
-/* padding/margin already zeroed by the global reset in style.css */
 .tdt-list {
     list-style: none;
     text-align: left;
@@ -38,14 +157,15 @@
 }
 
 .tdt-list li:before {
-    content: "\f00c";
-    /* fa-check */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: var(--primary);
+    content: "";
     position: absolute;
     left: 0;
-    top: 6px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary);
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>') no-repeat center / contain;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>') no-repeat center / contain;
 }
 
 .tdt-list ul {
@@ -62,59 +182,53 @@
     content: none;
 }
 
-/* Product tour carousel.
-   The screenshots are all cropped to roughly 4:3 (1.355–1.367), so a fixed
-   height gives every slide the same frame without cropping anything.
-   Full size is one click away — the images carry data-zoomable, see
-   css/image-zoom.css. */
 .tdt-tour {
-    /* leave the outside gutters for the arrows on wide screens.
-       float:none so the auto margins actually center it — the global
-       .col-1 floats, and a floated box ignores them. */
+
     float: none;
     max-width: 900px;
-    /* the top margin separates the tour from the trio above it, now that
-       there is no section heading between the two */
+
     margin: 60px auto 0;
 }
 
+.tdt-tour--wide {
+    max-width: 100%;
+}
+
 .tdt-shot {
-    /* The slide width is the constraint at every size, so fill it and take the
-       height from the ratio. Sizing by height instead would not work here:
-       `.row img` in style.css sets `height: auto` at a higher specificity and
-       would silently win, leaving nothing definite for the ratio to resolve
-       against — lazy slides would then reserve no space and pop in on scroll.
-       Every screenshot is exported at exactly 1920x1416; keep the exports
-       uniform or this ratio starts to lie. */
+
     aspect-ratio: 1920 / 1416;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
     display: block;
-    border: 1px solid #555;
+    border: 1px solid var(--surface-border);
     border-radius: 12px;
-    box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
+
+    box-shadow: var(--card-shadow);
 }
 
-/* Feature grid (5 icons) — centering is inherited from the section's
-   .text-center; only the body copy opts back out */
-.tdt-feature .tdt-icon {
-    font-size: 42px;
+.tdt-shot--wide {
+
+    aspect-ratio: 1832 / 859;
+    object-fit: contain;
+}
+
+.area-band .tdt-icon {
+    font-size: 52px;
+    line-height: 0;
     color: var(--primary);
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 }
 
-.tdt-feature h4 {
-    margin-bottom: 8px;
+@media (max-width: 567px) {
+
+    .area-band .tdt-icon {
+        font-size: 44px;
+        margin: 0;
+        grid-row: span 2;
+    }
 }
 
-.tdt-feature p {
-    text-align: left;
-}
-
-/* Comparison matrix.
-   border-collapse stays `separate` — padding on the table box is ignored
-   in the collapsing border model, and the card needs its inner padding. */
 .tdt-compare {
     width: 100%;
     max-width: 900px;
@@ -128,18 +242,16 @@
 
 .tdt-compare th,
 .tdt-compare td {
-    border-bottom: 1px solid #555;
+    border-bottom: 1px solid var(--surface-border);
     padding: 14px 0;
     vertical-align: middle;
 }
 
-/* last row flush inside the card */
 .tdt-compare tbody tr:last-child th,
 .tdt-compare tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* criteria column: a row header, but it reads as body copy */
 .tdt-compare th[scope="row"] {
     font-weight: normal;
     padding-right: 20px;
@@ -165,14 +277,12 @@
     font-size: 20px;
 }
 
-/* scoped to .tdt-compare so these outrank `.primary-color i` in colors.css,
-   which otherwise paints every icon in the section white */
 .tdt-compare .tdt-yes {
     color: var(--primary);
 }
 
 .tdt-compare .tdt-no {
-    color: #666;
+    color: var(--faint-text);
 }
 
 @media (max-width: 600px) {
@@ -184,5 +294,16 @@
 
     .tdt-compare td {
         font-size: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .tdt-intro .tdt-hero,
+    .tdt-intro .tdt-intro-body,
+    .tdt-intro .tdt-intro-cta,
+    .tdt-trio {
+        padding-left: 0;
+        padding-right: 0;
     }
 }

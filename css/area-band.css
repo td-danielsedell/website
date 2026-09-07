@@ -1,0 +1,116 @@
+
+
+.area-band {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    counter-reset: area;
+}
+
+.area-band-item {
+    padding: 0 28px;
+    border-left: 1px solid var(--surface-border);
+}
+
+.area-band-item:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.area-band-item:last-child {
+    padding-right: 0;
+}
+
+.area-band-item :is(i, img, svg) {
+    display: block;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+}
+
+.area-band-item svg.fa-hand-holding-gear-industry-sack-dollar {
+    transform: scale(var(--kit-icon-boost));
+}
+
+.area-band-item h3 {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 25px;
+    color: var(--normal-text);
+    padding: 0;
+    text-wrap: pretty;
+}
+
+.area-band-item h3::before {
+    counter-increment: area;
+    content: "0" counter(area);
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--section-subtitle);
+    padding-bottom: 8px;
+}
+
+.area-band-item p {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--muted-text);
+}
+
+@media (max-width: 1023px) {
+
+    .area-band {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 34px 0;
+    }
+
+    .area-band-item,
+    .area-band-item:first-child {
+        padding: 0 24px;
+        border-left: 1px solid var(--surface-border);
+    }
+
+    .area-band-item:nth-child(odd) {
+        padding-left: 0;
+        border-left: 0;
+    }
+}
+
+@media (max-width: 567px) {
+
+    .area-band {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .area-band-item,
+    .area-band-item:first-child,
+    .area-band-item:nth-child(odd) {
+        padding: 22px 0;
+        border-left: 0;
+        border-top: 1px solid var(--surface-border);
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 0 16px;
+    }
+
+    .area-band-item:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+
+    .area-band-item :is(i, img, svg) {
+        width: 44px;
+        height: 44px;
+        margin: 0;
+        grid-row: span 2;
+    }
+
+    .area-band-item h3::before {
+        display: inline;
+        padding: 0 10px 0 0;
+    }
+}
