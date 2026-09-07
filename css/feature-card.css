@@ -1,34 +1,25 @@
-/* The main card container */
+
 .feature-card {
     display: flex;
-    /* width: 500px; */
-    /* height: 180px; */
-    /* Same as the page, so the border is what makes it read as a card. */
+
     background-color: var(--surface);
     border-radius: 10px;
-    /* Rounded corners */
+
     overflow: hidden;
-    /* Clips EVERYTHING strictly to the 16px radius */
+
     position: relative;
-    /* Required to anchor our absolute image */
-    /* box-shadow: 0 4px 6px rgba(68, 68, 68, 0.15); */
+
     box-shadow: var(--card-shadow);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     border: 2px solid var(--surface-border);
 }
 
-/* Updated hover state for a perfectly uniform, rounded shadow glow */
 .feature-card:hover {
-    /*
-       The 4 values mean: X-offset (0), Y-offset (15px), Blur (30px), and Spread (-3px).
-       The negative spread pulls the shadow inward slightly, forcing it to round out
-       perfectly even on the sides with dark images.
-    */
-    /* box-shadow: 0 15px 30px -3px rgba(68, 68, 68, 0.6); */
+
     box-shadow: var(--card-shadow-hover);
     transform: translateY(-2px);
-    /* Optional: lifts the card slightly to emphasize the shadow */
+
 }
 
 .card-image-wrapper {
@@ -51,7 +42,6 @@
     transition: transform 0.5s ease;
 }
 
-/* Image zoom on hover */
 .feature-card:hover .card-image-wrapper img {
     transform: scale(1.06);
 }
@@ -74,47 +64,20 @@
     transform: scale(1.06);
 }
 
-/* Icon instead of a thumbnail photo.
-
-   Not an icon dropped into the slot the photo had: a 170px picture-sized band
-   is more room than one glyph can fill honestly, and every treatment tried in
-   it (flat tint, blueprint grid, bleed crop) read as a photo that had failed
-   to load. The band goes, the icon sits in the gap between the heading pair
-   and the body copy, and the card gets ~110px shorter for it.
-
-   No order of its own: .product-sub is lifted with order: -1, which leaves the
-   h3, this and .product-content to fall in markup order — heading, icon,
-   copy. Centred on the same axis as the heading above it. */
 .product-image-wrapper.product-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px auto 4px;
 
-    /* The kit swaps the <i> for an <svg class="svg-inline--fa"> that is sized
-       height: 1em — so the size has to be set here, on the parent it inherits
-       from, not on the <i> that stops existing once the kit has run.
-       line-height: 0 keeps the inline SVG from dragging a text line's worth of
-       leading in under it, the same trick .area-band .tdt-icon uses. */
     font-size: 88px;
     line-height: 0;
     color: var(--primary);
-    /* Duotone's back layer rides at 40 % by default, which at this size reads
-       as a second solid shape rather than a ground. */
+
     --fa-secondary-opacity: 0.3;
 
-    /* .product-image-wrapper is overflow: hidden so a photo could not spill out
-       of its band. There is no band here: the box shrink-wraps the glyph
-       exactly, so the hover scale(1.08) below had its outer 8 % sliced off on
-       all four sides. */
     overflow: visible;
 
-    /* Purely decorative, and the card's own title link is what makes the card
-       clickable (.card-link-stretch::after). A transformed element paints with
-       the positioned descendants, after that ::after in tree order — so the
-       moment the hover scale kicks in the glyph rose above the stretched link
-       and ate the click. Same reason .card-arrow and .product-icon-mark opt
-       out. */
     pointer-events: none;
 }
 
@@ -122,22 +85,10 @@
     transition: transform 0.5s ease;
 }
 
-/* The photo scaled on hover; the icon does the same so the card still answers
-   the pointer. */
 .feature-card:hover .product-image-wrapper.product-icon svg {
     transform: scale(1.08);
 }
 
-/* The corner watermark: the card's own icon again, blown up and bled off the
-   bottom-right. Ported from the Affärsområden cards at 0eb7404
-   (#businessareas .icon-block::after in css/style.css) — same offsets, same
-   0.07 resting opacity, same hover.
-
-   That version was a background-image, one url() per card, because the icons
-   were <img> and a background cannot point at an inline SVG. The kit's icons
-   ARE inline SVG, so this is a second <i> in the markup instead. The card
-   already carries position: relative and overflow: hidden, so it clips to the
-   radius on its own. */
 .product .product-icon-mark {
     position: absolute;
     right: -34px;
@@ -147,8 +98,7 @@
     line-height: 0;
     color: var(--primary);
     opacity: var(--product-mark-opacity);
-    /* Flat, not duotone: this faint, the two layers just read as a blurry
-       edge. */
+
     --fa-secondary-opacity: 1;
     pointer-events: none;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
@@ -159,14 +109,11 @@
     opacity: var(--product-mark-opacity-hover);
 }
 
-/* The copy sits above the watermark — same job .icon and
-   .icon-block-description did with z-index: 1 in the original. */
 .product .product-body {
     position: relative;
     z-index: 1;
 }
 
-/* Right side container for your text/content */
 .card-content {
     width: 70%;
     margin-left: 30%;
@@ -178,79 +125,41 @@
     padding-right: 45px;
 }
 
-/* Chevron affordance, bottom right of the card: a `fa-solid fa-chevron-right`
-   the kit draws from the <i> the div wraps, replacing the literal "&gt;" this
-   used to print.
-
-   The <i> stays a child rather than taking the .card-arrow class itself, so
-   the five rules further down that move this box on the flipped, featured and
-   list-revealed cards keep addressing a plain div and do not depend on Font
-   Awesome copying author classes onto the <svg> it swaps in.
-
-   colour comes from `color`, not from a fill: FA's generated path is
-   fill="currentColor", which is also how the old text glyph took the token.
-   So the light theme needs no filter: invert() and the arrow cannot end up
-   the one grey thing on a swapped surface. */
 .card-arrow {
     position: absolute;
     bottom: 16px;
     right: 20px;
-    /* Purely an affordance. Without this it sits on top of the stretched card
-       link and swallows the clicks it is advertising. Set here rather than on
-       the icon so it covers the <i> before the kit has replaced it too. */
+
     pointer-events: none;
     font-size: 14px;
     color: var(--normal-text);
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* `i` alongside `svg` for the same two reasons as .area-band-item and the
-   scroll cue: the box has to exist before the kit has swapped the <i>, and the
-   kit's own `.svg-inline--fa { height: 1em }` needs one class plus one element
-   to outspecify it. Nothing shifts if the swap is slow or never happens here
-   though -- unlike the area-band icons, this box is absolutely positioned, so
-   a 0-wide <i> moves no copy.
-   height: 1em against the 14px above, and chevron-right's 320x512 viewBox then
-   puts the ink at 8.75px wide. */
 .card-arrow :is(i, svg) {
     display: block;
     height: 1em;
     width: auto;
 }
 
-/* Moves the chevron slightly to the right on hover */
 .feature-card:hover .card-arrow {
     transform: translateX(6px);
 }
 
-/* Removes the default underline and text coloring from the link wrap */
 .card-link {
     text-decoration: none;
     color: inherit;
-    /* Forces text to keep the colors you already defined */
+
     display: inline-block;
-    /* Keeps the link wrapping neatly around the card */
+
 }
 
-/* The product cards contain their own mailto button, so the card itself cannot
-   be wrapped in a link: nested anchors are invalid and the parser splits them
-   apart. The title link is stretched across the card instead, and the button is
-   lifted above that overlay so it stays clickable. */
 .card-link-stretch::after {
     content: "";
     position: absolute;
     inset: 0;
 }
 
-/* Tabbing to a card highlights the whole card rather than the title text. The
-   <a> is an inline-block around its own words, so a ring on it traced the
-   headline and left the rest of the card — the part the link actually
-   activates — unmarked. The overlay above already covers the card, so that is
-   what gets the ring.
-
-   Inset by 3px because .feature-card is overflow:hidden and clips anything
-   drawn outside its box, and radius-matched so the ring follows the card's 10px
-   corners instead of cutting across them. */
 .card-link-stretch:focus-visible {
     outline: none;
 }
@@ -270,38 +179,21 @@
     min-height: 200px;
 }
 
-/* .card-title carries 400 from colors.css, which reads thin against the card
-   copy. 700 matches .section-title.
-
-   Scoped to .showcase rather than set on .card-title, because that class is
-   shared three ways and the showcase cards were the only ones still on 400: the
-   Affärsområden icon blocks get bold from .icon-block .card-title in style.css
-   and the service cards from .overlay .card-title in service-card.css. Widening
-   this selector would just duplicate what those two already do. */
 .showcase .card-title {
     font-weight: 700;
-    /* .card-title's var(--header-text) is #9c9c9c, which put a grey title over
-       white body copy — the wrong way round. The service cards set the pattern
-       the whole start page now follows: white heading, grey body. */
+
     color: var(--normal-text);
 }
 
-/* The grey half of that pair. The desktop rules further down already say this
-   per card size; this is the one that covers the phone, where they do not
-   apply. */
 .showcase .card-content p {
     color: var(--muted-text);
 }
 
-/* On a phone the 30% image column is a ~110px strip that crops the photo to
-   nothing and squeezes the copy into a ribbon. Stack instead: full-width image
-   on top, text underneath. */
 @media (max-width: 767px) {
     .feature-card.showcase {
         flex-direction: column;
         min-height: 0;
-        /* the column grid's 20px would inset the image from the card edge;
-           .card-content carries the text inset instead */
+
         padding: 0;
     }
 
@@ -320,29 +212,18 @@
 
 .product {
     padding: 10px;
-    /* The slide sets the width, so this is only "fill it". Height comes from the
-       slide too: the track stretches every slide to the tallest and the card is
-       a flex item of it, which is what lines the buttons up across cards. */
+
     width: 100%;
-    /* .feature-card is a flex row (image beside copy, which is what the showcase
-       cards want); a product card stacks instead. */
+
     flex-direction: column;
-    /* Title, subtitle and button centre; only the body copy below opts out. This
-       lives here rather than on a text-center class in the markup so the one
-       exception sits next to the rule it is an exception to. */
+
     text-align: center;
 }
 
-/* The paragraph is the exception: centred body copy is hard to read once it runs
-   past a couple of lines, and these run five or six. */
 .product .product-content {
     text-align: left;
 }
 
-/* The wrapper the markup already had around everything but the arrow. Making it
-   fill the card is what lets the button sit at the card's foot rather than
-   directly under the copy — that is where the 300px .product-content box and the
-   765px min-height used to put it, at the cost of ~200px of dead air. */
 .product-body {
     display: flex;
     flex-direction: column;
@@ -350,55 +231,22 @@
     width: 100%;
 }
 
-/* Pushed to the bottom of the card, so the two buttons line up whichever card
-   carries more copy. align-self is needed as well: a column flex item stretches
-   across the cross axis by default, which would blow the button out to the full
-   width of the card. */
 .product .button {
     margin-top: auto;
     align-self: center;
 }
 
-/* Product name. It is an h3 so the page keeps a single h1, but it is sized
-   like the h1 it replaced. 700 rather than the 300 it carried: at 40px the
-   light weight read as thin, and 700 is what .section-title uses. */
 .product h3 {
     font-size: 40px;
     font-weight: 700;
     padding: 20px 0;
 }
 
-/* The products ride the sitewide image carousel (css/image-carousel.css +
-   js/image-carousel.js) at every width, with no breakpoints of their own.
-
-   A card keeps its own size and however many fit is what you see: three side by
-   side on a wide screen, two on a laptop, one on a phone. Sizing cards to a
-   target number per view was the alternative, and it is what forced them to be a
-   function of the viewport — squeezed to 300px at 1020px — and needed two
-   breakpoints and a width cap to stay presentable.
-
-   The side padding is what centres the current view, and the script overwrites
-   it with (track width - view width) / 2 once it can measure how many cards fit.
-   That one number does all three tiers: a slide sitting at the left padding edge
-   IS a centred view, whether the view is one card or two, and the last view's
-   position works out to exactly the end of the scroll range. The values below
-   are the no-JS fallback, where this degrades to a plain scroller. */
 .product-track.image-carousel-track {
     gap: 40px;
     padding: 8px 20px 24px;
 }
 
-/* 350px is the measure the copy is written for. The 78vw floor is for phones
-   too narrow for that: it leaves room for the padding either side, which is what
-   lets the neighbouring cards peek in and advertise the swipe.
-
-   Slides snap to their start, which is the same thing as their view being
-   centred once the padding above is in place — a centre snap would instead
-   centre one card of a two-card view and cut both its neighbours in half.
-
-   display: flex so the card is stretched by the slide rather than resolving a
-   percentage height against it. float and padding are the column grid's, which
-   the track sizes instead. */
 .product-track > .image-carousel-slide {
     display: flex;
     flex: 0 0 auto;
@@ -408,9 +256,6 @@
     scroll-snap-align: start;
 }
 
-/* The cards are ~600px tall, so an arrow centred on the track would land
-   halfway down a body of text. Put them on the dot row instead, where they sit
-   at a fixed spot no matter how the card copy reflows. */
 .product-carousel .image-carousel-dots {
     align-items: center;
     min-height: 36px;
@@ -435,19 +280,12 @@
     right: 15px;
 }
 
-/* The one width that still needs saying out loud. Below ~400px the 88% leaves
-   the card under 293px, and "TD Asset Care" measures 273px at 40px bold — it
-   wrapped to two lines. 34px brings it to 232px, and is the size .section-title
-   already uses. */
 @media (max-width: 400px) {
     .product h3 {
         font-size: 34px;
     }
 }
 
-/* Slot for a product still waiting on its own artwork. Deliberately reads as a
-   hole rather than as a design: the hatch and the monospace label are there so
-   nobody mistakes it for a finished card. */
 .product-image-placeholder {
     height: 170px;
     margin: 22px 0 0;
@@ -466,14 +304,6 @@
     color: var(--faint-text);
 }
 
-/* The product card, at every width. It used to be desktop-only, which left the
-   phone showing the stock card — a 34px centred title with the subtitle in
-   italics under it — while the desktop showed a kicker above a 26px left-aligned
-   one. Two treatments of the same card on the same page.
-
-   One alignment for the whole card: the stock card centres title and subtitle
-   and left-aligns the copy, which is what made three of them side by side read
-   as messy. */
 .product-carousel .feature-card.product {
     padding: 0;
     text-align: left;
@@ -487,20 +317,12 @@
     font-size: 26px;
     font-weight: 700;
     padding: 6px 28px 0;
-    /* White heading over grey body, same pairing as the service cards. */
+
     color: var(--normal-text);
-    /* Centred to sit on the same axis as the icon badge above. Only the
-       heading pair moves — the body copy below stays left, the way every
-       section title on the page is centred over left-aligned prose. */
+
     text-align: center;
 }
 
-/* Reads as the kicker-then-title pair every section on the page already uses:
-   small label, larger name under it. order:-1 lifts it above the h3 without
-   moving it in the markup, where it belongs to the heading.
-
-   Muted, not the section subtitle's gold: gold is down to one job, the line
-   under a heading, and a card kicker is not that. */
 .product-carousel .product-sub {
     order: -1;
     font-size: 14px;
@@ -509,23 +331,15 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--muted-text);
-    /* 16px, not 26px: the icon badge above already carries the card's top
-       margin, and 26px on top of it opened a gap between the two. */
+
     padding: 16px 28px 0;
-    /* Centred with the h3 and the badge — see the note on .product h3. */
+
     text-align: center;
-    /* Two lines are always reserved, whether the kicker uses them or not: at
-       some widths "Kvalitetssäkra ert IBM Maximo" wraps and "För alla era EAM
-       behov" does not, which slid TD Test's name and photo a line lower than
-       its neighbours'. The height is border-box, so it is the 26px of padding
-       plus two 18px lines. */
+
     line-height: 18px;
     min-height: 62px;
 }
 
-/* Photo slot only. The :not() keeps this off the icon badge above, which sets
-   its own size — without it this rule wins on source order at equal
-   specificity and stretches the badge back into a 170px band. */
 .product-carousel .product-image-wrapper:not(.product-icon) {
     height: 170px;
     margin: 22px 0 0;
@@ -549,37 +363,13 @@
     bottom: 30px;
 }
 
-/* No desktop grid. A 3-then-2 column grid was tried above 768px and it is what
-   put a lone third card on its own row from 768 to 1023px — the orphan the
-   carousel exists to avoid. The cards keep their 350px at every width and
-   however many fit is a view; where all three fit there is nothing to scroll
-   and syncAffordances drops the arrows, dots and tab stop on its own. */
-
-/* Showcases. Four cards at ~585px each is a 2,600px stack on a phone, so below
-   the tablet breakpoint they ride the same sitewide carousel the products use.
-   The slides are the existing .row wrappers, which keeps the desktop stack
-   exactly as it was. */
 @media (max-width: 767px) {
 
-    /* Side padding is the gutter the next card peeks through — that peek is
-       the only thing telling a reader there is more to swipe to. */
     .showcase-track.image-carousel-track {
         gap: 16px;
         padding: 8px 11% 16px;
     }
 
-    /* .row hands these 15px of padding and a full width; the track sizes them
-       instead.
-
-       display: flex is what equalises the card heights. The track already
-       stretches every slide to the tallest, but the card inside is a float, and
-       its height: 100% below would not resolve against the slide's stretched
-       height — cards came out 577px or 651.5px depending on how much copy they
-       carry, and the gutter peek of the next card made the difference obvious.
-       As a flex parent the slide stretches the card itself, so the copy no
-       longer sets the height. It has to stay row direction: in a column the
-       stretch would apply to the width instead and the heights would drift
-       apart again. */
     .showcase-track > .image-carousel-slide {
         display: flex;
         float: none;
@@ -592,9 +382,6 @@
         margin: 0;
     }
 
-    /* Same reasoning as the products track: the cards are tall enough that an
-       arrow centred on the track lands in the middle of a paragraph, so the
-       arrows sit on the dot row. */
     .showcase-carousel .image-carousel-dots {
         align-items: center;
         min-height: 36px;
@@ -620,7 +407,6 @@
     }
 }
 
-/* Desktop keeps the plain stacked rows. */
 @media (min-width: 768px) {
     .showcase-track.image-carousel-track {
         display: block;
@@ -628,12 +414,6 @@
         padding: 0;
     }
 
-    /* Each slide is a .row wrapper, so it arrived carrying .row's 75px of top
-       padding: the section heading sat 75px above the first card, where Tjänster
-       and Produkter sit 20px above theirs (their slides are col- cells, and 20px
-       is the column gutter). 20px on the first slide matches them; 35px on the
-       rest pulls the four cards together into one group instead of four
-       separately floating blocks. */
     .showcase-track > .image-carousel-slide {
         padding-top: 35px;
     }
@@ -642,10 +422,6 @@
         padding-top: 20px;
     }
 
-    /* Alternate which side the image sits on down the stack, so four cards on
-       the same template do not read as one repeated block. The image is
-       absolutely positioned inside the card, so the flip is only a matter of
-       which edge it is pinned to and which side the copy reserves for it. */
     .showcase-track > .image-carousel-slide:nth-child(even) .card-image-wrapper {
         left: auto;
         right: 0;
@@ -656,11 +432,6 @@
         margin-right: 30%;
     }
 
-    /* The card's bottom right corner is over the photo on a flipped card, where
-       a white glyph on an unknown image is a coin toss. Pull it in to the inner
-       edge of the copy instead, which is the same place it sits on an unflipped
-       card — bottom right of the text block, still pointing right. The 45px of
-       padding-right the base rule keeps clear for it does the same job here. */
     .showcase-track > .image-carousel-slide:nth-child(even) .card-arrow {
         right: calc(30% + 20px);
     }
@@ -671,27 +442,8 @@
     }
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* Showcases: featured card + reveal
-/*------------------------------------------------------------------------------------------*/
-
-/* One featured card over a grid of the rest, instead of every case on the same
-   alternating full-width template. Which card is featured is a [data-featured]
-   attribute on its slide, written by js/showcase-featured.js and rotated a step
-   per visit; the cases past the first full row get [data-overflow] and wait
-   behind the button. Nothing here keys off DOM order, so cases can be added,
-   removed or reordered in the markup freely.
-
-   Desktop only — everything below 768px is the phone carousel above, which is
-   why the reveal button hides itself there: a swipe already reaches every case.
-
-   These rules come after the plain stacked-row block above on purpose; several
-   of them outrank it. */
 @media (min-width: 768px) {
 
-    /* Full rows fill exactly, so centring only shows on a part-filled last row:
-       one or two revealed cards sit centred under the row above instead of
-       hanging off the left edge. */
     .showcase-featured .showcase-track.image-carousel-track {
         display: flex;
         flex-wrap: wrap;
@@ -700,9 +452,6 @@
         padding: 20px 20px 0;
     }
 
-    /* .clearfix's ::after counts as a flex item on the last line, and the gap
-       before it pulls the centred row 14px left. Nothing to clear: the track is
-       a flex container at every width. */
     .showcase-featured .showcase-track.image-carousel-track::after {
         display: none;
     }
@@ -711,8 +460,6 @@
         display: none;
     }
 
-    /* !important beats the 35px/20px top padding the stacked rows carry: these
-       are flex items in a gapped row now, and the gap is the whole spacing. */
     .showcase-featured .showcase-track > .image-carousel-slide {
         display: flex;
         float: none;
@@ -732,12 +479,6 @@
         margin: 0;
     }
 
-    /* The featured card keeps the image-beside-copy layout, with a wider photo
-       and the largest title on the page after the section titles.
-
-       Written against the track child rather than [data-featured] alone: the
-       alternating flip above is keyed to :nth-child(even), any slide can be the
-       featured one, so these have to outrank it. */
     .showcase-featured .showcase-track > .image-carousel-slide[data-featured] .feature-card.showcase {
         min-height: 340px;
     }
@@ -770,8 +511,6 @@
         right: 20px;
     }
 
-    /* The rest stack: photo band on top, copy under it. right/margin-right undo
-       the alternating flip the even slides carry. */
     .showcase-featured .image-carousel-slide:not([data-featured]) .feature-card.showcase {
         flex-direction: column;
         min-height: 0;
@@ -793,13 +532,6 @@
         justify-content: flex-start;
     }
 
-    /* Titles in the set run one to three lines, so left alone the body copy
-       starts at a different height on every card. Three lines are reserved —
-       the longest title in the set — which puts the paragraph, and with it the
-       whole lower half of the card, on the same line across the row. The 14px
-       is .card-title's own 7px top and bottom padding, inside the min-height
-       because box-sizing is border-box. A title longer than three lines still
-       grows the box; nothing is clipped. */
     .showcase-featured .image-carousel-slide:not([data-featured]) .card-title {
         font-size: 19px;
         line-height: 1.35;
@@ -807,8 +539,6 @@
         text-wrap: pretty;
     }
 
-    /* Clamped so the cards read as a set of the same shape; the full case is one
-       click away. */
     .showcase-featured .image-carousel-slide:not([data-featured]) .card-content p {
         font-size: 14px;
         line-height: 23px;
@@ -826,9 +556,6 @@
 
 }
 
-/* Two up between 768 and 1023px; a third of a tablet is not a card. The logic
-   class knows this breakpoint too — it shows one fewer case before the button,
-   so the visible set is still the featured card plus one full row. */
 @media (min-width: 768px) and (max-width: 1023px) {
 
     .showcase-featured .showcase-track > .image-carousel-slide {
@@ -843,11 +570,6 @@
 
 }
 
-/* Reveal style "list": the cards behind the button come back as full-width rows
-   in the original alternating layout, so the section reads featured card, one
-   row of three, then a list. "grid", the default, keeps them as third-width
-   cards, which can leave a part-filled row. Switched at the top of
-   js/showcase-featured.js. */
 @media (min-width: 768px) {
 
     .showcase-featured[data-reveal-style="list"] .image-carousel-slide[data-overflow] {
@@ -894,10 +616,6 @@
         right: 20px;
     }
 
-    /* Same alternation the stacked list had: every other row puts the photo
-       right. Keyed to the parity the logic class writes rather than to
-       :nth-child — which slides are revealed depends on which one rotation
-       featured. */
     .showcase-featured[data-reveal-style="list"] [data-overflow][data-row-parity="even"] .card-image-wrapper {
         left: auto;
         right: 0;
@@ -914,19 +632,12 @@
 
 }
 
-/* The reveal button is the site's own square button. A <button> element needs
-   the two things an <a class="button"> gets for free — no UA background, a
-   pointer cursor — and .button's stock 35px margin cancelled, since the row
-   below carries the spacing. Size, weight, colour and border all come from
-   .button in style.css and colors.css. */
 .showcase-more {
     display: flex;
     justify-content: center;
     padding: 38px 20px 0;
 }
 
-/* display:flex outranks the browser's own [hidden] { display: none }, so the
-   script setting .hidden would otherwise do nothing visible. */
 .showcase-more[hidden] {
     display: none;
 }
@@ -937,7 +648,6 @@
     cursor: pointer;
 }
 
-/* The revealed cards fade and rise into place, staggered by the logic class. */
 .showcase-featured .image-carousel-slide[data-revealing] {
     opacity: 0;
     transform: translateY(14px);
@@ -947,7 +657,6 @@
     transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Phones swipe the whole set, so there is nothing to reveal. */
 @media (max-width: 767px) {
     .showcase-more {
         display: none;

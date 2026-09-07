@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
 
-    <!--Page Title-->
     <title>Total Digital – Experts in IBM Maximo and ArcGIS</title>
 
-    <!--Meta Description-->
     <meta name="description"
         content="Total Digital provides solutions in asset management, GIS, remote sensing, the environment, and AI – with specialists who have an average of over 20 years of experience.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--Canonical URL and Link Previews-->
     <link rel="canonical" href="https://www.totaldigital.se/en/" />
     <link rel="alternate" hreflang="sv" href="https://www.totaldigital.se/" />
     <link rel="alternate" hreflang="en" href="https://www.totaldigital.se/en/" />
@@ -30,58 +27,38 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Total Digital" />
 
-    <!--Favicon and App Icons-->
     <link rel="icon" href="../images/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../images/favicon.png" />
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
     <meta name="theme-color" content="#C63D02" />
 
-    <!--The banner is a CSS background, so the browser cannot find it until
-        colors.css has been parsed. It is the largest thing on the first screen,
-        so tell it up front.-->
     <link rel="preload" href="../images/banner-images/banner_wide_clean.webp" as="image" media="(min-width: 1024px)" />
     <link rel="preload" href="../images/banner-images/banner_full_clean.webp" as="image" media="(max-width: 1023px)" />
 
-    <!-- Main CSS Files -->
     <link rel="stylesheet" href="../css/style.css">
 
-    <!-- Color CSS -->
     <link rel="stylesheet" href="../css/colors.css">
 
-    <!-- Animations CSS -->
     <link href="../css/animations.css" rel="stylesheet" type="text/css">
 
-    <!-- Logo Slider CSS -->
     <link href="../css/logo-slider.css" rel="stylesheet" type="text/css">
 
-    <!-- Area Band CSS -->
     <link href="../css/area-band.css" rel="stylesheet" type="text/css">
 
-    <!-- Feature Card CSS -->
     <link href="../css/feature-card.css" rel="stylesheet" type="text/css">
 
-    <!-- Service Card CSS -->
     <link href="../css/service-card.css" rel="stylesheet" type="text/css">
 
-    <!-- Image Carousel CSS -->
     <link href="../css/image-carousel.css" rel="stylesheet" type="text/css">
 
-    <!-- Large Footer CSS -->
     <link href="../css/footer-large.css" rel="stylesheet" type="text/css">
 
-    <!--Ljust tema. Reglerna är låsta till html.theme-light, så det här
-        arket ändrar inget förrän js/theme.js sätter klassen.-->
     <link rel="stylesheet" href="../css/light.css">
 
-    <!--Måste ligga blockerande i <head>: temat ska stå på <html> innan
-        första bildrutan, annars visas mörkt tema en bildruta och byter sen.-->
     <script src="../js/theme.js"></script>
 
-    <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="../fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!--Structured Data. Same organisation as the Swedish page, so the @id and
-        the canonical company URL are deliberately identical.-->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -105,9 +82,6 @@
     }
     </script>
 
-    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Blocking on purpose: the hero
-         expertise reel is above the fold, and deferring pops the icons in
-         after first paint. Same as the Swedish index.html. -->
     <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous"></script>
 </head>
 
@@ -115,48 +89,28 @@
 
     <div id="wrapper">
 
-        <!--data-enllax-ratio removed: the hero's parallax is its own handler in
-            js/site.js (--hero-shift), which coexists with the per-breakpoint
-            framing anchors in css/colors.css where enllax's inline writes could
-            not.-->
         <header id="home" class="scrollto clearfix">
             <div id="header" class="nav-collapse">
                 <div class="row clearfix">
                     <div class="col-1">
 
-                        <!--Logo-->
                         <div id="logo">
 
-                            <!--Both logos sit in one link back to the start page.-->
                             <a href="index.html" aria-label="Total Digital">
 
-                            <!--Logo that is shown on the banner-->
                             <img src="../images/banner-images/td_white.webp" id="banner-logo" width="412" height="122"
                                 alt="Total Digital" />
-                            <!--End of Banner Logo-->
 
-                            <!--The Logo that is shown on the sticky Navigation Bar-->
                             <img src="../images/banner-images/td_white.webp" id="navigation-logo" width="412" height="122"
                                 alt="Total Digital" />
-                            <!--End of Navigation Logo-->
+
                             </a>
 
                         </div>
-                        <!--End of Logo-->
 
-
-                        <!--Main Navigation-->
                         <nav id="nav-main">
                             <ul>
-                                <!--Nav items that own subpages are <details> groups. Same reason as the
-                                    language switcher below: there is no event handler to copy when
-                                    site.js clones this markup into the mobile menu. The subpage links
-                                    are relative so the site works wherever it is mounted, and site.js
-                                    keeps stickyNavbar from cancelling the click on them.-->
-                                <!--The items follow the order of the sections. "Home" is
-                                    gone: the logo beside it already goes there, and the
-                                    banner is what you are looking at when the nav is not
-                                    sticky.-->
+
                                 <li>
                                     <a href="#businessareas">Technology</a>
                                 </li>
@@ -186,31 +140,19 @@
                                         </div>
                                     </details>
                                 </li>
-                                <!--Testimonials and Partners were two entries for what is
-                                    now one section.-->
+
                                 <li>
                                     <a href="#trust">Customers</a>
                                 </li>
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">About</a>
                                 </li>
-                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
-                                    likadant, men som <button>: inget navigeras till, och knappen
-                                    hamnar därmed utanför stickyNavbars "li a".
 
-                                    Ligger före språkväljaren i markupen just för att den ligger
-                                    till vänster om den på skärmen. Båda är absolutpositionerade i
-                                    den breda menyn, så ordningen här syns inte — men den styr
-                                    tabbordningen, och omvänd ordning gav globen fokus före
-                                    temaknappen fast temaknappen står först.-->
                                 <li class="nav-theme">
                                     <button type="button" class="theme-toggle" aria-label="Switch to light mode"
                                             title="Switch to light mode" data-label-light="Switch to light mode" data-label-dark="Switch to dark mode"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
-                                <!--Language dropdown. The option links are relative so the site works
-                                    wherever it is mounted; site.js keeps stickyNavbar from cancelling
-                                    the click. <details> keeps the whole control script-free, so it
-                                    still works once site.js clones this markup into the mobile menu.-->
+
                                 <li class="nav-lang">
                                     <details>
                                         <summary aria-label="Choose language"><svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z" /></svg></summary>
@@ -222,10 +164,7 @@
                                 </li>
                             </ul>
                         </nav>
-                        <!--End of Main Navigation-->
 
-                        <!--The same switcher again, here beside the hamburger. CSS shows one of
-                            them, never both.-->
                         <div id="nav-trigger">
                             <nav id="nav-theme-mobile">
                                 <button type="button" class="theme-toggle" aria-label="Switch to light mode"
@@ -245,9 +184,8 @@
 
                     </div>
                 </div>
-            </div><!--End of Header-->
+            </div>
 
-            <!--Banner Content-->
             <div id="banner-content" class="row clearfix">
 
                 <div class="col-61">
@@ -255,9 +193,6 @@
                     <div class="section-heading">
                         <h1 id="main-heading">NOTHING<br />BEATS<br />EXPERIENCE</h1>
 
-                        <!--Expertise line. The four affärsområden sit in the markup and CSS
-                            slides the reel; the fifth repeats the first so the loop does not
-                            jump. -->
                         <p class="expertise-line expertise-line-grow">
                             <span class="expertise-label">We know</span>
                             <span class="expertise-rotator" aria-hidden="true">
@@ -269,57 +204,30 @@
                                     <span aria-hidden="true"><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>Asset Management</span>
                                 </span>
                             </span>
-                            <!--The reel is four items deep in the DOM and only clipped by CSS, so
-                                a screen reader used to hear "We know Asset ManagementGISRemote SensingAI"
-                                as one word. It is hidden above and read as a sentence here; the
-                                visible "We know" is not repeated, so the line is spoken once.-->
+
                             <span class="sr-only">asset management, GIS, remote sensing and AI.</span>
                         </p>
-                        <!--End of Expertise line-->
 
-                        <!--One paragraph, not two: .banner-intro:after draws the
-                            orange rule, and a second <p> would have put a second
-                            rule in the middle of the copy. The second sentence is
-                            a block span carrying the air instead - see
-                            .banner-intro-next.-->
                         <p class="banner-intro">Specialist expertise that makes a difference.
                             <span class="banner-intro-next">We bring together asset management, GIS, remote sensing
                             and AI – connecting the condition, location and development of your assets.</span></p>
                     </div>
 
-                    <!--Call to Action-->
-                    <!--<a href="mailto:info@totaldigital.se" class="button">CONTACT US NOW</a>-->
-                    <!--End Call to Action-->
-
                 </div>
 
-            </div><!--End of Row-->
+            </div>
 
-            <!--The scroll cue. It sits last in #home, outside the row: it belongs
-                to the view and not to the text, and #home is the thing that is
-                exactly one screen tall. The label sits inside the link, so the
-                aria-label opens on the same words – otherwise the name read out
-                does not match the one on screen. data-scroll-to is picked up by
-                js/site.js, which scrolls there smoothly with the same speed and
-                easing as the menu's own anchors. See .scroll-cue in
-                css/style.css.-->
             <a href="#businessareas" class="scroll-cue" data-scroll-to
                 aria-label="Read more about Technology areas"><span class="scroll-cue-label">Read more</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
 
         </header>
 
-        <!--Main Content Area-->
         <main id="content">
 
-            <!--Introduction-->
             <section id="businessareas" class="introduction scrollto">
 
                 <div class="row clearfix">
 
-                    <!--The subheading sits inside .section-heading, not in a
-                        column of its own beside the heading. The orange rule
-                        therefore hangs below the subheading and closes the
-                        whole block – see css/colors.css.-->
                     <div class="col-1">
                         <div class="section-heading">
                             <h2 class="section-kicker">OUR EXPERTISE</h2>
@@ -327,57 +235,37 @@
                         </div>
                     </div>
 
-                    <!--The four areas as one band instead of four cards: no frame, no
-                        shadow, no icon watermark, and one sentence each instead of three
-                        bullets. The bullets repeated what Services says two sections
-                        further down, and four framed boxes gave this section the same
-                        weight as Showcases and Products, which actually lead somewhere.
-                        See css/area-band.css.-->
                     <div class="col-1 area-band">
 
-                        <!--Area-->
                         <div class="area-band-item">
                             <i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>Asset Management</h3>
                             <p>Maintenance, operational planning and life cycle — with the asset information
                                 gathered in IBM Maximo.</p>
                         </div>
-                        <!--End of Area-->
 
-                        <!--Area-->
                         <div class="area-band-item">
                             <i class="fa-solid fa-map-location-dot" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>GIS</h3>
                             <p>Geodata, mapping and analysis, indoors and out — with system support in Esri
                                 ArcGIS.</p>
                         </div>
-                        <!--End of Area-->
 
-                        <!--Area-->
                         <div class="area-band-item">
                             <i class="fa-solid fa-satellite" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>Remote Sensing</h3>
                             <p>Satellite, drone and sensor data for environmental monitoring and change detection.</p>
                         </div>
-                        <!--End of Area-->
 
-                        <!--Area-->
                         <div class="area-band-item">
                             <i class="fa-solid fa-microchip-ai" style="color: var(--primary);" aria-hidden="true"></i>
                             <h3>AI</h3>
                             <p>Predictive maintenance, analysis and decision support —
                             with applied AI for smarter, more proactive decisions.</p>
                         </div>
-                        <!--End of Area-->
 
                     </div>
 
-                    <!--The industries the four areas are sold into, on the same marquee
-                        component as the partner logos (css/logo-slider.css +
-                        js/logo-slider.js). A row that never ends does not claim to be
-                        the whole list, and one more industry is one more <span> — it
-                        does not have to fit on a line. The icons are the ones this
-                        section used back when it listed industries instead.-->
                     <div class="col-1 industry-strip">
                         <p class="industry-label">Our customers operate within</p>
                         <div class="logo-slider industry-slider" data-speed="0.35">
@@ -395,14 +283,7 @@
                 </div>
 
             </section>
-            <!--End of Introduction-->
 
-
-            <!--One featured case over a grid of the rest. Which case is featured is
-                the [data-featured] attribute below; js/showcase-featured.js moves it a
-                step per visit and hides anything past the first full row behind the
-                button at the foot of the section. Below 768px this is the same swipe
-                carousel it has always been.-->
             <section id="showcases" class="row scrollto clearfix showcase-featured" data-featherlight-content
                 data-featherlight-filter="a">
 
@@ -415,94 +296,76 @@
                     data-carousel-noun="showcase" data-carousel-autoplay="4000">
                     <div class="showcase-track image-carousel-track clearfix">
 
-                <!--The starting featured card. The script rewrites this attribute on
-                    load, so which one carries it in the markup only decides the very
-                    first paint.-->
                 <div class="row no-padding-bottom clearfix image-carousel-slide" data-featured>
                     <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
+
                         <div class="card-image-wrapper">
                             <img src="../images/showcase-images/rail-sensor-cropped.png" loading="lazy" alt="">
                         </div>
 
-                        <!-- Right 80% Content Section -->
                         <div class="card-content">
                             <h3 class="card-title"><a href="railway-safety.html" class="card-link card-link-stretch">
                                     Predictive railway safety with satellite data and AI</a></h3>
                             <p>A satellite- and AI-based decision support system that forecasts rail
                                 temperature and the risk of track buckling 24–48 hours in advance.
                             </p>
-                            <!--Combining multi-sensor satellite data, weather forecasts and infrastructure information
-                                makes proactive maintenance and safer railway operations possible.</p>-->
+
                         </div>
 
-                        <!-- New text-based Arrow Icon -->
                         <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
                     </div>
                 </div>
                 <div class="row no-padding-bottom clearfix image-carousel-slide">
                     <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
+
                         <div class="card-image-wrapper">
                             <img src="../images/showcase-images/interferogram.webp" loading="lazy" alt="">
                         </div>
 
-                        <!-- Right 80% Content Section -->
                         <div class="card-content">
                             <h3 class="card-title"><a href="sar-processing.html" class="card-link card-link-stretch">
                                     Synthetic Aperture Radar In(SAR) for scalable monitoring</a></h3>
                             <p>We process high- and medium-resolution SAR data to map ground movement at both local and regional scale.
                             </p>
-                            <!--Applying data fusion techniques to medium-resolution SAR also allows consistent
-                                monitoring of large areas, supporting infrastructure analysis and
-                                decision-making.</p>-->
+
                         </div>
 
-                        <!-- New text-based Arrow Icon -->
                         <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
                     </div>
                 </div>
                 <div class="row no-padding-bottom clearfix image-carousel-slide">
                     <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
+
                         <div class="card-image-wrapper">
                             <img src="../images/showcase-images/water-leak.webp" loading="lazy" alt="">
                         </div>
 
-                        <!-- Right 80% Content Section -->
                         <div class="card-content">
                             <h3 class="card-title"><a href="leak-detection.html" class="card-link card-link-stretch">
                                     AI-based leak detection in water infrastructure</a></h3>
                             <p>We combine multi-sensor satellite data and AI to identify and locate leaks in
                                 water distribution networks. </p>
-                            <!--By enabling continuous monitoring across large areas, the solution helps reduce
-                                water losses, lower operating costs and support a more sustainable water
-                                supply over the long term.</p>-->
+
                         </div>
 
-                        <!-- New text-based Arrow Icon -->
                         <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
                     </div>
                 </div>
                 <div class="row no-padding-bottom clearfix image-carousel-slide">
                     <div class="col-1 feature-card showcase text-left">
-                        <!-- Left 20% Image Section -->
+
                         <div class="card-image-wrapper">
                             <img src="../images/showcase-images/rail-damage.png" loading="lazy" alt="">
                         </div>
 
-                        <!-- Right 80% Content Section -->
                         <div class="card-content">
                             <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
                                     AI-based analysis of rail defects from imagery</a></h3>
                             <p>We develop methods for automatically detecting rail defects using deep learning
                                 and image data from railway inspections. </p>
-                            <!--By analysing visual patterns in track
-                                imagery, the system can identify defects at an early stage and support more
-                                efficient maintenance and higher operational reliability.</p>-->
+
                         </div>
 
-                        <!-- New text-based Arrow Icon -->
                         <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
                     </div>
                 </div>
@@ -510,14 +373,11 @@
                     </div>
                 </div>
 
-                <!--Hidden by the script when there is nothing left to reveal, which is
-                    the case on a wide screen until there is a fifth showcase.-->
                 <div class="showcase-more" hidden>
                     <button type="button" class="button showcase-more-button">SHOW MORE</button>
                 </div>
 
             </section>
-
 
             <section id="services" class="row scrollto clearfix" data-featherlight-content
                 data-featherlight-filter="a">
@@ -527,10 +387,6 @@
                     <p class="section-title">How can we help you?</p>
                 </div>
 
-                <!--The eight services grouped by how they are bought, four cards instead
-                    of eight photo tiles. The carousel wrapper is the one the tiles used:
-                    below 768px these still swipe, above it they lay out two up. See
-                    css/service-card.css.-->
                 <div class="service-carousel image-carousel" data-image-carousel data-carousel-label="Services"
                     data-carousel-noun="service" data-carousel-autoplay="4000">
                     <div class="service-track image-carousel-track clearfix">
@@ -612,10 +468,6 @@
 
             </section>
 
-
-            <!--Content Section-->
-            <!-- About us lives on about.html; the nav entry links there. -->
-
             <section id="products" class="scrollto clearfix ">
                 <div class="row clearfix">
 
@@ -624,16 +476,11 @@
                         <p id="product-heading" class="section-title">Our experience, packaged for you</p>
                     </div>
 
-                    <!-- No text-center: the cards centre their own title, subtitle and
-                         button and left-align the body copy, which the one class could
-                         not express. See .product in css/feature-card.css. -->
                     <div class="product-carousel image-carousel" data-image-carousel
                         data-carousel-label="Products"
                         data-carousel-noun="product"
                         data-carousel-fit>
-                        <!-- No clearfix: the track is a flex container at every width, so
-                             there is nothing to clear, and .clearfix's ::after counts as a
-                             flex item — the gap before it pushed the centred row off-centre. -->
+
                         <div class="product-track image-carousel-track">
 
                             <div class="col-2 image-carousel-slide">
@@ -649,10 +496,7 @@
                                             <p>TD Asset Care makes it easy to manage and maintain physical assets. It combines proven Enterprise Asset Management (EAM) functionality with industry-specific features and can be deployed on-premises, hybrid or in the cloud.</p>
                                         </div>
                                     </div>
-                                    <!-- Same icon again, blown up in the corner as a watermark.
-                                         A second <i> rather than a background-image on ::after:
-                                         the kit renders inline SVG, so there is no URL for a
-                                         background to point at. See .product-icon-mark. -->
+
                                     <i class="fa-duotone fa-solid fa-chart-user product-icon-mark" aria-hidden="true"></i>
                                     <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
                                 </div>
@@ -675,11 +519,6 @@
                                 </div>
                             </div>
 
-                            <!-- td_linear.html exists now, so the card points there and
-                                 carries the page's own intro instead of the placeholder
-                                 text. The card used to borrow TD Test's photo for want of
-                                 artwork of its own; it is an icon like the other two now,
-                                 so the placeholder is gone. -->
                             <div class="col-2 image-carousel-slide">
                                 <div class="feature-card product">
                                     <div class="product-body">
@@ -702,9 +541,6 @@
                 </div>
             </section>
 
-            <!--Customers and partners. One section: what customers say, then who we
-                work with. They were two sections saying the same thing about trust,
-                and the partner logos had a whole screen to themselves.-->
             <aside id="trust" class="scrollto" data-enllax-ratio=".2">
                 <div class="row clearfix">
 
@@ -726,16 +562,14 @@
                     </blockquote>
 
                     <div class="col-1 trust-partners">
-                        <!--The lead sentence is its own line: the paragraph was the one
-                            statement in the section and it read as a caption under the
-                            testimonials. See .partner-lead in css/logo-slider.css.-->
+
                         <p class="section-subtitle partner-lead">
                             <strong>We believe in strong partnerships.</strong>
                             A strong partner network makes us better. Through close collaboration we combine the right
                             skills and resources to create greater value for our customers.</p>
                         <div class="logo-slider" id="logoSlider">
                             <div class="logo-track" id="logoTrack">
-                            <!-- Replace these placeholder URLs with your actual partner logo image paths -->
+
                             <a href="https://www.ibm.com" target="_blank" rel="noopener noreferrer"><img src="../images/company-images/ibm.webp" width="600" height="400" loading="lazy"
                                     alt="IBM"></a>
                             <a href="https://www.esri.se" target="_blank" rel="noopener noreferrer"><img src="../images/company-images/esri.webp" width="600" height="400" loading="lazy"
@@ -754,19 +588,12 @@
 
                 </div>
             </aside>
-            <!--End of Customers and partners-->
 
         </main>
-        <!--End Main Content Area-->
 
-
-        <!--Footer. The large variant (css/footer-large.css), laid out in columns:
-            the page ends with a way into everything rather than one 12px line.-->
         <footer class="clearfix footer-large">
             <div class="row clearfix">
-                <!--The order in the markup is locked: the rules below 1023px in css/footer-large.css
-                    move children 1 and 4 below the link lists with order, and count on
-                    exactly this order.-->
+
                 <div class="footer-columns">
 
                     <div class="footer-brand">
@@ -786,10 +613,6 @@
                         <a href="about.html#career">Careers & Degree Projects</a>
                     </div>
 
-                    <!--The certification marks stand where a third link list stood: the
-                        products are reachable from the top menu on every page, and the footer
-                        is where the marks belong. The images lead to the section on the about
-                        page that says what is certified.-->
                     <div class="footer-col footer-certs">
                         <p class="footer-heading">Certifications</p>
                         <div class="cert-badges">
@@ -816,11 +639,9 @@
                 </div>
             </div>
         </footer>
-        <!--End of Footer-->
 
     </div>
 
-    <!-- Include JavaScript resources -->
     <script src="../js/jquery.1.8.3.min.js"></script>
     <script src="../js/wow.min.js"></script>
     <script src="../js/jquery.enllax.min.js"></script>
@@ -833,7 +654,6 @@
     <script src="../js/logo-slider.js"></script>
     <script src="../js/image-carousel.js"></script>
     <script src="../js/showcase-featured.js"></script>
-
 
 </body>
 

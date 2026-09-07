@@ -1,39 +1,13 @@
-/*------------------------------------------------------------------------------------------*/
-/* About page
-/*------------------------------------------------------------------------------------------*/
-
-/* Page-scoped sheet, loaded only by about.html — same arrangement as td-test.css.
-   Nothing here touches style.css or colors.css.
-
-   The reset in style.css zeroes margin and padding on headings and lists but
-   deliberately not on p, so every p below states its own margin rather than
-   inheriting the UA's 1em. Everything is border-box (style.css:64). */
 
 
-/* --------- 0. Introduction ---------- */
-
-/* Two columns rather than one stacked centre run: the opening statement sits
-   left and the body copy beside it, so the page does not open on a narrow strip
-   and then widen for every section under it.
-
-   The h1 carries .about-title, not .section-title, which means the accent rule
-   in colors.css (.section-heading:has(> .section-subtitle) .section-title:after)
-   does not match here and the orange bar under the intro heading is gone. That
-   is deliberate — at 58px the title is the statement and does not need
-   underlining. Every other section keeps its rule. */
 .about-hero {
     display: grid;
     grid-template-columns: 1.05fr 1fr;
     gap: 40px 70px;
-    /* The body column is centred against the heading block rather than sharing
-       its top edge: the left cell is kicker + 58px title + lead and runs a good
-       deal taller, so a shared top edge left the body copy hanging at the top
-       of the row with all the slack under it. */
+
     align-items: center;
 }
 
-/* The 6px of top padding lines the cap height up with the body column beside
-   it, which starts on a 30px line box. */
 .about-title {
     margin: 0;
     padding: 6px 0 0 0;
@@ -45,8 +19,6 @@
     text-wrap: balance;
 }
 
-/* The lead sits outside .section-heading, so it is not the .section-subtitle
-   the shared rules key off — it only borrows the colour. */
 .about-lead {
     margin: 24px 0 0 0;
     font-size: 22px;
@@ -67,16 +39,6 @@
     margin-bottom: 0;
 }
 
-/* Closes the opening block. The intro is the one section with no orange rule
-   under its heading — the 58px title carries it instead — so without this the
-   hero runs straight into Historia with nothing marking where it ends. Same
-   token as the rails and the Karriär divider, so the page has one line colour.
-
-   It sits in a .col-1 of its own rather than loose in the .row: every column
-   on the site is floated with 20px of padding by style.css, so a bare <hr>
-   would neither clear the hero above it nor pick up the gutter the hero's own
-   text is inset by. Those two paddings already stack to 40px, so the margin
-   here is only what tops that up. */
 .about-hero-rule {
     height: 1px;
     margin: 14px 0 0 0;
@@ -84,21 +46,6 @@
     background: var(--surface-border);
 }
 
-
-/* --------- 1. Historia: year rail ---------- */
-
-/* An ordered list, because the entries are chronological and that is what a
-   screen reader should announce.
-
-   This replaces an alternating centre-spine timeline. Alternating halves the
-   measure for every entry and, once the entries run past a line, reads as two
-   ragged columns rather than one sequence. Here the years are a right-aligned
-   rail on the left and each entry keeps a full text column beside it.
-
-   The spine is a single line on the <ol> rather than a run of per-item
-   segments: segments have to reach from one dot to the next across the items'
-   own padding, which never quite lines up. It stops 24px short of the bottom so
-   it does not overrun past the last dot into the last entry's descenders. */
 .year-rail {
     position: relative;
     list-style: none;
@@ -106,10 +53,6 @@
     padding: 0;
 }
 
-/* Follows the year column: the dot's right edge sits 24px past it and the dot
-   is 12px wide, so the dot centre — and therefore the line — lands at
-   column + 24 - 6, less half the line's own 2px. 118 + 17 = 135. Change the
-   column below and this has to move with it. */
 .year-rail::before {
     content: "";
     position: absolute;
@@ -120,12 +63,6 @@
     background: var(--surface-border);
 }
 
-/* A four-digit year at 34px bold measures 77.8px, so the column width sets the
-   inset directly: 78 puts the years flush with the section heading, 160 (where
-   this started) pushed them 82px inside it. 118 lands the rail 40px in — read
-   as indented from the heading without the entries starting a third of the way
-   across the page. The years are all the same width, so right-aligning them is
-   what keeps the dots on one vertical whatever the column does. */
 .year-rail li {
     display: grid;
     grid-template-columns: 118px minmax(0, 1fr);
@@ -137,10 +74,6 @@
     padding-bottom: 0;
 }
 
-/* 34px bold clears the 18.66px bold threshold for large text, which is what
-   lets the orange stay: #ff4b00 on the #333 body is 3.8:1, enough for large
-   text and not enough for small. Shrink this and the year needs a lighter
-   colour. */
 .rail-year {
     position: relative;
     margin: 0;
@@ -151,9 +84,6 @@
     color: var(--primary);
 }
 
-/* The dot rides on the year rather than being its own element, so the markup
-   carries no decorative span. The halo is the page ground, not a surface — it
-   is what punches the dot out of the spine running behind it. */
 .rail-year::after {
     content: "";
     position: absolute;
@@ -184,29 +114,6 @@
     color: var(--muted-text);
 }
 
-
-/* --------- 2. Ledningsgrupp ---------- */
-
-/* Three across and two centred underneath, in a 700px block in the middle of
-   the page rather than five spanning the full 1245px container. Five
-   near-white studio portraits edge to edge across the whole measure was the
-   heaviest thing on the page by a distance.
-
-   Flex, not grid: a 3-column grid leaves the two trailing cards stuck to the
-   left edge, and centring a short last row is exactly what justify-content
-   does and grid does not. It also means adding a sixth person needs no change
-   here — they simply fill the second row.
-
-   700px is the widest that is still narrower than the old five-across card
-   (220px against 225px) while keeping every name on one line. Below about
-   700 the block starts breaking names in two: at 660 "Monica Andreasson"
-   wraps, at 620 "Linus Kozsinowski" goes too, and a wrapped name pushes its
-   role down over the face.
-
-   The card is the photo: no border, no visible box, name and role sitting on a
-   gradient over the bottom of the portrait. The five studio shots are all
-   near-white, so a grey bordered box around each one read as a row of passport
-   photos — going full-bleed is what stops that. */
 .person-grid {
     display: flex;
     flex-wrap: wrap;
@@ -216,27 +123,16 @@
     margin: 0 auto;
 }
 
-/* The grid is also the carousel track below 768 (see the media query at the
-   foot of this file), so above the breakpoint it has to be talked back out of
-   every scroller property css/image-carousel.css gives it. Same shape as
-   .service-track in css/service-card.css, and for the same reason. */
 @media (min-width: 768px) {
 
     .person-grid.image-carousel-track {
         overflow: visible;
         scroll-snap-type: none;
         padding: 0;
-        /* .image-carousel-track sets 24px and its sheet loads after this one,
-           so a bare .person-grid loses the tie on source order. The slide's
-           calc((100% - 40px) / 3) is written against 20px — at 24px the three
-           cards need 708px in a 700px row, so only two fit and the row became
-           three. Two classes here, so it holds. */
+
         gap: 20px;
     }
 
-    /* A slide is a transparent wrapper here; the card inside it is what the
-       row measures, so the thirds move onto the slide. Thirds of the row, less
-       the two 20px gaps between them. */
     .person-grid > .image-carousel-slide {
         flex: 0 0 calc((100% - 40px) / 3);
         scroll-snap-align: none;
@@ -247,9 +143,6 @@
         flex: 1 1 auto;
     }
 
-    /* No controls on a row that does not scroll. The script also refuses to
-       autoplay a track whose scrollWidth fits, so nothing is running here
-       either — this only hides the furniture. */
     .person-carousel .image-carousel-arrow,
     .person-carousel .image-carousel-dots {
         display: none;
@@ -257,7 +150,7 @@
 }
 
 .person-card {
-    /* Positions .person-body's caption. */
+
     position: relative;
     background: var(--surface);
     border-radius: 12px;
@@ -266,18 +159,10 @@
     transition: box-shadow 0.3s ease;
 }
 
-/* A heavier lift than --card-shadow-hover: these are the only cards on the site
-   that are edge-to-edge photograph, and the standard shadow disappears under
-   one. Kept literal rather than tokenised because the value is the exception —
-   light.css puts it back on the token, where a 0.7-alpha drop would be a slab
-   on paper. */
 .person-card:hover {
     box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7);
 }
 
-/* 3/4 rather than the 4/5 the photos are cropped to, to buy the height the
-   caption sits in. object-fit trims from the bottom, so the difference comes off
-   the chest, not the face. */
 .person-photo {
     display: block;
     width: 100%;
@@ -290,8 +175,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* The 46px top padding is the fade: it keeps the gradient's transparent end
-       well clear of the name. */
+
     padding: 46px 16px 14px 16px;
     background: linear-gradient(to top,
             rgba(0, 0, 0, 0.92) 0%,
@@ -316,19 +200,12 @@
     color: var(--muted-text);
 }
 
-/* Sits under the role and unfolds on hover — see the hover: hover block. The
-   orange link colour it inherits is only legible here because the gradient
-   behind it is near-black; #ff4b00 on the old #333 card was 3.77:1. */
 .person-contact {
     margin: 6px 0 0 0;
     font-size: 14px;
     line-height: 20px;
 }
 
-/* Only where a real pointer exists, so a device that cannot hover never has the
-   address hidden from it — it is the card's only contact detail. max-height
-   rather than display or height because it animates; 26px is the contact line's
-   20px line-height plus its 6px top margin. */
 @media (hover: hover) {
 
     .person-contact {
@@ -344,15 +221,6 @@
     }
 }
 
-
-/* --------- 3. Two columns under the heading ---------- */
-
-/* Orter is the only user left — Karriär moved to .track-grid. Kept as its own
-   class rather than folded into #locations because the alternative, floated
-   .col-2 blocks, does not start a new row under a heading: the heading column
-   was taller than the subtitle column, so the first .col-2 slotted up into the
-   gap beside the short subtitle instead. The grid gives two equal columns
-   whatever their heights and does not depend on the heading above it. */
 .split-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -360,35 +228,16 @@
     align-items: start;
 }
 
-/* The reset leaves p with its UA margin, which would push the text column down
-   relative to the map beside it. */
 .split-2 p:first-child {
     margin-top: 0;
 }
 
-/* Orter puts the city list and the map side by side. The wider cell is the
-   list, and the two are centred against each other rather than top-aligned:
-   the map is a tall portrait and the list is shorter, so a shared top edge
-   left the list hanging at the top of a 670px box. */
 #locations .split-2 {
     grid-template-columns: 1.05fr 1fr;
     gap: 40px 70px;
     align-items: center;
 }
 
-
-/* --------- 4. Locations ---------- */
-
-/* The map is a light surface on a dark page, so it gets a border and the same
-   10px radius the cards use — without a frame its white edge reads as a hole.
-   Sweden is portrait, which is why the map sits in half a row rather than
-   spanning one, and why the box keeps the 5:7 shape the static image had. */
-
-/* A container so the labels inside can size themselves against the map rather
-   than against the window. The two are not the same measurement: between 768
-   and 1023px the map is the narrow half of a two-column row, so it is smaller
-   there than it is on a phone, where it has the whole column. A viewport media
-   query would set the small label size at the wrong end of that range. */
 .about-map {
     margin: 0;
     container-type: inline-size;
@@ -402,13 +251,6 @@
     border-radius: 10px;
 }
 
-/* Hidden by default and revealed by the .map-live class that about.js sets as
-   soon as it runs. Without JavaScript the class never arrives and #map stays
-   collapsed rather than showing an empty bordered box; the city list is what
-   carries the section then — see the phone rules, which only take the list
-   away when there is a live map to replace it. The class goes on before
-   Leaflet is even fetched, so the box reserves its space up front and the
-   section does not shift when the map appears. */
 .about-map #map {
     display: none;
 }
@@ -419,9 +261,6 @@
     background: #ddd;
 }
 
-/* No live map, no figure. The caption is the one part of it that would still
-   draw — "Våra orter. Välj en ort i listan bredvid för att zooma dit." under
-   a collapsed box, describing a picture that is not there. */
 .about-map:not(:has(#map.map-live)) {
     display: none;
 }
@@ -433,29 +272,10 @@
     color: var(--footer-text);
 }
 
-/* The basemap is Esri's World Shaded Relief (see the tileLayer call in
-   js/about.js): terrain in muted grey-brown with pale blue water, no text and
-   no roads. Untouched it sits perfectly on the light theme's #f6f5f2 — and
-   glares on the dark theme's #333, where it reads as a lit panel dropped onto
-   the page.
-
-   So the tiles are dimmed, but only in dark. Not grayscale, which is what the
-   old OSM tiles got: draining the last of the colour makes the relief look
-   broken rather than quiet. brightness carries the change, contrast puts back
-   the land/water separation that dimming costs, and saturate takes the edge off
-   the blue. Below about 0.35 brightness the relief disappears into the page and
-   the map stops saying anything, so that is the floor; 0.75 is where the dimming
-   stops fighting the terrain and was picked by eye against the #333 page.
-
-   The rule hangs off :not(.theme-light) rather than .theme-light because dark is
-   the default — js/theme.js only ever adds the class. */
 html:not(.theme-light) .about-map .leaflet-tile-pane {
     filter: brightness(0.75) contrast(1.1) saturate(0.75);
 }
 
-/* Leaflet writes fill/stroke as SVG presentation attributes, which CSS wins
-   over — so the dots can follow --primary from colors.css instead of
-   hardcoding the orange in about.js. */
 .city-dot {
     fill: var(--primary);
     fill-opacity: 1;
@@ -470,9 +290,6 @@ html:not(.theme-light) .about-map .leaflet-tile-pane {
     stroke-width: 3;
 }
 
-/* Tooltips are the city labels. Leaflet's default is a white callout box with
-   a border and an arrow; here the label should read as map lettering, so the
-   box goes and a white halo carries it over whatever is underneath. */
 .city-label.leaflet-tooltip {
     padding: 0;
     border: 0;
@@ -483,33 +300,22 @@ html:not(.theme-light) .about-map .leaflet-tile-pane {
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
-    /* Dark theme, so light text on a dark halo — against the dimmed tiles the
-       old dark-text-in-a-white-halo read as thirteen white smudges. The halo is
-       four stacked shadows rather than one because a single 3px shadow is not
-       opaque enough to carry text over the relief's own texture. */
+
     color: #f5f5f5;
     text-shadow:
         0 0 3px #111, 0 0 3px #111, 0 0 3px #111, 0 0 4px #111;
 }
 
-/* Light theme: the tiles are at full brightness, so the halo flips back. */
 html.theme-light .city-label.leaflet-tooltip {
     color: #222;
     text-shadow:
         0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
 }
 
-/* The default arrow belongs to the callout box that was just removed. */
 .city-label.leaflet-tooltip:before {
     display: none;
 }
 
-/* A label box is a fixed number of pixels wide whatever the map does, so the
-   thirteen names crowd as the box narrows: at 13px, Uppsala/Kumla and
-   Stockholm/Katrineholm touch once the map is under ~440px — measured, they
-   are clear at 446 and overlap at 430. Below that the names step down a size.
-   The threshold is on the map's own width — see the container on
-   .about-map. */
 @container (max-width: 440px) {
     .city-label.leaflet-tooltip {
         font-size: 11px;
@@ -522,14 +328,6 @@ html.theme-light .city-label.leaflet-tooltip {
     font-size: 10px;
 }
 
-/* One column on a rail, not two loose columns: the list is read against the
-   pins going down the map beside it, so it has to run north to south in a
-   single sequence. Thirteen rows at 34px come to 442px against the map's
-   ~670px, so it stays inside the section either way.
-
-   The class name is load-bearing — js/about.js binds .location-list li and
-   sets .is-linked / .is-hovered / .is-active on them, and each row's
-   data-city ties it to an entry in CITIES. */
 .location-list {
     position: relative;
     list-style: none;
@@ -540,8 +338,7 @@ html.theme-light .city-label.leaflet-tooltip {
     content: "";
     position: absolute;
     left: 5px;
-    /* 7px short of the first and last dot centres, which sit 17px into their
-       rows — tied to the row padding below, so both move together. */
+
     top: 10px;
     bottom: 10px;
     width: 2px;
@@ -550,10 +347,7 @@ html.theme-light .city-label.leaflet-tooltip {
 
 .location-list li {
     position: relative;
-    /* 4px, not 8: thirteen rows at 42px ran 546px against a map of 672, and
-       the list read as a loose column beside a dense one. At 34px the rows
-       still clear each other — 26px of line box, 8px of air — and the block
-       lands closer to the height of the pins it is read against. */
+
     padding: 4px 0 4px 30px;
     font-size: 18px;
     line-height: 26px;
@@ -561,14 +355,11 @@ html.theme-light .city-label.leaflet-tooltip {
     transition: color 0.2s ease;
 }
 
-/* Absolute rather than the inline-block marker the two-column list used: the
-   dot has to sit on the spine, not in the text flow. Same page-ground halo as
-   the year rail. */
 .location-list li:before {
     content: "";
     position: absolute;
     left: 0;
-    /* Row padding + half the line box - half the dot: 4 + 13 - 6. */
+
     top: 11px;
     width: 12px;
     height: 12px;
@@ -578,10 +369,6 @@ html.theme-light .city-label.leaflet-tooltip {
     transition: transform 0.15s ease;
 }
 
-/* .is-linked is added by about.js once the list actually drives the map, so
-   nothing here promises interaction the page cannot deliver. fit-content pulls
-   the box in to the words: a full-column-width li means both the focus ring
-   and the click target run far past "Kumla" into empty space. */
 .location-list li.is-linked {
     width: fit-content;
     cursor: pointer;
@@ -597,25 +384,11 @@ html.theme-light .city-label.leaflet-tooltip {
     transform: scale(1.35);
 }
 
-/* The list items become role="button" and take focus, so they need a visible
-   focus ring — the reset in style.css strips the UA outline. */
 .location-list li.is-linked:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 3px;
 }
 
-
-/* --------- 5. Karriär: tracks ---------- */
-
-/* Two tracks under one heading, each ending in its own button. The section used
-   to close with both buttons side by side under both columns, which put the
-   choice back on the reader after they had already read the column that
-   answered it.
-
-   Deliberately NOT drawn as cards. A card on this site means the whole thing is
-   clickable; a track is prose with a button in it, and boxing it would promise
-   a click target that is not there. What carries the split instead is the 70px
-   column gap and the orange rule under each heading. */
 .track-grid {
     position: relative;
     display: grid;
@@ -624,13 +397,6 @@ html.theme-light .city-label.leaflet-tooltip {
     align-items: stretch;
 }
 
-/* The divider is drawn on the grid, not as a border on the second track. A
-   border sits on that track's own edge, which puts it hard against the right
-   column and 90px off the left one — lopsided. Here it hangs at 50%, and with
-   two equal 1fr columns 50% IS the centre of the gutter, so the 45px either
-   side is symmetric by construction rather than by two numbers that have to be
-   kept in step. Stretched to the grid's full height, so both tracks are
-   divided for their whole length whichever one is taller. */
 .track-grid:after {
     content: "";
     position: absolute;
@@ -641,24 +407,11 @@ html.theme-light .city-label.leaflet-tooltip {
     background: var(--surface-border);
 }
 
-/* Flex column so .track-spacer can push the button to the bottom: the two
-   tracks are different lengths, and two buttons at different heights read as
-   one being an afterthought. */
 .track {
     display: flex;
     flex-direction: column;
 }
 
-/* h3 arrives with padding: 10px 0 from style.css; the top half would push the
-   column below the row it starts. The 8px at the bottom replaces the gap the
-   orange bar used to hold open.
-
-   No accent bar of its own, deliberately. The section already draws one under
-   its subtitle, and a bar under each of the two track headings on top of that
-   put three of them in one section — at which point the mark stops reading as
-   "this is where a block begins" and just reads as texture. 22px bold against
-   15px muted body, in two columns 70px apart, is already enough to say these
-   are headings. */
 .track h3 {
     padding: 0 0 8px 0;
     font-size: 22px;
@@ -684,9 +437,6 @@ html.theme-light .city-label.leaflet-tooltip {
     margin: 28px 0 0 0;
     align-self: flex-start;
 }
-
-
-/* --------- 6. Examensarbete: list ---------- */
 
 .thesis-list {
     list-style: none;
@@ -715,21 +465,10 @@ html.theme-light .city-label.leaflet-tooltip {
     color: var(--footer-text);
 }
 
-/* --------- 7. Certifieringar ---------- */
-
-/* The marks sit in the right half of a .split-2 and are centred against the text
-   beside them: the copy runs three paragraphs and the pair of marks is shorter,
-   so a shared top edge left them hanging with all the slack underneath — the
-   same reason #locations centres the map against the city list. */
 #certificates .split-2 {
     align-items: center;
 }
 
-/* The only inline link in body copy on the site so far. The base rule
-   (colors.css:321) is orange with no underline, which reads as a link in a nav
-   and as emphasis in a paragraph — so this one is underlined. 3px of offset
-   clears the descenders in "qValify". Hover is the opacity fade every anchor
-   already inherits from style.css. */
 #certificates p a {
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -751,11 +490,6 @@ html.theme-light .city-label.leaflet-tooltip {
     text-align: center;
 }
 
-/* 132px, not the column width — a mark the page presents, not a graphic it is
-   built around. The .webp files are the qValify PNGs cropped to the circle (the
-   masters carry 9% transparent padding), so the box is the circle. No border or
-   surface behind them: the badges carry their own colour and are transparent
-   outside the circle, so they sit on both themes as they are. */
 .cert-mark img {
     display: block;
     width: 132px;
@@ -771,8 +505,6 @@ html.theme-light .city-label.leaflet-tooltip {
     color: var(--section-heading);
 }
 
-/* The standard number is the label and the discipline is the gloss, so they are
-   one caption on two lines rather than two elements the eye has to pair up. */
 .cert-mark figcaption span {
     display: block;
     padding-top: 4px;
@@ -782,36 +514,16 @@ html.theme-light .city-label.leaflet-tooltip {
     color: var(--muted-text);
 }
 
-
-/* --------- 8. Laptop and tablet ---------- */
-
-/* Above the phone breakpoint but below the full container. */
 @media (max-width: 1023px) {
 
     .about-title {
         font-size: 46px;
     }
 
-    /* The tracks stay two up all the way down to the phone breakpoint. What
-       used to collapse them here was the thesis list, whose rows wrapped once
-       a column got under ~460px; that list is gone from this section and two
-       short paragraphs with a button under them take a narrow column fine.
-
-       The gutter is what has to give instead of the column count. 90px out of
-       a 728px row at 768 leaves 319px a side, which is where the body copy
-       starts breaking mid-phrase; at 48px each track keeps 340px — about 45
-       characters, still a measure — and the rule at 50% stays centred in the
-       gutter by construction, so nothing else has to move. */
     .track-grid {
         gap: 40px 48px;
     }
 
-    /* Two proportional columns hand the map whatever half the row happens to
-       be: at 800px that is a 337px box, and Sweden with thirteen names in it
-       stops being readable well before that. The map takes a real width
-       instead and the list lives on what is left — the list is thirteen short
-       words and takes a narrow column better than the map does. 320px is the
-       floor because the row itself is only ~690px wide at 768. */
     #locations .split-2 {
         grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
         gap: 40px;
@@ -819,12 +531,6 @@ html.theme-light .city-label.leaflet-tooltip {
 
 }
 
-
-/* --------- 9. Phone ---------- */
-
-/* 767px is the breakpoint the affärsområden grid uses, and the person grid
-   follows it for the same reason: two columns read on every phone width, more
-   do not. */
 @media (max-width: 767px) {
 
     .about-hero {
@@ -836,14 +542,10 @@ html.theme-light .city-label.leaflet-tooltip {
         font-size: 36px;
     }
 
-    /* One column on a phone: two tracks a side of a 320px viewport is 140px
-       each. */
     .track-grid {
         grid-template-columns: 1fr;
     }
 
-    /* A vertical rule down the middle of stacked blocks divides nothing. The
-       40px row gap separates them instead. */
     .track-grid:after {
         display: none;
     }
@@ -853,19 +555,10 @@ html.theme-light .city-label.leaflet-tooltip {
         line-height: 30px;
     }
 
-    /* The rail keeps its line on a phone, only narrower. The year column cannot
-       come with it — 118px against a 320px viewport leaves nothing for the entry
-       beside it — so the spine moves into a 28px gutter on the <ol>, the year
-       becomes a left-aligned label above its own entry, and the dot hangs off
-       the year's left edge onto the line. */
     .year-rail {
         padding-left: 28px;
     }
 
-    /* The 2px line at left: 4px has its centre at 5px, which is where the dot
-       below lands too. Move the gutter and both of these move with it. top: 8px
-       starts the line just above the first dot centre, under that dot's halo;
-       bottom keeps the desktop 24px. */
     .year-rail::before {
         left: 4px;
         top: 8px;
@@ -877,17 +570,12 @@ html.theme-light .city-label.leaflet-tooltip {
         padding-bottom: 30px;
     }
 
-    /* 24px, not smaller: 700 weight above 18.66px is what lets the orange stay
-       — see the note on .rail-year above. */
     .rail-year {
         text-align: left;
         font-size: 24px;
         padding-bottom: 6px;
     }
 
-    /* left: -28px puts the dot's left edge on the <ol>'s own left edge, so a
-       10px dot centres at 5px — on the line. top is half the 24px line box less
-       half the dot. */
     .rail-year::after {
         right: auto;
         left: -28px;
@@ -897,52 +585,16 @@ html.theme-light .city-label.leaflet-tooltip {
         box-shadow: 0 0 0 5px var(--secondary);
     }
 
-    /* ---- Below 768 the row of portraits becomes a carousel ----------------
-
-       Three cards will not stand side by side on a phone, and stacking them
-       made the section 963px — a screen and a half of near-identical white
-       studio portraits, which is what Daniel called a never ending scroll. The
-       same swap css/service-card.css makes for Tjänster: a grid above the
-       breakpoint, a swipe below it, driven by the shared component in
-       js/image-carousel.js rather than anything written here.
-
-       It also retires an afternoon of alignment work. Name, role and address
-       only ever fell out of step with the card *beside* them; with one card on
-       screen at a time there is no card beside them, so the caption can wrap
-       however it likes. The two-line reservations, the fluid address size and
-       the one-per-row fallback that each bought alignment at some cost are all
-       gone with it — see review-consolidated.md for what was tried. */
     .person-grid.image-carousel-track {
         gap: 14px;
-        /* Lead-in and lead-out wide enough for a card to reach the middle.
-           .image-carousel-slide snaps on its centre, but a slide can only rest
-           where the track can actually scroll to: without these gutters the
-           first card cannot centre (nothing to its left) and neither can the
-           last, so from ~600px up — where more than one card fits — the
-           trailing slides all shared the final resting position and the script
-           drew four dots for five people. Half the leftover width each side
-           gives every card a stop of its own: five people, five dots, at every
-           width, each one centred when it is the current slide. */
+
         padding: 4px calc((100% - 220px) / 2) 16px;
         max-width: none;
-        /* Both load-bearing, and both come from .person-grid being a wrapping,
-           capped grid in its other life. Left wrapping, the 82% slides fold
-           onto five rows and the track never overflows, so it does not scroll,
-           the script counts one view and draws one dot. Left capped at 700px it
-           would stop growing with the viewport. */
+
         flex-wrap: nowrap;
         justify-content: flex-start;
     }
 
-    /* 82%, not 100%. The peek is the whole point: it is the only thing on a
-       still screen that says the row continues, and without it the carousel
-       reads as a single portrait somebody forgot to finish. */
-    /* The same 220px the card settles at on a full window — (700 - 2*20) / 3,
-       the desktop third. A slide sized off the viewport instead grew the
-       portrait to 300px and more, so the same face was one size on a phone,
-       another on a tablet and a third on a desktop. One number for all three,
-       and on a 390px screen it leaves the next card peeking by ~126px, which
-       is the affordance the peek was for. */
     .person-grid > .image-carousel-slide {
         flex: 0 0 220px;
         display: flex;
@@ -955,12 +607,6 @@ html.theme-light .city-label.leaflet-tooltip {
         max-width: none;
     }
 
-    /* The overlay comes off here: the caption drops below the photo, on the
-       card's own surface, rather than sitting on a gradient over the face.
-       The crop stays the base 3/4 — the extra height 4/5 used to buy was room
-       for a caption sitting *on* the photo, and there is no caption on the
-       photo any more. Same aspect as desktop, so the portrait is identical at
-       every width. */
     .person-photo {
         flex: 0 0 auto;
     }
@@ -977,76 +623,34 @@ html.theme-light .city-label.leaflet-tooltip {
         line-height: 1.35;
     }
 
-    /* Nothing to unfold once the caption is under the photo — and a narrow
-       window on a laptop still matches hover: hover, so this has to undo the
-       collapse rather than rely on the pointer type. */
     .person-contact {
         max-height: none;
         opacity: 1;
         margin: 12px 0 0 0;
     }
 
-    /* #locations .split-2 is an id plus a class, so it outweighs the bare
-       .split-2 rule above and has to be restated or the map and the list stay
-       side by side on a phone. */
     .split-2,
     #locations .split-2 {
         grid-template-columns: 1fr;
     }
 
-    /* Only the caption is let out of the 480px cap. #map used to be on this
-       list too, and once the list beside it went away the map took the whole
-       column: 697px wide and 871px tall on a 767px tablet, taller than the
-       section had ever been. The cap is what keeps Sweden a picture rather
-       than a wall. */
     .about-map figcaption {
         max-width: 100%;
     }
 
-    /* On a phone the map is full-column width, so 5:7 makes it taller than the
-       viewport. The class has to be on the selector here: the desktop ratio is
-       set on .about-map #map.map-live, which outweighs a bare #map and left
-       this rule doing nothing.
-
-       Nothing is lost by the shorter box. fitBounds snaps to quarter zoom
-       steps (zoomSnap in js/about.js), and 4:5 and 5:7 land on the same step
-       at this width — the taller frame only padded the map above and below. */
     .about-map #map.map-live {
         aspect-ratio: 4 / 5;
     }
 
-    /* Thirteen rows of list plus a map made the section ~1580px on a 390px
-       phone, half of it the list. The map keeps the slot and the list goes,
-       which means the map has to name the orter itself: the labels are shown
-       here rather than hidden.
-
-       The labels themselves need no rule here: they step down a size on their
-       own once the map is under 420px, from the container query up beside the
-       .city-label block. */
-
-    /* The list stays in the markup — the wider layouts use it — and is only
-       taken out of the phone layout. Its lead line goes with it: "Idag finns
-       vi i:" with nothing after it reads as a missing paragraph.
-
-       Conditional on .map-live, which about.js sets on #map as it starts. The
-       list is the only place the thirteen orter are written out, so without a
-       map to name them instead this section would say nothing at all: no
-       JavaScript, no map, and the list has to stay. The :has() reaches from
-       the map back up to the row that holds both columns. */
     .split-2:has(#map.map-live) .location-list,
     .split-2:has(#map.map-live) .locations-lead {
         display: none;
     }
 
-    /* "Välj en ort i listan bredvid" points at something that is not on the
-       page at this width — when the list has in fact gone. */
     .split-2:has(#map.map-live) .map-hint {
         display: none;
     }
 
-    /* Two 132px marks and a 40px gap need 304px, which is wider than the column
-       on the narrowest phones. They stay side by side — a mark under a mark
-       reads as two claims instead of one pair — and shrink instead. */
     .cert-grid {
         gap: 24px;
         padding-top: 6px;

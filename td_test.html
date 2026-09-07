@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
 
-    <!--Page Title-->
     <title>TD Test – Automattester för IBM Maximo | Total Digital</title>
 
-    <!--Meta Description-->
     <meta name="description"
         content="TD Test är verktyget för automatiserade tester av IBM Maximo och Maximo Application Suite (MAS). Testar gränssnitt, affärslogik och integrationer m.m.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--Canonical URL and Link Previews-->
     <link rel="canonical" href="https://www.totaldigital.se/td_test.html" />
     <link rel="alternate" hreflang="sv" href="https://www.totaldigital.se/td_test.html" />
     <link rel="alternate" hreflang="en" href="https://www.totaldigital.se/en/td_test.html" />
@@ -30,49 +27,33 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="TD Test" />
 
-    <!--Favicon and App Icons-->
     <link rel="icon" href="images/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <meta name="theme-color" content="#C63D02" />
 
-    <!-- Main CSS Files -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Color CSS -->
     <link rel="stylesheet" href="css/colors.css">
 
-    <!-- Animations CSS -->
     <link href="css/animations.css" rel="stylesheet" type="text/css">
 
-    <!-- Service Card CSS -->
     <link href="css/service-card.css" rel="stylesheet" type="text/css">
 
-    <!-- Affärsområden-bandet från startsidan; Fördelar använder samma band.
-         Måste ligga efter style.css, se kommentaren överst i arket. -->
     <link href="css/area-band.css" rel="stylesheet" type="text/css">
 
-    <!-- TD Test Page CSS -->
     <link href="css/td-test.css" rel="stylesheet" type="text/css">
 
-    <!-- Click-to-enlarge images (opt in with data-zoomable) -->
     <link href="css/image-zoom.css" rel="stylesheet" type="text/css">
 
-    <!-- Image carousel (opt in with data-image-carousel) -->
     <link href="css/image-carousel.css" rel="stylesheet" type="text/css">
 
-    <!--Ljust tema. Reglerna är låsta till html.theme-light, så det här
-        arket ändrar inget förrän js/theme.js sätter klassen.-->
     <link rel="stylesheet" href="css/light.css">
 
-    <!--Måste ligga blockerande i <head>: temat ska stå på <html> innan
-        första bildrutan, annars visas mörkt tema en bildruta och byter sen.-->
     <script src="js/theme.js"></script>
 
-    <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
     <link rel="preload" href="fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!--Structured Data-->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -91,10 +72,9 @@
         }
     }
     </script>
-    <!-- Large footer -->
+
     <link href="css/footer-large.css" rel="stylesheet" type="text/css">
 
-    <!-- Font Awesome Kit 863e7191f5 (SVG+JS). Loaded async; icons swap in after paint. -->
     <script src="https://kit.fontawesome.com/863e7191f5.js" crossorigin="anonymous" defer></script>
 </head>
 
@@ -107,35 +87,23 @@
                 <div class="row clearfix">
                     <div class="col-1">
 
-                        <!--Logo-->
                         <div id="logo">
 
-                            <!--Båda logotyperna ligger i en länk tillbaka till startsidan.-->
                             <a href="index.html" aria-label="Total Digital">
 
-                            <!--Logo that is shown on the banner-->
                             <img src="images/banner-images/td_white.webp" id="banner-logo" width="412" height="122"
                                 alt="Total Digital" />
-                            <!--End of Banner Logo-->
 
-                            <!--The Logo that is shown on the sticky Navigation Bar-->
                             <img src="images/banner-images/td_white.webp" id="navigation-logo" width="412" height="122"
                                 alt="Total Digital" />
-                            <!--End of Navigation Logo-->
+
                             </a>
 
                         </div>
-                        <!--End of Logo-->
 
-
-                        <!--Main Navigation-->
                         <nav id="nav-main">
                             <ul>
-                                <!--Menyposter med undersidor är <details>-grupper. Samma skäl som
-                                    språkväljaren nedan: ingen händelsehanterare behöver kopieras när
-                                    site.js klonar markupen till mobilmenyn. Undersidornas länkar är
-                                    relativa så att sajten fungerar var den än ligger, och site.js
-                                    hindrar stickyNavbar från att avbryta klicket på dem.-->
+
                                 <li onclick="location.href='index.html#businessareas';">
                                     <a href="index.html#businessareas">Teknikområden</a>
                                 </li>
@@ -165,30 +133,19 @@
                                         </div>
                                     </details>
                                 </li>
-                                <!--Kundbetyg och Partners är en sektion på startsidan nu.-->
+
                                 <li onclick="location.href='index.html#trust';">
                                     <a href="index.html#trust">Kunder</a>
                                 </li>
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html">Om oss</a>
                                 </li>
-                                <!--Temaväxlaren. Ligger till vänster om språkväljaren och är byggd
-                                    likadant, men som <button>: inget navigeras till, och knappen
-                                    hamnar därmed utanför stickyNavbars "li a".
 
-                                    Ligger före språkväljaren i markupen just för att den ligger
-                                    till vänster om den på skärmen. Båda är absolutpositionerade i
-                                    den breda menyn, så ordningen här syns inte — men den styr
-                                    tabbordningen, och omvänd ordning gav globen fokus före
-                                    temaknappen fast temaknappen står först.-->
                                 <li class="nav-theme">
                                     <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
                                             title="Byt till ljust läge" data-label-light="Byt till ljust läge" data-label-dark="Byt till mörkt läge"><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
-                                <!--Språkväljare. Länkarnas href är relativa så att sajten fungerar
-                                    var den än ligger; site.js hindrar stickyNavbar från att avbryta
-                                    klicket. <details> håller hela kontrollen fri från skript, så den
-                                    fungerar även när site.js klonar markupen till mobilmenyn.-->
+
                                 <li class="nav-lang">
                                     <details>
                                         <summary aria-label="Välj språk"><svg class="svg-icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z" /></svg></summary>
@@ -200,10 +157,7 @@
                                 </li>
                             </ul>
                         </nav>
-                        <!--End of Main Navigation-->
 
-                        <!--Samma väljare igen, här bredvid hamburgaren. CSS visar en av dem,
-                            aldrig båda.-->
                         <div id="nav-trigger">
                             <nav id="nav-theme-mobile">
                                 <button type="button" class="theme-toggle" aria-label="Byt till ljust läge"
@@ -223,19 +177,12 @@
 
                     </div>
                 </div>
-            </div><!--End of Header-->
+            </div>
 
         </header>
 
-        <!--Main Content Area-->
         <main id="content" class="showcase-top">
 
-            <!--Introduction / Hero. Låg tidigare i en 66% bred centrerad kolumn,
-                så sidan öppnade smalt och breddade sig först vid nästa avsnitt.
-                Nu i samma rad som resten av sidan: rubrik och ingress bredvid
-                produktbilden, de tre detaljstyckena som kolumner under den, och
-                avslutningsraden med knappen centrerad längst ned. Samma text,
-                samma ordning.-->
             <section class="introduction scrollto tdt-intro">
                 <div class="row clearfix">
 
@@ -244,9 +191,7 @@
                             <div class="section-heading has-title-icon">
                                 <h1 class="section-title">TD Test</h1>
                                 <p class="section-subtitle">Kvalitetssäkra ert IBM Maximo</p>
-                                <!--Samma ikon som produktkortet i Produkter på startsidan, så kortet
-                                    och sidan hänger ihop. Står här tills sidorna har egen artwork.
-                                    Se .section-heading.has-title-icon i css/style.css.-->
+
                                 <i class="fa-duotone fa-solid fa-clipboard-list-check title-icon" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -270,34 +215,12 @@
                         </p>
                     </div>
 
-                    <!--<div class="tdt-intro-cta">
-                        <p>
-                            Vill ni se hur det ser ut i praktiken? Hör av er för en demonstration &ndash; eller läs
-                            vidare för detaljer.
-                        </p>
-                        <a href="mailto:info@totaldigital.se?subject=Jag vill veta mer om TD Test"
-                            class="button">KONTAKTA OSS</a>
-                    </div>-->
-
-                    <!--Rullningsmärket. Ligger utanför CTA-blocket och sist i raden:
-                        det hör till vyn, inte till texten. Etiketten står i länken, så
-                        aria-label börjar med samma ord – annars stämmer inte det
-                        upplästa namnet med det synliga.
-                        data-scroll-to plockas upp av js/site.js, som rullar dit mjukt
-                        med samma fart och easing som menyns egna ankare. Se
-                        .scroll-cue i css/td-test.css.-->
                     <a href="#mojligheter" class="scroll-cue" data-scroll-to
                         aria-label="Läs mer om Möjligheter"><span class="scroll-cue-label">Läs mer</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
 
                 </div>
             </section>
-            <!--End of Introduction-->
 
-            <!--What can TD Test do. Inget text-center: rubrikerna ligger vänster
-                som på startsidan och Om oss, och det orange strecket hänger
-                under underrubriken – se css/colors.css. Rubriken står direkt i
-                raden, så rännan kommer från .row > .section-heading i
-                style.css och linjerar med .tdt-trio nedanför.-->
             <section id="mojligheter" class="primary-color scrollto clearfix">
                 <div class="row clearfix">
 
@@ -308,8 +231,6 @@
                             Maximo och når därför både gränssnittet och affärslogiken m.m.</p>
                     </div>
 
-                    <!-- The three capability blocks. Screenshots no longer sit
-                         beside them: they belong together as a tour, see below. -->
                     <div class="tdt-trio">
                         <div>
                             <h3 class="card-title">Testa det som är viktigt</h3>
@@ -397,9 +318,7 @@
 
                 </div>
             </section>
-            <!--End of Product tour-->
 
-            <!--Features-->
             <section id="funktioner" class="scrollto clearfix">
                 <div class="row clearfix">
 
@@ -408,13 +327,6 @@
                         <p class="section-title">Varför TD Test?</p>
                     </div>
 
-                    <!--Samma band som Affärsområden på startsidan: inga kort, bara
-                        hårfina linjer mellan kolumnerna, ikon över rubriken och en
-                        numrering 01–04. Se css/area-band.css; ikonerna här är
-                        duotone ur kitet i stället för <img>, se .area-band .tdt-icon
-                        i css/td-test.css. Ingen --fa-secondary-opacity här: bandet
-                        kör kitets default, till skillnad från rubrikikonen som
-                        trycks ner till 0,3 i style.css.-->
                     <div class="col-1 area-band">
 
                         <div class="area-band-item">
@@ -445,9 +357,7 @@
 
                 </div>
             </section>
-            <!--End of Features-->
 
-            <!--Comparison-->
             <section class="primary-color scrollto clearfix">
                 <div class="row clearfix">
 
@@ -510,21 +420,9 @@
 
                 </div>
             </section>
-            <!--End of Comparison-->
 
-            <!--Contact-->
-            <!--Samma avslutning som TD Asset Care och TD Linear: .showcase-cta,
-                alltså ett hårstreck, en dämpad rad och knappen. Det var ett eget
-                avsnitt med KONTAKT-etikett och 34px-rubrik, vilket lät högre än
-                slutraden på de andra två produktsidorna. id och .scrollto står
-                kvar – inget länkar hit i dag, men ankaret kan finnas sparat.-->
             <section id="kontakt" class="scrollto clearfix">
-                <!--Samma omslag som TD Asset Care och TD Linear har runt sin
-                    .showcase-cta: .col-1.content-center > .col-2-3.row. Rakt i
-                    .row blev blocket 1245px brett mot deras 696, så hårstrecket
-                    var nästan dubbelt så långt. Bredden räknas fram av samma
-                    regler i stället för att sättas här, så de följer med om
-                    .row eller .col-2-3 ändras.-->
+
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
 
@@ -537,19 +435,12 @@
                     </div>
                 </div>
             </section>
-            <!--End of Contact-->
 
         </main>
-        <!--End Main Content Area-->
 
-
-        <!--Foten. Den stora varianten (css/footer-large.css), satt i kolumner:
-            sidan slutar med en väg in i allt i stället för en 12px-rad.-->
         <footer class="clearfix footer-large">
             <div class="row clearfix">
-                <!--Ordningen i markupen är låst: reglerna under 1023px i css/footer-large.css
-                    flyttar barn 1 och 4 under länklistorna med order, och räknar på
-                    just den här ordningen.-->
+
                 <div class="footer-columns">
 
                     <div class="footer-brand">
@@ -569,10 +460,6 @@
                         <a href="about.html#career">Karriär & Examensarbeten</a>
                     </div>
 
-                    <!--Certifieringsmärkena står där en tredje länklista stod: produkterna
-                        nås från toppmenyn på varje sida, och foten är där märkena hör hemma.
-                        Bilderna leder till avsnittet på om-sidan som säger vad det är som är
-                        certifierat.-->
                     <div class="footer-col footer-certs">
                         <p class="footer-heading">Certifieringar</p>
                         <div class="cert-badges">
@@ -599,11 +486,9 @@
                 </div>
             </div>
         </footer>
-        <!--End of Footer-->
 
     </div>
 
-    <!-- Include JavaScript resources -->
     <script src="js/jquery.1.8.3.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/jquery.enllax.min.js"></script>

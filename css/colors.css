@@ -1,137 +1,5 @@
-/* Namari Landing Page Dynamic Style Index
 
-1. Website Default Styling
-2. Navigation
-3. Primary and Secondary Colors
-4. Banner
-5. Typography
-6. Buttons
-7. Footer
 
-/* CSS HEX
---cardinal: #ad343eff;
---outer-space: #474747ff;
---xanthous: #f2af29ff;
---black: #000000ff;
---eggshell: #e0e0ceff;
-
-/* CSS HEX
---aerospace-orange: #ff4b00ff;
---ash-gray: #c0caadff;
---ash-gray-2: #9da9a0ff;
---outer-space: #404e4dff;
---bistre: #311e10ff;
-
-#9c9c9cff
-
-/* CSS HEX
---charcoal: #3e4c5eff;
---asparagus: #678D58ff;
---air-superiority-blue: #6d9dc5ff;
---linen: #f7ece1ff;
---celeste: #aeecefff;
-
-### GREEN
-:root {
-    --header: #678D58;
-    --primary: rgb(103, 141, 88);
-    --primary_0: rgb(103, 141, 88, 0);
-    --primary_100: rgb(103, 141, 88, 1);
-    --secondary: #02182B;
-    --normal-text: #ffffff;
-    --header-text: #678D58;
-    --banner-text: #fff;
-    --section-title: #678D58;
-    --section-subtitle: #E9C387;
-    --link: #ffffff;
-    --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999
-}
-
-### ORANGE
-:root {
-    --header: #ff4b00ff;
-    --primary: rgb(255, 75, 0);
-    --primary_0: rgb(255, 75, 0, 0);
-    --primary_100: rgb(255, 75, 0, 1);
-    --secondary: #333;
-    --normal-text: #ffffff;
-    --header-text: #9c9c9c;
-    --banner-text: #fff;
-    --section-title: #9c9c9c;
-    --section-subtitle: #ffffff;
-    --link: #ffffff;
-    --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999;
-}
-
-### YELLOW
-:root {
-    --header: #f2af29;
-    --primary: rgb(242, 175, 41);
-    --primary_0: rgb(242, 175, 41, 0);
-    --primary_100: rgb(242, 175, 41, 1);
-    --secondary: #404e4d;
-    --normal-text: #ffffff;
-    --header-text: #61A0AF;
-    --banner-text: #fff;
-    --section-title: #61A0AF;
-    --section-subtitle: #f2af29;
-    --link: #ffffffff;
-    --link-hover-active: #111;
-    --border: #f5f5f5;
-    --footer-text: #999
-}
-
-### GOLD
-:root {
-    --header: #fff;
-    --primary: rgb(210, 179, 86);
-    --primary_0: rgb(210, 179, 86, 0);
-    --primary_100: rgb(210, 179, 86, 1);
-    --secondary: #fff;
-    --normal-text: #111;
-    --header-text: #cccccc;
-    --banner-text: #fff;
-    --section-title: #111;
-    --section-subtitle: #66635B;
-    --link: #111;
-    --link-hover-active: #d2b356;
-    --border: #f5f5f5ff;
-    --footer-text: #999
-}
-
-/*------------------------------------------------------------------------------------------*/
-/* 1. Website Default Styling */
-/*------------------------------------------------------------------------------------------*/
-
-/* Every token whose value differs between the two themes is registered as a
-   <color> here, and that registration is the whole theme cross-fade. An
-   unregistered custom property is a string to the engine: it flips from one
-   value to the next with nothing in between, and so does every colour built
-   out of it. Registered, the token itself interpolates, and each frame the
-   hundreds of rules reading it re-resolve — one transition on <html> instead
-   of a transition on every element, and it reaches things an element-level
-   transition cannot: gradient stops (a linear-gradient() is not interpolable
-   when its stops come from substitution, which is why #home::before's hero
-   ramp used to snap to the new theme while the copy over it was still fading)
-   and text-shadow colours.
-
-   Which properties are transitioned, and for how long, is the .theme-animating
-   rule in style.css §2.4.0.
-
-   Rules, if you add a token:
-   - Only the ones that actually change. --header, --on-header, --banner-text
-     and --link-hover-active are the same in both themes; registering them
-     would buy nothing.
-   - initial-value must be a real colour or the registration is invalid and
-     silently ignored (the property then behaves as before — it snaps). It is
-     the dark theme's value, restated from :root below.
-   - The shadow tokens are not colours and cannot be registered; they snap.
-   - inherits: true, always. The transition runs on <html> and descendants read
-     the animated value through inheritance. */
 @property --primary {
     syntax: "<color>";
     inherits: true;
@@ -268,67 +136,35 @@
     --header-text: #BDB8B2;
     --banner-text: #fff;
     --section-title: #F4F1EE;
-    /* Version A ("Tegel & Bärnsten") amber, picked over Version B's steel
-       blue (#63B3E4) 2026-09-02. */
+
     --section-subtitle: #E3A64B;
     --section-heading: #F4F1EE;
     --link: #F4F1EE;
     --link-hover-active: #111;
-    /* Type and icons ON the header bar. The bar is the brand orange in both
-       themes, and the banner photo behind the non-solid header is dark in
-       both, so this stays light while --link follows the theme. Splitting the
-       two is what lets the dropdown panels go white on paper while the bar
-       above them does not. */
+
     --on-header: #ffffff;
     --border: #403C38;
     --footer-text: #9A948D;
 
-    /* --- Surfaces -----------------------------------------------------------
-       The card, panel and rule colours the sheets used to hardcode. They are
-       named so light.css can swap a token instead of restating every rule.
-       --secondary is the page ground; --surface is what sits ON it, which is
-       the same #333 in the dark theme but a different colour on paper. */
     --surface: #262422;
-    /* The second stripe of the hatched product placeholder. */
+
     --surface-alt: #2E2A27;
     --surface-border: #403C38;
-    /* A separator drawn inside a surface rather than around it. */
+
     --divider: rgba(255, 255, 255, 0.12);
-    /* Hovered row in a dropdown panel. */
+
     --panel-hover: rgba(255, 255, 255, 0.08);
 
-    /* --- Text grades --------------------------------------------------------
-       --normal-text is the full-strength ink. These two are the steps below it.
-       Text sitting on a photograph uses --banner-text and stays light in both
-       themes — service-card captions, the ledningsgrupp names, the carousel.
-       The hero copy is NOT one of those any more: the CSS ramp under it is the
-       page ground in both themes, so it takes its own token and light.css
-       flips it to ink. */
     --hero-text: #fff;
 
     --muted-text: #BDB8B2;
     --faint-text: #8C8680;
 
-    /* The accent when it is carrying TEXT rather than drawing a graphic.
-       --primary is a graphics colour: on the light theme it is 3.6:1 against
-       the paper ground, which clears the 3:1 that borders, rules and icons
-       need and fails the 4.5:1 that body copy needs. This token is the
-       AA-safe sibling — deliberately identical to --primary in the dark
-       theme, where the accent already reads 6.1:1, so swapping a rule from
-       one to the other is a no-op here and a fix on paper.
-
-       Use it for: links, hovered link text, any word that turns orange.
-       Do NOT use it for: icons, rules, borders, fills — those stay --primary
-       so the brand orange is the brand orange. */
     --accent-text: rgb(255, 106, 59);
 
-    /* The corner icon watermark on a product card. A token because the same
-       0.07 that reads as texture over a dark surface reads as pink over white
-       paper — see light.css. */
     --product-mark-opacity: 0.07;
     --product-mark-opacity-hover: 0.14;
 
-    /* --- Elevation ---------------------------------------------------------- */
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     --card-shadow-hover: 0 15px 30px -9px rgba(0, 0, 0, 0.6);
     --panel-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
@@ -336,30 +172,18 @@
 
 body {
     background: var(--secondary);
-    /*var(--primary);*/
-    /*var(--normal-text);*/
+
 }
-
-
-/* Default Link Color */
 
 a {
     color: var(--accent-text);
-    /*var(--primary); */
-    /*#d2b356;*/
+
 }
-
-/* a:hover,
-#header.nav-solid nav a:hover {
-    color: #d2b356;
-} */
-
-/* Default Icon Color */
 
 .icon i {
     color: var(--primary);
     ;
-    /*#d2b356;*/
+
 }
 
 #main-heading {
@@ -367,88 +191,41 @@ a {
         1px 1px var(--primary), -1px -1px var(--primary), 1px -1px var(--primary), -1px 1px var(--primary);
 }
 
-/* Produkter used to sit on a lighter band and needed a white title to stay
-   legible on it. The band is gone, so the section title matches every other
-   one. */
-
 .backgroundimage-overlay {
     position: absolute;
     background-color: var(--secondary);
     opacity: 0.72;
-    /* transition: 0.5s; */
+
     z-index: 1;
 }
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 2. Navigation */
-/*------------------------------------------------------------------------------------------*/
-
-
-/* Transparent Navigation Color on a Banner */
 
 #header nav a,
 #header .svg-icon {
     color: var(--on-header);
-    /*var(--header-text);*/
+
 }
 
-/* White is the only ink that survives on the bar: --link-hover-active is #111,
-   which read 3.0:1 against --header. The panels set their own hover and
-   outspecify this. */
 #header nav a:hover,
 #header .svg-icon:hover,
 #header.nav-solid a:hover,
 #header.nav-solid .svg-icon:hover {
     color: var(--on-header);
-    /*var(--header-text);*/
+
 }
 
-/* .social-icons a:hover {
-    color: var(--link-hover-active);
-} */
-
-
-/* Navigation Colors when the Navigation is sticky and solid */
-
-/* The solid bar and everything sitting on it. #nav-mobile ul li a used to be
-   bolted onto this group, which painted every row of the open menu in the bar's
-   orange — that is what made the mobile menu a fourth visual language, and what
-   outranked the panel rules in style.css. The menu is a panel now, styled with
-   the dropdown and the language list. */
 #header.nav-solid,
 #header.nav-solid a,
 #header.nav-solid .svg-icon {
     color: var(--on-header);
-    /*var(--secondary);*/
+
     background: var(--header);
 }
 
-/* Navigation Active State
-
-   Nothing here. The page you are on is marked in style.css, in the bar's own
-   ink, whether or not the bar has gone solid — this block used to paint it
-   --link-hover-active (#111), which is 3.0:1 on --header, so the marker read
-   worse than the items around it. The white every nav link already gets from
-   the two rules above is correct for the current one too. */
-
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 3. Primary and Secondary Colors */
-/*------------------------------------------------------------------------------------------*/
-
-
-/* Primary Background and Text Colors */
-
-/* The orange rule belongs under the section title, never under the kicker.
-   The showcase pages title with an h1.section-title, so .section-title covers
-   them too. */
 .section-heading h2:not(.section-kicker):after,
 .section-heading .section-title:after,
 .section-heading .banner-intro:after {
     background: var(--primary);
-    /*#d2b356;*/
+
     content: "";
     display: block;
     width: 30px;
@@ -461,14 +238,6 @@ a {
     margin: 30px auto 25px auto;
 }
 
-/* Where a subtitle follows the title inside the heading, the rule closes the
-   block underneath it instead of splitting the title from the subtitle it
-   belongs to. Same 30x5 in --primary; only the element it hangs from changes.
-   Headings with no subtitle keep it on the title, which is the rule above.
-
-   Scoped to a subtitle that is the heading's own child, so a .section-subtitle
-   standing on its own outside a heading — .partner-lead on the start page — is
-   not handed a rule it never had. */
 .section-heading:has(> .section-subtitle) .section-title:after,
 .section-heading:has(> .section-subtitle) h2:not(.section-kicker):after {
     display: none;
@@ -487,85 +256,23 @@ a {
     margin: 30px auto 25px auto;
 }
 
-/* Primary Icon Colors */
-
 .primary-color .icon i,
 .primary-color .svg-icon {
     color: var(--normal-text);
 }
 
-
-/* Secondary Background and Text Colors */
-
 .secondary-color {
     background-color: var(--header-text);
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 4. Banner */
-/*------------------------------------------------------------------------------------------*/
-
-
-/* Banner Background and Text Colors */
-
-/* The photograph without a baked fade — banner_gradient_wide.webp (still in the
-   folder, no longer used) carried the fade as pixels, ending in a flat #999
-   that belonged to the old palette, so it fought every palette change; and
-   since the photo is `cover` on a viewport-tall box, the baked fade landed
-   wherever the crop happened to put it rather than under the copy. The ramp is
-   on ::before below and reads var(--secondary), so one photo serves both
-   themes.
-
-   Parallax: the photo's y-position is anchor + shift. Each breakpoint group
-   sets its hand-tuned anchor as --hero-x/--hero-y, and js/site.js writes
-   --hero-shift (0.5px per scrolled px, the ratio enllax used) on #home; the
-   shared background-position rules below combine them. #home carries no
-   data-enllax-ratio any more — enllax wrote the whole background-position
-   inline, which could not coexist with per-group anchors (the groups spent
-   !important to beat it and lost their parallax doing so). The fade still
-   cannot be a second layer here: background-position is per-layer but the
-   shift belongs only to the photo, and keeping ramps on ::before lets their
-   stops stay put while the photo moves.
-
-   banner_wide_clean.webp is a 930x523 crop of the 1600x900 master
-   (banner_wide_full.webp, still in the folder): the person-free left part of
-   the frame — train front and platform — with the traveller, who occupied the
-   right 40%, cropped away. The phone hero paints the same scene from the same
-   master (banner_full_clean.webp, the full-height version of this crop), so
-   no device ever shows content another device lacks. The two files exist
-   because no single file survives both layouts: desktop needs 16:9 for
-   `cover` under enllax's y-panning, the phone block below needs the full 900
-   of height, and the person-free pixels end 59% across the master so neither
-   letterboxing nor anchoring can bridge the difference. banner_wide.webp, the
-   old 780x448 desktop crop (4be999d), is superseded by the wide_clean crop —
-   same framing family, more pixels. */
 #home {
     background: url("../images/banner-images/banner_wide_clean.webp") no-repeat;
-    /* Anchor + parallax shift. Defaults reproduce the old `center top`;
-       the media groups below override the anchor vars per breakpoint. */
+
     background-position: var(--hero-x, center) calc(var(--hero-y, 0%) + var(--hero-shift, 0px));
     background-size: cover;
     position: relative;
 }
 
-/* Two ramps over the photo, both reading var(--secondary), so neither survives
-   a palette change as a stale grey:
-     1. vertical, dissolving the photo's bottom edge into Affärsområden instead
-        of cutting it dead on the section seam
-     2. horizontal, solid ground under the h1 and the intro, clear of the photo
-        from about two thirds across
-   Stops are shares of the hero box, not of the photo, so they stay under the
-   copy at every width no matter how `cover` crops.
-
-   color-mix(... 0%, transparent) is the same colour at zero alpha; plain
-   `transparent` is rgba(0,0,0,0) and can grey the middle of a ramp.
-
-   No z-index: an absolutely positioned ::before paints after the in-flow
-   background but before the positioned siblings that come after it in the
-   markup, so the copy stays on top without a stacking contest. #banner-content
-   is given a position below for exactly that; .scroll-cue is already absolute,
-   and #header carries z-index 9999. */
 #home::before {
     content: "";
     position: absolute;
@@ -585,28 +292,6 @@ a {
     position: relative;
 }
 
-/* ---- Hero photo framing per breakpoint group ----------------------------
-   Every size/position below was hand-tuned by Daniel in the compare harness
-   (2026-09-07), one tune per matrix size, then generalized to the breakpoint
-   groups this file already has. The tuned values per size are recorded in
-   each block. Each group states its anchor as --hero-x/--hero-y, which the
-   shared background-position rules (on #home above, on ::before in the phone
-   block) combine with the js/site.js parallax shift — so every group keeps
-   both its framing and the parallax. These used to be background-position
-   !important, fighting enllax's inline writes and freezing the parallax below
-   1280; that whole conflict is gone with enllax off #home.
-
-   Block order matters: the short-landscape blocks live AFTER the 768-1023
-   block so they win the tie between equally specific anchors. */
-
-/* Desktop 1024-1279, normal height. Tuned on 1024x768 as 105%-of-width /
-   50% 40% on the 16:9 crop — but width-based sizing makes the image height
-   a function of window WIDTH while the hero is viewport-tall, so across the
-   band the photo shrank and showed borders above and below. The same look,
-   gap-proof: the full-height crop under plain `cover`. Cover is width-bound
-   at every desktop aspect here, so the whole scene width is visible (what
-   the 105% tune was reaching for) and vertical coverage is guaranteed; 40%
-   keeps Daniel's band. */
 @media (min-width: 1024px) and (max-width: 1279px) and (min-height: 501px) {
     #home {
         background-image: url("../images/banner-images/banner_full_clean.webp");
@@ -615,23 +300,8 @@ a {
     }
 }
 
-/* Between 768 and 1023 the copy column is still 61.8% but the window is not
-   wide enough for the ramp above to clear it — the intro ends up on the
-   platform. Push the stops right; the photo is down to the last third, which
-   at this width is all it was ever going to get. */
 @media (min-width: 768px) and (max-width: 1023px) {
-    /* This box is tall for its width, so `cover` on the 16:9 crop blows up
-       to a smear of one door — the full-height crop is the right file here.
-       Daniel's tune on 768x1024 was 120%-of-width / -20% 50%, but the hero is
-       viewport-tall and width-based sizing caps the image height at ~1.16x
-       the window width, so an iPad portrait (820x1120) showed bands above
-       and below — invisible when tuning only because the dark theme's ground
-       matches the photo's dark edges. Same cure as the 1024-1279 block:
-       plain `cover` (from the base rule) never gaps; height-bound here, so
-       the y-anchor is moot. x 0% aligns the image's left edge with the box —
-       the leftmost window `cover` allows — which brings the cab front and
-       headlights out from under the ramp fade (centered, only the doors
-       showed). Daniel stepped -25% / -12% / 0% live and picked 0. */
+
     #home {
         background-image: url("../images/banner-images/banner_full_clean.webp");
         --hero-x: 0%;
@@ -650,13 +320,6 @@ a {
     }
 }
 
-/* Short landscape, phone-on-its-side band (a squat window below 1024). At
-   95% of the box width the full-height crop leaves a 5%-of-width sliver
-   uncovered; x 200% pushes the image right so the sliver sits at the left
-   edge, under the solid ramp, and the train side fills the open right.
-   Tuned: 812x375 = 844x390 = 932x430 = 95% / 200% 40%. (1023x500 was left
-   at 115% / -50% 46% in the harness — treated as an experiment leftover,
-   the three agreeing sizes won.) */
 @media (min-width: 768px) and (max-width: 1023px) and (max-height: 500px) {
     #home {
         background-size: 95% auto;
@@ -665,8 +328,6 @@ a {
     }
 }
 
-/* Short landscape at desktop widths (the 16:9 crop, per the base rule).
-   Tuned: 1024x500 = 95% / 100% 70%. */
 @media (min-width: 1024px) and (max-height: 500px) {
     #home {
         background-size: 95% auto;
@@ -675,43 +336,6 @@ a {
     }
 }
 
-/* Same scene as the desktop hero, from the same master —
-   banner_full_clean.webp, the person-free crop at its full 900px of height —
-   but the phone cannot share the desktop's 16:9 file: a wide crop this small
-   sized for a phone hero is a 2.4x-plus upscale at DPR 2, which is why every
-   attempt at one came back "still just grey". The full-height crop at the
-   same size is 1.5x, and it has the whole scene: the train front at the left,
-   the platform, the rails.
-
-   Sized by height, 88% of the hero, anchored a third across and pulled 60%
-   down: cab front and windshield with the platform under it. Hand-tuned by
-   Daniel in the compare harness (2026-09-07): 320x568 = 390x844 = 90% /
-   36% 60%, 360x800 = 85% / 30% 60%, 744x1133 = 85% / 30% 40% — generalized
-   to 88% / 33% 60% (744's y 40 lost to the three phones' y 60).
-
-   `cover` is what not to do — it fits the 1.78:1 frame to a 1:1.9 box by
-   scaling until the width overflows, so 70% of the picture is off-screen and
-   what is left is a smear of one door. Much past this zoom is also known
-   bad: earlier rounds found ~105% of height already reads as a grey panel
-   at DPR 2 on a screen this size.
-
-   The photo lives on ::before at phone widths (historically to escape
-   enllax's inline writes; kept because three layers with independent motion
-   need per-layer positions anyway). Only the photo layer takes the
-   --hero-shift parallax — the ramps' stops stay put, which is the point of
-   the split. ::before inherits the custom props from #home, where the JS
-   writes them, so phones get the same parallax the desktop hero has (they
-   never had it before — the photo used to be frozen here).
-
-   Both ramps the desktop hero has, then, not the single vertical one this used
-   to be: ground from the left under the copy, and ground at the bottom where
-   the photo ends. Both are pushed harder than the desktop pair rather than
-   softer, which is how they first went in and read as "just weaker on mobile":
-   the copy runs the full width of a phone, so it needs more ground under it,
-   not less. Left solid to 35% and clear at 78%; bottom clear to 35% and solid
-   at 80%, which is above the photo's own bottom edge at 85% so that edge never
-   shows. Layers paint first to last, so the ramps are written before the
-   photo. */
 @media (max-width: 767px) {
     #home {
         background-image: none;
@@ -735,12 +359,6 @@ a {
     }
 }
 
-/* Phone on its side, below 768: the block above sizes the photo by hero
-   height, and a landscape hero is so short that 88% of it is a stamp. Its
-   own frame: 130% of the hero height, pushed so the cab front and windshield
-   fill the open right side. This is its own group — the size never existed
-   in the CSS before, it just inherited the portrait phone frame.
-   Tuned: 667x375 = 130% / 106% 22%. */
 @media (max-width: 767px) and (max-height: 500px) {
     #home::before {
         background-size: 100% 100%, 100% 100%, auto 130%;
@@ -752,12 +370,6 @@ a {
     }
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 5. Typography */
-/*------------------------------------------------------------------------------------------*/
-
-
 body {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 15px;
@@ -765,38 +377,15 @@ body {
     color: var(--normal-text)
 }
 
-/* Logo, if you are using Fonts as Logo and not image
-
-#logo h1 {
-    font-family:;
-    font-size:;
-    font-weight:;
-    color:;
-}
-
-#logo h2 {
-    font-family:;
-    font-size:;
-    font-weight:;
-    color:;
-}
-
-*/
-
-
-/* Banner Typography */
-
 #home h1 {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 62px;
     line-height: 60px;
     font-weight: 800;
     color: var(--hero-text);
-    /* color: var(--header-text) */
+
 }
 
-/* Hero expertise line. The label is held back so the area name sliding beside
-   it is what the eye lands on. */
 #home .expertise-line {
     color: var(--hero-text);
 }
@@ -805,27 +394,17 @@ body {
     opacity: 0.7;
 }
 
-/* The rotating area icon takes the amber subtitle token rather than the line's
-   white — Daniel's pick from the 2026-09-07 harness session. Same token both
-   themes: #E3A64B on the dark photo, the darker #8F6400 on light paper. The
-   glyphs are aria-hidden decoration beside their own names, so the 3:1
-   graphics floor is comfort, not compliance. */
 #home .expertise-reel :is(i, svg) {
     color: var(--section-subtitle);
 }
 
-/* Banner intro. Body copy rather than a heading, but it keeps the look the
-   banner h2 had, orange rule included. */
 #home .banner-intro {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
     font-weight: 300;
     color: var(--hero-text);
-    /* color: var(--header-text) */
+
 }
-
-
-/* Section Title and Subtitle */
 
 .section-title {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -841,8 +420,6 @@ body {
     color: var(--section-subtitle);
 }
 
-/* Showcase Call to Action */
-
 .showcase-cta {
     border-top-color: var(--surface-border);
 }
@@ -851,8 +428,6 @@ body {
     color: var(--footer-text);
 }
 
-/* Name and role step up out of the muted question colour: the same two-step
-   ink the person cards use. Scoped to beat `.showcase-cta p` above. */
 .showcase-cta .cta-name {
     color: var(--section-heading);
 }
@@ -861,23 +436,15 @@ body {
     color: var(--muted-text);
 }
 
-/* Testimonial */
-
 .testimonial q {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
     font-weight: 300;
     color: var(--normal-text);
-    /* The browser's own marks around <q>, which the opening mark below stands
-       in for. Without this the quote opens with two of them and closes with an
-       orphan. */
+
     quotes: none;
 }
 
-/* The decorative mark the orange bar under the quote used to be. Open Sans
-   draws U+201C as two straight slanted strokes — a double prime, not a
-   quotation mark — so this one pseudo-element takes a serif face to get the
-   filled comma shape. Nothing else in the block leaves Open Sans. */
 .testimonial.classic q:before {
     display: block;
     content: "\201C";
@@ -888,16 +455,10 @@ body {
     margin-bottom: 12px;
 }
 
-/* Metadata, not the statement: the name steps down from the quote rather than
-   matching it. Both were gold, which flattened the two together. */
 .testimonial.classic footer {
     color: var(--muted-text);
 }
 
-/* About */
-
-/* An address element: italic by default, and it keeps the spacing of the h3 it
-   replaced. */
 #contact {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 18px;
@@ -915,9 +476,6 @@ body {
 .text-on-image h4 {
     font-weight: bold;
 }
-
-
-/* Standard Headings h1-h6 */
 
 h1 {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -940,8 +498,6 @@ h3 {
     color: var(--header-text)
 }
 
-/* Card titles are h3 so they nest under the section heading, but they keep the
-   h4 look they had. The h4 selectors stay for the pages not converted yet. */
 .card-title,
 h4 {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -964,16 +520,6 @@ h6 {
     color: var(--header-text)
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 6. Buttons */
-/*------------------------------------------------------------------------------------------*/
-
-/* ----------Default Buttons---------- */
-
-
-/* Button Text */
-
 .button,
 input[type="submit"] {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
@@ -982,63 +528,38 @@ input[type="submit"] {
     color: var(--header-text)
 }
 
-
-/* Button Color */
-
 .button,
 input[type="submit"] {
     border-color: var(--header-text);
 }
 
-
-/* Button Hover Color */
-
 .button:hover,
 input[type="submit"]:hover {
     border-color: var(--primary);
-    /*#d2b356;*/
+
     color: var(--accent-text);
-    /*#d2b356;*/
+
 }
-
-
-/* ----------Banner Buttons---------- */
-
-
-/* Button Text */
 
 #home .button {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 16px;
     color: var(--hero-text);
-    /* color: var(--header-text); */
+
 }
-
-
-/* Button Color */
 
 #home .button {
     border-color: var(--hero-text);
-    /* border-color: var(--header-text); */
+
 }
-
-
-/* Button Hover Color */
 
 #home .button:hover {
     color: var(--accent-text);
-    /*#d2b356;*/
+
     border-color: var(--primary);
-    /*#d2b356;*/
+
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* 7. Footer */
-/*------------------------------------------------------------------------------------------*/
-
-/* A rule off the last section, so the footer closes the page instead of running
-   into it. */
 #landing-footer {
     border-top: 1px solid var(--surface-border);
 }
@@ -1052,10 +573,7 @@ input[type="submit"]:hover {
     color: var(--footer-text);
 }
 
-/* Footer Icon Color */
-
 #landing-footer .svg-icon {
     color: var(--footer-text);
 }
-
 

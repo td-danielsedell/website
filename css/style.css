@@ -1,39 +1,4 @@
-/* Namari Landing Page v.1.1.0 Style Index - a free landing page by shapingrain.com
 
-1. Default and Reset styles
-- 1.1 Input Elements
-2. Global elements
-- 2.1 Header
-- 2.2 Logo
-- 2.3 Buttons
-- 2.4 Navigation
-- 2.5 Social Elements
-- 2.6 Images
-3. Fonts and Headings
-4. Banner
-- 4.1 SignUp Form
-5. Content Elements
-- 5.1 Icons
-- 5.2 Parallax Elements
-- 5.3 Divider
-6. Landing Page Sections
-- 6.1 Features
-- 6.2 Testimonials
-- 6.3 Gallery
-- 6.4 Video
-- 6.5 Clients
-- 6.6 Pricing Table
-7. Footer
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 0. Webfont */
-/*------------------------------------------------------------------------------------------*/
-
-/* Open Sans (SIL OFL 1.1), self-hosted so the first paint no longer waits on a
-   round trip to fonts.googleapis.com and then another to fonts.gstatic.com.
-   One variable file per subset covers every weight the site asks for (300-800).
-   Latin carries åäö; latin-ext only loads if a page needs it. */
 
 @font-face {
     font-family: 'Open Sans';
@@ -54,11 +19,6 @@
     src: url('../fonts/open-sans-latin-ext.woff2') format('woff2');
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 1. Defaults & Reset of specific styles across browsers */
-/*------------------------------------------------------------------------------------------*/
 
 *,
 *:before,
@@ -130,73 +90,12 @@ figure {
     margin: 0;
 }
 
-/* Page Border */
-
-/* .page-border {
-    position: fixed;
-    z-index: 999999;
-    pointer-events: none;
-
-    display: none;
-}
-
-.page-border .bottom-border,
-.page-border .left-border,
-.page-border .right-border,
-.page-border .top-border {
-    background: #f3f3ef;
-    position: fixed;
-    z-index: 9999;
-}
-
-.page-border>.top-border,
-.page-border>.right-border,
-.page-border>.bottom-border,
-.page-border>.left-border {
-    padding: 11px;
-    background: #ccc;
-}
-
-.page-border .bottom-border,
-.page-border .top-border {
-    width: 100%;
-    padding: 10px;
-    left: 0;
-}
-
-.page-border .left-border,
-.page-border .right-border {
-    padding: 10px;
-    height: 100%;
-    top: 0;
-}
-
-.page-border .top-border {
-    top: 0;
-}
-
-.page-border .right-border {
-    right: 0;
-}
-
-.page-border .bottom-border {
-    bottom: 0;
-}
-
-.page-border .left-border {
-    left: 0;
-} */
-
 #wrapper {
-    /* margin: 0 15px;
-    padding: 15px 0; */
+
     margin: 0;
     padding: 0;
     position: relative;
 }
-
-
-/* --------- 1.1 Input Elements ---------- */
 
 input,
 textarea {
@@ -235,23 +134,15 @@ textarea:focus {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Only the mouse loses the ring. This used to be a bare `*:focus`, which hid
-   keyboard focus on every interactive element on the site. */
 *:focus:not(:focus-visible) {
     outline: none;
 }
 
-/* Site-wide default. Components that draw their own ring (.scroll-cue, the
-   carousel arrow, the footer cert badges, the About city list) are all more
-   specific and keep winning. The header draws its own per surface — see the
-   two rules under the nav, further down this sheet. */
 :focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
 }
 
-/* Screen-reader-only text: in the accessibility tree, out of the layout. Used
-   by the hero expertise line and by the carousel's live region. */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -264,16 +155,10 @@ textarea:focus {
     border: 0;
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* 2. Layout Elements */
-/*------------------------------------------------------------------------------------------*/
-
 section {
     clear: both;
     overflow: hidden;
 }
-
-/* Rows and Columns */
 
 .row {
     max-width: 1245px;
@@ -301,8 +186,6 @@ section {
     padding-bottom: 85px !important;
 }
 
-/* Targets all elements */
-
 [class*='col-'] {
     float: left;
     padding: 20px;
@@ -312,15 +195,11 @@ section {
     padding: 0;
 }
 
-/* Clearfix */
-
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
 }
-
-/* Main Widths */
 
 .col-1 {
     width: 100%;
@@ -329,7 +208,7 @@ section {
 
 .col-2 {
     width: 50%;
-    /* border: 1px solid darkorchid; */
+
 }
 
 .col-3 {
@@ -337,16 +216,14 @@ section {
 }
 
 .col-4 {
-    /* position: relative; */
+
     width: 45%;
-    /* width: 33%; */
+
     padding: 0px;
     margin: 0px;
-    /* padding-top: 100%; */
-    /* 1:1 Aspect Ratio */
-    /* position: relative; */
+
     aspect-ratio: 16 / 9;
-    /*calc(width * 56.25);*/
+
     background-size: cover;
 }
 
@@ -394,7 +271,6 @@ section {
     width: 90%;
 }
 
-/* Golden Ratio */
 .col-61 {
     width: 61.8%;
 }
@@ -402,8 +278,6 @@ section {
 .col-38 {
     width: 38.2%;
 }
-
-/* --------- 2.1 Header --------- */
 
 #header {
     height: 71px !important;
@@ -414,18 +288,6 @@ section {
     background: var(--header);
 }
 
-/* Keeps a jumped-to section's heading clear of the fixed header.
-
-   stickyNavbar animates to `offsetTop - headerHeight + 2`, which is right, and
-   then calls .focus() on the section from the animation's complete callback.
-   That focus is a scroll-into-view: Blink (Chrome, Brave) realigns the section's
-   top flush to the viewport top and throws the header compensation away, so the
-   kicker and half the title end up behind the header. Gecko reads the section as
-   already visible and doesn't re-scroll, which is why Firefox looked fine.
-
-   scroll-margin-top is honoured by scroll-into-view, so it puts the focus scroll
-   back where the animation aimed. 71px is the header height above; the animation
-   rests 2px below that, so the correction is invisible. */
 .scrollto {
     scroll-margin-top: 71px;
 }
@@ -444,20 +306,12 @@ section {
     margin: 0;
 }
 
-/* --------- 2.2 Logo ---------- */
-
 #logo {
     float: left;
     height: 71px;
     line-height: 66px;
     margin-right: 15px;
-    /* nav#nav-main is a full-width block that starts at the same left edge, so
-       its box lies over the logo — only its inline content is pushed aside by
-       this float. That was harmless until the nav gained position: relative (so
-       the language switcher could sit at its right edge), because a positioned
-       element paints above a float and began swallowing clicks on the logo
-       link. Positioning the logo too puts it back on top; the z-index is what
-       does the work, since the nav comes later in the document. */
+
     position: relative;
     z-index: 1;
 }
@@ -479,18 +333,13 @@ section {
     padding: 0;
 }
 
-/* Both logos sit in one link back to the start page. Kept inline so the 66px
-   line box above still centres them, and stripped of the background that
-   "#header.nav-solid a" would otherwise paint behind it. */
 #logo a {
     background: transparent;
     text-decoration: none;
 }
 
 #logo img {
-    /* The width/height attributes on the logo let the browser reserve the right
-       box before the image loads. They also act as presentational hints, so both
-       axes are handed back to auto here and max-height keeps doing the sizing. */
+
     width: auto;
     height: auto;
     max-height: 22px;
@@ -510,13 +359,9 @@ section {
     display: inline-block;
 }
 
-/* --------- 2.3 Buttons ---------- */
-
 .call-to-action {
     padding: 35px 0 35px 0;
 }
-
-/*Style*/
 
 .button {
     font-size: 16px;
@@ -529,8 +374,6 @@ section {
     border-width: 3px;
     border-style: solid;
 }
-
-/* Play Button */
 
 #video-section {
     position: relative;
@@ -613,13 +456,6 @@ section {
     color: var(--normal-text);
 }
 
-
-/* --------- 2.4 Navigation ---------- */
-
-/* 13px uppercase is below what reads comfortably at arm's length, and the nav
-   is the one thing on the page every visitor has to read. 15px is the size the
-   row can carry: see the note on the 1024px block further down for what it
-   costs at the narrow end of the wide nav. */
 #header {
     font-size: 15px;
 }
@@ -645,14 +481,10 @@ section {
 }
 
 #header nav a:hover {
-    /* opacity: 0.6; */
+
     opacity: 1;
 }
 
-/* Keyboard focus in the header, drawn in each surface's own ink — the same rule
-   the hover and current-page markers follow (see the .nav-solid notes below).
-   The orange bar takes white: its own rows, its group labels, and the two
-   controls that sit beside them. */
 #header nav#nav-main > ul > li > a:focus-visible,
 #header nav#nav-main .nav-group summary:focus-visible,
 #header nav#nav-main .nav-lang summary:focus-visible,
@@ -660,18 +492,10 @@ section {
 #header .theme-toggle:focus-visible,
 #nav-trigger > span:focus-visible {
     outline: 2px solid #fff;
-    /* Inset. A bar row is the full 71px of the header, so a positive offset
-       puts the ring's top and bottom edges outside it and clips them. */
+
     outline-offset: -2px;
 }
 
-/* The neutral panels — the wide dropdown, the language list and the mobile
-   menu — take --primary instead. Every one of these has to name #nav-main or
-   #nav-mobile: "#header nav#nav-main a" above carries two ids, so a panel rule
-   written with classes alone loses to it and the dropdown inside the wide nav
-   came out ringed in white on a near-white panel. The bar rule is now scoped to
-   direct children for the same reason, and these still spell the id out so
-   neither can drift back into outranking the other. */
 #header nav#nav-main .nav-sub a:focus-visible,
 #header nav#nav-main .nav-lang .lang-options a:focus-visible,
 #header #nav-lang-mobile .nav-lang .lang-options a:focus-visible,
@@ -681,31 +505,19 @@ section {
     outline-offset: -2px;
 }
 
-/* The language switcher rides along at the end of the nav list so the mobile
-   menu, which is cloned from #nav-main, picks it up too. It is a <details>, so
-   the dropdown gets native mouse, touch and keyboard behaviour without a line
-   of script — which is also what lets it survive that clone, since there is no
-   event handler to copy across.
-
-   The options deliberately sit in a <div> rather than a <ul>: site.js expands
-   the mobile menu with $("nav#nav-mobile ul"), which would match a nested list
-   and slide the dropdown open along with the menu. */
 #header nav .nav-lang {
     position: relative;
 }
 
 #header nav .nav-lang summary {
-    /* Stays an inline line box on purpose: the nav items are baseline-aligned
-       inline-blocks, and a flex or grid summary has no text baseline, so it
-       drops out of that alignment and shunts every other link down 3px. */
+
     height: 71px;
     line-height: 71px;
     padding: 0 10px;
     cursor: pointer;
     color: var(--on-header);
     opacity: 0.75;
-    /* Hides the disclosure triangle: list-style for Firefox, the pseudo-element
-       below for WebKit. The globe is the affordance. */
+
     list-style: none;
     -webkit-transition: opacity 0.3s ease-out;
     -moz-transition: opacity 0.3s ease-out;
@@ -722,18 +534,12 @@ section {
     opacity: 1;
 }
 
-/* The globe is the entire control now, so it carries a little more weight than
-   the 1em inline icons elsewhere on the page. */
 #header nav .nav-lang summary .svg-icon {
     width: 1.25em;
     height: 1.25em;
-    /* .svg-icon's -0.125em is tuned for an icon set beside text. Alone in the
-       line box the globe reads high, so drop it onto the centre of the link
-       labels either side of it. */
+
     vertical-align: -0.24em;
-    /* The nav-solid rule paints a background onto .svg-icon. That is invisible
-       against the header itself, but the mobile menu sits the globe on a dark
-       panel, where it shows up as an orange tile. */
+
     background: transparent;
 }
 
@@ -743,9 +549,7 @@ section {
     background: var(--surface);
     box-shadow: var(--panel-shadow);
     text-transform: none;
-    /* Same as .nav-sub: a list starting on a common left edge, which is also
-       where the current-item rule sits, rather than inheriting the centring
-       "#header ul" gives the nav bar. */
+
     text-align: left;
 }
 
@@ -757,8 +561,7 @@ section {
     white-space: nowrap;
     border-left: 3px solid transparent;
     color: var(--link);
-    /* nav-solid paints every header link with the header colour; the options
-       sit on their own surface and must not inherit it. */
+
     background: transparent;
     opacity: 0.8;
 }
@@ -777,9 +580,6 @@ section {
     cursor: default;
 }
 
-/* Wide nav: the panel hangs below the globe, right-aligned so it cannot push
-   past the viewport edge that body{overflow-x:hidden} would clip. Below this
-   the menu is a stacked list and the options just flow inside it. */
 @media all and (min-width: 1024px) {
     #header nav .lang-options {
         position: absolute;
@@ -788,20 +588,10 @@ section {
         z-index: 10;
     }
 
-    /* The switcher is not one of the menu items, so it sits at the right edge
-       rather than travelling with them. Taking it out of the flow also lets the
-       links either side of it centre on their own.
-
-       Absolute rather than a flex ul on purpose: the nav items are
-       baseline-aligned inline-blocks, and a flex container has no text baseline
-       to align them on. #nav-main only gains position so that right:0 lands on
-       the column edge and keeps its 20px gutter. */
     nav#nav-main {
         position: relative;
     }
 
-    /* Needs #header and the element type to outrank "#header nav .nav-lang",
-       which sets position: relative for the dropdown panel above. */
     #header nav#nav-main .nav-lang {
         position: absolute;
         top: 0;
@@ -809,11 +599,6 @@ section {
     }
 }
 
-/* On narrow screens the switcher leaves the dropdown and sits next to the
-   hamburger, so the language is reachable without opening the menu. js/nav.js
-   renders it into both places; these rules pick which one is visible.
-   #nav-lang-mobile lives inside #nav-trigger, which is display:none above
-   1023px, so the wide layout hides it without a rule of its own. */
 #nav-lang-mobile {
     display: inline-block;
     vertical-align: top;
@@ -832,19 +617,8 @@ section {
     }
 }
 
-/* --------- 2.4.0 Theme toggle ---------- */
-
-/* Sits beside the language switcher and is built the same way: an icon-only
-   control filling the header's 71px line box, styled here for both themes.
-   js/theme.js does the switching.
-
-   A <button> rather than an <a>, because nothing is being navigated to. That
-   also keeps it clear of stickyNavbar, which binds "li a" and would read the
-   click as a request to scroll to a section. */
 #header nav .theme-toggle {
-    /* Matches .nav-lang summary rather than the inline-block <li> around it:
-       the li is what the baseline-aligned nav row sees, and inside it this
-       behaves like the summary next door. */
+
     display: block;
     height: 71px;
     line-height: 71px;
@@ -854,7 +628,7 @@ section {
     color: var(--on-header);
     opacity: 0.75;
     cursor: pointer;
-    /* A button does not inherit type from the page. */
+
     font: inherit;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -869,17 +643,8 @@ section {
     opacity: 1;
 }
 
-/* Same weight as the globe beside it, and the same drop onto the centre of the
-   link labels either side. The transparent background is not decoration:
-   "#header.nav-solid .svg-icon" paints one, which shows up as an orange tile on
-   the mobile menu's dark panel. */
 #header nav .theme-toggle .svg-icon {
-    /* Load-bearing since these two became kit <i> elements: width and height
-       are ignored on a non-replaced inline box, so an <i> left at its default
-       display would reserve nothing and the nav controls beside it would shift
-       when the kit swapped in the <svg>. Sits above .icon-moon's display: none
-       in this sheet, which ties on specificity and wins on order — as it
-       must. */
+
     display: inline-block;
     width: 1.25em;
     height: 1.25em;
@@ -887,9 +652,6 @@ section {
     background: transparent;
 }
 
-/* One button, two icons: the visible one names the destination, so the dark
-   site offers a sun and the light site a moon. Swapped in CSS rather than by
-   the script, so the right icon is in place on the first paint. */
 #header nav .theme-toggle .icon-moon {
     display: none;
 }
@@ -902,10 +664,6 @@ html.theme-light #header nav .theme-toggle .icon-sun {
     display: none;
 }
 
-/* Wide nav: the language switcher is pinned to the right edge, so this one is
-   pinned just inside it. The offset is the globe control's own width — a
-   1.25em icon in 10px of padding a side — which is what makes the two read as
-   one pair of controls rather than two coincidences. */
 @media all and (min-width: 1024px) {
     #header nav#nav-main .nav-theme {
         position: absolute;
@@ -914,51 +672,22 @@ html.theme-light #header nav .theme-toggle .icon-sun {
     }
 }
 
-/* Beside the hamburger, the narrow-screen home for both controls. */
 #nav-theme-mobile {
     display: inline-block;
     vertical-align: top;
 }
 
-/* Where localStorage cannot be written the choice would be forgotten on the
-   next page load, so js/theme.js withdraws the control rather than offer one
-   that undoes itself. The system setting still decides the theme.
-
-   Both copies, and !important because #nav-theme-mobile's own rule above and
-   the cloned row in #nav-mobile are more specific than a bare class. Nothing
-   reflows: in the wide nav both controls are absolutely positioned at explicit
-   offsets, so the globe does not move to fill the gap. */
 html.no-theme-choice .nav-theme,
 html.no-theme-choice #nav-theme-mobile {
     display: none !important;
 }
 
-/* The wide nav's copy is cloned into #nav-mobile by site.js, and below 1024px
-   the control lives next to the hamburger instead — same split as .nav-lang. */
 @media all and (max-width: 1023px) {
     #nav-mobile .nav-theme {
         display: none;
     }
 }
 
-/* Cross-fading the theme swap.
-
-   One transition, on <html>, over the theme tokens themselves — not over
-   background-color and color on every element. colors.css registers each token
-   that changes with @property, which is what makes a custom property
-   interpolable; the long note there explains why that is the only way to reach
-   gradient stops and shadow colours. Everything reading a token re-resolves
-   per frame on its own.
-
-   Do NOT also transition background-color/color here. When both the token and
-   the property that reads it animate, the property's target moves every frame
-   and the fade never catches up: it crawls, and then jumps when
-   .theme-animating comes off.
-
-   js/theme.js hangs that class on <html> for the length of the fade and takes
-   it off again, so nothing is transitioning the rest of the time — and it only
-   does that for a swap the reader or the OS asks for, never for the theme
-   resolved in <head>, which has to land on the first frame. */
 html.theme-animating {
     transition-property:
         --primary, --primary_0, --primary_100, --secondary,
@@ -976,39 +705,17 @@ html.theme-animating {
     }
 }
 
-/* --------- 2.4.1 Expandable menu groups ---------- */
-
-/* Nav items that own subpages (Showcases, Produkter) expand instead of jumping.
-   Same <details> approach as the language switcher, and for the same two
-   reasons: no script to write, and nothing to re-bind when site.js clones
-   #nav-main into #nav-mobile.
-
-   A summary cannot both toggle and navigate, so below 1024px — where the label
-   is the toggle and js/site.js strips its href — the group's own section would
-   be unreachable from the menu. .nav-sub-all is that link, added as the first
-   entry inside each group. The wide nav does not need it: there the label is a
-   working link, so the entry is hidden rather than shown twice. */
 #header nav .nav-group {
     position: relative;
 }
 
 @media all and (min-width: 1024px) {
-    /* Spelled out through .nav-sub a, not as a bare .nav-sub-all: the entry is
-       one of the dropdown's anchors and #header nav .nav-sub a already gives it
-       display: block at the same specificity plus an element. */
+
     #header nav .nav-sub a.nav-sub-all {
         display: none;
     }
 }
 
-/* The label inside is a real link to the group's section on the index page, so
-   the anchor keeps the full 71px box that "#header nav a" gives every other nav
-   item — that is what makes stickyNavbar's .active underline sit on the same
-   line as the flat items'. The summary only supplies the caret and the padding
-   around it.
-
-   Stays an inline line box for the same reason the language summary does: a
-   flex summary has no baseline and shunts every other item in the row down 3px. */
 #header nav .nav-group summary {
     height: 71px;
     line-height: 71px;
@@ -1023,10 +730,7 @@ html.theme-animating {
 }
 
 #header nav .nav-group summary a {
-    /* inline-block, not the block that "#header nav a" hands every other nav
-       link. A summary whose only child is a block has no line box of its own,
-       so the <li> around it falls back to baseline-aligning on its bottom
-       margin edge — which drops every flat item in the row 71px. */
+
     display: inline-block;
     vertical-align: top;
     padding-right: 4px;
@@ -1036,7 +740,6 @@ html.theme-animating {
     display: none;
 }
 
-/* Caret, so the item reads as expandable rather than broken. */
 #header nav .nav-group summary::after {
     content: "";
     display: inline-block;
@@ -1056,19 +759,13 @@ html.theme-animating {
     transform: rotate(180deg);
 }
 
-/* A <div> of <a>s rather than a <ul>: site.js opens the mobile menu with
-   $("nav#nav-mobile ul"), which would match a nested list and slide the submenu
-   open along with the menu. Same reason the language options are a <div>. */
 #header nav .nav-sub {
     padding: 6px 0;
     border-radius: 3px;
     background: var(--surface);
     box-shadow: var(--panel-shadow);
     text-transform: none;
-    /* The entries read as a list, so they start on a common left edge rather
-       than inheriting the centring "#header ul" gives the nav bar itself. That
-       edge is also where the current-page rule sits. The mobile menu already
-       aligns left, via nav#nav-mobile li. */
+
     text-align: left;
 }
 
@@ -1080,8 +777,7 @@ html.theme-animating {
     white-space: nowrap;
     border-left: 3px solid transparent;
     color: var(--link);
-    /* nav-solid paints every header link with the header colour; the panel sits
-       on its own surface and must not inherit it. */
+
     background: transparent;
     opacity: 0.8;
 }
@@ -1092,29 +788,16 @@ html.theme-animating {
     opacity: 1;
 }
 
-/* The entry for the page you are on: the same marker as
-   .lang-options .is-current, which is the other "this is the one you are on"
-   control in this header — it colours in the transparent left border that every
-   entry already carries.
-
-   It cannot use the .active styling the top-level items get: that paints
-   var(--link-hover-active), which is #111, and the panel it sits on is #333. */
 #header nav .nav-sub a.active {
     font-weight: 700;
     border-left-color: var(--primary);
     background: var(--panel-hover);
     color: var(--link);
     opacity: 1;
-    /* "#header.nav-solid nav .active" underlines the top-level items in
-       var(--link-hover-active), which is #111. It matches any .active in the
-       nav, so a panel entry picked up a near-black rule across its bottom. The
-       language switcher never showed it because its current option is marked
-       .is-current, not .active. */
+
     border-bottom: 0;
 }
 
-/* Wide nav: the panel hangs below its group. Below this the menu is a stacked
-   list and the entries just flow inside it. */
 @media all and (min-width: 1024px) {
     #header nav .nav-sub {
         position: absolute;
@@ -1125,21 +808,16 @@ html.theme-animating {
     }
 }
 
-/* In the mobile menu the group has to read as one of the stacked rows, and its
-   entries as indented children of it. */
 #header nav#nav-mobile .nav-group summary {
     height: auto;
     line-height: normal;
     padding: 15px;
-    /* A panel row, so the panel's ink — the bar's white belongs to the bar. */
+
     color: var(--link);
     opacity: 0.8;
     border-left: 3px solid transparent;
 }
 
-/* The group whose page you are on, marked the same way as the entry inside it:
-   the summary carries it, because js/site.js puts .active on the inline anchor,
-   which has no box of its own to mark. */
 #header nav#nav-mobile .nav-group summary:has(a.active) {
     font-weight: 700;
     border-left-color: var(--primary);
@@ -1147,19 +825,13 @@ html.theme-animating {
     opacity: 1;
 }
 
-/* On a touch screen the label opens the group instead of following its href
-   (js/site.js cancels the click), so it must not offer a link's box or padding
-   on top of the summary's. */
 #header nav#nav-mobile .nav-group summary a {
     display: inline;
     height: auto;
     line-height: normal;
     padding: 0;
     background: transparent;
-    /* js/site.js marks this anchor .active, not the summary — but the summary
-       is what has a row to mark, and it does so through :has() above. Without
-       this the anchor drew the 3px bar a second time, mid-row, right against
-       the label. */
+
     border-left: 0;
 }
 
@@ -1170,48 +842,30 @@ html.theme-animating {
     background: transparent;
 }
 
-/* Everything else — colour, opacity, the transparent left border the current
-   page fills in — comes from the shared "#header nav .nav-sub a" rule. Only the
-   indent and the separator are particular to the stacked menu. */
 #header nav#nav-mobile .nav-sub a {
     padding: 12px 15px 12px 32px;
     border-top: 1px solid var(--surface-border);
 }
-
-/*Navigation Solid*/
 
 #header.nav-solid [class*='col-'] {
     padding: 0 20px;
 }
 
 #header.nav-solid {
-    /* No background here. css/colors.css loads after this file and paints the
-       solid bar var(--header) at the same specificity, so the var(--normal-text)
-       that used to sit on this line never applied — and --normal-text is
-       near-white on the dark theme, so it would have turned the sticky bar into
-       a white slab the day anyone reordered the two sheets. */
+
     box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.2);
     position: fixed !important;
     left: 0;
 }
 
 #header.nav-solid nav a {
-    /* border-bottom: 3px solid; */
-    /* border-color: var(--link); */
+
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
 
-/* The underline under the current top-level item, in the bar's own ink. It was
-   var(--link-hover-active) (#111) on --header, 3.0:1 — the marker read as a
-   smudge rather than as emphasis.
-
-   No longer scoped to .nav-solid: the bar only takes that class after the
-   waypoint fires, so on a subpage at rest the current item had no marker at
-   all. Panel entries are excluded by their own rules — .nav-sub a.active sets
-   border-bottom: 0, and nav#nav-mobile a kills it outright. */
 #header nav .active {
     font-weight: 700;
     border-bottom: 3px solid;
@@ -1219,22 +873,20 @@ html.theme-animating {
 }
 
 #header.nav-solid nav a:hover {
-    /* opacity: 0.6; */
+
     opacity: 1;
 }
-
-/* Social Elements */
 
 #header i {
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    /* opacity: 0.5; */
+
 }
 
 #header i:hover {
-    /* opacity: 0.6; */
+
     opacity: 1;
 }
 
@@ -1243,22 +895,15 @@ html.theme-animating {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    /* opacity: 0.5; */
+
 }
 
 #header.nav-solid i:hover {
-    /* opacity: 0.5; */
+
     opacity: 1;
-    /* color: #e4473c; */
+
 }
 
-/* Responsive Nav Styling */
-
-/* The hamburger is addressed as a direct child throughout. #nav-trigger also
-   holds the mobile language switcher, whose "current language" marker is a
-   <span> — a descendant selector would hand it the 38px box, the 22px uppercase
-   type and the bars mask below. js/site.js scopes its click binding the same
-   way, for the same reason. */
 #nav-trigger {
     display: none;
     text-align: right;
@@ -1281,9 +926,6 @@ html.theme-animating {
     transition: all 0.3s ease-out;
 }
 
-/* fa-bars, and fa-xmark once the menu is open. Masks rather than icon-font
-   glyphs, so the trigger keeps its color without loading Font Awesome.
-   Paths from Font Awesome Free 6.7.2 (icons: CC BY 4.0). */
 #nav-trigger > span:after {
     display: inline-block;
     content: "";
@@ -1304,7 +946,7 @@ html.theme-animating {
 #nav-trigger > span:hover,
 .nav-solid #nav-trigger > span.open:hover,
 .nav-solid #nav-trigger > span:hover {
-    /* opacity: 0.6; */
+
     opacity: 1;
 }
 
@@ -1350,10 +992,6 @@ nav#nav-mobile ul:after {
     display: none;
 }
 
-/* The panel's brand row, prepended into the clone by js/site.js. Only the
-   landscape-phone block at the end of this sheet shows it: there the header
-   bar is gone and the panel is the one place the logo can live. Every other
-   width already has the logo in the bar, twice would be noise. */
 nav#nav-mobile .nav-panel-logo {
     display: none;
 }
@@ -1392,27 +1030,11 @@ nav#nav-mobile a {
     transition: all 0.3s ease-out;
 }
 
-/* The panel hover, identical to the dropdown's and the language list's. Scoped
-   through #header with .nav-sub and summary spelled out so it outranks the
-   rules those two set for themselves — a bare `nav#nav-mobile a:hover` lost to
-   them, which is why the entries under Produkter had no hover at all. */
-/* The panel's ink, and the 3px channel every panel entry carries so the current
-   page can be marked here the way it is in the dropdown and the language list.
-
-   Scoped through #header rather than written into the nav#nav-mobile block
-   above: "#header nav a" in colors.css paints the bar's white at the same
-   specificity and loads later, so an unscoped rule here loses. The block above
-   keeps the layout, which must stay at its own specificity — "nav#nav-mobile ul
-   li a" sets the 15px row indent and would be outranked by an #header-scoped
-   rule carrying padding. */
 #header nav#nav-mobile a {
     color: var(--link);
     opacity: 0.8;
     border-left: 3px solid transparent;
-    /* Explicitly transparent, not merely unset: once the bar goes solid,
-       "#header.nav-solid a" in colors.css paints every anchor in the header with
-       the bar's orange — including these, which put the old orange slab back the
-       moment the reader scrolled. The rows sit on the panel's own ground. */
+
     background: transparent;
 }
 
@@ -1423,9 +1045,6 @@ nav#nav-mobile a {
     opacity: 1;
 }
 
-/* The page you are on, in the stacked menu: the marker every panel in this
-   header uses. .nav-sub entries get it from the shared rule; this is the
-   top-level rows. */
 #header nav#nav-mobile a.active {
     font-weight: 700;
     border-left-color: var(--primary);
@@ -1433,15 +1052,9 @@ nav#nav-mobile a {
     opacity: 1;
 }
 
-/* A group label is not a link on mobile — js/site.js strips its href so the
-   summary's own toggle runs — so the whole summary row above carries the
-   hover. The inline anchor has to stay transparent or the tint paints a second
-   box the width of the text inside the row that is already tinted. */
 #header nav#nav-mobile .nav-group summary a:hover {
     background: transparent;
 }
-
-/* --------- 2.5 Social Elements ---------- */
 
 #header .col-4 {
     text-align: right;
@@ -1458,25 +1071,14 @@ nav#nav-mobile a {
     text-align: center;
 }
 
-/* The footer icons stand alone rather than beside text, so they get their own
-   size instead of .svg-icon's 1em. The anchor is wider than the icon so the
-   two don't touch, which also leaves a finger-sized tap target. */
 .social-icons .svg-icon {
     width: 2em;
     height: 2em;
 }
 
-/* .social-icons a:hover {
-    opacity: 0.7;
-} */
-
 .social-icons span {
     display: none;
 }
-
-/* --------- 2.6 Images ---------- */
-
-/*Alignment*/
 
 img {
     vertical-align: top;
@@ -1518,10 +1120,6 @@ a img:hover {
     opacity: 0.7;
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* 3. Fonts */
-/*------------------------------------------------------------------------------------------*/
-
 h1 {
     padding: 20px 0;
 }
@@ -1530,118 +1128,52 @@ h2 {
     padding: 14px 0;
 }
 
-/* Matches the banner h2 it replaced, so it keeps the heading spacing and does
-   not pick up the 25px line-height of a normal paragraph. */
 .banner-intro {
-    /* The reset above zeroes the margin on h1-h6 but not on p. */
+
     margin: 0;
     padding: 14px 0;
     line-height: normal;
-    /* The hero column is 61.8% of the row, which by 1245px of grid is an
-       ~86-character line — far past the 45-75 readable range. 55ch caps it
-       around 63 characters and, being ch, follows the font size wherever the
-       bands below change it. Phone columns are narrower than the cap already. */
+
     max-width: 55ch;
 }
 
-/* Below the 1280 desktop range the full 55ch reads long against the smaller
-   screen — Daniel called 1024x768 borderline. 48ch (~55 characters) for
-   everything narrower; phone columns are already narrower than 48ch, so this
-   only bites on tablets (768-1023 and the 744 in-between). The short-screen
-   block at the end of the file tightens further to 45ch. */
 @media (max-width: 1279px) {
     #home .banner-intro {
         max-width: 48ch;
     }
 }
 
-/* The second sentence of the hero intro, set apart from the first by the same
-   gap the expertise line has above it: ~35px there, and a plain line break
-   leaves only the 6.5px that line-height:normal gives, so 28px makes up the
-   difference. Fixed px rather than an em, because the gap it is matching is set
-   by the expertise line's own padding and does not scale with this text.
-
-   A block span inside the one paragraph, not a second <p>: the orange rule is
-   drawn by .banner-intro:after and a second paragraph would draw a second rule
-   between the two sentences. */
 .banner-intro-next {
     display: block;
     margin-top: 28px;
 }
 
-/* Hero expertise line: "Vi kan" with the four affärsområden cycling vertically
-   beside it.
-
-   Sized in vw rather than px so the label and the longest area name stay on one
-   line at every phone width. The widest combinations are "Vi kan" + icon +
-   "Tillgångsförvaltning" (~14.2× the font size) and, on /en/, "We know" + icon
-   + "Asset Management" (~15.4×).
-
-   The size is deliberately flat from 773px up, where 4.4vw meets the 34px
-   ceiling — see the stacking rule below for what happens when the column is
-   too narrow to hold that size on one line. Sizing the line off the column
-   instead was tried and reverted: it holds one line at every width, but the
-   type then steps down at 768px where the column drops to 61.8% and climbs
-   back only at 1245px, and the h1 beside it is a flat 62px through that whole
-   band, so the line alone visibly collapsed. */
 .expertise-line {
-    /* The reset zeroes margin on h1-h6 but not on p. */
+
     margin: 0;
     padding: 20px 0 4px;
     display: flex;
-    /* centred, not baseline: the window is taller than its text because of the
-       icon, and overflow:hidden gives it a bottom-edge baseline that would drop
-       the area name well below the label */
+
     align-items: center;
     gap: 0.3em;
-    /* 4.4vw leaves room for a bigger icon and still keeps label + icon + the
-       longest name on one line: measured at 390px, 285px of the 360px usable
-       here and 305px on /en/. The tighter of the two, English, leaves headroom
-       up to ~5.2vw before it collides. */
+
     font-size: clamp(14px, 4.4vw, 34px);
     font-weight: 800;
     line-height: 1.25;
     white-space: nowrap;
 }
 
-/* Between 768px and 1023px the 61.8% column only offers 435px, and the type
-   is already pinned at its 34px ceiling, so the widest combo ("We know" +
-   icon + "Asset Management", ~15.4× the font size = 522px) no longer fits
-   inside the column. This used to move the label above the reel instead, but
-   the line must never stack or shrink, so instead it is let to grow past the
-   column's edge: width:max-content stops it stretching to fill (and wrap
-   inside) the 435px box, so the nowrap content overflows the column's right
-   edge — nothing else on the row sits there to collide with. Height is
-   untouched: the rotator's overflow:hidden window is sized for one reel item
-   by --expertise-step and has nothing to do with this.
-
-   A dedicated class rather than folding this into .expertise-line itself:
-   this is a one-off escape from the grid column, not a base property of the
-   expertise line. */
 @media (min-width: 768px) and (max-width: 1023px) {
     .expertise-line-grow {
         width: max-content;
     }
 }
 
-/* The line's size follows each band's headline instead of riding its own
-   4.4vw curve, which drifted from 0.33× the headline on a phone (smaller
-   than the intro's body copy — inverted hierarchy) to 0.82× on a short
-   screen. Now 0.37-0.55× everywhere. Phones: 5vw is the fit ceiling — the
-   nowrap "We know" + icon + "Asset Management" combo (English is the wider
-   language) collides past ~5.2vw. Tablets: 28px against the 62px headline
-   rather than the base rule's 34px cap, which is desktop's. The short-screen
-   size lives in the max-height:500 block at the end of the file, where order
-   lets it beat these. */
 @media (max-width: 767px) {
     #home .expertise-line {
         font-size: clamp(15px, 5vw, 24px);
     }
 
-    /* The intro follows the same thinking: colors.css's flat 18px was 0.29× the
-       headline on desktop but 0.42× on a 320px phone. 4.6vw keeps a 390px phone
-       at its signed-off 18px and only tapers the smaller ones. !important for
-       the same load-order reason as the headline clamp above. */
     #home .banner-intro {
         font-size: clamp(15px, 4.6vw, 18px) !important;
     }
@@ -1653,9 +1185,6 @@ h2 {
     }
 }
 
-/* --expertise-step is the height of one reel item, sized off the icon since the
-   icon is taller than the text. The window shows exactly one item, and the
-   keyframes below step the reel by this much. */
 .expertise-rotator {
     --expertise-icon: 1.5em;
     --expertise-step: calc(var(--expertise-icon) + 0.3em);
@@ -1666,7 +1195,7 @@ h2 {
 
 .expertise-reel {
     display: block;
-    /* 10s across 4 areas: 2.5s each, of which 0.5s is the slide */
+
     animation: expertise-cycle 10s infinite;
 }
 
@@ -1677,51 +1206,26 @@ h2 {
     height: var(--expertise-step);
 }
 
-/* :is(img, svg) because the kit swaps each <i> for an <svg class="svg-inline--fa">.
-   A fixed-width slot rather than width:auto: the four glyphs are different
-   widths, and with auto the area name started at a different x each time the
-   reel stepped — the restless shifting Daniel called out. 1.3× the icon height
-   fits the widest glyph (and matches --kit-icon-boost, so the boosted upload
-   fills its slot exactly); the SVGs keep their aspect ratio and centre in the
-   slot (preserveAspectRatio's default), so narrower glyphs get symmetric air
-   instead of pulling the name leftward. */
 .expertise-reel :is(img, svg) {
     height: var(--expertise-icon);
     width: calc(var(--expertise-icon) * 1.3);
     flex: 0 0 calc(var(--expertise-icon) * 1.3);
 }
 
-/* The custom kit upload draws its glyph inside a 640-unit viewBox but fills
-   only 76% of the height, where the stock Font Awesome glyphs fill all of
-   theirs. Given the same height as the others it reads about a quarter
-   smaller, so this one icon is scaled back up. One knob for both places it
-   appears; 1.3 is 1/0.76 rounded down. */
 :root {
     --kit-icon-boost: 1.3;
 }
 
-/* Height, not transform: this is a flex row with the area name beside the
-   icon, so the box has to reserve the wider footprint or the glyph rides over
-   the label. The extra height is the upload's own empty padding — the
-   rotator clips it and the ink still lands inside the window. */
 .expertise-reel svg.fa-hand-holding-gear-industry-sack-dollar {
     height: calc(var(--expertise-icon) * var(--kit-icon-boost));
 }
 
-/* On a phone the icon needs to be relatively larger to read at all: 1.5em is
-   balanced against desktop's 34px text but too small against the phone's ~20px.
-   2em (was 2.4 when the phone text was 17px) puts it at ~39px on a 390px
-   screen. The short-screen block at the end of the file pins this back to
-   1.5em: with height-scaled text, 2em was the 67px icon that broke 667x375. */
 @media (max-width: 767px) {
     .expertise-rotator {
         --expertise-icon: 2em;
     }
 }
 
-/* Stepped in em, NOT in percent: a percentage translateY resolves against the
-   reel's own height — all five items — so -100% would move it five rows, not
-   one. The 5th item repeats the 1st, so the wrap back to 0 is invisible. */
 @keyframes expertise-cycle {
 
     0%,
@@ -1772,8 +1276,6 @@ h6 {
     padding: 7px 0;
 }
 
-/* Text Alignment */
-
 .text-left {
     text-align: left;
 }
@@ -1785,8 +1287,6 @@ h6 {
 .text-right {
     text-align: right;
 }
-
-/* Content Alignment */
 
 .content-left {
     display: flex;
@@ -1803,31 +1303,19 @@ h6 {
     justify-content: right;
 }
 
-/* Section Headings */
-
 .section-heading {
     padding: 0 0 15px 0;
 }
 
-/* Affärsområden and Tillit sit their heading inside a col-, so the title starts
-   at the 20px gutter and lines up with the cards below it. The headings that sit
-   straight in the row have no column to get that from, so they take the gutter
-   here instead. Under 481px the columns drop their gutter, and so does this —
-   see the col- padding reset in the (max-width: 480px) block. */
 .row > .section-heading {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-/* h1 section titles keep the tighter h2 padding, and sit closer to the body text
-   since they have no subtitle line under them */
 h1.section-title {
     padding: 14px 0 0 0;
 }
 
-/* Except that they do have one now — about.html opens with an h1 and a subtitle,
-   and so do the showcase pages. Without this the gap under an h1 title is the
-   14px a p title states, tighter than every other section on the page. */
 .section-heading:has(> .section-subtitle) h1.section-title {
     padding-bottom: 14px;
 }
@@ -1841,40 +1329,20 @@ h1.section-title {
     padding-top: 0;
 }
 
-/* A subtitle inside the heading is a paragraph the whole section is read
-   through, not a caption, so it takes a measure and a line height rather than
-   the reset's defaults. The reset does not zero p, so the margin has to be
-   stated: the title's own 14px bottom padding is the gap above it, and the
-   accent rule under it carries its own 30px (colors.css). */
 .section-heading > .section-subtitle {
     max-width: 720px;
     margin: 0;
     line-height: 28px;
 }
 
-/* Centred headings centre their measure too, or the text sits left of a rule
-   that is centred under it. */
 .text-center .section-heading > .section-subtitle {
     margin-left: auto;
     margin-right: auto;
 }
 
-/* A product page's own icon beside its title: the same duotone glyph its card
-   in Produkter on the start page carries, so the card and the page read as one
-   thing. Stands in until there is artwork for these pages.
-
-   The icon spans both heading rows, so the title and its subtitle sit as one
-   block beside it rather than the subtitle wrapping under the glyph.
-
-   The box is a stated width, not the glyph's own: the three product icons have
-   different aspect ratios, and without it each page starts its title at a
-   different offset. */
 .section-heading.has-title-icon {
     display: grid;
-    /* Both columns hug their content and the pair sits at the start, so the
-       icon follows the longer of title and subtitle instead of being pushed out
-       to the container's right edge — at the far edge of TD Test's hero cell it
-       read as the lead paragraph's icon, not the title's. */
+
     grid-template-columns: auto auto;
     justify-content: start;
     align-items: center;
@@ -1886,20 +1354,14 @@ h1.section-title {
     grid-row: 1 / 3;
     width: 94px;
     text-align: center;
-    /* The kit swaps the <i> for an <svg> sized height: 1em, so the size has to
-       be set here, on the parent it inherits from, not on the <i> that stops
-       existing once the kit has run. line-height: 0 keeps the inline SVG from
-       dragging a text line's worth of leading in under it — the same trick
-       .product-image-wrapper.product-icon uses in css/feature-card.css. */
+
     font-size: 84px;
     line-height: 0;
     color: var(--primary);
-    /* Duotone's back layer rides at 40% by default, which at this size reads as
-       a second solid shape rather than a ground. Same 0.3 as the cards. */
+
     --fa-secondary-opacity: 0.3;
 }
 
-/* Phone: 84px and a 24px gap leave a 36px title barely 250px to wrap in. */
 @media (max-width: 767px) {
 
     .section-heading.has-title-icon {
@@ -1912,8 +1374,6 @@ h1.section-title {
     }
 }
 
-/* Showcase Call to Action */
-
 .showcase-cta {
     border-top-width: 1px;
     border-top-style: solid;
@@ -1925,19 +1385,6 @@ h1.section-title {
     font-size: 16px;
 }
 
-/* The personal sign-off in the CTA: portrait on top, then the question, the
-   name and roll, and the way in. Centred at every width — it inherits that
-   from .showcase-cta's own .text-center, so nothing here sets text-align.
-
-   align-items rather than justify-content does the centring: the column runs
-   down the main axis, so the horizontal placement of the portrait and the text
-   is a cross-axis question. It also means the text block takes its fit-content
-   width, which is what lets the question wrap at the column edge on a phone
-   and sit on one line on a desktop without a max-width anywhere.
-
-   Everything below is scoped under .showcase-cta: `.showcase-cta p` is (0,1,1)
-   and a bare .cta-role would be (0,1,0), so the shared 16px would win and the
-   role would never take its own size. */
 .showcase-cta .cta-signature {
     display: flex;
     flex-direction: column;
@@ -1945,19 +1392,6 @@ h1.section-title {
     gap: 16px;
 }
 
-/* A 2:3 half-figure photo cropped to a circle. The window sits near the top of
-   the frame rather than centred: a 1:1 cover crop of a 2:3 portrait already
-   holds the whole head, so centring it would show chest instead of face.
-
-   Note that a square cover crop of a 2:3 source shows the FULL width, so the
-   horizontal half of object-position does nothing here — where the head sits
-   left to right is decided when the .webp is cut, not by this rule. Both
-   portraits are cut so the head is centred and both heads come out the same
-   size; straight off the camera Petter's head sat 4.5% right of frame and was
-   23% smaller than Hanna's. Re-cut from the PNG masters alongside with:
-
-     cwebp -q 82 -crop 180 162 779 1169 -resize 416 0 -m 6 PT.png -o PT.webp
-     cwebp -q 82 -crop  65   0 958 1437 -resize 416 0 -m 6 HH.png -o HH.webp */
 .showcase-cta .cta-face {
     display: block;
     flex: 0 0 104px;
@@ -1997,9 +1431,6 @@ h1.section-title {
     line-height: 20px;
 }
 
-/* The small uppercase label above a section title. It is the section's real
-   heading, so it is an h2 here; the h3 selector stays for the pages that have
-   not been converted yet. */
 .section-heading h3,
 .section-kicker {
     font-size: 14px;
@@ -2009,43 +1440,21 @@ h1.section-title {
     padding: 10px 0 0;
 }
 
-/* The one kicker that is a p rather than an h2: the label over the About page's
-   h1, where an h2 would put a level two above the page's only level one. A p
-   needs these two, because the reset at the top of this sheet skips `p` and the
-   rule under it hands every p a 25px line-height. */
 p.section-kicker {
     margin: 0;
     line-height: normal;
 }
 
-/* Was an h2: keep its spacing and line height, and drop the margin a p gets
-   from the UA. */
 .section-title {
     margin: 0;
     padding: 14px 0;
     line-height: normal;
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* 4. Banner */
-/*------------------------------------------------------------------------------------------*/
-
 #home {
     background-size: cover;
 }
 
-
-/* The phone hero is a screen tall as well, and svh is that screen: the height
-   with the address bar showing, which is what the reader has at first paint.
-   It used to be 100lvh — the taller height the viewport grows to once the bar
-   collapses — back when the copy ran off the bottom anyway and the only thing
-   at stake was Affärsområden peeking in. It is the wrong height now that the
-   intro and the scroll cue are pinned to the bottom of the box: on a 390x844
-   phone lvh would park them 110px below the fold, unseen until the reader
-   scrolls, which is exactly what the cue is there to ask for. The peek on
-   collapse is the price, and it is the same trade the desktop hero already
-   makes. min-height rather than height, because the copy is allowed to be
-   taller than the screen; 100vh is the fallback where svh is unsupported. */
 @media (max-width: 767px) {
     #home {
         min-height: 100vh;
@@ -2054,26 +1463,14 @@ p.section-kicker {
         flex-direction: column;
     }
 
-    /* The row takes the height the header leaves and centres the copy in it —
-       the same treatment the desktop hero gets from 768px up, so the phone
-       reads as one cluster (headline, expertise line, intro together) with the
-       photo above and below it, rather than the earlier pulled-apart layout
-       (headline pinned top, the rest dropped to the middle) that read as
-       scattered pieces. */
     #banner-content.row {
         flex: 1 1 auto;
         display: flex;
         align-items: center;
-        /* The room the scroll cue needs under the intro: the cue is about 62px
-           of label and chevrons sitting 32px off the bottom. !important because
-           ".row { padding: 15px !important }" below 480px would otherwise leave
-           the intro's orange rule crossing the cue's label. */
+
         padding-bottom: 110px !important;
     }
 
-    /* .col-61 carries its width as a float, which does nothing inside a flex
-       row — the width has to go on the item itself. Full width here: on a phone
-       the copy has the screen to itself. */
     #banner-content.row > .col-61 {
         width: 100%;
         float: none;
@@ -2086,13 +1483,6 @@ p.section-kicker {
         width: 100%;
     }
 
-    /* The copy stacks in natural flow — no auto margins pulling the expertise
-       line and intro away from the headline. (The earlier split layout lived
-       here as margin-top/bottom: auto on the pair.) */
-
-    /* A phone hero is a screen tall, so there is a fold to gesture at after
-       all. Sits under the intro rather than over it — the copy is bottom-aligned
-       here, unlike the desktop hero where the cue has the whole lower half. */
     #home .scroll-cue {
         display: flex;
     }
@@ -2103,22 +1493,6 @@ p.section-kicker {
     padding-bottom: 100px;
 }
 
-/* #home carries no height of its own: it is the 170px/100px banner padding plus
-   however tall the copy happens to be. The background is `cover`, so every
-   reflow of that copy recrops the photo — the intro paragraph gaining a line
-   walked the height between 950px and 994px across the desktop range, and the
-   Swedish and English intros wrap at different widths, so the two languages
-   showed a different amount of the train. Pin the box instead.
-
-   One viewport exactly, rather than the fixed 1000px this used to be. 1000px is
-   taller than most laptop windows, which pushed the calls to action below the
-   fold, and shorter than a large desktop one, which let Affärsområden peek in at
-   the bottom. min-height rather than height, so a narrow window that wraps the
-   intro long is still allowed to grow; svh is the viewport height with the
-   mobile address bar showing, so nothing jumps when it collapses.
-
-   Only index.html and en/index.html carry #home; the subpages have their own
-   header markup. */
 @media (min-width: 768px) {
     #home {
         height: auto;
@@ -2128,39 +1502,22 @@ p.section-kicker {
         flex-direction: column;
     }
 
-    /* The banner row takes whatever height is left over and centres the copy in
-       it. 91px clears the fixed header; the stock 170px was sized for a box
-       pinned at 1000px, and centring does the rest. */
     #banner-content.row {
         flex: 1 1 auto;
         display: flex;
         align-items: center;
         padding-top: 91px;
         padding-bottom: 40px;
-        /* #home is a column flex container, and the row's `margin: 0 auto` is a
-           cross-axis auto margin: it beats the default stretch, so the row was
-           shrink-to-fit instead of the 1245px every other row on the page gets.
-           The copy started 135px right of every section title below it. Stating
-           the width puts the row back on the same measure; the auto margins keep
-           centring it. */
+
         width: 100%;
     }
 
-    /* .col-61 carries its width as a float. Inside a flex row the float does
-       nothing, so the width has to go on the item itself. */
     #banner-content.row > .col-61 {
         width: 61.8%;
         float: none;
     }
 }
 
-/* On a wide screen the auto-centred row walks the copy toward the middle —
-   358px in from the left at 1920 — and the hero reads worse than at 1280,
-   where the row sits nearly flush left. Bias it: keep only 30% of the growth
-   past 1280 as left margin, so the copy stays toward the photo-free left edge
-   and the extra width goes to the train instead. Continuous at the boundary
-   (auto centring gives the same 17px at 1280); margin-right stays auto and
-   takes the rest. */
 @media (min-width: 1280px) {
     #banner-content.row {
         margin-left: calc(17px + (100vw - 1280px) * 0.3);
@@ -2171,23 +1528,6 @@ p.section-kicker {
     height: 30px;
 }
 
-
-/* ---------- Scroll cue ---------- */
-
-/* A word and a double chevron at the foot of a one-viewport hero. The doubling
-   says there is more than one section down there; the label says what the
-   gesture buys. No border, so the nudge under the pointer is the rest of the
-   affordance: a static arrow reads as decoration, one that answers the pointer
-   reads as a control. Nothing moves at rest — the bounce below runs three
-   times on arrival and then stops.
-
-   The mark is shared; where it sits is the page's business — see the #home
-   block below and .tdt-intro in css/td-test.css, which each reserve their own
-   room for it. Both position it against a `position: relative` ancestor that is
-   coextensive with the hero.
-
-   js/site.js scrolls it: any anchor with data-scroll-to travels at the nav's
-   own 750ms and swing. */
 .scroll-cue {
     display: flex;
     flex-direction: column;
@@ -2202,25 +1542,12 @@ p.section-kicker {
     transition: color .2s linear, opacity .3s ease;
 }
 
-/* Once the reader has moved, the invitation has been taken and the mark is
-   clutter over whatever comes next. It fades back in at the top, where a reader
-   is looking at the hero again and the offer stands again. js/site.js carries
-   the class, on a band rather than a single scroll position so the mark cannot
-   blink at the threshold.
-
-   visibility, not just opacity: a link at opacity 0 still takes tab focus. Its
-   transition is a delay rather than a fade, so it flips after the fade out —
-   and on the way back in it is dropped, so focus returns with the first
-   frame. */
 .scroll-cue.is-spent {
     opacity: 0;
     visibility: hidden;
     transition: opacity .3s ease, visibility 0s linear .3s;
 }
 
-/* Below 768px only the hero has a fold worth gesturing at, and it turns the
-   mark back on itself (see #home .scroll-cue in the banner section). Everywhere
-   else on a phone the reader is already scrolling and the mark is clutter. */
 @media (max-width: 767px) {
     .scroll-cue {
         display: none;
@@ -2232,52 +1559,23 @@ p.section-kicker {
     color: var(--accent-text);
 }
 
-/* Small, letterspaced and uppercase: the same voice as .section-kicker, so it
-   reads as a caption on the mark rather than as a second line of hero copy. */
 .scroll-cue-label {
     font-size: 12px;
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
     margin-bottom: 8px;
-    /* the reset skips this element's defaults; without it the label inherits
-       the body's line-height and sits too far off the first chevron */
+
     line-height: 1;
 }
 
-/* One `fa-solid fa-chevrons-down`, drawn by the kit from an <i> rather than
-   inlined as path data, so the glyph is never copied out of Font Awesome and
-   into this repo. It replaces two stacked copies of the Free chevron-down that
-   a `svg + svg` rule used to tuck together and fade; both chevrons draw at
-   full strength now, since one glyph cannot fade half of itself. The pair also
-   closes up -- 23px of ink against the hand-stacked 29px.
-
-   `i` is in the selector alongside `svg` for two reasons. The kit swaps the
-   <i> for an <svg> only once it has loaded, and until then an unmatched icon
-   is a 0x0 inline: the label would sit at the foot of the hero on its own and
-   then jump 26px when the kit landed. And the kit ships its own
-   `.svg-inline--fa { height: 1em }`, which one class plus one element
-   outspecifies -- see the same trick on .area-band-item in css/area-band.css.
-
-   No viewBox correction needed on this route, unlike the inlined version:
-   chevrons-down spans x -3.2..451.2 of its declared `0 0 448 512` box, and the
-   kit's own overflow: visible is what keeps both tips from being clipped.
-   preserveAspectRatio defaults to `meet`, so 512 governs the fit in a 26px
-   square and the ink lands at 23.1px. */
 .scroll-cue :is(i, svg) {
     display: block;
     width: 26px;
     height: 26px;
     fill: currentColor;
     transition: transform .2s ease-out;
-    /* Three bounces once the hero has settled, then still again. An arrow that
-       pulses forever reads as an advert; three passes is enough to catch an eye
-       that is still on the headline. The delay clears the hero's own entrance.
 
-       While it runs it outranks the hover nudge below — animations beat
-       transitions in the cascade — so for the first ~6.6s the pointer gets the
-       colour change but not the travel. No fill-mode on purpose: `forwards`
-       would hold the final frame and outrank the hover nudge for good. */
     animation: scroll-cue-bounce 1.8s ease-in-out 1.2s 3;
 }
 
@@ -2305,8 +1603,6 @@ p.section-kicker {
     transform: translateY(4px);
 }
 
-/* There is no border here to thicken, so the keyboard needs a ring of its
-   own. */
 .scroll-cue:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 6px;
@@ -2330,10 +1626,6 @@ p.section-kicker {
     }
 }
 
-/* On the start page the cue sits on the banner photo, which is a flat mid grey
-   behind the copy — --section-title would disappear into it. White with a
-   shadow instead, the same treatment the hero icons and #home .button already
-   use. */
 #home {
     position: relative;
 }
@@ -2348,48 +1640,18 @@ p.section-kicker {
     color: var(--accent-text);
 }
 
-/* Every page that opens on content rather than on the hero: the showcases, Om
-   oss and the three product pages. There is no banner to push them down, so
-   #content clears the fixed header itself.
-
-   One target sitewide: the first ink 130px down the page, 59px clear of the
-   71px header. 60px did not even reach the header — it left the showcase photo
-   4px under the nav on a phone — and the product pages were faking the same
-   measurement with two 30px .banner-spacer divs, which is why the four page
-   types all opened at a different height.
-
-   The padding differs from 130 by whatever the first element brings with it:
-   the showcase <figure> and the product <h1> each add 20px, so 110 lands them
-   both on the line. Same value at every width — the margins collapse smaller
-   on a phone, so the gap there comes out 54px rather than 59px, and tightening
-   that is a phone-only rule if anyone ever asks for it. */
 .showcase-top {
     padding-top: 110px;
 }
 
-/* Om oss opens on a .section-kicker inside a full-width .row. Two things ride
-   above its lettering that the other templates do not have: the row contributes
-   35px where theirs contribute 20, and the kicker itself carries 10px of
-   padding. 85 + 35 + 10 lands on the same 130px line.
-
-   The 35 is a desktop measurement — below 768px the row falls back to the 15px
-   gutter every .row takes, the same as everywhere else, so the sum changes and
-   the phone needs its own number. See the media query below. */
 .showcase-top.about-top {
     padding-top: 85px;
 }
 
-/* TD Asset Care opens straight on an h1.section-title, which brings the 14px of
-   its own padding that rule states — so its box sat on the 130px line while the
-   lettering inside it sat 14px lower than every other page's. The line is a
-   line of text, not of boxes: take the 14 back here. */
 .showcase-top.title-top {
     padding-top: 96px;
 }
 
-/* Om oss again: below 768px its row gives up the 35px and takes the 15px gutter
-   the other templates take, so the sum that landed on 130 above now lands 20
-   short. Everything else keeps its one value at every width. */
 @media (max-width: 767px) {
 
     .showcase-top.about-top {
@@ -2397,30 +1659,10 @@ p.section-kicker {
     }
 }
 
-/* The phone headline's top spacing lives on #home #main-heading in the
-   width blocks further down (40px flat, svh clamp on tall screens); a
-   "#home h1 { padding-top: 5% }" rule that used to sit here was dead —
-   outspecified at every phone width — and was removed. */
-
-/* The orange dash that used to sit above the banner headline is gone: it cost
-   35px above the fold and the headline reads better hard against the nav. The
-   rule under the intro paragraph (.banner-intro:after) is unaffected. */
-
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 5. Content Elements */
-/*------------------------------------------------------------------------------------------*/
-
-/* --------- 5.1 Icons ---------- */
-
-/*Font Icon sizes*/
-
 .fa-1x {
     font-size: 15px !important;
 }
 
-/*Icon Block*/
 .icon {
     width: 60px;
 }
@@ -2443,8 +1685,6 @@ p.section-kicker {
     margin-top: 0;
 }
 
-/* Icon Left*/
-
 .icon-left .icon {
     left: 15;
 }
@@ -2453,8 +1693,6 @@ p.section-kicker {
     padding-left: 53px;
 }
 
-/* Icon Right */
-
 .icon-right .icon {
     right: 15;
 }
@@ -2462,8 +1700,6 @@ p.section-kicker {
 .icon-right .icon-block-description {
     padding-right: 53px;
 }
-
-/* Icon Above */
 
 .icon-top {
     display: block;
@@ -2478,13 +1714,6 @@ p.section-kicker {
     padding-top: 25px;
 }
 
-/* Affärsområden: four areas across, on a grid rather than the floated .col-6
-   the six-area version rode on — 16.67% each left a third of the row empty as
-   soon as there were four. The .col-6 stays on the blocks for its 20px gutter
-   and for the phone rules further down. align-items: stretch — the default,
-   spelled out because it is load-bearing — makes the cards in a row end at the
-   same edge instead of each one stopping wherever its own bullets run out; the
-   icons still line up because the copy is top-aligned inside the card. */
 .area-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -2496,21 +1725,10 @@ p.section-kicker {
     float: none;
 }
 
-/* Affärsområden as cards rather than bare icon columns: each area gets a box, a
-   numbered label in the subtitle colour, and its own icon blown up as a
-   watermark behind the copy. Nothing is hidden — the bullets are all still on
-   screen — and the lift on hover is the same one the product and service cards
-   use.
-
-   Everything below is the card itself and applies at every width; only the
-   sizes differ per breakpoint, further down. The phone rules at the end of this
-   file set the 2-up grid these sit in. */
 #businessareas .area-grid {
     counter-reset: area;
 }
 
-/* !important beats .col-6's own padding, which is the gutter of the floated
-   layout this grid replaced — the grid's gap does that job here. */
 #businessareas .area-grid > .col-6.icon-block {
     position: relative;
     overflow: hidden;
@@ -2521,8 +1739,6 @@ p.section-kicker {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* The watermark. Named per card below rather than reusing the card's own icon:
-   that one is an <img>, which a background cannot point at. */
 #businessareas .icon-block::after {
     content: "";
     position: absolute;
@@ -2551,7 +1767,6 @@ p.section-kicker {
     background-image: url("../images/icons/ai_logo.webp");
 }
 
-/* The icon and the copy sit above the watermark. */
 #businessareas .icon {
     position: relative;
     z-index: 1;
@@ -2577,8 +1792,7 @@ p.section-kicker {
 
 #businessareas .card-title {
     text-wrap: pretty;
-    /* .card-title's own colour is #9c9c9c against #c2c2c2 bullets — two greys a
-       shade apart. White heading, grey body, same as the service cards. */
+
     color: var(--normal-text);
 }
 
@@ -2632,9 +1846,6 @@ p.section-kicker {
 
 }
 
-/* The same card at phone scale. A ~155px column cannot carry 28px of padding or
-   a 180px watermark, but it carries the card — the plain two-column list this
-   replaced read as an afterthought next to the desktop treatment. */
 @media (max-width: 767px) {
 
     #businessareas .area-grid > .col-6.icon-block {
@@ -2659,11 +1870,6 @@ p.section-kicker {
         padding-bottom: 6px;
     }
 
-    /* A ~140px measure and Swedish compounds: "Tillgångsförvaltning" and
-       "Anläggningsinformation" are both longer than the line. The card clips its
-       overflow, so without this they were cut off at the border rather than
-       wrapping. hyphens works off <html lang>, and break-word is the fallback
-       for anything it has no rule for. */
     #businessareas .card-title,
     #businessareas .icon-block p {
         -webkit-hyphens: auto;
@@ -2673,18 +1879,12 @@ p.section-kicker {
 
 }
 
-/* .area-grid holds four columns from 768px up, which leaves a 206px card in the
-   768-1080px band — too narrow for "Tillgångsförvaltning" at 21px. Two up until
-   there is room for four. Floored at 768px because the phone rules further down
-   are already 2-up on their own terms. */
 @media (min-width: 768px) and (max-width: 1180px) {
     #businessareas .area-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-/* The industries the four areas are sold into. The icons are the ones already in
-   images/icons from when this section listed branscher instead. */
 .industry-strip {
     border-top: 1px solid var(--surface-border);
     margin-top: 34px;
@@ -2697,7 +1897,7 @@ p.section-kicker {
 
 .industry-label {
     margin: 0;
-    /* The label does not scroll; only the row beside it does. */
+
     flex: none;
     font-size: 14px;
     font-weight: bold;
@@ -2705,10 +1905,6 @@ p.section-kicker {
     text-transform: uppercase;
     color: var(--section-heading);
 }
-
-/* The row itself is the sitewide marquee — see .industry-slider in
-   css/logo-slider.css, which keeps the icons at the size they are here rather
-   than the 160px the partner logos run at. */
 
 @media (max-width: 767px) {
     .industry-strip {
@@ -2718,15 +1914,11 @@ p.section-kicker {
     }
 }
 
-/* --------- 5.2 Parallax Elements ---------- */
-
 .banner-parallax-1,
 .banner-parallax-2,
 .banner-parallax-3 {
     min-height: 350px;
 }
-
-/* --------- 5.3 Divider ---------- */
 
 .divider {
     position: relative;
@@ -2756,17 +1948,9 @@ p.section-kicker {
     color: #e1e1e1;
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* 6. Landing Page Sections */
-/*------------------------------------------------------------------------------------------*/
-
-/* --------- 6.1 Introduction ---------- */
-
 .introduction img.featured {
     padding: 55px 0 0 0;
 }
-
-/* --------- 6.2 Features ---------- */
 
 .features.row {
     padding-left: 5%;
@@ -2776,8 +1960,6 @@ p.section-kicker {
 .features div:nth-child(4) {
     clear: both;
 }
-
-/* --------- 6.3 Testimonials ---------- */
 
 .testimonial {
     padding: 15px;
@@ -2792,14 +1974,9 @@ blockquote {
     border-radius: 250em;
 }
 
-/* 15px, not 12px: this used to be 12px plus the 10/15px margins of the orange
-   bar that sat between the quote and the name. The bar is gone — the quote
-   carries the block's one orange mark now — so its spacing moves here. */
 .testimonial footer {
     padding-top: 15px;
 }
-
-/* Style Classic - Avatar above Testimonial */
 
 .testimonial.classic img {
     display: inline-block;
@@ -2810,8 +1987,6 @@ blockquote {
     display: block;
 }
 
-/* Style Big */
-
 .testimonial.bigtest {
     padding-top: 0;
 }
@@ -2820,24 +1995,15 @@ blockquote {
     font-size: 22px;
 }
 
-/* --------- 6.4 Gallery ---------- */
-
 .backgroundimage {
-    /* position: absolute; */
+
     width: 100%;
     height: 180px;
     z-index: 0;
     border-radius: 16px;
-    /* border: 2px solid #555; */
+
     border: 1px solid white;
 }
-
-/* .backgroundimage-overlay {
-    position: absolute;
-    background-color: var(--secondary);
-    opacity: 0.7;
-    z-index: 1;
-} */
 
 .text-on-image {
     position: absolute;
@@ -2848,61 +2014,12 @@ blockquote {
     flex-direction: column;
     color: var(--section-subtitle);
     z-index: 2;
-    /* border: 8px solid;
-    border-color: var(--primary_0);
-    transition: all 0.2s ease-in-out 0s; */
+
 }
 
 .text-on-image:hover {
     border-color: var(--primary_100);
 }
-
-/* #gallery img {
-    max-height: 300px;
-}
-
-#gallery [class*='col-'] {
-    padding: 0;
-}
-
-#gallery a {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-}
-
-#gallery a:hover img {
-    opacity: 0.15;
-    -moz-backface-visibility: hidden;
-}
-
-#gallery a:before {
-    font-size: 2.2em;
-    font-style: normal;
-    font-weight: normal;
-    text-align: center;
-    content: "+";
-    width: 70px;
-    height: 70px;
-    border-radius: 100em;
-    display: block;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    line-height: 72px;
-    margin: -35px 0 0 -35px;
-    opacity: 0;
-    -webkit-transition: all .2s linear;
-    -moz-transition: all .2s linear;
-    transition: all .2s linear;
-    vertical-align: middle;
-}
-
-#gallery a:hover:before {
-    opacity: 1;
-    top: 50%;
-    left: 50%;
-} */
 
 /**
  * Featherlight – ultra slim jQuery lightbox
@@ -2915,103 +2032,79 @@ blockquote {
     .featherlight {
         display: none;
 
-        /* dimensions: spanning the background from edge to edge */
         position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        /* top: 30%;
-        right: 10%;
-        bottom: 30%;
-        left: 10%; */
-        /* max-width: 500px; */
-        /* width: 80%; */
-        z-index: 2147483647;
-        /* z-index needs to be >= elements on the site. */
 
-        /* position: centering content */
+        z-index: 2147483647;
+
         text-align: center;
         padding: 25%;
 
-        /* insures that the ::before pseudo element doesn't force wrap with fixed width content; */
-        /* white-space: nowrap; */
-
-        /* styling */
         cursor: pointer;
         background: var(--secondary);
-        /* IE8 "hack" for nested featherlights */
+
         background: rgba(0, 0, 0, 0);
     }
 
-    /* support for nested featherlights. Does not work in IE8 (use JS to fix) */
     .featherlight:last-of-type {
-        /* background: rgba(0, 0, 0, 0.8); */
+
         background: var(--secondary);
         border: 3px solid;
         border-color: var(--border);
     }
 
     .featherlight:before {
-        /* position: trick to center content vertically */
+
         content: '';
-        /* display: inline-block; */
+
         display: inline;
         height: 100%;
-        /* vertical-align: middle; */
+
         vertical-align: top;
         margin-right: -0.25em;
     }
 
     .featherlight .featherlight-content {
 
-        /* position: centering vertical and horizontal */
         text-align: left;
-        /* vertical-align: middle;
-        display: inline-block; */
 
         vertical-align: top;
         display: inline;
 
-        /* dimensions: cut off images */
         overflow: auto;
-        /* padding: 25px 0; */
+
         padding: 25px;
         border-bottom: 25px solid transparent;
 
-        /* dimensions: handling small or empty content */
         min-width: 30%;
 
-        /* dimensions: handling large content */
         margin-left: 5%;
         margin-right: 5%;
         max-height: 95%;
 
-        /* styling */
         cursor: auto;
 
-        /* reset white-space wrapping */
         white-space: normal;
     }
 
-    /* contains the content */
     .featherlight .featherlight-inner {
-        /* make sure its visible */
+
         display: block;
     }
 
     .featherlight .featherlight-close-icon {
-        /* position: centering vertical and horizontal */
+
         position: absolute;
         z-index: 9999;
         top: 25px;
         right: 25px;
 
-        /* dimensions: 25px x 25px */
         line-height: 25px;
         width: 25px;
 
-        /* styling */
         cursor: pointer;
         text-align: center;
         color: var(--normal-text);
@@ -3029,27 +2122,26 @@ blockquote {
     }
 
     .featherlight .featherlight-image {
-        /* styling */
+
         max-height: 100%;
         max-width: 100%;
     }
 
     .featherlight-iframe .featherlight-content {
-        /* removed the border for image croping since iframe is edge to edge */
+
         border-bottom: 0;
         padding: 0;
     }
 
     .featherlight iframe {
-        /* styling */
+
         border: none;
     }
 }
 
-/* handling phones and small screens */
 @media only screen and (max-width: 1024px) {
     .featherlight .featherlight-content {
-        /* dimensions: maximize lightbox with for small screens */
+
         margin-left: 10px;
         margin-right: 10px;
         max-height: 98%;
@@ -3060,7 +2152,6 @@ blockquote {
 
 }
 
-/* Gallery Styling */
 @media all {
 
     .featherlight-next,
@@ -3074,14 +2165,14 @@ blockquote {
         bottom: 0;
         left: 80%;
         cursor: pointer;
-        /* preventing text selection */
+
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        /* IE9 hack, otherwise navigation doesn't appear */
+
         background: rgba(0, 0, 0, 0);
         -webkit-transition: all 0.3s ease-out;
         -moz-transition: all 0.3s ease-out;
@@ -3104,7 +2195,6 @@ blockquote {
         font-size: 80px;
         line-height: 80px;
 
-        /* center vertically */
         margin-top: -40px;
         color: var(--normal-text);
         font-style: normal;
@@ -3132,14 +2222,12 @@ blockquote {
         opacity: 1;
     }
 
-    /* Hide navigation while loading */
     .featherlight-loading .featherlight-previous,
     .featherlight-loading .featherlight-next {
         display: none;
     }
 }
 
-/* Always display arrows on touch devices */
 @media only screen and (max-device-width: 1024px) {
 
     .featherlight-next:hover,
@@ -3153,7 +2241,6 @@ blockquote {
     }
 }
 
-/* handling phones and small screens */
 @media only screen and (max-width: 1024px) {
 
     .featherlight-next,
@@ -3175,8 +2262,6 @@ blockquote {
     }
 }
 
-/* --------- 6.5 Video ---------- */
-
 #video-box {
     color: var(--normal-text);
     position: relative;
@@ -3188,10 +2273,10 @@ blockquote {
 .easyContainer {
     position: relative;
     padding-bottom: 56.25%;
-    /* 16/9 ratio */
+
     margin: 0;
     padding-top: 0;
-    /* IE6 workaround*/
+
     height: 0;
     overflow: hidden;
 }
@@ -3288,8 +2373,6 @@ blockquote {
     cursor: pointer;
 }
 
-/* --------- 6.6 Clients ---------- */
-
 #clients a {
     display: block;
     text-align: center;
@@ -3305,7 +2388,7 @@ blockquote {
 }
 
 .client-overlay {
-    /* background: rgba(0, 0, 0, 0.8); */
+
     position: absolute;
     top: 0;
     right: 0;
@@ -3329,12 +2412,10 @@ blockquote {
     top: 48%;
     left: 0;
     width: 100%;
-    /* height: 400px; */
+
     text-align: center;
     display: inline-block;
 }
-
-/* --------- 6.7 Product Cards ---------- */
 
 .product-sub {
     font-style: italic;
@@ -3342,18 +2423,9 @@ blockquote {
     margin: 0 0 25px 0;
 }
 
-/* No height of its own. It used to be a hard 300px, which is what equalised the
-   two cards while they were floats — but the copy measures ~150px, so half of
-   that box was dead air above the button. The desktop track is a flex row now
-   (css/feature-card.css) and stretches the pair for us. */
 .product-content {
     padding-bottom: 20px;
 }
-
-
-/*------------------------------------------------------------------------------------------*/
-/* 7. Footer */
-/*------------------------------------------------------------------------------------------*/
 
 #landing-footer {
     clear: both;
@@ -3375,8 +2447,6 @@ blockquote {
 #landing-footer li {
     display: inline-block;
 }
-
-/* Scroll Up */
 
 #scrollUp {
     bottom: 15px;
@@ -3414,21 +2484,14 @@ blockquote {
     opacity: 1;
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/* Responsive Elements */
-/*------------------------------------------------------------------------------------------*/
-
 .col-15 {
-    /* background: darkmagenta; */
+
 }
 
 .col-5 {
-    /* background: yellow; */
+
 }
 
-/* =Media Queries for Nav
-===============================*/
 @media all and (max-width: 1023px) {
     #nav-trigger {
         display: block;
@@ -3446,13 +2509,6 @@ blockquote {
         display: block;
     }
 
-    /* The open menu had no height cap: with both groups expanded it runs past
-       a short screen's bottom edge and the tail is unreachable — the page
-       behind it scrolls, the menu does not. Capped to what fits under the
-       71px bar; dvh so a phone's collapsing address bar doesn't hide the last
-       row, vh line first as the fallback for engines without it. The
-       short-screen block at the end of this sheet lifts the cap again — its
-       panel is pinned top and bottom instead. */
     nav#nav-mobile > ul {
         max-height: calc(100vh - 71px);
         max-height: calc(100dvh - 71px);
@@ -3461,20 +2517,12 @@ blockquote {
 
 }
 
-/* Landscape mobile & down
-===============================*/
 @media (max-width: 480px) {
 
     #wrapper {
         margin: 0;
         padding: 0;
     }
-
-    /* .page-border,
-    #scrollUp,
-    #scrollUp:before {
-        display: none;
-    } */
 
     .row {
         padding: 15px !important;
@@ -3484,7 +2532,7 @@ blockquote {
     .col-2,
     .col-3,
     .col-4,
-    /* .col-5, */
+
     .col-6,
     .col-7,
     .col-8,
@@ -3504,10 +2552,6 @@ blockquote {
         width: 100%;
     }
 
-    /* .col-2 {
-        width: 90%;
-    } */
-
     .col-5 {
         width: 0%;
     }
@@ -3516,7 +2560,7 @@ blockquote {
     .col-2,
     .col-3,
     .col-4,
-    /* .col-5, */
+
     .col-6,
     .col-7,
     .col-8,
@@ -3532,15 +2576,12 @@ blockquote {
     .col-9-10,
     .col-61,
     .col-38,
-    /* Stays in this list: the headings that sit straight in a row borrow the
-       col- gutter to line up with the cards, so they have to lose it wherever
-       the columns do. */
+
     .row > .section-heading {
         padding-right: 0;
         padding-left: 0;
     }
 
-    /*-----------------Header Elements-----------------*/
     #header .row {
         padding: 0 15px !important;
     }
@@ -3549,46 +2590,32 @@ blockquote {
         padding: 0;
     }
 
-    /*Logo*/
     #logo h2 {
         padding: 0;
     }
 
-    /* Pulls the headline up towards the nav so the expertise line and the CTA
-       both fit in the first viewport on a phone. */
     #banner-content.row {
         padding-top: 40px !important;
     }
 
-    /* Replaces the breathing room the removed :before dash used to provide.
-       Needs #home to outspecify "#home h1 { padding-top: 5% }", whose
-       percentage resolves against the container width, not its height. */
     #home #main-heading {
         padding-top: 40px;
     }
 
-    /* The intro's own orange rule already separates the paragraph from the
-       button, so the button's default 35px top margin just pushes it towards
-       the fold. Scoped to the banner so the product buttons keep theirs. */
     #banner-content .button {
         margin: 12px 0 0;
     }
 
-    /*-----------------Sections-----------------*/
-
-    /* Call to Action*/
     .call-to-action {
         padding-bottom: 25px;
     }
 
-    /* Video */
     .slvj-lightbox iframe,
     .slvj-lightbox object,
     .slvj-lightbox embed {
         height: 270px !important;
     }
 
-    /* Footer */
     #landing-footer #copyright {
         float: left;
         width: 50%;
@@ -3599,20 +2626,16 @@ blockquote {
         width: 50%;
     }
 
-    /*-----------------Typography-----------------*/
     h1 {
         font-size: 38px;
     }
 
-    /* Hide Elements */
     a#scrollUp {
         display: none !important;
     }
 
 }
 
-/* Mobile to Tablet Portrait
-===============================*/
 @media (min-width: 481px) and (max-width: 767px) {
 
     #wrapper {
@@ -3620,15 +2643,6 @@ blockquote {
         padding: 0;
     }
 
-    /* .page-border,
-    #scrollUp,
-    #scrollUp:before {
-        display: none;
-    } */
-
-
-    /* Same side gutter as the band below 480px, so a card is inset from the
-       screen edge at every phone width instead of going full-bleed here. */
     .row {
         padding: 15px !important;
     }
@@ -3636,11 +2650,6 @@ blockquote {
     .col-1,
 
     .col-2,
-
-    /* .col3, */
-    /* .col-4, */
-
-    /* .col-5, */
 
     .col-7,
     .col-9,
@@ -3653,19 +2662,14 @@ blockquote {
         width: 100%;
     }
 
-    /* .col-2, */
     .col-3,
-    /* .col-, */
+
     .col-6,
     .col-8,
     .col-10,
     .col-12 {
         width: 50%;
     }
-
-    /* .col-2 {
-        width: 90%;
-    } */
 
     .col-5 {
         width: 0%;
@@ -3676,32 +2680,22 @@ blockquote {
         width: 100%;
     }
 
-    /*-----------------Header Elements-----------------*/
     #header .row {
         padding: 0 !important;
     }
 
-    /* Pulls the headline up towards the nav so the expertise line and the CTA
-       both fit in the first viewport on a phone. */
     #banner-content.row {
         padding-top: 40px !important;
     }
 
-    /* Replaces the breathing room the removed :before dash used to provide.
-       Needs #home to outspecify "#home h1 { padding-top: 5% }", whose
-       percentage resolves against the container width, not its height. */
     #home #main-heading {
         padding-top: 40px;
     }
 
-    /* The intro's own orange rule already separates the paragraph from the
-       button, so the button's default 35px top margin just pushes it towards
-       the fold. Scoped to the banner so the product buttons keep theirs. */
     #banner-content .button {
         margin: 12px 0 0;
     }
 
-    /*Navigation*/
     nav#nav-mobile ul {
         margin-left: -40px;
         margin-right: -40px;
@@ -3709,16 +2703,12 @@ blockquote {
         padding-right: 20px;
     }
 
-    /*-----------------Sections-----------------*/
-
-    /* Video */
     .slvj-lightbox iframe,
     .slvj-lightbox object,
     .slvj-lightbox embed {
         height: 370px !important;
     }
 
-    /* Footer */
     #landing-footer #copyright {
         float: left;
         width: 50%;
@@ -3731,24 +2721,8 @@ blockquote {
 
 }
 
-/* Affärsområden: two columns on every phone width, not just above 480px.
-   Grid rather than the floated .col-6, because the blocks have unequal bullet
-   counts and floats snag on the taller ones. Keyed off .area-grid rather than
-   #businessareas so the section can be duplicated for comparison. */
 @media (max-width: 767px) {
 
-    /* EXPERIENCE is the longest line and it sets the size: at a flat 58px it is
-       366px wide, which runs off a 360px screen and off a 320px one badly — the
-       body's overflow-x: hidden just cut the last letters off. 13.4vw is that
-       word at the width it has, minus the row's 15px gutters; 58px is where it
-       stops growing, the size that was signed off, reached at 433px. The whole
-       sub-768 range rides this one curve — a 744 tablet gets the same 58px cap
-       as a 480 phone instead of jumping to the desktop 62px one pixel up.
-
-       Both declarations need !important: css/colors.css carries the hero type
-       and loads after this file, so its 62px/60px would otherwise win on order.
-       The line-height goes relative rather than staying at that flat 60px, or
-       the lines keep sitting 60px apart while the letters shrink. */
     #home h1 {
         font-size: clamp(40px, 13.4vw, 58px) !important;
         line-height: 1.05 !important;
@@ -3759,8 +2733,7 @@ blockquote {
         grid-template-columns: 1fr 1fr;
         column-gap: 12px;
         row-gap: 12px;
-        /* The blocks are cards here, so the two in a row share an edge rather
-           than each ending wherever its own bullets run out. */
+
         align-items: stretch;
     }
 
@@ -3770,8 +2743,6 @@ blockquote {
         padding: 0;
     }
 
-    /* Icon sits above the text; shrink it so the label and bullets get the
-       room in a ~170px column. */
     .area-grid .icon img {
         max-width: 44px;
         height: auto;
@@ -3791,20 +2762,6 @@ blockquote {
         line-height: 1.45;
     }
 
-    /* Written for the sections that put the section subtitle in its own column
-       so it could stand beside the heading from 768px up. Stacked, everything
-       that was meant to separate the two columns landed between the title and
-       the subtitle instead: the heading column's 20px bottom padding, the
-       subtitle column's 20px top padding and the heading's own 15px. That put
-       the subtitle 87px below the orange rule; collapsing the three puts it at
-       32px, which is what the nested arrangement measures.
-
-       Every section has since been nested — the subtitle is a grandchild of the
-       column now, not a direct child, so none of them match these rules any
-       more and they all get the 32px from the nesting itself. What still
-       matches is .trust-partners on the start page, whose .partner-lead is a
-       .section-subtitle sitting straight in its column with the testimonial
-       block before it. Kept for that. */
     .row > [class*='col-']:has(+ [class*='col-'] > .section-subtitle),
     .row > [class*='col-']:has(+ [class*='col-'] > .section-subtitle) > .section-heading {
         padding-bottom: 0;
@@ -3816,18 +2773,12 @@ blockquote {
 
 }
 
-/* Landscape Tablet to Desktop
-===============================*/
 @media (min-width: 768px) and (max-width: 1023px) {
 
     #wrapper {
         margin: 0;
         padding: 0;
     }
-
-    /* .page-border {
-        display: none;
-    } */
 
     .col-61 {
         width: 100%;
@@ -3848,8 +2799,6 @@ blockquote {
         padding-top: 45px !important;
     }
 
-    /*-----------------Header Elements-----------------*/
-    /*Navigation*/
     nav#nav-mobile ul {
         margin-left: -40px;
         margin-right: -40px;
@@ -3857,9 +2806,6 @@ blockquote {
         padding-right: 20px;
     }
 
-    /*-----------------Sections-----------------*/
-
-    /* Video */
     .slvj-lightbox iframe,
     .slvj-lightbox object,
     .slvj-lightbox embed {
@@ -3884,50 +2830,19 @@ blockquote {
     }
 
     .col-13 {
-        /* if 2 or 4 products: */
+
         width: 50%;
-        /* if 3, 5 or 6 products: */
-        /* width: 33%; */
+
     }
 
 }
 
-
-/* Phone hero, heading position
-===============================*/
-
-/* The copy block is flex-centred in the row's leftover height (see
-   "#banner-content.row" in the max-width:767 banner block) — the same mechanism
-   as the desktop hero — so the tall-screen headline drop that used to be
-   computed here as an svh clamp is gone. What remains at phone widths is the
-   flat 40px on #home #main-heading in the two width blocks above: on a tall
-   screen it just biases the centred cluster slightly below true centre, and on
-   a short one (where the hero grows past the screen and centring has no slack)
-   it is the whole top gap, which is what it was sized for. */
-
-/* Short phones. The hero holds four things — headline, expertise line, the
-   two-line intro and the cue — and by 667px of screen the 110px reserved under
-   the copy is the one that has to give. 60px still clears the cue's own 32px
-   offset; it is the breathing room above it that goes. */
 @media (max-width: 767px) and (max-height: 719px) {
     #banner-content.row {
         padding-bottom: 60px !important;
     }
 }
 
-/* Shorter still, and the arithmetic stops working: at 320x568 the four parts
-   need about 700px. Stop pretending the hero is one screen there — let it be as
-   tall as its copy, and drop the cue, which is what it did at every phone size
-   before this rebuild. A reader on a screen this short is already scrolling.
-   The photo needs no special case: it is sized as a share of the hero, so it
-   simply follows the taller box.
-
-   688 rather than the 620 this was: the 28px between the intro's two sentences
-   is 28px the hero has to find, and below 689 there is nowhere left to find it
-   — the copy alone overruns the screen with the cue already at its minimum. The
-   number is English's, not Swedish's: "We bring together asset management…"
-   wraps to four lines at 390px where the Swedish wraps to three, so /en/ is the
-   tighter of the two and the one the band has to clear. */
 @media (max-width: 767px) and (max-height: 688px) {
     #home {
         min-height: 0;
@@ -3942,29 +2857,8 @@ blockquote {
     }
 }
 
-/* Short screens. 844x390 is an iPhone on its side, and none of the blocks
-   above reach it: they are all gated on max-width 767px and a phone in
-   landscape is 844 wide. Keyed on height alone — no width bound — because
-   height is the whole problem: a 1024x500 or 1920x500 desktop window reads
-   through the same slot a phone does, and gets the same answer. A 480px-tall
-   portrait phone would match too — none has shipped in a decade, and this
-   layout would still hold.
-
-   The header bar is the single biggest cost on a screen this short: 71px of
-   390 spent restating a logo. So the bar goes entirely. What remains is a
-   floating hamburger chip pinned top-right, opening the panel as a full-height
-   sheet from the right edge — logo on top, theme and language as rows at the
-   bottom, since the chip's neighbours from the portrait bar are hidden here
-   with the bar they belong to.
-
-   Above 1023px this overrides the wide nav, not the narrow one, so the pieces
-   the 1024 breakpoint takes for granted are set explicitly: the trigger and
-   the panel exist at any width here, and the wide layout's absolute dropdown,
-   hidden "Alla ..." entries and pinned language options are all put back to
-   the stacked-menu shape. */
 @media (max-height: 500px) {
-    /* What the max-width:1023px breakpoint provides below 1024, restated so a
-       wide short window gets it too. */
+
     #nav-trigger {
         display: block;
     }
@@ -3975,15 +2869,9 @@ blockquote {
 
     nav#nav-mobile li {
         display: block;
-        /* The 20px li margin stays: it is what insets the hairlines from the
-           panel edges, same distance as the stacked menu's. The ul's own side
-           padding is zeroed in the panel rule below — with both, the lines sat
-           40px in, which is what read as "stopping short". */
+
     }
 
-    /* The wide nav pins these for the dropdown-under-a-bar layout; the panel
-       stacks them. Doubled ids so they outrank the min-width:1024 rules at any
-       load order. */
     #header nav#nav-mobile .nav-sub {
         position: static;
         min-width: 0;
@@ -3993,11 +2881,6 @@ blockquote {
         display: block;
     }
 
-    /* The bar itself. Everything !important is matching the base rules, which
-       are !important to defeat stickyNavbar's inline styles — and .nav-solid's
-       fadeInDown must not run: the animation carries a transform, a transformed
-       ancestor becomes the containing block for fixed descendants, and the chip
-       and panel would ride the bar's entrance instead of staying pinned. */
     #header,
     #header.nav-solid {
         position: fixed !important;
@@ -4017,11 +2900,6 @@ blockquote {
         display: none !important;
     }
 
-    /* The closed state's identifier: the logo rides beside the chip as the
-       left half of one orange pill — same ground, so the seam between the two
-       elements never shows. Sits under the panel (z below it), which covers
-       it when open and shows its own logo row instead. The bar's two-image
-       swap is pointless here; one copy, sized for the pill. */
     #logo {
         display: block;
         float: none;
@@ -4049,11 +2927,6 @@ blockquote {
         vertical-align: middle;
     }
 
-    /* The chip: the bar's remnant, so it keeps the bar's clothes — brand
-       orange ground, white glyph. The right half of the pill the logo starts;
-       square left corners so the two halves join without a seam. The shadow
-       is what separates the pill from the hero photo, whose midtones sit
-       close to the orange in value. */
     #nav-trigger {
         position: fixed;
         top: 10px;
@@ -4068,15 +2941,10 @@ blockquote {
         text-align: center;
     }
 
-    /* The theme and language controls that sit beside the hamburger at other
-       narrow widths. Their function moves into the panel rows below. */
     #nav-trigger nav {
         display: none;
     }
 
-    /* Open panel: the chip does not move — the pointer that opened the menu
-       is already resting on the close control — it only loses its own ground
-       and shadow, becoming a glyph on the logo row's orange behind it. */
     #nav-trigger:has(> span.open) {
         background: transparent;
         box-shadow: none;
@@ -4090,9 +2958,6 @@ blockquote {
         border-radius: 10px;
     }
 
-    /* The panel: a full-height sheet off the right edge instead of a strip
-       under a bar that no longer exists. Positioning the ul, never a wrapper
-       around the nav — a wrapper with overflow clips this to zero height. */
     nav#nav-mobile > ul {
         position: fixed;
         top: 0;
@@ -4101,43 +2966,26 @@ blockquote {
         left: auto;
         width: min(280px, 80vw);
         margin: 0;
-        /* Flush on three sides: the stacked menu's 10px of headroom would
-           show as a strip of panel surface above the logo row's orange, and
-           the 481-767 and 768-1023 blocks below give the ul 20px of side
-           padding that would inset the orange and every hairline. Only the
-           bottom breathing room stays. */
+
         padding: 0 0 10px;
-        /* The stacked menu's viewport cap does not apply here — the sheet is
-           pinned top and bottom instead. */
+
         max-height: none;
         overflow-y: auto;
         box-shadow: -4px 0 16px rgba(0, 0, 0, 0.45);
         z-index: 10001;
     }
 
-    /* The brand row js/site.js put at the top of the clone: full-bleed on the
-       bar's own orange, which does two jobs — the white logo stays visible on
-       the light theme's white panel, and the open panel's top edge echoes the
-       bar the other orientations show. The X chip overlaps this row and
-       shares its ground. */
     nav#nav-mobile .nav-panel-logo {
         display: block;
         margin: 0;
         background: var(--header);
         border-bottom: none;
-        /* Pinned inside the scrolling panel: the X parks on this row's orange,
-           which must not scroll out from under it. */
+
         position: sticky;
         top: 0;
         z-index: 1;
     }
 
-    /* Sized so the row backs the whole chip: the chip's box ends 58px down
-       (10px offset + 48px), the row runs 66px. The paddings are uneven on
-       purpose — they centre the 20px logo on the chip's own midline (34px),
-       so logo and X sit on one line. */
-    /* 35px left: the row is full-bleed (no li margin), so it carries the
-       20px gutter + 15px row padding itself to line up with the rows below. */
     nav#nav-mobile .nav-panel-logo a {
         padding: 24px 15px 22px 35px;
     }
@@ -4148,13 +2996,6 @@ blockquote {
         display: block;
     }
 
-    /* The cloned theme and language rows, hidden at every other narrow width
-       because the originals sit beside the hamburger. Here they are the only
-       copies on screen, sharing one utility row at the panel's foot — floated
-       halves rather than inline-blocks, because the whitespace between two
-       inline <li>s is enough to push 50%+50% onto two lines. The ul's
-       overflow already contains the floats. The language options still open
-       as stacked rows inside the right half. */
     #nav-mobile .nav-theme {
         display: block;
         float: left;
@@ -4171,14 +3012,6 @@ blockquote {
         border-bottom: none;
     }
 
-    /* Both controls are sized for the bar's 71px line box; on the panel they
-       are rows like any other — 15px padding to sit on the same left edge and
-       row height as the links above them. Doubled ids on the lang rules
-       because "#header nav .nav-lang summary" and "#header nav .lang-options
-       .lang-option" carry an id and two levels of their own and would win
-       otherwise. */
-    /* Both halves are full-bleed lis (margin zeroed for the shared row), so
-       like the logo row they carry the 20px gutter in their own padding. */
     #nav-mobile .nav-theme .theme-toggle {
         height: auto;
         line-height: normal;
@@ -4194,11 +3027,6 @@ blockquote {
         display: block;
     }
 
-    /* The marker drawn in its own surface's ink. Both controls carry the bar's
-       white — style.css for the button, "#header .svg-icon" in colors.css for
-       the icons themselves — which is invisible on the light theme's white
-       panel. Same ink as the panel's other rows; the double id outranks the
-       colors.css rule at any load order. */
     #header nav#nav-mobile .theme-toggle,
     #header nav#nav-mobile .nav-lang summary,
     #header nav#nav-mobile .svg-icon {
@@ -4216,42 +3044,20 @@ blockquote {
         box-shadow: none;
     }
 
-    /* Same indent and rhythm as the group entries ("#header nav#nav-mobile
-       .nav-sub a" at 32px inside a 20px-margined li = 52px), so
-       Svenska/English read as children of the globe row the way Alla projekt
-       reads as a child of Projekt — the li here is full-bleed, so the 52 is
-       carried whole. */
     #header nav#nav-mobile .lang-options .lang-option {
         display: block;
         padding: 12px 15px 12px 52px;
     }
 
-    /* With no bar there is nothing for a jumped-to section to duck under; a
-       hair of clearance so headings do not sit flush on the edge. The base
-       rule's 71px is the header height this layout removed. */
     .scrollto {
         scroll-margin-top: 8px;
     }
 
-    /* The hero, re-fit for 375px of height. The cue goes (its ~100px below the
-       intro never fits here); the intro's second sentence used to go with it,
-       but with every part height-scaled the whole intro fits again — see the
-       intro rules below. 16px of top padding clears the chip's row; the 71px
-       the old padding cleared is gone with the bar. */
     #banner-content.row {
         padding-top: 12px !important;
         padding-bottom: 10px !important;
     }
 
-    /* Height sets the size here, not width: a short window is height-starved
-       whatever its width, and a flat 34px that fit 375px of screen read as a
-       whisper in a 500px-tall one. 9svh keeps the headline the same share of
-       the screen across the range — 34px at 375 (exactly the old value), 45px
-       at 500 — and svh rather than vh so a phone's collapsing URL bar cannot
-       change the type size mid-scroll (vh line is the fallback for engines
-       without svh). !important on both: landscape phones are also under 768px
-       wide, where the 13.4vw clamp (same flags) would otherwise win on order,
-       and this selector outranks it once both are important. */
     #home #main-heading {
         font-size: clamp(34px, 9vh, 45px) !important;
         font-size: clamp(34px, 9svh, 45px) !important;
@@ -4260,12 +3066,6 @@ blockquote {
         padding-bottom: 10px;
     }
 
-    /* Height-scaled like the headline (which is 9svh here): 4.5svh holds the
-       same ~0.5 ratio to it across the 375-500px range. The flat 28px this
-       replaces was 0.82× the headline at 375 — and fed the 2em phone icon
-       multiplier, which is why 667x375 showed a 67px icon; the icon pins back
-       to 1.5em below. Order beats the phone-width font rule for landscape
-       phones; both svh lines' vh twins are the fallback. */
     #home .expertise-line {
         font-size: clamp(17px, 4.5vh, 22px);
         font-size: clamp(17px, 4.5svh, 22px);
@@ -4276,32 +3076,14 @@ blockquote {
         --expertise-icon: 1.5em;
     }
 
-    /* Height-scaled with the headline like everything else in this block:
-       18px against a 34px headline read at 0.53× — body copy at over half the
-       display size. 13-16px holds ~0.4, and the shave from 14px at the 375px
-       floor is part of what buys the second sentence back (below). !important
-       beats colors.css's 18px on load order and the phone-width clamp above on
-       file order. */
     #home .banner-intro {
         font-size: clamp(13px, 3.4vh, 16px) !important;
         font-size: clamp(13px, 3.4svh, 16px) !important;
         padding: 6px 0;
-        /* Tighter than the 48ch tablet cap: at 13px a 55ch line ran 384px
-           across a 375px-tall screen and read long. 45ch is ~52 characters.
-           The wrap line this adds is paid for by the spacing shaves in this
-           block (row padding, headline padding-bottom, the sentence gap) —
-           the hero bottom still lands at the fold, worst case 1px past at
-           667x375, both languages. */
+
         max-width: 45ch;
     }
 
-    /* The second sentence used to be display:none here — at the old flat sizes
-       the four hero parts needed ~700px. With the copy height-scaled it fits
-       again at every short height, provided its 28px gap (sized to match the
-       expertise line's padding at desktop scale) also shrinks with the screen:
-       12px at the 375px floor, easing back toward the base value as height
-       allows. Verified 375-500 with the Swedish and English intros: the hero
-       bottom lands at or above the fold everywhere. */
     #home .banner-intro-next {
         margin-top: clamp(10px, 4vh, 20px);
         margin-top: clamp(10px, 4svh, 20px);

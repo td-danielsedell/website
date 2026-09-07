@@ -1,18 +1,4 @@
-/*------------------------------------------------------------------------------------------*/
-/* Large footer
-/*------------------------------------------------------------------------------------------*/
 
-/* Revision item 13: "Bigger text in the very end of the homepage with address
-   and GitHub and LinkedIn Icons." Written as its own sheet rather than inside
-   style.css so it can be linked from index.html later without touching the
-   shared sheets — the treatment was asked for on the homepage, and about.html is
-   where it landed first. Linking this sheet from index.html and swapping that
-   footer's markup is all that is left of revision item 13.
-
-   Self-contained on purpose. The default footer's colour and size rules are
-   keyed to #landing-footer (colors.css:533-544), and an id would have to be
-   duplicated on the page to inherit them, so nothing here relies on that id.
-   .social-icons' own class rules still apply and are overridden where needed. */
 
 .footer-large {
     clear: both;
@@ -37,9 +23,6 @@
     color: var(--section-heading);
 }
 
-/* The default footer runs the whole address through one line of pipes at 12px.
-   The point of this variant is that it is readable, so the lines break where a
-   letterhead would break them. */
 .footer-large .footer-address {
     font-size: 17px;
     font-weight: 300;
@@ -57,9 +40,6 @@
     color: var(--accent-text);
 }
 
-/* .social-icons floats right and hides its labels in the default footer. Here
-   the block is centred and the labels are the point — item 13 asks for the
-   icons to be identifiable, not just present. */
 .footer-large .footer-social {
     float: none;
     width: auto;
@@ -85,22 +65,12 @@
     letter-spacing: 1px;
 }
 
-/* 2em off the inherited 15px is smaller than the 22px name above it, which
-   reads as an afterthought on a footer whose whole point is the icons. */
 .footer-large .svg-icon {
     width: 2.4em;
     height: 2.4em;
     color: inherit;
 }
 
-/* Columns. index.html lays the large footer out as a set of ways back into the
-   site; about.html uses the same sheet without .footer-columns and is untouched
-   by everything below.
-
-   Equal quarters and a shared top edge. Unequal fractions put the headings at
-   positions that lined up with nothing else on the page, and the 22px brand name
-   sits on a different first line than the 14px headings beside it — the 4px
-   nudge puts their cap heights on one line. */
 .footer-columns {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -109,10 +79,6 @@
     align-items: start;
 }
 
-/* The column layout starts closer to the rule than the stacked variant does.
-   Four headings across read as the top edge of a block and want to sit near the
-   line that draws it; about.html's centred brand name is a single element with
-   nothing to line up against, and keeps the 55px. */
 .footer-large:has(.footer-columns) {
     padding-top: 34px;
 }
@@ -130,9 +96,6 @@
     padding-bottom: 12px;
 }
 
-/* Smaller and tighter than the body copy above: these are a directory, not
-   something anybody reads through. 15px/32px made four links as tall as a
-   paragraph. */
 .footer-col a {
     display: block;
     font-size: 14px;
@@ -144,16 +107,6 @@
     color: var(--accent-text);
 }
 
-/* Certifieringar: two badges where the third column used to hold a link list.
-   The .webp files are the qValify PNGs cropped to the circle — the masters carry
-   9% transparent padding on every side, which put the first mark six pixels
-   right of the heading above it and made the pair look badly set. Sized against
-   the 14px headings beside them rather than against the column, which would
-   make them a graphic element and not a mark.
-
-   line-height: 0 on the anchor because the images are inline content inside it,
-   and the descender space under them put the pair a few pixels lower than the
-   link lists in the columns on either side. */
 .footer-certs .cert-badges {
     display: flex;
     gap: 14px;
@@ -161,20 +114,6 @@
     padding-top: 4px;
 }
 
-/* Greyscale at rest, colour on hover — the same treatment the partner logos get
-   in css/logo-slider.css, and for the same reason: the footer is the quiet end
-   of the page, and two saturated circles down there pull harder than the links
-   beside them.
-
-   The brightness is for the dark theme only. Greyscaled, the orange and the
-   green both land around 40% luminance, which is a dark disc on a dark ground —
-   the marks read as smudges. css/light.css takes it back off: on paper the same
-   discs are already darker than the page and the lift only washes them out.
-   Not the logo strip's opacity: 0.6 either, for the same reason.
-
-   The filter and the opacity are transitioned by name. The theme swap
-   cross-fades the colour tokens (see js/theme.js) and nothing here inherits
-   from that, so without these two the hover snaps. */
 .footer-certs .cert-badges a {
     display: block;
     line-height: 0;
@@ -183,8 +122,6 @@
     transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
-/* Focus gets the colour too: the mark going colour is the only feedback these
-   two links have, and a keyboard reader should get it as well. */
 .footer-certs .cert-badges a:hover,
 .footer-certs .cert-badges a:focus-visible {
     filter: grayscale(0%);
@@ -197,9 +134,6 @@
     height: auto;
 }
 
-/* The address is one of four columns here, not the whole footer, so it drops to
-   the same 15px/32px as the link lists beside it and loses the top padding that
-   held it off the brand name in the stacked version. */
 .footer-large .footer-col .footer-address {
     padding-top: 0;
     font-size: 14px;
@@ -212,9 +146,6 @@
     line-height: 28px;
 }
 
-/* Postal code and city are one unit. In a half-width column the line broke
-   inside the code itself — "531" at the end of one line, "60 Lidköping" at the
-   start of the next. */
 .footer-nowrap {
     white-space: nowrap;
 }
@@ -223,8 +154,6 @@
     padding-bottom: 4px;
 }
 
-/* The icons are centred when they are the footer's own row; in a column they
-   line up with the brand name above them. */
 .footer-large .footer-brand .footer-social {
     text-align: left;
     padding-top: 26px;
@@ -234,17 +163,6 @@
     padding: 0 22px 0 0;
 }
 
-/* Two columns from 1023px down, all the way to the narrowest phone. One column
-   stacks four blocks of links into an 800px footer, which is a lot of page to
-   scroll past for what is still just a footer.
-
-   Two up needs a different reading order than four across: the link lists go on
-   the top row and the brand and the address close the footer underneath them,
-   rather than the brand sitting alone beside "Om oss". Done with order rather
-   than by moving the markup, because the four-across row wants the brand first —
-   which does leave the tab order following the markup, not the eye. Acceptable
-   here: it is a heading, two social links and an address, and every one of them
-   is reachable either way. */
 @media (max-width: 1023px) {
     .footer-columns {
         grid-template-columns: 1fr 1fr;
@@ -252,7 +170,7 @@
     }
 
     .footer-columns > :nth-child(1) {
-        /* the brand */
+
         order: 3;
     }
 
@@ -265,12 +183,10 @@
     }
 
     .footer-columns > :nth-child(4) {
-        /* the address */
+
         order: 4;
     }
 
-    /* Half the width means the two icons no longer clear their 22px gutters and
-       LinkedIn dropped onto its own line under GitHub. */
     .footer-large .footer-brand .footer-social a {
         padding: 0 12px 0 0;
     }
@@ -297,8 +213,6 @@
         font-size: 15px;
     }
 
-    /* Half a phone column is about 150px wide once the 20px gutters and the
-       grid gap are off it; two 72px badges and their gap do not fit. */
     .footer-certs .cert-badges {
         gap: 10px;
     }
