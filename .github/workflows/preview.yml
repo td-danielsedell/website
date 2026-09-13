@@ -52,7 +52,14 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      # Built for the Pages subpath, not the domain root. Today every URL in the
+      # source is relative so this changes nothing, but the moment Astro emits a
+      # URL of its own (astro:assets, a scoped <style>) it is what keeps that URL
+      # resolving under /website/.
+      - run: npm run build:preview
+
+      - name: Assert every root-absolute URL sits under the Pages base
+        run: node verify/assert-base.mjs dist --base=/website/
 
       # Gate: the traps-checklist invariants must hold. Baseline-independent,
       # so it keeps working as main moves on. Same reasoning as deploy.yml.

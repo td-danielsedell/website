@@ -61,6 +61,12 @@ jobs:
       - name: Assert page invariants
         run: npm run verify:invariants
 
+      # Production serves from the domain root. The preview builds with
+      # --base=/website/; this asserts that base has not leaked into the build
+      # that goes to the real host, where it would 404 every asset.
+      - name: Assert every root-absolute URL sits under the domain root
+        run: npm run verify:base
+
       # The inputs go through `env`, not straight into the script. Interpolating
       # ${{ inputs.* }} into a run: block splices the value into the shell before
       # bash ever sees it, so a crafted input would execute as a command. Only a

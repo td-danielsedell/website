@@ -167,9 +167,14 @@ start until that split is in place.
    shared components. **Open question for later: whether the index pair's three
    duplicated blocks are worth a `lang`-prop component.** They are the only
    remaining instance.
-3. **Per-target base split** in the Pages workflow. Gate: production output
-   unchanged under the DOM diff; preview still loads with zero failed requests
-   at the subpath. Done BEFORE trimming the harness, so the diff can gate it.
+3. ~~**Per-target base split** in the Pages workflow.~~ DONE. `build:preview`
+   builds with `--base=/website/`; production keeps the domain root. Both builds
+   are byte-identical today, because the flag only acts on URLs Astro emits and
+   it emits none — which is the trap, so `verify/assert-base.mjs` runs on both
+   targets and reports "not yet load-bearing" rather than passing silently. It
+   fails the build if any root-absolute URL falls outside the target's base;
+   proved by forcing an `_astro` asset and checking a no-base build against
+   `/website/` (exit 1) and a `--base` build against it (exit 0).
 4. **Trim the harness.** Delete `verify/baseline/` and `diff-pages.mjs`; keep
    `assert-invariants.mjs` and both workflow gates. Gate: invariants hold, both
    workflows green.

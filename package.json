@@ -8,10 +8,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "verify": "node verify/diff-pages.mjs",
-    "verify:self-test": "node verify/diff-pages.mjs --self-test && node verify/assert-invariants.mjs --self-test",
+    "verify:self-test": "node verify/diff-pages.mjs --self-test && node verify/assert-invariants.mjs --self-test && node verify/assert-base.mjs --self-test",
     "verify:invariants": "node verify/assert-invariants.mjs",
     "verify:baseline": "node verify/diff-pages.mjs --candidate verify/baseline && node verify/assert-invariants.mjs verify/baseline",
-    "verify:serve": "node verify/serve.mjs"
+    "verify:serve": "node verify/serve.mjs",
+    "build:preview": "astro build --base=/website/",
+    "verify:base": "node verify/assert-base.mjs"
   },
   "devDependencies": {
     "astro": "7.3.1",
