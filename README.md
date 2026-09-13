@@ -28,7 +28,7 @@ whoever owns the hosting before the first real deploy.
 |---|---|
 | `src/pages/` | One `.astro` file per page; `src/pages/en/` mirrors it. Page bodies are per-language. |
 | `src/layouts/Layout.astro` | The shared `<head>`, header, footer and site-wide scripts. |
-| `src/components/` | Header, Footer, icons, and the small per-page `head/` and `scripts/` fragments. |
+| `src/components/` | Header, Footer, icons, and the shared `head/` and `scripts/` fragments. Page-specific head content is written inline in the page, as `<Fragment slot="…">`. |
 | `src/data/nav.ts` | Per-locale strings for the header and footer. Strings only — the markup stays in the components. |
 | `public/` | `css/ js/ images/ fonts/`, copied verbatim to the output at their original URLs. Never processed by Astro. |
 | `verify/` | The migration verification harness — see below. |
@@ -45,17 +45,20 @@ These will silently break the site if ignored.
 - **Asset URLs stay relative** — `css/...` at the root, `../css/...` under
   `en/`. `Layout` derives the prefix from `lang`. Root-absolute URLs break when
   the site is served from a subpath.
-- **Astro drops HTML comments written at the top level of slot content** — in a
+- **Write source comments as `{/* … */}`, never `<!-- … -->`.** Astro emits an
+  HTML comment to the page; it does not emit an expression comment. The shipped
+  pages carry none, so the source can document itself freely.
+- **Astro drops an HTML comment written at the top level of slot content** — in a
   `<Fragment>`, in `<Fragment slot="...">`, and among a page's default-slot
-  children. Comments survive inside a real element or inside a component you
-  slot in. That is why the per-page `head/` and `scripts/` fragments are
-  components rather than inline markup, and why `<main>` lives in the page
-  rather than in the Layout.
+  children. It survives inside a real element. This is why `<main>` lives in the
+  page rather than in the Layout. It no longer constrains head fragments, since
+  those carry `{/* … */}`, which is dropped everywhere by design.
 - **`compressHTML: false` is permanent.** The byte saving is trivial and
   collapsing whitespace shifts inline-block layout.
-- Several HTML comments are load-bearing documentation (the footer child-order
-  lock, the `theme.js` blocking rationale, the `td_linear` og:image
-  PLACEHOLDER). The verification harness compares them.
+- Several source comments are load-bearing documentation (the footer
+  child-order lock, the `theme.js` blocking rationale, the `td_linear` og:image
+  PLACEHOLDER, the index banner preload). They are not shipped — the harness
+  asserts the built pages contain **no** comments at all.
 
 ## Verification harness
 
@@ -72,8 +75,10 @@ npm run verify:serve      # baseline on :4001, build on :4002, side by side
 ```
 
 A page passes when it has **zero divergences except those listed in
-`verify/allowlist.json`**, and every allowlist entry carries a reason. The diff
-normalizes only what is provably invisible — attribute order, quote style,
+`verify/allowlist.json`**, and every allowlist entry carries a reason. This is a
+normalized DOM comparison, not a byte comparison: two builds that differ only in
+indentation both pass, by design. The diff normalizes only what is provably
+invisible — attribute order, quote style,
 void-tag form, boolean-attribute form, entity vs character, indentation, and
 whitespace that cannot render (inside `<head>`, or between two non-rendering
 elements). Whitespace next to rendered content stays strict, because a gap

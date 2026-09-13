@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TdTestCss from '../components/head/TdTestCss.astro';
+import ServiceCardCss from '../components/head/ServiceCardCss.astro';
+import ProductLayoutCss from '../components/head/ProductLayoutCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
 import TdTestScripts from '../components/scripts/TdTestScripts.astro';
 import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
@@ -15,7 +16,8 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
     ogImageAlt="TD Tests startsida med testkörningar och resultat"
 >
     <ParallaxScripts slot="scripts-early" lang="sv" />
-    <TdTestCss slot="head-css" lang="sv" />
+    <ServiceCardCss slot="head-css" lang="sv" />
+    <ProductLayoutCss slot="head-css" lang="sv" />
     <Fragment slot="head-after-fonts">
       <script type="application/ld+json">
       {

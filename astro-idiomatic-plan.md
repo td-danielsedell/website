@@ -27,11 +27,11 @@ root. Nothing has been deployed to production from this branch.
 The site works and matches main byte for byte. Nothing below is required. Each
 item is justified by what it buys, and two are explicitly **not** recommended.
 
-### 1. Retire the conversion scaffolding — do this first
+### Retire the conversion scaffolding — DONE (`fe50af6`, `c690665`)
 
-`src/components/head/` holds **46 files for 840 lines**, averaging 18 lines
-each; `src/components/scripts/` holds 8 more. **24 of them are used by exactly
-one page.**
+`src/components/head/` held **46 files for 840 lines**, averaging 18 lines
+each; `src/components/scripts/` held 8 more. **30 were used by exactly one
+page.** (Result: `src/components` went 60 files → 16.)
 
 They exist for one reason, now obsolete: Astro silently drops an HTML comment
 written at the top level of slot content, so every head fragment was wrapped in
@@ -47,14 +47,16 @@ comments and JSON-LD with braces intact:
 </Fragment>
 ```
 
-Separately, **34 component files are 17 Sv/En pairs** (`LeakDetectionJsonLdSv` /
-`…En`, 25 lines each) that differ only in content. A single component taking
-`lang`, reading from `src/data/`, replaces each pair.
+Every one of the 30 was also half of an Sv/En pair, so inlining dissolved the
+pairs rather than merging them — see the note on phase 2 below for what that
+leaves behind. A second pass then folded the duplication that ran *between* page
+types into content-named shared components (`ServiceCardCss`, `FeatureCardCss`,
+`ProductLayoutCss`, `FooterLargeCss`).
 
-Target: **~54 files → ~10**, no change in output, fully gated by the existing
-byte-diff. Highest value, lowest risk.
+Result: `src/components` 60 files → 16, no change in rendered output, gated
+throughout by the normalized DOM diff.
 
-### 2. Trim the harness
+### Trim the harness
 
 `verify/baseline/` (569 kB) and `diff-pages.mjs` exist to prove the conversion.
 Once the conversion is trusted they are dead weight.
@@ -63,9 +65,11 @@ Once the conversion is trusted they are dead weight.
 they assert what is true of a correct page regardless of what main looks like —
 and both workflows already gate on it. It is the part worth having forever.
 
-Do this only after item 1, which the byte-diff is still needed to gate.
+Do this only after the base split below, which the DOM diff is still needed to
+gate. `astro:assets` is what finally retires the diff, since generated
+filenames cannot match a baseline.
 
-### 3. `astro:assets` — the only large user-facing win
+### `astro:assets` — the only large user-facing win
 
 Images are 17 MB, 93% of the repo. A phone on 4G currently downloads
 desktop-sized files. The pipeline gives responsive `srcset` per breakpoint,
@@ -74,11 +78,12 @@ attribute that was missing from the about-page logos on 2 of 18 pages.
 
 Costs, honestly: it takes over image output, so the hand-tuned crops need the
 pre-WebP masters (recoverable at `40c5ff1^` / `da1289a^`), and generated
-filenames cannot match a baseline, so it **dissolves the byte-diff**. It needs
+filenames cannot match a baseline, so it **dissolves the DOM diff**. It needs
 its own verification story — computed-style and layout sentinels, not byte
-comparison. Do it after items 1 and 2, never alongside them.
+comparison. Do it after the base split and the harness trim, never alongside
+them.
 
-### 4. Content collections — for metadata only
+### Content collections — for metadata only
 
 Structural drift between `/` and `/en/` is fixed: header, footer and `<head>`
 now propagate. **Copy drift is not.** The English pages had their own stale
@@ -92,7 +97,7 @@ instead of something a visitor finds. Sv/en parity can be enforced structurally.
 Scope it to frontmatter and metadata. The prose bodies are bespoke and
 hand-tuned; forcing them into one template would flatten decisions made per page.
 
-### 5. Islands — the path off jQuery 1.8.3
+### Islands — the path off jQuery 1.8.3
 
 Nine files depend on jQuery, so today it is all-or-nothing: stickyNavbar,
 waypoints, enllax, easing, lightbox, images-loaded, plus `site.js` and
@@ -143,20 +148,31 @@ astro build --base=/website/     # Pages preview
 ```
 
 **Do not put `base` in `astro.config.mjs`.** It would fix Pages and break the
-FTP deploy. It belongs in the Pages workflow only, and item 3 cannot start until
-that split is in place.
+FTP deploy. It belongs in the Pages workflow only, and `astro:assets` cannot
+start until that split is in place.
 
 ## Phases and gates
 
-1. **Collapse single-use head/script components into inline slot content.**
-   24 components, mechanical, scriptable. Gate: 18/18 byte-diff, empty allowlist.
-2. **Merge the 17 Sv/En pairs into `lang`-prop components.** Shared surface —
-   central work, not fanned out. Gate: same.
-3. **Trim the harness.** Delete `verify/baseline/` and `diff-pages.mjs`; keep
+1. ~~**Collapse single-use head/script components into inline slot content.**~~
+   DONE (`fe50af6`): 30 components, not the 24 first counted. Every one was also
+   half of an Sv/En pair, so inlining dissolved the pairs instead of merging
+   them — which means phase 2 never happened as written.
+2. ~~**Merge the Sv/En pairs into `lang`-prop components.**~~ SUPERSEDED. No
+   pairs remain, but the duplication they represented was moved rather than
+   removed: `index.astro` and `en/index.astro` now each carry their own copy of
+   the `head-preload`, `head-css` and `all-scripts` blocks, identical apart from
+   the `../` prefix and one comment word. `c690665` instead consolidated the
+   duplication that was *between* page types (seven identical `*FooterCss`, four
+   identical project sheets, two identical product sheets) into content-named
+   shared components. **Open question for later: whether the index pair's three
+   duplicated blocks are worth a `lang`-prop component.** They are the only
+   remaining instance.
+3. **Per-target base split** in the Pages workflow. Gate: production output
+   unchanged under the DOM diff; preview still loads with zero failed requests
+   at the subpath. Done BEFORE trimming the harness, so the diff can gate it.
+4. **Trim the harness.** Delete `verify/baseline/` and `diff-pages.mjs`; keep
    `assert-invariants.mjs` and both workflow gates. Gate: invariants hold, both
    workflows green.
-4. **Per-target base split** in the Pages workflow. Gate: preview still loads
-   with zero failed requests at the subpath.
 5. **`astro:assets`.** Own verification story. Gate: layout sentinels unchanged
    at the agreed widths; visual review of every regenerated crop.
 6. **Content collections for metadata.** Gate: a deliberately mismatched

@@ -8,7 +8,11 @@ import Layout from '../../layouts/Layout.astro';
     description="Total Digital brings together asset management, geodata, remote sensing and AI – specialist expertise connecting the condition, location and development of your assets."
     isHome
 >
-    <Fragment slot="head-preload">
+      <Fragment slot="head-preload">
+        {/* The banner is a CSS background, so the browser cannot discover it until
+            colors.css has been parsed — and it is the largest thing on the first
+            screen. Preloaded here, before any stylesheet, one crop per breakpoint:
+            the wide crop above 1024px, the full crop below it. */}
       <link rel="preload" href="../images/banner-images/banner_wide_clean.webp" as="image" media="(min-width: 1024px)" />
       <link rel="preload" href="../images/banner-images/banner_full_clean.webp" as="image" media="(max-width: 1023px)" />
     </Fragment>
@@ -16,7 +20,8 @@ import Layout from '../../layouts/Layout.astro';
       {/* Logo Slider CSS */}
       <link href="../css/logo-slider.css" rel="stylesheet" type="text/css">
 
-      {/* Area Band CSS */}
+      {/* The business-areas band. Must load after style.css — see the
+            comment at the top of the sheet. */}
       <link href="../css/area-band.css" rel="stylesheet" type="text/css">
 
       {/* Feature Card CSS */}

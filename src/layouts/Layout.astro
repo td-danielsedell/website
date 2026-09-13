@@ -52,11 +52,6 @@ interface Props {
   ogImage?: string;
   /** og:image:alt. Per page on the six subpages that own artwork; 'Total Digital' on about and index. */
   ogImageAlt?: string;
-  /**
-   * Slot `og-image-note` sits immediately before <meta property="og:image">.
-   * td_linear needs it: its preview borrows TD Test's artwork and a PLACEHOLDER
-   * comment says so. Pass a component, never a string — see the slot note above.
-   */
   /** True on the two index pages — see Header for what it changes. */
   isHome?: boolean;
   /** The about pages own the #certificates section the footer badges point at. */
@@ -111,6 +106,8 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description"
         content={description} />
+    {/* Sits immediately before og:image. td_linear needs it: its preview borrows
+        TD Test's artwork and a PLACEHOLDER comment says so. */}
     <slot name="og-image-note" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
@@ -143,8 +140,6 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     {/*Must be blocking in <head>: the theme has to be on <html> before the
         first frame, otherwise the dark theme shows for one frame and then swaps.*/}
     <script src={`${p}js/theme.js`} is:inline></script>
-
-    <slot name="head-after-theme" />
 
     {/*Open Sans is self-hosted; the @font-face rules live at the top of style.css*/}
     <link rel="preload" href={`${p}fonts/open-sans-latin.woff2`} as="font" type="font/woff2" crossorigin />

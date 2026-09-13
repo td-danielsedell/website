@@ -1,22 +1,23 @@
 ---
-/** Stylesheets specific to the td_test pages, in load order. */
+/**
+ * The product-page layout sheets, in load order. td_test and td_linear share a
+ * layout, so a change in css/td-test.css lands on both.
+ *
+ * area-band.css must load after style.css — see the comment at the top of the
+ * sheet. The band itself comes from the start page; Benefits reuses it.
+ *
+ * The two pages put these in different slots (td_test in `head-css`, td_linear
+ * in `head-after-fonts`), which is why the slot is chosen at the call site
+ * rather than declared here.
+ */
 import { assetPrefix, type Lang } from '../../data/nav';
 
 interface Props { lang: Lang }
 const p = assetPrefix(Astro.props.lang);
 ---
-    {/* Service Card CSS */}
-    <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">
-
-    {/* The business-areas band from the start page; Benefits uses the same band.
-        Must load after style.css — see the comment at the top of the sheet. */}
     <link href={`${p}css/area-band.css`} rel="stylesheet" type="text/css">
-
-    {/* TD Test Page CSS */}
     <link href={`${p}css/td-test.css`} rel="stylesheet" type="text/css">
-
     {/* Click-to-enlarge images (opt in with data-zoomable) */}
     <link href={`${p}css/image-zoom.css`} rel="stylesheet" type="text/css">
-
     {/* Image carousel (opt in with data-image-carousel) */}
     <link href={`${p}css/image-carousel.css`} rel="stylesheet" type="text/css">

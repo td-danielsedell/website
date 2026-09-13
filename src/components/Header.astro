@@ -68,18 +68,14 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                         {/*Main Navigation*/}
                         <nav id="nav-main">
                             <ul>
+                                {/* On the index pages there is no "Home" entry: the logo beside
+                                    the nav already goes there, and the banner is what you are
+                                    looking at when the nav is not sticky. */}
                                 {/*Nav items that own subpages are <details> groups. Same reason as the
                                     language switcher below: there is no event handler to copy when
                                     site.js clones this markup into the mobile menu. The subpage links
                                     are relative so the site works wherever it is mounted, and site.js
                                     keeps stickyNavbar from cancelling the click on them.*/}
-{isHome && (
-                                <Fragment>
-                                {/* Index only: the items follow the order of the sections. "Home"
-                                    is gone — the logo beside it already goes there, and the banner
-                                    is what you are looking at when the nav is not sticky. */}
-                                </Fragment>
-                              )}
                                 <li onclick={isHome ? undefined : `location.href='${home}#businessareas';`}>
                                     <a href={`${home}#businessareas`}>{t.nav.businessareas}</a>
                                 </li>

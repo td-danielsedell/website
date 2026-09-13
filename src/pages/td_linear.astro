@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductPageCss from '../components/head/ProductPageCss.astro';
+import FeatureCardCss from '../components/head/FeatureCardCss.astro';
+import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
-import TdLinearProductCss from '../components/head/TdLinearProductCss.astro';
+import ProductLayoutCss from '../components/head/ProductLayoutCss.astro';
 import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 import LightboxScripts from '../components/scripts/LightboxScripts.astro';
 ---
@@ -17,7 +18,8 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
 >
     <ParallaxScripts slot="scripts-early" lang="sv" />
     <LightboxScripts slot="scripts-late" lang="sv" />
-    <ProductPageCss slot="head-css" lang="sv" />
+    <FeatureCardCss slot="head-css" lang="sv" />
+    <ServiceCardCss slot="head-css" lang="sv" />
     <Fragment slot="og-image-note">
       {/*PLACEHOLDER: TD Linear har ingen egen bild än, så länkförhandsvisningen
           lånar TD Tests. Byt till images/og/td_linear.jpg när artworken finns.*/}
@@ -43,7 +45,7 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
       </script>
     </Fragment>
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
-    <TdLinearProductCss slot="head-after-fonts" lang="sv" />
+    <ProductLayoutCss slot="head-after-fonts" lang="sv" />
     <Fragment slot="scripts">
       <script src="js/image-zoom.js" is:inline></script>
 
