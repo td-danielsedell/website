@@ -1,8 +1,8 @@
 {
   "_comment": "Ground truth for the verification harness. IMPORTANT: this is no longer a snapshot of main's shipped HTML. It is this project's own build, taken after src/ was formatted with prettier. Regenerate with: npm run build, then copy dist/**/*.html over verify/baseline/, then re-run verify/make-baseline-ref.mjs.",
   "kind": "own-build",
-  "capturedFrom": "6e5b669ed55c5f3bd12ee8bcce6427dac6e607c3",
-  "capturedFromSubject": "Format src/ with prettier",
+  "capturedFrom": "93cf92940a6890bdce6f06d09cdd5cc1c6160502",
+  "capturedFromSubject": "pending: image format + dimensions pass",
   "capturedAt": "2026-09-13",
   "whatThisProvesNow": "A regression gate: the build has not changed unintentionally since this snapshot. It no longer proves byte-parity with main - that job is finished, and prettier formatting means the two legitimately differ in whitespace.",
   "previousBaselines": [
@@ -22,21 +22,22 @@
   "sha256": {
     "about.html": "b09d9f36fbf943c8f081237af604319e7cf955d3ede73eddc9cb82a71d7e519a",
     "en/about.html": "ab174853693f0a9f4a54509446b698874b02edc4c6b7d2ce63c7221fbea43790",
-    "en/index.html": "8025fb0b8b6eb05908635800e1d191c37d8d13434b99f5f5cd7a88e1589583a4",
+    "en/index.html": "26f295417d18f333c4f0ce9e4b677b38220d2e2f540f93cb4cf733983f9b9d68",
     "en/leak-detection.html": "585f66b76ac4776ab6159bf2da8eec25e22040bd9402b4f3b822676b7a090cd9",
-    "en/raildamage-analyses.html": "de7617ca970fc5910158e9c56aee99f735b3e065a76f6a4a80213769865bc575",
-    "en/railway-safety.html": "c23220408c3d4a6c8b213dd621a6ba0c6bd23122bc8eb94da26a4aaa2e26e4ce",
+    "en/raildamage-analyses.html": "6a2c433fe4849246a55db7a988c0726d4264ef9c40b759bc2c7d7137f6dd1d16",
+    "en/railway-safety.html": "30e87e04e258c60bf7b7b9bc9caff223054a02f7cc9d1465561989ee4b75e666",
     "en/sar-processing.html": "ff91234e09292a05d47e42217c0eeeedd06fab4b971f813296741abb86caf88d",
     "en/td_asset_care.html": "fd60e61ba16dd1980ff6ebb5e8b0ee882de5605aebe7705bb5c803f19b2684dd",
     "en/td_linear.html": "ee714022dc76c485fa2db6c3459a8d87b1ca363e4dc3ee1c008aab7eb1f3b93c",
     "en/td_test.html": "dc28b6c92f6f6dc7a17cfda92920bbc9a9daba6dbe6528554b8da26d777cbdeb",
-    "index.html": "ee279d5c0356eb2598338425234b76def708b320a3b434d7dd09cc736279c39f",
+    "index.html": "c8d91d3767f53dabfc2f4fdf1f9accc340dd4420619f9c7dbd90c581c8c1b7a9",
     "leak-detection.html": "3a84b01764234fa4af148b6023ae7f94b59c4b45e4ff22008ad89189d7bdcfc7",
-    "raildamage-analyses.html": "ee452b06aa775ee33ffce23da8fea9a059d94552a50415562ea7f1fbcc79ec39",
-    "railway-safety.html": "a2fdde27968ebc001aee370d4eb866f96d8b1fb83400f01e69e2dbe7135c78c9",
+    "raildamage-analyses.html": "157e16c87601c48ebf1e9c83a40fca807d91beb37886fb13445c1506a4b8199a",
+    "railway-safety.html": "ba57327f139e4231f3df73d4c75f7367a4af2b6cfd5755d8d97ad4381cf6d304",
     "sar-processing.html": "0ec4e3ef2898b84ef530464e07b9b2b339f6f1fef64cd473a915ac1ebe179acf",
     "td_asset_care.html": "addcc77e97594abda18c80cdc59752ea34ce8fc68f86532551f4d2bda026f0e6",
     "td_linear.html": "fac6e50107de1184dc446a95962618cf587629d928f9035767812cdc27e2807e",
     "td_test.html": "491cafbaed7fd728f93c5412ff7c6d0401d7db0986d806484d6fa89e7b029e19"
-  }
+  },
+  "lastChange": "Re-taken after converting two oversized PNGs to WebP and adding intrinsic width/height to 20 <img> tags. The diff before re-baselining showed exactly 8 src swaps and 16 dimension additions and nothing else; layout was verified unchanged in a browser (696x280 rendered, top 130, left 408, page height 1299 - identical before and after)."
 }
