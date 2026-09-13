@@ -1,9 +1,12 @@
 ---
 /** css/feature-card.css. Loads before service-card.css where both are used. */
-import { assetPrefix, type Lang } from '../../data/nav';
+import { assetPrefix, type Lang } from "../../data/nav";
 
-interface Props { lang: Lang }
+interface Props {
+  lang: Lang;
+}
 const p = assetPrefix(Astro.props.lang);
 ---
-    {/* Feature Card CSS */}
-    <link href={`${p}css/feature-card.css`} rel="stylesheet" type="text/css">
+
+{/* Feature Card CSS */}
+<link href={`${p}css/feature-card.css`} rel="stylesheet" type="text/css" />

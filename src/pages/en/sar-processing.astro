@@ -1,31 +1,50 @@
 ---
-import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
-import ProjectBody from '../../components/ProjectBody.astro';
-import Layout from '../../layouts/Layout.astro';
-import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
-import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
+import ServiceJsonLd from "../../components/head/ServiceJsonLd.astro";
+import ProjectBody from "../../components/ProjectBody.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServiceCardCss from "../../components/head/ServiceCardCss.astro";
+import FooterLargeCss from "../../components/head/FooterLargeCss.astro";
 ---
-<Layout
-    lang="en"
-    path="sar-processing.html"
->
-    <ServiceCardCss slot="head-css" lang="en" />
-    <ServiceJsonLd slot="head-after-fonts" lang="en" path="sar-processing.html" />
-    <FooterLargeCss slot="head-after-fonts" lang="en" />
-            <ProjectBody lang="en" path="sar-processing.html">
-        <Fragment slot="figure">
-                        <figure>
-                        <img class="showcase-image" src="../images/showcase-images/interferogram.webp"
-                            alt="Interferogram produced from SAR data" width="619" height="413" fetchpriority="high" />
-<figcaption>Interferogram of the Selenga River, based on our own InSAR analysis. © Total Digital.</figcaption>
-</figure>
-        </Fragment>
-                            <p>
-                                We develop InSAR-based solutions for monitoring ground motion across infrastructure and the built environment.
-                            </p><p>    Using radar data from commercial SAR satellites, Sentinel-1 and NISAR, we can monitor changes across large areas regardless of weather conditions or time of day. This makes it possible to detect ground movement before the trend becomes visible in the field.
-                            </p><p>   Depending on the project and ground conditions, we use Persistent Scatterer Interferometry (PSI) and Distributed Scatterer Interferometry (DSI) to provide reliable measurements over time.
-                            </p><p>    The approach can be applied to individual structures or scaled across large geographical areas, with results integrated directly into existing systems. Applications include railways, roads, geotechnical monitoring, construction, dams and urban environments, supporting <strong>long-term monitoring, risk management and informed decision-making.</strong>
 
-                            </p>
-    </ProjectBody>
+<Layout lang="en" path="sar-processing.html">
+  <ServiceCardCss slot="head-css" lang="en" />
+  <ServiceJsonLd slot="head-after-fonts" lang="en" path="sar-processing.html" />
+  <FooterLargeCss slot="head-after-fonts" lang="en" />
+  <ProjectBody lang="en" path="sar-processing.html">
+    <Fragment slot="figure">
+      <figure>
+        <img
+          class="showcase-image"
+          src="../images/showcase-images/interferogram.webp"
+          alt="Interferogram produced from SAR data"
+          width="619"
+          height="413"
+          fetchpriority="high"
+        />
+        <figcaption>
+          Interferogram of the Selenga River, based on our own InSAR analysis. © Total Digital.
+        </figcaption>
+      </figure>
+    </Fragment>
+    <p>
+      We develop InSAR-based solutions for monitoring ground motion across infrastructure and the
+      built environment.
+    </p>
+    <p>
+      Using radar data from commercial SAR satellites, Sentinel-1 and NISAR, we can monitor changes
+      across large areas regardless of weather conditions or time of day. This makes it possible to
+      detect ground movement before the trend becomes visible in the field.
+    </p>
+    <p>
+      Depending on the project and ground conditions, we use Persistent Scatterer Interferometry
+      (PSI) and Distributed Scatterer Interferometry (DSI) to provide reliable measurements over
+      time.
+    </p>
+    <p>
+      The approach can be applied to individual structures or scaled across large geographical
+      areas, with results integrated directly into existing systems. Applications include railways,
+      roads, geotechnical monitoring, construction, dams and urban environments, supporting{" "}
+      <strong>long-term monitoring, risk management and informed decision-making.</strong>
+    </p>
+  </ProjectBody>
 </Layout>

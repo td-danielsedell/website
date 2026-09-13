@@ -1,32 +1,49 @@
 ---
-import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
-import ProjectBody from '../components/ProjectBody.astro';
-import Layout from '../layouts/Layout.astro';
-import ServiceCardCss from '../components/head/ServiceCardCss.astro';
-import FooterLargeCss from '../components/head/FooterLargeCss.astro';
+import ServiceJsonLd from "../components/head/ServiceJsonLd.astro";
+import ProjectBody from "../components/ProjectBody.astro";
+import Layout from "../layouts/Layout.astro";
+import ServiceCardCss from "../components/head/ServiceCardCss.astro";
+import FooterLargeCss from "../components/head/FooterLargeCss.astro";
 ---
-<Layout
-    lang="sv"
-    path="raildamage-analyses.html"
->
-    <ServiceCardCss slot="head-css" lang="sv" />
-    <ServiceJsonLd slot="head-after-fonts" lang="sv" path="raildamage-analyses.html" />
-    <FooterLargeCss slot="head-after-fonts" lang="sv" />
-            <ProjectBody lang="sv" path="raildamage-analyses.html">
-        <Fragment slot="figure">
-<figure>
-                        <img class="showcase-image" src="images/showcase-images/rail-damage.png"
-                            alt="Rälsskada i inspektionsbild" width="1600" height="900" fetchpriority="high" />
-                        <figcaption>Total Digital:s AI modell för identifiering av rälsskador från bilddata. © Total Digital.</figcaption>
-                                                    </figure>
-        </Fragment>
-                            <p>
-                                Vi kombinerar AI, deep learning och datorseende för att <strong>identifiera rälsskador och avvikelser i bilddata </strong> från järnvägsinfrastruktur.
-                            </p><p>
-                                Våra modeller är tränade på högupplöst bilddata och analyserar inspektionsdata från mobila mätsystem. De kan identifiera olika typer av skador och avvikelser samt anpassas till olika sensorer och inspektionsflöden. Med edge deployment kan analysen dessutom ske direkt på inspektionsutrustningen, nära datakällan.
-                            </p><p>
-                                Metoden omfattar hela kedjan – från databearbetning och AI-analys till visualisering och integration med kundens system. Resultaten ger stöd för <strong>tillståndsbedömning, prioritering av underhåll och långsiktig uppföljning av järnvägsanläggningen.</strong>
-                            </p>
-                           <i>Samarbetspartners: Region Stockholm</i>
-    </ProjectBody>
+
+<Layout lang="sv" path="raildamage-analyses.html">
+  <ServiceCardCss slot="head-css" lang="sv" />
+  <ServiceJsonLd slot="head-after-fonts" lang="sv" path="raildamage-analyses.html" />
+  <FooterLargeCss slot="head-after-fonts" lang="sv" />
+  <ProjectBody lang="sv" path="raildamage-analyses.html">
+    <Fragment slot="figure">
+      <figure>
+        <img
+          class="showcase-image"
+          src="images/showcase-images/rail-damage.png"
+          alt="Rälsskada i inspektionsbild"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+        <figcaption>
+          Total Digital:s AI modell för identifiering av rälsskador från bilddata. © Total Digital.
+        </figcaption>
+      </figure>
+    </Fragment>
+    <p>
+      Vi kombinerar AI, deep learning och datorseende för att{" "}
+      <strong>identifiera rälsskador och avvikelser i bilddata </strong> från järnvägsinfrastruktur.
+    </p>
+    <p>
+      Våra modeller är tränade på högupplöst bilddata och analyserar inspektionsdata från mobila
+      mätsystem. De kan identifiera olika typer av skador och avvikelser samt anpassas till olika
+      sensorer och inspektionsflöden. Med edge deployment kan analysen dessutom ske direkt på
+      inspektionsutrustningen, nära datakällan.
+    </p>
+    <p>
+      Metoden omfattar hela kedjan – från databearbetning och AI-analys till visualisering och
+      integration med kundens system. Resultaten ger stöd för{" "}
+      <strong>
+        tillståndsbedömning, prioritering av underhåll och långsiktig uppföljning av
+        järnvägsanläggningen.
+      </strong>
+    </p>
+    <i>Samarbetspartners: Region Stockholm</i>
+  </ProjectBody>
 </Layout>

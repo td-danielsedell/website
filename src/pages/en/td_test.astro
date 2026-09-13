@@ -1,273 +1,507 @@
 ---
-import SoftwareApplicationJsonLd from '../../components/head/SoftwareApplicationJsonLd.astro';
-import Layout from '../../layouts/Layout.astro';
-import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
-import ProductLayoutCss from '../../components/head/ProductLayoutCss.astro';
-import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
-import TdTestScripts from '../../components/scripts/TdTestScripts.astro';
-import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
+import SoftwareApplicationJsonLd from "../../components/head/SoftwareApplicationJsonLd.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServiceCardCss from "../../components/head/ServiceCardCss.astro";
+import ProductLayoutCss from "../../components/head/ProductLayoutCss.astro";
+import FooterLargeCss from "../../components/head/FooterLargeCss.astro";
+import TdTestScripts from "../../components/scripts/TdTestScripts.astro";
+import ParallaxScripts from "../../components/scripts/ParallaxScripts.astro";
 ---
-<Layout
-    lang="en"
-    path="td_test.html"
->
-    <ParallaxScripts slot="scripts-early" lang="en" />
-    <ServiceCardCss slot="head-css" lang="en" />
-    <ProductLayoutCss slot="head-css" lang="en" />
-    <SoftwareApplicationJsonLd slot="head-after-fonts" lang="en" path="td_test.html" />
-    <FooterLargeCss slot="head-after-fonts" lang="en" />
-    <TdTestScripts slot="scripts" lang="en" />
-        <main id="content" class="showcase-top">
 
-            <section class="introduction scrollto tdt-intro">
-                <div class="row clearfix">
+<Layout lang="en" path="td_test.html">
+  <ParallaxScripts slot="scripts-early" lang="en" />
+  <ServiceCardCss slot="head-css" lang="en" />
+  <ProductLayoutCss slot="head-css" lang="en" />
+  <SoftwareApplicationJsonLd slot="head-after-fonts" lang="en" path="td_test.html" />
+  <FooterLargeCss slot="head-after-fonts" lang="en" />
+  <TdTestScripts slot="scripts" lang="en" />
+  <main id="content" class="showcase-top">
+    <section class="introduction scrollto tdt-intro">
+      <div class="row clearfix">
+        <div class="tdt-hero">
+          <div class="tdt-hero-copy">
+            <div class="section-heading has-title-icon">
+              <h1 class="section-title">TD Test</h1>
+              <p class="section-subtitle">Quality-assure your IBM Maximo</p>
 
-                    <div class="tdt-hero">
-                        <div class="tdt-hero-copy">
-                            <div class="section-heading has-title-icon">
-                                <h1 class="section-title">TD Test</h1>
-                                <p class="section-subtitle">Quality-assure your IBM Maximo</p>
+              <i
+                class="fa-duotone fa-solid fa-clipboard-list-check title-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+          </div>
 
-                                <i class="fa-duotone fa-solid fa-clipboard-list-check title-icon" aria-hidden="true"></i>
-                            </div>
-                        </div>
+          <div class="tdt-hero-body">
+            <p class="tdt-lead">
+              TD Test automates testing of IBM Maximo and replaces time-consuming manual checks. A
+              workflow is defined once and can then be tested over and over again &ndash; after
+              upgrades, after customisations, or ahead of deployment.
+            </p>
+          </div>
+        </div>
 
-                        <div class="tdt-hero-body">
-                            <p class="tdt-lead">
-                                TD Test automates testing of IBM Maximo and replaces time-consuming manual checks. A workflow is defined once and can then be tested over and over again &ndash; after upgrades, after customisations, or ahead of deployment.
-                            </p>
-                        </div>
-                    </div>
+        <div class="tdt-intro-body">
+          <p>
+            You get a quick answer to the question that matters most:{" "}
+            <strong>does Maximo still work the way the business expects?</strong> If something goes
+            wrong, TD Test shows where in the flow the error occurred, what happened and what the
+            screen looked like. The tests leave the database unchanged, so they can be repeated
+            without affecting your data.
+          </p>
+          <p>
+            TD Test supports both IBM Maximo 7.x and IBM Maximo Application Suite (MAS), and the
+            same tests can be run against either version. That makes it easy to verify that
+            processes and customisations still work after an upgrade.
+          </p>
+          <p>
+            Unlike traditional testing tools, TD Test works directly against Maximo without going
+            through the browser. That gives faster, more stable tests that do not need rewriting
+            when the interface changes.
+          </p>
+        </div>
 
-                    <div class="tdt-intro-body">
-                        <p>
-                            You get a quick answer to the question that matters most: <strong>does Maximo still work the way the business expects?</strong> If something goes wrong, TD Test shows where in the flow the error occurred, what happened and what the screen looked like. The tests leave the database unchanged, so they can be repeated without affecting your data.
-                        </p>
-                        <p>
-                            TD Test supports both IBM Maximo 7.x and IBM Maximo Application Suite (MAS), and the same tests can be run against either version. That makes it easy to verify that processes and customisations still work after an upgrade.
-                        </p>
-                        <p>
-                            Unlike traditional testing tools, TD Test works directly against Maximo without going through the browser. That gives faster, more stable tests that do not need rewriting when the interface changes.
-                        </p>
-                    </div>
+        <a
+          href="#capabilities"
+          class="scroll-cue"
+          data-scroll-to
+          aria-label="Read more about Capabilities"
+        >
+          <span class="scroll-cue-label">Read more</span>
+          <i class="fa-solid fa-chevrons-down" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
 
-                    <a href="#capabilities" class="scroll-cue" data-scroll-to
-                        aria-label="Read more about Capabilities"><span class="scroll-cue-label">Read more</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
+    <section id="capabilities" class="primary-color scrollto clearfix">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">CAPABILITIES</h2>
+          <p class="section-title">What can TD Test do?</p>
+          <p class="section-subtitle">
+            "Testing Maximo with the help of Maximo." <br />
+            TD Test works from within Maximo, allowing it to test the interface, business logic,
+            integrations and more.
+          </p>
+        </div>
 
-                </div>
-            </section>
+        <div class="tdt-trio">
+          <div>
+            <h3 class="card-title">Test what matters</h3>
+            <p>TD Test can automate tests of:</p>
+            <ul class="tdt-list">
+              <li>Maximo's user interface and business logic</li>
+              <li>Integrations with other systems</li>
+              <li>Your own customisations and functions</li>
+              <li>Complete business processes</li>
+              <li>Work flows containing several users, for example approval and handover</li>
+            </ul>
+          </div>
 
-            <section id="capabilities" class="primary-color scrollto clearfix">
-                <div class="row clearfix">
+          <div>
+            <h3 class="card-title">See exactly what went wrong</h3>
+            <p>After every run TD Test gives you:</p>
+            <ul class="tdt-list">
+              <li>A result for each test step</li>
+              <li>Error messages and relevant logs</li>
+              <li>Screenshots from every step</li>
+              <li>History of earlier test runs</li>
+              <li>Automatic reporting to e.g. Teams</li>
+            </ul>
+          </div>
 
-                    <div class="section-heading">
-                        <h2 class="section-kicker">CAPABILITIES</h2>
-                        <p class="section-title">What can TD Test do?</p>
-                        <p class="section-subtitle">"Testing Maximo with the help of Maximo." <br>TD Test works from within Maximo, allowing it to test the interface, business logic, integrations and more.</p>
-                    </div>
+          <div>
+            <h3 class="card-title">Run it on your terms</h3>
+            <p>TD Test gives you the flexibility to:</p>
+            <ul class="tdt-list">
+              <li>Run single tests or whole test groups</li>
+              <li>Schedule recurring runs</li>
+              <li>Start tests directly from the browser</li>
+              <li>Integrate with e.g. Jenkins</li>
+              <li>Control the log level per test without affecting Maximo's normal settings</li>
+            </ul>
+          </div>
+        </div>
 
-                    <div class="tdt-trio">
-                        <div>
-                            <h3 class="card-title">Test what matters</h3>
-                            <p>TD Test can automate tests of:</p>
-                            <ul class="tdt-list">
-                                <li>Maximo's user interface and business logic</li>
-                                <li>Integrations with other systems</li>
-                                <li>Your own customisations and functions</li>
-                                <li>Complete business processes</li>
-                                <li>Work flows containing several users, for example approval and handover</li>
-                            </ul>
-                        </div>
+        <div class="col-1 tdt-tour">
+          <div class="image-carousel" data-image-carousel>
+            <div class="image-carousel-track">
+              <figure class="image-carousel-slide">
+                <img
+                  class="tdt-shot"
+                  src="../images/product-images/td-test/landing-page.webp"
+                  width="1920"
+                  height="1416"
+                  loading="lazy"
+                  alt="The TD Test start page, with test suites and recent runs"
+                  data-zoomable
+                />
+                <figcaption>
+                  <strong>The start page</strong> &ndash; an overview of where things stand right
+                  now.
+                </figcaption>
+              </figure>
 
-                        <div>
-                            <h3 class="card-title">See exactly what went wrong</h3>
-                            <p>After every run TD Test gives you:</p>
-                            <ul class="tdt-list">
-                                <li>A result for each test step</li>
-                                <li>Error messages and relevant logs</li>
-                                <li>Screenshots from every step</li>
-                                <li>History of earlier test runs</li>
-                                <li>Automatic reporting to e.g. Teams</li>
-                            </ul>
-                        </div>
+              <figure class="image-carousel-slide">
+                <img
+                  class="tdt-shot"
+                  src="../images/product-images/td-test/test-runs-history.webp"
+                  width="1920"
+                  height="1416"
+                  loading="lazy"
+                  alt="History of earlier test runs in TD Test"
+                  data-zoomable
+                />
+                <figcaption>
+                  <strong>Run history</strong> &ndash; earlier runs, so you can follow quality over
+                  time.
+                </figcaption>
+              </figure>
 
-                        <div>
-                            <h3 class="card-title">Run it on your terms</h3>
-                            <p>TD Test gives you the flexibility to:</p>
-                            <ul class="tdt-list">
-                                <li>Run single tests or whole test groups</li>
-                                <li>Schedule recurring runs</li>
-                                <li>Start tests directly from the browser</li>
-                                <li>Integrate with e.g. Jenkins</li>
-                                <li>Control the log level per test without affecting Maximo's normal settings</li>
-                            </ul>
-                        </div>
-                    </div>
+              <figure class="image-carousel-slide">
+                <img
+                  class="tdt-shot"
+                  src="../images/product-images/td-test/test-run-report.webp"
+                  width="1920"
+                  height="1416"
+                  loading="lazy"
+                  alt="Details of a test run in TD Test"
+                  data-zoomable
+                />
+                <figcaption>
+                  <strong>Run details</strong> &ndash; the result for every test that was part of
+                  the run.
+                </figcaption>
+              </figure>
 
-                    <div class="col-1 tdt-tour">
-                        <div class="image-carousel" data-image-carousel>
-                            <div class="image-carousel-track">
+              <figure class="image-carousel-slide">
+                <img
+                  class="tdt-shot"
+                  src="../images/product-images/td-test/test-case-report.webp"
+                  width="1920"
+                  height="1416"
+                  loading="lazy"
+                  alt="Details of a single test case in TD Test, with source code"
+                  data-zoomable
+                />
+                <figcaption>
+                  <strong>Test case details</strong> &ndash; step by step, with the test's source
+                  code alongside so you can see what was tested.
+                </figcaption>
+              </figure>
 
-                                <figure class="image-carousel-slide">
-                                    <img class="tdt-shot" src="../images/product-images/td-test/landing-page.webp"
-                                        width="1920" height="1416" loading="lazy"
-                                        alt="The TD Test start page, with test suites and recent runs" data-zoomable>
-                                    <figcaption><strong>The start page</strong> &ndash; an overview of where things stand right now.
-                                    </figcaption>
-                                </figure>
+              <figure class="image-carousel-slide">
+                <img
+                  class="tdt-shot"
+                  src="../images/product-images/td-test/maximo-gui.webp"
+                  width="1920"
+                  height="1416"
+                  loading="lazy"
+                  alt="Saved screenshot of Maximo from a test step"
+                  data-zoomable
+                />
+                <figcaption>
+                  <strong>Saved Maximo view</strong> &ndash; exactly what Maximo's interface showed
+                  at that test step.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                                <figure class="image-carousel-slide">
-                                    <img class="tdt-shot" src="../images/product-images/td-test/test-runs-history.webp" width="1920"
-                                        height="1416" loading="lazy" alt="History of earlier test runs in TD Test"
-                                        data-zoomable>
-                                    <figcaption><strong>Run history</strong> &ndash; earlier runs, so you can follow quality over time.</figcaption>
-                                </figure>
+    <section id="features" class="scrollto clearfix">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">BENEFITS</h2>
+          <p class="section-title">Why TD Test?</p>
+        </div>
 
-                                <figure class="image-carousel-slide">
-                                    <img class="tdt-shot" src="../images/product-images/td-test/test-run-report.webp"
-                                        width="1920" height="1416" loading="lazy"
-                                        alt="Details of a test run in TD Test" data-zoomable>
-                                    <figcaption><strong>Run details</strong> &ndash; the result for every test that was part of the run.</figcaption>
-                                </figure>
+        <div class="col-1 area-band">
+          <div class="area-band-item">
+            <div class="tdt-icon">
+              <i class="fa-duotone fa-solid fa-gauge-high" aria-hidden="true"></i>
+            </div>
+            <h3>Fast</h3>
+            <p>
+              TD Test works directly against Maximo, without the detour through a browser. That
+              gives tests that can run up to 100 times faster.
+            </p>
+          </div>
 
-                                <figure class="image-carousel-slide">
-                                    <img class="tdt-shot" src="../images/product-images/td-test/test-case-report.webp"
-                                        width="1920" height="1416" loading="lazy"
-                                        alt="Details of a single test case in TD Test, with source code" data-zoomable>
-                                    <figcaption><strong>Test case details</strong> &ndash; step by step, with the test's source code alongside so you can see
-                                    what was tested.</figcaption>
-                                </figure>
+          <div class="area-band-item">
+            <div class="tdt-icon">
+              <i class="fa-duotone fa-solid fa-shield-check" aria-hidden="true"></i>
+            </div>
+            <h3>Stable</h3>
+            <p>
+              TD Test is not affected by changes to Maximo's interface or by browser behaviour. The
+              tests are more stable and need less maintenance as Maximo changes.
+            </p>
+          </div>
 
-                                <figure class="image-carousel-slide">
-                                    <img class="tdt-shot" src="../images/product-images/td-test/maximo-gui.webp"
-                                        width="1920" height="1416" loading="lazy"
-                                        alt="Saved screenshot of Maximo from a test step" data-zoomable>
-                                    <figcaption><strong>Saved Maximo view</strong> &ndash; exactly what Maximo's interface showed at that test step.</figcaption>
-                                </figure>
+          <div class="area-band-item">
+            <div class="tdt-icon">
+              <i class="fa-duotone fa-solid fa-piggy-bank" aria-hidden="true"></i>
+            </div>
+            <h3>Cost-effective</h3>
+            <p>
+              TD Test needs no dedicated hardware and can run as a container in an environment you
+              already have. Fast implementation and less test maintenance deliver benefit quickly.
+            </p>
+          </div>
 
-                            </div>
-                        </div>
-                    </div>
+          <div class="area-band-item">
+            <div class="tdt-icon">
+              <i class="fa-duotone fa-solid fa-list-check" aria-hidden="true"></i>
+            </div>
+            <h3>Easy to use</h3>
+            <p>
+              TD Test follows the same logic and the same names as Maximo, which makes the tests
+              easy to create and to follow. Clear reporting shows exactly where the error occurs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                </div>
-            </section>
+    <section class="primary-color scrollto clearfix">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">COMPARISON</h2>
+          <p id="comparison-heading" class="section-title">
+            TD Test vs. browser-based testing
+          </p>
+        </div>
 
-            <section id="features" class="scrollto clearfix">
-                <div class="row clearfix">
+        <table class="tdt-compare" aria-labelledby="comparison-heading">
+          <thead>
+            <tr>
+              <th scope="col">Features</th>
+              <th scope="col">Browser-based</th>
+              <th scope="col">TD Test</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Adapts to changes in Maximo's interface</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Same test for different Maximo versions</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Testing of integrations</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Testing of Maximo's business logic</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Built-in scheduling</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Troubleshooting data in the report</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Testing without affecting systems or data</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Testing of different browsers</th>
+              <td>
+                <svg
+                  class="svg-icon tdt-yes"
+                  viewBox="0 0 448 512"
+                  role="img"
+                  aria-label="Yes"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+              </td>
+              <td>
+                <svg
+                  class="svg-icon tdt-no"
+                  viewBox="0 0 384 512"
+                  role="img"
+                  aria-label="No"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-                    <div class="section-heading">
-                        <h2 class="section-kicker">BENEFITS</h2>
-                        <p class="section-title">Why TD Test?</p>
-                    </div>
-
-                    <div class="col-1 area-band">
-
-                        <div class="area-band-item">
-                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-gauge-high" aria-hidden="true"></i></div>
-                            <h3>Fast</h3>
-                            <p>TD Test works directly against Maximo, without the detour through a browser. That gives tests that can run up to 100 times faster.</p>
-                        </div>
-
-                        <div class="area-band-item">
-                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-shield-check" aria-hidden="true"></i></div>
-                            <h3>Stable</h3>
-                            <p>TD Test is not affected by changes to Maximo's interface or by browser behaviour. The tests are more stable and need less maintenance as Maximo changes.</p>
-                        </div>
-
-                        <div class="area-band-item">
-                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-piggy-bank" aria-hidden="true"></i></div>
-                            <h3>Cost-effective</h3>
-                            <p>TD Test needs no dedicated hardware and can run as a container in an environment you already have. Fast implementation and less test maintenance deliver benefit quickly.</p>
-                        </div>
-
-                        <div class="area-band-item">
-                            <div class="tdt-icon"><i class="fa-duotone fa-solid fa-list-check" aria-hidden="true"></i></div>
-                            <h3>Easy to use</h3>
-                            <p>TD Test follows the same logic and the same names as Maximo, which makes the tests easy to create and to follow. Clear reporting shows exactly where the error occurs.</p>
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-
-            <section class="primary-color scrollto clearfix">
-                <div class="row clearfix">
-
-                    <div class="section-heading">
-                        <h2 class="section-kicker">COMPARISON</h2>
-                        <p id="comparison-heading" class="section-title">TD Test vs. browser-based testing</p>
-                    </div>
-
-                    <table class="tdt-compare" aria-labelledby="comparison-heading">
-                        <thead>
-                            <tr>
-                                <th scope="col">Features</th>
-                                <th scope="col">Browser-based</th>
-                                <th scope="col">TD Test</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Adapts to changes in Maximo's interface</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Same test for different Maximo versions</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Testing of integrations</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Testing of Maximo's business logic</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Built-in scheduling</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Troubleshooting data in the report</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Testing without affecting systems or data</th>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Testing of different browsers</th>
-                                <td><svg class="svg-icon tdt-yes" viewBox="0 0 448 512" role="img" aria-label="Yes" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" /></svg></td>
-                                <td><svg class="svg-icon tdt-no" viewBox="0 0 384 512" role="img" aria-label="No" xmlns="http://www.w3.org/2000/svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-            </section>
-
-            <section id="contact" class="scrollto clearfix">
-
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
-
-                        <div class="col-1 text-center showcase-cta">
-                            <p>Want to know more about TD Test, or see a demonstration?</p>
-                            <a href="mailto:info@totaldigital.se?subject=I would like to know more about TD Test"
-                                class="button">CONTACT US</a>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-        </main>
+    <section id="contact" class="scrollto clearfix">
+      <div class="col-1 content-center">
+        <div class="col-2-3 row clearfix">
+          <div class="col-1 text-center showcase-cta">
+            <p>Want to know more about TD Test, or see a demonstration?</p>
+            <a
+              href="mailto:info@totaldigital.se?subject=I would like to know more about TD Test"
+              class="button"
+            >
+              CONTACT US
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

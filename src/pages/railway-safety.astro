@@ -1,32 +1,46 @@
 ---
-import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
-import ProjectBody from '../components/ProjectBody.astro';
-import Layout from '../layouts/Layout.astro';
-import ServiceCardCss from '../components/head/ServiceCardCss.astro';
-import FooterLargeCss from '../components/head/FooterLargeCss.astro';
+import ServiceJsonLd from "../components/head/ServiceJsonLd.astro";
+import ProjectBody from "../components/ProjectBody.astro";
+import Layout from "../layouts/Layout.astro";
+import ServiceCardCss from "../components/head/ServiceCardCss.astro";
+import FooterLargeCss from "../components/head/FooterLargeCss.astro";
 ---
-<Layout
-    lang="sv"
-    path="railway-safety.html"
->
-    <ServiceCardCss slot="head-css" lang="sv" />
-    <ServiceJsonLd slot="head-after-fonts" lang="sv" path="railway-safety.html" />
-    <FooterLargeCss slot="head-after-fonts" lang="sv" />
-            <ProjectBody lang="sv" path="railway-safety.html">
-        <Fragment slot="figure">
-                        <figure>
-                        <img class="showcase-image" src="images/showcase-images/rail-sensor-cropped.png"
-                            alt="Järnvägsspår med mätutrustning" width="1600" height="1177" fetchpriority="high" />
-<figcaption>Rälstemperatursensor. © Total Digital.</figcaption>
-                        </figure>
-        </Fragment>
-                            <p>
-                                Vi utvecklar <strong>AI-baserade prognoser för rälstemperatur och risk för spårförskjutning</strong> – för en säkrare och mer förutsägbar järnvägsdrift i ett varmare klimat.
-                            </p><p>
-                                Högre temperaturer och fler värmeböljor ökar risken för spårförskjutning i helsvetsad räls, med störningar och förseningar som följd. Genom att kombinera termisk satellitdata, terräng- och väderdata samt markbaserade mätningar kan vi prognosticera temperaturförhållanden längs spåret upp till <strong>48 timmar i förväg.</strong> Det möjliggör riktade, proaktiva åtgärder och visar samtidigt var risken är störst och varför.
-                            </p><p>
-                                Metoden är utvecklad för operativ användning, kan skalas från enskilda högrisksträckor till hela järnvägsnät, och stödjer prioritering av underhåll, trafikplanering och långsiktig klimatanpassning.
-                            </p>
-                           <i> Samarbetspartners: Region Stockholm, KTH - Kungliga Tekniska högskolan, InfraNord</i>
-    </ProjectBody>
+
+<Layout lang="sv" path="railway-safety.html">
+  <ServiceCardCss slot="head-css" lang="sv" />
+  <ServiceJsonLd slot="head-after-fonts" lang="sv" path="railway-safety.html" />
+  <FooterLargeCss slot="head-after-fonts" lang="sv" />
+  <ProjectBody lang="sv" path="railway-safety.html">
+    <Fragment slot="figure">
+      <figure>
+        <img
+          class="showcase-image"
+          src="images/showcase-images/rail-sensor-cropped.png"
+          alt="Järnvägsspår med mätutrustning"
+          width="1600"
+          height="1177"
+          fetchpriority="high"
+        />
+        <figcaption>Rälstemperatursensor. © Total Digital.</figcaption>
+      </figure>
+    </Fragment>
+    <p>
+      Vi utvecklar{" "}
+      <strong>AI-baserade prognoser för rälstemperatur och risk för spårförskjutning</strong> – för
+      en säkrare och mer förutsägbar järnvägsdrift i ett varmare klimat.
+    </p>
+    <p>
+      Högre temperaturer och fler värmeböljor ökar risken för spårförskjutning i helsvetsad räls,
+      med störningar och förseningar som följd. Genom att kombinera termisk satellitdata, terräng-
+      och väderdata samt markbaserade mätningar kan vi prognosticera temperaturförhållanden längs
+      spåret upp till <strong>48 timmar i förväg.</strong> Det möjliggör riktade, proaktiva åtgärder
+      och visar samtidigt var risken är störst och varför.
+    </p>
+    <p>
+      Metoden är utvecklad för operativ användning, kan skalas från enskilda högrisksträckor till
+      hela järnvägsnät, och stödjer prioritering av underhåll, trafikplanering och långsiktig
+      klimatanpassning.
+    </p>
+    <i> Samarbetspartners: Region Stockholm, KTH - Kungliga Tekniska högskolan, InfraNord</i>
+  </ProjectBody>
 </Layout>

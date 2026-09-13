@@ -10,8 +10,8 @@
  * browser accepts it; correcting it is a behaviour change and belongs in its own
  * commit, not smuggled into a refactor.
  */
-import { assetPrefix, type Lang } from '../data/nav';
-import { people, ctaStrings, type PersonId } from '../data/people';
+import { assetPrefix, type Lang } from "../data/nav";
+import { people, ctaStrings, type PersonId } from "../data/people";
 
 interface Props {
   lang: Lang;
@@ -26,15 +26,34 @@ const who = people[person];
 const t = ctaStrings[lang];
 const address = `${who.emailUser}@${who.emailDomain}`;
 ---
-                        <div class="col-1 text-center showcase-cta">
-                            <div class="cta-signature">
-                                <img class="cta-face" src={`${p}images/showcase-images/${who.face}`} width="104" height="104"
-                                    loading="lazy" alt={who.name} />
-                                <div class="cta-signature-body">
-                                    <p>{t.question}</p>
-                                    <p class="cta-name">{who.name}</p>
-                                    <p class="cta-role">{who.role[lang]}</p>
-                                    <p class="cta-mail"><a class="email-obfuscated" data-user={who.emailUser} data-domain={who.emailDomain} data-subject={subject}>{t.showEmail}</a><noscript><a href={`mailto:${address}?subject=${subject}`}>{address}</a></noscript></p>
-                                </div>
-                            </div>
-                        </div>
+
+<div class="col-1 text-center showcase-cta">
+  <div class="cta-signature">
+    <img
+      class="cta-face"
+      src={`${p}images/showcase-images/${who.face}`}
+      width="104"
+      height="104"
+      loading="lazy"
+      alt={who.name}
+    />
+    <div class="cta-signature-body">
+      <p>{t.question}</p>
+      <p class="cta-name">{who.name}</p>
+      <p class="cta-role">{who.role[lang]}</p>
+      <p class="cta-mail">
+        <a
+          class="email-obfuscated"
+          data-user={who.emailUser}
+          data-domain={who.emailDomain}
+          data-subject={subject}
+        >
+          {t.showEmail}
+        </a>
+        <noscript>
+          <a href={`mailto:${address}?subject=${subject}`}>{address}</a>
+        </noscript>
+      </p>
+    </div>
+  </div>
+</div>

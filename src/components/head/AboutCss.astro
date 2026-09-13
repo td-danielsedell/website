@@ -1,18 +1,21 @@
 ---
 /** Stylesheets specific to the about pages, in load order. */
-import { assetPrefix, type Lang } from '../../data/nav';
+import { assetPrefix, type Lang } from "../../data/nav";
 
-interface Props { lang: Lang }
+interface Props {
+  lang: Lang;
+}
 const { lang } = Astro.props;
 const p = assetPrefix(lang);
 ---
-    {/* About page CSS */}
-    <link rel="stylesheet" href={`${p}css/about.css`}>
 
-    {/* Ledningsgruppen is a carousel below 768px (see css/about.css). */}
-    <link rel="stylesheet" href={`${p}css/image-carousel.css`}>
+{/* About page CSS */}
+<link rel="stylesheet" href={`${p}css/about.css`} />
 
-    {/* Large footer CSS */}
-    <link rel="stylesheet" href={`${p}css/footer-large.css`}>
+{/* Ledningsgruppen is a carousel below 768px (see css/about.css). */}
+<link rel="stylesheet" href={`${p}css/image-carousel.css`} />
 
-    <link rel="stylesheet" href={`${p}css/leaflet.css`}>
+{/* Large footer CSS */}
+<link rel="stylesheet" href={`${p}css/footer-large.css`} />
+
+<link rel="stylesheet" href={`${p}css/leaflet.css`} />

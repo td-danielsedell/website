@@ -1,9 +1,12 @@
 ---
 /** css/service-card.css. Used by the four project pages and both product pages. */
-import { assetPrefix, type Lang } from '../../data/nav';
+import { assetPrefix, type Lang } from "../../data/nav";
 
-interface Props { lang: Lang }
+interface Props {
+  lang: Lang;
+}
 const p = assetPrefix(Astro.props.lang);
 ---
-    {/* Service Card CSS */}
-    <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">
+
+{/* Service Card CSS */}
+<link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css" />

@@ -11,15 +11,21 @@
  * serializer reorders nothing but reformats everything, and the output has to
  * stay byte-for-byte what the hand-written pages emitted.
  */
-import type { Lang } from '../../data/nav';
-import { pageMeta, localeTag, pageUrl, SITE, ORGANIZATION_ID } from '../../data/pages';
+import type { Lang } from "../../data/nav";
+import { pageMeta, localeTag, pageUrl, SITE, ORGANIZATION_ID } from "../../data/pages";
 
-interface Props { lang: Lang; path: string }
+interface Props {
+  lang: Lang;
+  path: string;
+}
 const { lang, path } = Astro.props;
 const m = pageMeta[path][lang];
 const name = m.ogTitle ?? m.title;
 ---
-    <script type="application/ld+json" set:html={`
+
+<script
+  type="application/ld+json"
+  set:html={`
     {
         "@context": "https://schema.org",
         "@type": "Service",
@@ -35,4 +41,5 @@ const name = m.ogTitle ?? m.title;
             "url": "${SITE}/"
         }
     }
-    `} />
+    `}
+></script>

@@ -1,500 +1,683 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
-<Layout
-    lang="sv"
-    path="index.html"
-    isHome
->
-      <Fragment slot="head-preload">
-        {/* The banner is a CSS background, so the browser cannot discover it until
+
+<Layout lang="sv" path="index.html" isHome>
+  <Fragment slot="head-preload">
+    {/* The banner is a CSS background, so the browser cannot discover it until
             colors.css has been parsed — and it is the largest thing on the first
             screen. Preloaded here, before any stylesheet, one crop per breakpoint:
             the wide crop above 1024px, the full crop below it. */}
-      <link rel="preload" href="images/banner-images/banner_wide_clean.webp" as="image" media="(min-width: 1024px)" />
-      <link rel="preload" href="images/banner-images/banner_full_clean.webp" as="image" media="(max-width: 1023px)" />
-    </Fragment>
-    <Fragment slot="head-css">
-      {/* Logo Slider CSS */}
-      <link href="css/logo-slider.css" rel="stylesheet" type="text/css">
+    <link
+      rel="preload"
+      href="images/banner-images/banner_wide_clean.webp"
+      as="image"
+      media="(min-width: 1024px)"
+    />
+    <link
+      rel="preload"
+      href="images/banner-images/banner_full_clean.webp"
+      as="image"
+      media="(max-width: 1023px)"
+    />
+  </Fragment>
+  <Fragment slot="head-css">
+    {/* Logo Slider CSS */}
+    <link href="css/logo-slider.css" rel="stylesheet" type="text/css" />
 
-      {/* The business-areas band. Must load after style.css — see the
+    {/* The business-areas band. Must load after style.css — see the
             comment at the top of the sheet. */}
-      <link href="css/area-band.css" rel="stylesheet" type="text/css">
+    <link href="css/area-band.css" rel="stylesheet" type="text/css" />
 
-      {/* Feature Card CSS */}
-      <link href="css/feature-card.css" rel="stylesheet" type="text/css">
+    {/* Feature Card CSS */}
+    <link href="css/feature-card.css" rel="stylesheet" type="text/css" />
 
-      {/* Service Card CSS */}
-      <link href="css/service-card.css" rel="stylesheet" type="text/css">
+    {/* Service Card CSS */}
+    <link href="css/service-card.css" rel="stylesheet" type="text/css" />
 
-      {/* Image Carousel CSS */}
-      <link href="css/image-carousel.css" rel="stylesheet" type="text/css">
+    {/* Image Carousel CSS */}
+    <link href="css/image-carousel.css" rel="stylesheet" type="text/css" />
 
-      {/* Large Footer CSS */}
-      <link href="css/footer-large.css" rel="stylesheet" type="text/css">
-
-
-    </Fragment>
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
+    {/* Large Footer CSS */}
+    <link href="css/footer-large.css" rel="stylesheet" type="text/css" />
+  </Fragment>
+  <Fragment slot="head-after-fonts">
+    <script type="application/ld+json">
       {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "@id": "https://www.totaldigital.se/#organization",
-          "name": "Total Digital AB",
-          "url": "https://www.totaldigital.se/",
-          "logo": "https://www.totaldigital.se/images/favicon.png",
-          "email": "info@totaldigital.se",
-          "telephone": "+46101010070",
-          "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Fabriksgatan 4",
-              "postalCode": "531 60",
-              "addressLocality": "Lidköping",
-              "addressCountry": "SE"
-          },
-          "sameAs": [
-              "https://www.linkedin.com/company/total-digital-it-solutions"
-          ]
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.totaldigital.se/#organization",
+        "name": "Total Digital AB",
+        "url": "https://www.totaldigital.se/",
+        "logo": "https://www.totaldigital.se/images/favicon.png",
+        "email": "info@totaldigital.se",
+        "telephone": "+46101010070",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Fabriksgatan 4",
+          "postalCode": "531 60",
+          "addressLocality": "Lidköping",
+          "addressCountry": "SE"
+        },
+        "sameAs": ["https://www.linkedin.com/company/total-digital-it-solutions"]
       }
-      </script>
-    </Fragment>
-    <Fragment slot="banner">
-      <div id="banner-content" class="row clearfix">
+    </script>
+  </Fragment>
+  <Fragment slot="banner">
+    <div id="banner-content" class="row clearfix">
+      <div class="col-61">
+        <div class="section-heading">
+          <h1 id="main-heading">
+            NOTHING
+            <br />
+            BEATS
+            <br />
+            EXPERIENCE
+          </h1>
 
-                      <div class="col-61">
+          <p class="expertise-line expertise-line-grow">
+            <span class="expertise-label">Vi kan</span>
+            <span class="expertise-rotator" aria-hidden="true">
+              <span class="expertise-reel">
+                <span>
+                  <i
+                    class="fa-kit fa-hand-holding-gear-industry-sack-dollar"
+                    aria-hidden="true"
+                  ></i>
+                  Tillgångsförvaltning
+                </span>
+                <span>
+                  <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>Geodata
+                </span>
+                <span>
+                  <i class="fa-solid fa-satellite" aria-hidden="true"></i>Fjärranalys
+                </span>
+                <span>
+                  <i class="fa-solid fa-microchip-ai" aria-hidden="true"></i>AI
+                </span>
+                <span aria-hidden="true">
+                  <i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>
+                  Tillgångsförvaltning
+                </span>
+              </span>
+            </span>
 
-                          <div class="section-heading">
-                              <h1 id="main-heading">NOTHING<br />BEATS<br />EXPERIENCE</h1>
+            <span class="sr-only">tillgångsförvaltning, geodata, fjärranalys och AI.</span>
+          </p>
 
-                              <p class="expertise-line expertise-line-grow">
-                                  <span class="expertise-label">Vi kan</span>
-                                  <span class="expertise-rotator" aria-hidden="true">
-                                      <span class="expertise-reel">
-                                          <span><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" aria-hidden="true"></i>Tillgångsförvaltning</span>
-                                          <span><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>Geodata</span>
-                                          <span><i class="fa-solid fa-satellite" aria-hidden="true"></i>Fjärranalys</span>
-                                          <span><i class="fa-solid fa-microchip-ai" aria-hidden="true"></i>AI</span>
-                                          <span aria-hidden="true"><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>Tillgångsförvaltning</span>
-                                      </span>
-                                  </span>
+          <p class="banner-intro">
+            Specialistkompetens som gör skillnad.
+            <span class="banner-intro-next">
+              Vi förenar tillgångsförvaltning, geodata, fjärranalys och AI – och kopplar samman
+              anläggningens skick, läge och utveckling.
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
 
-                                  <span class="sr-only">tillgångsförvaltning, geodata, fjärranalys och AI.</span>
-                              </p>
+    <a
+      href="#businessareas"
+      class="scroll-cue"
+      data-scroll-to
+      aria-label="L&auml;s mer om Aff&auml;rsomr&aring;den"
+    >
+      <span class="scroll-cue-label">L&auml;s mer</span>
+      <i class="fa-solid fa-chevrons-down" aria-hidden="true"></i>
+    </a>
+  </Fragment>
+  <Fragment slot="all-scripts">
+    <script src="js/jquery.1.8.3.min.js" is:inline></script>
+    <script src="js/wow.min.js" is:inline></script>
+    <script src="js/jquery.enllax.min.js" is:inline></script>
+    <script src="js/jquery.easing.min.js" is:inline></script>
+    <script src="js/jquery.stickyNavbar.min.js" is:inline></script>
+    <script src="js/jquery.waypoints.min.js" is:inline></script>
+    <script src="js/images-loaded.min.js" is:inline></script>
+    <script src="js/lightbox.min.js" is:inline></script>
+    <script src="js/site.js" is:inline></script>
+    <script src="js/logo-slider.js" is:inline></script>
+    <script src="js/image-carousel.js" is:inline></script>
+    <script src="js/showcase-featured.js" is:inline></script>
+  </Fragment>
+  <main id="content">
+    <section id="businessareas" class="introduction scrollto">
+      <div class="row clearfix">
+        <div class="col-1">
+          <div class="section-heading">
+            <h2 class="section-kicker">TEKNIKOMRÅDEN</h2>
+            <p class="section-title">Fyra områden – en samlad lösning</p>
+          </div>
+        </div>
 
-                              <p class="banner-intro">Specialistkompetens som gör skillnad.
-                                  <span class="banner-intro-next">Vi förenar tillgångsförvaltning, geodata, fjärranalys
-                                  och AI – och kopplar samman anläggningens skick, läge och utveckling.</span></p>
-                          </div>
+        <div class="col-1 area-band">
+          <div class="area-band-item">
+            <i
+              class="fa-kit fa-hand-holding-gear-industry-sack-dollar"
+              style="color: var(--primary);"
+              aria-hidden="true"
+            ></i>
+            <h3>Tillgångsförvaltning</h3>
+            <p>
+              Underhåll, driftplanering och livscykel — med anläggningsinformationen samlad i IBM
+              Maximo.
+            </p>
+          </div>
 
-                      </div>
+          <div class="area-band-item">
+            <i
+              class="fa-solid fa-map-location-dot"
+              style="color: var(--primary);"
+              aria-hidden="true"
+            ></i>
+            <h3>Geodata</h3>
+            <p>Kartlösningar och analys, inomhus som utomhus — med systemstöd i Esri ArcGIS.</p>
+          </div>
 
+          <div class="area-band-item">
+            <i class="fa-solid fa-satellite" style="color: var(--primary);" aria-hidden="true"></i>
+            <h3>Fjärranalys</h3>
+            <p>Satellit-, drönar- och sensordata för miljöövervakning och förändringsanalys.</p>
+          </div>
+
+          <div class="area-band-item">
+            <i
+              class="fa-solid fa-microchip-ai"
+              style="color: var(--primary);"
+              aria-hidden="true"
+            ></i>
+            <h3>AI</h3>
+            <p>
+              Prediktivt underhåll, analys och beslutsstöd — med tillämpad AI för smartare och
+              proaktiva beslut.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-1 industry-strip">
+          <p class="industry-label">Våra kunder finns inom</p>
+          <div class="logo-slider industry-slider" data-speed="0.35">
+            <div class="logo-track">
+              <span>
+                <i class="fa-solid fa-train-track" aria-hidden="true"></i>Järnväg
+              </span>
+              <span>
+                <i class="fa-solid fa-train-subway" aria-hidden="true"></i>Fordonsflotta
+              </span>
+              <span>
+                <i class="fa-solid fa-road" aria-hidden="true"></i>Infrastruktur
+              </span>
+              <span>
+                <i class="fa-solid fa-utility-pole-double" aria-hidden="true"></i>Nätbolag
+              </span>
+              <span>
+                <i class="fa-solid fa-industry-windows" aria-hidden="true"></i>Industri
+              </span>
+              <span>
+                <i class="fa-solid fa-planet-ringed" aria-hidden="true"></i>Rymd
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="showcases"
+      class="row scrollto clearfix showcase-featured"
+      data-featherlight-content
+      data-featherlight-filter="a"
+    >
+      <div class="section-heading">
+        <h2 class="section-kicker">UTVALDA PROJEKT</h2>
+        <p class="section-title">Ett urval av det vi gör just nu</p>
+      </div>
+
+      <div
+        class="showcase-carousel image-carousel"
+        data-image-carousel
+        data-carousel-label="Showcases"
+        data-carousel-noun="showcase"
+        data-carousel-autoplay="4000"
+      >
+        <div class="showcase-track image-carousel-track clearfix">
+          <div class="row no-padding-bottom clearfix image-carousel-slide" data-featured>
+            <div class="col-1 feature-card showcase text-left">
+              <div class="card-image-wrapper">
+                <img src="images/showcase-images/rail-sensor-cropped.png" loading="lazy" alt="" />
+              </div>
+
+              <div class="card-content">
+                <h3 class="card-title">
+                  <a href="railway-safety.html" class="card-link card-link-stretch">
+                    Prediktiv järnvägssäkerhet med satellitdata och AI
+                  </a>
+                </h3>
+                <p>
+                  Ett satellit- och AI-baserat beslutsstödsystem för att prognosticera rälsens
+                  temperatur och risken för spårförskjutning 24–48 timmar i förväg.
+                </p>
+              </div>
+
+              <div class="card-arrow" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row no-padding-bottom clearfix image-carousel-slide">
+            <div class="col-1 feature-card showcase text-left">
+              <div class="card-image-wrapper">
+                <img src="images/showcase-images/interferogram.webp" loading="lazy" alt="" />
+              </div>
+
+              <div class="card-content">
+                <h3 class="card-title">
+                  <a href="sar-processing.html" class="card-link card-link-stretch">
+                    Synthetic Aperture Radar In(SAR) för skalbar övervakning
+                  </a>
+                </h3>
+                <p>
+                  Vi bearbetar hög- och medelupplösta SAR-data för att kartlägga markrörelser på
+                  både lokal och regional skala.
+                </p>
+              </div>
+
+              <div class="card-arrow" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row no-padding-bottom clearfix image-carousel-slide">
+            <div class="col-1 feature-card showcase text-left">
+              <div class="card-image-wrapper">
+                <img src="images/showcase-images/water-leak.webp" loading="lazy" alt="" />
+              </div>
+
+              <div class="card-content">
+                <h3 class="card-title">
+                  <a href="leak-detection.html" class="card-link card-link-stretch">
+                    AI-baserad läckagedetektering i vatteninfrastruktur
+                  </a>
+                </h3>
+                <p>
+                  Vi kombinerar multisensor-satellitdata och AI för att identifiera och lokalisera
+                  läckor i vattenledningsnät.
+                </p>
+              </div>
+
+              <div class="card-arrow" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row no-padding-bottom clearfix image-carousel-slide">
+            <div class="col-1 feature-card showcase text-left">
+              <div class="card-image-wrapper">
+                <img src="images/showcase-images/rail-damage.png" loading="lazy" alt="" />
+              </div>
+
+              <div class="card-content">
+                <h3 class="card-title">
+                  <a href="raildamage-analyses.html" class="card-link card-link-stretch">
+                    AI-baserad analys av rälsskador i bilddata
+                  </a>
+                </h3>
+                <p>
+                  Vi utvecklar metoder för att automatiskt upptäcka rälsskador med hjälp av
+                  djupinlärning och bilddata från järnvägsinspektioner.
+                </p>
+              </div>
+
+              <div class="card-arrow" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-more" hidden>
+        <button type="button" class="button showcase-more-button">
+          VISA FLER
+        </button>
+      </div>
+    </section>
+
+    <section
+      id="services"
+      class="row scrollto clearfix"
+      data-featherlight-content
+      data-featherlight-filter="a"
+    >
+      <div class="section-heading">
+        <h2 class="section-kicker">TJÄNSTER</h2>
+        <p class="section-title">Hur kan vi hjälpa er?</p>
+      </div>
+
+      <div
+        class="service-carousel image-carousel"
+        data-image-carousel
+        data-carousel-label="Tjänster"
+        data-carousel-noun="tjänst"
+        data-carousel-autoplay="4000"
+      >
+        <div class="service-track image-carousel-track clearfix">
+          <div class="col-2 image-carousel-slide">
+            <div class="service-group">
+              <div class="service-group-image">
+                <img src="images/gallery-images/stock_4.webp" alt="" loading="lazy" />
+              </div>
+              <div class="service-group-body">
+                <h3>Implementation</h3>
+                <ul class="service-list">
+                  <li>
+                    <strong>Implementation av IT-stöd för tillgångsförvaltning</strong>
+                    <span>
+                      Vi erbjuder expertis inom alla delar av systemen IBM Maximo och Esri ArcGIS
+                      för effektiv tillgångsförvaltning.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Applikationsutveckling och konfiguration</strong>
+                    <span>
+                      Vi hjälper er att säkerställa användandet av IBM Maximo och Esri ArcGIS
+                      tillsammans med integrerade system för bästa resultat.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2 image-carousel-slide">
+            <div class="service-group">
+              <div class="service-group-image">
+                <img src="images/gallery-images/stock_1.webp" alt="" loading="lazy" />
+              </div>
+              <div class="service-group-body">
+                <h3>Drift och licenser</h3>
+                <ul class="service-list">
+                  <li>
+                    <strong>Licenser och drift</strong>
+                    <span>
+                      Vi tar hand om alla licensprocesser och förenklar hanteringen av licenser för
+                      både IBM Maximo och Esri ArcGIS.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Tjänstebaserad och produktifierade leveranser</strong>
+                    <span>
+                      Vi erbjuder teknisk expertis för att övervaka och hantera hälsa och prestanda
+                      inom både IBM Maximo och Esri ArcGIS.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2 image-carousel-slide">
+            <div class="service-group">
+              <div class="service-group-image">
+                <img src="images/gallery-images/stock_5.webp" alt="" loading="lazy" />
+              </div>
+              <div class="service-group-body">
+                <h3>Data och analys</h3>
+                <ul class="service-list">
+                  <li>
+                    <strong>Utveckling och analys inom geodataområdet</strong>
+                    <span>
+                      Vi erbjuder omfattande tjänster inom utveckling och analys av geodata för att
+                      förbättra era arbetsflöden och beslutsprocesser.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Sensorteknik</strong>
+                    <span>
+                      Med vår kunskap och erfarenhet inom sensorteknik hjälper vi er att utveckla
+                      och effektivisera förvaltningen av er anläggning.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2 image-carousel-slide">
+            <div class="service-group">
+              <div class="service-group-image">
+                <img src="images/gallery-images/stock_2.webp" alt="" loading="lazy" />
+              </div>
+              <div class="service-group-body">
+                <h3>Rådgivning</h3>
+                <ul class="service-list">
+                  <li>
+                    <strong>
+                      Projektledning och rådgivning inom anläggningsinformation, digitalisering och
+                      AI
+                    </strong>
+                    <span>
+                      Vi stöttar er i olika typer av projekt, från förändringsprojekt till
+                      migreringsprojekt inom tillgångsförvaltning.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Utbildning</strong>
+                    <span>
+                      Vi erbjuder kundanpassad utbildning inom både IBM Maximo och Esri ArcGIS för
+                      att säkerställa att ni får ut det mesta av era system.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="scrollto clearfix">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">PRODUKTER</h2>
+          <p id="product-heading" class="section-title">
+            Vår erfarenhet, paketerad för er
+          </p>
+        </div>
+
+        <div
+          class="product-carousel image-carousel"
+          data-image-carousel
+          data-carousel-label="Produkter"
+          data-carousel-noun="produkt"
+          data-carousel-fit
+        >
+          <div class="product-track image-carousel-track">
+            <div class="col-2 image-carousel-slide">
+              <div class="feature-card product">
+                <div class="product-body">
+                  <h3>
+                    <a href="td_asset_care.html" class="card-link card-link-stretch">
+                      TD Asset Care
+                    </a>
+                  </h3>
+                  <p class="product-sub">Tillgångsförvaltning i praktiken</p>
+                  <div class="product-image-wrapper product-icon">
+                    <i class="fa-duotone fa-solid fa-chart-user" aria-hidden="true"></i>
                   </div>
-
-                  <a href="#businessareas" class="scroll-cue" data-scroll-to
-                      aria-label="L&auml;s mer om Aff&auml;rsomr&aring;den"><span class="scroll-cue-label">L&auml;s mer</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
-
-
-    </Fragment>
-    <Fragment slot="all-scripts">
-      <script src="js/jquery.1.8.3.min.js" is:inline></script>
-      <script src="js/wow.min.js" is:inline></script>
-      <script src="js/jquery.enllax.min.js" is:inline></script>
-      <script src="js/jquery.easing.min.js" is:inline></script>
-      <script src="js/jquery.stickyNavbar.min.js" is:inline></script>
-      <script src="js/jquery.waypoints.min.js" is:inline></script>
-      <script src="js/images-loaded.min.js" is:inline></script>
-      <script src="js/lightbox.min.js" is:inline></script>
-      <script src="js/site.js" is:inline></script>
-      <script src="js/logo-slider.js" is:inline></script>
-      <script src="js/image-carousel.js" is:inline></script>
-      <script src="js/showcase-featured.js" is:inline></script>
-    </Fragment>
-        <main id="content">
-
-            <section id="businessareas" class="introduction scrollto">
-
-                <div class="row clearfix">
-
-                    <div class="col-1">
-                        <div class="section-heading">
-                            <h2 class="section-kicker">TEKNIKOMRÅDEN</h2>
-                            <p class="section-title">Fyra områden – en samlad lösning</p>
-                        </div>
-                    </div>
-
-                    <div class="col-1 area-band">
-
-                        <div class="area-band-item">
-                            <i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" style="color: var(--primary);" aria-hidden="true"></i>
-                            <h3>Tillgångsförvaltning</h3>
-                            <p>Underhåll, driftplanering och livscykel — med anläggningsinformationen samlad i
-                                IBM Maximo.</p>
-                        </div>
-
-                        <div class="area-band-item">
-                            <i class="fa-solid fa-map-location-dot" style="color: var(--primary);" aria-hidden="true"></i>
-                            <h3>Geodata</h3>
-                            <p>Kartlösningar och analys, inomhus som utomhus — med systemstöd i Esri
-                                ArcGIS.</p>
-                        </div>
-
-                        <div class="area-band-item">
-                            <i class="fa-solid fa-satellite" style="color: var(--primary);" aria-hidden="true"></i>
-                            <h3>Fjärranalys</h3>
-                            <p>Satellit-, drönar- och sensordata för miljöövervakning och förändringsanalys.</p>
-                        </div>
-
-                        <div class="area-band-item">
-                            <i class="fa-solid fa-microchip-ai" style="color: var(--primary);" aria-hidden="true"></i>
-                            <h3>AI</h3>
-                            <p>Prediktivt underhåll, analys och beslutsstöd —
-                            med tillämpad AI för smartare och proaktiva beslut.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="col-1 industry-strip">
-                        <p class="industry-label">Våra kunder finns inom</p>
-                        <div class="logo-slider industry-slider" data-speed="0.35">
-                            <div class="logo-track">
-                                <span><i class="fa-solid fa-train-track" aria-hidden="true"></i>Järnväg</span>
-                                <span><i class="fa-solid fa-train-subway" aria-hidden="true"></i>Fordonsflotta</span>
-                                <span><i class="fa-solid fa-road" aria-hidden="true"></i>Infrastruktur</span>
-                                <span><i class="fa-solid fa-utility-pole-double" aria-hidden="true"></i>Nätbolag</span>
-                                <span><i class="fa-solid fa-industry-windows" aria-hidden="true"></i>Industri</span>
-                                <span><i class="fa-solid fa-planet-ringed" aria-hidden="true"></i>Rymd</span>
-                            </div>
-                        </div>
-                    </div>
-
+                  <div class="product-content">
+                    <p>
+                      TD Asset Care gör förvaltning och underhåll av fysiska tillgångar smidig.
+                      Lösningen kombinerar beprövad Enterprise Asset Management (EAM)-funktionalitet
+                      med branschspecifika funktioner och kan driftsättas on-prem, hybrid eller i
+                      molnet.
+                    </p>
+                  </div>
                 </div>
 
-            </section>
-
-            <section id="showcases" class="row scrollto clearfix showcase-featured" data-featherlight-content
-                data-featherlight-filter="a">
-
-                <div class="section-heading">
-                    <h2 class="section-kicker">UTVALDA PROJEKT</h2>
-                    <p class="section-title">Ett urval av det vi gör just nu</p>
+                <i
+                  class="fa-duotone fa-solid fa-chart-user product-icon-mark"
+                  aria-hidden="true"
+                ></i>
+                <div class="card-arrow" aria-hidden="true">
+                  <i class="fa-solid fa-chevron-right"></i>
                 </div>
+              </div>
+            </div>
 
-                <div class="showcase-carousel image-carousel" data-image-carousel data-carousel-label="Showcases"
-                    data-carousel-noun="showcase" data-carousel-autoplay="4000">
-                    <div class="showcase-track image-carousel-track clearfix">
-
-                <div class="row no-padding-bottom clearfix image-carousel-slide" data-featured>
-                    <div class="col-1 feature-card showcase text-left">
-
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/rail-sensor-cropped.png" loading="lazy" alt="">
-                        </div>
-
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="railway-safety.html" class="card-link card-link-stretch">
-                                    Prediktiv järnvägssäkerhet med satellitdata och AI</a></h3>
-                            <p>
-                                Ett satellit- och AI-baserat beslutsstödsystem för att prognosticera rälsens
-                                temperatur
-                                och
-                                risken för spårförskjutning
-                                24–48 timmar i förväg.
-                            </p>
-
-                        </div>
-
-                        <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                    </div>
+            <div class="col-2 image-carousel-slide">
+              <div class="feature-card product">
+                <div class="product-body">
+                  <h3>
+                    <a href="td_test.html" class="card-link card-link-stretch">
+                      TD Test
+                    </a>
+                  </h3>
+                  <p class="product-sub">Kvalitetssäkra ert IBM Maximo</p>
+                  <div class="product-image-wrapper product-icon">
+                    <i class="fa-duotone fa-solid fa-clipboard-list-check" aria-hidden="true"></i>
+                  </div>
+                  <div class="product-content">
+                    <p>
+                      TD Test automatiserar test av IBM Maximo och kvalitetssäkrar era
+                      uppgraderingar. Verktyget verifierar att anpassningar och funktioner fungerar
+                      som de ska – från Maximo 7.x till IBM Maximo Application Suite.
+                    </p>
+                  </div>
                 </div>
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
-
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/interferogram.webp" loading="lazy" alt="">
-                        </div>
-
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="sar-processing.html" class="card-link card-link-stretch">
-                                    Synthetic Aperture Radar In(SAR) för skalbar övervakning</a></h3>
-                            <p>
-                                Vi bearbetar hög- och medelupplösta SAR-data för att kartlägga markrörelser på både lokal och regional skala.
-                            </p>
-
-                        </div>
-
-                        <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                    </div>
+                <i
+                  class="fa-duotone fa-solid fa-clipboard-list-check product-icon-mark"
+                  aria-hidden="true"
+                ></i>
+                <div class="card-arrow" aria-hidden="true">
+                  <i class="fa-solid fa-chevron-right"></i>
                 </div>
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
+              </div>
+            </div>
 
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/water-leak.webp" loading="lazy" alt="">
-                        </div>
-
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="leak-detection.html" class="card-link card-link-stretch">
-                                    AI-baserad läckagedetektering i vatteninfrastruktur</a></h3>
-                            <p>
-                                Vi kombinerar multisensor-satellitdata och AI för att identifiera och lokalisera
-                                läckor
-                                i
-                                vattenledningsnät. </p>
-
-                        </div>
-
-                        <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                    </div>
+            <div class="col-2 image-carousel-slide">
+              <div class="feature-card product">
+                <div class="product-body">
+                  <h3>
+                    <a href="td_linear.html" class="card-link card-link-stretch">
+                      TD Linear
+                    </a>
+                  </h3>
+                  <p class="product-sub">Förstå era linjära tillgångar</p>
+                  <div class="product-image-wrapper product-icon">
+                    <i class="fa-duotone fa-solid fa-chart-line" aria-hidden="true"></i>
+                  </div>
+                  <div class="product-content">
+                    <p>
+                      TD Linear visualiserar och analyserar data längs linjära tillgångar. Genom att
+                      kombinera Enterprise Asset Management (EAM)-, mät- och kartdata blir det
+                      enklare att upptäcka avvikelser, förstå samband och följa anläggningens
+                      utveckling över tid.
+                    </p>
+                  </div>
                 </div>
-                <div class="row no-padding-bottom clearfix image-carousel-slide">
-                    <div class="col-1 feature-card showcase text-left">
-
-                        <div class="card-image-wrapper">
-                            <img src="images/showcase-images/rail-damage.png" loading="lazy" alt="">
-                        </div>
-
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="raildamage-analyses.html" class="card-link card-link-stretch">
-                                    AI-baserad analys av rälsskador i bilddata</a></h3>
-                            <p>
-                                Vi utvecklar metoder för att automatiskt upptäcka rälsskador med hjälp av
-                                djupinlärning
-                                och bilddata från
-                                järnvägsinspektioner. </p>
-
-                        </div>
-
-                        <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                    </div>
+                <i
+                  class="fa-duotone fa-solid fa-chart-line product-icon-mark"
+                  aria-hidden="true"
+                ></i>
+                <div class="card-arrow" aria-hidden="true">
+                  <i class="fa-solid fa-chevron-right"></i>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                    </div>
-                </div>
+    <aside id="trust" class="scrollto" data-enllax-ratio=".2">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">KUNDER & PARTNERS</h2>
+          <p class="section-title">Vi växer tillsammans med andra</p>
+        </div>
 
-                <div class="showcase-more" hidden>
-                    <button type="button" class="button showcase-more-button">VISA FLER</button>
-                </div>
+        <blockquote class="col-2 testimonial classic text-center">
+          <img src="images/user-images/tf.webp" loading="lazy" alt="Trafikförvaltningen" />
+          <q>
+            Projektmedlemmarna från Total Digital visar på genuint engagemang och arbetar
+            passionerat mot att nå projektets mål.
+          </q>
+          <footer>Trafikförvaltningen</footer>
+        </blockquote>
 
-            </section>
+        <blockquote class="col-2 testimonial classic text-center">
+          <img src="images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
+          <q>Jag har gjort så många bra saker sista tiden tillsammans med Total Digital 😊</q>
+          <footer>Öresundsbron</footer>
+        </blockquote>
 
-            <section id="services" class="row scrollto clearfix" data-featherlight-content
-                data-featherlight-filter="a">
-
-                <div class="section-heading">
-                    <h2 class="section-kicker">TJÄNSTER</h2>
-                    <p class="section-title">Hur kan vi hjälpa er?</p>
-                </div>
-
-                <div class="service-carousel image-carousel" data-image-carousel data-carousel-label="Tjänster"
-                    data-carousel-noun="tjänst" data-carousel-autoplay="4000">
-                    <div class="service-track image-carousel-track clearfix">
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-group">
-                        <div class="service-group-image">
-                            <img src="images/gallery-images/stock_4.webp" alt="" loading="lazy" />
-                        </div>
-                        <div class="service-group-body">
-                            <h3>Implementation</h3>
-                            <ul class="service-list">
-                                <li><strong>Implementation av IT-stöd för tillgångsförvaltning</strong><span>Vi
-                                    erbjuder expertis inom alla delar av systemen IBM Maximo och Esri ArcGIS för
-                                    effektiv tillgångsförvaltning.</span></li>
-                                <li><strong>Applikationsutveckling och konfiguration</strong><span>Vi hjälper er att
-                                    säkerställa användandet av IBM Maximo och Esri ArcGIS tillsammans med integrerade
-                                    system för bästa resultat.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-group">
-                        <div class="service-group-image">
-                            <img src="images/gallery-images/stock_1.webp" alt="" loading="lazy" />
-                        </div>
-                        <div class="service-group-body">
-                            <h3>Drift och licenser</h3>
-                            <ul class="service-list">
-                                <li><strong>Licenser och drift</strong><span>Vi tar hand om alla licensprocesser och
-                                    förenklar hanteringen av licenser för både IBM Maximo och Esri ArcGIS.</span></li>
-                                <li><strong>Tjänstebaserad och produktifierade leveranser</strong><span>Vi erbjuder
-                                    teknisk expertis för att övervaka och hantera hälsa och prestanda inom både IBM
-                                    Maximo och Esri ArcGIS.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-group">
-                        <div class="service-group-image">
-                            <img src="images/gallery-images/stock_5.webp" alt="" loading="lazy" />
-                        </div>
-                        <div class="service-group-body">
-                            <h3>Data och analys</h3>
-                            <ul class="service-list">
-                                <li><strong>Utveckling och analys inom geodataområdet</strong><span>Vi erbjuder
-                                    omfattande tjänster inom utveckling och analys av geodata för att förbättra era
-                                    arbetsflöden och beslutsprocesser.</span></li>
-                                <li><strong>Sensorteknik</strong><span>Med vår kunskap och erfarenhet inom sensorteknik
-                                    hjälper vi er att utveckla och effektivisera förvaltningen av er anläggning.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 image-carousel-slide">
-                    <div class="service-group">
-                        <div class="service-group-image">
-                            <img src="images/gallery-images/stock_2.webp" alt="" loading="lazy" />
-                        </div>
-                        <div class="service-group-body">
-                            <h3>Rådgivning</h3>
-                            <ul class="service-list">
-                                <li><strong>Projektledning och rådgivning inom anläggningsinformation, digitalisering
-                                    och AI</strong><span>Vi stöttar er i olika typer av projekt, från
-                                    förändringsprojekt till migreringsprojekt inom tillgångsförvaltning.</span></li>
-                                <li><strong>Utbildning</strong><span>Vi erbjuder kundanpassad utbildning inom både IBM
-                                    Maximo och Esri ArcGIS för att säkerställa att ni får ut det mesta av era
-                                    system.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                    </div>
-                </div>
-
-            </section>
-
-            <section id="products" class="scrollto clearfix ">
-                <div class="row clearfix">
-
-                    <div class="section-heading">
-                        <h2 class="section-kicker">PRODUKTER</h2>
-                        <p id="product-heading" class="section-title">Vår erfarenhet, paketerad för er</p>
-                    </div>
-
-                    <div class="product-carousel image-carousel" data-image-carousel
-                        data-carousel-label="Produkter"
-                        data-carousel-noun="produkt"
-                        data-carousel-fit>
-
-                        <div class="product-track image-carousel-track">
-
-                            <div class="col-2 image-carousel-slide">
-                                <div class="feature-card product">
-                                    <div class="product-body">
-                                        <h3><a href="td_asset_care.html" class="card-link card-link-stretch">TD Asset Care</a></h3>
-                                        <p class="product-sub">Tillgångsförvaltning i praktiken</p>
-                                        <div class="product-image-wrapper product-icon">
-                                            <i class="fa-duotone fa-solid fa-chart-user" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="product-content">
-                                            <p>
-                                                TD Asset Care gör förvaltning och underhåll av fysiska tillgångar smidig. Lösningen kombinerar beprövad Enterprise Asset Management (EAM)-funktionalitet med branschspecifika funktioner och kan driftsättas on-prem, hybrid eller i molnet.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <i class="fa-duotone fa-solid fa-chart-user product-icon-mark" aria-hidden="true"></i>
-                                    <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                                </div>
-                            </div>
-
-                            <div class="col-2 image-carousel-slide">
-                                <div class="feature-card product">
-                                    <div class="product-body">
-                                        <h3><a href="td_test.html" class="card-link card-link-stretch">TD Test</a></h3>
-                                        <p class="product-sub">Kvalitetssäkra ert IBM Maximo</p>
-                                        <div class="product-image-wrapper product-icon">
-                                            <i class="fa-duotone fa-solid fa-clipboard-list-check" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="product-content">
-                                            <p>
-                                                TD Test automatiserar test av IBM Maximo och kvalitetssäkrar era uppgraderingar. Verktyget verifierar att anpassningar och funktioner fungerar som de ska – från Maximo 7.x till IBM Maximo Application Suite.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <i class="fa-duotone fa-solid fa-clipboard-list-check product-icon-mark" aria-hidden="true"></i>
-                                    <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                                </div>
-                            </div>
-
-                            <div class="col-2 image-carousel-slide">
-                                <div class="feature-card product">
-                                    <div class="product-body">
-                                        <h3><a href="td_linear.html" class="card-link card-link-stretch">TD Linear</a></h3>
-                                        <p class="product-sub">Förstå era linjära tillgångar</p>
-                                        <div class="product-image-wrapper product-icon">
-                                            <i class="fa-duotone fa-solid fa-chart-line" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="product-content">
-                                            <p>
-                                                TD Linear visualiserar och analyserar data längs linjära tillgångar. Genom att kombinera Enterprise Asset Management (EAM)-, mät- och kartdata blir det enklare att upptäcka avvikelser, förstå samband och följa anläggningens utveckling över tid.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <i class="fa-duotone fa-solid fa-chart-line product-icon-mark" aria-hidden="true"></i>
-                                    <div class="card-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <aside id="trust" class="scrollto" data-enllax-ratio=".2">
-                <div class="row clearfix">
-
-                    <div class="section-heading">
-                        <h2 class="section-kicker">KUNDER & PARTNERS</h2>
-                        <p class="section-title">Vi växer tillsammans med andra</p>
-                    </div>
-
-                    <blockquote class="col-2 testimonial classic text-center">
-                        <img src="images/user-images/tf.webp" loading="lazy" alt="Trafikförvaltningen" />
-                        <q>Projektmedlemmarna från Total Digital visar på genuint engagemang och arbetar passionerat mot att nå projektets mål.</q>
-                        <footer>Trafikförvaltningen</footer>
-                    </blockquote>
-
-                    <blockquote class="col-2 testimonial classic text-center">
-                        <img src="images/user-images/oresundsbron.webp" loading="lazy" alt="Öresundsbron" />
-                        <q>Jag har gjort så många bra saker sista tiden tillsammans med Total Digital 😊</q>
-                        <footer>Öresundsbron</footer>
-                    </blockquote>
-
-                    <div class="col-1 trust-partners">
-
-                        <p class="section-subtitle partner-lead">
-                            <strong>Vi tror på starka partnerskap.</strong>
-                            Ett starkt partnernätverk gör oss bättre. Genom nära samarbeten kombinerar vi rätt
-                            kompetens och resurser för att skapa större värde för våra kunder.</p>
-                        <div class="logo-slider" id="logoSlider">
-                            <div class="logo-track" id="logoTrack">
-
-                            <a href="https://www.ibm.com" target="_blank" rel="noopener noreferrer"><img src="images/company-images/ibm.webp" width="600" height="400" loading="lazy"
-                                    alt="IBM"></a>
-                            <a href="https://www.esri.se" target="_blank" rel="noopener noreferrer"><img src="images/company-images/esri.webp" width="600" height="400" loading="lazy"
-                                    alt="Esri"></a>
-                            <a href="https://www.nvidia.com/sv-se/" target="_blank" rel="noopener noreferrer"><img
-                                    src="images/company-images/nvidia.webp" width="600" height="400" loading="lazy" alt="Nvidia"></a>
-                            <a href="https://www.rymdstyrelsen.se/" target="_blank" rel="noopener noreferrer"><img
-                                    src="images/company-images/rymdstyrelsen.webp" width="600" height="153" loading="lazy" alt="Rymdstyrelsen"></a>
-                            <a href="https://www.maxanv.se/" target="_blank" rel="noopener noreferrer"><img src="images/company-images/maxanv.webp" width="600" height="400" loading="lazy"
-                                    alt="Maximo Användarförening"></a>
-                            <a href="https://www.pedab.se/" target="_blank" rel="noopener noreferrer"><img src="images/company-images/pedab.webp" width="600" height="400" loading="lazy"
-                                    alt="Pedab"></a>
-                        </div>
-                        </div>
-                    </div>
-
-                </div>
-            </aside>
-
-        </main>
+        <div class="col-1 trust-partners">
+          <p class="section-subtitle partner-lead">
+            <strong>Vi tror på starka partnerskap.</strong>
+            Ett starkt partnernätverk gör oss bättre. Genom nära samarbeten kombinerar vi rätt
+            kompetens och resurser för att skapa större värde för våra kunder.
+          </p>
+          <div class="logo-slider" id="logoSlider">
+            <div class="logo-track" id="logoTrack">
+              <a href="https://www.ibm.com" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/company-images/ibm.webp"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  alt="IBM"
+                />
+              </a>
+              <a href="https://www.esri.se" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/company-images/esri.webp"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  alt="Esri"
+                />
+              </a>
+              <a href="https://www.nvidia.com/sv-se/" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/company-images/nvidia.webp"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  alt="Nvidia"
+                />
+              </a>
+              <a href="https://www.rymdstyrelsen.se/" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/company-images/rymdstyrelsen.webp"
+                  width="600"
+                  height="153"
+                  loading="lazy"
+                  alt="Rymdstyrelsen"
+                />
+              </a>
+              <a href="https://www.maxanv.se/" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/company-images/maxanv.webp"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  alt="Maximo Användarförening"
+                />
+              </a>
+              <a href="https://www.pedab.se/" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/company-images/pedab.webp"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  alt="Pedab"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
 </Layout>

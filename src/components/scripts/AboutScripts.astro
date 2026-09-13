@@ -1,11 +1,14 @@
 ---
 /** End-of-body scripts for the about pages. Order is load-bearing. */
-import { assetPrefix, type Lang } from '../../data/nav';
+import { assetPrefix, type Lang } from "../../data/nav";
 
-interface Props { lang: Lang }
+interface Props {
+  lang: Lang;
+}
 const { lang } = Astro.props;
 const p = assetPrefix(lang);
 ---
-    <script src={`${p}js/image-carousel.js`} is:inline></script>
-    <script src={`${p}js/leaflet.js`} defer is:inline></script>
-    <script src={`${p}js/about.js`} defer is:inline></script>
+
+<script src={`${p}js/image-carousel.js`} is:inline></script>
+<script src={`${p}js/leaflet.js`} defer is:inline></script>
+<script src={`${p}js/about.js`} defer is:inline></script>

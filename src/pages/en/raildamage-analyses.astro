@@ -1,32 +1,47 @@
 ---
-import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
-import ProjectBody from '../../components/ProjectBody.astro';
-import Layout from '../../layouts/Layout.astro';
-import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
-import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
+import ServiceJsonLd from "../../components/head/ServiceJsonLd.astro";
+import ProjectBody from "../../components/ProjectBody.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServiceCardCss from "../../components/head/ServiceCardCss.astro";
+import FooterLargeCss from "../../components/head/FooterLargeCss.astro";
 ---
-<Layout
-    lang="en"
-    path="raildamage-analyses.html"
->
-    <ServiceCardCss slot="head-css" lang="en" />
-    <ServiceJsonLd slot="head-after-fonts" lang="en" path="raildamage-analyses.html" />
-    <FooterLargeCss slot="head-after-fonts" lang="en" />
-            <ProjectBody lang="en" path="raildamage-analyses.html">
-        <Fragment slot="figure">
-                        <figure>
-                        <img class="showcase-image" src="../images/showcase-images/rail-damage.png"
-                            alt="Rail defect in an inspection image" width="1600" height="900" fetchpriority="high" />
-                        <figcaption>Total Digital's AI model for identifying rail defects from image data. © Total Digital.</figcaption>
-                        </figure>
-        </Fragment>
-                            <p>
-                                We use AI, deep learning and computer vision to <strong>detect rail defects and anomalies in imagery</strong> collected during railway inspections.
-                            </p><p>
-                                Our models are trained on high-resolution imagery and can identify different types of defects and anomalies in data from mobile inspection systems. The models can be adapted to different sensors and inspection workflows, and can also run directly on inspection equipment for on-site analysis.
-                            </p><p>
-                                The solution covers the entire process from data processing and AI analysis to visualisation and integration with existing systems. The results provide a clearer picture of asset condition, helping operators prioritise maintenance and monitor changes over time.
-                            </p>
-                           <i>Partners: Region Stockholm</i>
-    </ProjectBody>
+
+<Layout lang="en" path="raildamage-analyses.html">
+  <ServiceCardCss slot="head-css" lang="en" />
+  <ServiceJsonLd slot="head-after-fonts" lang="en" path="raildamage-analyses.html" />
+  <FooterLargeCss slot="head-after-fonts" lang="en" />
+  <ProjectBody lang="en" path="raildamage-analyses.html">
+    <Fragment slot="figure">
+      <figure>
+        <img
+          class="showcase-image"
+          src="../images/showcase-images/rail-damage.png"
+          alt="Rail defect in an inspection image"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+        <figcaption>
+          Total Digital's AI model for identifying rail defects from image data. © Total Digital.
+        </figcaption>
+      </figure>
+    </Fragment>
+    <p>
+      We use AI, deep learning and computer vision to{" "}
+      <strong>detect rail defects and anomalies in imagery</strong> collected during railway
+      inspections.
+    </p>
+    <p>
+      Our models are trained on high-resolution imagery and can identify different types of defects
+      and anomalies in data from mobile inspection systems. The models can be adapted to different
+      sensors and inspection workflows, and can also run directly on inspection equipment for
+      on-site analysis.
+    </p>
+    <p>
+      The solution covers the entire process from data processing and AI analysis to visualisation
+      and integration with existing systems. The results provide a clearer picture of asset
+      condition, helping operators prioritise maintenance and monitor changes over time.
+    </p>
+    <i>Partners: Region Stockholm</i>
+  </ProjectBody>
 </Layout>

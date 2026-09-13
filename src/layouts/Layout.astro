@@ -33,12 +33,12 @@
  * survive inside `{cond && <Component />}` and inside `{cond && (<div>…)}`,
  * but NOT as a bare comment inside a Fragment.
  */
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { assetPrefix, type Lang } from '../data/nav';
-import { pageMeta, SITE, pageUrl } from '../data/pages';
-import FaKitDefault from '../components/head/FaKitDefault.astro';
-import FaKitHome from '../components/head/FaKitHome.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { assetPrefix, type Lang } from "../data/nav";
+import { pageMeta, SITE, pageUrl } from "../data/pages";
+import FaKitDefault from "../components/head/FaKitDefault.astro";
+import FaKitHome from "../components/head/FaKitHome.astro";
 
 interface Props {
   lang: Lang;
@@ -60,36 +60,33 @@ const { lang, path, isHome = false, onAboutPage = false } = Astro.props;
 
 const entry = pageMeta[path]?.[lang];
 if (!entry) {
-  throw new Error(
-    `No metadata for ${path} (${lang}). Add it to src/data/pages.ts — both locales.`
-  );
+  throw new Error(`No metadata for ${path} (${lang}). Add it to src/data/pages.ts — both locales.`);
 }
 const {
   title,
   description,
   ogTitle = title,
-  ogType = 'website',
+  ogType = "website",
   ogImage = `${SITE}/images/og/index.jpg`,
-  ogImageAlt = 'Total Digital',
+  ogImageAlt = "Total Digital",
 } = entry;
 
 const p = assetPrefix(lang);
-const svUrl = pageUrl('sv', path);
-const enUrl = pageUrl('en', path);
-const canonical = lang === 'sv' ? svUrl : enUrl;
+const svUrl = pageUrl("sv", path);
+const enUrl = pageUrl("en", path);
+const canonical = lang === "sv" ? svUrl : enUrl;
 ---
-<!DOCTYPE html>
-<html lang={lang}>
 
-<head>
-    <meta charset="UTF-8">
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
 
     {/*Page Title*/}
     <title>{title}</title>
 
     {/*Meta Description*/}
-    <meta name="description"
-        content={description}>
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {/*Canonical URL and Link Previews*/}
@@ -100,12 +97,11 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Total Digital" />
-    <meta property="og:locale" content={lang === 'sv' ? 'sv_SE' : 'en_GB'} />
-    <meta property="og:locale:alternate" content={lang === 'sv' ? 'en_GB' : 'sv_SE'} />
+    <meta property="og:locale" content={lang === "sv" ? "sv_SE" : "en_GB"} />
+    <meta property="og:locale:alternate" content={lang === "sv" ? "en_GB" : "sv_SE"} />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={ogTitle} />
-    <meta property="og:description"
-        content={description} />
+    <meta property="og:description" content={description} />
     {/* Sits immediately before og:image. td_linear needs it: its preview borrows
         TD Test's artwork and a PLACEHOLDER comment says so. */}
     <slot name="og-image-note" />
@@ -123,65 +119,68 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     <slot name="head-preload" />
 
     {/* Main CSS Files */}
-    <link rel="stylesheet" href={`${p}css/style.css`}>
+    <link rel="stylesheet" href={`${p}css/style.css`} />
 
     {/* Color CSS */}
-    <link rel="stylesheet" href={`${p}css/colors.css`}>
+    <link rel="stylesheet" href={`${p}css/colors.css`} />
 
     {/* Animations CSS */}
-    <link href={`${p}css/animations.css`} rel="stylesheet" type="text/css">
+    <link href={`${p}css/animations.css`} rel="stylesheet" type="text/css" />
 
     <slot name="head-css" />
 
     {/*Light theme. The rules are scoped to html.theme-light, so this sheet
         changes nothing until js/theme.js sets the class.*/}
-    <link rel="stylesheet" href={`${p}css/light.css`}>
+    <link rel="stylesheet" href={`${p}css/light.css`} />
 
     {/*Must be blocking in <head>: the theme has to be on <html> before the
         first frame, otherwise the dark theme shows for one frame and then swaps.*/}
     <script src={`${p}js/theme.js`} is:inline></script>
-
     {/*Open Sans is self-hosted; the @font-face rules live at the top of style.css*/}
-    <link rel="preload" href={`${p}fonts/open-sans-latin.woff2`} as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href={`${p}fonts/open-sans-latin.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <slot name="head-after-fonts" />
 
-{isHome ? <FaKitHome /> : <FaKitDefault />}
-</head>
+    {isHome ? <FaKitHome /> : <FaKitDefault />}
+  </head>
 
-<body>
-
+  <body>
     <div id="wrapper">
+      <Header lang={lang} path={path} isHome={isHome}>
+        <slot name="banner" />
+      </Header>
 
-        <Header lang={lang} path={path} isHome={isHome}><slot name="banner" /></Header>
+      {/*Main Content Area*/}
+      <slot />
+      {/*End Main Content Area*/}
 
-        {/*Main Content Area*/}
-        <slot />
-        {/*End Main Content Area*/}
-
-
-        <Footer lang={lang} onAboutPage={onAboutPage} />
-
+      <Footer lang={lang} onAboutPage={onAboutPage} />
     </div>
 
     {/* Include JavaScript resources */}
-{/* The four site-wide scripts are fixed, but three pages interleave others
+    {/* The four site-wide scripts are fixed, but three pages interleave others
     between them. `scripts-early` lands between jQuery and stickyNavbar (wow /
     enllax / easing); `scripts-late` lands between waypoints and site.js
     (images-loaded / lightbox); `scripts` appends after site.js. `all-scripts`
     replaces the whole block, which the index pair uses. */}
-{Astro.slots.has('all-scripts') ? <slot name="all-scripts" /> : (
-    <Fragment>
-    <script src={`${p}js/jquery.1.8.3.min.js`} is:inline></script>
-    <slot name="scripts-early" />
-    <script src={`${p}js/jquery.stickyNavbar.min.js`} is:inline></script>
-    <script src={`${p}js/jquery.waypoints.min.js`} is:inline></script>
-    <slot name="scripts-late" />
-    <script src={`${p}js/site.js`} is:inline></script>
-    <slot name="scripts" />
-    </Fragment>
-)}
-
-</body>
-
+    {Astro.slots.has("all-scripts") ? (
+      <slot name="all-scripts" />
+    ) : (
+      <Fragment>
+        <script src={`${p}js/jquery.1.8.3.min.js`} is:inline></script>
+        <slot name="scripts-early" />
+        <script src={`${p}js/jquery.stickyNavbar.min.js`} is:inline></script>
+        <script src={`${p}js/jquery.waypoints.min.js`} is:inline></script>
+        <slot name="scripts-late" />
+        <script src={`${p}js/site.js`} is:inline></script>
+        <slot name="scripts" />
+      </Fragment>
+    )}
+  </body>
 </html>

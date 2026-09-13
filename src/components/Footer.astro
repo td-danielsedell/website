@@ -8,8 +8,8 @@
  * `.footer-columns > :nth-child(1..4)`. Both wrappers stay, and .footer-columns
  * keeps exactly four element children in exactly this order.
  */
-import { strings, assetPrefix, type Lang } from '../data/nav';
-import LinkedIn from './icons/LinkedIn.astro';
+import { strings, assetPrefix, type Lang } from "../data/nav";
+import LinkedIn from "./icons/LinkedIn.astro";
 
 interface Props {
   lang: Lang;
@@ -26,63 +26,82 @@ interface Props {
 const { lang, onAboutPage = false } = Astro.props;
 const t = strings[lang];
 const p = assetPrefix(lang);
-const certHref = onAboutPage ? '#certificates' : 'about.html#certificates';
+const certHref = onAboutPage ? "#certificates" : "about.html#certificates";
 ---
+
 {/*Footer. The large variant (css/footer-large.css), laid out in columns:
             the page ends with a way into everything rather than one 12px line.*/}
-        <footer class="clearfix footer-large">
-            <div class="row clearfix">
-                {/*The order in the markup is locked: the rules below 1023px in css/footer-large.css
+<footer class="clearfix footer-large">
+  <div class="row clearfix">
+    {/*The order in the markup is locked: the rules below 1023px in css/footer-large.css
                     move children 1 and 4 below the link lists with order, and count on
                     exactly this order.*/}
-                <div class="footer-columns">
+    <div class="footer-columns">
+      <div class="footer-brand">
+        <p class="footer-name">Total Digital AB</p>
+        <ul class="social-icons footer-social">
+          <li>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+              href="https://www.linkedin.com/company/total-digital-it-solutions"
+            >
+              <LinkedIn />
+              <span>LinkedIn</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-                    <div class="footer-brand">
-                        <p class="footer-name">Total Digital AB</p>
-                        <ul class="social-icons footer-social">
-                            <li>
-                                <a target="_blank" rel="noopener noreferrer" title="LinkedIn" href="https://www.linkedin.com/company/total-digital-it-solutions"><LinkedIn /><span>LinkedIn</span></a>
-                            </li>
-                        </ul>
-                    </div>
+      <div class="footer-col">
+        <p class="footer-heading">{t.footer.aboutHeading}</p>
+        {t.footer.aboutLinks.map((link) => (
+          <Fragment>
+            <a href={link.href}>{link.label}</a>
+          </Fragment>
+        ))}
+      </div>
 
-                    <div class="footer-col">
-                        <p class="footer-heading">{t.footer.aboutHeading}</p>
-                        {t.footer.aboutLinks.map((link) => (
-                            <Fragment>
-                        <a href={link.href}>{link.label}</a>
-                            </Fragment>
-                        ))}
-                    </div>
-
-                    {/*The certification marks stand where a third link list stood: the
+      {/*The certification marks stand where a third link list stood: the
                         products are reachable from the top menu on every page, and the footer
                         is where the marks belong. The images lead to the section on the about
                         page that says what is certified.*/}
-                    <div class="footer-col footer-certs">
-                        <p class="footer-heading">{t.footer.certsHeading}</p>
-                        <div class="cert-badges">
-                            <a href={certHref} data-scroll-to={onAboutPage ? '' : undefined}>
-                                <img src={`${p}images/company-images/iso_9001.webp`} width="400" height="400"
-                                    loading="lazy" alt={t.footer.certAlt.iso9001} />
-                            </a>
-                            <a href={certHref} data-scroll-to={onAboutPage ? '' : undefined}>
-                                <img src={`${p}images/company-images/iso_14001.webp`} width="400" height="400"
-                                    loading="lazy" alt={t.footer.certAlt.iso14001} />
-                            </a>
-                        </div>
-                    </div>
+      <div class="footer-col footer-certs">
+        <p class="footer-heading">{t.footer.certsHeading}</p>
+        <div class="cert-badges">
+          <a href={certHref} data-scroll-to={onAboutPage ? "" : undefined}>
+            <img
+              src={`${p}images/company-images/iso_9001.webp`}
+              width="400"
+              height="400"
+              loading="lazy"
+              alt={t.footer.certAlt.iso9001}
+            />
+          </a>
+          <a href={certHref} data-scroll-to={onAboutPage ? "" : undefined}>
+            <img
+              src={`${p}images/company-images/iso_14001.webp`}
+              width="400"
+              height="400"
+              loading="lazy"
+              alt={t.footer.certAlt.iso14001}
+            />
+          </a>
+        </div>
+      </div>
 
-                    <div class="footer-col">
-                        <p class="footer-heading">{t.footer.contactHeading}</p>
-                        <p class="footer-address">
-                            Fabriksgatan 4 &middot; <span class="footer-nowrap">{t.footer.city}</span><br />
-                            <a href="mailto:info@totaldigital.se">info@totaldigital.se</a><br />
-                            <a href="tel:+46101010070">+46 10 10 100 70</a>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-        {/*End of Footer*/}
+      <div class="footer-col">
+        <p class="footer-heading">{t.footer.contactHeading}</p>
+        <p class="footer-address">
+          Fabriksgatan 4 &middot; <span class="footer-nowrap">{t.footer.city}</span>
+          <br />
+          <a href="mailto:info@totaldigital.se">info@totaldigital.se</a>
+          <br />
+          <a href="tel:+46101010070">+46 10 10 100 70</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+{/*End of Footer*/}

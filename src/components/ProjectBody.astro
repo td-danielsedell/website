@@ -19,40 +19,39 @@
  * reuse og:title for it; sar-processing deliberately does not, and carries an
  * explicit `heading`.
  */
-import type { Lang } from '../data/nav';
-import { pageMeta } from '../data/pages';
-import ShowcaseCta from './ShowcaseCta.astro';
+import type { Lang } from "../data/nav";
+import { pageMeta } from "../data/pages";
+import ShowcaseCta from "./ShowcaseCta.astro";
 
-interface Props { lang: Lang; path: string }
+interface Props {
+  lang: Lang;
+  path: string;
+}
 const { lang, path } = Astro.props;
 const m = pageMeta[path][lang];
 const title = m.heading ?? m.ogTitle ?? m.title;
 ---
-        <main id="content" class="showcase-top">
 
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
+<main id="content" class="showcase-top">
+  <section class="introduction scrollto">
+    <div class="col-1 content-center">
+      <div class="col-2-3 row clearfix">
+        <slot name="figure" />
 
-                        <slot name="figure" />
+        <div class="banner-spacer"></div>
 
-                        <div class="banner-spacer"></div>
+        <div class="col-1">
+          <div class="section-heading">
+            <h1 class="section-title">{title}</h1>
+          </div>
+        </div>
 
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">{title}</h1>
-                            </div>
-                        </div>
+        <div class="col-1">
+          <slot />
+        </div>
 
-                        <div class="col-1">
-                            <slot />
-                        </div>
-
-                        <ShowcaseCta lang={lang} person={m.contact!} subject={m.contactSubject!} />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+        <ShowcaseCta lang={lang} person={m.contact!} subject={m.contactSubject!} />
+      </div>
+    </div>
+  </section>
+</main>

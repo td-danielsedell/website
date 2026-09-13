@@ -1,6 +1,8 @@
-# Migration: formatters must not reflow the sources under verification.
-src/
-verify/
+# verify/baseline/ is a byte-exact snapshot of the shipped pages and is the
+# ground truth the build is compared against. Formatting it would silently
+# rewrite the thing under test.
+verify/baseline/
 dist/
 .astro/
 node_modules/
+package-lock.json

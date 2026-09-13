@@ -1,31 +1,42 @@
 ---
-import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
-import ProjectBody from '../../components/ProjectBody.astro';
-import Layout from '../../layouts/Layout.astro';
-import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
-import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
+import ServiceJsonLd from "../../components/head/ServiceJsonLd.astro";
+import ProjectBody from "../../components/ProjectBody.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServiceCardCss from "../../components/head/ServiceCardCss.astro";
+import FooterLargeCss from "../../components/head/FooterLargeCss.astro";
 ---
-<Layout
-    lang="en"
-    path="leak-detection.html"
->
-    <ServiceCardCss slot="head-css" lang="en" />
-    <ServiceJsonLd slot="head-after-fonts" lang="en" path="leak-detection.html" />
-    <FooterLargeCss slot="head-after-fonts" lang="en" />
-            <ProjectBody lang="en" path="leak-detection.html">
-        <Fragment slot="figure">
-                        <figure>
-                        <img class="showcase-image" src="../images/showcase-images/water-leak.webp"
-                            alt="Leak in a water distribution network" width="900" height="450" fetchpriority="high" />
-</figure>
-        </Fragment>
-                            <p>
-                            We combine AI, satellite data and operational data to detect <strong>leaks and water losses</strong> in large water distribution networks.
-</p><p>
-                            By analysing changes in ground conditions, vegetation and moisture levels over time, we can identify signs of leakage even before problems become visible in the field. Monitoring large areas helps locate potential leaks, identify risk areas and prioritise where action is needed.
-</p><p>
-                            The method supports continuous monitoring of the pipe network, helping <strong>reduce water losses, improve maintenance planning </strong>and <strong>provide a better basis for decision-making.</strong>
-</p>
-                            <i>Partners: Laholmsbuktens VA, Stockholm University</i>
-    </ProjectBody>
+
+<Layout lang="en" path="leak-detection.html">
+  <ServiceCardCss slot="head-css" lang="en" />
+  <ServiceJsonLd slot="head-after-fonts" lang="en" path="leak-detection.html" />
+  <FooterLargeCss slot="head-after-fonts" lang="en" />
+  <ProjectBody lang="en" path="leak-detection.html">
+    <Fragment slot="figure">
+      <figure>
+        <img
+          class="showcase-image"
+          src="../images/showcase-images/water-leak.webp"
+          alt="Leak in a water distribution network"
+          width="900"
+          height="450"
+          fetchpriority="high"
+        />
+      </figure>
+    </Fragment>
+    <p>
+      We combine AI, satellite data and operational data to detect{" "}
+      <strong>leaks and water losses</strong> in large water distribution networks.
+    </p>
+    <p>
+      By analysing changes in ground conditions, vegetation and moisture levels over time, we can
+      identify signs of leakage even before problems become visible in the field. Monitoring large
+      areas helps locate potential leaks, identify risk areas and prioritise where action is needed.
+    </p>
+    <p>
+      The method supports continuous monitoring of the pipe network, helping{" "}
+      <strong>reduce water losses, improve maintenance planning </strong>and{" "}
+      <strong>provide a better basis for decision-making.</strong>
+    </p>
+    <i>Partners: Laholmsbuktens VA, Stockholm University</i>
+  </ProjectBody>
 </Layout>

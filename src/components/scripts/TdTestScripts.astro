@@ -5,11 +5,14 @@
  * Layout's `scripts-early` slot (ParallaxScripts) instead, because their
  * position in the load order is what makes them work.
  */
-import { assetPrefix, type Lang } from '../../data/nav';
+import { assetPrefix, type Lang } from "../../data/nav";
 
-interface Props { lang: Lang }
+interface Props {
+  lang: Lang;
+}
 const { lang } = Astro.props;
 const p = assetPrefix(lang);
 ---
-    <script src={`${p}js/image-zoom.js`} is:inline></script>
-    <script src={`${p}js/image-carousel.js`} is:inline></script>
+
+<script src={`${p}js/image-zoom.js`} is:inline></script>
+<script src={`${p}js/image-carousel.js`} is:inline></script>

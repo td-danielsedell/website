@@ -13,8 +13,8 @@
  *  - The theme buttons carry `data-label-light` / `data-label-dark`; theme.js
  *    reads its strings out of the DOM, so they must be per-locale in markup.
  */
-import { strings, assetPrefix, type Lang } from '../data/nav';
-import Globe from './icons/Globe.astro';
+import { strings, assetPrefix, type Lang } from "../data/nav";
+import Globe from "./icons/Globe.astro";
 
 interface Props {
   lang: Lang;
@@ -31,91 +31,112 @@ const p = assetPrefix(lang);
 
 // Relative `index.html` resolves correctly from /en/ too, so the same string
 // serves both locales. On the index pages themselves the links are bare hashes.
-const home = isHome ? '' : 'index.html';
+const home = isHome ? "" : "index.html";
 // The switcher points at the same page in the other language.
-const otherHref = lang === 'sv'
-  ? (isHome ? 'en/' : `en/${path}`)
-  : (isHome ? '../' : `../${path}`);
-const current = (href: string) => (href === path ? 'page' : undefined);
+const otherHref = lang === "sv" ? (isHome ? "en/" : `en/${path}`) : isHome ? "../" : `../${path}`;
+const current = (href: string) => (href === path ? "page" : undefined);
 ---
-<header id={isHome ? 'home' : 'banner'} class="scrollto clearfix"
-        data-enllax-ratio={isHome ? undefined : ".5"}>
-            <div id="header" class="nav-collapse">
-                <div class="row clearfix">
-                    <div class="col-1">
 
-                        {/*Logo*/}
-                        <div id="logo">
+<header
+  id={isHome ? "home" : "banner"}
+  class="scrollto clearfix"
+  data-enllax-ratio={isHome ? undefined : ".5"}
+>
+  <div id="header" class="nav-collapse">
+    <div class="row clearfix">
+      <div class="col-1">
+        {/*Logo*/}
+        <div id="logo">
+          {/*Both logos sit in one link back to the start page.*/}
+          <a href="index.html" aria-label="Total Digital">
+            {/*Logo that is shown on the banner*/}
+            <img
+              src={`${p}images/banner-images/td_white.webp`}
+              id="banner-logo"
+              width="412"
+              height="122"
+              alt="Total Digital"
+            />
+            {/*End of Banner Logo*/}
 
-                            {/*Both logos sit in one link back to the start page.*/}
-                            <a href="index.html" aria-label="Total Digital">
+            {/*The Logo that is shown on the sticky Navigation Bar*/}
+            <img
+              src={`${p}images/banner-images/td_white.webp`}
+              id="navigation-logo"
+              width="412"
+              height="122"
+              alt="Total Digital"
+            />
+            {/*End of Navigation Logo*/}
+          </a>
+        </div>
+        {/*End of Logo*/}
 
-                            {/*Logo that is shown on the banner*/}
-                            <img src={`${p}images/banner-images/td_white.webp`} id="banner-logo" width="412" height="122"
-                                alt="Total Digital" />
-                            {/*End of Banner Logo*/}
-
-                            {/*The Logo that is shown on the sticky Navigation Bar*/}
-                            <img src={`${p}images/banner-images/td_white.webp`} id="navigation-logo" width="412" height="122"
-                                alt="Total Digital" />
-                            {/*End of Navigation Logo*/}
-                            </a>
-
-                        </div>
-                        {/*End of Logo*/}
-
-
-                        {/*Main Navigation*/}
-                        <nav id="nav-main">
-                            <ul>
-                                {/* On the index pages there is no "Home" entry: the logo beside
+        {/*Main Navigation*/}
+        <nav id="nav-main">
+          <ul>
+            {/* On the index pages there is no "Home" entry: the logo beside
                                     the nav already goes there, and the banner is what you are
                                     looking at when the nav is not sticky. */}
-                                {/*Nav items that own subpages are <details> groups. Same reason as the
+            {/*Nav items that own subpages are <details> groups. Same reason as the
                                     language switcher below: there is no event handler to copy when
                                     site.js clones this markup into the mobile menu. The subpage links
                                     are relative so the site works wherever it is mounted, and site.js
                                     keeps stickyNavbar from cancelling the click on them.*/}
-                                <li onclick={isHome ? undefined : `location.href='${home}#businessareas';`}>
-                                    <a href={`${home}#businessareas`}>{t.nav.businessareas}</a>
-                                </li>
-                                <li class="nav-group">
-                                    <details>
-                                        <summary><a href={`${home}#showcases`}>{t.nav.showcases}</a></summary>
-                                        <div class="nav-sub">
-                                            <a class="nav-sub-all" href={`${home}#showcases`}>{t.nav.showcasesAll}</a>
-                                            {t.projects.map((item) => (
-                                                <Fragment>
-                                            <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
-                                                </Fragment>
-                                            ))}
-                                        </div>
-                                    </details>
-                                </li>
-                                <li onclick={isHome ? undefined : `location.href='${home}#services';`}>
-                                    <a href={`${home}#services`}>{t.nav.services}</a>
-                                </li>
-                                <li class="nav-group">
-                                    <details>
-                                        <summary><a href={`${home}#products`}>{t.nav.products}</a></summary>
-                                        <div class="nav-sub">
-                                            <a class="nav-sub-all" href={`${home}#products`}>{t.nav.productsAll}</a>
-                                            {t.products.map((item) => (
-                                                <Fragment>
-                                            <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
-                                                </Fragment>
-                                            ))}
-                                        </div>
-                                    </details>
-                                </li>
-                                {/*Testimonials and Partners are one section on the start page now.*/}
-                                <li onclick={isHome ? undefined : `location.href='${home}#trust';`}>
-                                    <a href={`${home}#trust`}>{t.nav.trust}</a>
-                                </li>
-                                <li onclick="location.href='about.html';">
-                                    <a href="about.html" aria-current={current('about.html')}>{t.nav.about}</a>
-                                </li>
-                                {/*The theme switcher. Sits to the left of the language switcher and is
+            <li onclick={isHome ? undefined : `location.href='${home}#businessareas';`}>
+              <a href={`${home}#businessareas`}>{t.nav.businessareas}</a>
+            </li>
+            <li class="nav-group">
+              <details>
+                <summary>
+                  <a href={`${home}#showcases`}>{t.nav.showcases}</a>
+                </summary>
+                <div class="nav-sub">
+                  <a class="nav-sub-all" href={`${home}#showcases`}>
+                    {t.nav.showcasesAll}
+                  </a>
+                  {t.projects.map((item) => (
+                    <Fragment>
+                      <a href={item.href} aria-current={current(item.href)}>
+                        {item.label}
+                      </a>
+                    </Fragment>
+                  ))}
+                </div>
+              </details>
+            </li>
+            <li onclick={isHome ? undefined : `location.href='${home}#services';`}>
+              <a href={`${home}#services`}>{t.nav.services}</a>
+            </li>
+            <li class="nav-group">
+              <details>
+                <summary>
+                  <a href={`${home}#products`}>{t.nav.products}</a>
+                </summary>
+                <div class="nav-sub">
+                  <a class="nav-sub-all" href={`${home}#products`}>
+                    {t.nav.productsAll}
+                  </a>
+                  {t.products.map((item) => (
+                    <Fragment>
+                      <a href={item.href} aria-current={current(item.href)}>
+                        {item.label}
+                      </a>
+                    </Fragment>
+                  ))}
+                </div>
+              </details>
+            </li>
+            {/*Testimonials and Partners are one section on the start page now.*/}
+            <li onclick={isHome ? undefined : `location.href='${home}#trust';`}>
+              <a href={`${home}#trust`}>{t.nav.trust}</a>
+            </li>
+            <li onclick="location.href='about.html';">
+              <a href="about.html" aria-current={current("about.html")}>
+                {t.nav.about}
+              </a>
+            </li>
+            {/*The theme switcher. Sits to the left of the language switcher and is
                                     built the same way, but as a <button>: nothing is navigated to, which
                                     also keeps it outside stickyNavbar's "li a".
 
@@ -124,66 +145,107 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                     the wide menu, so the order here is invisible — but it drives the tab
                                     order, and the reverse order gave the globe focus before the theme
                                     button even though the theme button comes first.*/}
-                                <li class="nav-theme">
-                                    <button type="button" class="theme-toggle" aria-label={t.theme.toLight}
-                                            title={t.theme.toLight} data-label-light={t.theme.toLight} data-label-dark={t.theme.toDark}><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
-                                </li>
-                                {/*Language dropdown. The option links are relative so the site works
+            <li class="nav-theme">
+              <button
+                type="button"
+                class="theme-toggle"
+                aria-label={t.theme.toLight}
+                title={t.theme.toLight}
+                data-label-light={t.theme.toLight}
+                data-label-dark={t.theme.toDark}
+              >
+                <i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i>
+                <i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i>
+              </button>
+            </li>
+            {/*Language dropdown. The option links are relative so the site works
                                     wherever it is mounted; site.js keeps stickyNavbar from cancelling
                                     the click. <details> keeps the whole control script-free, so it
                                     still works once site.js clones this markup into the mobile menu.*/}
-                                <li class="nav-lang">
-                                    <details>
-                                        <summary aria-label={t.lang.choose}><Globe /></summary>
-                                        <div class="lang-options">
-                                            {lang === 'sv' ? (
-                                                <Fragment>
-                                                <span class="lang-option is-current" lang="sv" aria-current="true">{t.lang.sv}</span>
-                                                <a class="lang-option" href={otherHref} hreflang="en" lang="en">{t.lang.en}</a>
-                                                </Fragment>
-                                            ) : (
-                                                <Fragment>
-                                                <a class="lang-option" href={otherHref} hreflang="sv" lang="sv">{t.lang.sv}</a>
-                                                <span class="lang-option is-current" lang="en" aria-current="true">{t.lang.en}</span>
-                                                </Fragment>
-                                            )}
-                                        </div>
-                                    </details>
-                                </li>
-                            </ul>
-                        </nav>
-                        {/*End of Main Navigation*/}
-
-                        {/*The same switcher again, here beside the hamburger. CSS shows one of
-                            them, never both.*/}
-                        <div id="nav-trigger">
-                            <nav id="nav-theme-mobile">
-                                <button type="button" class="theme-toggle" aria-label={t.theme.toLight}
-                                        title={t.theme.toLight} data-label-light={t.theme.toLight} data-label-dark={t.theme.toDark}><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
-                            </nav>
-                            <nav id="nav-lang-mobile">
-                                <div class="nav-lang"><details>
-                                <summary aria-label={t.lang.choose}><Globe /></summary>
-                                <div class="lang-options">
-                                {lang === 'sv' ? (
-                                    <Fragment>
-                                    <span class="lang-option is-current" lang="sv" aria-current="true">{t.lang.sv}</span>
-                                    <a class="lang-option" href={otherHref} hreflang="en" lang="en">{t.lang.en}</a>
-                                    </Fragment>
-                                ) : (
-                                    <Fragment>
-                                    <a class="lang-option" href={otherHref} hreflang="sv" lang="sv">{t.lang.sv}</a>
-                                    <span class="lang-option is-current" lang="en" aria-current="true">{t.lang.en}</span>
-                                    </Fragment>
-                                )}
-                                </div>
-                                </details></div>
-                            </nav><span></span>
-                        </div>
-                        <nav id="nav-mobile"></nav>
-
-                    </div>
+            <li class="nav-lang">
+              <details>
+                <summary aria-label={t.lang.choose}>
+                  <Globe />
+                </summary>
+                <div class="lang-options">
+                  {lang === "sv" ? (
+                    <Fragment>
+                      <span class="lang-option is-current" lang="sv" aria-current="true">
+                        {t.lang.sv}
+                      </span>
+                      <a class="lang-option" href={otherHref} hreflang="en" lang="en">
+                        {t.lang.en}
+                      </a>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <a class="lang-option" href={otherHref} hreflang="sv" lang="sv">
+                        {t.lang.sv}
+                      </a>
+                      <span class="lang-option is-current" lang="en" aria-current="true">
+                        {t.lang.en}
+                      </span>
+                    </Fragment>
+                  )}
                 </div>
-            </div>{/*End of Header*/}
-{isHome && <slot />}
-        </header>
+              </details>
+            </li>
+          </ul>
+        </nav>
+        {/*End of Main Navigation*/}
+
+        {/*The same switcher again, here beside the hamburger. CSS shows one of
+                            them, never both.*/}
+        <div id="nav-trigger">
+          <nav id="nav-theme-mobile">
+            <button
+              type="button"
+              class="theme-toggle"
+              aria-label={t.theme.toLight}
+              title={t.theme.toLight}
+              data-label-light={t.theme.toLight}
+              data-label-dark={t.theme.toDark}
+            >
+              <i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i>
+              <i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i>
+            </button>
+          </nav>
+          <nav id="nav-lang-mobile">
+            <div class="nav-lang">
+              <details>
+                <summary aria-label={t.lang.choose}>
+                  <Globe />
+                </summary>
+                <div class="lang-options">
+                  {lang === "sv" ? (
+                    <Fragment>
+                      <span class="lang-option is-current" lang="sv" aria-current="true">
+                        {t.lang.sv}
+                      </span>
+                      <a class="lang-option" href={otherHref} hreflang="en" lang="en">
+                        {t.lang.en}
+                      </a>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <a class="lang-option" href={otherHref} hreflang="sv" lang="sv">
+                        {t.lang.sv}
+                      </a>
+                      <span class="lang-option is-current" lang="en" aria-current="true">
+                        {t.lang.en}
+                      </span>
+                    </Fragment>
+                  )}
+                </div>
+              </details>
+            </div>
+          </nav>
+          <span></span>
+        </div>
+        <nav id="nav-mobile"></nav>
+      </div>
+    </div>
+  </div>
+  {/*End of Header*/}
+  {isHome && <slot />}
+</header>
