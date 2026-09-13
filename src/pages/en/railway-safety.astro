@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../../components/ShowcaseCta.astro';
+import ProjectBody from '../../components/ProjectBody.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
@@ -12,40 +12,19 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="en" />
     <ServiceJsonLd slot="head-after-fonts" lang="en" path="railway-safety.html" />
     <FooterLargeCss slot="head-after-fonts" lang="en" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
-
+            <ProjectBody lang="en" path="railway-safety.html">
+        <Fragment slot="figure">
                         <figure>
                         <img class="showcase-image" src="../images/showcase-images/rail-sensor-cropped.png"
                             alt="Railway track with measurement equipment" width="1600" height="1177" fetchpriority="high" />
 <figcaption>Rail temperature sensor. © Total Digital.</figcaption>
                         </figure>
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">Predictive railway safety with satellite data and AI</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 We develop <strong>AI-based forecasts of rail temperatures and track buckling risk</strong>, helping make railway operations safer in a warmer climate.
                             </p> <p>  Rising temperatures and more frequent heatwaves increase the risk of track buckling in continuously welded rail, causing disruptions and delays. By combining thermal satellite data with terrain and weather data, we can forecast rail temperature along the track up to 48 hours in advance. This helps identify where risks are likely to occur, allowing preventive measures to be targeted where they are needed most.
                             </p><p>   Designed for operational use, the method can be applied to individual high-risk sections or scaled across entire railway networks. It supports maintenance prioritisation, traffic planning and long-term climate adaptation.
                             </p>
                            <i> Partners: Region Stockholm, KTH Royal Institute of Technology, InfraNord</i>
-                        </div>
-
-                        <ShowcaseCta lang="en" person="hanna" subject="Predictive railway safety" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>

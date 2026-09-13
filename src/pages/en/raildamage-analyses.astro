@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../../components/ShowcaseCta.astro';
+import ProjectBody from '../../components/ProjectBody.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
@@ -12,27 +12,14 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="en" />
     <ServiceJsonLd slot="head-after-fonts" lang="en" path="raildamage-analyses.html" />
     <FooterLargeCss slot="head-after-fonts" lang="en" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
-
+            <ProjectBody lang="en" path="raildamage-analyses.html">
+        <Fragment slot="figure">
                         <figure>
                         <img class="showcase-image" src="../images/showcase-images/rail-damage.png"
                             alt="Rail defect in an inspection image" width="1600" height="900" fetchpriority="high" />
                         <figcaption>Total Digital's AI model for identifying rail defects from image data. © Total Digital.</figcaption>
                         </figure>
-
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">AI-based analysis of rail defects from imagery</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 We use AI, deep learning and computer vision to <strong>detect rail defects and anomalies in imagery</strong> collected during railway inspections.
                             </p><p>
@@ -41,14 +28,5 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
                                 The solution covers the entire process from data processing and AI analysis to visualisation and integration with existing systems. The results provide a clearer picture of asset condition, helping operators prioritise maintenance and monitor changes over time.
                             </p>
                            <i>Partners: Region Stockholm</i>
-                        </div>
-
-                        <ShowcaseCta lang="en" person="petter" subject="Rail defect analysis" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>

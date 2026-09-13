@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../components/ShowcaseCta.astro';
+import ProjectBody from '../components/ProjectBody.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -12,26 +12,14 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="sv" />
     <ServiceJsonLd slot="head-after-fonts" lang="sv" path="raildamage-analyses.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
+            <ProjectBody lang="sv" path="raildamage-analyses.html">
+        <Fragment slot="figure">
 <figure>
                         <img class="showcase-image" src="images/showcase-images/rail-damage.png"
                             alt="Rälsskada i inspektionsbild" width="1600" height="900" fetchpriority="high" />
                         <figcaption>Total Digital:s AI modell för identifiering av rälsskador från bilddata. © Total Digital.</figcaption>
                                                     </figure>
-
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">AI-baserad analys av rälsskador i bilddata</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 Vi kombinerar AI, deep learning och datorseende för att <strong>identifiera rälsskador och avvikelser i bilddata </strong> från järnvägsinfrastruktur.
                             </p><p>
@@ -40,14 +28,5 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
                                 Metoden omfattar hela kedjan – från databearbetning och AI-analys till visualisering och integration med kundens system. Resultaten ger stöd för <strong>tillståndsbedömning, prioritering av underhåll och långsiktig uppföljning av järnvägsanläggningen.</strong>
                             </p>
                            <i>Samarbetspartners: Region Stockholm</i>
-                        </div>
-
-                        <ShowcaseCta lang="sv" person="petter" subject="Analys av rälsskador" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>

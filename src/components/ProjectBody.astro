@@ -1,0 +1,58 @@
+---
+/**
+ * The shared body of the four project pages.
+ *
+ * All four are ~90% the same markup: a showcase figure, a spacer, the page
+ * heading, a prose column and the closing call to action. This owns that
+ * skeleton; the page supplies only what genuinely differs.
+ *
+ * The figure and the prose come in through slots rather than props for one
+ * concrete reason — both carry irregular hand-authored whitespace that differs
+ * per page (`</figure>` sits at column 0 on two pages, column 52 on another;
+ * the paragraph gaps are variously '', ' ' and '  '). None of it renders, but
+ * it is in the shipped bytes, and moving that markup into data would mean
+ * encoding each accident as a string. Left as markup, each page keeps its own
+ * and the refactor stays a no-op. Tidying the whitespace is a separate pass.
+ *
+ * The heading is not a prop: it comes from src/data/pages.ts, so it cannot
+ * drift from the metadata describing the same page. Three of the four pages
+ * reuse og:title for it; sar-processing deliberately does not, and carries an
+ * explicit `heading`.
+ */
+import type { Lang } from '../data/nav';
+import { pageMeta } from '../data/pages';
+import ShowcaseCta from './ShowcaseCta.astro';
+
+interface Props { lang: Lang; path: string }
+const { lang, path } = Astro.props;
+const m = pageMeta[path][lang];
+const title = m.heading ?? m.ogTitle ?? m.title;
+---
+        <main id="content" class="showcase-top">
+
+            <section class="introduction scrollto">
+                <div class="col-1 content-center">
+                    <div class="col-2-3 row clearfix">
+
+                        <slot name="figure" />
+
+                        <div class="banner-spacer"></div>
+
+                        <div class="col-1">
+                            <div class="section-heading">
+                                <h1 class="section-title">{title}</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <slot />
+                        </div>
+
+                        <ShowcaseCta lang={lang} person={m.contact!} subject={m.contactSubject!} />
+
+                    </div>
+                </div>
+
+            </section>
+
+        </main>

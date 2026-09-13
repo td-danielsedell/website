@@ -25,6 +25,13 @@ export interface PageMeta {
   /** schema.org name for the product pages, which is the product, not the page title. */
   ldName?: string;
   applicationCategory?: string;
+  /**
+   * The page's own <h1>, when it differs from og:title. Only sar-processing
+   * does: its heading says "Synthetic Aperture Radar In(SAR)…" while its social
+   * preview says "InSAR…". Kept explicit so the difference is deliberate and
+   * visible rather than a template accident.
+   */
+  heading?: string;
   /** Project pages only: who the call to action is from, and its email subject. */
   contact?: PersonId;
   contactSubject?: string;
@@ -127,6 +134,7 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogImageAlt: 'Interferogram från SAR-data',
       contact: 'hanna',
       contactSubject: 'SAR-bearbetning',
+      heading: 'Synthetic Aperture Radar In(SAR) för skalbar övervakning',
     },
     en: {
       title: 'InSAR – scalable ground-motion monitoring | Total Digital',
@@ -137,6 +145,7 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogImageAlt: 'Interferogram from SAR data',
       contact: 'hanna',
       contactSubject: 'SAR processing',
+      heading: 'Synthetic Aperture Radar In(SAR) for scalable monitoring',
     },
   },
   'td_asset_care.html': {

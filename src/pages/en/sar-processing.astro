@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../../components/ShowcaseCta.astro';
+import ProjectBody from '../../components/ProjectBody.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
@@ -12,27 +12,14 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="en" />
     <ServiceJsonLd slot="head-after-fonts" lang="en" path="sar-processing.html" />
     <FooterLargeCss slot="head-after-fonts" lang="en" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
-
+            <ProjectBody lang="en" path="sar-processing.html">
+        <Fragment slot="figure">
                         <figure>
                         <img class="showcase-image" src="../images/showcase-images/interferogram.webp"
                             alt="Interferogram produced from SAR data" width="619" height="413" fetchpriority="high" />
 <figcaption>Interferogram of the Selenga River, based on our own InSAR analysis. © Total Digital.</figcaption>
 </figure>
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">Synthetic Aperture Radar In(SAR) for scalable
-                                    monitoring</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 We develop InSAR-based solutions for monitoring ground motion across infrastructure and the built environment.
                             </p><p>    Using radar data from commercial SAR satellites, Sentinel-1 and NISAR, we can monitor changes across large areas regardless of weather conditions or time of day. This makes it possible to detect ground movement before the trend becomes visible in the field.
@@ -40,14 +27,5 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
                             </p><p>    The approach can be applied to individual structures or scaled across large geographical areas, with results integrated directly into existing systems. Applications include railways, roads, geotechnical monitoring, construction, dams and urban environments, supporting <strong>long-term monitoring, risk management and informed decision-making.</strong>
 
                             </p>
-                        </div>
-
-                        <ShowcaseCta lang="en" person="hanna" subject="SAR processing" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>

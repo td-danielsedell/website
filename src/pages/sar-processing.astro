@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../components/ShowcaseCta.astro';
+import ProjectBody from '../components/ProjectBody.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -12,26 +12,14 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="sv" />
     <ServiceJsonLd slot="head-after-fonts" lang="sv" path="sar-processing.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
+            <ProjectBody lang="sv" path="sar-processing.html">
+        <Fragment slot="figure">
 <figure>
                         <img class="showcase-image" src="images/showcase-images/interferogram.webp"
                             alt="Interferogram framtaget ur SAR-data" width="619" height="413" fetchpriority="high" />
 <figcaption>Interferogram över Selengaälven, baserat på egen InSAR-analys. © Total Digital.</figcaption>
 </figure>
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">Synthetic Aperture Radar In(SAR) för skalbar
-                                    övervakning</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 Vi utvecklar <strong>InSAR-baserade lösningar för övervakning av markrörelser, deformationer och omgivningspåverkan</strong> inom infrastruktur och samhällsbyggnad.
                             </p> <p>
@@ -39,14 +27,5 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
                             </p>  <p>
                                 Lösningen kan skalas från enskilda objekt till stora geografiska områden och integreras direkt i kundens system. Den kan användas inom bl.a. järnväg, väg, geoteknik, byggnation, dammar och urbana miljöer<br><strong> för långsiktig uppföljning, riskhantering och beslutsstöd.</strong>
                             </p>
-                        </div>
-
-                        <ShowcaseCta lang="sv" person="hanna" subject="SAR-bearbetning" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>

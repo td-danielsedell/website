@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../components/ShowcaseCta.astro';
+import ProjectBody from '../components/ProjectBody.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -12,26 +12,13 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="sv" />
     <ServiceJsonLd slot="head-after-fonts" lang="sv" path="leak-detection.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
-
+            <ProjectBody lang="sv" path="leak-detection.html">
+        <Fragment slot="figure">
                         <figure>
                         <img class="showcase-image" src="images/showcase-images/water-leak.webp"
                             alt="Läckage i vattenledningsnät" width="900" height="450" fetchpriority="high" />
 </figure>
-
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">AI-baserad läckagedetektering i vatteninfrastruktur</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 Vi kombinerar AI, satellitdata och driftsdata för att upptäcka <strong>läckage och vattenförluster</strong> i stora vattendistributionsnät.
                             </p>  <p>
@@ -40,14 +27,5 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
                                 Metoden möjliggör kontinuerlig övervakning av ledningsnätet och kan användas som stöd i både operativt och långsiktigt underhåll. För: <strong> minskade vattenförluster samt effektivare och bättre beslutsunderlag.</strong>
                             </p>
                             <i>Samarbetspartners: Laholmsbuktens VA, Stockholms Universitet</i>
-                        </div>
-
-                        <ShowcaseCta lang="sv" person="hanna" subject="Läckagedetektering" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>

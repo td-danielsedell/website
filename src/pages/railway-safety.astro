@@ -1,6 +1,6 @@
 ---
 import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
-import ShowcaseCta from '../components/ShowcaseCta.astro';
+import ProjectBody from '../components/ProjectBody.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -12,26 +12,14 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
     <ServiceCardCss slot="head-css" lang="sv" />
     <ServiceJsonLd slot="head-after-fonts" lang="sv" path="railway-safety.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
-        <main id="content" class="showcase-top">
-
-            <section class="introduction scrollto">
-                <div class="col-1 content-center">
-                    <div class="col-2-3 row clearfix">
-
+            <ProjectBody lang="sv" path="railway-safety.html">
+        <Fragment slot="figure">
                         <figure>
                         <img class="showcase-image" src="images/showcase-images/rail-sensor-cropped.png"
                             alt="Järnvägsspår med mätutrustning" width="1600" height="1177" fetchpriority="high" />
 <figcaption>Rälstemperatursensor. © Total Digital.</figcaption>
                         </figure>
-                        <div class="banner-spacer"></div>
-
-                        <div class="col-1">
-                            <div class="section-heading">
-                                <h1 class="section-title">Prediktiv järnvägssäkerhet med satellitdata och AI</h1>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
+        </Fragment>
                             <p>
                                 Vi utvecklar <strong>AI-baserade prognoser för rälstemperatur och risk för spårförskjutning</strong> – för en säkrare och mer förutsägbar järnvägsdrift i ett varmare klimat.
                             </p><p>
@@ -40,14 +28,5 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
                                 Metoden är utvecklad för operativ användning, kan skalas från enskilda högrisksträckor till hela järnvägsnät, och stödjer prioritering av underhåll, trafikplanering och långsiktig klimatanpassning.
                             </p>
                            <i> Samarbetspartners: Region Stockholm, KTH - Kungliga Tekniska högskolan, InfraNord</i>
-                        </div>
-
-                        <ShowcaseCta lang="sv" person="hanna" subject="Prediktiv järnvägssäkerhet" />
-
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
+    </ProjectBody>
 </Layout>
