@@ -1,5 +1,6 @@
 ---
 import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
+import ShowcaseCta from '../../components/ShowcaseCta.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
@@ -42,18 +43,7 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
                            <i>Partners: Region Stockholm</i>
                         </div>
 
-                        <div class="col-1 text-center showcase-cta">
-                            <div class="cta-signature">
-                                <img class="cta-face" src="../images/showcase-images/PT.webp" width="104" height="104"
-                                    loading="lazy" alt="Petter Tyrenius" />
-                                <div class="cta-signature-body">
-                                    <p>Want to know more about how this could work in your organisation?</p>
-                                    <p class="cta-name">Petter Tyrenius</p>
-                                    <p class="cta-role">Project Lead</p>
-                                    <p class="cta-mail"><a class="email-obfuscated" data-user="petter" data-domain="totaldigital.se" data-subject="Rail defect analysis">Show email address</a><noscript><a href="mailto:petter@totaldigital.se?subject=Rail defect analysis">petter@totaldigital.se</a></noscript></p>
-                                </div>
-                            </div>
-                        </div>
+                        <ShowcaseCta lang="en" person="petter" subject="Rail defect analysis" />
 
                     </div>
                 </div>

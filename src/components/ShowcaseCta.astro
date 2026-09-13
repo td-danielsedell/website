@@ -1,0 +1,40 @@
+---
+/**
+ * The call to action closing each project page: portrait, name, role and an
+ * address that is assembled by JavaScript rather than written into the markup.
+ *
+ * The address is split across data-user/data-domain so scrapers reading the
+ * HTML find no address, with a <noscript> mailto as the fallback. That fallback
+ * carries the subject with RAW SPACES, not percent-encoding — matching what the
+ * hand-written pages shipped. It is technically invalid in a URL and every
+ * browser accepts it; correcting it is a behaviour change and belongs in its own
+ * commit, not smuggled into a refactor.
+ */
+import { assetPrefix, type Lang } from '../data/nav';
+import { people, ctaStrings, type PersonId } from '../data/people';
+
+interface Props {
+  lang: Lang;
+  person: PersonId;
+  /** Pre-filled email subject, per page and per locale. */
+  subject: string;
+}
+
+const { lang, person, subject } = Astro.props;
+const p = assetPrefix(lang);
+const who = people[person];
+const t = ctaStrings[lang];
+const address = `${who.emailUser}@${who.emailDomain}`;
+---
+                        <div class="col-1 text-center showcase-cta">
+                            <div class="cta-signature">
+                                <img class="cta-face" src={`${p}images/showcase-images/${who.face}`} width="104" height="104"
+                                    loading="lazy" alt={who.name} />
+                                <div class="cta-signature-body">
+                                    <p>{t.question}</p>
+                                    <p class="cta-name">{who.name}</p>
+                                    <p class="cta-role">{who.role[lang]}</p>
+                                    <p class="cta-mail"><a class="email-obfuscated" data-user={who.emailUser} data-domain={who.emailDomain} data-subject={subject}>{t.showEmail}</a><noscript><a href={`mailto:${address}?subject=${subject}`}>{address}</a></noscript></p>
+                                </div>
+                            </div>
+                        </div>

@@ -1,5 +1,6 @@
 ---
 import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
+import ShowcaseCta from '../components/ShowcaseCta.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -41,18 +42,7 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
                            <i>Samarbetspartners: Region Stockholm</i>
                         </div>
 
-                        <div class="col-1 text-center showcase-cta">
-                            <div class="cta-signature">
-                                <img class="cta-face" src="images/showcase-images/PT.webp" width="104" height="104"
-                                    loading="lazy" alt="Petter Tyrenius" />
-                                <div class="cta-signature-body">
-                                    <p>Vill du veta mer om hur detta kan tillämpas i er verksamhet?</p>
-                                    <p class="cta-name">Petter Tyrenius</p>
-                                    <p class="cta-role">Projektledare</p>
-                                    <p class="cta-mail"><a class="email-obfuscated" data-user="petter" data-domain="totaldigital.se" data-subject="Analys av rälsskador">Visa e-postadress</a><noscript><a href="mailto:petter@totaldigital.se?subject=Analys av rälsskador">petter@totaldigital.se</a></noscript></p>
-                                </div>
-                            </div>
-                        </div>
+                        <ShowcaseCta lang="sv" person="petter" subject="Analys av rälsskador" />
 
                     </div>
                 </div>

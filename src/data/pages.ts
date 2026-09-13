@@ -1,4 +1,5 @@
 import type { Lang } from './nav';
+import type { PersonId } from './people';
 
 /**
  * Per-page metadata, both locales side by side.
@@ -24,6 +25,9 @@ export interface PageMeta {
   /** schema.org name for the product pages, which is the product, not the page title. */
   ldName?: string;
   applicationCategory?: string;
+  /** Project pages only: who the call to action is from, and its email subject. */
+  contact?: PersonId;
+  contactSubject?: string;
 }
 
 export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
@@ -55,6 +59,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/leak-detection.jpg',
       ogImageAlt: 'Läckagedetektering i vattendistributionsnät',
+      contact: 'hanna',
+      contactSubject: 'Läckagedetektering',
     },
     en: {
       title: 'AI-based leak detection in water infrastructure | Total Digital',
@@ -63,6 +69,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/leak-detection.jpg',
       ogImageAlt: 'Leak detection in a water distribution network',
+      contact: 'hanna',
+      contactSubject: 'Leak detection',
     },
   },
   'raildamage-analyses.html': {
@@ -73,6 +81,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/raildamage-analyses.jpg',
       ogImageAlt: 'Rälsskada identifierad i inspektionsbild',
+      contact: 'petter',
+      contactSubject: 'Analys av rälsskador',
     },
     en: {
       title: 'AI-based analysis of rail defects from imagery | Total Digital',
@@ -81,6 +91,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/raildamage-analyses.jpg',
       ogImageAlt: 'Rail defect identified in an inspection image',
+      contact: 'petter',
+      contactSubject: 'Rail defect analysis',
     },
   },
   'railway-safety.html': {
@@ -91,6 +103,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/railway-safety.jpg',
       ogImageAlt: 'Sensor monterad på räl för spårövervakning',
+      contact: 'hanna',
+      contactSubject: 'Prediktiv järnvägssäkerhet',
     },
     en: {
       title: 'Predictive railway safety with satellite data and AI | Total Digital',
@@ -99,6 +113,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/railway-safety.jpg',
       ogImageAlt: 'Sensor mounted on the rail for track monitoring',
+      contact: 'hanna',
+      contactSubject: 'Predictive railway safety',
     },
   },
   'sar-processing.html': {
@@ -109,6 +125,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/sar-processing.jpg',
       ogImageAlt: 'Interferogram från SAR-data',
+      contact: 'hanna',
+      contactSubject: 'SAR-bearbetning',
     },
     en: {
       title: 'InSAR – scalable ground-motion monitoring | Total Digital',
@@ -117,6 +135,8 @@ export const pageMeta: Record<string, Record<Lang, PageMeta>> = {
       ogType: 'article',
       ogImage: 'https://www.totaldigital.se/images/og/sar-processing.jpg',
       ogImageAlt: 'Interferogram from SAR data',
+      contact: 'hanna',
+      contactSubject: 'SAR processing',
     },
   },
   'td_asset_care.html': {
