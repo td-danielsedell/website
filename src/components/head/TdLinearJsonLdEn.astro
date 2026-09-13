@@ -1,22 +1,21 @@
 ---
 /**
- * Structured data, verbatim. Never build this from an object through
- * JSON.stringify — re-serialisation reorders keys and changes whitespace, and
- * the byte-for-byte diff against the fork-point page would fail.
+ * Structured data, verbatim from the shipped page. Never rebuild this from an
+ * object through JSON.stringify — re-serialisation reorders keys and changes
+ * whitespace, and the diff against the baseline would fail.
  */
 ---
 
-    <!--Structured Data-->
-    <script type="application/ld+json" is:inline>
+    <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "TD Linear",
         "url": "https://www.totaldigital.se/en/td_linear.html",
         "applicationCategory": "BusinessApplication",
-        "description": "TD Linear visualises and analyses data along linear assets such as railway, road, power lines and water and wastewater networks. EAM, measurement and map data in one shared view.",
+        "description": "TD Linear visualises and analyses data along linear assets such as railway, road, power lines as well as water and wastewater networks. EAM, measurement and map data in one shared view.",
         "inLanguage": "en-GB",
-        "image": "https://www.totaldigital.se/images/og/td_test.jpg",
+        "image": "https://www.totaldigital.se/images/og/td_linear.jpg",
         "provider": {
             "@type": "Organization",
             "@id": "https://www.totaldigital.se/#organization",

@@ -13,7 +13,7 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
     description="TD Test är verktyget för automatiserade tester av IBM Maximo och Maximo Application Suite (MAS). Testar gränssnitt, affärslogik och integrationer m.m."
     ogTitle="TD Test – Automattester för IBM Maximo"
     ogImage="https://www.totaldigital.se/images/og/td_test.jpg"
-    ogImageAlt="TD Test"
+    ogImageAlt="TD Tests startsida med testkörningar och resultat"
     bannerPlaceholder={false}
 >
     <ParallaxScripts slot="scripts-early" lang="sv" />
@@ -23,12 +23,6 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
     <TdTestScripts slot="scripts" lang="sv" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction / Hero. Låg tidigare i en 66% bred centrerad kolumn,
-                så sidan öppnade smalt och breddade sig först vid nästa avsnitt.
-                Nu i samma rad som resten av sidan: rubrik och ingress bredvid
-                produktbilden, de tre detaljstyckena som kolumner under den, och
-                avslutningsraden med knappen centrerad längst ned. Samma text,
-                samma ordning.-->
             <section class="introduction scrollto tdt-intro">
                 <div class="row clearfix">
 
@@ -37,9 +31,7 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
                             <div class="section-heading has-title-icon">
                                 <h1 class="section-title">TD Test</h1>
                                 <p class="section-subtitle">Kvalitetssäkra ert IBM Maximo</p>
-                                <!--Samma ikon som produktkortet i Produkter på startsidan, så kortet
-                                    och sidan hänger ihop. Står här tills sidorna har egen artwork.
-                                    Se .section-heading.has-title-icon i css/style.css.-->
+
                                 <i class="fa-duotone fa-solid fa-clipboard-list-check title-icon" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -63,34 +55,12 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
                         </p>
                     </div>
 
-                    <div class="tdt-intro-cta">
-                        <p>
-                            Vill ni se hur det ser ut i praktiken? Hör av er för en demonstration &ndash; eller läs
-                            vidare för detaljer.
-                        </p>
-                        <a href="mailto:info@totaldigital.se?subject=Jag vill veta mer om TD Test"
-                            class="button">KONTAKTA OSS</a>
-                    </div>
-
-                    <!--Rullningsmärket. Ligger utanför CTA-blocket och sist i raden:
-                        det hör till vyn, inte till texten. Etiketten står i länken, så
-                        aria-label börjar med samma ord – annars stämmer inte det
-                        upplästa namnet med det synliga.
-                        data-scroll-to plockas upp av js/site.js, som rullar dit mjukt
-                        med samma fart och easing som menyns egna ankare. Se
-                        .scroll-cue i css/td-test.css.-->
                     <a href="#mojligheter" class="scroll-cue" data-scroll-to
                         aria-label="Läs mer om Möjligheter"><span class="scroll-cue-label">Läs mer</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
 
                 </div>
             </section>
-            <!--End of Introduction-->
 
-            <!--What can TD Test do. Inget text-center: rubrikerna ligger vänster
-                som på startsidan och Om oss, och det orange strecket hänger
-                under underrubriken – se css/colors.css. Rubriken står direkt i
-                raden, så rännan kommer från .row > .section-heading i
-                style.css och linjerar med .tdt-trio nedanför.-->
             <section id="mojligheter" class="primary-color scrollto clearfix">
                 <div class="row clearfix">
 
@@ -101,8 +71,6 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
                             Maximo och når därför både gränssnittet och affärslogiken m.m.</p>
                     </div>
 
-                    <!-- The three capability blocks. Screenshots no longer sit
-                         beside them: they belong together as a tour, see below. -->
                     <div class="tdt-trio">
                         <div>
                             <h3 class="card-title">Testa det som är viktigt</h3>
@@ -190,9 +158,7 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 
                 </div>
             </section>
-            <!--End of Product tour-->
 
-            <!--Features-->
             <section id="funktioner" class="scrollto clearfix">
                 <div class="row clearfix">
 
@@ -201,13 +167,6 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
                         <p class="section-title">Varför TD Test?</p>
                     </div>
 
-                    <!--Samma band som Affärsområden på startsidan: inga kort, bara
-                        hårfina linjer mellan kolumnerna, ikon över rubriken och en
-                        numrering 01–04. Se css/area-band.css; ikonerna här är
-                        duotone ur kitet i stället för <img>, se .area-band .tdt-icon
-                        i css/td-test.css. Ingen --fa-secondary-opacity här: bandet
-                        kör kitets default, till skillnad från rubrikikonen som
-                        trycks ner till 0,3 i style.css.-->
                     <div class="col-1 area-band">
 
                         <div class="area-band-item">
@@ -238,9 +197,7 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 
                 </div>
             </section>
-            <!--End of Features-->
 
-            <!--Comparison-->
             <section class="primary-color scrollto clearfix">
                 <div class="row clearfix">
 
@@ -303,21 +260,9 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 
                 </div>
             </section>
-            <!--End of Comparison-->
 
-            <!--Contact-->
-            <!--Samma avslutning som TD Asset Care och TD Linear: .showcase-cta,
-                alltså ett hårstreck, en dämpad rad och knappen. Det var ett eget
-                avsnitt med KONTAKT-etikett och 34px-rubrik, vilket lät högre än
-                slutraden på de andra två produktsidorna. id och .scrollto står
-                kvar – inget länkar hit i dag, men ankaret kan finnas sparat.-->
             <section id="kontakt" class="scrollto clearfix">
-                <!--Samma omslag som TD Asset Care och TD Linear har runt sin
-                    .showcase-cta: .col-1.content-center > .col-2-3.row. Rakt i
-                    .row blev blocket 1245px brett mot deras 696, så hårstrecket
-                    var nästan dubbelt så långt. Bredden räknas fram av samma
-                    regler i stället för att sättas här, så de följer med om
-                    .row eller .col-2-3 ändras.-->
+
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
 
@@ -330,7 +275,6 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
                     </div>
                 </div>
             </section>
-            <!--End of Contact-->
 
         </main>
 </Layout>

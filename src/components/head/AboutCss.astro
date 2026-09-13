@@ -6,11 +6,13 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = assetPrefix(lang);
 ---
-    <!-- About page CSS -->
+    {/* About page CSS */}
     <link rel="stylesheet" href={`${p}css/about.css`}>
 
-    <!-- Large footer CSS -->
-    <!-- Ledningsgruppen is a carousel below 768px (see css/about.css). -->
+    {/* Large footer CSS */}
+    {/* Ledningsgruppen is a carousel below 768px (see css/about.css). */}
     <link rel="stylesheet" href={`${p}css/image-carousel.css`}>
 
     <link rel="stylesheet" href={`${p}css/footer-large.css`}>
+
+    <link rel="stylesheet" href={`${p}css/leaflet.css`}>

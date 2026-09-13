@@ -92,15 +92,15 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
 <head>
     <meta charset="UTF-8">
 
-    <!--Page Title-->
+    {/*Page Title*/}
     <title>{title}</title>
 
-    <!--Meta Description-->
+    {/*Meta Description*/}
     <meta name="description"
         content={description}>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--Canonical URL and Link Previews-->
+    {/*Canonical URL and Link Previews*/}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="sv" href={svUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
@@ -120,7 +120,7 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
 
-    <!--Favicon and App Icons-->
+    {/*Favicon and App Icons*/}
     <link rel="icon" href={`${p}images/favicon.ico`} sizes="any" />
     <link rel="icon" type="image/png" href={`${p}images/favicon.png`} />
     <link rel="apple-touch-icon" href={`${p}images/apple-touch-icon.png`} />
@@ -128,28 +128,28 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
 
     <slot name="head-preload" />
 
-    <!-- Main CSS Files -->
+    {/* Main CSS Files */}
     <link rel="stylesheet" href={`${p}css/style.css`}>
 
-    <!-- Color CSS -->
+    {/* Color CSS */}
     <link rel="stylesheet" href={`${p}css/colors.css`}>
 
-    <!-- Animations CSS -->
+    {/* Animations CSS */}
     <link href={`${p}css/animations.css`} rel="stylesheet" type="text/css">
 
     <slot name="head-css" />
 
-    <!--Light theme. The rules are scoped to html.theme-light, so this sheet
-        changes nothing until js/theme.js sets the class.-->
+    {/*Light theme. The rules are scoped to html.theme-light, so this sheet
+        changes nothing until js/theme.js sets the class.*/}
     <link rel="stylesheet" href={`${p}css/light.css`}>
 
-    <!--Must be blocking in <head>: the theme has to be on <html> before the
-        first frame, otherwise the dark theme shows for one frame and then swaps.-->
+    {/*Must be blocking in <head>: the theme has to be on <html> before the
+        first frame, otherwise the dark theme shows for one frame and then swaps.*/}
     <script src={`${p}js/theme.js`} is:inline></script>
 
     <slot name="head-after-theme" />
 
-    <!--Open Sans is self-hosted; the @font-face rules live at the top of style.css-->
+    {/*Open Sans is self-hosted; the @font-face rules live at the top of style.css*/}
     <link rel="preload" href={`${p}fonts/open-sans-latin.woff2`} as="font" type="font/woff2" crossorigin />
 
     <slot name="head-after-fonts" />
@@ -163,16 +163,16 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
 
         <Header lang={lang} path={path} isHome={isHome} bannerPlaceholder={bannerPlaceholder}><slot name="banner" /></Header>
 
-        <!--Main Content Area-->
+        {/*Main Content Area*/}
         <slot />
-        <!--End Main Content Area-->
+        {/*End Main Content Area*/}
 
 
         <Footer lang={lang} onAboutPage={onAboutPage} />
 
     </div>
 
-    <!-- Include JavaScript resources -->
+    {/* Include JavaScript resources */}
 {/* The four site-wide scripts are fixed, but three pages interleave others
     between them. `scripts-early` lands between jQuery and stickyNavbar (wow /
     enllax / easing); `scripts-late` lands between waypoints and site.js

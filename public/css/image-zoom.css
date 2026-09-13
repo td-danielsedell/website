@@ -1,12 +1,4 @@
-/* Click-to-enlarge for images, sitewide.
 
-   Opt in per image with the data-zoomable attribute:
-
-       <img src="..." alt="..." data-zoomable>
-
-   Framing (border, size cap, shadow) stays with the page's own class —
-   this file only covers the zoom affordance and the overlay that
-   js/image-zoom.js builds. */
 
 [data-zoomable] {
     cursor: zoom-in;
@@ -33,10 +25,6 @@
     box-shadow: 0 25px 60px -15px #000;
 }
 
-/* The dialog's only focusable child, so it is also what holds focus while the
-   overlay is open (js/image-zoom.js). The X is two rotated bars rather than a
-   glyph: nothing here should depend on the Font Awesome kit having loaded, and
-   the overlay is the one place on the site with no other way out. */
 .image-zoom-close {
     position: absolute;
     top: 16px;
@@ -74,8 +62,6 @@
     background: var(--primary);
 }
 
-/* White, not --primary: this one sits on the overlay's near-black backdrop,
-   which is the same surface in both themes. */
 .image-zoom-close:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;

@@ -13,7 +13,7 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
     description="TD Test is the tool for automated testing of IBM Maximo and Maximo Application Suite (MAS). Tests the interface, business logic, integrations and more."
     ogTitle="TD Test – automated testing for IBM Maximo"
     ogImage="https://www.totaldigital.se/images/og/td_test.jpg"
-    ogImageAlt="TD Test"
+    ogImageAlt="TD Test home screen with test runs and results"
     bannerPlaceholder={false}
 >
     <ParallaxScripts slot="scripts-early" lang="en" />
@@ -23,7 +23,6 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
     <TdTestScripts slot="scripts" lang="en" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction / Hero-->
             <section class="introduction scrollto tdt-intro">
                 <div class="row clearfix">
 
@@ -32,10 +31,7 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
                             <div class="section-heading has-title-icon">
                                 <h1 class="section-title">TD Test</h1>
                                 <p class="section-subtitle">Quality-assure your IBM Maximo</p>
-                                <!--The same icon this product's card carries in Produkter on the start
-                                    page, so the card and the page read as one thing. Stands in until
-                                    these pages have artwork of their own. See
-                                    .section-heading.has-title-icon in css/style.css.-->
+
                                 <i class="fa-duotone fa-solid fa-clipboard-list-check title-icon" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -59,46 +55,21 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
                         </p>
                     </div>
 
-                    <div class="tdt-intro-cta">
-                        <p>
-                            Want to see what that looks like in practice? Get in touch for a demonstration &ndash; or read on for
-                            details.
-                        </p>
-                        <a href="mailto:info@totaldigital.se?subject=I would like to know more about TD Test"
-                            class="button">CONTACT US
-                        </a>
-                    </div>
-
-                    <!--The scroll cue. It sits outside the CTA block and last in the
-                        row: it belongs to the view, not to the text. The label sits
-                        inside the link, so the aria-label opens on the same words
-                        &ndash; otherwise the name read out does not match the one on screen.
-                        data-scroll-to is picked up by js/site.js, which scrolls there
-                        smoothly at the same speed and easing as the menu's own anchors.
-                        See .scroll-cue in css/td-test.css.-->
                     <a href="#capabilities" class="scroll-cue" data-scroll-to
                         aria-label="Read more about Capabilities"><span class="scroll-cue-label">Read more</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
 
                 </div>
             </section>
-            <!--End of Introduction-->
 
-            <!--What can TD Test do. No text-center: the headings sit left as on
-                the start page and About, and the orange rule hangs under the
-                subtitle &ndash; see css/colors.css. The heading sits directly in the
-                row, so the gutter comes from .row > .section-heading in
-                style.css and lines up with .tdt-trio below.-->
             <section id="capabilities" class="primary-color scrollto clearfix">
                 <div class="row clearfix">
 
                     <div class="section-heading">
                         <h2 class="section-kicker">CAPABILITIES</h2>
                         <p class="section-title">What can TD Test do?</p>
-                        <p class="section-subtitle">"Testing Maximo with the help of Maximo." <br>TD Test works from inside Maximo, and so reaches the interface, the business logic and more.</p>
+                        <p class="section-subtitle">"Testing Maximo with the help of Maximo." <br>TD Test works from within Maximo, allowing it to test the interface, business logic, integrations and more.</p>
                     </div>
 
-                    <!-- The three capability blocks. Screenshots no longer sit
-                         beside them: they belong together as a tour, see below. -->
                     <div class="tdt-trio">
                         <div>
                             <h3 class="card-title">Test what matters</h3>
@@ -108,19 +79,19 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
                                 <li>Integrations with other systems</li>
                                 <li>Your own customisations and functions</li>
                                 <li>Complete business processes</li>
-                                <li>Flows with several users, for example approval and handover</li>
+                                <li>Work flows containing several users, for example approval and handover</li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3 class="card-title">See straight away what went wrong</h3>
+                            <h3 class="card-title">See exactly what went wrong</h3>
                             <p>After every run TD Test gives you:</p>
                             <ul class="tdt-list">
                                 <li>A result for each test step</li>
-                                <li>Error messages and relevant log extracts</li>
+                                <li>Error messages and relevant logs</li>
                                 <li>Screenshots from every step</li>
                                 <li>History of earlier test runs</li>
-                                <li>Automatic reporting to Teams, for example</li>
+                                <li>Automatic reporting to e.g. Teams</li>
                             </ul>
                         </div>
 
@@ -131,7 +102,7 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
                                 <li>Run single tests or whole test groups</li>
                                 <li>Schedule recurring runs</li>
                                 <li>Start tests directly from the browser</li>
-                                <li>Integrate with Jenkins, for example</li>
+                                <li>Integrate with e.g. Jenkins</li>
                                 <li>Control the log level per test without affecting Maximo's normal settings</li>
                             </ul>
                         </div>
@@ -184,9 +155,7 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 
                 </div>
             </section>
-            <!--End of Product tour-->
 
-            <!--Features-->
             <section id="features" class="scrollto clearfix">
                 <div class="row clearfix">
 
@@ -195,14 +164,6 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
                         <p class="section-title">Why TD Test?</p>
                     </div>
 
-                    <!--The same band as Business areas on the start page: no cards,
-                        just hairline rules between the columns, an icon above the
-                        heading and a 01&ndash;04 numbering. See css/area-band.css; the
-                        icons here are duotone from the kit rather than <img>, see
-                        .area-band .tdt-icon in css/td-test.css. No
-                        --fa-secondary-opacity here: the band runs the kit default,
-                        unlike the title icon which is pushed down to 0.3 in
-                        style.css.-->
                     <div class="col-1 area-band">
 
                         <div class="area-band-item">
@@ -233,9 +194,7 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 
                 </div>
             </section>
-            <!--End of Features-->
 
-            <!--Comparison-->
             <section class="primary-color scrollto clearfix">
                 <div class="row clearfix">
 
@@ -298,22 +257,9 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 
                 </div>
             </section>
-            <!--End of Comparison-->
 
-            <!--Contact-->
-            <!--The same closing line TD Asset Care and TD Linear use:
-                .showcase-cta, so a hairline, one quiet line and the button. It
-                was a section of its own with a CONTACT label and a 34px
-                heading, which read louder than the closing line on the other
-                two product pages. The id and .scrollto stay — nothing links
-                here today, but the anchor may be saved somewhere.-->
             <section id="contact" class="scrollto clearfix">
-                <!--The same wrapper TD Asset Care and TD Linear put round their
-                    .showcase-cta: .col-1.content-center > .col-2-3.row. Straight
-                    in the .row this block came out 1245px wide against their
-                    696, so the hairline was nearly twice as long. The width is
-                    computed by the same rules rather than set here, so they stay
-                    together if .row or .col-2-3 changes.-->
+
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
 
@@ -326,7 +272,6 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
                     </div>
                 </div>
             </section>
-            <!--End of Contact-->
 
         </main>
 </Layout>

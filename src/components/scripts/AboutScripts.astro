@@ -7,6 +7,5 @@ const { lang } = Astro.props;
 const p = assetPrefix(lang);
 ---
     <script src={`${p}js/image-carousel.js`} is:inline></script>
-    <!--Loads Leaflet itself and then draws the map. defer keeps it off the
-        critical path; it does not need L on the page beforehand.-->
+    <script src={`${p}js/leaflet.js`} defer is:inline></script>
     <script src={`${p}js/about.js`} defer is:inline></script>

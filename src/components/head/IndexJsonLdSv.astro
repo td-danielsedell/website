@@ -1,12 +1,11 @@
 ---
 /**
- * Structured data, verbatim. Never build this from an object through
- * JSON.stringify — re-serialisation reorders keys and changes whitespace, and
- * the byte-for-byte diff against the fork-point page would fail.
+ * Structured data, verbatim from the shipped page. Never rebuild this from an
+ * object through JSON.stringify — re-serialisation reorders keys and changes
+ * whitespace, and the diff against the baseline would fail.
  */
 ---
 
-    <!--Structured Data-->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -25,10 +24,7 @@
             "addressCountry": "SE"
         },
         "sameAs": [
-            "https://www.linkedin.com/company/total-digital-it-solutions",
-            "https://github.com/totaldigital-se"
+            "https://www.linkedin.com/company/total-digital-it-solutions"
         ]
     }
     </script>
-
-    

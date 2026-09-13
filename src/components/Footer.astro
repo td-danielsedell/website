@@ -9,7 +9,6 @@
  * keeps exactly four element children in exactly this order.
  */
 import { strings, assetPrefix, type Lang } from '../data/nav';
-import GitHub from './icons/GitHub.astro';
 import LinkedIn from './icons/LinkedIn.astro';
 
 interface Props {
@@ -29,21 +28,18 @@ const t = strings[lang];
 const p = assetPrefix(lang);
 const certHref = onAboutPage ? '#certificates' : 'about.html#certificates';
 ---
-<!--Footer. The large variant (css/footer-large.css), laid out in columns:
-            the page ends with a way into everything rather than one 12px line.-->
+{/*Footer. The large variant (css/footer-large.css), laid out in columns:
+            the page ends with a way into everything rather than one 12px line.*/}
         <footer class="clearfix footer-large">
             <div class="row clearfix">
-                <!--The order in the markup is locked: the rules below 1023px in css/footer-large.css
+                {/*The order in the markup is locked: the rules below 1023px in css/footer-large.css
                     move children 1 and 4 below the link lists with order, and count on
-                    exactly this order.-->
+                    exactly this order.*/}
                 <div class="footer-columns">
 
                     <div class="footer-brand">
                         <p class="footer-name">Total Digital AB</p>
                         <ul class="social-icons footer-social">
-                            <li>
-                                <a target="_blank" rel="noopener noreferrer" title="Github" href="https://github.com/totaldigital-se"><GitHub /><span>GitHub</span></a>
-                            </li>
                             <li>
                                 <a target="_blank" rel="noopener noreferrer" title="LinkedIn" href="https://www.linkedin.com/company/total-digital-it-solutions"><LinkedIn /><span>LinkedIn</span></a>
                             </li>
@@ -59,10 +55,10 @@ const certHref = onAboutPage ? '#certificates' : 'about.html#certificates';
                         ))}
                     </div>
 
-                    <!--The certification marks stand where a third link list stood: the
+                    {/*The certification marks stand where a third link list stood: the
                         products are reachable from the top menu on every page, and the footer
                         is where the marks belong. The images lead to the section on the about
-                        page that says what is certified.-->
+                        page that says what is certified.*/}
                     <div class="footer-col footer-certs">
                         <p class="footer-heading">{t.footer.certsHeading}</p>
                         <div class="cert-badges">
@@ -89,4 +85,4 @@ const certHref = onAboutPage ? '#certificates' : 'about.html#certificates';
                 </div>
             </div>
         </footer>
-        <!--End of Footer-->
+        {/*End of Footer*/}

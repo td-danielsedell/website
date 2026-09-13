@@ -1,29 +1,4 @@
-/* ==========================================================================
-   Light theme
-   --------------------------------------------------------------------------
-   Loaded LAST, and every rule is scoped to `html.theme-light`, so the dark
-   site is untouched unless a page opts in.
 
-   Since the surface tokens landed in colors.css this sheet is mostly the
-   token block below: the shipped sheets read their card fills, borders,
-   dividers, muted copy and shadows through named variables, so swapping the
-   variables repaints the site. What is left under section 2 onward is only
-   the handful of places that are NOT a token swap — a ground that has to stay
-   dark in both themes, an asset with no light-mode counterpart, a weight that
-   wants to change with the ground.
-
-   Palette taken from the "light" PowerPoint template: near-white ground,
-   pure black shapes and type, orange #ff4b00 as the one accent, cyan
-   #00b4ff for the subtitle line. Deliberately NOT the dark theme inverted —
-   the template's contrast is black-on-white, not grey-on-grey.
-   ========================================================================== */
-
-
-/* --------------------------------------------------------------------------
-   1. Tokens
-   Same names as the `:root` block in colors.css, different values. Custom
-   properties inherit, so redeclaring them on <html> overrides that block.
-   -------------------------------------------------------------------------- */
 
 html.theme-light {
     --header: #C63D02;
@@ -31,36 +6,23 @@ html.theme-light {
     --primary_0: rgb(230, 74, 15, 0);
     --primary_100: rgb(230, 74, 15, 1);
 
-    /* The page ground. `body { background: var(--secondary) }` picks this up.
-       The template's ground is pure white, but that is a projector colour —
-       a full screen of #ffffff is punishing to read at low ambient light.
-       Warm paper instead, with the cards left pure white so they still lift
-       off it without needing a heavy border. Dial this one value to go
-       whiter or softer. */
     --secondary: #FAF6F0;
 
     --normal-text: #211D19;
     --header-text: #211D19;
-    --banner-text: #fff;          /* type burned onto a photograph — stays white here too */
-    /* The hero copy, which is not on the photograph any more: the CSS ramp in
-       colors.css puts the page ground under it in both themes, so it is ink
-       like the rest of the page. */
+    --banner-text: #fff;
+
     --hero-text: #211D19;
     --section-title: #211D19;
     --section-heading: #211D19;
-    /* Version A ("Tegel & Bärnsten"), picked over Version B's steel blue
-       (#1A739E) 2026-09-02. */
+
     --section-subtitle: #8F6400;
     --link: #211D19;
-    /* The header hover and the underline under the current section, both on
-       the orange bar — so the dark theme's value, not the accent. */
+
     --link-hover-active: #111111;
     --border: #E8E0D6;
     --footer-text: #6E675F;
 
-    /* Surfaces. In the dark theme --surface and --secondary are the same #333
-       and the border is what makes a card read as a card; here they separate —
-       white cards lifting off warm paper. */
     --surface: #ffffff;
     --surface-alt: #F0EAE2;
     --surface-border: #E8E0D6;
@@ -68,42 +30,23 @@ html.theme-light {
     --panel-hover: rgba(0, 0, 0, 0.06);
 
     --muted-text: #5C554D;
-    /* Was #8A827A, which is 3.5:1 on this ground — a fail at the 11px the one
-       consumer (.product-image-placeholder span) uses it at. 5.2:1 now, the
-       same value --footer-text already carries. */
+
     --faint-text: #6E675F;
 
-    /* The accent as text. --primary is 3.6:1 here: right for a 5px rule or an
-       icon, a fail for a word. See the long note on this token in colors.css.
-       #BC3D00 is 5.1:1 and is the value this sheet already hardcoded twice
-       before it became a token. */
     --accent-text: #BC3D00;
 
-    /* Orange at the dark theme's 0.07 turns pink on white and starts competing
-       with the body copy it sits under. Halved. */
     --product-mark-opacity: 0.035;
     --product-mark-opacity-hover: 0.08;
 
-    /* Two soft layers rather than the dark theme's single hard drop: on paper
-       a card is lifted by a diffuse shadow, not by a dark edge. */
     --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.07);
     --card-shadow-hover: 0 10px 28px -8px rgba(0, 0, 0, 0.16);
     --panel-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
 
-    --band: #000000;              /* the template's black blob, as a band */
+    --band: #000000;
 }
 
-/* Links take the text-safe accent, not --primary. The two tokens and the
-   reason they are separate are documented where --accent-text is declared;
-   note that a hover border-color still wants var(--primary), because a border
-   is a graphic. */
 html.theme-light a { color: var(--accent-text); }
 
-/* A .button is an <a>, so the rule above caught it and every button read
-   orange at rest — against a --header-text border, which had stayed ink. The
-   accent belongs to the hover state here, the way it does in the dark theme.
-   Two class selectors, so this beats `html.theme-light a` (one class, one
-   element) while the :hover pair below still beats this. */
 html.theme-light .button,
 html.theme-light input[type="submit"] {
     color: var(--header-text);
@@ -114,26 +57,9 @@ html.theme-light input[type="submit"]:hover {
     color: var(--accent-text);
 }
 
-/* Same trap, same fix, one component over: a card title is an <a>, so the rule
-   above painted every showcase and product name orange on the light theme
-   while the dark theme showed them in ink. .card-link already says
-   `color: inherit` (css/feature-card.css) and wins there against a bare `a` —
-   it just loses to `html.theme-light a`, which carries an element selector on
-   top of its class. Two classes here, so the component's intent holds in both
-   themes. The whole card is the link; the title does not need to look like
-   one. */
 html.theme-light .card-link {
     color: inherit;
 }
-
-
-/* --------------------------------------------------------------------------
-   2. Card weight
-   Not a colour swap: the dark theme leans on a 2px edge because the card and
-   the page are the same #333, and that edge is the only thing separating
-   them. Here the fill already separates them, so the same 2px border reads
-   as a drawn box. Width only — the colour comes from --surface-border.
-   -------------------------------------------------------------------------- */
 
 html.theme-light .feature-card,
 html.theme-light .service-group,
@@ -141,106 +67,35 @@ html.theme-light #businessareas .area-grid > .col-6.icon-block {
     border-width: 1px;
 }
 
-/* The resting card has no hover border in the dark theme, so this is an
-   addition rather than an override. #businessareas keeps its orange one. */
 html.theme-light .feature-card:hover,
 html.theme-light .service-group:hover {
     border-color: #c9c9c9;
 }
 
-/* The portrait cards carry a deliberately heavier hover lift, because a normal
-   shadow vanishes under an edge-to-edge photograph. At 0.7 alpha on paper that
-   reads as a slab, so here they fall back in with every other card. */
 html.theme-light .person-card:hover {
     box-shadow: var(--card-shadow-hover);
 }
 
-
-/* --------------------------------------------------------------------------
-   3. Header / navigation
-   Nothing here. The header is the brand: the orange bar, the white lockup and
-   the white type on it are the same in both themes, and the sheets say so
-   through --header and --on-header rather than through an override. The only
-   part of it that does move is what hangs BELOW the bar — the language and
-   section panels, which sit on --surface and read --link, so they turn white
-   with dark entries on their own.
-
-   That is also why --link-hover-active stays near-black in the token block:
-   every one of its uses is on the orange bar.
-   -------------------------------------------------------------------------- */
-
-
-/* --------------------------------------------------------------------------
-   3b. Hero
-   The ramp itself needs no override — it reads var(--secondary), so it fades
-   to paper here on its own (see #home::before in colors.css), and --hero-text
-   in the token block turns the copy to ink. Only these two are left.
-   -------------------------------------------------------------------------- */
-
-/* Tried and rejected 2026-09-01: a flat wash of the ground over the whole
-   photo (`background-color` on ::before, which paints under the ramps), to lift
-   the dark grayscale frame towards paper. At 30% Daniel called it "a haze all
-   over the image" — it dulls the photo everywhere instead of only where the
-   copy needs ground. The ramps carry the fade; the photo keeps its contrast. */
-
-/* The cue is white-with-a-drop-shadow in the dark theme because it sits on the
-   photo. Here it is ink on paper, and a black glow under it reads as dirt. */
 html.theme-light #home .scroll-cue {
     filter: none;
 }
 
-
-/* --------------------------------------------------------------------------
-   4. Artwork that does not survive the swap
-   -------------------------------------------------------------------------- */
-
-/* NOTE: do not invert the area icons. They are orange artwork, not white, so
-   they already read on paper — and invert(#ff4b00) is exactly #00b4ff, so an
-   invert here silently repaints the entire icon set cyan. */
-
-/* The oversized watermark behind each icon block is that same orange artwork
-   at 7%, which on paper reads as a peach smudge rather than a shadow. Taken
-   down so it stays a texture. */
 html.theme-light #businessareas .icon-block::after {
     opacity: 0.05;
 }
 
-/* The photo veil on the service cards stays dark — the caption is white type
-   over a photograph, and a light veil would drop it to ~1.6:1. That is why
-   those captions read --banner-text rather than --normal-text, and why
-   nothing here touches them. Same for the carousel arrows, which sit on the
-   photo: only their own chrome flips. */
 html.theme-light .image-carousel-arrow {
     background: rgba(255, 255, 255, 0.85);
     color: var(--normal-text);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
-/* The rule above was swallowing every state the arrow has. It is (0,2,1) — the
-   `html` is an element selector on top of two classes — and the base
-   `.image-carousel-arrow:hover` in css/image-carousel.css is only (0,2,0), so
-   this beat it on specificity rather than on source order: no amount of
-   reordering the sheets would have fixed it. In light mode the disc simply
-   stayed white through hover, press and focus alike, which is what Daniel saw.
-
-   Restated here at (0,3,1) so the states come back. The chevron goes white on
-   the orange the way it already does in the dark theme — 3.9:1 against
-   --primary on this ground, past the 3:1 a non-text control needs. */
 html.theme-light .image-carousel-arrow:hover,
 html.theme-light .image-carousel-arrow:active {
     background: var(--primary);
     color: #fff;
 }
 
-/* The dots are the other half of that. Unlike the arrows they never sit on a
-   photo — every carousel on the site puts them on section background — so the
-   white they carry in dark mode leaves them invisible here, and a three-slide
-   carousel reads as a single orange dot with nothing to say how many more there
-   are. Same weights as the dark-mode pair, inverted. The current dot is
-   --primary in both themes, and :not() is what keeps it that way: without it
-   this rule outranks .image-carousel-dot[aria-current="true"]::before — two
-   classes and two elements against two classes and one — and the current dot
-   would go grey here. */
 html.theme-light .image-carousel-dot:not([aria-current="true"])::before {
     background: rgba(0, 0, 0, 0.25);
 }
@@ -249,20 +104,6 @@ html.theme-light .image-carousel-dot:hover::before {
     background: rgba(0, 0, 0, 0.45);
 }
 
-/* The ledningsgrupp captions are burned into a near-black gradient at the foot
-   of each portrait, so they keep the light-on-dark treatment the rest of the
-   page drops. --section-heading and --muted-text both go dark here and would
-   put near-black type on black.
-
-   The media query is load-bearing, not tidiness. Below 768px css/about.css
-   takes the overlay off — .person-body goes `position: static` with
-   `background: none`, so the caption sits on the card's own fill, which on this
-   theme is white. Unguarded, these two rules painted a white name on a white
-   card (1:1, the name simply was not there) and a #d4d4d4 role at 1.4:1. Below
-   the breakpoint the tokens in colors.css are already right, so the fix is to
-   stop overriding them rather than to add a second override. Keep this bound to
-   the same 767/768 edge as the `.person-body` block in css/about.css — if one
-   moves, both move. */
 @media (min-width: 768px) {
 
     html.theme-light .person-name {
@@ -273,31 +114,13 @@ html.theme-light .image-carousel-dot:hover::before {
         color: #d4d4d4;
     }
 
-    /* And the address on the same gradient. It is an <a>, so it took the
-       light theme's --accent-text (#BC3D00) — which is the AA-safe accent on
-       paper and 3.34:1 on this near-black veil. The veil is the dark theme's
-       ground whatever the page theme is, so the link takes the dark theme's
-       accent with it: 6.5:1, and the card now reads identically in both
-       themes above the breakpoint, which is what the two rules above already
-       intended. Literal because there is no "the other theme's token" to
-       reference from inside html.theme-light. */
     html.theme-light .person-contact a {
         color: rgb(255, 106, 59);
     }
 }
 
-/* Four of the six partner logos (Esri, Nvidia, Rymdstyrelsen, Maxanv) are the
-   reversed variant: a colour mark with a white wordmark. No filter rescues
-   those — greyscale leaves the wordmark white and inverting would wreck the
-   mark — so light mode paints each brand's own light-background variant as a
-   background on the link and hides the reversed <img> sitting over it. The
-   -light.webp files are drawn on the same canvas as their dark counterparts,
-   with the artwork in the same box, so the strip does not reflow when the
-   theme flips. IBM and Pedab are solid coloured plates and need no swap. */
 html.theme-light .trust-partners .logo-track a {
-    /* The 40px a side normally lives on the img. Moved out to the link so the
-       link box is exactly the image box and background-size: contain lands on
-       the same pixels the <img> would have. Spacing is unchanged. */
+
     display: inline-block;
     margin: 0 40px;
     line-height: 0;
@@ -324,8 +147,6 @@ html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
     background-size: contain;
 }
 
-/* The reversed original stays in the markup for its alt text and its layout
-   box; only its pixels go. */
 html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) img,
 html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) img,
 html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) img,
@@ -349,22 +170,10 @@ html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
     background-image: url(../images/company-images/maxanv-light.webp);
 }
 
-
-/* --------------------------------------------------------------------------
-   5. Footer
-   -------------------------------------------------------------------------- */
-
-/* A band off the page ground rather than a card — it is the bottom of the
-   sheet. It used to be #f7f7f7, a cool neutral that read as a colour error
-   against the warm paper ground above it and made a fourth light surface
-   value; --surface-alt is the warm step off the ground this palette already
-   owns. */
 html.theme-light .footer-large {
     background: var(--surface-alt);
 }
 
-/* The footer links are body copy, not calls to action; colors.css gives every
-   <a> the orange accent, which would make a wall of orange down there. */
 html.theme-light .footer-large a,
 html.theme-light .footer-large p {
     color: var(--muted-text);
@@ -374,16 +183,6 @@ html.theme-light .footer-large a:hover {
     color: var(--accent-text);
 }
 
-/* The certification marks are greyscaled in both themes (css/footer-large.css)
-   and get a brightness lift there so the discs clear the dark ground. On paper
-   the same lift takes them the wrong way — a pale grey disc with white type in
-   it, which loses the numbers. Back to plain greyscale, and a little further
-   down: on this ground they read as darker than everything around them, so 0.9
-   made them the loudest thing in the footer.
-
-   The hover has to be restated here. This selector carries one more element
-   than the :hover rule in footer-large.css does and would otherwise hold the
-   marks grey on paper however long the pointer sat on them. */
 html.theme-light .footer-certs .cert-badges a {
     filter: grayscale(100%);
     opacity: 0.75;
@@ -395,28 +194,18 @@ html.theme-light .footer-certs .cert-badges a:focus-visible {
     opacity: 1;
 }
 
-/* The footer logo is the white lockup again. */
 html.theme-light .footer-large #logo img,
 html.theme-light .footer-large img[src*="td_white"],
 html.theme-light .footer-large img[src*="td_logo"] {
     filter: invert(1);
 }
 
-
-/* --------------------------------------------------------------------------
-   6. Optional: one black band
-   The template's strongest move is a black shape crashing into the white
-   ground. Add `band-dark` to a section to give it that treatment. Off by
-   default so the plain repaint can be judged on its own.
-   -------------------------------------------------------------------------- */
-
 html.theme-light .band-dark {
     background: var(--band);
-    /* Full-bleed out of the centred wrapper. */
+
     box-shadow: 0 0 0 100vmax var(--band);
     clip-path: inset(0 -100vmax);
 
-    /* Inside the band the surface tokens go back to their dark values. */
     --surface: #141414;
     --surface-border: #333333;
     --muted-text: #c2c2c2;
@@ -434,8 +223,6 @@ html.theme-light .band-dark li {
     color: #ffffff;
 }
 
-/* ...except the card body copy, which stays the muted grade the token now
-   carries — the rule above outranks the sheets' own selectors. */
 html.theme-light .band-dark .feature-card p,
 html.theme-light .band-dark .icon-block p,
 html.theme-light .band-dark .area-band-item p {
@@ -446,5 +233,4 @@ html.theme-light .band-dark .icon-block img,
 html.theme-light .band-dark .icon-block::after {
     filter: none;
 }
-
 

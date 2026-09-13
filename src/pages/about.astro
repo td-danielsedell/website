@@ -1,26 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AboutCss from '../components/head/AboutCss.astro';
-import LeafletNote from '../components/head/LeafletNote.astro';
 import AboutScripts from '../components/scripts/AboutScripts.astro';
+import AboutJsonLdSv from '../components/head/AboutJsonLdSv.astro';
 ---
 <Layout
     lang="sv"
     path="about.html"
     title="Om oss | Total Digital"
-    description="Om Total Digital: vår historia, ledningsgruppen, de tretton orter vi arbetar från, karriär och examensarbete – samt kontaktuppgifter."
+    description="Om Total Digital: vår historia, ledningen, de tretton orter vi arbetar från, ISO 9001- och 14001-certifiering samt karriär och examensarbete."
     onAboutPage
     bannerPlaceholder={false}
 >
     <AboutCss slot="head-css" lang="sv" />
-    <LeafletNote slot="head-after-theme" />
+    <AboutJsonLdSv slot="head-after-fonts" />
     <AboutScripts slot="scripts" lang="sv" />
         <main id="content" class="showcase-top about-top">
 
-            <!--Introduction. Två kolumner i stället för ett staplat mittspann:
-                utsagan till vänster, brödtexten bredvid. Sidan öppnade annars
-                på en smal remsa och vidgade sig för varje sektion under den.
-                Måttet på brödtexten hålls av .about-hero i css/about.css.-->
             <section id="about-intro" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -28,16 +24,11 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                         <div>
                             <div class="section-heading">
-                                <!--Ett p, inte ett h2, till skillnad från kickern över varje
-                                    avsnittsrubrik längre ner. Här står etiketten över sidans h1,
-                                    och ett h2 före det enda h1:et bryter dispositionen: sidan
-                                    börjar då på nivå två och backar till nivå ett.-->
+
                                 <p class="section-kicker">OM OSS</p>
                                 <h1 class="about-title">Vi är Total Digital</h1>
                             </div>
-                            <!--Ledraden ligger utanför .section-heading. Inne i den hade den
-                                varit sidans .section-subtitle och dragit med sig både måttet
-                                och det orange strecket – här är rubriken själv utsagan.-->
+
                             <p class="about-lead">Lilla företagets smidighet. Stora företagets styrka. </p>
                         </div>
 
@@ -48,20 +39,13 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                     </div>
 
-                    <!--Avslutar hero-blocket. Introt är enda sektionen utan orange streck
-                        under rubriken, så utan den här linjen går det rakt in i Historia.-->
                     <div class="col-1">
                         <hr class="about-hero-rule" />
                     </div>
 
                 </div>
             </section>
-            <!--End of Introduction-->
 
-            <!--Historia. Underrubriken ligger inne i .section-heading, som
-                showcase-sidorna gör, i stället för i en egen kolumn vid sidan
-                om rubriken. Det orange strecket flyttas därmed ned under
-                underrubriken och stänger hela blocket – se css/about.css.-->
             <section id="history" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -73,12 +57,8 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                         </div>
                     </div>
 
-
                     <div class="col-1">
-                        <!--Årtalen är en egen skena till vänster. Varianten som växlade
-                            sida halverade måttet för varje post och läste som två ojämna
-                            kolumner så snart en post gick över en rad. Punkten hänger på
-                            årtalet (.rail-year::after) – ingen dekorativ span i markupen.-->
+
                         <ol class="year-rail">
                             <li>
                                 <p class="rail-year">2018</p>
@@ -125,12 +105,9 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                         </ol>
                     </div>
 
-
                 </div>
             </section>
-            <!--End of Historia-->
 
-            <!--Ledningsgrupp-->
             <section id="management" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -141,7 +118,6 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                             <p class="section-subtitle">Ledningsgruppen håller ihop riktning, affärsområden och utveckling – med kompetens från olika delar av verksamheten.</p>
                         </div>
                     </div>
-
 
                     <div class="col-1">
                         <div class="person-carousel image-carousel" data-image-carousel
@@ -156,7 +132,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                                     <div class="person-body">
                                         <h3 class="person-name">Linus Kozsinowski</h3>
                                         <p class="person-role">VD</p>
-                                        <p class="person-contact"><a href="mailto:linus@totaldigital.se">linus@totaldigital.se</a></p>
+                                        <p class="person-contact"><a class="email-obfuscated" data-user="linus" data-domain="totaldigital.se">Visa e-postadress</a><noscript><a href="mailto:linus@totaldigital.se">linus@totaldigital.se</a></noscript></p>
                                     </div>
                                 </div>
                             </div>
@@ -167,8 +143,8 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                                         width="400" height="500" loading="lazy" alt="" />
                                     <div class="person-body">
                                         <h3 class="person-name">Mattias Svensson</h3>
-                                        <p class="person-role">Vice-VD</p>
-                                        <p class="person-contact"><a href="mailto:mattias@totaldigital.se">mattias@totaldigital.se</a></p>
+                                        <p class="person-role">Vice VD</p>
+                                        <p class="person-contact"><a class="email-obfuscated" data-user="mattias" data-domain="totaldigital.se">Visa e-postadress</a><noscript><a href="mailto:mattias@totaldigital.se">mattias@totaldigital.se</a></noscript></p>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +156,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                                     <div class="person-body">
                                         <h3 class="person-name">Monica Andreasson</h3>
                                         <p class="person-role">HR-Ansvarig</p>
-                                        <p class="person-contact"><a href="mailto:monica@totaldigital.se">monica@totaldigital.se</a></p>
+                                        <p class="person-contact"><a class="email-obfuscated" data-user="monica" data-domain="totaldigital.se">Visa e-postadress</a><noscript><a href="mailto:monica@totaldigital.se">monica@totaldigital.se</a></noscript></p>
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +168,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                                     <div class="person-body">
                                         <h3 class="person-name">Petter Tyrenius</h3>
                                         <p class="person-role">Affärsområdeschef</p>
-                                        <p class="person-contact"><a href="mailto:petter@totaldigital.se">petter@totaldigital.se</a></p>
+                                        <p class="person-contact"><a class="email-obfuscated" data-user="petter" data-domain="totaldigital.se">Visa e-postadress</a><noscript><a href="mailto:petter@totaldigital.se">petter@totaldigital.se</a></noscript></p>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +180,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                                     <div class="person-body">
                                         <h3 class="person-name">Anton Hansson</h3>
                                         <p class="person-role">Affärsområdeschef</p>
-                                        <p class="person-contact"><a href="mailto:anton@totaldigital.se">anton@totaldigital.se</a></p>
+                                        <p class="person-contact"><a class="email-obfuscated" data-user="anton" data-domain="totaldigital.se">Visa e-postadress</a><noscript><a href="mailto:anton@totaldigital.se">anton@totaldigital.se</a></noscript></p>
                                     </div>
                                 </div>
                             </div>
@@ -215,9 +191,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                 </div>
             </section>
-            <!--End of Ledningsgrupp-->
 
-            <!--Orter-->
             <section id="locations" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -225,26 +199,16 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                         <div class="section-heading">
                             <h2 class="section-kicker">VAR VI FINNS</h2>
                             <p class="section-title">Tretton orter. Ett team.</p>
-                            <!--Utan underrubrik ligger det orange strecket kvar
-                                under rubriken. Tas den här in igen flyttar
-                                strecket ned under den av sig själv.-->
-                            <!--
-                            <p class="section-subtitle">PLATSHÅLLARE. En rad om att vi arbetar på
-                                distans, och vad det betyder för hur vi tar uppdrag.</p>
-                            -->
+
                         </div>
                     </div>
                     <div class="col-1 split-2">
 
                         <div>
                         <p>Vi är ett distansbolag utan huvudkontor. Det är ett medvetet val som låter oss hitta rätt kompetens där den finns och samtidigt vara nära våra kunder.</p>
-                        <!--Klassen finns för mobilregeln i css/about.css: under 768px
-                            är listan dold och den här raden pekar då på ingenting.-->
+
                         <p class="locations-lead">Idag finns vi i:</p>
-                        <!--data-city ties each row to a dot in CITIES in js/about.js. The
-                            rows are plain text here and are only made clickable by the
-                            script, so the list survives as readable content without
-                            JavaScript.-->
+
                         <ul class="location-list">
                             <li data-city="ostersund">Östersund</li>
                             <li data-city="uppsala">Uppsala</li>
@@ -262,21 +226,9 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
                         </ul>
                         </div>
 
-                        <!--Leaflet map, drawn by js/about.js. The tiles come from
-                            tile.openstreetmap.org: a third-party resource (item 23 in the
-                            revision document) but a cookie-free one, unlike the ESRI embed
-                            once planned for this slot. Dropping the third party entirely
-                            would mean drawing the map as GeoJSON instead of tiles.
-
-                            #map is hidden until about.js marks it .map-live, so without
-                            JavaScript there is no empty box here — and the city list
-                            beside it stays on screen at every width, since it is then the
-                            only place the orter are named.-->
                         <figure class="about-map">
                             <div id="map"></div>
-                            <!--Hänvisningen till listan är ett eget element: på telefon
-                                finns ingen lista att välja ur, och då döljs bara den
-                                meningen i stället för hela bildtexten.-->
+
                             <figcaption>Våra orter. <span class="map-hint">Välj en ort i listan bredvid för att zooma dit.</span></figcaption>
                         </figure>
 
@@ -284,16 +236,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                 </div>
             </section>
-            <!--End of Orter-->
 
-            <!--Certifieringar. Märkena i foten leder hit, så avsnittet måste svara
-                på frågan de väcker: vad är det som är certifierat. Bilderna ligger i
-                figure med figcaption i stället för att texten under dem sätts som
-                brödtext – märket och vad det står för är ett par.
-
-                Ingen .wow här: en läsare som kommer via #certificates hoppar rakt
-                ned i sektionen, och wow.js hinner inte se elementen på ett hopp
-                (avsnittet hade stått tomt).-->
             <section id="certificates" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -330,13 +273,7 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                 </div>
             </section>
-            <!--End of Certifieringar-->
 
-            <!--Karriär. Var två sektioner, Karriär och Examensarbete: de sa samma sak två
-                gånger – vi annonserar inte, hör av dig – och lade två CTA-block efter
-                varandra i slutet av sidan. Nu en sektion med två spår. Spåren behöver egna
-                rubriker (h3 inne i .track) eftersom de två kickers som tidigare skilde dem
-                åt är borta.-->
             <section id="career" class="introduction scrollto">
                 <div class="row clearfix">
 
@@ -350,15 +287,6 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                     <div class="col-1">
 
-                        <!--Två spår, varsin knapp. Sektionen avslutades tidigare med båda
-                            knapparna sida vid sida under båda kolumnerna, vilket lade valet
-                            tillbaka på läsaren efter att den kolumn som besvarade det redan
-                            var läst. Ämnesraden i mailto skiljer fortfarande en
-                            spontanansökan från en examensarbetsförfrågan.
-
-                            Spåren är medvetet inte inramade som kort: ett kort på den här
-                            sajten betyder att hela ytan går att klicka på, och det gör inte
-                            ett stycke brödtext med en knapp i.-->
                         <div class="track-grid">
 
                             <div class="track">
@@ -383,8 +311,6 @@ import AboutScripts from '../components/scripts/AboutScripts.astro';
 
                 </div>
             </section>
-            <!--End of Karriär-->
-
 
         </main>
 </Layout>

@@ -1,68 +1,44 @@
 ---
 /**
- * The index banner: everything inside <header id="home"> after the nav.
+ * The index banner: everything inside <header id="home"> after the nav block.
  *
- * A component rather than inline slot content because it carries ten HTML
- * comments, and Astro drops comments written at the top level of slot content.
- * Per-locale because the copy itself is translated, not just the comments.
+ * A component rather than inline slot content because Astro drops comments
+ * written at the top level of slot content. Per locale because the copy is
+ * translated, not just the comments.
  */
 ---
-<!--Banner Content-->
-            <div id="banner-content" class="row clearfix">
+
+<div id="banner-content" class="row clearfix">
 
                 <div class="col-61">
 
                     <div class="section-heading">
                         <h1 id="main-heading">NOTHING<br />BEATS<br />EXPERIENCE</h1>
 
-                        <!--Expertise line. The four affärsområden sit in the markup and CSS
-                            slides the reel; the fifth repeats the first so the loop does not
-                            jump. -->
-                        <p class="expertise-line">
+                        <p class="expertise-line expertise-line-grow">
                             <span class="expertise-label">We know</span>
                             <span class="expertise-rotator" aria-hidden="true">
                                 <span class="expertise-reel">
                                     <span><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" aria-hidden="true"></i>Asset Management</span>
-                                    <span><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>GIS</span>
+                                    <span><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>Geodata</span>
                                     <span><i class="fa-solid fa-satellite" aria-hidden="true"></i>Remote Sensing</span>
                                     <span><i class="fa-solid fa-microchip-ai" aria-hidden="true"></i>AI</span>
                                     <span aria-hidden="true"><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>Asset Management</span>
                                 </span>
                             </span>
-                            <!--The reel is four items deep in the DOM and only clipped by CSS, so
-                                a screen reader used to hear "We know Asset ManagementGISRemote SensingAI"
-                                as one word. It is hidden above and read as a sentence here; the
-                                visible "We know" is not repeated, so the line is spoken once.-->
-                            <span class="sr-only">asset management, GIS, remote sensing and AI.</span>
-                        </p>
-                        <!--End of Expertise line-->
 
-                        <!--One paragraph, not two: .banner-intro:after draws the
-                            orange rule, and a second <p> would have put a second
-                            rule in the middle of the copy. The second sentence is
-                            a block span carrying the air instead - see
-                            .banner-intro-next.-->
-                        <p class="banner-intro">20+ years of experience. Specialist expertise that makes a difference.
-                            <span class="banner-intro-next">We bring together asset management, GIS, remote sensing
+                            <span class="sr-only">asset management, geodata, remote sensing and AI.</span>
+                        </p>
+
+                        <p class="banner-intro">Specialist expertise that makes a difference.
+                            <span class="banner-intro-next">We bring together asset management, geodata, remote sensing
                             and AI – connecting the condition, location and development of your assets.</span></p>
                     </div>
 
-                    <!--Call to Action-->
-                    <!--<a href="mailto:info@totaldigital.se" class="button">CONTACT US NOW</a>-->
-                    <!--End Call to Action-->
-
                 </div>
 
-            </div><!--End of Row-->
+            </div>
 
-            <!--The scroll cue. It sits last in #home, outside the row: it belongs
-                to the view and not to the text, and #home is the thing that is
-                exactly one screen tall. The label sits inside the link, so the
-                aria-label opens on the same words – otherwise the name read out
-                does not match the one on screen. data-scroll-to is picked up by
-                js/site.js, which scrolls there smoothly with the same speed and
-                easing as the menu's own anchors. See .scroll-cue in
-                css/style.css.-->
             <a href="#businessareas" class="scroll-cue" data-scroll-to
                 aria-label="Read more about Technology areas"><span class="scroll-cue-label">Read more</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
 

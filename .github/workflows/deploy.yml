@@ -1,0 +1,103 @@
+name: Build and deploy over FTPS
+
+# Manual trigger only, on purpose. Nothing deploys on push: the button is the
+# human step. Switch to a `push:` trigger once the pipeline has proved itself
+# against the real server a few times.
+#
+# NOTE: GitHub only shows the "Run workflow" button for workflows that exist on
+# the repository's DEFAULT branch. This file therefore has to be committed to
+# the fork's `main` as well as to `astro` — once it is on both, pick the branch
+# to deploy from in the run dialog.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER     hostname, e.g. ftp.example.com  (no scheme, no path)
+#   FTP_USERNAME
+#   FTP_PASSWORD
+# Set these in the repository itself. Never put them in this file.
+
+on:
+  workflow_dispatch:
+    inputs:
+      server-dir:
+        description: 'Target directory on the server (MUST end with a slash). Use a staging path until this is proven.'
+        required: true
+        default: '/staging/'
+      dry-run:
+        description: 'Dry run: log what would transfer, upload nothing. Leave ticked until you trust the file list.'
+        type: boolean
+        default: true
+
+# One deploy at a time. `cancel-in-progress` stays false deliberately —
+# cancelling mid-upload would leave the server holding a half-written site.
+concurrency:
+  group: ftp-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # Gate: the traps-checklist invariants must hold in the built output.
+      # This check is baseline-independent — it asserts things that are true of
+      # a correct page regardless of what main looks like (theme.js blocking and
+      # in <head>, #nav-mobile empty, the nav onclick count, .footer-columns
+      # holding exactly four children, no _astro references, valid JSON-LD).
+      #
+      # `npm run verify` is deliberately NOT the gate here: it diffs against the
+      # fork-point snapshot in verify/baseline/, which goes stale as soon as
+      # content moves on, and a stale baseline must not be able to block a
+      # deploy. Run that one locally during the migration instead.
+      - name: Assert page invariants
+        run: npm run verify:invariants
+
+      # The inputs go through `env`, not straight into the script. Interpolating
+      # ${{ inputs.* }} into a run: block splices the value into the shell before
+      # bash ever sees it, so a crafted input would execute as a command. Only a
+      # user with write access can start this workflow, but quoting it costs
+      # nothing and removes the question.
+      - name: Show what is about to transfer
+        env:
+          TARGET_DIR: ${{ inputs.server-dir }}
+          DRY_RUN: ${{ inputs.dry-run }}
+        run: |
+          echo "Target : $TARGET_DIR"
+          echo "Dry run: $DRY_RUN"
+          echo "Files  : $(find dist -type f | wc -l)"
+          echo "Size   : $(du -sh dist | cut -f1)"
+
+      - name: Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Explicit FTPS: AUTH TLS over port 21, so credentials are encrypted
+          # in transit. Confirmed supported by the host 2026-09-13.
+          protocol: ftps
+          port: 21
+          local-dir: ./dist/
+          server-dir: ${{ inputs.server-dir }}
+          dry-run: ${{ inputs.dry-run }}
+          # The action keeps a sync-state file on the server and uploads only
+          # what changed. The first run has no state to read, so it transfers
+          # everything (~140 files, 18MB, nearly all of it images); later runs
+          # move only the handful of files that actually differ.
+          state-name: .ftp-deploy-sync-state.json
+          # `dangerous-clean-slate` is intentionally absent. It wipes the remote
+          # directory before uploading. Do not add it.
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store

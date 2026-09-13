@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import RaildamageAnalysesCss from '../../components/head/RaildamageAnalysesCss.astro';
 import RaildamageAnalysesFooterCss from '../../components/head/RaildamageAnalysesFooterCss.astro';
+import RaildamageAnalysesJsonLdEn from '../../components/head/RaildamageAnalysesJsonLdEn.astro';
 ---
 <Layout
     lang="en"
@@ -14,10 +15,10 @@ import RaildamageAnalysesFooterCss from '../../components/head/RaildamageAnalyse
     ogImageAlt="Rail defect identified in an inspection image"
 >
     <RaildamageAnalysesCss slot="head-css" lang="en" />
+    <RaildamageAnalysesJsonLdEn slot="head-after-fonts" />
     <RaildamageAnalysesFooterCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction-->
             <section class="introduction scrollto">
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
@@ -38,18 +39,15 @@ import RaildamageAnalysesFooterCss from '../../components/head/RaildamageAnalyse
 
                         <div class="col-1">
                             <p>
-                                We combine AI, deep learning and computer vision to <strong>identify rail defects and anomalies in image data </strong> from railway infrastructure.
+                                We use AI, deep learning and computer vision to <strong>detect rail defects and anomalies in imagery</strong> collected during railway inspections.
                             </p><p>
-                                Our models are trained on high-resolution image data and analyse inspection data from mobile measurement systems. They can identify different types of defect and anomaly, and be adapted to different sensors and inspection workflows. With edge deployment the analysis can also run directly on the inspection equipment, close to the data source.
+                                Our models are trained on high-resolution imagery and can identify different types of defects and anomalies in data from mobile inspection systems. The models can be adapted to different sensors and inspection workflows, and can also run directly on inspection equipment for on-site analysis.
                             </p><p>
-                                The method covers the whole chain – from data processing and AI analysis to visualisation and integration with the customer's systems. The results support <strong>condition assessment, maintenance prioritisation and long-term monitoring of the railway asset base.</strong>
+                                The solution covers the entire process from data processing and AI analysis to visualisation and integration with existing systems. The results provide a clearer picture of asset condition, helping operators prioritise maintenance and monitor changes over time.
                             </p>
                            <i>Partners: Region Stockholm</i>
                         </div>
 
-                        <!--Call to Action. Portrait, question, name and role sit in a
-                            centred column, and the address is the way in — no button.
-                            The rules live under .showcase-cta .cta-* in css/style.css.-->
                         <div class="col-1 text-center showcase-cta">
                             <div class="cta-signature">
                                 <img class="cta-face" src="../images/showcase-images/PT.webp" width="104" height="104"
@@ -58,17 +56,15 @@ import RaildamageAnalysesFooterCss from '../../components/head/RaildamageAnalyse
                                     <p>Want to know more about how this could work in your organisation?</p>
                                     <p class="cta-name">Petter Tyrenius</p>
                                     <p class="cta-role">Project Lead</p>
-                                    <p class="cta-mail"><a href="mailto:petter@totaldigital.se?subject=Rail defect analysis">petter@totaldigital.se</a></p>
+                                    <p class="cta-mail"><a class="email-obfuscated" data-user="petter" data-domain="totaldigital.se" data-subject="Rail defect analysis">Show email address</a><noscript><a href="mailto:petter@totaldigital.se?subject=Rail defect analysis">petter@totaldigital.se</a></noscript></p>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Call to Action-->
 
                     </div>
                 </div>
 
             </section>
-            <!--End of Introduction-->
 
         </main>
 </Layout>

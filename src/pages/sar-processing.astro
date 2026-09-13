@@ -2,22 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import SarProcessingCss from '../components/head/SarProcessingCss.astro';
 import SarProcessingFooterCss from '../components/head/SarProcessingFooterCss.astro';
+import SarProcessingJsonLdSv from '../components/head/SarProcessingJsonLdSv.astro';
 ---
 <Layout
     lang="sv"
     path="sar-processing.html"
-    title="Hög- och medelupplöst SAR-bearbetning | Total Digital"
+    title="InSAR – skalbar övervakning av markrörelser | Total Digital"
     description="InSAR-baserad bearbetning av hög- och medelupplöst SAR-data för övervakning av markrörelser och deformationer inom infrastruktur och samhällsbyggnad."
-    ogTitle="Hög- och medelupplöst SAR-bearbetning"
+    ogTitle="InSAR – skalbar övervakning av markrörelser"
     ogType="article"
     ogImage="https://www.totaldigital.se/images/og/sar-processing.jpg"
     ogImageAlt="Interferogram från SAR-data"
 >
     <SarProcessingCss slot="head-css" lang="sv" />
+    <SarProcessingJsonLdSv slot="head-after-fonts" />
     <SarProcessingFooterCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction-->
             <section class="introduction scrollto">
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
@@ -41,13 +42,10 @@ import SarProcessingFooterCss from '../components/head/SarProcessingFooterCss.as
                             </p> <p>
                                 Med radardata från kommersiella SAR-satelliter, Sentinel-1 och NISAR kan vi följa förändringar över stora områden, oberoende av väder och dygnstid. Det gör det möjligt att upptäcka sättningar och rörelser innan de blir synliga i fält. Persistent Scatterers (PSI) och Distributed Scatterers (DSI) används beroende på projektets behov och markförhållanden.
                             </p>  <p>
-                                Lösningen kan skalas från enskilda objekt till stora geografiska områden och integreras direkt i kundens system. Den kan användas inom bl.a. järnväg, väg, geoteknik, byggnation, dammar och urbana miljöer<br><strong>- för långsiktig uppföljning, riskhantering och beslutsstöd.</strong>
+                                Lösningen kan skalas från enskilda objekt till stora geografiska områden och integreras direkt i kundens system. Den kan användas inom bl.a. järnväg, väg, geoteknik, byggnation, dammar och urbana miljöer<br><strong> för långsiktig uppföljning, riskhantering och beslutsstöd.</strong>
                             </p>
                         </div>
 
-                        <!--Call to Action. Porträtt, fråga, namn och roll står i en
-                            centrerad kolumn, och adressen är vägen in – ingen knapp.
-                            Reglerna ligger under .showcase-cta .cta-* i css/style.css.-->
                         <div class="col-1 text-center showcase-cta">
                             <div class="cta-signature">
                                 <img class="cta-face" src="images/showcase-images/HH.webp" width="104" height="104"
@@ -56,17 +54,15 @@ import SarProcessingFooterCss from '../components/head/SarProcessingFooterCss.as
                                     <p>Vill du veta mer om hur detta kan tillämpas i er verksamhet?</p>
                                     <p class="cta-name">Hanna Hassberg</p>
                                     <p class="cta-role">Projektledare</p>
-                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=SAR-bearbetning">hanna@totaldigital.se</a></p>
+                                    <p class="cta-mail"><a class="email-obfuscated" data-user="hanna" data-domain="totaldigital.se" data-subject="SAR-bearbetning">Visa e-postadress</a><noscript><a href="mailto:hanna@totaldigital.se?subject=SAR-bearbetning">hanna@totaldigital.se</a></noscript></p>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Call to Action-->
 
                     </div>
                 </div>
 
             </section>
-            <!--End of Introduction-->
 
         </main>
 </Layout>

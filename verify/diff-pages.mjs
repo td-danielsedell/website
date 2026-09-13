@@ -459,10 +459,15 @@ function runSelfTest(baselineDir, context) {
     ['theme.js moved after another script (trap 3)', 'about.html',
       (h) => once(h, '<script src="js/theme.js"></script>', '')
               .replace('</head>', '  <script src="js/theme.js"></script>\n</head>')],
-    ['a load-bearing comment deleted (trap 8)', 'about.html',
-      (h) => h.replace(/<!--[^]*?-->/, '')],
-    ['a comment re-worded (trap 8)', 'about.html',
-      (h) => h.replace(/<!-- ([A-Za-z][^\n-]{15,})-->/, '<!-- $1 and also something else -->')],
+    // The shipped pages carry no HTML comments since main's da008dd purge, and
+    // the .astro sources keep their documentation in `{/* … */}`, which Astro
+    // does not emit. So the direction that matters now is a comment APPEARING:
+    // that means a component used `<!-- … -->` where it should have used the
+    // expression form, and the comment is being shipped to visitors.
+    ['a comment emitted into the page (trap 8)', 'about.html',
+      (h) => once(h, '<body>', '<body>\n    <!-- leaked development note -->')],
+    ['a comment emitted inside <head> (trap 8)', 'about.html',
+      (h) => once(h, '</head>', '  <!-- leaked head note -->\n</head>')],
     ['a stylesheet dropped', 'about.html', (h) => once(h, '<link rel="stylesheet"', '<link data-dropped')],
     ['stylesheet order swapped (trap 6)', 'td_test.html', (h) => {
       const m = [...h.matchAll(/^[ \t]*<link rel="stylesheet" href="[^"]*">\n/gm)];
@@ -479,8 +484,8 @@ function runSelfTest(baselineDir, context) {
       return h.slice(0, i) + h.slice(i).replace(/<\/li>\s+<li>/, '</li><li>');
     }],
     ['whitespace between a rendered element and a <script> removed', 'about.html',
-      (h) => once(h, '</div>\n\n    <!-- Include JavaScript resources -->',
-                     '</div><!-- Include JavaScript resources -->')],
+      (h) => once(h, '</div>\n\n    <script src="js/jquery.1.8.3.min.js">',
+                     '</div><script src="js/jquery.1.8.3.min.js">')],
     ['an element unwrapped (structure flattened)', 'about.html',
       (h) => once(h, '<footer', '<div><footer').replace('</footer>', '</footer></div>')],
     ['JSON-LD content changed', 'index.html',

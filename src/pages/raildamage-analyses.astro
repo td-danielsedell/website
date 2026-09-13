@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import RaildamageAnalysesCss from '../components/head/RaildamageAnalysesCss.astro';
 import RaildamageAnalysesFooterCss from '../components/head/RaildamageAnalysesFooterCss.astro';
+import RaildamageAnalysesJsonLdSv from '../components/head/RaildamageAnalysesJsonLdSv.astro';
 ---
 <Layout
     lang="sv"
@@ -14,10 +15,10 @@ import RaildamageAnalysesFooterCss from '../components/head/RaildamageAnalysesFo
     ogImageAlt="Rälsskada identifierad i inspektionsbild"
 >
     <RaildamageAnalysesCss slot="head-css" lang="sv" />
+    <RaildamageAnalysesJsonLdSv slot="head-after-fonts" />
     <RaildamageAnalysesFooterCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction-->
             <section class="introduction scrollto">
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
@@ -26,7 +27,6 @@ import RaildamageAnalysesFooterCss from '../components/head/RaildamageAnalysesFo
                             alt="Rälsskada i inspektionsbild" width="1600" height="900" fetchpriority="high" />
                         <figcaption>Total Digital:s AI modell för identifiering av rälsskador från bilddata. © Total Digital.</figcaption>
                                                     </figure>
-
 
                         <div class="banner-spacer"></div>
 
@@ -47,9 +47,6 @@ import RaildamageAnalysesFooterCss from '../components/head/RaildamageAnalysesFo
                            <i>Samarbetspartners: Region Stockholm</i>
                         </div>
 
-                        <!--Call to Action. Porträtt, fråga, namn och roll står i en
-                            centrerad kolumn, och adressen är vägen in – ingen knapp.
-                            Reglerna ligger under .showcase-cta .cta-* i css/style.css.-->
                         <div class="col-1 text-center showcase-cta">
                             <div class="cta-signature">
                                 <img class="cta-face" src="images/showcase-images/PT.webp" width="104" height="104"
@@ -58,17 +55,15 @@ import RaildamageAnalysesFooterCss from '../components/head/RaildamageAnalysesFo
                                     <p>Vill du veta mer om hur detta kan tillämpas i er verksamhet?</p>
                                     <p class="cta-name">Petter Tyrenius</p>
                                     <p class="cta-role">Projektledare</p>
-                                    <p class="cta-mail"><a href="mailto:petter@totaldigital.se?subject=Analys av rälsskador">petter@totaldigital.se</a></p>
+                                    <p class="cta-mail"><a class="email-obfuscated" data-user="petter" data-domain="totaldigital.se" data-subject="Analys av rälsskador">Visa e-postadress</a><noscript><a href="mailto:petter@totaldigital.se?subject=Analys av rälsskador">petter@totaldigital.se</a></noscript></p>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Call to Action-->
 
                     </div>
                 </div>
 
             </section>
-            <!--End of Introduction-->
 
         </main>
 </Layout>

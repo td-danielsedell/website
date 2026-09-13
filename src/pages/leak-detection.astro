@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import LeakDetectionCss from '../components/head/LeakDetectionCss.astro';
 import LeakDetectionFooterCss from '../components/head/LeakDetectionFooterCss.astro';
+import LeakDetectionJsonLdSv from '../components/head/LeakDetectionJsonLdSv.astro';
 ---
 <Layout
     lang="sv"
@@ -14,10 +15,10 @@ import LeakDetectionFooterCss from '../components/head/LeakDetectionFooterCss.as
     ogImageAlt="Läckagedetektering i vattendistributionsnät"
 >
     <LeakDetectionCss slot="head-css" lang="sv" />
+    <LeakDetectionJsonLdSv slot="head-after-fonts" />
     <LeakDetectionFooterCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction-->
             <section class="introduction scrollto">
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
@@ -39,16 +40,13 @@ import LeakDetectionFooterCss from '../components/head/LeakDetectionFooterCss.as
                             <p>
                                 Vi kombinerar AI, satellitdata och driftsdata för att upptäcka <strong>läckage och vattenförluster</strong> i stora vattendistributionsnät.
                             </p>  <p>
-                                Genom att analysera förändringar i mark, vegetation och fuktnivåer över tid kan vi identifiera mönster som tyder på läckage – även när problemen ännu inte är synliga i fält. Över stora områden kan avvikelser och förändringsmönster identifieras och följas löpande, vilket hjälper till att lokalisera riskområden och prioritera rätt insatser.
+                                Genom att analysera förändringar i mark, vegetation och fuktnivåer över tid kan vi identifiera mönster som tyder på läckage även när problemen ännu inte är synliga i fält. Över stora områden kan avvikelser och förändringsmönster identifieras och följas löpande, vilket hjälper till att lokalisera riskområden och prioritera rätt insatser.
                             </p><p>
-                                Metoden möjliggör kontinuerlig övervakning av ledningsnätet och kan användas som stöd i både operativt och långsiktigt underhåll. Det möjliggör: <strong> minskade vattenförluster samt effektivare och bättre beslutsunderlag.</strong>
+                                Metoden möjliggör kontinuerlig övervakning av ledningsnätet och kan användas som stöd i både operativt och långsiktigt underhåll. För: <strong> minskade vattenförluster samt effektivare och bättre beslutsunderlag.</strong>
                             </p>
-                            <i>Samarbetspartners: Laholmsbukten VA, Stockholms Universitet</i>
+                            <i>Samarbetspartners: Laholmsbuktens VA, Stockholms Universitet</i>
                         </div>
 
-                        <!--Call to Action. Porträtt, fråga, namn och roll står i en
-                            centrerad kolumn, och adressen är vägen in – ingen knapp.
-                            Reglerna ligger under .showcase-cta .cta-* i css/style.css.-->
                         <div class="col-1 text-center showcase-cta">
                             <div class="cta-signature">
                                 <img class="cta-face" src="images/showcase-images/HH.webp" width="104" height="104"
@@ -57,17 +55,15 @@ import LeakDetectionFooterCss from '../components/head/LeakDetectionFooterCss.as
                                     <p>Vill du veta mer om hur detta kan tillämpas i er verksamhet?</p>
                                     <p class="cta-name">Hanna Hassberg</p>
                                     <p class="cta-role">Projektledare</p>
-                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=Läckagedetektering">hanna@totaldigital.se</a></p>
+                                    <p class="cta-mail"><a class="email-obfuscated" data-user="hanna" data-domain="totaldigital.se" data-subject="Läckagedetektering">Visa e-postadress</a><noscript><a href="mailto:hanna@totaldigital.se?subject=Läckagedetektering">hanna@totaldigital.se</a></noscript></p>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Call to Action-->
 
                     </div>
                 </div>
 
             </section>
-            <!--End of Introduction-->
 
         </main>
 </Layout>

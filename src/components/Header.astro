@@ -48,40 +48,41 @@ const otherHref = lang === 'sv'
   : (isHome ? '../' : `../${path}`);
 const current = (href: string) => (href === path ? 'page' : undefined);
 ---
-<header id={isHome ? 'home' : 'banner'} class="scrollto clearfix" data-enllax-ratio=".5">
+<header id={isHome ? 'home' : 'banner'} class="scrollto clearfix"
+        data-enllax-ratio={isHome ? undefined : ".5"}>
             <div id="header" class="nav-collapse">
                 <div class="row clearfix">
                     <div class="col-1">
 
-                        <!--Logo-->
+                        {/*Logo*/}
                         <div id="logo">
 
-                            <!--Both logos sit in one link back to the start page.-->
+                            {/*Both logos sit in one link back to the start page.*/}
                             <a href="index.html" aria-label="Total Digital">
 
-                            <!--Logo that is shown on the banner-->
+                            {/*Logo that is shown on the banner*/}
                             <img src={`${p}images/banner-images/td_white.webp`} id="banner-logo" width="412" height="122"
                                 alt="Total Digital" />
-                            <!--End of Banner Logo-->
+                            {/*End of Banner Logo*/}
 
-                            <!--The Logo that is shown on the sticky Navigation Bar-->
+                            {/*The Logo that is shown on the sticky Navigation Bar*/}
                             <img src={`${p}images/banner-images/td_white.webp`} id="navigation-logo" width="412" height="122"
                                 alt="Total Digital" />
-                            <!--End of Navigation Logo-->
+                            {/*End of Navigation Logo*/}
                             </a>
 
                         </div>
-                        <!--End of Logo-->
+                        {/*End of Logo*/}
 
 
-                        <!--Main Navigation-->
+                        {/*Main Navigation*/}
                         <nav id="nav-main">
                             <ul>
-                                <!--Nav items that own subpages are <details> groups. Same reason as the
+                                {/*Nav items that own subpages are <details> groups. Same reason as the
                                     language switcher below: there is no event handler to copy when
                                     site.js clones this markup into the mobile menu. The subpage links
                                     are relative so the site works wherever it is mounted, and site.js
-                                    keeps stickyNavbar from cancelling the click on them.-->
+                                    keeps stickyNavbar from cancelling the click on them.*/}
 {isHome && <NavOrderNote />}
                                 <li onclick={isHome ? undefined : `location.href='${home}#businessareas';`}>
                                     <a href={`${home}#businessareas`}>{t.nav.businessareas}</a>
@@ -115,14 +116,14 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                         </div>
                                     </details>
                                 </li>
-                                <!--Testimonials and Partners are one section on the start page now.-->
+                                {/*Testimonials and Partners are one section on the start page now.*/}
                                 <li onclick={isHome ? undefined : `location.href='${home}#trust';`}>
                                     <a href={`${home}#trust`}>{t.nav.trust}</a>
                                 </li>
                                 <li onclick="location.href='about.html';">
                                     <a href="about.html" aria-current={current('about.html')}>{t.nav.about}</a>
                                 </li>
-                                <!--The theme switcher. Sits to the left of the language switcher and is
+                                {/*The theme switcher. Sits to the left of the language switcher and is
                                     built the same way, but as a <button>: nothing is navigated to, which
                                     also keeps it outside stickyNavbar's "li a".
 
@@ -130,15 +131,15 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                     it sits to the left of it on screen. Both are absolutely positioned in
                                     the wide menu, so the order here is invisible — but it drives the tab
                                     order, and the reverse order gave the globe focus before the theme
-                                    button even though the theme button comes first.-->
+                                    button even though the theme button comes first.*/}
                                 <li class="nav-theme">
                                     <button type="button" class="theme-toggle" aria-label={t.theme.toLight}
                                             title={t.theme.toLight} data-label-light={t.theme.toLight} data-label-dark={t.theme.toDark}><i class="svg-icon icon-sun fa-solid fa-sun" aria-hidden="true"></i><i class="svg-icon icon-moon fa-solid fa-moon-star" aria-hidden="true"></i></button>
                                 </li>
-                                <!--Language dropdown. The option links are relative so the site works
+                                {/*Language dropdown. The option links are relative so the site works
                                     wherever it is mounted; site.js keeps stickyNavbar from cancelling
                                     the click. <details> keeps the whole control script-free, so it
-                                    still works once site.js clones this markup into the mobile menu.-->
+                                    still works once site.js clones this markup into the mobile menu.*/}
                                 <li class="nav-lang">
                                     <details>
                                         <summary aria-label={t.lang.choose}><Globe /></summary>
@@ -159,10 +160,10 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                 </li>
                             </ul>
                         </nav>
-                        <!--End of Main Navigation-->
+                        {/*End of Main Navigation*/}
 
-                        <!--The same switcher again, here beside the hamburger. CSS shows one of
-                            them, never both.-->
+                        {/*The same switcher again, here beside the hamburger. CSS shows one of
+                            them, never both.*/}
                         <div id="nav-trigger">
                             <nav id="nav-theme-mobile">
                                 <button type="button" class="theme-toggle" aria-label={t.theme.toLight}
@@ -191,6 +192,6 @@ const current = (href: string) => (href === path ? 'page' : undefined);
 
                     </div>
                 </div>
-            </div><!--End of Header-->
+            </div>{/*End of Header*/}
 {isHome ? <slot /> : bannerPlaceholder && <BannerPlaceholder />}
         </header>

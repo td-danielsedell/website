@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import RailwaySafetyCss from '../../components/head/RailwaySafetyCss.astro';
 import RailwaySafetyFooterCss from '../../components/head/RailwaySafetyFooterCss.astro';
+import RailwaySafetyJsonLdEn from '../../components/head/RailwaySafetyJsonLdEn.astro';
 ---
 <Layout
     lang="en"
@@ -11,13 +12,13 @@ import RailwaySafetyFooterCss from '../../components/head/RailwaySafetyFooterCss
     ogTitle="Predictive railway safety with satellite data and AI"
     ogType="article"
     ogImage="https://www.totaldigital.se/images/og/railway-safety.jpg"
-    ogImageAlt="Railway track under monitoring"
+    ogImageAlt="Sensor mounted on the rail for track monitoring"
 >
     <RailwaySafetyCss slot="head-css" lang="en" />
+    <RailwaySafetyJsonLdEn slot="head-after-fonts" />
     <RailwaySafetyFooterCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 
-            <!--Introduction-->
             <section class="introduction scrollto">
                 <div class="col-1 content-center">
                     <div class="col-2-3 row clearfix">
@@ -37,18 +38,13 @@ import RailwaySafetyFooterCss from '../../components/head/RailwaySafetyFooterCss
 
                         <div class="col-1">
                             <p>
-                                We develop <strong>AI-based forecasts of rail temperature and the risk of track buckling</strong> – for safer and more predictable railway operation in a warmer climate.
-                            </p><p>
-                                Higher temperatures and more frequent heatwaves increase the risk of track buckling in continuously welded rail, with disruption and delays as a result. By combining thermal satellite data, terrain and weather data and ground-based measurements, we can forecast temperature conditions along the track up to <strong>48 hours in advance.</strong> That makes targeted, proactive action possible, and at the same time shows where the risk is greatest – and why.
-                            </p><p>
-                                The method is built for operational use, scales from individual high-risk stretches to entire railway networks, and supports maintenance prioritisation, traffic planning and long-term climate adaptation.
+                                We develop <strong>AI-based forecasts of rail temperatures and track buckling risk</strong>, helping make railway operations safer in a warmer climate.
+                            </p> <p>  Rising temperatures and more frequent heatwaves increase the risk of track buckling in continuously welded rail, causing disruptions and delays. By combining thermal satellite data with terrain and weather data, we can forecast rail temperature along the track up to 48 hours in advance. This helps identify where risks are likely to occur, allowing preventive measures to be targeted where they are needed most.
+                            </p><p>   Designed for operational use, the method can be applied to individual high-risk sections or scaled across entire railway networks. It supports maintenance prioritisation, traffic planning and long-term climate adaptation.
                             </p>
                            <i> Partners: Region Stockholm, KTH Royal Institute of Technology, InfraNord</i>
                         </div>
 
-                        <!--Call to Action. Portrait, question, name and role sit in a
-                            centred column, and the address is the way in — no button.
-                            The rules live under .showcase-cta .cta-* in css/style.css.-->
                         <div class="col-1 text-center showcase-cta">
                             <div class="cta-signature">
                                 <img class="cta-face" src="../images/showcase-images/HH.webp" width="104" height="104"
@@ -57,17 +53,15 @@ import RailwaySafetyFooterCss from '../../components/head/RailwaySafetyFooterCss
                                     <p>Want to know more about how this could work in your organisation?</p>
                                     <p class="cta-name">Hanna Hassberg</p>
                                     <p class="cta-role">Project Lead</p>
-                                    <p class="cta-mail"><a href="mailto:hanna@totaldigital.se?subject=Predictive railway safety">hanna@totaldigital.se</a></p>
+                                    <p class="cta-mail"><a class="email-obfuscated" data-user="hanna" data-domain="totaldigital.se" data-subject="Predictive railway safety">Show email address</a><noscript><a href="mailto:hanna@totaldigital.se?subject=Predictive railway safety">hanna@totaldigital.se</a></noscript></p>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Call to Action-->
 
                     </div>
                 </div>
 
             </section>
-            <!--End of Introduction-->
 
         </main>
 </Layout>

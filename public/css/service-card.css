@@ -1,28 +1,20 @@
-/* 1. The main container holding the background image */
+
 .service-card {
     width: 100%;
-    /* Set to your desired width */
+
     height: 280px;
-    /* Set to your desired height */
+
     border: 1px solid var(--surface-border);
     border-radius: 12px;
-    /* This used to be 0 15px 30px -9px rgba(0, 0, 0, 0.6), which is exactly the
-       *hover* shadow of .feature-card — so the service cards sat permanently
-       lifted next to the resting product and showcase cards. Same resting
-       shadow as .feature-card now. They have no hover state of their own, so
-       this is the only shadow they wear. */
+
     box-shadow: var(--card-shadow);
     overflow: hidden;
     position: relative;
-    /* Crucial for anchoring the overlay */
 
-    /* Background image setup */
-    /* background-image: url('https://picsum.photos/600/400'); */
     background-size: cover;
     background-position: center;
 }
 
-/* Image fills the card (replaces the old background-image cover/center) */
 .service-card img {
     position: absolute;
     inset: 0;
@@ -32,7 +24,6 @@
     z-index: 0;
 }
 
-/* 2. The transparent overlay div sitting directly on top */
 .overlay {
     z-index: 1;
     position: absolute;
@@ -42,20 +33,13 @@
     height: 100%;
     color: var(--banner-text);
 
-    /* Transparent background color using rgba (Red, Green, Blue, Opacity) */
-    /* 0, 0, 0 is black. 0.5 means 50% transparent */
-    /* The service cards keep white type over the photo, so the veil stays dark
-       — a light veil would leave the text at ~1.6:1. */
     background-color: rgba(51, 51, 51, 0.6);
 
-    /* 3. The magic centering code */
     display: flex;
     justify-content: center;
-    /* Horizontally centers the text */
-    align-items: center;
-    /* Vertically centers the text */
 
-    /* Optional: Add smooth padding so text doesn't touch the edges on mobile */
+    align-items: center;
+
     padding: 20px;
     box-sizing: border-box;
 }
@@ -63,7 +47,7 @@
 .overlay-showcase {
     justify-content: left;
     align-items: end;
-    /* padding-top: 150px; */
+
     padding-right: 150px;
 }
 
@@ -76,34 +60,12 @@
     font-weight: bold;
 }
 
-/* 4. The white text styling */
-/* .overlay h4 {
-    color: .ffffff;
-    font-family: sans-serif;
-    font-size: 2rem;
-    margin: 0;
-    text-align: center;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.overlay p {
-    color: .ffffff;
-    font-family: sans-serif;
-    font-size: 2rem;
-    margin: 0;
-    text-align: center;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-*/
 .overlay h4,
 .overlay .card-title {
     color: var(--banner-text);
     font-weight: bold;
 }
 
-/* Showcase hero image, same framing as .service-card but without the text overlay */
-/* img.* to win over .row img { height: auto } in style.css */
 img.showcase-image {
     display: block;
     width: 100%;
@@ -111,7 +73,7 @@ img.showcase-image {
     object-fit: cover;
     border: 1px solid var(--surface-border);
     border-radius: 12px;
-    /* Kept in step with .service-card above — the framing is meant to match. */
+
     box-shadow: var(--card-shadow);
 }
 
@@ -125,27 +87,14 @@ img.showcase-image {
     }
 }
 
-/* Tjänster. Eight cards at 320px each is a 2,700px stack on a phone, so below
-   the tablet breakpoint they ride the sitewide carousel (css/image-carousel.css
-   + js/image-carousel.js) the products and showcases already use. The slides
-   are the existing .col-2 wrappers, so desktop keeps its floated grid. */
 @media (max-width: 767px) {
 
-    /* Side padding is the gutter the next card peeks through. With eight
-       slides that peek is doing most of the work of saying "there is more". */
     .service-track.image-carousel-track {
-        /* Wider than 16px now the blocks are unbordered — at 16px the peeking
-           neighbour's photo reads as part of the current one. */
+
         gap: 28px;
         padding: 8px 11% 16px;
     }
 
-    /* Cancel the float and the width the column grid hands these.
-
-       display:flex so the card fills the slide. The flex track already stretches
-       every slide to the tallest one; without this the card inside stays its own
-       content height and the four cards end at four different points as you
-       swipe past them. */
     .service-track > .image-carousel-slide {
         display: flex;
         float: none;
@@ -153,37 +102,10 @@ img.showcase-image {
         padding: 0;
     }
 
-    /* The dot row carries the arrows, which is now the base treatment in
-       css/image-carousel.css; nothing to set here beyond the gap above it.
-       This block used to centre them on the track, on the grounds that
-       .service-card was a fixed 280px and nothing could be covered. The card has
-       since grown a photo, a heading and two described services: it measures
-       613px on a 390px screen, and the arrows sat at 276px, square on the body
-       copy of one card and over the neighbour peeking in beside it. */
     .service-carousel .image-carousel-dots {
         margin-top: 8px;
     }
 
-    /* The rules between the services line up across the cards, the same way
-       they do in the two-up desktop grid below and for the same reason: each
-       card hands its four rows (photo, heading, service 1, service 2) back to
-       the track, so the tallest service name or description sets that row for
-       every card. Without it the photo and the heading agreed and nothing
-       below them did — the divider sat at 379, 358, 401 and 399px in the four
-       cards, which is exactly what you see peeking in from the next slide.
-
-       The track becomes a grid to host the subgrid: one column per card,
-       flowing sideways, each column the width of the scrollport's content box —
-       the same 281px the flex track gave them. Scroll snapping is unaffected;
-       it is a property of the scroll container, not of its display type.
-
-       Row gap has to go: `gap: 28px` above is both axes, and on a grid the 28px
-       meant for the space between cards would open between the photo and the
-       heading too. The column gap stays.
-
-       The three inner rules repeat the desktop block's — duplicated rather
-       than hoisted so that nothing in the signed-off desktop grid has to move
-       to fix the phone. */
     @supports (grid-template-rows: subgrid) {
         .service-track.image-carousel-track {
             display: grid;
@@ -194,7 +116,6 @@ img.showcase-image {
             row-gap: 0;
         }
 
-        /* .clearfix's ::after would take a column of its own. */
         .service-track.image-carousel-track::after {
             display: none;
         }
@@ -223,31 +144,21 @@ img.showcase-image {
     }
 }
 
-/* Desktop lays the groups out two up, on a grid rather than the floated .col-2
-   the eight overlay tiles rode on: the four cards carry different amounts of
-   copy, and a grid row stretches them to a shared height where floats snag on
-   the taller one. */
 @media (min-width: 768px) {
     .service-track.image-carousel-track {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        /* Wider than the 20px the bordered cards used: with no border or fill
-           the gutter is the only thing keeping the two columns apart. */
+
         gap: 48px 40px;
         align-items: stretch;
         overflow: visible;
         padding: 20px 20px 0;
     }
 
-    /* .clearfix's ::after counts as a grid item and opens an empty fifth cell,
-       which the gap above then pays for. Nothing to clear: the track is a grid
-       here and a flex row below. */
     .service-track.image-carousel-track::after {
         display: none;
     }
 
-    /* Cancel the float and the width the column grid hands these; the grid
-       sizes them. display:flex so the card fills the stretched row. */
     .service-track > .image-carousel-slide {
         display: flex;
         float: none;
@@ -260,16 +171,6 @@ img.showcase-image {
         display: none;
     }
 
-    /* The rules between the services line up across the two columns: every card
-       hands its four rows (photo, heading, service 1, service 2) back to the
-       track's grid, so a title that wraps to two lines in one card grows that
-       row in the card beside it too. Without this each card measures its own
-       rows and the dividers land at different heights.
-
-       Zeroing the row gap is part of it: a subgrid inherits the parent's gap on
-       every row it spans, so the 48px meant for the space between the two card
-       rows would open between the photo and the heading as well. It comes back
-       as a margin under the top two slides. */
     @supports (grid-template-rows: subgrid) {
         .service-track.image-carousel-track {
             row-gap: 0;
@@ -285,9 +186,6 @@ img.showcase-image {
             margin-bottom: 48px;
         }
 
-        /* Each level passes the rows down: the slide holds all four, the group
-           gives row 1 to the photo, the body row 2 to the heading, and the list
-           takes the last two — one service each. */
         .service-group,
         .service-group-body,
         .service-list {
@@ -306,21 +204,6 @@ img.showcase-image {
     }
 }
 
-/*------------------------------------------------------------------------------------------*/
-/* Service groups
-/*------------------------------------------------------------------------------------------*/
-
-/* The services grouped by how they are bought — four cards instead of eight
-   photo tiles, each a photo band with its services listed under it. Text first:
-   the tiles this replaces put a photograph in front of every service name and
-   hid the description under a veil.
-
-   Styled at every width, because the phone carousel above swipes these same
-   cards. Deliberately NOT a card: no fill, border, radius, shadow or hover
-   lift. Nothing here is clickable, and card framing plus a hover response is
-   the site's own vocabulary for "this goes somewhere" — the product and
-   showcase cards next to it really are links. A photo band with text under it
-   reads as an editorial block instead. */
 .service-group {
     width: 100%;
 }
@@ -330,8 +213,6 @@ img.showcase-image {
     overflow: hidden;
 }
 
-/* height:100% ties with style.css's `.row img { height: auto }` on specificity;
-   this sheet is linked after it, which is what settles it. */
 .service-group-image img {
     display: block;
     width: 100%;
@@ -339,14 +220,10 @@ img.showcase-image {
     object-fit: cover;
 }
 
-/* Flush left with the photo above, so the block reads as one column of text
-   under an image rather than as padded card contents. */
 .service-group-body {
     padding: 22px 0 0;
 }
 
-/* 19px is the size the area band and the showcase cards use for their titles.
-   It sat at 20px, which read as a third size on a page that already has two. */
 .service-group h3 {
     font-size: 19px;
     font-weight: 700;
@@ -354,7 +231,6 @@ img.showcase-image {
     padding: 0;
 }
 
-/* The short rule under .section-title, at card scale. */
 .service-group h3:after {
     content: "";
     display: block;
