@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TdTestCss from '../components/head/TdTestCss.astro';
-import TdTestJsonLdSv from '../components/head/TdTestJsonLdSv.astro';
 import TdTestFooterCss from '../components/head/TdTestFooterCss.astro';
 import TdTestScripts from '../components/scripts/TdTestScripts.astro';
 import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
@@ -18,7 +17,26 @@ import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 >
     <ParallaxScripts slot="scripts-early" lang="sv" />
     <TdTestCss slot="head-css" lang="sv" />
-    <TdTestJsonLdSv slot="head-after-fonts" />
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "TD Test",
+          "url": "https://www.totaldigital.se/td_test.html",
+          "applicationCategory": "DeveloperApplication",
+          "description": "TD Test är verktyget för automatiserade tester av IBM Maximo och Maximo Application Suite (MAS). Testar gränssnitt, affärslogik och integrationer m.m.",
+          "inLanguage": "sv-SE",
+          "image": "https://www.totaldigital.se/images/og/td_test.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <TdTestFooterCss slot="head-after-fonts" lang="sv" />
     <TdTestScripts slot="scripts" lang="sv" />
         <main id="content" class="showcase-top">

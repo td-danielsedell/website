@@ -1,10 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import IndexPreload from '../components/head/IndexPreloadSv.astro';
-import IndexCss from '../components/head/IndexCssSv.astro';
-import IndexJsonLd from '../components/head/IndexJsonLdSv.astro';
-import IndexBanner from '../components/IndexBannerSv.astro';
-import IndexScripts from '../components/scripts/IndexScriptsSv.astro';
 ---
 <Layout
     lang="sv"
@@ -13,11 +8,106 @@ import IndexScripts from '../components/scripts/IndexScriptsSv.astro';
     description="Total Digital förenar tillgångsförvaltning, geodata, fjärranalys och AI – specialistkompetens som kopplar samman anläggningens skick, läge och utveckling."
     isHome
 >
-    <IndexPreload slot="head-preload" />
-    <IndexCss slot="head-css" />
-    <IndexJsonLd slot="head-after-fonts" />
-    <IndexBanner slot="banner" />
-    <IndexScripts slot="all-scripts" />
+    <Fragment slot="head-preload">
+      <link rel="preload" href="images/banner-images/banner_wide_clean.webp" as="image" media="(min-width: 1024px)" />
+      <link rel="preload" href="images/banner-images/banner_full_clean.webp" as="image" media="(max-width: 1023px)" />
+    </Fragment>
+    <Fragment slot="head-css">
+      {/* Logo Slider CSS */}
+      <link href="css/logo-slider.css" rel="stylesheet" type="text/css">
+
+      {/* Affärsområden Band CSS */}
+      <link href="css/area-band.css" rel="stylesheet" type="text/css">
+
+      {/* Feature Card CSS */}
+      <link href="css/feature-card.css" rel="stylesheet" type="text/css">
+
+      {/* Service Card CSS */}
+      <link href="css/service-card.css" rel="stylesheet" type="text/css">
+
+      {/* Image Carousel CSS */}
+      <link href="css/image-carousel.css" rel="stylesheet" type="text/css">
+
+      {/* Large Footer CSS */}
+      <link href="css/footer-large.css" rel="stylesheet" type="text/css">
+
+
+    </Fragment>
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": "https://www.totaldigital.se/#organization",
+          "name": "Total Digital AB",
+          "url": "https://www.totaldigital.se/",
+          "logo": "https://www.totaldigital.se/images/favicon.png",
+          "email": "info@totaldigital.se",
+          "telephone": "+46101010070",
+          "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Fabriksgatan 4",
+              "postalCode": "531 60",
+              "addressLocality": "Lidköping",
+              "addressCountry": "SE"
+          },
+          "sameAs": [
+              "https://www.linkedin.com/company/total-digital-it-solutions"
+          ]
+      }
+      </script>
+    </Fragment>
+    <Fragment slot="banner">
+      <div id="banner-content" class="row clearfix">
+
+                      <div class="col-61">
+
+                          <div class="section-heading">
+                              <h1 id="main-heading">NOTHING<br />BEATS<br />EXPERIENCE</h1>
+
+                              <p class="expertise-line expertise-line-grow">
+                                  <span class="expertise-label">Vi kan</span>
+                                  <span class="expertise-rotator" aria-hidden="true">
+                                      <span class="expertise-reel">
+                                          <span><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar" aria-hidden="true"></i>Tillgångsförvaltning</span>
+                                          <span><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>Geodata</span>
+                                          <span><i class="fa-solid fa-satellite" aria-hidden="true"></i>Fjärranalys</span>
+                                          <span><i class="fa-solid fa-microchip-ai" aria-hidden="true"></i>AI</span>
+                                          <span aria-hidden="true"><i class="fa-kit fa-hand-holding-gear-industry-sack-dollar"></i>Tillgångsförvaltning</span>
+                                      </span>
+                                  </span>
+
+                                  <span class="sr-only">tillgångsförvaltning, geodata, fjärranalys och AI.</span>
+                              </p>
+
+                              <p class="banner-intro">Specialistkompetens som gör skillnad.
+                                  <span class="banner-intro-next">Vi förenar tillgångsförvaltning, geodata, fjärranalys
+                                  och AI – och kopplar samman anläggningens skick, läge och utveckling.</span></p>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <a href="#businessareas" class="scroll-cue" data-scroll-to
+                      aria-label="L&auml;s mer om Aff&auml;rsomr&aring;den"><span class="scroll-cue-label">L&auml;s mer</span><i class="fa-solid fa-chevrons-down" aria-hidden="true"></i></a>
+
+
+    </Fragment>
+    <Fragment slot="all-scripts">
+      <script src="js/jquery.1.8.3.min.js" is:inline></script>
+      <script src="js/wow.min.js" is:inline></script>
+      <script src="js/jquery.enllax.min.js" is:inline></script>
+      <script src="js/jquery.easing.min.js" is:inline></script>
+      <script src="js/jquery.stickyNavbar.min.js" is:inline></script>
+      <script src="js/jquery.waypoints.min.js" is:inline></script>
+      <script src="js/images-loaded.min.js" is:inline></script>
+      <script src="js/lightbox.min.js" is:inline></script>
+      <script src="js/site.js" is:inline></script>
+      <script src="js/logo-slider.js" is:inline></script>
+      <script src="js/image-carousel.js" is:inline></script>
+      <script src="js/showcase-featured.js" is:inline></script>
+    </Fragment>
         <main id="content">
 
             <section id="businessareas" class="introduction scrollto">

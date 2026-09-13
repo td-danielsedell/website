@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TdAssetCareCss from '../components/head/TdAssetCareCss.astro';
-import TdAssetCareJsonLdSv from '../components/head/TdAssetCareJsonLdSv.astro';
 import TdAssetCareFooterCss from '../components/head/TdAssetCareFooterCss.astro';
 import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 import LightboxScripts from '../components/scripts/LightboxScripts.astro';
@@ -18,7 +17,26 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
     <ParallaxScripts slot="scripts-early" lang="sv" />
     <LightboxScripts slot="scripts-late" lang="sv" />
     <TdAssetCareCss slot="head-css" lang="sv" />
-    <TdAssetCareJsonLdSv slot="head-after-fonts" />
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "TD Asset Care",
+          "url": "https://www.totaldigital.se/td_asset_care.html",
+          "applicationCategory": "BusinessApplication",
+          "description": "TD Asset Care är en heltäckande, beprövad lösning för förvaltning och underhåll av fysiska tillgångar. Branschspecifika funktioner, drift on-prem, hybrid eller i molnet.",
+          "inLanguage": "sv-SE",
+          "image": "https://www.totaldigital.se/images/og/td_asset_care.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <TdAssetCareFooterCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top title-top">
 

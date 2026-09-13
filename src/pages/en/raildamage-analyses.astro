@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import RaildamageAnalysesCss from '../../components/head/RaildamageAnalysesCss.astro';
 import RaildamageAnalysesFooterCss from '../../components/head/RaildamageAnalysesFooterCss.astro';
-import RaildamageAnalysesJsonLdEn from '../../components/head/RaildamageAnalysesJsonLdEn.astro';
 ---
 <Layout
     lang="en"
@@ -15,7 +14,25 @@ import RaildamageAnalysesJsonLdEn from '../../components/head/RaildamageAnalyses
     ogImageAlt="Rail defect identified in an inspection image"
 >
     <RaildamageAnalysesCss slot="head-css" lang="en" />
-    <RaildamageAnalysesJsonLdEn slot="head-after-fonts" />
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "AI-based analysis of rail defects from imagery",
+          "url": "https://www.totaldigital.se/en/raildamage-analyses.html",
+          "description": "AI-based analysis of image data from railway inspections that identifies rail defects and anomalies – support for condition assessment and maintenance planning.",
+          "inLanguage": "en-GB",
+          "image": "https://www.totaldigital.se/images/og/raildamage-analyses.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <RaildamageAnalysesFooterCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 

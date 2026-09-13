@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import AboutCss from '../../components/head/AboutCss.astro';
 import AboutScripts from '../../components/scripts/AboutScripts.astro';
-import AboutJsonLdEn from '../../components/head/AboutJsonLdEn.astro';
 ---
 <Layout
     lang="en"
@@ -13,7 +12,36 @@ import AboutJsonLdEn from '../../components/head/AboutJsonLdEn.astro';
     bannerPlaceholder={false}
 >
     <AboutCss slot="head-css" lang="en" />
-    <AboutJsonLdEn slot="head-after-fonts" />
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About us | Total Digital",
+          "url": "https://www.totaldigital.se/en/about.html",
+          "inLanguage": "en-GB",
+          "mainEntity": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/",
+              "logo": "https://www.totaldigital.se/images/favicon.png",
+              "email": "info@totaldigital.se",
+              "telephone": "+46101010070",
+              "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Fabriksgatan 4",
+                  "postalCode": "531 60",
+                  "addressLocality": "Lidköping",
+                  "addressCountry": "SE"
+              },
+              "sameAs": [
+                  "https://www.linkedin.com/company/total-digital-it-solutions"
+              ]
+          }
+      }
+      </script>
+    </Fragment>
     <AboutScripts slot="scripts" lang="en" />
         <main id="content" class="showcase-top about-top">
 

@@ -1,17 +1,9 @@
 ---
 /**
- * End-of-body scripts for the td_test pages that CAN be placed via Layout's
- * `scripts` slot (i.e. that belong after site.js).
- *
- * NOT included here: js/wow.min.js, js/jquery.enllax.min.js and
- * js/jquery.easing.min.js. The baseline loads those three between
- * jquery.1.8.3.min.js and jquery.stickyNavbar.min.js (enllax drives the
- * banner's data-enllax-ratio parallax; wow/easing drive .wow scroll
- * animations elsewhere on the page). Layout.astro hardcodes
- * jquery → stickyNavbar → waypoints → site.js with a single `scripts` slot
- * AFTER that block, so there is no slot this component can use to land
- * content between jquery and stickyNavbar. This is a Layout gap, not
- * something fixable from a page component — see the migration report.
+ * End-of-body scripts for the td_test pages: the ones that belong after
+ * site.js. The three that load between jQuery and stickyNavbar go through
+ * Layout's `scripts-early` slot (ParallaxScripts) instead, because their
+ * position in the load order is what makes them work.
  */
 import { assetPrefix, type Lang } from '../../data/nav';
 

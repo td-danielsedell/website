@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import SarProcessingCss from '../../components/head/SarProcessingCss.astro';
 import SarProcessingFooterCss from '../../components/head/SarProcessingFooterCss.astro';
-import SarProcessingJsonLdEn from '../../components/head/SarProcessingJsonLdEn.astro';
 ---
 <Layout
     lang="en"
@@ -15,7 +14,25 @@ import SarProcessingJsonLdEn from '../../components/head/SarProcessingJsonLdEn.a
     ogImageAlt="Interferogram from SAR data"
 >
     <SarProcessingCss slot="head-css" lang="en" />
-    <SarProcessingJsonLdEn slot="head-after-fonts" />
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "InSAR – scalable ground-motion monitoring",
+          "url": "https://www.totaldigital.se/en/sar-processing.html",
+          "description": "InSAR-based processing of high- and medium-resolution SAR data for monitoring ground motion across infrastructure and the built environment.",
+          "inLanguage": "en-GB",
+          "image": "https://www.totaldigital.se/images/og/sar-processing.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <SarProcessingFooterCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 

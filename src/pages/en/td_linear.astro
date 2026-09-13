@@ -1,11 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TdLinearCss from '../../components/head/TdLinearCss.astro';
-import TdLinearOgNoteEn from '../../components/head/TdLinearOgNoteEn.astro';
-import TdLinearJsonLdEn from '../../components/head/TdLinearJsonLdEn.astro';
 import TdLinearFooterCss from '../../components/head/TdLinearFooterCss.astro';
 import TdLinearProductCss from '../../components/head/TdLinearProductCss.astro';
-import TdLinearScriptsEn from '../../components/scripts/TdLinearScriptsEn.astro';
 import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 import LightboxScripts from '../../components/scripts/LightboxScripts.astro';
 ---
@@ -21,11 +18,38 @@ import LightboxScripts from '../../components/scripts/LightboxScripts.astro';
     <ParallaxScripts slot="scripts-early" lang="en" />
     <LightboxScripts slot="scripts-late" lang="en" />
     <TdLinearCss slot="head-css" lang="en" />
-    <TdLinearOgNoteEn slot="og-image-note" />
-    <TdLinearJsonLdEn slot="head-after-fonts" />
+    <Fragment slot="og-image-note">
+      {/*PLACEHOLDER: TD Linear has no artwork of its own yet, so the link preview
+          borrows TD Test's. Switch to images/og/td_linear.jpg once it exists.*/}
+    </Fragment>
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "TD Linear",
+          "url": "https://www.totaldigital.se/en/td_linear.html",
+          "applicationCategory": "BusinessApplication",
+          "description": "TD Linear visualises and analyses data along linear assets such as railway, road, power lines as well as water and wastewater networks. EAM, measurement and map data in one shared view.",
+          "inLanguage": "en-GB",
+          "image": "https://www.totaldigital.se/images/og/td_linear.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <TdLinearFooterCss slot="head-after-fonts" lang="en" />
     <TdLinearProductCss slot="head-after-fonts" lang="en" />
-    <TdLinearScriptsEn slot="scripts" />
+    <Fragment slot="scripts">
+      <script src="../js/image-zoom.js" is:inline></script>
+
+      {/*Builds the arrows and dots inside .image-carousel*/}
+      <script src="../js/image-carousel.js" is:inline></script>
+    </Fragment>
         <main id="content" class="showcase-top">
 
             <section class="introduction scrollto tdt-intro" tabindex="-1">

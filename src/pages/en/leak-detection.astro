@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import LeakDetectionCss from '../../components/head/LeakDetectionCss.astro';
 import LeakDetectionFooterCss from '../../components/head/LeakDetectionFooterCss.astro';
-import LeakDetectionJsonLdEn from '../../components/head/LeakDetectionJsonLdEn.astro';
 ---
 <Layout
     lang="en"
@@ -15,7 +14,25 @@ import LeakDetectionJsonLdEn from '../../components/head/LeakDetectionJsonLdEn.a
     ogImageAlt="Leak detection in a water distribution network"
 >
     <LeakDetectionCss slot="head-css" lang="en" />
-    <LeakDetectionJsonLdEn slot="head-after-fonts" />
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "AI-based leak detection in water infrastructure",
+          "url": "https://www.totaldigital.se/en/leak-detection.html",
+          "description": "AI and satellite data that detect leaks in water distribution networks, reduce water losses and give a better basis for managing the pipe network.",
+          "inLanguage": "en-GB",
+          "image": "https://www.totaldigital.se/images/og/leak-detection.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <LeakDetectionFooterCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 

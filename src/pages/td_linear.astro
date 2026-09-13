@@ -1,11 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TdLinearCss from '../components/head/TdLinearCss.astro';
-import TdLinearOgNoteSv from '../components/head/TdLinearOgNoteSv.astro';
-import TdLinearJsonLdSv from '../components/head/TdLinearJsonLdSv.astro';
 import TdLinearFooterCss from '../components/head/TdLinearFooterCss.astro';
 import TdLinearProductCss from '../components/head/TdLinearProductCss.astro';
-import TdLinearScriptsSv from '../components/scripts/TdLinearScriptsSv.astro';
 import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 import LightboxScripts from '../components/scripts/LightboxScripts.astro';
 ---
@@ -21,11 +18,38 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
     <ParallaxScripts slot="scripts-early" lang="sv" />
     <LightboxScripts slot="scripts-late" lang="sv" />
     <TdLinearCss slot="head-css" lang="sv" />
-    <TdLinearOgNoteSv slot="og-image-note" />
-    <TdLinearJsonLdSv slot="head-after-fonts" />
+    <Fragment slot="og-image-note">
+      {/*PLACEHOLDER: TD Linear har ingen egen bild än, så länkförhandsvisningen
+          lånar TD Tests. Byt till images/og/td_linear.jpg när artworken finns.*/}
+    </Fragment>
+    <Fragment slot="head-after-fonts">
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "TD Linear",
+          "url": "https://www.totaldigital.se/td_linear.html",
+          "applicationCategory": "BusinessApplication",
+          "description": "TD Linear visualiserar och analyserar data längs linjära tillgångar som järnväg, väg, kraftledningar samt vatten- och avloppsnät. EAM-, mät- och kartdata i en gemensam vy.",
+          "inLanguage": "sv-SE",
+          "image": "https://www.totaldigital.se/images/og/td_linear.jpg",
+          "provider": {
+              "@type": "Organization",
+              "@id": "https://www.totaldigital.se/#organization",
+              "name": "Total Digital AB",
+              "url": "https://www.totaldigital.se/"
+          }
+      }
+      </script>
+    </Fragment>
     <TdLinearFooterCss slot="head-after-fonts" lang="sv" />
     <TdLinearProductCss slot="head-after-fonts" lang="sv" />
-    <TdLinearScriptsSv slot="scripts" />
+    <Fragment slot="scripts">
+      <script src="js/image-zoom.js" is:inline></script>
+
+      {/*Bygger pilar och punkter i .image-carousel*/}
+      <script src="js/image-carousel.js" is:inline></script>
+    </Fragment>
         <main id="content" class="showcase-top">
 
             <section class="introduction scrollto tdt-intro" tabindex="-1">
