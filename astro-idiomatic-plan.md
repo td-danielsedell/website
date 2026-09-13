@@ -56,18 +56,25 @@ types into content-named shared components (`ServiceCardCss`, `FeatureCardCss`,
 Result: `src/components` 60 files → 16, no change in rendered output, gated
 throughout by the normalized DOM diff.
 
-### Trim the harness
+### Trim the harness — DEFERRED, deliberately
 
 `verify/baseline/` (569 kB) and `diff-pages.mjs` exist to prove the conversion.
-Once the conversion is trusted they are dead weight.
+Once the conversion is trusted they look like dead weight.
 
-**Keep `assert-invariants.mjs`.** Its 11 invariants are baseline-independent —
-they assert what is true of a correct page regardless of what main looks like —
-and both workflows already gate on it. It is the part worth having forever.
+**Decision 2026-09-13: do not trim yet. Hold until `astro:assets` is actually
+being started.** The diff is the only byte-level ground truth in the project;
+`assert-invariants.mjs` and `assert-base.mjs` check specific properties, not
+equivalence. Nothing between here and `astro:assets` forces the trim, and every
+change until then is one the diff can gate — so deleting it early buys 569 kB
+and costs the ability to prove the next change is a no-op.
 
-Do this only after the base split below, which the DOM diff is still needed to
-gate. `astro:assets` is what finally retires the diff, since generated
-filenames cannot match a baseline.
+`astro:assets` is what genuinely retires it: generated filenames cannot match a
+baseline, so the diff dissolves whether or not anyone deletes it. Trim it as
+part of that work, in the same commit that replaces it with layout sentinels —
+never as a standalone tidy-up that leaves a gap with no gate in it.
+
+**Keep permanently** regardless: `assert-invariants.mjs` (11 baseline-independent
+invariants) and `assert-base.mjs` (per-target base). Both workflows gate on both.
 
 ### `astro:assets` — the only large user-facing win
 
@@ -175,9 +182,10 @@ start until that split is in place.
    fails the build if any root-absolute URL falls outside the target's base;
    proved by forcing an `_astro` asset and checking a no-base build against
    `/website/` (exit 1) and a `--base` build against it (exit 0).
-4. **Trim the harness.** Delete `verify/baseline/` and `diff-pages.mjs`; keep
-   `assert-invariants.mjs` and both workflow gates. Gate: invariants hold, both
-   workflows green.
+4. **Trim the harness — HELD.** Not a standalone step. Fold it into the
+   `astro:assets` work, which is what actually dissolves the diff, and only once
+   the replacement layout sentinels exist. Keep `assert-invariants.mjs` and
+   `assert-base.mjs` permanently.
 5. **`astro:assets`.** Own verification story. Gate: layout sentinels unchanged
    at the agreed widths; visual review of every regenerated crop.
 6. **Content collections for metadata.** Gate: a deliberately mismatched
