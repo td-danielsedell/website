@@ -1,35 +1,42 @@
 {
-  "_comment": "Ground truth for the verification harness: a verbatim snapshot of the 18 shipped HTML pages at the commit named below. Every converted page is diffed against this. Regenerate with: git archive <commit> -- '*.html' 'en' | tar -x -C verify/baseline, then re-run verify/make-baseline-ref.mjs.",
-  "commit": "62b89d4d6c44e1e7bf99ba9720d175cd31ca4d0e",
-  "abbrev": "62b89d4",
-  "subject": "Merge origin/main; keep today's metadata, OG cards and structured data",
-  "committedAt": "2026-09-07T10:08:42+02:00",
-  "branchedFrom": "main",
-  "resyncedAt": "2026-09-13",
-  "previousBaseline": {
-    "commit": "80e393749f35dd4329fa74a4d90b99881b8ed59c",
-    "abbrev": "80e3937",
-    "note": "Original fork point. Superseded when main advanced 26 commits, which stripped every HTML comment (da008dd) and added the about-page logo width/height (c507565) \u2014 between them retiring all 27 allowlist entries the fork-point baseline had needed."
-  },
+  "_comment": "Ground truth for the verification harness. IMPORTANT: this is no longer a snapshot of main's shipped HTML. It is this project's own build, taken after src/ was formatted with prettier. Regenerate with: npm run build, then copy dist/**/*.html over verify/baseline/, then re-run verify/make-baseline-ref.mjs.",
+  "kind": "own-build",
+  "capturedFrom": "6e5b669ed55c5f3bd12ee8bcce6427dac6e607c3",
+  "capturedFromSubject": "Format src/ with prettier",
+  "capturedAt": "2026-09-13",
+  "whatThisProvesNow": "A regression gate: the build has not changed unintentionally since this snapshot. It no longer proves byte-parity with main - that job is finished, and prettier formatting means the two legitimately differ in whitespace.",
+  "previousBaselines": [
+    {
+      "commit": "62b89d4",
+      "kind": "main's shipped HTML",
+      "note": "Used through the re-sync and every refactor up to the prettier pass, all of which passed 18/18 with an empty allowlist - so the conversion is proven byte-equivalent to main as of that commit."
+    },
+    {
+      "commit": "80e3937",
+      "kind": "main's shipped HTML at the fork point",
+      "note": "The original migration baseline, superseded when main advanced 26 commits."
+    }
+  ],
+  "divergenceFromMainWhenReplaced": "930 whitespace-only text nodes, 160 lines of reindented JSON-LD, and 2 text nodes inside an inline <a class=email-obfuscated>. The last were measured in a browser: identical text and identical geometry, width 138.38px and left 772, in both builds.",
   "fileCount": 18,
   "sha256": {
-    "about.html": "a63e6db440451402e7860372730dc6d67e89ab9d37a211da5483dc28ec909498",
-    "en/about.html": "d929bfa9a470197e193540b34a0820640b5b2a4d14020b6d1f36baad3b3f1ea0",
-    "en/index.html": "63bee951a369367afdc1a1d69d00d12f59ceecb8852252eccfb6ca0febfc1526",
-    "en/leak-detection.html": "2499ebc7109bbb50c1d5b3f428322a59d6b8ce1f9644678859d438d1375b768f",
-    "en/raildamage-analyses.html": "fd66cc9f847d235190a3716ef55e0c90bf18e93ee949539ef9cf52dd27baf3b9",
-    "en/railway-safety.html": "7ba6a475779308ec2bda187f3576f0508f40d3a6ee19f12bc74e9c33978de43b",
-    "en/sar-processing.html": "0d9100bc4a196eec36da5a7930239a41f6a7dc7687338ad15a3e7c09780b71f2",
-    "en/td_asset_care.html": "a84694d1898d8191d6b3eb41cb5d26ab5ea039c258e5661b86e830cb78c88f20",
-    "en/td_linear.html": "5a085279bd3242813de264e79dabe6548767570b527ebe367d735011ea056f57",
-    "en/td_test.html": "bc6c01064edd4eeb9d6e9bd7e103d2a32e1f973818e27f7af8fd6d9683cbdb06",
-    "index.html": "5f6ac50af0e0eb972b8bb8877b78321ad033e3dadfe3ebd7629c1554513e8e99",
-    "leak-detection.html": "27e37758b11b3da4a8a73dad7676ce04f1cc10b80d1f857b3ec3c6faf31395da",
-    "raildamage-analyses.html": "4debc035f9211c8e204819cc648f9360ad4eb6e9b22f84300a5ae9a4c9802f14",
-    "railway-safety.html": "18cb7a76b9061b1f4602ef564bc8a250b791b4db99502a5618a57d4ad60892f9",
-    "sar-processing.html": "ebcc5ca190e76dbd2c3c2fed36309c654d0d09bc21be0127a79d35c124de912d",
-    "td_asset_care.html": "131d9df9d7f23b00885df28dc15a11ebdd3075d7fe76a862fac9304a27ad900a",
-    "td_linear.html": "44ff25de1e4f53f1d503c799e6dbf90a1b492d9cdeb459f77cedefc6df1313cf",
-    "td_test.html": "cb3645b57784bdb537ad3b651f9dc087f0605017eab9016709d33621bbd1978d"
+    "about.html": "b09d9f36fbf943c8f081237af604319e7cf955d3ede73eddc9cb82a71d7e519a",
+    "en/about.html": "ab174853693f0a9f4a54509446b698874b02edc4c6b7d2ce63c7221fbea43790",
+    "en/index.html": "8025fb0b8b6eb05908635800e1d191c37d8d13434b99f5f5cd7a88e1589583a4",
+    "en/leak-detection.html": "585f66b76ac4776ab6159bf2da8eec25e22040bd9402b4f3b822676b7a090cd9",
+    "en/raildamage-analyses.html": "de7617ca970fc5910158e9c56aee99f735b3e065a76f6a4a80213769865bc575",
+    "en/railway-safety.html": "c23220408c3d4a6c8b213dd621a6ba0c6bd23122bc8eb94da26a4aaa2e26e4ce",
+    "en/sar-processing.html": "ff91234e09292a05d47e42217c0eeeedd06fab4b971f813296741abb86caf88d",
+    "en/td_asset_care.html": "fd60e61ba16dd1980ff6ebb5e8b0ee882de5605aebe7705bb5c803f19b2684dd",
+    "en/td_linear.html": "ee714022dc76c485fa2db6c3459a8d87b1ca363e4dc3ee1c008aab7eb1f3b93c",
+    "en/td_test.html": "dc28b6c92f6f6dc7a17cfda92920bbc9a9daba6dbe6528554b8da26d777cbdeb",
+    "index.html": "ee279d5c0356eb2598338425234b76def708b320a3b434d7dd09cc736279c39f",
+    "leak-detection.html": "3a84b01764234fa4af148b6023ae7f94b59c4b45e4ff22008ad89189d7bdcfc7",
+    "raildamage-analyses.html": "ee452b06aa775ee33ffce23da8fea9a059d94552a50415562ea7f1fbcc79ec39",
+    "railway-safety.html": "a2fdde27968ebc001aee370d4eb866f96d8b1fb83400f01e69e2dbe7135c78c9",
+    "sar-processing.html": "0ec4e3ef2898b84ef530464e07b9b2b339f6f1fef64cd473a915ac1ebe179acf",
+    "td_asset_care.html": "addcc77e97594abda18c80cdc59752ea34ce8fc68f86532551f4d2bda026f0e6",
+    "td_linear.html": "fac6e50107de1184dc446a95962618cf587629d928f9035767812cdc27e2807e",
+    "td_test.html": "491cafbaed7fd728f93c5412ff7c6d0401d7db0986d806484d6fa89e7b029e19"
   }
 }

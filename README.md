@@ -53,6 +53,9 @@ These will silently break the site if ignored.
   children. It survives inside a real element. This is why `<main>` lives in the
   page rather than in the Layout. It no longer constrains head fragments, since
   those carry `{/* … */}`, which is dropped everywhere by design.
+- **Formatting is prettier's job, not yours.** `npm run format`, configured in
+  `.prettierrc`. `.prettierignore` protects `verify/baseline/`, which is a
+  byte-exact snapshot and must never be reformatted — it is the thing under test.
 - **`compressHTML: false` is permanent.** The byte saving is trivial and
   collapsing whitespace shifts inline-block layout.
 - Several source comments are load-bearing documentation (the footer
@@ -62,9 +65,17 @@ These will silently break the site if ignored.
 
 ## Verification harness
 
-`verify/baseline/` is a snapshot of the 18 hand-written HTML pages at the commit
-the Astro branch forked from, recorded in `verify/baseline-ref.json` with a
-sha256 per file. It is the ground truth every converted page is compared against.
+`verify/baseline/` is a snapshot of the 18 built pages, recorded in
+`verify/baseline-ref.json` with a sha256 per file and a note on where it came
+from. Read that file before trusting the diff — the snapshot's provenance has
+changed once already and the guarantee changed with it.
+
+It began as main's shipped HTML, and every step of the conversion passed against
+it with an empty allowlist, which is what proves the Astro build reproduces the
+hand-written site. It is now this project's own build, taken after `src/` was
+formatted with prettier: the two legitimately differ in whitespace, so the diff
+is a **regression gate** — nothing changed unintentionally since the snapshot —
+rather than a proof of parity with main.
 
 ```sh
 npm run verify            # normalized DOM diff, dist/ vs the baseline

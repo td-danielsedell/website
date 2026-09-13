@@ -439,12 +439,13 @@ function runSelfTest(baselineDir, context) {
       const i = h.indexOf('<head>'), j = h.indexOf('</head>');
       return h.slice(0, i) + h.slice(i, j).replace(/>\s+</g, '><') + h.slice(j);
     }],
+    // Anchored by pattern, not by literal text: verify/baseline/ is regenerated
+    // whenever the build's formatting legitimately changes, and a hardcoded
+    // snippet silently becomes a "fixture missing" error instead of a real test.
     ['whitespace between two end-of-body <script> tags removed', 'about.html',
-      (h) => once(h, '</script>\n    <script src="js/jquery.stickyNavbar.min.js">',
-                     '</script><script src="js/jquery.stickyNavbar.min.js">')],
-    ['whitespace between the last <script> and </body> removed', 'about.html',
-      (h) => once(h, '<script src="js/about.js" defer></script>\n\n</body>',
-                     '<script src="js/about.js" defer></script></body>')],
+      (h) => h.replace(/<\/script>\s+<script src="js\//, '</script><script src="js/')],
+    ['whitespace before </body> removed', 'about.html',
+      (h) => h.replace(/\s+<\/body>/, '</body>')],
   ];
 
   const SUBSTANTIVE = [
@@ -484,8 +485,7 @@ function runSelfTest(baselineDir, context) {
       return h.slice(0, i) + h.slice(i).replace(/<\/li>\s+<li>/, '</li><li>');
     }],
     ['whitespace between a rendered element and a <script> removed', 'about.html',
-      (h) => once(h, '</div>\n\n    <script src="js/jquery.1.8.3.min.js">',
-                     '</div><script src="js/jquery.1.8.3.min.js">')],
+      (h) => h.replace(/<\/div>(\s+)(?=<script src="js\/jquery\.1\.8\.3)/, '</div>')],
     ['an element unwrapped (structure flattened)', 'about.html',
       (h) => once(h, '<footer', '<div><footer').replace('</footer>', '</footer></div>')],
     ['JSON-LD content changed', 'index.html',
