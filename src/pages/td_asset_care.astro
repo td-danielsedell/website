@@ -1,4 +1,5 @@
 ---
+import SoftwareApplicationJsonLd from '../components/head/SoftwareApplicationJsonLd.astro';
 import Layout from '../layouts/Layout.astro';
 import FeatureCardCss from '../components/head/FeatureCardCss.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
@@ -9,36 +10,12 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
 <Layout
     lang="sv"
     path="td_asset_care.html"
-    title="TD Asset Care – Heltäckande lösning för EAM och underhåll | Total Digital"
-    description="TD Asset Care är en heltäckande, beprövad lösning för förvaltning och underhåll av fysiska tillgångar. Branschspecifika funktioner, drift on-prem, hybrid eller i molnet."
-    ogTitle="TD Asset Care – Heltäckande lösning för EAM och underhåll"
-    ogImage="https://www.totaldigital.se/images/og/td_asset_care.jpg"
-    ogImageAlt="TD Asset Care"
 >
     <ParallaxScripts slot="scripts-early" lang="sv" />
     <LightboxScripts slot="scripts-late" lang="sv" />
     <FeatureCardCss slot="head-css" lang="sv" />
     <ServiceCardCss slot="head-css" lang="sv" />
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
-      {
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "TD Asset Care",
-          "url": "https://www.totaldigital.se/td_asset_care.html",
-          "applicationCategory": "BusinessApplication",
-          "description": "TD Asset Care är en heltäckande, beprövad lösning för förvaltning och underhåll av fysiska tillgångar. Branschspecifika funktioner, drift on-prem, hybrid eller i molnet.",
-          "inLanguage": "sv-SE",
-          "image": "https://www.totaldigital.se/images/og/td_asset_care.jpg",
-          "provider": {
-              "@type": "Organization",
-              "@id": "https://www.totaldigital.se/#organization",
-              "name": "Total Digital AB",
-              "url": "https://www.totaldigital.se/"
-          }
-      }
-      </script>
-    </Fragment>
+    <SoftwareApplicationJsonLd slot="head-after-fonts" lang="sv" path="td_asset_care.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top title-top">
 

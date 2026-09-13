@@ -36,46 +36,46 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { assetPrefix, type Lang } from '../data/nav';
+import { pageMeta, SITE, pageUrl } from '../data/pages';
 import FaKitDefault from '../components/head/FaKitDefault.astro';
 import FaKitHome from '../components/head/FaKitHome.astro';
 
 interface Props {
   lang: Lang;
-  /** File name of this page, e.g. 'about.html'. Drives canonical, hreflang, og:url and the language switcher. */
+  /**
+   * File name of this page, e.g. 'about.html'. With `lang` it is the key into
+   * src/data/pages.ts, and it drives canonical, hreflang, og:url and the
+   * language switcher. The page passes no other metadata: title, description
+   * and the og:* values are looked up, so the two locales cannot drift apart
+   * without it being visible in one file.
+   */
   path: string;
-  title: string;
-  description: string;
-  /** og:title when it differs from the <title> (several subpages do). */
-  ogTitle?: string;
-  /** 'website' everywhere except the four project pages, which use 'article'. */
-  ogType?: string;
-  ogImage?: string;
-  /** og:image:alt. Per page on the six subpages that own artwork; 'Total Digital' on about and index. */
-  ogImageAlt?: string;
   /** True on the two index pages — see Header for what it changes. */
   isHome?: boolean;
   /** The about pages own the #certificates section the footer badges point at. */
   onAboutPage?: boolean;
 }
 
+const { lang, path, isHome = false, onAboutPage = false } = Astro.props;
+
+const entry = pageMeta[path]?.[lang];
+if (!entry) {
+  throw new Error(
+    `No metadata for ${path} (${lang}). Add it to src/data/pages.ts — both locales.`
+  );
+}
 const {
-  lang,
-  path,
   title,
   description,
   ogTitle = title,
   ogType = 'website',
-  ogImage = 'https://www.totaldigital.se/images/og/index.jpg',
+  ogImage = `${SITE}/images/og/index.jpg`,
   ogImageAlt = 'Total Digital',
-  isHome = false,
-  onAboutPage = false,
-} = Astro.props;
+} = entry;
 
 const p = assetPrefix(lang);
-const SITE = 'https://www.totaldigital.se';
-// The index pages are canonicalised to the bare directory URL, not /index.html.
-const svUrl = isHome ? `${SITE}/` : `${SITE}/${path}`;
-const enUrl = isHome ? `${SITE}/en/` : `${SITE}/en/${path}`;
+const svUrl = pageUrl('sv', path);
+const enUrl = pageUrl('en', path);
 const canonical = lang === 'sv' ? svUrl : enUrl;
 ---
 <!DOCTYPE html>

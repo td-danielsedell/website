@@ -1,0 +1,38 @@
+---
+/**
+ * schema.org Service block for the four project pages.
+ *
+ * Every field is derived: name from ogTitle, description and image from the
+ * page's own metadata, url and inLanguage from lang + path. Nothing here is a
+ * second copy of anything, so the structured data cannot drift from the <head>
+ * it describes.
+ *
+ * Written as a template literal rather than JSON.stringify on purpose — the
+ * serializer reorders nothing but reformats everything, and the output has to
+ * stay byte-for-byte what the hand-written pages emitted.
+ */
+import type { Lang } from '../../data/nav';
+import { pageMeta, localeTag, pageUrl, SITE, ORGANIZATION_ID } from '../../data/pages';
+
+interface Props { lang: Lang; path: string }
+const { lang, path } = Astro.props;
+const m = pageMeta[path][lang];
+const name = m.ogTitle ?? m.title;
+---
+    <script type="application/ld+json" set:html={`
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": ${JSON.stringify(name)},
+        "url": "${pageUrl(lang, path)}",
+        "description": ${JSON.stringify(m.description)},
+        "inLanguage": "${localeTag(lang)}",
+        "image": "${m.ogImage}",
+        "provider": {
+            "@type": "Organization",
+            "@id": "${ORGANIZATION_ID}",
+            "name": "Total Digital AB",
+            "url": "${SITE}/"
+        }
+    }
+    `} />

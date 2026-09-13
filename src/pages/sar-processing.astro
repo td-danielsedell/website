@@ -1,4 +1,5 @@
 ---
+import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -6,33 +7,9 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
 <Layout
     lang="sv"
     path="sar-processing.html"
-    title="InSAR – skalbar övervakning av markrörelser | Total Digital"
-    description="InSAR-baserad bearbetning av hög- och medelupplöst SAR-data för övervakning av markrörelser och deformationer inom infrastruktur och samhällsbyggnad."
-    ogTitle="InSAR – skalbar övervakning av markrörelser"
-    ogType="article"
-    ogImage="https://www.totaldigital.se/images/og/sar-processing.jpg"
-    ogImageAlt="Interferogram från SAR-data"
 >
     <ServiceCardCss slot="head-css" lang="sv" />
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
-      {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "InSAR – skalbar övervakning av markrörelser",
-          "url": "https://www.totaldigital.se/sar-processing.html",
-          "description": "InSAR-baserad bearbetning av hög- och medelupplöst SAR-data för övervakning av markrörelser och deformationer inom infrastruktur och samhällsbyggnad.",
-          "inLanguage": "sv-SE",
-          "image": "https://www.totaldigital.se/images/og/sar-processing.jpg",
-          "provider": {
-              "@type": "Organization",
-              "@id": "https://www.totaldigital.se/#organization",
-              "name": "Total Digital AB",
-              "url": "https://www.totaldigital.se/"
-          }
-      }
-      </script>
-    </Fragment>
+    <ServiceJsonLd slot="head-after-fonts" lang="sv" path="sar-processing.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top">
 

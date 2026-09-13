@@ -1,4 +1,5 @@
 ---
+import SoftwareApplicationJsonLd from '../../components/head/SoftwareApplicationJsonLd.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import ProductLayoutCss from '../../components/head/ProductLayoutCss.astro';
@@ -9,35 +10,11 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 <Layout
     lang="en"
     path="td_test.html"
-    title="TD Test – automated testing for IBM Maximo | Total Digital"
-    description="TD Test is the tool for automated testing of IBM Maximo and Maximo Application Suite (MAS). Tests the interface, business logic, integrations and more."
-    ogTitle="TD Test – automated testing for IBM Maximo"
-    ogImage="https://www.totaldigital.se/images/og/td_test.jpg"
-    ogImageAlt="TD Test home screen with test runs and results"
 >
     <ParallaxScripts slot="scripts-early" lang="en" />
     <ServiceCardCss slot="head-css" lang="en" />
     <ProductLayoutCss slot="head-css" lang="en" />
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
-      {
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "TD Test",
-          "url": "https://www.totaldigital.se/en/td_test.html",
-          "applicationCategory": "DeveloperApplication",
-          "description": "TD Test is the tool for automated testing of IBM Maximo and Maximo Application Suite (MAS). Tests the interface, business logic, integrations and more.",
-          "inLanguage": "en-GB",
-          "image": "https://www.totaldigital.se/images/og/td_test.jpg",
-          "provider": {
-              "@type": "Organization",
-              "@id": "https://www.totaldigital.se/#organization",
-              "name": "Total Digital AB",
-              "url": "https://www.totaldigital.se/"
-          }
-      }
-      </script>
-    </Fragment>
+    <SoftwareApplicationJsonLd slot="head-after-fonts" lang="en" path="td_test.html" />
     <FooterLargeCss slot="head-after-fonts" lang="en" />
     <TdTestScripts slot="scripts" lang="en" />
         <main id="content" class="showcase-top">

@@ -1,4 +1,5 @@
 ---
+import ServiceJsonLd from '../components/head/ServiceJsonLd.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCardCss from '../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../components/head/FooterLargeCss.astro';
@@ -6,33 +7,9 @@ import FooterLargeCss from '../components/head/FooterLargeCss.astro';
 <Layout
     lang="sv"
     path="raildamage-analyses.html"
-    title="AI-baserad analys av rälsskador i bilddata | Total Digital"
-    description="AI-baserad analys av bilddata från järnvägsinspektioner som identifierar rälsskador och avvikelser – stöd för tillståndsbedömning och underhållsplanering."
-    ogTitle="AI-baserad analys av rälsskador i bilddata"
-    ogType="article"
-    ogImage="https://www.totaldigital.se/images/og/raildamage-analyses.jpg"
-    ogImageAlt="Rälsskada identifierad i inspektionsbild"
 >
     <ServiceCardCss slot="head-css" lang="sv" />
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
-      {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "AI-baserad analys av rälsskador i bilddata",
-          "url": "https://www.totaldigital.se/raildamage-analyses.html",
-          "description": "AI-baserad analys av bilddata från järnvägsinspektioner som identifierar rälsskador och avvikelser – stöd för tillståndsbedömning och underhållsplanering.",
-          "inLanguage": "sv-SE",
-          "image": "https://www.totaldigital.se/images/og/raildamage-analyses.jpg",
-          "provider": {
-              "@type": "Organization",
-              "@id": "https://www.totaldigital.se/#organization",
-              "name": "Total Digital AB",
-              "url": "https://www.totaldigital.se/"
-          }
-      }
-      </script>
-    </Fragment>
+    <ServiceJsonLd slot="head-after-fonts" lang="sv" path="raildamage-analyses.html" />
     <FooterLargeCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top">
 

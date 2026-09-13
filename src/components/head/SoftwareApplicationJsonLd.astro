@@ -1,0 +1,35 @@
+---
+/**
+ * schema.org SoftwareApplication block for the three product pages.
+ *
+ * Same principle as ServiceJsonLd: description, image, url and inLanguage are
+ * derived from the page's metadata. Two fields cannot be — `ldName` is the
+ * product, not the page title (TD Test, not "TD Test – Automattester för IBM
+ * Maximo"), and applicationCategory is a schema.org enum — so both live beside
+ * the rest of the page's metadata in src/data/pages.ts.
+ */
+import type { Lang } from '../../data/nav';
+import { pageMeta, localeTag, pageUrl, SITE, ORGANIZATION_ID } from '../../data/pages';
+
+interface Props { lang: Lang; path: string }
+const { lang, path } = Astro.props;
+const m = pageMeta[path][lang];
+---
+    <script type="application/ld+json" set:html={`
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": ${JSON.stringify(m.ldName)},
+        "url": "${pageUrl(lang, path)}",
+        "applicationCategory": "${m.applicationCategory}",
+        "description": ${JSON.stringify(m.description)},
+        "inLanguage": "${localeTag(lang)}",
+        "image": "${m.ogImage}",
+        "provider": {
+            "@type": "Organization",
+            "@id": "${ORGANIZATION_ID}",
+            "name": "Total Digital AB",
+            "url": "${SITE}/"
+        }
+    }
+    `} />

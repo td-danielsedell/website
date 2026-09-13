@@ -1,4 +1,5 @@
 ---
+import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
@@ -6,33 +7,9 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
 <Layout
     lang="en"
     path="leak-detection.html"
-    title="AI-based leak detection in water infrastructure | Total Digital"
-    description="AI and satellite data that detect leaks in water distribution networks, reduce water losses and give a better basis for managing the pipe network."
-    ogTitle="AI-based leak detection in water infrastructure"
-    ogType="article"
-    ogImage="https://www.totaldigital.se/images/og/leak-detection.jpg"
-    ogImageAlt="Leak detection in a water distribution network"
 >
     <ServiceCardCss slot="head-css" lang="en" />
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
-      {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "AI-based leak detection in water infrastructure",
-          "url": "https://www.totaldigital.se/en/leak-detection.html",
-          "description": "AI and satellite data that detect leaks in water distribution networks, reduce water losses and give a better basis for managing the pipe network.",
-          "inLanguage": "en-GB",
-          "image": "https://www.totaldigital.se/images/og/leak-detection.jpg",
-          "provider": {
-              "@type": "Organization",
-              "@id": "https://www.totaldigital.se/#organization",
-              "name": "Total Digital AB",
-              "url": "https://www.totaldigital.se/"
-          }
-      }
-      </script>
-    </Fragment>
+    <ServiceJsonLd slot="head-after-fonts" lang="en" path="leak-detection.html" />
     <FooterLargeCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 

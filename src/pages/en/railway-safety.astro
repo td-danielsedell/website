@@ -1,4 +1,5 @@
 ---
+import ServiceJsonLd from '../../components/head/ServiceJsonLd.astro';
 import Layout from '../../layouts/Layout.astro';
 import ServiceCardCss from '../../components/head/ServiceCardCss.astro';
 import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
@@ -6,33 +7,9 @@ import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
 <Layout
     lang="en"
     path="railway-safety.html"
-    title="Predictive railway safety with satellite data and AI | Total Digital"
-    description="AI and satellite data that forecast rail temperature and the risk of track buckling up to 48 hours ahead – for proactive maintenance and safer railway operations."
-    ogTitle="Predictive railway safety with satellite data and AI"
-    ogType="article"
-    ogImage="https://www.totaldigital.se/images/og/railway-safety.jpg"
-    ogImageAlt="Sensor mounted on the rail for track monitoring"
 >
     <ServiceCardCss slot="head-css" lang="en" />
-    <Fragment slot="head-after-fonts">
-      <script type="application/ld+json">
-      {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Predictive railway safety with satellite data and AI",
-          "url": "https://www.totaldigital.se/en/railway-safety.html",
-          "description": "AI and satellite data that forecast rail temperature and the risk of track buckling up to 48 hours ahead – for proactive maintenance and safer railway operations.",
-          "inLanguage": "en-GB",
-          "image": "https://www.totaldigital.se/images/og/railway-safety.jpg",
-          "provider": {
-              "@type": "Organization",
-              "@id": "https://www.totaldigital.se/#organization",
-              "name": "Total Digital AB",
-              "url": "https://www.totaldigital.se/"
-          }
-      }
-      </script>
-    </Fragment>
+    <ServiceJsonLd slot="head-after-fonts" lang="en" path="railway-safety.html" />
     <FooterLargeCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 
