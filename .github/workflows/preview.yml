@@ -1,6 +1,6 @@
 name: Preview on GitHub Pages
 
-# The review surface for the Astro branch: every push builds the site and
+# The review surface for this fork: every push to main builds the site and
 # publishes it to Pages, so the converted pages can be looked at on a real URL
 # — phone and desktop — before anything reaches the live host.
 #
@@ -18,12 +18,14 @@ name: Preview on GitHub Pages
 #
 # SETUP (once, in the repository that runs this):
 #   Settings -> Pages -> Source: "GitHub Actions"
+#   Publishing from the fork's default branch, so the github-pages environment's
+#   branch protection allows it without extra configuration.
 #   Pages on a PRIVATE repo requires a paid plan. On a public repo the preview
 #   is world-readable — which is why the build below marks it noindex.
 
 on:
   push:
-    branches: [astro]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
