@@ -1,0 +1,94 @@
+name: Preview on GitHub Pages
+
+# The review surface for the Astro branch: every push builds the site and
+# publishes it to Pages, so the converted pages can be looked at on a real URL
+# — phone and desktop — before anything reaches the live host.
+#
+# This is a PREVIEW, never the deployment. Production goes out over FTPS from
+# deploy.yml, which is manual and targets the real server.
+#
+# Pages serves a project repo from a subpath (https://<user>.github.io/website/).
+# That works here with no `base` setting because every asset and page link in
+# this site is relative — `css/…` at the root, `../css/…` under en/ — so they
+# resolve against whatever directory the page is served from. Verified by
+# serving dist/ under /website/ locally: zero failed requests, every link
+# resolved inside the subpath. Do NOT add `base` to astro.config.mjs for this;
+# it would emit root-absolute URLs that break the real FTP deploy at the domain
+# root.
+#
+# SETUP (once, in the repository that runs this):
+#   Settings -> Pages -> Source: "GitHub Actions"
+#   Pages on a PRIVATE repo requires a paid plan. On a public repo the preview
+#   is world-readable — which is why the build below marks it noindex.
+
+on:
+  push:
+    branches: [astro]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running publish finish rather than cancelling it half-uploaded, but
+# never run two at once.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # Gate: the traps-checklist invariants must hold. Baseline-independent,
+      # so it keeps working as main moves on. Same reasoning as deploy.yml.
+      - name: Assert page invariants
+        run: npm run verify:invariants
+
+      # Informational only. The DOM diff compares against verify/baseline/,
+      # which is a snapshot of main at a point in time; once main moves ahead it
+      # reports differences that are expected rather than wrong. Useful to read
+      # in the log, wrong to block a preview on.
+      - name: Diff against the recorded baseline (informational)
+        continue-on-error: true
+        run: npm run verify
+
+      # Keep the preview out of search results. It is a full copy of the company
+      # site, and an indexed duplicate would compete with the real one. The pages
+      # already carry canonical URLs pointing at www.totaldigital.se, which helps,
+      # but noindex is the part that actually keeps it out. Injected here rather
+      # than in public/, so the production build never carries it.
+      - name: Mark the preview noindex
+        run: |
+          printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
+          find dist -name '*.html' -print0 \
+            | xargs -0 sed -i 's|<head>|<head>\n    <meta name="robots" content="noindex, nofollow">|'
+          echo "tagged $(find dist -name '*.html' | wc -l) pages"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
