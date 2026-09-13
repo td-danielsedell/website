@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import TdLinearCss from '../../components/head/TdLinearCss.astro';
-import TdLinearFooterCss from '../../components/head/TdLinearFooterCss.astro';
+import ProductPageCss from '../../components/head/ProductPageCss.astro';
+import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
 import TdLinearProductCss from '../../components/head/TdLinearProductCss.astro';
 import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 import LightboxScripts from '../../components/scripts/LightboxScripts.astro';
@@ -17,7 +17,7 @@ import LightboxScripts from '../../components/scripts/LightboxScripts.astro';
 >
     <ParallaxScripts slot="scripts-early" lang="en" />
     <LightboxScripts slot="scripts-late" lang="en" />
-    <TdLinearCss slot="head-css" lang="en" />
+    <ProductPageCss slot="head-css" lang="en" />
     <Fragment slot="og-image-note">
       {/*PLACEHOLDER: TD Linear has no artwork of its own yet, so the link preview
           borrows TD Test's. Switch to images/og/td_linear.jpg once it exists.*/}
@@ -42,7 +42,7 @@ import LightboxScripts from '../../components/scripts/LightboxScripts.astro';
       }
       </script>
     </Fragment>
-    <TdLinearFooterCss slot="head-after-fonts" lang="en" />
+    <FooterLargeCss slot="head-after-fonts" lang="en" />
     <TdLinearProductCss slot="head-after-fonts" lang="en" />
     <Fragment slot="scripts">
       <script src="../js/image-zoom.js" is:inline></script>

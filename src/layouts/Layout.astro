@@ -61,8 +61,6 @@ interface Props {
   isHome?: boolean;
   /** The about pages own the #certificates section the footer badges point at. */
   onAboutPage?: boolean;
-  /** Forwarded to Header — see its `bannerPlaceholder` prop. about and td_test pass false. */
-  bannerPlaceholder?: boolean;
 }
 
 const {
@@ -76,7 +74,6 @@ const {
   ogImageAlt = 'Total Digital',
   isHome = false,
   onAboutPage = false,
-  bannerPlaceholder = true,
 } = Astro.props;
 
 const p = assetPrefix(lang);
@@ -161,7 +158,7 @@ const canonical = lang === 'sv' ? svUrl : enUrl;
 
     <div id="wrapper">
 
-        <Header lang={lang} path={path} isHome={isHome} bannerPlaceholder={bannerPlaceholder}><slot name="banner" /></Header>
+        <Header lang={lang} path={path} isHome={isHome}><slot name="banner" /></Header>
 
         {/*Main Content Area*/}
         <slot />

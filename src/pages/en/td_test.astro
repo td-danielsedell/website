@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TdTestCss from '../../components/head/TdTestCss.astro';
-import TdTestFooterCss from '../../components/head/TdTestFooterCss.astro';
+import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
 import TdTestScripts from '../../components/scripts/TdTestScripts.astro';
 import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
 ---
@@ -13,7 +13,6 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
     ogTitle="TD Test – automated testing for IBM Maximo"
     ogImage="https://www.totaldigital.se/images/og/td_test.jpg"
     ogImageAlt="TD Test home screen with test runs and results"
-    bannerPlaceholder={false}
 >
     <ParallaxScripts slot="scripts-early" lang="en" />
     <TdTestCss slot="head-css" lang="en" />
@@ -37,7 +36,7 @@ import ParallaxScripts from '../../components/scripts/ParallaxScripts.astro';
       }
       </script>
     </Fragment>
-    <TdTestFooterCss slot="head-after-fonts" lang="en" />
+    <FooterLargeCss slot="head-after-fonts" lang="en" />
     <TdTestScripts slot="scripts" lang="en" />
         <main id="content" class="showcase-top">
 

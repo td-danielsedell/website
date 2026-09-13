@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import LeakDetectionCss from '../../components/head/LeakDetectionCss.astro';
-import LeakDetectionFooterCss from '../../components/head/LeakDetectionFooterCss.astro';
+import ProjectPageCss from '../../components/head/ProjectPageCss.astro';
+import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
 ---
 <Layout
     lang="en"
@@ -13,7 +13,7 @@ import LeakDetectionFooterCss from '../../components/head/LeakDetectionFooterCss
     ogImage="https://www.totaldigital.se/images/og/leak-detection.jpg"
     ogImageAlt="Leak detection in a water distribution network"
 >
-    <LeakDetectionCss slot="head-css" lang="en" />
+    <ProjectPageCss slot="head-css" lang="en" />
     <Fragment slot="head-after-fonts">
       <script type="application/ld+json">
       {
@@ -33,7 +33,7 @@ import LeakDetectionFooterCss from '../../components/head/LeakDetectionFooterCss
       }
       </script>
     </Fragment>
-    <LeakDetectionFooterCss slot="head-after-fonts" lang="en" />
+    <FooterLargeCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 
             <section class="introduction scrollto">

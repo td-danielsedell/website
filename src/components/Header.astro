@@ -15,8 +15,6 @@
  */
 import { strings, assetPrefix, type Lang } from '../data/nav';
 import Globe from './icons/Globe.astro';
-import BannerPlaceholder from './BannerPlaceholder.astro';
-import NavOrderNote from './NavOrderNote.astro';
 
 interface Props {
   lang: Lang;
@@ -25,17 +23,9 @@ interface Props {
   /** True on the two index pages: header gets id="home" and nav hrefs go bare-hash.
    *  On those pages the real banner content arrives through the default slot. */
   isHome?: boolean;
-  /**
-   * The commented-out `#banner-content` placeholder that sits before </header>.
-   * Present on 14 of 18 fork-point pages; about.html and td_test.html (both
-   * locales) had already dropped it, so they pass `false`. Kept rather than
-   * deleted everywhere: removing dead markup from 14 pages is a content call,
-   * not a migration one.
-   */
-  bannerPlaceholder?: boolean;
 }
 
-const { lang, path, isHome = false, bannerPlaceholder = true } = Astro.props;
+const { lang, path, isHome = false } = Astro.props;
 const t = strings[lang];
 const p = assetPrefix(lang);
 
@@ -83,7 +73,13 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                                     site.js clones this markup into the mobile menu. The subpage links
                                     are relative so the site works wherever it is mounted, and site.js
                                     keeps stickyNavbar from cancelling the click on them.*/}
-{isHome && <NavOrderNote />}
+{isHome && (
+                                <Fragment>
+                                {/* Index only: the items follow the order of the sections. "Home"
+                                    is gone — the logo beside it already goes there, and the banner
+                                    is what you are looking at when the nav is not sticky. */}
+                                </Fragment>
+                              )}
                                 <li onclick={isHome ? undefined : `location.href='${home}#businessareas';`}>
                                     <a href={`${home}#businessareas`}>{t.nav.businessareas}</a>
                                 </li>
@@ -193,5 +189,5 @@ const current = (href: string) => (href === path ? 'page' : undefined);
                     </div>
                 </div>
             </div>{/*End of Header*/}
-{isHome ? <slot /> : bannerPlaceholder && <BannerPlaceholder />}
+{isHome && <slot />}
         </header>

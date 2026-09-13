@@ -1,0 +1,16 @@
+---
+/**
+ * footer-large.css for every subpage.
+ *
+ * Goes in Layout's `head-after-fonts` slot, because the subpage baseline order
+ * is theme.js -> Open Sans preload -> footer-large.css -> Font Awesome kit.
+ * The about pages are the exception: there it loads earlier, as part of
+ * `head-css`, so they do not use this component.
+ */
+import { assetPrefix, type Lang } from '../../data/nav';
+
+interface Props { lang: Lang }
+const p = assetPrefix(Astro.props.lang);
+---
+    {/* Large footer */}
+    <link href={`${p}css/footer-large.css`} rel="stylesheet" type="text/css">

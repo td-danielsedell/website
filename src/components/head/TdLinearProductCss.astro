@@ -1,16 +1,13 @@
 ---
-/** Stylesheets td_linear shares with td_test, in load order. area-band.css
- * must load after style.css (see css/area-band.css). */
+/** Stylesheets td_linear shares with td_test, in load order. */
 import { assetPrefix, type Lang } from '../../data/nav';
-import TdLinearProductNoteSv from './TdLinearProductNoteSv.astro';
-import TdLinearProductNoteEn from './TdLinearProductNoteEn.astro';
 
 interface Props { lang: Lang }
-const { lang } = Astro.props;
-const p = assetPrefix(lang);
+const p = assetPrefix(Astro.props.lang);
 ---
-{lang === 'sv' && <TdLinearProductNoteSv />}
-{lang === 'en' && <TdLinearProductNoteEn />}
+    {/* The product page layout and its components. Exactly the sheet td_test
+        uses — the two large product pages share a layout, so a change in
+        css/td-test.css lands on both. area-band.css must load after style.css. */}
     <link href={`${p}css/area-band.css`} rel="stylesheet" type="text/css">
     <link href={`${p}css/td-test.css`} rel="stylesheet" type="text/css">
     {/* Click-to-enlarge images (opt in with data-zoomable) */}

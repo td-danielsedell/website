@@ -1,19 +1,15 @@
 ---
-/** Stylesheets specific to the td_test pages, in load order. area-band.css
- * must load after style.css (see css/area-band.css). */
+/** Stylesheets specific to the td_test pages, in load order. */
 import { assetPrefix, type Lang } from '../../data/nav';
-import AreaBandNoteSv from './AreaBandNoteSv.astro';
-import AreaBandNoteEn from './AreaBandNoteEn.astro';
 
 interface Props { lang: Lang }
-const { lang } = Astro.props;
-const p = assetPrefix(lang);
+const p = assetPrefix(Astro.props.lang);
 ---
     {/* Service Card CSS */}
     <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">
 
-{lang === 'sv' && <AreaBandNoteSv />}
-{lang === 'en' && <AreaBandNoteEn />}
+    {/* The business-areas band from the start page; Benefits uses the same band.
+        Must load after style.css — see the comment at the top of the sheet. */}
     <link href={`${p}css/area-band.css`} rel="stylesheet" type="text/css">
 
     {/* TD Test Page CSS */}

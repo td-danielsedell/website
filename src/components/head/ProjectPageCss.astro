@@ -1,10 +1,9 @@
 ---
-/** Stylesheet specific to the sar-processing page. */
+/** Page stylesheet shared by the four project pages. */
 import { assetPrefix, type Lang } from '../../data/nav';
 
 interface Props { lang: Lang }
-const { lang } = Astro.props;
-const p = assetPrefix(lang);
+const p = assetPrefix(Astro.props.lang);
 ---
     {/* Service Card CSS */}
     <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">

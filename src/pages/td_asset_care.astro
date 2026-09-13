@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TdAssetCareCss from '../components/head/TdAssetCareCss.astro';
-import TdAssetCareFooterCss from '../components/head/TdAssetCareFooterCss.astro';
+import ProductPageCss from '../components/head/ProductPageCss.astro';
+import FooterLargeCss from '../components/head/FooterLargeCss.astro';
 import ParallaxScripts from '../components/scripts/ParallaxScripts.astro';
 import LightboxScripts from '../components/scripts/LightboxScripts.astro';
 ---
@@ -16,7 +16,7 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
 >
     <ParallaxScripts slot="scripts-early" lang="sv" />
     <LightboxScripts slot="scripts-late" lang="sv" />
-    <TdAssetCareCss slot="head-css" lang="sv" />
+    <ProductPageCss slot="head-css" lang="sv" />
     <Fragment slot="head-after-fonts">
       <script type="application/ld+json">
       {
@@ -37,7 +37,7 @@ import LightboxScripts from '../components/scripts/LightboxScripts.astro';
       }
       </script>
     </Fragment>
-    <TdAssetCareFooterCss slot="head-after-fonts" lang="sv" />
+    <FooterLargeCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top title-top">
 
             <section class="introduction scrollto">

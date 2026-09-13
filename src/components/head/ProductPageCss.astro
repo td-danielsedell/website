@@ -1,13 +1,11 @@
 ---
-/** Stylesheets specific to the td_linear pages, in load order. */
+/** Page stylesheets shared by TD Asset Care and TD Linear, in load order. */
 import { assetPrefix, type Lang } from '../../data/nav';
 
 interface Props { lang: Lang }
-const { lang } = Astro.props;
-const p = assetPrefix(lang);
+const p = assetPrefix(Astro.props.lang);
 ---
     {/* Feature Card CSS */}
     <link href={`${p}css/feature-card.css`} rel="stylesheet" type="text/css">
-
     {/* Service Card CSS */}
     <link href={`${p}css/service-card.css`} rel="stylesheet" type="text/css">

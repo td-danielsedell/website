@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SarProcessingCss from '../../components/head/SarProcessingCss.astro';
-import SarProcessingFooterCss from '../../components/head/SarProcessingFooterCss.astro';
+import ProjectPageCss from '../../components/head/ProjectPageCss.astro';
+import FooterLargeCss from '../../components/head/FooterLargeCss.astro';
 ---
 <Layout
     lang="en"
@@ -13,7 +13,7 @@ import SarProcessingFooterCss from '../../components/head/SarProcessingFooterCss
     ogImage="https://www.totaldigital.se/images/og/sar-processing.jpg"
     ogImageAlt="Interferogram from SAR data"
 >
-    <SarProcessingCss slot="head-css" lang="en" />
+    <ProjectPageCss slot="head-css" lang="en" />
     <Fragment slot="head-after-fonts">
       <script type="application/ld+json">
       {
@@ -33,7 +33,7 @@ import SarProcessingFooterCss from '../../components/head/SarProcessingFooterCss
       }
       </script>
     </Fragment>
-    <SarProcessingFooterCss slot="head-after-fonts" lang="en" />
+    <FooterLargeCss slot="head-after-fonts" lang="en" />
         <main id="content" class="showcase-top">
 
             <section class="introduction scrollto">

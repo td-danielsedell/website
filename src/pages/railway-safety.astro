@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import RailwaySafetyCss from '../components/head/RailwaySafetyCss.astro';
-import RailwaySafetyFooterCss from '../components/head/RailwaySafetyFooterCss.astro';
+import ProjectPageCss from '../components/head/ProjectPageCss.astro';
+import FooterLargeCss from '../components/head/FooterLargeCss.astro';
 ---
 <Layout
     lang="sv"
@@ -13,7 +13,7 @@ import RailwaySafetyFooterCss from '../components/head/RailwaySafetyFooterCss.as
     ogImage="https://www.totaldigital.se/images/og/railway-safety.jpg"
     ogImageAlt="Sensor monterad på räl för spårövervakning"
 >
-    <RailwaySafetyCss slot="head-css" lang="sv" />
+    <ProjectPageCss slot="head-css" lang="sv" />
     <Fragment slot="head-after-fonts">
       <script type="application/ld+json">
       {
@@ -33,7 +33,7 @@ import RailwaySafetyFooterCss from '../components/head/RailwaySafetyFooterCss.as
       }
       </script>
     </Fragment>
-    <RailwaySafetyFooterCss slot="head-after-fonts" lang="sv" />
+    <FooterLargeCss slot="head-after-fonts" lang="sv" />
         <main id="content" class="showcase-top">
 
             <section class="introduction scrollto">
