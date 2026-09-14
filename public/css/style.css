@@ -1751,22 +1751,6 @@ p.section-kicker {
     pointer-events: none;
 }
 
-#businessareas .area-grid > .icon-block:nth-child(1)::after {
-    background-image: url("../images/icons/assetmanagement_logo.svg");
-}
-
-#businessareas .area-grid > .icon-block:nth-child(2)::after {
-    background-image: url("../images/icons/gis_logo.svg");
-}
-
-#businessareas .area-grid > .icon-block:nth-child(3)::after {
-    background-image: url("../images/icons/remotesensing_logo.webp");
-}
-
-#businessareas .area-grid > .icon-block:nth-child(4)::after {
-    background-image: url("../images/icons/ai_logo.webp");
-}
-
 #businessareas .icon {
     position: relative;
     z-index: 1;
