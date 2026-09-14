@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import stock4 from "../../assets/images/stock_4.webp";
 import Layout from "../../layouts/Layout.astro";
 ---
 
@@ -390,10 +392,11 @@ import Layout from "../../layouts/Layout.astro";
           <div class="col-2 image-carousel-slide">
             <div class="service-group">
               <div class="service-group-image">
-                <img
-                  src="../images/gallery-images/stock_4.webp"
-                  width="1200"
-                  height="500"
+                <Image
+                  src={stock4}
+                  widths={[400, 800, 1200]}
+                  sizes="(max-width: 767px) 100vw, 50vw"
+                  quality={75}
                   alt=""
                   loading="lazy"
                 />

@@ -136,11 +136,26 @@ const INVARIANTS = [
     return [];
   }],
 
-  ['trap 13: no _astro/ bundle references (public/ is URL-only)', (doc) => {
-    const hits = all(doc, (n) => (n.attrs ?? []).some((a) => /(^|\/)_astro\//.test(a.value)));
-    return hits.length
-      ? [`${hits.length} reference(s) to _astro/ — a public/ asset was imported instead of linked, creating a duplicate hashed copy`]
-      : [];
+  ['trap 13: no asset shipped from both public/ and _astro/', (doc) => {
+    // Originally this rejected any _astro/ reference at all, because every asset
+    // lived in public/ and a bundled copy could only mean one had been imported
+    // by mistake - shipping the same bytes twice under two URLs.
+    //
+    // astro:assets makes _astro/ legitimate for images imported from src/assets/.
+    // The hazard it was guarding against is unchanged though, so the check now
+    // names it directly: the same file must not exist in public/ AND be bundled.
+    const bundled = all(doc, (n) => (n.attrs ?? []).some((a) => /(^|\/)_astro\//.test(a.value)))
+      .flatMap((n) => (n.attrs ?? []).filter((a) => /(^|\/)_astro\//.test(a.value)).map((a) => a.value));
+    const dupes = [];
+    for (const url of bundled) {
+      // _astro names are `<stem>.<contenthash>_<variant>.<ext>`; recover the stem
+      const file = url.split('/').pop() ?? '';
+      const stem = file.split('.')[0];
+      if (!stem) continue;
+      const hit = PUBLIC_FILES.find((f) => f.startsWith(stem + '.'));
+      if (hit) dupes.push(`${stem} is bundled into _astro/ AND still present at public/${hit} — it would ship twice`);
+    }
+    return dupes;
   }],
 
   ['lang attribute matches directory', (doc, page) => {
@@ -158,6 +173,17 @@ const INVARIANTS = [
     });
   }],
 ];
+
+/** Every file under public/images, by basename — for the duplicate check above. */
+const PUBLIC_FILES = (() => {
+  const dir = join(ROOT, 'public/images');
+  if (!existsSync(dir)) return [];
+  const walk = (d) => readdirSync(d).flatMap((n) => {
+    const p = join(d, n);
+    return statSync(p).isDirectory() ? walk(p) : [n];
+  });
+  return walk(dir);
+})();
 
 const isIndex = (page) => page === 'index.html' || page === 'en/index.html';
 
@@ -189,7 +215,11 @@ const VIOLATIONS = [
   }],
   ['trap 7 (FA deferred on index)', 'index.html', (h) => h.replace(/(kit.fontawesome.com[^>]*?)>/, '$1 defer>')],
   ['trap 7 (FA non-defer on subpage)', 'about.html', (h) => h.replace(/(<script src="https:\/\/kit.fontawesome.com[^>]*?) defer>/, '$1>')],
-  ['trap 13 (_astro reference)', 'about.html', (h) => h.replace('href="css/style.css"', 'href="/_astro/style.abc123.css"')],
+  // The hazard is the same file shipping twice, so the fixture has to name a
+  // file that really is in public/ — any image bundled under _astro/ whose
+  // original is still sitting there.
+  ['trap 13 (asset shipped from both public/ and _astro/)', 'about.html',
+    (h) => h.replace('<body>', '<body><img src="/_astro/favicon.abc123_x.png" alt="">')],
   ['lang mismatch', 'en/about.html', (h) => h.replace('<html lang="en"', '<html lang="sv"')],
   ['JSON-LD broken', 'index.html', (h) => h.replace('"@type"', '"@type" :: ')],
 ];

@@ -49,6 +49,10 @@ function scan(html) {
 }
 
 function check(dir, base) {
+  // Checking only that a URL starts with the base is not enough: every
+  // root-absolute URL starts with "/", so a build made for /website/ would sail
+  // through a check against "/" — and that is the direction that breaks
+  // production. So each URL is also resolved to a file inside the output.
   const walk = (d) => readdirSync(d).flatMap((n) => {
     const p = join(d, n);
     return statSync(p).isDirectory() ? walk(p) : [p];
@@ -61,6 +65,11 @@ function check(dir, base) {
       checked++;
       if (!url.startsWith(base)) {
         bad.push(`${relative(dir, p)}: ${url}  (expected to start with ${base})`);
+        continue;
+      }
+      const onDisk = join(dir, decodeURIComponent(url.slice(base.length)));
+      if (!existsSync(onDisk)) {
+        bad.push(`${relative(dir, p)}: ${url}  (no such file in the build — wrong base?)`);
       }
     }
   }
