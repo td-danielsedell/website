@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import lgLK from "../assets/images/LG_LK.webp";
 import Layout from "../layouts/Layout.astro";
 import AboutCss from "../components/head/AboutCss.astro";
 import AboutScripts from "../components/scripts/AboutScripts.astro";
@@ -174,11 +176,12 @@ import AboutScripts from "../components/scripts/AboutScripts.astro";
             <div class="person-grid person-track image-carousel-track clearfix">
               <div class="image-carousel-slide">
                 <div class="person-card">
-                  <img
+                  <Image
                     class="person-photo"
-                    src="images/company-images/LG_LK.webp"
-                    width="400"
-                    height="500"
+                    src={lgLK}
+                    widths={[220, 440, 800]}
+                    sizes="(max-width: 767px) 45vw, 220px"
+                    quality={75}
                     loading="lazy"
                     alt=""
                   />

@@ -148,12 +148,19 @@ const INVARIANTS = [
       .flatMap((n) => (n.attrs ?? []).filter((a) => /(^|\/)_astro\//.test(a.value)).map((a) => a.value));
     const dupes = [];
     for (const url of bundled) {
-      // _astro names are `<stem>.<contenthash>_<variant>.<ext>`; recover the stem
+      // _astro names are `<stem>.<contenthash>_<variant>.<ext>`. Rebuild the
+      // ORIGINAL filename — stem plus extension — and look for exactly that.
+      // Matching on the stem alone is too loose: an unreferenced master such as
+      // LG_LK.png is not a duplicate of the bundled LG_LK.webp, it is a
+      // different file that simply shares a name.
       const file = url.split('/').pop() ?? '';
       const stem = file.split('.')[0];
-      if (!stem) continue;
-      const hit = PUBLIC_FILES.find((f) => f.startsWith(stem + '.'));
-      if (hit) dupes.push(`${stem} is bundled into _astro/ AND still present at public/${hit} — it would ship twice`);
+      const ext = file.slice(file.lastIndexOf('.'));
+      if (!stem || !ext) continue;
+      const original = stem + ext;
+      if (PUBLIC_FILES.includes(original)) {
+        dupes.push(`${original} is bundled into _astro/ AND still present in public/ — it would ship twice`);
+      }
     }
     return dupes;
   }],

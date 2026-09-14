@@ -20,7 +20,7 @@
   "divergenceFromMainWhenReplaced": "930 whitespace-only text nodes, 160 lines of reindented JSON-LD, and 2 text nodes inside an inline <a class=email-obfuscated>. The last were measured in a browser: identical text and identical geometry, width 138.38px and left 772, in both builds.",
   "fileCount": 18,
   "sha256": {
-    "about.html": "b09d9f36fbf943c8f081237af604319e7cf955d3ede73eddc9cb82a71d7e519a",
+    "about.html": "9b86d828ecdb7daea19835c5190327b487753beaa893fc18f18aa8f72f6444ce",
     "en/about.html": "ab174853693f0a9f4a54509446b698874b02edc4c6b7d2ce63c7221fbea43790",
     "en/index.html": "32146a9a59d0630f886621ac20a549df5b569a4f47bfdd6c6246187af5241fe7",
     "en/leak-detection.html": "585f66b76ac4776ab6159bf2da8eec25e22040bd9402b4f3b822676b7a090cd9",
@@ -39,5 +39,5 @@
     "td_linear.html": "fac6e50107de1184dc446a95962618cf587629d928f9035767812cdc27e2807e",
     "td_test.html": "491cafbaed7fd728f93c5412ff7c6d0401d7db0986d806484d6fa89e7b029e19"
   },
-  "lastChange": "Re-taken after the astro:assets pilot on one image. NOTE: _astro/ filenames contain a content hash, so this baseline changes whenever an image or the encoder does. That is expected - re-take it deliberately rather than allowlisting hash churn."
+  "lastChange": "Re-taken after converting LG_LK to <Image>. _astro filenames carry a content hash."
 }
