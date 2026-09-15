@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import oresundsbronLogo from "../../assets/images/user-images/oresundsbron.jpeg";
+import tfLogo from "../../assets/images/user-images/tf.jpeg";
 import pedabLogo from "../../assets/images/company-images/pedab.png";
 import maxanvLogo from "../../assets/images/company-images/maxanv.png";
 import rymdstyrelsenLogo from "../../assets/images/company-images/rymdstyrelsen.png";
@@ -670,10 +672,11 @@ import Layout from "../../layouts/Layout.astro";
         </div>
 
         <blockquote class="col-2 testimonial classic text-center">
-          <img
-            src="../images/user-images/tf.webp"
-            width="200"
-            height="200"
+          <Image
+            src={tfLogo}
+            widths={[120, 200]}
+            sizes="120px"
+            quality={80}
             loading="lazy"
             alt="Trafikförvaltningen"
           />
@@ -685,10 +688,11 @@ import Layout from "../../layouts/Layout.astro";
         </blockquote>
 
         <blockquote class="col-2 testimonial classic text-center">
-          <img
-            src="../images/user-images/oresundsbron.webp"
-            width="200"
-            height="200"
+          <Image
+            src={oresundsbronLogo}
+            widths={[120, 200]}
+            sizes="120px"
+            quality={80}
             loading="lazy"
             alt="Öresundsbron"
           />

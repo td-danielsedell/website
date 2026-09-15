@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import tdWhite from "../assets/images/banner-images/td_white.png";
 /**
  * Site header: banner, logo, main nav, and the mobile trigger.
  *
@@ -50,21 +52,23 @@ const current = (href: string) => (href === path ? "page" : undefined);
           {/*Both logos sit in one link back to the start page.*/}
           <a href="index.html" aria-label="Total Digital">
             {/*Logo that is shown on the banner*/}
-            <img
-              src={`${p}images/banner-images/td_white.webp`}
+            <Image
               id="banner-logo"
-              width="412"
-              height="122"
+              src={tdWhite}
+              widths={[74, 148, 222]}
+              sizes="74px"
+              quality={90}
               alt="Total Digital"
             />
             {/*End of Banner Logo*/}
 
             {/*The Logo that is shown on the sticky Navigation Bar*/}
-            <img
-              src={`${p}images/banner-images/td_white.webp`}
+            <Image
               id="navigation-logo"
-              width="412"
-              height="122"
+              src={tdWhite}
+              widths={[74, 148, 222]}
+              sizes="74px"
+              quality={90}
               alt="Total Digital"
             />
             {/*End of Navigation Logo*/}

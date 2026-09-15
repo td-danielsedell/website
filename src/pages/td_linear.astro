@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import punktjamforelse from "../assets/images/product-images/td-linear/punktjamforelse.webp";
+import analys from "../assets/images/product-images/td-linear/analys.webp";
 import SoftwareApplicationJsonLd from "../components/head/SoftwareApplicationJsonLd.astro";
 import Layout from "../layouts/Layout.astro";
 import FeatureCardCss from "../components/head/FeatureCardCss.astro";
@@ -134,14 +136,15 @@ import LightboxScripts from "../components/scripts/LightboxScripts.astro";
           <div class="image-carousel" data-image-carousel="">
             <div class="image-carousel-track">
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot tdt-shot--wide"
-                  src="images/product-images/td-linear/analys.webp"
-                  width="1832"
-                  height="859"
+                  src={analys}
+                  widths={[360, 900, 1832]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                  quality={80}
                   loading="lazy"
-                  alt="Analys av ett urval i TD Linear. Varje kravfynd listas med kravnivå, exakt mätpunkt och avvikelse, och panelen till höger visar underlaget bakom bedömningen: segment, kravnivå, avvikelse från nominellt värde och vilken regel som träffat."
                   data-zoomable
+                  alt="Analys av ett urval i TD Linear. Varje kravfynd listas med kravnivå, exakt mätpunkt och avvikelse, och panelen till höger visar underlaget bakom bedömningen: segment, kravnivå, avvikelse från nominellt värde och vilken regel som träffat."
                 />
                 <figcaption>
                   <strong>Spårbar bedömning av varje fynd</strong> – kravfynden rangordnas
@@ -150,14 +153,15 @@ import LightboxScripts from "../components/scripts/LightboxScripts.astro";
                 </figcaption>
               </figure>
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot tdt-shot--wide"
-                  src="images/product-images/td-linear/punktjamforelse.webp"
-                  width="1832"
-                  height="859"
+                  src={punktjamforelse}
+                  widths={[360, 900, 1832]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                  quality={80}
                   loading="lazy"
-                  alt="Punktjämförelse i TD Linear. Tre mättillfällen jämförs i samma position tillsammans med differenskurvor, så att förändringen mellan åren syns direkt."
                   data-zoomable
+                  alt="Punktjämförelse i TD Linear. Tre mättillfällen jämförs i samma position tillsammans med differenskurvor, så att förändringen mellan åren syns direkt."
                 />
                 <figcaption>
                   <strong>Jämför mättillfällen i samma punkt</strong> – flera år läggs över varandra

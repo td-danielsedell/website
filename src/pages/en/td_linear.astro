@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import punktjamforelse from "../../assets/images/product-images/td-linear/punktjamforelse.webp";
+import analys from "../../assets/images/product-images/td-linear/analys.webp";
 import SoftwareApplicationJsonLd from "../../components/head/SoftwareApplicationJsonLd.astro";
 import Layout from "../../layouts/Layout.astro";
 import FeatureCardCss from "../../components/head/FeatureCardCss.astro";
@@ -138,14 +140,15 @@ import LightboxScripts from "../../components/scripts/LightboxScripts.astro";
           <div class="image-carousel" data-image-carousel="">
             <div class="image-carousel-track">
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot tdt-shot--wide"
-                  src="../images/product-images/td-linear/analys.webp"
-                  width="1832"
-                  height="859"
+                  src={analys}
+                  widths={[360, 900, 1832]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                  quality={80}
                   loading="lazy"
-                  alt="Analysis of a selection in TD Linear. Every requirement finding is listed with its requirement level, exact measurement point and deviation, and the panel on the right shows the basis for the assessment: segment, requirement level, deviation from the nominal value and which rule was matched."
                   data-zoomable
+                  alt="Analysis of a selection in TD Linear. Every requirement finding is listed with its requirement level, exact measurement point and deviation, and the panel on the right shows the basis for the assessment: segment, requirement level, deviation from the nominal value and which rule was matched."
                 />
                 <figcaption>
                   <strong>A clear assessment of every finding</strong> &ndash; requirement findings
@@ -154,14 +157,15 @@ import LightboxScripts from "../../components/scripts/LightboxScripts.astro";
                 </figcaption>
               </figure>
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot tdt-shot--wide"
-                  src="../images/product-images/td-linear/punktjamforelse.webp"
-                  width="1832"
-                  height="859"
+                  src={punktjamforelse}
+                  widths={[360, 900, 1832]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                  quality={80}
                   loading="lazy"
-                  alt="Point comparison in TD Linear. Three survey runs are compared at the same position together with difference curves, so the change between years is immediately visible."
                   data-zoomable
+                  alt="Point comparison in TD Linear. Three survey runs are compared at the same position together with difference curves, so the change between years is immediately visible."
                 />
                 <figcaption>
                   <strong>Compare survey runs at the same point</strong> &ndash; data from several

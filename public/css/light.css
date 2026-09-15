@@ -194,12 +194,6 @@ html.theme-light .footer-certs .cert-badges a:focus-visible {
     opacity: 1;
 }
 
-html.theme-light .footer-large #logo img,
-html.theme-light .footer-large img[src*="td_white"],
-html.theme-light .footer-large img[src*="td_logo"] {
-    filter: invert(1);
-}
-
 html.theme-light .band-dark {
     background: var(--band);
 
