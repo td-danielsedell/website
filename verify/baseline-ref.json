@@ -20,8 +20,8 @@
   "divergenceFromMainWhenReplaced": "930 whitespace-only text nodes, 160 lines of reindented JSON-LD, and 2 text nodes inside an inline <a class=email-obfuscated>. The last were measured in a browser: identical text and identical geometry, width 138.38px and left 772, in both builds.",
   "fileCount": 18,
   "sha256": {
-    "about.html": "9b86d828ecdb7daea19835c5190327b487753beaa893fc18f18aa8f72f6444ce",
-    "en/about.html": "ab174853693f0a9f4a54509446b698874b02edc4c6b7d2ce63c7221fbea43790",
+    "about.html": "565cfc0ed53f13b27c483e10951c9619d5c2d11970041373772bf4ebc23f08a1",
+    "en/about.html": "febefe2f8829fd879b9f4687817db6e1e073049acf22e33af6b8d9344ce7b6c5",
     "en/index.html": "32146a9a59d0630f886621ac20a549df5b569a4f47bfdd6c6246187af5241fe7",
     "en/leak-detection.html": "585f66b76ac4776ab6159bf2da8eec25e22040bd9402b4f3b822676b7a090cd9",
     "en/raildamage-analyses.html": "6a2c433fe4849246a55db7a988c0726d4264ef9c40b759bc2c7d7137f6dd1d16",
@@ -39,5 +39,5 @@
     "td_linear.html": "fac6e50107de1184dc446a95962618cf587629d928f9035767812cdc27e2807e",
     "td_test.html": "491cafbaed7fd728f93c5412ff7c6d0401d7db0986d806484d6fa89e7b029e19"
   },
-  "lastChange": "Re-taken after converting LG_LK to <Image>. _astro filenames carry a content hash."
+  "lastChange": "Re-taken after converting the five management portraits to <Image>."
 }

@@ -1,4 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import lgLK from "../../assets/images/LG_LK.png";
+import lgMS from "../../assets/images/LG_MS.png";
+import lgMA from "../../assets/images/LG_MA.png";
+import lgPT from "../../assets/images/LG_PT.png";
+import lgAH from "../../assets/images/LG_AH.jpg";
 import Layout from "../../layouts/Layout.astro";
 import AboutCss from "../../components/head/AboutCss.astro";
 import AboutScripts from "../../components/scripts/AboutScripts.astro";
@@ -173,11 +179,12 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
             <div class="person-grid person-track image-carousel-track clearfix">
               <div class="image-carousel-slide">
                 <div class="person-card">
-                  <img
+                  <Image
                     class="person-photo"
-                    src="../images/company-images/LG_LK.webp"
-                    width="400"
-                    height="500"
+                    src={lgLK}
+                    widths={[220, 440]}
+                    sizes="220px"
+                    quality={75}
                     loading="lazy"
                     alt=""
                   />
@@ -198,11 +205,12 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
 
               <div class="image-carousel-slide">
                 <div class="person-card">
-                  <img
+                  <Image
                     class="person-photo"
-                    src="../images/company-images/LG_MS.webp"
-                    width="400"
-                    height="500"
+                    src={lgMS}
+                    widths={[220, 440]}
+                    sizes="220px"
+                    quality={75}
                     loading="lazy"
                     alt=""
                   />
@@ -223,11 +231,12 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
 
               <div class="image-carousel-slide">
                 <div class="person-card">
-                  <img
+                  <Image
                     class="person-photo"
-                    src="../images/company-images/LG_MA.webp"
-                    width="400"
-                    height="500"
+                    src={lgMA}
+                    widths={[220, 440]}
+                    sizes="220px"
+                    quality={75}
                     loading="lazy"
                     alt=""
                   />
@@ -248,11 +257,12 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
 
               <div class="image-carousel-slide">
                 <div class="person-card">
-                  <img
+                  <Image
                     class="person-photo"
-                    src="../images/company-images/LG_PT.webp"
-                    width="400"
-                    height="500"
+                    src={lgPT}
+                    widths={[220, 440]}
+                    sizes="220px"
+                    quality={75}
                     loading="lazy"
                     alt=""
                   />
@@ -273,11 +283,12 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
 
               <div class="image-carousel-slide">
                 <div class="person-card">
-                  <img
+                  <Image
                     class="person-photo"
-                    src="../images/company-images/LG_AH.webp"
-                    width="400"
-                    height="500"
+                    src={lgAH}
+                    widths={[220, 440]}
+                    sizes="220px"
+                    quality={75}
                     loading="lazy"
                     alt=""
                   />
