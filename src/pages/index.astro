@@ -1,5 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import railDamage from "../assets/images/rail-damage.png";
+import waterLeak from "../assets/images/water-leak.jpg";
+import interferogram from "../assets/images/interferogram.jpeg";
+import railSensor from "../assets/images/rail-sensor-cropped.png";
 import stock4 from "../assets/images/stock_4.jpg";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -246,10 +250,11 @@ import Layout from "../layouts/Layout.astro";
           <div class="row no-padding-bottom clearfix image-carousel-slide" data-featured>
             <div class="col-1 feature-card showcase text-left">
               <div class="card-image-wrapper">
-                <img
-                  src="images/showcase-images/rail-sensor-cropped.webp"
-                  width="410"
-                  height="401"
+                <Image
+                  src={railSensor}
+                  widths={[277, 383, 552, 1104]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1244px) calc((100vw - 96px) / 3), 552px"
+                  quality={75}
                   loading="lazy"
                   alt=""
                 />
@@ -275,10 +280,11 @@ import Layout from "../layouts/Layout.astro";
           <div class="row no-padding-bottom clearfix image-carousel-slide">
             <div class="col-1 feature-card showcase text-left">
               <div class="card-image-wrapper">
-                <img
-                  src="images/showcase-images/interferogram.webp"
-                  width="619"
-                  height="413"
+                <Image
+                  src={interferogram}
+                  widths={[277, 383, 552, 1104]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1244px) calc((100vw - 96px) / 3), 552px"
+                  quality={75}
                   loading="lazy"
                   alt=""
                 />
@@ -304,10 +310,11 @@ import Layout from "../layouts/Layout.astro";
           <div class="row no-padding-bottom clearfix image-carousel-slide">
             <div class="col-1 feature-card showcase text-left">
               <div class="card-image-wrapper">
-                <img
-                  src="images/showcase-images/water-leak.webp"
-                  width="900"
-                  height="450"
+                <Image
+                  src={waterLeak}
+                  widths={[277, 383, 552, 1104]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1244px) calc((100vw - 96px) / 3), 552px"
+                  quality={75}
                   loading="lazy"
                   alt=""
                 />
@@ -333,10 +340,11 @@ import Layout from "../layouts/Layout.astro";
           <div class="row no-padding-bottom clearfix image-carousel-slide">
             <div class="col-1 feature-card showcase text-left">
               <div class="card-image-wrapper">
-                <img
-                  src="images/showcase-images/rail-damage-ai.webp"
-                  width="997"
-                  height="832"
+                <Image
+                  src={railDamage}
+                  widths={[277, 383, 552, 1104]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1244px) calc((100vw - 96px) / 3), 552px"
+                  quality={75}
                   loading="lazy"
                   alt=""
                 />

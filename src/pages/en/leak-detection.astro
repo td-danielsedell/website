@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import waterLeak from "../../assets/images/water-leak.jpg";
 import ServiceJsonLd from "../../components/head/ServiceJsonLd.astro";
 import ProjectBody from "../../components/ProjectBody.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -13,13 +15,14 @@ import FooterLargeCss from "../../components/head/FooterLargeCss.astro";
   <ProjectBody lang="en" path="leak-detection.html">
     <Fragment slot="figure">
       <figure>
-        <img
+        <Image
           class="showcase-image"
-          src="../images/showcase-images/water-leak.webp"
-          alt="Leak in a water distribution network"
-          width="900"
-          height="450"
+          src={waterLeak}
+          widths={[360, 700, 1400]}
+          sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), calc(50vw - 60px)"
+          quality={75}
           fetchpriority="high"
+          alt="Leak in a water distribution network"
         />
       </figure>
     </Fragment>

@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import interferogram from "../assets/images/interferogram.jpeg";
 import ServiceJsonLd from "../components/head/ServiceJsonLd.astro";
 import ProjectBody from "../components/ProjectBody.astro";
 import Layout from "../layouts/Layout.astro";
@@ -13,13 +15,14 @@ import FooterLargeCss from "../components/head/FooterLargeCss.astro";
   <ProjectBody lang="sv" path="sar-processing.html">
     <Fragment slot="figure">
       <figure>
-        <img
+        <Image
           class="showcase-image"
-          src="images/showcase-images/interferogram.webp"
-          alt="Interferogram framtaget ur SAR-data"
-          width="619"
-          height="413"
+          src={interferogram}
+          widths={[360, 700, 1400]}
+          sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), calc(50vw - 60px)"
+          quality={75}
           fetchpriority="high"
+          alt="Interferogram framtaget ur SAR-data"
         />
         <figcaption>
           Interferogram över Selengaälven, baserat på egen InSAR-analys. © Total Digital.
