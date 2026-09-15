@@ -1,5 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import maxanvLight from "../../assets/images/company-images/maxanv-light.webp";
+import rymdstyrelsenLight from "../../assets/images/company-images/rymdstyrelsen-light.webp";
+import nvidiaLight from "../../assets/images/company-images/nvidia-light.webp";
+import esriLight from "../../assets/images/company-images/esri-light.webp";
 import oresundsbronLogo from "../../assets/images/user-images/oresundsbron.jpeg";
 import tfLogo from "../../assets/images/user-images/tf.jpeg";
 import pedabLogo from "../../assets/images/company-images/pedab.png";
@@ -720,6 +724,7 @@ import Layout from "../../layouts/Layout.astro";
               </a>
               <a href="https://www.esri.se" target="_blank" rel="noopener noreferrer">
                 <Image
+                  class="logo-dark"
                   src={esriLogo}
                   widths={[180, 360]}
                   sizes="180px"
@@ -727,9 +732,19 @@ import Layout from "../../layouts/Layout.astro";
                   loading="lazy"
                   alt="Esri"
                 />
+                <Image
+                  class="logo-light"
+                  src={esriLight}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
+                  loading="lazy"
+                  alt=""
+                />
               </a>
               <a href="https://www.nvidia.com/" target="_blank" rel="noopener noreferrer">
                 <Image
+                  class="logo-dark"
                   src={nvidiaLogo}
                   widths={[180, 360]}
                   sizes="180px"
@@ -737,9 +752,19 @@ import Layout from "../../layouts/Layout.astro";
                   loading="lazy"
                   alt="Nvidia"
                 />
+                <Image
+                  class="logo-light"
+                  src={nvidiaLight}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
+                  loading="lazy"
+                  alt=""
+                />
               </a>
               <a href="https://www.rymdstyrelsen.se/en/" target="_blank" rel="noopener noreferrer">
                 <Image
+                  class="logo-dark"
                   src={rymdstyrelsenLogo}
                   widths={[470, 940]}
                   sizes="470px"
@@ -747,15 +772,34 @@ import Layout from "../../layouts/Layout.astro";
                   loading="lazy"
                   alt="Rymdstyrelsen – the Swedish National Space Agency"
                 />
+                <Image
+                  class="logo-light"
+                  src={rymdstyrelsenLight}
+                  widths={[470, 940]}
+                  sizes="470px"
+                  quality={80}
+                  loading="lazy"
+                  alt=""
+                />
               </a>
               <a href="https://www.maxanv.se/" target="_blank" rel="noopener noreferrer">
                 <Image
+                  class="logo-dark"
                   src={maxanvLogo}
                   widths={[180, 360]}
                   sizes="180px"
                   quality={80}
                   loading="lazy"
                   alt="Maximo Användarförening – the Swedish Maximo user association"
+                />
+                <Image
+                  class="logo-light"
+                  src={maxanvLight}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
+                  loading="lazy"
+                  alt=""
                 />
               </a>
               <a href="https://www.pedab.se/" target="_blank" rel="noopener noreferrer">

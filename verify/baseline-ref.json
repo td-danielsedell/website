@@ -22,7 +22,7 @@
   "sha256": {
     "about.html": "e4483ffd5896af0c9e96dee184436eb383d3f2740c3167904076fc540f9fbb7e",
     "en/about.html": "64cec9b5f0035b14e5299c8de3e8421f632f64df7c6a4655c770d45443ec89f7",
-    "en/index.html": "0d6ddf8a7e92b4cfd3dd15d30b64d1cdb7646aa18cd94518b7a7d580353bfc3f",
+    "en/index.html": "b43830ddc030a61e3bead1941f7e6471dc430ed5ebaad847766c272ec1b82ba5",
     "en/leak-detection.html": "fd05ddb105ed68744c714be3085992c11cefc5d33ee19a82e74187250ca6710f",
     "en/raildamage-analyses.html": "7b963aa6a55fb21c2a44110110476fe05a180818d29b7704710f25dd97127046",
     "en/railway-safety.html": "2b776baae06be322de1dd665c3e13c759a28e862a2760266ee06406fa1b6a95b",
@@ -30,7 +30,7 @@
     "en/td_asset_care.html": "8d5ea85c75837bb8b7a5817c860136d061c2782772cc530b9c0956073b70fa8f",
     "en/td_linear.html": "106bd53dc3c79881fe7d2a95b9a46bf8babebb17bb63e9acc30ae4c15a1ee5f9",
     "en/td_test.html": "1e397562b1f1c3661ccb81d94026a61bd6a3b6ae91c3dec7e5987f1fb26342c1",
-    "index.html": "94602e8003c2c14c5b6540686b88e8a0f94ede0b94e4212a021e1580caa24af7",
+    "index.html": "9981e435dafc827fd928aa753bab75bfb51e36baa55a2ba3dc6adacf8f5cebf6",
     "leak-detection.html": "6a9a96c9214805130b97e0f508ab908cea3400900323dcb0d821be5033369ac6",
     "raildamage-analyses.html": "d65ecee689129005544c10c152ca4c2bc996656c65bc0ca03a81d0677ec20137",
     "railway-safety.html": "0cb95388fc9e956bcf2d443792c270d74f5e9959892e3a9233f272884eae249d",
@@ -39,5 +39,5 @@
     "td_linear.html": "64e083ab814aee9a1b9b54df6589943be289ead43587e67677a500e522d07fa7",
     "td_test.html": "6daf6c554ecf8df88779c74128da4c1e8b6762cec04632af6bd18b12e86d8484"
   },
-  "lastChange": "Re-taken after moving the last convertible images into src/assets."
+  "lastChange": "Re-taken after moving the light-theme partner logos into the markup."
 }

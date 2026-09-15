@@ -138,36 +138,22 @@ html.theme-light .trust-partners .logo-track img {
     margin: 0;
 }
 
-html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]),
-html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]),
-html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]),
-html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+/* The four partners whose logo is dark ink ship a light-ink twin. Both are in
+   the markup and the theme picks one, rather than the old arrangement: render
+   the dark logo, set opacity to 0, and paint the light one as a background on
+   the <a> behind it. That meant two files on the wire for one visible logo, and
+   the background could not be responsive because Astro does not process CSS in
+   public/. A logo without a twin simply has no .logo-light and is unaffected. */
+.logo-light {
+    display: none;
 }
 
-html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) img,
-html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) img,
-html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) img,
-html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) img {
-    opacity: 0;
+html.theme-light .trust-partners .logo-track .logo-dark {
+    display: none;
 }
 
-html.theme-light .trust-partners .logo-track a:has(img[src*="esri"]) {
-    background-image: url(../images/company-images/esri-light.webp);
-}
-
-html.theme-light .trust-partners .logo-track a:has(img[src*="nvidia"]) {
-    background-image: url(../images/company-images/nvidia-light.webp);
-}
-
-html.theme-light .trust-partners .logo-track a:has(img[src*="rymdstyrelsen"]) {
-    background-image: url(../images/company-images/rymdstyrelsen-light.webp);
-}
-
-html.theme-light .trust-partners .logo-track a:has(img[src*="maxanv"]) {
-    background-image: url(../images/company-images/maxanv-light.webp);
+html.theme-light .trust-partners .logo-track .logo-light {
+    display: inline-block;
 }
 
 html.theme-light .footer-large {
