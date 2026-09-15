@@ -1,25 +1,25 @@
 ---
 import { Image } from "astro:assets";
-import maxanvLight from "../assets/images/company-images/maxanv-light.webp";
-import rymdstyrelsenLight from "../assets/images/company-images/rymdstyrelsen-light.webp";
-import nvidiaLight from "../assets/images/company-images/nvidia-light.webp";
-import esriLight from "../assets/images/company-images/esri-light.webp";
-import oresundsbronLogo from "../assets/images/user-images/oresundsbron.jpeg";
-import tfLogo from "../assets/images/user-images/tf.jpeg";
-import pedabLogo from "../assets/images/company-images/pedab.png";
-import maxanvLogo from "../assets/images/company-images/maxanv.png";
-import rymdstyrelsenLogo from "../assets/images/company-images/rymdstyrelsen.png";
-import nvidiaLogo from "../assets/images/company-images/nvidia.png";
-import esriLogo from "../assets/images/company-images/esri.png";
-import ibmLogo from "../assets/images/company-images/ibm.png";
-import stock2 from "../assets/images/gallery-images/stock_2.jpg";
-import stock5 from "../assets/images/gallery-images/stock_5.jpg";
-import stock1 from "../assets/images/gallery-images/stock_1.jpg";
-import railDamage from "../assets/images/showcase-images/rail-damage.png";
-import waterLeak from "../assets/images/showcase-images/water-leak.jpg";
-import interferogram from "../assets/images/showcase-images/interferogram.jpeg";
-import railSensor from "../assets/images/showcase-images/rail-sensor-cropped.png";
-import stock4 from "../assets/images/gallery-images/stock_4.jpg";
+import maxanvLight from "../assets/images/logos/maxanv-light.webp";
+import rymdstyrelsenLight from "../assets/images/logos/rymdstyrelsen-light.webp";
+import nvidiaLight from "../assets/images/logos/nvidia-light.webp";
+import esriLight from "../assets/images/logos/esri-light.webp";
+import oresundsbron from "../assets/images/customers/oresundsbron.jpeg";
+import trafikforvaltningen from "../assets/images/customers/trafikforvaltningen.jpeg";
+import pedabLogo from "../assets/images/logos/pedab.png";
+import maxanvLogo from "../assets/images/logos/maxanv.png";
+import rymdstyrelsenLogo from "../assets/images/logos/rymdstyrelsen.png";
+import nvidiaLogo from "../assets/images/logos/nvidia.png";
+import esriLogo from "../assets/images/logos/esri.png";
+import ibmLogo from "../assets/images/logos/ibm.png";
+import serviceAdvisory from "../assets/images/services/service-advisory.jpg";
+import serviceAnalytics from "../assets/images/services/service-analytics.jpg";
+import serviceOperations from "../assets/images/services/service-operations.jpg";
+import railDamage from "../assets/images/projects/rail-damage.png";
+import waterLeak from "../assets/images/projects/water-leak.jpg";
+import interferogram from "../assets/images/projects/interferogram.jpeg";
+import railSensor from "../assets/images/projects/rail-sensor.png";
+import serviceImplementation from "../assets/images/services/service-implementation.jpg";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -415,7 +415,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="service-group">
               <div class="service-group-image">
                 <Image
-                  src={stock4}
+                  src={serviceImplementation}
                   widths={[281, 583, 1166]}
                   sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
                   quality={75}
@@ -449,7 +449,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="service-group">
               <div class="service-group-image">
                 <Image
-                  src={stock1}
+                  src={serviceOperations}
                   widths={[281, 583, 1166]}
                   sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
                   quality={75}
@@ -483,7 +483,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="service-group">
               <div class="service-group-image">
                 <Image
-                  src={stock5}
+                  src={serviceAnalytics}
                   widths={[281, 583, 1166]}
                   sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
                   quality={75}
@@ -517,7 +517,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="service-group">
               <div class="service-group-image">
                 <Image
-                  src={stock2}
+                  src={serviceAdvisory}
                   widths={[281, 583, 1166]}
                   sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
                   quality={75}
@@ -676,7 +676,7 @@ import Layout from "../layouts/Layout.astro";
 
         <blockquote class="col-2 testimonial classic text-center">
           <Image
-            src={tfLogo}
+            src={trafikforvaltningen}
             widths={[120, 200]}
             sizes="120px"
             quality={80}
@@ -692,7 +692,7 @@ import Layout from "../layouts/Layout.astro";
 
         <blockquote class="col-2 testimonial classic text-center">
           <Image
-            src={oresundsbronLogo}
+            src={oresundsbron}
             widths={[120, 200]}
             sizes="120px"
             quality={80}
