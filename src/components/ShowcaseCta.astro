@@ -10,8 +10,19 @@
  * browser accepts it; correcting it is a behaviour change and belongs in its own
  * commit, not smuggled into a refactor.
  */
+import { Image } from "astro:assets";
 import { assetPrefix, type Lang } from "../data/nav";
 import { people, ctaStrings, type PersonId } from "../data/people";
+import HH from "../assets/images/HH.png";
+import PT from "../assets/images/PT.png";
+
+/**
+ * The portrait cannot come from people.ts the way the name and address do:
+ * astro:assets needs a real import so the build knows at compile time which
+ * file to process. A path assembled at runtime is just a string. So the data
+ * keys a map of imports rather than holding a filename.
+ */
+const faces: Record<PersonId, ImageMetadata> = { hanna: HH, petter: PT };
 
 interface Props {
   lang: Lang;
@@ -29,11 +40,12 @@ const address = `${who.emailUser}@${who.emailDomain}`;
 
 <div class="col-1 text-center showcase-cta">
   <div class="cta-signature">
-    <img
+    <Image
       class="cta-face"
-      src={`${p}images/showcase-images/${who.face}`}
-      width="104"
-      height="104"
+      src={faces[person]}
+      widths={[104, 208, 312]}
+      sizes="104px"
+      quality={75}
       loading="lazy"
       alt={who.name}
     />

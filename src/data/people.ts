@@ -9,8 +9,6 @@ import type { Lang } from "./nav";
  */
 export interface Person {
   name: string;
-  /** File under images/showcase-images/. */
-  face: string;
   /** Address split in two so the markup can obfuscate it against scrapers. */
   emailUser: string;
   emailDomain: string;
@@ -20,14 +18,12 @@ export interface Person {
 export const people = {
   hanna: {
     name: "Hanna Hassberg",
-    face: "HH.webp",
     emailUser: "hanna",
     emailDomain: "totaldigital.se",
     role: { sv: "Projektledare", en: "Project Lead" },
   },
   petter: {
     name: "Petter Tyrenius",
-    face: "PT.webp",
     emailUser: "petter",
     emailDomain: "totaldigital.se",
     role: { sv: "Projektledare", en: "Project Lead" },
