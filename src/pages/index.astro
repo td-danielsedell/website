@@ -1,10 +1,19 @@
 ---
 import { Image } from "astro:assets";
-import railDamage from "../assets/images/rail-damage.png";
-import waterLeak from "../assets/images/water-leak.jpg";
-import interferogram from "../assets/images/interferogram.jpeg";
-import railSensor from "../assets/images/rail-sensor-cropped.png";
-import stock4 from "../assets/images/stock_4.jpg";
+import pedabLogo from "../assets/images/company-images/pedab.png";
+import maxanvLogo from "../assets/images/company-images/maxanv.png";
+import rymdstyrelsenLogo from "../assets/images/company-images/rymdstyrelsen.png";
+import nvidiaLogo from "../assets/images/company-images/nvidia.png";
+import esriLogo from "../assets/images/company-images/esri.png";
+import ibmLogo from "../assets/images/company-images/ibm.png";
+import stock2 from "../assets/images/gallery-images/stock_2.jpg";
+import stock5 from "../assets/images/gallery-images/stock_5.jpg";
+import stock1 from "../assets/images/gallery-images/stock_1.jpg";
+import railDamage from "../assets/images/showcase-images/rail-damage.png";
+import waterLeak from "../assets/images/showcase-images/water-leak.jpg";
+import interferogram from "../assets/images/showcase-images/interferogram.jpeg";
+import railSensor from "../assets/images/showcase-images/rail-sensor-cropped.png";
+import stock4 from "../assets/images/gallery-images/stock_4.jpg";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -401,8 +410,8 @@ import Layout from "../layouts/Layout.astro";
               <div class="service-group-image">
                 <Image
                   src={stock4}
-                  widths={[400, 800, 1200]}
-                  sizes="(max-width: 767px) 100vw, 50vw"
+                  widths={[281, 583, 1166]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
                   quality={75}
                   alt=""
                   loading="lazy"
@@ -433,12 +442,13 @@ import Layout from "../layouts/Layout.astro";
           <div class="col-2 image-carousel-slide">
             <div class="service-group">
               <div class="service-group-image">
-                <img
-                  src="images/gallery-images/stock_1.webp"
-                  width="1200"
-                  height="500"
-                  alt=""
+                <Image
+                  src={stock1}
+                  widths={[281, 583, 1166]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
+                  quality={75}
                   loading="lazy"
+                  alt=""
                 />
               </div>
               <div class="service-group-body">
@@ -466,12 +476,13 @@ import Layout from "../layouts/Layout.astro";
           <div class="col-2 image-carousel-slide">
             <div class="service-group">
               <div class="service-group-image">
-                <img
-                  src="images/gallery-images/stock_5.webp"
-                  width="1200"
-                  height="500"
-                  alt=""
+                <Image
+                  src={stock5}
+                  widths={[281, 583, 1166]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
+                  quality={75}
                   loading="lazy"
+                  alt=""
                 />
               </div>
               <div class="service-group-body">
@@ -499,12 +510,13 @@ import Layout from "../layouts/Layout.astro";
           <div class="col-2 image-carousel-slide">
             <div class="service-group">
               <div class="service-group-image">
-                <img
-                  src="images/gallery-images/stock_2.webp"
-                  width="1200"
-                  height="500"
-                  alt=""
+                <Image
+                  src={stock2}
+                  widths={[281, 583, 1166]}
+                  sizes="(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px"
+                  quality={75}
                   loading="lazy"
+                  alt=""
                 />
               </div>
               <div class="service-group-body">
@@ -692,55 +704,61 @@ import Layout from "../layouts/Layout.astro";
           <div class="logo-slider" id="logoSlider">
             <div class="logo-track" id="logoTrack">
               <a href="https://www.ibm.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="images/company-images/ibm.webp"
-                  width="600"
-                  height="400"
+                <Image
+                  src={ibmLogo}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
                   loading="lazy"
                   alt="IBM"
                 />
               </a>
               <a href="https://www.esri.se" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="images/company-images/esri.webp"
-                  width="600"
-                  height="400"
+                <Image
+                  src={esriLogo}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
                   loading="lazy"
                   alt="Esri"
                 />
               </a>
               <a href="https://www.nvidia.com/sv-se/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="images/company-images/nvidia.webp"
-                  width="600"
-                  height="400"
+                <Image
+                  src={nvidiaLogo}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
                   loading="lazy"
                   alt="Nvidia"
                 />
               </a>
               <a href="https://www.rymdstyrelsen.se/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="images/company-images/rymdstyrelsen.webp"
-                  width="600"
-                  height="153"
+                <Image
+                  src={rymdstyrelsenLogo}
+                  widths={[470, 940]}
+                  sizes="470px"
+                  quality={80}
                   loading="lazy"
                   alt="Rymdstyrelsen"
                 />
               </a>
               <a href="https://www.maxanv.se/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="images/company-images/maxanv.webp"
-                  width="600"
-                  height="400"
+                <Image
+                  src={maxanvLogo}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
                   loading="lazy"
                   alt="Maximo Användarförening"
                 />
               </a>
               <a href="https://www.pedab.se/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="images/company-images/pedab.webp"
-                  width="600"
-                  height="400"
+                <Image
+                  src={pedabLogo}
+                  widths={[180, 360]}
+                  sizes="180px"
+                  quality={80}
                   loading="lazy"
                   alt="Pedab"
                 />

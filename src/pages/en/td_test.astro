@@ -1,4 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import maximoGui from "../../assets/images/product-images/td-test/maximo-gui.png";
+import testCaseReport from "../../assets/images/product-images/td-test/test-case-report.png";
+import testRunReport from "../../assets/images/product-images/td-test/test-run-report.png";
+import testRunsHistory from "../../assets/images/product-images/td-test/test-runs-history.png";
+import landingPage from "../../assets/images/product-images/td-test/landing-page.png";
 import SoftwareApplicationJsonLd from "../../components/head/SoftwareApplicationJsonLd.astro";
 import Layout from "../../layouts/Layout.astro";
 import ServiceCardCss from "../../components/head/ServiceCardCss.astro";
@@ -126,14 +132,15 @@ import ParallaxScripts from "../../components/scripts/ParallaxScripts.astro";
           <div class="image-carousel" data-image-carousel>
             <div class="image-carousel-track">
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="../images/product-images/td-test/landing-page.webp"
-                  width="1920"
-                  height="1416"
+                  src={landingPage}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="The TD Test start page, with test suites and recent runs"
                   data-zoomable
+                  alt="The TD Test start page, with test suites and recent runs"
                 />
                 <figcaption>
                   <strong>The start page</strong> &ndash; an overview of where things stand right
@@ -142,14 +149,15 @@ import ParallaxScripts from "../../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="../images/product-images/td-test/test-runs-history.webp"
-                  width="1920"
-                  height="1416"
+                  src={testRunsHistory}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="History of earlier test runs in TD Test"
                   data-zoomable
+                  alt="History of earlier test runs in TD Test"
                 />
                 <figcaption>
                   <strong>Run history</strong> &ndash; earlier runs, so you can follow quality over
@@ -158,14 +166,15 @@ import ParallaxScripts from "../../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="../images/product-images/td-test/test-run-report.webp"
-                  width="1920"
-                  height="1416"
+                  src={testRunReport}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Details of a test run in TD Test"
                   data-zoomable
+                  alt="Details of a test run in TD Test"
                 />
                 <figcaption>
                   <strong>Run details</strong> &ndash; the result for every test that was part of
@@ -174,14 +183,15 @@ import ParallaxScripts from "../../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="../images/product-images/td-test/test-case-report.webp"
-                  width="1920"
-                  height="1416"
+                  src={testCaseReport}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Details of a single test case in TD Test, with source code"
                   data-zoomable
+                  alt="Details of a single test case in TD Test, with source code"
                 />
                 <figcaption>
                   <strong>Test case details</strong> &ndash; step by step, with the test's source
@@ -190,14 +200,15 @@ import ParallaxScripts from "../../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="../images/product-images/td-test/maximo-gui.webp"
-                  width="1920"
-                  height="1416"
+                  src={maximoGui}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Saved screenshot of Maximo from a test step"
                   data-zoomable
+                  alt="Saved screenshot of Maximo from a test step"
                 />
                 <figcaption>
                   <strong>Saved Maximo view</strong> &ndash; exactly what Maximo's interface showed

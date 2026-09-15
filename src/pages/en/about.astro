@@ -1,10 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import lgLK from "../../assets/images/LG_LK.png";
-import lgMS from "../../assets/images/LG_MS.png";
-import lgMA from "../../assets/images/LG_MA.png";
-import lgPT from "../../assets/images/LG_PT.png";
-import lgAH from "../../assets/images/LG_AH.jpg";
+import iso9001 from "../../assets/images/company-images/iso_9001.png";
+import iso14001 from "../../assets/images/company-images/iso_14001.png";
+import lgLK from "../../assets/images/company-images/LG_LK.png";
+import lgMS from "../../assets/images/company-images/LG_MS.png";
+import lgMA from "../../assets/images/company-images/LG_MA.png";
+import lgPT from "../../assets/images/company-images/LG_PT.png";
+import lgAH from "../../assets/images/company-images/LG_AH.jpg";
 import Layout from "../../layouts/Layout.astro";
 import AboutCss from "../../components/head/AboutCss.astro";
 import AboutScripts from "../../components/scripts/AboutScripts.astro";
@@ -390,10 +392,11 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
 
           <div class="cert-grid">
             <figure class="cert-mark">
-              <img
-                src="../images/company-images/iso_9001.webp"
-                width="400"
-                height="400"
+              <Image
+                src={iso9001}
+                widths={[106, 132, 264]}
+                sizes="(max-width: 767px) 106px, 132px"
+                quality={80}
                 loading="lazy"
                 alt="Certified to ISO 9001"
               />
@@ -402,10 +405,11 @@ import AboutScripts from "../../components/scripts/AboutScripts.astro";
               </figcaption>
             </figure>
             <figure class="cert-mark">
-              <img
-                src="../images/company-images/iso_14001.webp"
-                width="400"
-                height="400"
+              <Image
+                src={iso14001}
+                widths={[106, 132, 264]}
+                sizes="(max-width: 767px) 106px, 132px"
+                quality={80}
                 loading="lazy"
                 alt="Certified to ISO 14001"
               />

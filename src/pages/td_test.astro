@@ -1,4 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import maximoGui from "../assets/images/product-images/td-test/maximo-gui.png";
+import testCaseReport from "../assets/images/product-images/td-test/test-case-report.png";
+import testRunReport from "../assets/images/product-images/td-test/test-run-report.png";
+import testRunsHistory from "../assets/images/product-images/td-test/test-runs-history.png";
+import landingPage from "../assets/images/product-images/td-test/landing-page.png";
 import SoftwareApplicationJsonLd from "../components/head/SoftwareApplicationJsonLd.astro";
 import Layout from "../layouts/Layout.astro";
 import ServiceCardCss from "../components/head/ServiceCardCss.astro";
@@ -125,14 +131,15 @@ import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
           <div class="image-carousel" data-image-carousel>
             <div class="image-carousel-track">
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="images/product-images/td-test/landing-page.webp"
-                  width="1920"
-                  height="1416"
+                  src={landingPage}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Startsidan i TD Test med testsviter och senaste körningar"
                   data-zoomable
+                  alt="Startsidan i TD Test med testsviter och senaste körningar"
                 />
                 <figcaption>
                   <strong>Startsidan</strong> &ndash; en överblick av läget just nu.
@@ -140,14 +147,15 @@ import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="images/product-images/td-test/test-runs-history.webp"
-                  width="1920"
-                  height="1416"
+                  src={testRunsHistory}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Historik över tidigare testkörningar i TD Test"
                   data-zoomable
+                  alt="Historik över tidigare testkörningar i TD Test"
                 />
                 <figcaption>
                   <strong>Körningshistorik</strong> &ndash; tidigare körningar, så ni kan följa
@@ -156,14 +164,15 @@ import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="images/product-images/td-test/test-run-report.webp"
-                  width="1920"
-                  height="1416"
+                  src={testRunReport}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Detaljer för en testkörning i TD Test"
                   data-zoomable
+                  alt="Detaljer för en testkörning i TD Test"
                 />
                 <figcaption>
                   <strong>Körningsdetaljer</strong> &ndash; resultatet för varje test som ingick i
@@ -172,14 +181,15 @@ import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="images/product-images/td-test/test-case-report.webp"
-                  width="1920"
-                  height="1416"
+                  src={testCaseReport}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Detaljer för ett enskilt testfall i TD Test, med källkod"
                   data-zoomable
+                  alt="Detaljer för ett enskilt testfall i TD Test, med källkod"
                 />
                 <figcaption>
                   <strong>Testfallsdetaljer</strong> &ndash; steg för steg, med testets källkod
@@ -188,14 +198,15 @@ import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
               </figure>
 
               <figure class="image-carousel-slide">
-                <img
+                <Image
                   class="tdt-shot"
-                  src="images/product-images/td-test/maximo-gui.webp"
-                  width="1920"
-                  height="1416"
+                  src={maximoGui}
+                  widths={[360, 860, 1720]}
+                  sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                  quality={80}
                   loading="lazy"
-                  alt="Sparad skärmbild av Maximo från ett teststeg"
                   data-zoomable
+                  alt="Sparad skärmbild av Maximo från ett teststeg"
                 />
                 <figcaption>
                   <strong>Sparad Maximo-vy</strong> &ndash; exakt vad Maximos gränssnitt var i det

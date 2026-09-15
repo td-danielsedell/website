@@ -8,6 +8,9 @@
  * `.footer-columns > :nth-child(1..4)`. Both wrappers stay, and .footer-columns
  * keeps exactly four element children in exactly this order.
  */
+import { Image } from "astro:assets";
+import iso9001 from "../assets/images/company-images/iso_9001.png";
+import iso14001 from "../assets/images/company-images/iso_14001.png";
 import { strings, assetPrefix, type Lang } from "../data/nav";
 import LinkedIn from "./icons/LinkedIn.astro";
 
@@ -71,19 +74,21 @@ const certHref = onAboutPage ? "#certificates" : "about.html#certificates";
         <p class="footer-heading">{t.footer.certsHeading}</p>
         <div class="cert-badges">
           <a href={certHref} data-scroll-to={onAboutPage ? "" : undefined}>
-            <img
-              src={`${p}images/company-images/iso_9001.webp`}
-              width="400"
-              height="400"
+            <Image
+              src={iso9001}
+              widths={[58, 72, 144]}
+              sizes="(max-width: 480px) 58px, 72px"
+              quality={80}
               loading="lazy"
               alt={t.footer.certAlt.iso9001}
             />
           </a>
           <a href={certHref} data-scroll-to={onAboutPage ? "" : undefined}>
-            <img
-              src={`${p}images/company-images/iso_14001.webp`}
-              width="400"
-              height="400"
+            <Image
+              src={iso14001}
+              widths={[58, 72, 144]}
+              sizes="(max-width: 480px) 58px, 72px"
+              quality={80}
               loading="lazy"
               alt={t.footer.certAlt.iso14001}
             />
