@@ -1,0 +1,48 @@
+---
+/**
+ * schema.org AboutPage block for the about page.
+ *
+ * Same principle as the other two JSON-LD components: everything that varies by
+ * locale comes from src/data/pages.ts, so the block cannot drift out of step
+ * with the page's own title and URL.
+ */
+import type { Lang } from "../../data/nav";
+import { pageMeta, localeTag, pageUrl, SITE, ORGANIZATION_ID } from "../../data/pages";
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+const { lang, path } = Astro.props;
+const m = pageMeta[path][lang];
+---
+
+<script
+  type="application/ld+json"
+  set:html={`
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": ${JSON.stringify(m.title)},
+        "url": "${pageUrl(lang, path)}",
+        "inLanguage": "${localeTag(lang)}",
+        "mainEntity": {
+          "@type": "Organization",
+          "@id": "${ORGANIZATION_ID}",
+          "name": "Total Digital AB",
+          "url": "${SITE}/",
+          "logo": "${SITE}/images/favicon.png",
+          "email": "info@totaldigital.se",
+          "telephone": "+46101010070",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Fabriksgatan 4",
+            "postalCode": "531 60",
+            "addressLocality": "Lidköping",
+            "addressCountry": "SE"
+          },
+          "sameAs": ["https://www.linkedin.com/company/total-digital-it-solutions"]
+        }
+      }
+    `}
+></script>

@@ -124,4 +124,60 @@ const products = defineCollection({
   }),
 });
 
-export const collections = { projects, products };
+/**
+ * The about page. Every section is a different shape, but each is repeated data
+ * the page used to spell out twice - once per locale - so it lives here and the
+ * route draws it.
+ */
+const aboutSection = z.object({
+  id: z.string(),
+  kicker: z.string(),
+  title: z.string(),
+  /** The opening section leads with an h1 in .about-hero rather than an h2. */
+  hero: z.boolean().default(false),
+  lead: z.string().optional(),
+  subtitle: z.string().optional(),
+  /** Paragraphs of prose. May carry inline links and emphasis, so rendered as HTML. */
+  body: z.array(z.string()).default([]),
+  timeline: z.array(z.object({ year: z.string(), title: z.string(), body: z.string() })).optional(),
+  carouselLabel: z.string().optional(),
+  carouselNoun: z.string().optional(),
+  people: z
+    .array(
+      z.object({
+        image: z.string(),
+        name: z.string(),
+        role: z.string(),
+        /** Local part of the address; the domain is the same for everyone. */
+        user: z.string(),
+      }),
+    )
+    .optional(),
+  locationsLead: z.string().optional(),
+  cities: z.array(z.object({ slug: z.string(), name: z.string() })).optional(),
+  mapCaption: z.string().optional(),
+  mapHint: z.string().optional(),
+  certificates: z
+    .array(z.object({ image: z.string(), alt: z.string(), name: z.string(), kind: z.string() }))
+    .optional(),
+  tracks: z
+    .array(
+      z.object({
+        trackId: z.string().optional(),
+        title: z.string(),
+        body: z.array(z.string()).default([]),
+        ctaHref: z.string(),
+        ctaLabel: z.string(),
+      }),
+    )
+    .optional(),
+});
+
+const about = defineCollection({
+  loader: glob({ pattern: "*-{sv,en}.md", base: "./src/content/about" }),
+  schema: z.object({
+    sections: z.array(aboutSection).default([]),
+  }),
+});
+
+export const collections = { projects, products, about };

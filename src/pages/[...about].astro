@@ -1,0 +1,239 @@
+---
+/**
+ * The about page, both locales, from one file.
+ *
+ * Unlike the product pages there is no prose body: every section carries its
+ * own paragraphs, so the Markdown files are frontmatter only. Paragraphs are
+ * rendered as HTML because several carry an inline link or emphasis.
+ */
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { Lang } from "../data/nav";
+import Layout from "../layouts/Layout.astro";
+import AboutCss from "../components/head/AboutCss.astro";
+import AboutPageJsonLd from "../components/head/AboutPageJsonLd.astro";
+import AboutScripts from "../components/scripts/AboutScripts.astro";
+
+import iso9001 from "../assets/images/logos/iso_9001.png";
+import iso14001 from "../assets/images/logos/iso_14001.png";
+import lgLK from "../assets/images/people/LG_LK.png";
+import lgMS from "../assets/images/people/LG_MS.png";
+import lgMA from "../assets/images/people/LG_MA.png";
+import lgPT from "../assets/images/people/LG_PT.png";
+import lgAH from "../assets/images/people/LG_AH.jpg";
+
+/** Portraits and certificate marks by the name the frontmatter uses. */
+const IMAGES: Record<string, ImageMetadata> = {
+  iso9001,
+  iso14001,
+  lgLK,
+  lgMS,
+  lgMA,
+  lgPT,
+  lgAH,
+};
+
+const MAIL_DOMAIN = "totaldigital.se";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("about");
+  return entries.map((entry) => {
+    const m = entry.id.match(/^(.+)-(sv|en)$/);
+    if (!m) throw new Error(`content id must end -sv or -en: ${entry.id}`);
+    const [, page, lang] = m as unknown as [string, string, Lang];
+    return {
+      params: { about: lang === "sv" ? page : `en/${page}` },
+      props: { entry, page, lang },
+    };
+  });
+}
+
+const { entry, page, lang } = Astro.props;
+const path = `${page}.html`;
+const { sections } = entry.data;
+---
+
+<Layout lang={lang} path={path} onAboutPage>
+  <AboutCss slot="head-css" lang={lang} />
+  <AboutPageJsonLd slot="head-after-fonts" lang={lang} path={path} />
+  <AboutScripts slot="scripts" lang={lang} />
+  <main id="content" class="showcase-top about-top">
+    {sections.map((s) => (
+      <section id={s.id} class="introduction scrollto">
+        <div class="row clearfix">
+          {s.hero ? (
+            <Fragment>
+              <div class="col-1 about-hero">
+                <div>
+                  <div class="section-heading">
+                    <p class="section-kicker">{s.kicker}</p>
+                    <h1 class="about-title">{s.title}</h1>
+                  </div>
+
+                  <p class="about-lead">{s.lead}</p>
+                </div>
+
+                <div class="about-hero-body">
+                  {s.body.map((p) => (
+                    <p set:html={p} />
+                  ))}
+                </div>
+              </div>
+
+              <div class="col-1">
+                <hr class="about-hero-rule" />
+              </div>
+            </Fragment>
+          ) : (
+            <div class="col-1">
+              <div class="section-heading">
+                <h2 class="section-kicker">{s.kicker}</h2>
+                <p class="section-title">{s.title}</p>
+                {s.subtitle && <p class="section-subtitle" set:html={s.subtitle} />}
+              </div>
+            </div>
+          )}
+
+          {s.timeline && (
+            <div class="col-1">
+              <ol class="year-rail">
+                {s.timeline.map((e) => (
+                  <li>
+                    <p class="rail-year">{e.year}</p>
+                    <div class="rail-body">
+                      <h3 class="rail-title">{e.title}</h3>
+                      <p set:html={e.body} />
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {s.people && (
+            <div class="col-1">
+              <div
+                class="person-carousel image-carousel"
+                data-image-carousel=""
+                data-carousel-label={s.carouselLabel}
+                data-carousel-noun={s.carouselNoun}
+                data-carousel-autoplay="4000"
+              >
+                <div class="person-grid person-track image-carousel-track clearfix">
+                  {s.people.map((p) => (
+                    <div class="image-carousel-slide">
+                      <div class="person-card">
+                        <Image
+                          class="person-photo"
+                          src={IMAGES[p.image]}
+                          widths={[220, 440]}
+                          sizes="220px"
+                          quality={75}
+                          loading="lazy"
+                          alt=""
+                        />
+                        <div class="person-body">
+                          <h3 class="person-name">{p.name}</h3>
+                          <p class="person-role">{p.role}</p>
+                          <p class="person-contact">
+                            <a
+                              class="email-obfuscated"
+                              data-user={p.user}
+                              data-domain={MAIL_DOMAIN}
+                            >
+                              {lang === "sv" ? "Visa e-postadress" : "Show email address"}
+                            </a>
+                            <noscript>
+                              <a
+                                href={`mailto:${p.user}@${MAIL_DOMAIN}`}
+                                set:text={`${p.user}@${MAIL_DOMAIN}`}
+                              />
+                            </noscript>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {s.cities && (
+            <div class="col-1 split-2">
+              <div>
+                {s.body.map((p) => (
+                  <p set:html={p} />
+                ))}
+
+                <p class="locations-lead">{s.locationsLead}</p>
+
+                <ul class="location-list">
+                  {s.cities.map((c) => (
+                    <li data-city={c.slug}>{c.name}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <figure class="about-map">
+                <div id="map" />
+
+                <figcaption>
+                  {s.mapCaption} <span class="map-hint">{s.mapHint}</span>
+                </figcaption>
+              </figure>
+            </div>
+          )}
+
+          {s.certificates && (
+            <div class="col-1 split-2">
+              <div>
+                {s.body.map((p) => (
+                  <p set:html={p} />
+                ))}
+              </div>
+
+              <div class="cert-grid">
+                {s.certificates.map((c) => (
+                  <figure class="cert-mark">
+                    <Image
+                      src={IMAGES[c.image]}
+                      widths={[106, 132, 264]}
+                      sizes="(max-width: 767px) 106px, 132px"
+                      quality={80}
+                      loading="lazy"
+                      alt={c.alt}
+                    />
+                    <figcaption>
+                      {c.name}
+                      <span>{c.kind}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {s.tracks && (
+            <div class="col-1">
+              <div class="track-grid">
+                {s.tracks.map((t) => (
+                  <div class="track" id={t.trackId}>
+                    <h3>{t.title}</h3>
+                    {t.body.map((p) => (
+                      <p set:html={p} />
+                    ))}
+                    <div class="track-spacer" />
+                    <a href={t.ctaHref} class="button">
+                      {t.ctaLabel}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    ))}
+  </main>
+</Layout>

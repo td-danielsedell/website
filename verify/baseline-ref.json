@@ -2,7 +2,7 @@
   "_comment": "Ground truth for the verification harness. IMPORTANT: this is no longer a snapshot of main's shipped HTML. It is this project's own build, taken after src/ was formatted with prettier. Regenerate with: npm run build, then copy dist/**/*.html over verify/baseline/, then re-run verify/make-baseline-ref.mjs.",
   "kind": "own-build",
   "capturedFrom": "93cf92940a6890bdce6f06d09cdd5cc1c6160502",
-  "capturedFromSubject": "pending: td_test onto the shared product route",
+  "capturedFromSubject": "pending: about onto a shared route",
   "capturedAt": "2026-09-16",
   "whatThisProvesNow": "A regression gate: the build has not changed unintentionally since this snapshot. It no longer proves byte-parity with main - that job is finished, and prettier formatting means the two legitimately differ in whitespace.",
   "previousBaselines": [
@@ -20,8 +20,8 @@
   "divergenceFromMainWhenReplaced": "930 whitespace-only text nodes, 160 lines of reindented JSON-LD, and 2 text nodes inside an inline <a class=email-obfuscated>. The last were measured in a browser: identical text and identical geometry, width 138.38px and left 772, in both builds.",
   "fileCount": 18,
   "sha256": {
-    "about.html": "e4483ffd5896af0c9e96dee184436eb383d3f2740c3167904076fc540f9fbb7e",
-    "en/about.html": "64cec9b5f0035b14e5299c8de3e8421f632f64df7c6a4655c770d45443ec89f7",
+    "about.html": "3e8ddeaf096ab833b93a98ce176e1474ffba8f9c1bc60ab8fa978286f4d55a41",
+    "en/about.html": "2e2e303d7daeab78cdd0c6ba444a5121a936c5159e7ad1b9ade1fc2775c9dac9",
     "en/index.html": "d4f432d0dfb3b81535e751e824d37bca1066f35ad35e4621dba0e3dc0ffbfcaf",
     "en/leak-detection.html": "267bc7e510189be7f356642cd5eb397045254e38babe356c03f7d4ad24bec872",
     "en/raildamage-analyses.html": "2bf1bf4ab5b1e508d6d93122d433a97c411a85a2693a05e73a5bba5df328395e",
