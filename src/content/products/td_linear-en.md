@@ -33,6 +33,7 @@ sections:
           - "Possible patterns and connections between measurement data, assets and maintenance history"
           - "Traceability to the position and the underlying data"
           - "A basis for prioritising maintenance"
+    wide: true
     shots:
       - image: "analys"
         alt: "Analysis of a selection in TD Linear. Every requirement finding is listed with its requirement level, exact measurement point and deviation, and the panel on the right shows the basis for the assessment: segment, requirement level, deviation from the nominal value and which rule was matched."

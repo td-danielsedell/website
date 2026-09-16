@@ -8,9 +8,14 @@
  * carousel, showcase, service cards, #businessareas) so it cannot be traded for
  * a structural selector without changing how every other card is styled.
  *
- * Two intro shapes. td_asset_care is a single centred column; td_linear puts
- * the heading beside a lead paragraph in .tdt-hero. `lead` in the frontmatter
- * is what distinguishes them.
+ * Two intro shapes. td_asset_care is a single centred column; td_linear and
+ * td_test put the heading beside a lead paragraph in .tdt-hero. The `lead`
+ * field is what distinguishes them.
+ *
+ * CHROME below records where the three pages genuinely differ in <head> and in
+ * their scripts. None of it is content, so it stays in code rather than in the
+ * Markdown; it exists because the pages were written at different times and
+ * their differences are real shipped output, not tidiness waiting to happen.
  */
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
@@ -19,6 +24,7 @@ import Layout from "../layouts/Layout.astro";
 import { pageMeta } from "../data/pages";
 import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
 import LightboxScripts from "../components/scripts/LightboxScripts.astro";
+import TdTestScripts from "../components/scripts/TdTestScripts.astro";
 import FeatureCardCss from "../components/head/FeatureCardCss.astro";
 import ServiceCardCss from "../components/head/ServiceCardCss.astro";
 import ProductLayoutCss from "../components/head/ProductLayoutCss.astro";
@@ -27,9 +33,57 @@ import FooterLargeCss from "../components/head/FooterLargeCss.astro";
 
 import analys from "../assets/images/products/td-linear/analys.webp";
 import punktjamforelse from "../assets/images/products/td-linear/punktjamforelse.webp";
+import landingPage from "../assets/images/products/td-test/landing-page.png";
+import testRunsHistory from "../assets/images/products/td-test/test-runs-history.png";
+import testRunReport from "../assets/images/products/td-test/test-run-report.png";
+import testCaseReport from "../assets/images/products/td-test/test-case-report.png";
+import maximoGui from "../assets/images/products/td-test/maximo-gui.png";
 
 /** Screenshots by the name the frontmatter uses; astro:assets needs real imports. */
-const SHOTS: Record<string, ImageMetadata> = { analys, punktjamforelse };
+const SHOTS: Record<string, ImageMetadata> = {
+  analys,
+  punktjamforelse,
+  landingPage,
+  testRunsHistory,
+  testRunReport,
+  testCaseReport,
+  maximoGui,
+};
+
+type Chrome = {
+  lightbox: boolean;
+  featureCard: boolean;
+  /** Which head slot the product-layout sheet goes in, or false if unused. */
+  productLayout: false | "head-css" | "head-after-fonts";
+  /** td_test ships one bundled script; td_linear two loose ones. */
+  scripts: false | "zoom-and-carousel" | "td-test";
+  /** Sections carry tabindex="-1" only where the scroll-container fix was applied. */
+  sectionTabindex: boolean;
+};
+
+const CHROME: Record<string, Chrome> = {
+  td_asset_care: {
+    lightbox: true,
+    featureCard: true,
+    productLayout: false,
+    scripts: false,
+    sectionTabindex: false,
+  },
+  td_linear: {
+    lightbox: true,
+    featureCard: true,
+    productLayout: "head-after-fonts",
+    scripts: "zoom-and-carousel",
+    sectionTabindex: true,
+  },
+  td_test: {
+    lightbox: false,
+    featureCard: false,
+    productLayout: "head-css",
+    scripts: "td-test",
+    sectionTabindex: false,
+  },
+};
 
 export async function getStaticPaths() {
   const entries = await getCollection("products");
@@ -49,30 +103,33 @@ const { Content } = await render(entry);
 const path = `${page}.html`;
 const d = entry.data;
 const name = pageMeta[path][lang].ldName ?? pageMeta[path][lang].title;
-const hasSections = d.sections.length > 0;
+const chrome = CHROME[page];
+if (!chrome) throw new Error(`no chrome recorded for product page: ${page}`);
+const js = (file: string) => (lang === "sv" ? `js/${file}` : `../js/${file}`);
+const tab = chrome.sectionTabindex ? "-1" : undefined;
 ---
 
 <Layout lang={lang} path={path}>
   <ParallaxScripts slot="scripts-early" lang={lang} />
-  <LightboxScripts slot="scripts-late" lang={lang} />
-  <FeatureCardCss slot="head-css" lang={lang} />
+  {chrome.lightbox && <LightboxScripts slot="scripts-late" lang={lang} />}
+  {chrome.featureCard && <FeatureCardCss slot="head-css" lang={lang} />}
   <ServiceCardCss slot="head-css" lang={lang} />
+  {chrome.productLayout === "head-css" && <ProductLayoutCss slot="head-css" lang={lang} />}
   <SoftwareApplicationJsonLd slot="head-after-fonts" lang={lang} path={path} />
   <FooterLargeCss slot="head-after-fonts" lang={lang} />
-  {hasSections && <ProductLayoutCss slot="head-after-fonts" lang={lang} />}
-  {hasSections && (
+  {chrome.productLayout === "head-after-fonts" && (
+    <ProductLayoutCss slot="head-after-fonts" lang={lang} />
+  )}
+  {chrome.scripts === "td-test" && <TdTestScripts slot="scripts" lang={lang} />}
+  {chrome.scripts === "zoom-and-carousel" && (
     <Fragment slot="scripts">
-      <script src={lang === "sv" ? "js/image-zoom.js" : "../js/image-zoom.js"} is:inline></script>
-      {/*Bygger pilar och punkter i .image-carousel*/}
-      <script
-        src={lang === "sv" ? "js/image-carousel.js" : "../js/image-carousel.js"}
-        is:inline
-      ></script>
+      <script src={js("image-zoom.js")} is:inline></script>
+      <script src={js("image-carousel.js")} is:inline></script>
     </Fragment>
   )}
   <main id="content" class={d.lead ? "showcase-top" : "showcase-top title-top"}>
     {d.lead ? (
-      <section class="introduction scrollto tdt-intro" tabindex="-1">
+      <section class="introduction scrollto tdt-intro" tabindex={tab}>
         <div class="row clearfix">
           <div class="tdt-hero">
             <div class="tdt-hero-copy">
@@ -135,11 +192,11 @@ const hasSections = d.sections.length > 0;
     )}
 
     {d.sections.map((s) => (
-      <section id={s.id} class={`${s.className ?? ""} scrollto clearfix`.trim()} tabindex="-1">
+      <section id={s.id} class={`${s.className ?? ""} scrollto clearfix`.trim()} tabindex={tab}>
         <div class="row clearfix">
           <div class="section-heading">
             <h2 class="section-kicker">{s.kicker}</h2>
-            <p class="section-title">{s.title}</p>
+            <p id={s.titleId} class="section-title" set:text={s.title} />
             {s.subtitle && <p class="section-subtitle" set:html={s.subtitle} />}
           </div>
 
@@ -152,7 +209,7 @@ const hasSections = d.sections.length > 0;
                   {c.items.length > 0 && (
                     <ul class="tdt-list">
                       {c.items.map((i) => (
-                        <li>{i}</li>
+                        <li set:html={i} />
                       ))}
                     </ul>
                   )}
@@ -175,17 +232,67 @@ const hasSections = d.sections.length > 0;
             </div>
           )}
 
+          {s.compare && (
+            <table class="tdt-compare" aria-labelledby={s.titleId}>
+              <thead>
+                <tr>
+                  {s.compare.columns.map((c) => (
+                    <th scope="col">{c}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {s.compare.rows.map((r) => (
+                  <tr>
+                    <th scope="row">{r.label}</th>
+                    {r.values.map((v) =>
+                      v ? (
+                        <td>
+                          <svg
+                            class="svg-icon tdt-yes"
+                            viewBox="0 0 448 512"
+                            role="img"
+                            aria-label={lang === "sv" ? "Ja" : "Yes"}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                          </svg>
+                        </td>
+                      ) : (
+                        <td>
+                          <svg
+                            class="svg-icon tdt-no"
+                            viewBox="0 0 384 512"
+                            role="img"
+                            aria-label={lang === "sv" ? "Nej" : "No"}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                          </svg>
+                        </td>
+                      ),
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
           {s.shots && (
-            <div class="col-1 tdt-tour tdt-tour--wide">
+            <div class={s.wide ? "col-1 tdt-tour tdt-tour--wide" : "col-1 tdt-tour"}>
               <div class="image-carousel" data-image-carousel="">
                 <div class="image-carousel-track">
                   {s.shots.map((sh) => (
                     <figure class="image-carousel-slide">
                       <Image
-                        class="tdt-shot tdt-shot--wide"
+                        class={s.wide ? "tdt-shot tdt-shot--wide" : "tdt-shot"}
                         src={SHOTS[sh.image]}
-                        widths={[360, 900, 1832]}
-                        sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                        widths={s.wide ? [360, 900, 1832] : [360, 860, 1720]}
+                        sizes={
+                          s.wide
+                            ? "(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                            : "(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 939px) calc(100vw - 40px), 860px"
+                        }
                         quality={80}
                         loading="lazy"
                         data-zoomable
@@ -202,8 +309,8 @@ const hasSections = d.sections.length > 0;
       </section>
     ))}
 
-    {hasSections && (
-      <section id={lang === "sv" ? "kontakt" : "contact"} class="scrollto clearfix" tabindex="-1">
+    {d.sections.length > 0 && (
+      <section id={lang === "sv" ? "kontakt" : "contact"} class="scrollto clearfix" tabindex={tab}>
         <div class="col-1 content-center">
           <div class="col-2-3 row clearfix">
             <div class="col-1 text-center showcase-cta">

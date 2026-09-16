@@ -33,6 +33,7 @@ sections:
           - "Möjliga mönster och samband mellan mätdata, tillgångar och underhållshistorik"
           - "Spårbarhet till position och underliggande data"
           - "Underlag för att prioritera underhåll"
+    wide: true
     shots:
       - image: "analys"
         alt: "Analys av ett urval i TD Linear. Varje kravfynd listas med kravnivå, exakt mätpunkt och avvikelse, och panelen till höger visar underlaget bakom bedömningen: segment, kravnivå, avvikelse från nominellt värde och vilken regel som träffat."

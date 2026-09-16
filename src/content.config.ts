@@ -51,19 +51,40 @@ const bandCard = z.object({
  * (#mojligheter vs #capabilities) because the in-page anchors are, so `id`
  * lives in the content rather than being derived.
  */
+/**
+ * A yes/no comparison against a rival approach. The two glyphs are the same on
+ * every row, so they live in the route and the content only says which one.
+ */
+const compare = z.object({
+  columns: z.array(z.string()),
+  rows: z.array(
+    z.object({
+      label: z.string(),
+      values: z.array(z.boolean()),
+    }),
+  ),
+});
+
 const section = z.object({
-  id: z.string(),
+  /** Omitted on a section with no anchor of its own. */
+  id: z.string().optional(),
   /** Extra classes on <section>, e.g. "primary-color". */
   className: z.string().optional(),
   kicker: z.string(),
   title: z.string(),
+  /** May carry inline markup, so it is rendered as HTML rather than escaped. */
   subtitle: z.string().optional(),
+  /** Referenced by the comparison table's aria-labelledby. */
+  titleId: z.string().optional(),
   trio: z.array(trioCard).optional(),
   band: z.array(bandCard).optional(),
   /**
    * Screenshots below the cards. `image` names an entry in the route's import
    * map, because astro:assets needs a real import and a string is just a string.
    */
+  /** Wide tours run to 1205px rather than 860px, and take the --wide modifier. */
+  wide: z.boolean().default(false),
+  compare: compare.optional(),
   shots: z
     .array(
       z.object({
