@@ -482,7 +482,7 @@ function runSelfTest(baselineDir, context) {
       (h) => once(h, 'och AI</strong> och', 'och AI</strong>och')],
     ['whitespace between two body elements removed (the rule must not leak)', 'about.html', (h) => {
       const i = h.indexOf('<body>');
-      return h.slice(0, i) + h.slice(i).replace(/<\/li>\s+<li>/, '</li><li>');
+      return h.slice(0, i) + h.slice(i).replace(/<\/li>\s+<li([ >])/, '</li><li$1');
     }],
     ['whitespace between a rendered element and a <script> removed', 'about.html',
       (h) => h.replace(/<\/div>(\s+)(?=<script src="js\/jquery\.1\.8\.3)/, '</div>')],

@@ -1,0 +1,33 @@
+---
+/**
+ * schema.org Organization block for the start page.
+ *
+ * This is the node the other pages' JSON-LD points at by @id, so it carries no
+ * page-specific fields and does not vary by locale.
+ */
+import { SITE, ORGANIZATION_ID } from "../../data/pages";
+---
+
+<script
+  type="application/ld+json"
+  set:html={`
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "${ORGANIZATION_ID}",
+      "name": "Total Digital AB",
+      "url": "${SITE}/",
+      "logo": "${SITE}/images/favicon.png",
+      "email": "info@totaldigital.se",
+      "telephone": "+46101010070",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Fabriksgatan 4",
+        "postalCode": "531 60",
+        "addressLocality": "Lidköping",
+        "addressCountry": "SE"
+      },
+      "sameAs": ["https://www.linkedin.com/company/total-digital-it-solutions"]
+    }
+  `}
+></script>

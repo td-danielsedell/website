@@ -1,0 +1,439 @@
+---
+/**
+ * The start page, both locales, from one file.
+ *
+ * Five bands below the banner, each a different shape but each a list the page
+ * used to spell out twice. The head is the same in both locales apart from the
+ * `../` every URL under en/ needs, so it is built from one `asset` helper
+ * rather than written out per locale.
+ *
+ * A component rather than a route, unlike the other shared pages: a rest route
+ * cannot emit index.html at both / and /en/, so src/pages/index.astro and
+ * src/pages/en/index.astro stay as two-line files that render this.
+ */
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+import type { Lang } from "../data/nav";
+import Layout from "../layouts/Layout.astro";
+import OrganizationJsonLd from "./head/OrganizationJsonLd.astro";
+
+import maxanvLight from "../assets/images/logos/maxanv-light.webp";
+import rymdstyrelsenLight from "../assets/images/logos/rymdstyrelsen-light.webp";
+import nvidiaLight from "../assets/images/logos/nvidia-light.webp";
+import esriLight from "../assets/images/logos/esri-light.webp";
+import oresundsbron from "../assets/images/customers/oresundsbron.jpeg";
+import trafikforvaltningen from "../assets/images/customers/trafikforvaltningen.jpeg";
+import pedabLogo from "../assets/images/logos/pedab.png";
+import maxanvLogo from "../assets/images/logos/maxanv.png";
+import rymdstyrelsenLogo from "../assets/images/logos/rymdstyrelsen.png";
+import nvidiaLogo from "../assets/images/logos/nvidia.png";
+import esriLogo from "../assets/images/logos/esri.png";
+import ibmLogo from "../assets/images/logos/ibm.png";
+import serviceAdvisory from "../assets/images/services/service-advisory.jpg";
+import serviceAnalytics from "../assets/images/services/service-analytics.jpg";
+import serviceOperations from "../assets/images/services/service-operations.jpg";
+import railDamage from "../assets/images/projects/rail-damage.png";
+import waterLeak from "../assets/images/projects/water-leak.jpg";
+import interferogram from "../assets/images/projects/interferogram.jpeg";
+import railSensor from "../assets/images/projects/rail-sensor.png";
+import serviceImplementation from "../assets/images/services/service-implementation.jpg";
+
+const IMAGES: Record<string, ImageMetadata> = {
+  maxanvLight,
+  rymdstyrelsenLight,
+  nvidiaLight,
+  esriLight,
+  oresundsbron,
+  trafikforvaltningen,
+  pedabLogo,
+  maxanvLogo,
+  rymdstyrelsenLogo,
+  nvidiaLogo,
+  esriLogo,
+  ibmLogo,
+  serviceAdvisory,
+  serviceAnalytics,
+  serviceOperations,
+  railDamage,
+  waterLeak,
+  interferogram,
+  railSensor,
+  serviceImplementation,
+};
+
+/** Every script the start page loads, in the order it loads them. */
+const SCRIPTS = [
+  "jquery.1.8.3.min.js",
+  "wow.min.js",
+  "jquery.enllax.min.js",
+  "jquery.easing.min.js",
+  "jquery.stickyNavbar.min.js",
+  "jquery.waypoints.min.js",
+  "images-loaded.min.js",
+  "lightbox.min.js",
+  "site.js",
+  "logo-slider.js",
+  "image-carousel.js",
+  "showcase-featured.js",
+];
+
+/** Sheets this page adds on top of the ones every page loads. */
+const SHEETS = [
+  "logo-slider.css",
+  // The business-areas band. Must load after style.css — see the comment at the
+  // top of the sheet.
+  "area-band.css",
+  "feature-card.css",
+  "service-card.css",
+  "image-carousel.css",
+  "footer-large.css",
+];
+
+const SHOWCASE_SIZES =
+  "(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1244px) calc((100vw - 96px) / 3), 552px";
+const SERVICE_SIZES =
+  "(max-width: 767px) calc((100vw - 30px) * 0.78), (max-width: 1244px) calc((100vw - 80px) / 2), 583px";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const entry = await getEntry("home", `home-${lang}`);
+if (!entry) throw new Error(`no home content for locale: ${lang}`);
+const { hero, scrollCue, sections } = entry.data;
+/** Relative URLs resolve against the page's own directory, and en/ is one deeper. */
+const asset = (p: string) => (lang === "sv" ? p : `../${p}`);
+const section = (id: string) => sections.find((s) => s.id === id)!;
+const areas = section("businessareas");
+const showcases = section("showcases");
+const services = section("services");
+const products = section("products");
+const trust = section("trust");
+---
+
+<Layout lang={lang} path="index.html" isHome>
+  <Fragment slot="head-preload">
+    {/* The banner is a CSS background, so the browser cannot discover it until
+        colors.css has been parsed — and it is the largest thing on the first
+        screen. Preloaded here, before any stylesheet, one crop per breakpoint:
+        the wide crop above 1024px, the full crop below it. */}
+    <link
+      rel="preload"
+      href={asset("images/banner-images/banner_wide_clean.webp")}
+      as="image"
+      media="(min-width: 1024px)"
+    />
+    <link
+      rel="preload"
+      href={asset("images/banner-images/banner_full_clean.webp")}
+      as="image"
+      media="(max-width: 1023px)"
+    />
+  </Fragment>
+  <Fragment slot="head-css">
+    {SHEETS.map((s) => (
+      <link href={asset(`css/${s}`)} rel="stylesheet" type="text/css" />
+    ))}
+  </Fragment>
+  <OrganizationJsonLd slot="head-after-fonts" />
+  <Fragment slot="banner">
+    <div id="banner-content" class="row clearfix">
+      <div class="col-61">
+        <div class="section-heading">
+          <h1 id="main-heading">
+            {hero.headingLines.map((line, i) => (
+              <Fragment>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
+          </h1>
+
+          <p class="expertise-line expertise-line-grow">
+            <span class="expertise-label">{hero.expertiseLabel}</span>
+            <span class="expertise-rotator" aria-hidden="true">
+              <span class="expertise-reel">
+                {hero.expertise.map((e) => (
+                  <span>
+                    <i class={e.icon} aria-hidden="true" />
+                    {e.text}
+                  </span>
+                ))}
+                {/* The reel repeats its first item so the loop has no visible seam. */}
+                <span aria-hidden="true">
+                  <i class={hero.expertise[0].icon} />
+                  {hero.expertise[0].text}
+                </span>
+              </span>
+            </span>
+
+            <span class="sr-only">{hero.srOnly}</span>
+          </p>
+
+          <p class="banner-intro">
+            {hero.intro}
+            <span class="banner-intro-next">{hero.introNext}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <a href={scrollCue.href} class="scroll-cue" data-scroll-to aria-label={scrollCue.label}>
+      <span class="scroll-cue-label">{scrollCue.text}</span>
+      <i class="fa-solid fa-chevrons-down" aria-hidden="true"></i>
+    </a>
+  </Fragment>
+  <Fragment slot="all-scripts">
+    {SCRIPTS.map((s) => (
+      <script src={asset(`js/${s}`)} is:inline></script>
+    ))}
+  </Fragment>
+  <main id="content">
+    <section id={areas.id} class="introduction scrollto">
+      <div class="row clearfix">
+        <div class="col-1">
+          <div class="section-heading">
+            <h2 class="section-kicker">{areas.kicker}</h2>
+            <p class="section-title">{areas.title}</p>
+          </div>
+        </div>
+
+        <div class="col-1 area-band">
+          {areas.areas?.map((a) => (
+            <div class="area-band-item">
+              <i class={a.icon} style="color: var(--primary);" aria-hidden="true" />
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="col-1 industry-strip">
+          <p class="industry-label">{areas.industryLabel}</p>
+          <div class="logo-slider industry-slider" data-speed="0.35">
+            <div class="logo-track">
+              {areas.industries?.map((i) => (
+                <span>
+                  <i class={i.icon} aria-hidden="true" />
+                  {i.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id={showcases.id}
+      class="row scrollto clearfix showcase-featured"
+      data-featherlight-content
+      data-featherlight-filter="a"
+    >
+      <div class="section-heading">
+        <h2 class="section-kicker">{showcases.kicker}</h2>
+        <p class="section-title">{showcases.title}</p>
+      </div>
+
+      <div
+        class="showcase-carousel image-carousel"
+        data-image-carousel
+        data-carousel-label={showcases.carouselLabel}
+        data-carousel-noun={showcases.carouselNoun}
+        data-carousel-autoplay="4000"
+      >
+        <div class="showcase-track image-carousel-track clearfix">
+          {showcases.cards?.map((c, i) => (
+            <div
+              class="row no-padding-bottom clearfix image-carousel-slide"
+              data-featured={i === 0 ? "" : undefined}
+            >
+              <div class="col-1 feature-card showcase text-left">
+                <div class="card-image-wrapper">
+                  <Image
+                    src={IMAGES[c.image]}
+                    widths={[277, 383, 552, 1104]}
+                    sizes={SHOWCASE_SIZES}
+                    quality={75}
+                    loading="lazy"
+                    alt=""
+                  />
+                </div>
+
+                <div class="card-content">
+                  <h3 class="card-title">
+                    <a href={c.href} class="card-link card-link-stretch">
+                      {c.title}
+                    </a>
+                  </h3>
+                  <p>{c.body}</p>
+                </div>
+
+                <div class="card-arrow" aria-hidden="true">
+                  <i class="fa-solid fa-chevron-right" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="showcase-more" hidden>
+        <button type="button" class="button showcase-more-button">
+          {showcases.moreLabel}
+        </button>
+      </div>
+    </section>
+
+    <section
+      id={services.id}
+      class="row scrollto clearfix"
+      data-featherlight-content
+      data-featherlight-filter="a"
+    >
+      <div class="section-heading">
+        <h2 class="section-kicker">{services.kicker}</h2>
+        <p class="section-title">{services.title}</p>
+      </div>
+
+      <div
+        class="service-carousel image-carousel"
+        data-image-carousel
+        data-carousel-label={services.carouselLabel}
+        data-carousel-noun={services.carouselNoun}
+        data-carousel-autoplay="4000"
+      >
+        <div class="service-track image-carousel-track clearfix">
+          {services.groups?.map((g) => (
+            <div class="col-2 image-carousel-slide">
+              <div class="service-group">
+                <div class="service-group-image">
+                  <Image
+                    src={IMAGES[g.image]}
+                    widths={[281, 583, 1166]}
+                    sizes={SERVICE_SIZES}
+                    quality={75}
+                    alt=""
+                    loading="lazy"
+                  />
+                </div>
+                <div class="service-group-body">
+                  <h3>{g.title}</h3>
+                  <ul class="service-list">
+                    {g.items.map((it) => (
+                      <li>
+                        <strong>{it.title}</strong>
+                        <span>{it.body}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id={products.id} class="scrollto clearfix">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">{products.kicker}</h2>
+          <p id={products.titleId} class="section-title" set:text={products.title} />
+        </div>
+
+        <div
+          class="product-carousel image-carousel"
+          data-image-carousel
+          data-carousel-label={products.carouselLabel}
+          data-carousel-noun={products.carouselNoun}
+          data-carousel-fit
+        >
+          <div class="product-track image-carousel-track">
+            {products.products?.map((p) => (
+              <div class="col-2 image-carousel-slide">
+                <div class="feature-card product">
+                  <div class="product-body">
+                    <h3>
+                      <a href={p.href} class="card-link card-link-stretch">
+                        {p.name}
+                      </a>
+                    </h3>
+                    <p class="product-sub">{p.sub}</p>
+                    <div class="product-image-wrapper product-icon">
+                      <i class={p.icon} aria-hidden="true" />
+                    </div>
+                    <div class="product-content">
+                      <p>{p.body}</p>
+                    </div>
+                  </div>
+
+                  <i class={`${p.icon} product-icon-mark`} aria-hidden="true" />
+                  <div class="card-arrow" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-right" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside id={trust.id} class="scrollto" data-enllax-ratio=".2">
+      <div class="row clearfix">
+        <div class="section-heading">
+          <h2 class="section-kicker">{trust.kicker}</h2>
+          <p class="section-title">{trust.title}</p>
+        </div>
+
+        {trust.testimonials?.map((t) => (
+          <blockquote class="col-2 testimonial classic text-center">
+            <Image
+              src={IMAGES[t.image]}
+              widths={[120, 200]}
+              sizes="120px"
+              quality={80}
+              loading="lazy"
+              alt={t.alt}
+            />
+            <q>{t.quote}</q>
+            <footer>{t.source}</footer>
+          </blockquote>
+        ))}
+
+        <div class="col-1 trust-partners">
+          <p class="section-subtitle partner-lead" set:html={trust.partnerLead} />
+          <div class="logo-slider" id="logoSlider">
+            <div class="logo-track" id="logoTrack">
+              {trust.partners?.map((p) => (
+                <a href={p.href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    class={p.light ? "logo-dark" : undefined}
+                    src={IMAGES[p.image]}
+                    widths={[p.width, p.width * 2]}
+                    sizes={`${p.width}px`}
+                    quality={80}
+                    loading="lazy"
+                    alt={p.alt}
+                  />
+                  {p.light && (
+                    <Image
+                      class="logo-light"
+                      src={IMAGES[p.light]}
+                      widths={[p.width, p.width * 2]}
+                      sizes={`${p.width}px`}
+                      quality={80}
+                      loading="lazy"
+                      alt=""
+                    />
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+</Layout>

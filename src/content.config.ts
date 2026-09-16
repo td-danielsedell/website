@@ -180,4 +180,83 @@ const about = defineCollection({
   }),
 });
 
-export const collections = { projects, products, about };
+/** An icon plus a word: the hero's rotator, and the industry strip below it. */
+const iconWord = z.object({ icon: z.string(), text: z.string() });
+
+/**
+ * The start page. Five bands, each a different shape, all of them lists the
+ * page used to spell out twice.
+ */
+const homeSection = z.object({
+  id: z.string(),
+  kicker: z.string(),
+  title: z.string(),
+  /** Referenced by the products carousel's aria-labelledby. */
+  titleId: z.string().optional(),
+  carouselLabel: z.string().optional(),
+  carouselNoun: z.string().optional(),
+  /** The "show more" button below the showcase carousel, hidden until JS needs it. */
+  moreLabel: z.string().optional(),
+  areas: z.array(z.object({ icon: z.string(), title: z.string(), body: z.string() })).optional(),
+  industryLabel: z.string().optional(),
+  industries: z.array(z.object({ icon: z.string(), name: z.string() })).optional(),
+  cards: z
+    .array(z.object({ image: z.string(), href: z.string(), title: z.string(), body: z.string() }))
+    .optional(),
+  groups: z
+    .array(
+      z.object({
+        image: z.string(),
+        title: z.string(),
+        items: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
+      }),
+    )
+    .optional(),
+  products: z
+    .array(
+      z.object({
+        href: z.string(),
+        name: z.string(),
+        sub: z.string(),
+        icon: z.string(),
+        body: z.string(),
+      }),
+    )
+    .optional(),
+  testimonials: z
+    .array(z.object({ image: z.string(), alt: z.string(), quote: z.string(), source: z.string() }))
+    .optional(),
+  partnerLead: z.string().optional(),
+  partners: z
+    .array(
+      z.object({
+        href: z.string(),
+        image: z.string(),
+        alt: z.string(),
+        /** Rendered width in CSS pixels; Rymdstyrelsen's wordmark is wider than the rest. */
+        width: z.number(),
+        /** A reversed, white-ink variant for the light theme, where there is one. */
+        light: z.string().optional(),
+      }),
+    )
+    .optional(),
+});
+
+const home = defineCollection({
+  loader: glob({ pattern: "*-{sv,en}.md", base: "./src/content/home" }),
+  schema: z.object({
+    hero: z.object({
+      headingLines: z.array(z.string()),
+      expertiseLabel: z.string(),
+      expertise: z.array(iconWord),
+      /** What a screen reader hears in place of the silent rotator. */
+      srOnly: z.string(),
+      intro: z.string(),
+      introNext: z.string(),
+    }),
+    scrollCue: z.object({ href: z.string(), label: z.string(), text: z.string() }),
+    sections: z.array(homeSection).default([]),
+  }),
+});
+
+export const collections = { projects, products, about, home };

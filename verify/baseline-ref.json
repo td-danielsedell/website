@@ -2,7 +2,7 @@
   "_comment": "Ground truth for the verification harness. IMPORTANT: this is no longer a snapshot of main's shipped HTML. It is this project's own build, taken after src/ was formatted with prettier. Regenerate with: npm run build, then copy dist/**/*.html over verify/baseline/, then re-run verify/make-baseline-ref.mjs.",
   "kind": "own-build",
   "capturedFrom": "93cf92940a6890bdce6f06d09cdd5cc1c6160502",
-  "capturedFromSubject": "pending: about onto a shared route",
+  "capturedFromSubject": "pending: the start page onto a shared component",
   "capturedAt": "2026-09-16",
   "whatThisProvesNow": "A regression gate: the build has not changed unintentionally since this snapshot. It no longer proves byte-parity with main - that job is finished, and prettier formatting means the two legitimately differ in whitespace.",
   "previousBaselines": [
@@ -22,7 +22,7 @@
   "sha256": {
     "about.html": "3e8ddeaf096ab833b93a98ce176e1474ffba8f9c1bc60ab8fa978286f4d55a41",
     "en/about.html": "2e2e303d7daeab78cdd0c6ba444a5121a936c5159e7ad1b9ade1fc2775c9dac9",
-    "en/index.html": "d4f432d0dfb3b81535e751e824d37bca1066f35ad35e4621dba0e3dc0ffbfcaf",
+    "en/index.html": "d12de2971d850352df0504e85fd017be40f85fa911b62205573f55a2671409ba",
     "en/leak-detection.html": "267bc7e510189be7f356642cd5eb397045254e38babe356c03f7d4ad24bec872",
     "en/raildamage-analyses.html": "2bf1bf4ab5b1e508d6d93122d433a97c411a85a2693a05e73a5bba5df328395e",
     "en/railway-safety.html": "c20cdd21588d31120057bd539786b7772ef5d2d7d12f6abe5a7a1567c6b9696b",
@@ -30,7 +30,7 @@
     "en/td_asset_care.html": "8a6191f2dafd874ebefb872aab6d4b1bd57a50daa0dc7f84751488acfd2a983c",
     "en/td_linear.html": "f2efd1e0036ec11064a6d794392d1485c1ed606675e6abaaf9debcd69bfc965c",
     "en/td_test.html": "6ff516303f8ffa19c122a8a655b38010f03c1533f0d189f39076e311fa824410",
-    "index.html": "ab36b320172be542a407baeaad9a9d2a525c225b878a87ab4e7dc2b332fc6fc7",
+    "index.html": "c100f9d70deeca8b5fbba43b16955c7623b89ace76eda3b3abcbb8e5faa41506",
     "leak-detection.html": "ccd294175e7463ab88cb699c7c75ed9ffcf18328eff47cf6eb92c8a0ba33c515",
     "raildamage-analyses.html": "e30568b7f2bbd29c7baa4b819622f763fc74b3cdfd53c1d663eb02b32e3b052f",
     "railway-safety.html": "9c8f32097e65fe4dc96e7bfcc45434d649ab33b3a873124f304aae464cfad994",
