@@ -1,0 +1,76 @@
+---
+/**
+ * TD Asset Care, both locales, from one file.
+ *
+ * Same reasoning as the project route: the two page files differed only in
+ * lang, a subtitle and the prose. td_test and td_linear are NOT served from
+ * here - they carry feature grids, screenshot carousels and per-section
+ * structure that this single-section template would flatten.
+ */
+import { getCollection, render } from "astro:content";
+import type { Lang } from "../data/nav";
+import Layout from "../layouts/Layout.astro";
+import { pageMeta } from "../data/pages";
+import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
+import LightboxScripts from "../components/scripts/LightboxScripts.astro";
+import FeatureCardCss from "../components/head/FeatureCardCss.astro";
+import ServiceCardCss from "../components/head/ServiceCardCss.astro";
+import SoftwareApplicationJsonLd from "../components/head/SoftwareApplicationJsonLd.astro";
+import FooterLargeCss from "../components/head/FooterLargeCss.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("products");
+  return entries.map((entry) => {
+    const m = entry.id.match(/^(.+)-(sv|en)$/);
+    if (!m) throw new Error(`content id must end -sv or -en: ${entry.id}`);
+    const [, page, lang] = m as unknown as [string, string, Lang];
+    return {
+      params: { product: lang === "sv" ? page : `en/${page}` },
+      props: { entry, page, lang },
+    };
+  });
+}
+
+const { entry, page, lang } = Astro.props;
+const { Content } = await render(entry);
+const path = `${page}.html`;
+const d = entry.data;
+/** The <h1> is the product name, which pages.ts already holds. */
+const name = pageMeta[path][lang].ldName ?? pageMeta[path][lang].title;
+---
+
+<Layout lang={lang} path={path}>
+  <ParallaxScripts slot="scripts-early" lang={lang} />
+  <LightboxScripts slot="scripts-late" lang={lang} />
+  <FeatureCardCss slot="head-css" lang={lang} />
+  <ServiceCardCss slot="head-css" lang={lang} />
+  <SoftwareApplicationJsonLd slot="head-after-fonts" lang={lang} path={path} />
+  <FooterLargeCss slot="head-after-fonts" lang={lang} />
+  <main id="content" class="showcase-top title-top">
+    <section class="introduction scrollto">
+      <div class="col-1 content-center">
+        <div class="col-2-3 row clearfix">
+          <div class="col-1">
+            <div class="section-heading has-title-icon">
+              <h1 class="section-title">{name}</h1>
+              <p class="section-subtitle">{d.subtitle}</p>
+
+              <i class={`${d.titleIcon} title-icon`} aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="col-1">
+            <Content />
+          </div>
+
+          <div class="col-1 text-center showcase-cta">
+            <p>{d.ctaText}</p>
+            <a href={d.ctaHref} class="button">
+              {d.ctaLabel}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

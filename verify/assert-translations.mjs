@@ -57,11 +57,21 @@ function metaPairs(file) {
 function check() {
   const problems = [];
 
-  const content = contentPairs(join(ROOT, 'src/content/projects'));
-  for (const [page, have] of Object.entries(content)) {
-    for (const l of LOCALES) {
-      if (!have.has(l)) {
-        problems.push(`src/content/projects/${page}-${l}.md is missing (${[...have].join(', ')} exists)`);
+  // every collection under src/content, not a hardcoded one — a new collection
+  // must not be able to slip past this check by existing
+  const contentRoot = join(ROOT, 'src/content');
+  let entries = 0;
+  const collections = existsSync(contentRoot)
+    ? readdirSync(contentRoot, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)
+    : [];
+  for (const c of collections) {
+    const pairs = contentPairs(join(contentRoot, c));
+    entries += Object.keys(pairs).length;
+    for (const [page, have] of Object.entries(pairs)) {
+      for (const l of LOCALES) {
+        if (!have.has(l)) {
+          problems.push(`src/content/${c}/${page}-${l}.md is missing (${[...have].join(', ')} exists)`);
+        }
       }
     }
   }
@@ -73,7 +83,7 @@ function check() {
     }
   }
 
-  return { problems, pages: Object.keys(meta).length, entries: Object.keys(content).length };
+  return { problems, pages: Object.keys(meta).length, entries, collections: collections.length };
 }
 
 if (process.argv.includes('--self-test')) {
@@ -95,11 +105,11 @@ if (process.argv.includes('--self-test')) {
   process.exit(fail ? 1 : 0);
 }
 
-const { problems, pages, entries } = check();
+const { problems, pages, entries, collections } = check();
 if (problems.length) {
   console.log('\x1b[31m✗\x1b[0m incomplete translations:');
   for (const p of problems) console.log(`    ${p}`);
   console.log(`\n${problems.length} missing counterpart(s)`);
   process.exit(1);
 }
-console.log(`  ${pages} page(s) in pages.ts and ${entries} content entr(ies): both locales present for each.`);
+console.log(`  ${pages} page(s) in pages.ts and ${entries} entr(ies) across ${collections} collection(s): both locales present for each.`);

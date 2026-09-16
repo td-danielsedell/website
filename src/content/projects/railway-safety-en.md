@@ -1,6 +1,6 @@
 ---
 imageAlt: "Railway track with measurement equipment"
-partners: "Partners: Region Stockholm, KTH - Royal Institute of Technology, InfraNord"
+partners: "Partners: Region Stockholm, KTH Royal Institute of Technology, InfraNord"
 caption: "Rail temperature sensor. © Total Digital."
 ---
 

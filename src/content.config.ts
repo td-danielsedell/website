@@ -27,4 +27,22 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+/**
+ * Product-page prose. Same shape as `projects`, but a product page leads with
+ * a subtitle and closes with its own call to action rather than a partners
+ * line, so the frontmatter differs.
+ */
+const products = defineCollection({
+  loader: glob({ pattern: "*-{sv,en}.md", base: "./src/content/products" }),
+  schema: z.object({
+    /** The line under the product name. */
+    subtitle: z.string(),
+    /** Font Awesome classes for the heading icon. */
+    titleIcon: z.string(),
+    ctaText: z.string(),
+    ctaHref: z.string(),
+    ctaLabel: z.string(),
+  }),
+});
+
+export const collections = { projects, products };
