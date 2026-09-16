@@ -1,12 +1,18 @@
 ---
 /**
- * TD Asset Care, both locales, from one file.
+ * The product pages, both locales, from one file.
  *
- * Same reasoning as the project route: the two page files differed only in
- * lang, a subtitle and the prose. td_test and td_linear are NOT served from
- * here - they carry feature grids, screenshot carousels and per-section
- * structure that this single-section template would flatten.
+ * Prose is Markdown; the feature grids are structured frontmatter rather than
+ * Markdown. That split is deliberate: the grids need .card-title and .tdt-list,
+ * which Markdown does not emit, and .card-title is used site-wide (index
+ * carousel, showcase, service cards, #businessareas) so it cannot be traded for
+ * a structural selector without changing how every other card is styled.
+ *
+ * Two intro shapes. td_asset_care is a single centred column; td_linear puts
+ * the heading beside a lead paragraph in .tdt-hero. `lead` in the frontmatter
+ * is what distinguishes them.
  */
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import type { Lang } from "../data/nav";
 import Layout from "../layouts/Layout.astro";
@@ -15,8 +21,15 @@ import ParallaxScripts from "../components/scripts/ParallaxScripts.astro";
 import LightboxScripts from "../components/scripts/LightboxScripts.astro";
 import FeatureCardCss from "../components/head/FeatureCardCss.astro";
 import ServiceCardCss from "../components/head/ServiceCardCss.astro";
+import ProductLayoutCss from "../components/head/ProductLayoutCss.astro";
 import SoftwareApplicationJsonLd from "../components/head/SoftwareApplicationJsonLd.astro";
 import FooterLargeCss from "../components/head/FooterLargeCss.astro";
+
+import analys from "../assets/images/products/td-linear/analys.webp";
+import punktjamforelse from "../assets/images/products/td-linear/punktjamforelse.webp";
+
+/** Screenshots by the name the frontmatter uses; astro:assets needs real imports. */
+const SHOTS: Record<string, ImageMetadata> = { analys, punktjamforelse };
 
 export async function getStaticPaths() {
   const entries = await getCollection("products");
@@ -35,8 +48,8 @@ const { entry, page, lang } = Astro.props;
 const { Content } = await render(entry);
 const path = `${page}.html`;
 const d = entry.data;
-/** The <h1> is the product name, which pages.ts already holds. */
 const name = pageMeta[path][lang].ldName ?? pageMeta[path][lang].title;
+const hasSections = d.sections.length > 0;
 ---
 
 <Layout lang={lang} path={path}>
@@ -46,31 +59,162 @@ const name = pageMeta[path][lang].ldName ?? pageMeta[path][lang].title;
   <ServiceCardCss slot="head-css" lang={lang} />
   <SoftwareApplicationJsonLd slot="head-after-fonts" lang={lang} path={path} />
   <FooterLargeCss slot="head-after-fonts" lang={lang} />
-  <main id="content" class="showcase-top title-top">
-    <section class="introduction scrollto">
-      <div class="col-1 content-center">
-        <div class="col-2-3 row clearfix">
-          <div class="col-1">
-            <div class="section-heading has-title-icon">
-              <h1 class="section-title">{name}</h1>
-              <p class="section-subtitle">{d.subtitle}</p>
+  {hasSections && <ProductLayoutCss slot="head-after-fonts" lang={lang} />}
+  {hasSections && (
+    <Fragment slot="scripts">
+      <script src={lang === "sv" ? "js/image-zoom.js" : "../js/image-zoom.js"} is:inline></script>
+      {/*Bygger pilar och punkter i .image-carousel*/}
+      <script
+        src={lang === "sv" ? "js/image-carousel.js" : "../js/image-carousel.js"}
+        is:inline
+      ></script>
+    </Fragment>
+  )}
+  <main id="content" class={d.lead ? "showcase-top" : "showcase-top title-top"}>
+    {d.lead ? (
+      <section class="introduction scrollto tdt-intro" tabindex="-1">
+        <div class="row clearfix">
+          <div class="tdt-hero">
+            <div class="tdt-hero-copy">
+              <div class="section-heading has-title-icon">
+                <h1 class="section-title">{name}</h1>
+                <p class="section-subtitle">{d.subtitle}</p>
 
-              <i class={`${d.titleIcon} title-icon`} aria-hidden="true"></i>
+                <i class={`${d.titleIcon} title-icon`} aria-hidden="true" />
+              </div>
+            </div>
+
+            <div class="tdt-hero-body">
+              <p class="tdt-lead">{d.lead}</p>
             </div>
           </div>
 
-          <div class="col-1">
+          <div class="tdt-intro-body">
             <Content />
           </div>
 
-          <div class="col-1 text-center showcase-cta">
-            <p>{d.ctaText}</p>
-            <a href={d.ctaHref} class="button">
-              {d.ctaLabel}
+          {d.scrollCue && (
+            <a
+              href={d.scrollCue.href}
+              class="scroll-cue"
+              data-scroll-to
+              aria-label={d.scrollCue.label}
+            >
+              <span class="scroll-cue-label">{d.scrollCue.text}</span>
+              <i class="fa-solid fa-chevrons-down" aria-hidden="true" />
             </a>
+          )}
+        </div>
+      </section>
+    ) : (
+      <section class="introduction scrollto">
+        <div class="col-1 content-center">
+          <div class="col-2-3 row clearfix">
+            <div class="col-1">
+              <div class="section-heading has-title-icon">
+                <h1 class="section-title">{name}</h1>
+                <p class="section-subtitle">{d.subtitle}</p>
+
+                <i class={`${d.titleIcon} title-icon`} aria-hidden="true" />
+              </div>
+            </div>
+
+            <div class="col-1">
+              <Content />
+            </div>
+
+            <div class="col-1 text-center showcase-cta">
+              <p>{d.ctaText}</p>
+              <a href={d.ctaHref} class="button">
+                {d.ctaLabel}
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    )}
+
+    {d.sections.map((s) => (
+      <section id={s.id} class={`${s.className ?? ""} scrollto clearfix`.trim()} tabindex="-1">
+        <div class="row clearfix">
+          <div class="section-heading">
+            <h2 class="section-kicker">{s.kicker}</h2>
+            <p class="section-title">{s.title}</p>
+            {s.subtitle && <p class="section-subtitle" set:html={s.subtitle} />}
+          </div>
+
+          {s.trio && (
+            <div class="tdt-trio">
+              {s.trio.map((c) => (
+                <div>
+                  <h3 class="card-title">{c.title}</h3>
+                  {c.lead && <p>{c.lead}</p>}
+                  {c.items.length > 0 && (
+                    <ul class="tdt-list">
+                      {c.items.map((i) => (
+                        <li>{i}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {s.band && (
+            <div class="col-1 area-band">
+              {s.band.map((c) => (
+                <div class="area-band-item">
+                  <div class="tdt-icon">
+                    <i class={c.icon} aria-hidden="true" />
+                  </div>
+                  <h3>{c.title}</h3>
+                  <p>{c.body}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {s.shots && (
+            <div class="col-1 tdt-tour tdt-tour--wide">
+              <div class="image-carousel" data-image-carousel="">
+                <div class="image-carousel-track">
+                  {s.shots.map((sh) => (
+                    <figure class="image-carousel-slide">
+                      <Image
+                        class="tdt-shot tdt-shot--wide"
+                        src={SHOTS[sh.image]}
+                        widths={[360, 900, 1832]}
+                        sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), (max-width: 1284px) calc(100vw - 40px), 1205px"
+                        quality={80}
+                        loading="lazy"
+                        data-zoomable
+                        alt={sh.alt}
+                      />
+                      {sh.caption && <figcaption set:html={sh.caption} />}
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    ))}
+
+    {hasSections && (
+      <section id={lang === "sv" ? "kontakt" : "contact"} class="scrollto clearfix" tabindex="-1">
+        <div class="col-1 content-center">
+          <div class="col-2-3 row clearfix">
+            <div class="col-1 text-center showcase-cta">
+              <p>{d.ctaText}</p>
+              <a href={d.ctaHref} class="button">
+                {d.ctaLabel}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
   </main>
 </Layout>

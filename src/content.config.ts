@@ -32,6 +32,49 @@ const projects = defineCollection({
  * a subtitle and closes with its own call to action rather than a partners
  * line, so the frontmatter differs.
  */
+/** A card in a `.tdt-trio` grid: heading, a lead line, a checklist. */
+const trioCard = z.object({
+  title: z.string(),
+  lead: z.string().optional(),
+  items: z.array(z.string()).default([]),
+});
+
+/** A card in an `.area-band`: duotone icon, heading, one paragraph. */
+const bandCard = z.object({
+  icon: z.string(),
+  title: z.string(),
+  body: z.string(),
+});
+
+/**
+ * A section below the intro. The section ids are translated on purpose
+ * (#mojligheter vs #capabilities) because the in-page anchors are, so `id`
+ * lives in the content rather than being derived.
+ */
+const section = z.object({
+  id: z.string(),
+  /** Extra classes on <section>, e.g. "primary-color". */
+  className: z.string().optional(),
+  kicker: z.string(),
+  title: z.string(),
+  subtitle: z.string().optional(),
+  trio: z.array(trioCard).optional(),
+  band: z.array(bandCard).optional(),
+  /**
+   * Screenshots below the cards. `image` names an entry in the route's import
+   * map, because astro:assets needs a real import and a string is just a string.
+   */
+  shots: z
+    .array(
+      z.object({
+        image: z.string(),
+        alt: z.string(),
+        caption: z.string().optional(),
+      }),
+    )
+    .optional(),
+});
+
 const products = defineCollection({
   loader: glob({ pattern: "*-{sv,en}.md", base: "./src/content/products" }),
   schema: z.object({
@@ -39,6 +82,21 @@ const products = defineCollection({
     subtitle: z.string(),
     /** Font Awesome classes for the heading icon. */
     titleIcon: z.string(),
+    /**
+     * The opening paragraph, which sits beside the heading in .tdt-hero-body
+     * rather than with the rest of the prose. Pages without that split omit it.
+     */
+    lead: z.string().optional(),
+    /**
+     * Feature sections. Their cards are structured data rather than Markdown:
+     * the grids need .card-title and .tdt-list, which Markdown does not emit,
+     * and .card-title is a site-wide class so it cannot be traded for a
+     * structural selector without changing how every other card is styled.
+     * The Markdown body is the page's prose intro.
+     */
+    sections: z.array(section).default([]),
+    /** The "read more" cue under the intro, pointing at the first section. */
+    scrollCue: z.object({ href: z.string(), label: z.string(), text: z.string() }).optional(),
     ctaText: z.string(),
     ctaHref: z.string(),
     ctaLabel: z.string(),

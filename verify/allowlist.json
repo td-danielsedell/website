@@ -1,4 +1,0 @@
-{
-  "_comment": "Every accepted divergence between verify/baseline/ (fork point 80e3937) and the built page. An entry is only valid with a non-empty `reason` — diff-pages.mjs throws otherwise. `pages` is a page path, an array of them, or \"*\". `hunk` is the canonical diff text of the divergence, `-` lines from the baseline and `+` lines from the build, trimmed. Emptied 2026-09-13 at the re-sync: the baseline moved to current main, whose da008dd purge removed every HTML comment and whose c507565 added the about-page logo dimensions, retiring all 27 previous entries.",
-  "entries": []
-}
