@@ -61,6 +61,11 @@ jobs:
       - name: Assert page invariants
         run: npm run verify:invariants
 
+      # Both locales must exist for every page. This is the drift the content
+      # collection exists to stop, and it has bitten this project repeatedly.
+      - name: Assert every page is translated
+        run: npm run verify:translations
+
       # Production serves from the domain root. The preview builds with
       # --base=/website/; this asserts that base has not leaked into the build
       # that goes to the real host, where it would 404 every asset.

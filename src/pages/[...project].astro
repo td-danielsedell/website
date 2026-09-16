@@ -1,0 +1,77 @@
+---
+/**
+ * Every project page, both locales, from one file.
+ *
+ * The eight files this replaces were 78% identical markup: the same Layout,
+ * the same slots, the same ProjectBody, differing only in `lang`, the image
+ * alt and the prose. Restructuring a project page meant editing it twice and
+ * keeping the two in sync by hand, which is how the /en/ mirror drifted before.
+ *
+ * Prose comes from src/content/projects/<page>-<lang>.md; the hero image is
+ * matched by page name. Short strings stay in src/data/pages.ts.
+ */
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import type { Lang } from "../data/nav";
+import Layout from "../layouts/Layout.astro";
+import ProjectBody from "../components/ProjectBody.astro";
+import ServiceJsonLd from "../components/head/ServiceJsonLd.astro";
+import ServiceCardCss from "../components/head/ServiceCardCss.astro";
+import FooterLargeCss from "../components/head/FooterLargeCss.astro";
+
+import waterLeak from "../assets/images/projects/water-leak.jpg";
+import railDamage from "../assets/images/projects/rail-damage.png";
+import railSensor from "../assets/images/projects/rail-sensor.png";
+import interferogram from "../assets/images/projects/interferogram.jpeg";
+
+/** Hero per page. A static map, because astro:assets needs real imports. */
+const HERO = {
+  "leak-detection": waterLeak,
+  "raildamage-analyses": railDamage,
+  "railway-safety": railSensor,
+  "sar-processing": interferogram,
+} as const;
+
+export async function getStaticPaths() {
+  const entries = await getCollection("projects");
+  return entries.map((entry) => {
+    const m = entry.id.match(/^(.+)-(sv|en)$/);
+    if (!m) throw new Error(`content id must end -sv or -en: ${entry.id}`);
+    const [, page, lang] = m as unknown as [string, string, Lang];
+    // Swedish sits at the root, English under /en/ — the same shape the
+    // hand-written pages had, so no URL changes.
+    return {
+      params: { project: lang === "sv" ? page : `en/${page}` },
+      props: { entry, page, lang },
+    };
+  });
+}
+
+const { entry, page, lang } = Astro.props;
+const { Content } = await render(entry);
+const path = `${page}.html`;
+---
+
+<Layout lang={lang} path={path}>
+  <ServiceCardCss slot="head-css" lang={lang} />
+  <ServiceJsonLd slot="head-after-fonts" lang={lang} path={path} />
+  <FooterLargeCss slot="head-after-fonts" lang={lang} />
+  <ProjectBody lang={lang} path={path}>
+    <Fragment slot="figure">
+      <figure>
+        <Image
+          class="showcase-image"
+          src={HERO[page as keyof typeof HERO]}
+          widths={[360, 700, 1400]}
+          sizes="(max-width: 480px) calc(100vw - 30px), (max-width: 767px) calc(100vw - 70px), calc(50vw - 60px)"
+          quality={75}
+          fetchpriority="high"
+          alt={entry.data.imageAlt}
+        />
+        {entry.data.caption && <figcaption>{entry.data.caption}</figcaption>}
+      </figure>
+    </Fragment>
+    <Content />
+    {entry.data.partners && <i>{entry.data.partners}</i>}
+  </ProjectBody>
+</Layout>

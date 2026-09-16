@@ -66,6 +66,11 @@ jobs:
       - name: Assert page invariants
         run: npm run verify:invariants
 
+      # Both locales must exist for every page. This is the drift the content
+      # collection exists to stop, and it has bitten this project repeatedly.
+      - name: Assert every page is translated
+        run: npm run verify:translations
+
       # Informational only. The DOM diff compares against verify/baseline/,
       # which is a snapshot of main at a point in time; once main moves ahead it
       # reports differences that are expected rather than wrong. Useful to read
