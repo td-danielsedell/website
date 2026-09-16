@@ -10,12 +10,17 @@
  * A component rather than a route, unlike the other shared pages: a rest route
  * cannot emit index.html at both / and /en/, so src/pages/index.astro and
  * src/pages/en/index.astro stay as two-line files that render this.
+ *
+ * The leading underscore is what keeps Astro from routing it - the documented
+ * way to put a component in the same folder as the pages it belongs to. It
+ * lives here rather than in src/components/ because it is not reusable: it is
+ * one page's body, bound to exactly those two URLs.
  */
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import type { Lang } from "../data/nav";
 import Layout from "../layouts/Layout.astro";
-import OrganizationJsonLd from "./head/OrganizationJsonLd.astro";
+import OrganizationJsonLd from "../components/head/OrganizationJsonLd.astro";
 
 import maxanvLight from "../assets/images/logos/maxanv-light.webp";
 import rymdstyrelsenLight from "../assets/images/logos/rymdstyrelsen-light.webp";
